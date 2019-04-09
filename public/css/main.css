@@ -18,6 +18,7 @@ body {
   height: 100%;
   display: table;
   width: 100%;
+  overflow: auto;
 }
 .center{
   background-image: url('../img/bk.PNG');
@@ -25,10 +26,11 @@ body {
   background-position:center;
   background-attachment:fixed;
   background-size: 100% 100%;
-  width: 80%;
+  width: 60%;
   height: 90%;
   line-height: 90%;
   position: relative;
+  min-width: 900px;
 }
 .centerBlockly{
   background-image: url('../img/blockMapBk.png');
@@ -68,6 +70,7 @@ body {
   line-height: 90%;
   position: relative;
   background: rgba(103, 195, 59, 0.44);
+  min-width: 80px;
 }
 .footer {
   display: table-row;
