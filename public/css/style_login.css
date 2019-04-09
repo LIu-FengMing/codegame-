@@ -54,6 +54,7 @@
   transition: 0.25s;
 }
 .box input[type = "password"]{
+  display: none;
   background: url('../img/lock-icon.png');
   background-size: 50px 50px;
   background-repeat: no-repeat;

@@ -16,27 +16,28 @@
           <img src="img/MARK.png" class = "leftMark">
         </div>
         <div class="box center">
+          <img src="img/bk.PNG" id="bkImg">
           <div class="innerBox">
               <!-- <form class="" action="/login?form=newsletter" method="post"> -->
               <h1><b>登入</b></h1>
               <% if (username&&password){%>
                 <!-- <h1><%= username %></h1>
                 <h1><%= password %></h1> -->
-                <input type="text"  id="UsreName" name='usreName' value=<%= username %>>
-                <input type="password" id="UsrePass" name='usrePass' value=<%= password %>
+                <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" value=<%= username %>>
+                <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" value=<%= password %>
               <% } else { %>
-              <input type="text"  id="UsreName" name='usreName' placeholder="使用者帳號">
-              <input type="password" id="UsrePass" name='usrePass' placeholder="密碼">
+              <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" placeholder="使用者帳號">
+              <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" placeholder="密碼">
               <% } %>
 
-           
+
 
               <br>
               <input type="submit"   onclick="login()" value = "">
               <br>
               <input type="button" id="signUp" onclick="registered()"  value="註冊">
               <input type="button" id="forgetPassword" onclick="forgest()" value="忘記密碼">
-            
+
             <!-- </form> -->
           </div>
         </div>

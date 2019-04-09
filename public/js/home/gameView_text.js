@@ -766,22 +766,22 @@ function blocklyUsable(thisClassID, thisValue) {
       blockType = " ";
       break;
     case "for":
-      blockType = "for(&nbsp)<br>";
+      blockType = "for(&nbsp){...}<br>";
       break;
     case "function":
-      blockType = "function&nbspX(&nbsp)<br>";
+      blockType = "function&nbspX(&nbsp){...}<br>";
       break;
     case "call":
       blockType = " ";
       break;
     case "if":
-      blockType = "if(&nbsp)<br>";
+      blockType = "if(&nbsp){...}<br>";
       break;
     case "if_else":
-      blockType = "if(&nbsp)...else<br>";
+      blockType = "if(&nbsp){...}else{...}<br>";
       break;
     case "switch":
-      blockType = "switch(&nbsp)<br>";
+      blockType = "switch(&nbsp){...}<br>";
       break;
     case "switch":
       blockType = "switch(&nbsp)<br>";

@@ -15,22 +15,24 @@ body {
   text-align: center;
 }
 .main {
-  height: 100%;
   display: table;
+  height: 100%;
   width: 100%;
+  min-height: 900px;
   overflow: auto;
 }
 .center{
-  background-image: url('../img/bk.PNG');
-  background-repeat: no-repeat;
-  background-position:center;
-  background-attachment:fixed;
-  background-size: 100% 100%;
   width: 60%;
   height: 90%;
   line-height: 90%;
   position: relative;
   min-width: 900px;
+}
+.center #bkImg{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
 .centerBlockly{
   background-image: url('../img/blockMapBk.png');
