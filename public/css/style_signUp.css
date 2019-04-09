@@ -1,0 +1,63 @@
+.innerBox{
+  width: 80%;
+  padding: 40px;
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  margin: 150px auto;
+  border-style: none;
+  text-align: center;
+}
+.innerBox h1{
+  color: #000000;
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: 10px;
+  font-weight: bold;
+  font-style: 10px;
+  font-family:Georgia;
+}
+.box input[type = "text"],.box input[type = "password"],.box input[type = "email"]{
+  background: url('../img/user.png');
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+  border:2px;
+  border-bottom-style: solid;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  display: block;
+  margin: 30px auto;
+  text-align: center;
+  padding: 14px 10px;
+  width: 250px;
+  outline: none;
+  font-size: 20px;
+  color: #000000;
+  transition: 0.25s;
+}
+.box #userEmail{
+  background: url('../img/email.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+.box #Name{
+  background: url('../img/name.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+.box input[type = "password"]{
+  background: url('../img/lock-icon.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+::placeholder {
+  color: #7e7b7b;
+  font-size: 25px;
+  opacity: 1; /* Firefox */
+}
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+  width: 300px;
+  text-align: center;
+  border-color: #000000;
+}

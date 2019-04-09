@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/left.css">
+    <link rel="stylesheet" href="css/style_forgetPassword.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>forgetPassword</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+        </div>
+        <div class="box center">
+          <input type="button" value="<" id="goBack2" onclick="back()">
+          <div class="innerBox">
+            <!-- <form class="" action="home.html" method="post"> -->
+              <h1>忘記密碼</h1>
+              <input type="text" id="userName"  placeholder="使用者帳號">
+              <input type="text" id="userEmail" placeholder="信箱">
+              <br>
+              <input type="button" id="signUp"  onclick="forgetPass()" value="確認">
+            <!-- </form> -->
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+  <script src="js/begorehome/forgetPass.js"></script>
+</html>

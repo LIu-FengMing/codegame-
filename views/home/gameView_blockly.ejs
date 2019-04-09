@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/gameView_blockly.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>全速衝線</title>
+  </head>
+  <body id="bodyId"">
+    <audio id="bkMusic" src="Fine_Line.mp3" autoplay loop volume=0></audio>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+          <input type="button" id="helperBtn" onclick="helper('blocklyDiv')">
+        </div>
+        <div class="box center" id="center">
+          <div id="titleBar">
+            <input type="button" value="" id="goBack"  onclick="back()">
+            <font id="titleFont"></font>
+          </div>
+          <div id="textareaBk" style="display: none;">
+            <h1>程式碼</h1>
+            <input type="button" id="clossDiv" value="X">
+            <textarea id="textarea_0"></textarea>
+            <textarea id="textarea_1"></textarea>
+          </div>
+          <div id = "divcanvas">
+          </div>
+          <div id = "blocklyDiv">
+            <div id = "blocklyButtonBottomDiv">
+              <input type="button" id="btn1" class="runButton"  value="" onclick="changeToC(0)">
+            </div>
+            <div id = "blocklyButtonRightDiv">
+              <input type="button" class="transformButton" value="" onclick="transformButton(blocklyDiv)">
+              <input type="button" class="clearButton" value="" onclick="myFunction()">
+              <input type="button" class="restartButton" value="" onclick="restartButton()">
+              <input type="button" class="settingButton" value="" onclick="settingAllView(blocklyDiv)">
+            </div>
+          </div>
+
+          <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+            <category name="函式" id="函式">
+              <block type="block_main"></block>
+            </category>
+          </xml>
+          <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
+            <block type="block_main" id="$Y5O;?8Xg{o4],v7Ff=5" x="188" y="63"></block>
+          </xml>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <font class = "userName" id="userName" ></font>
+          <div class="userStar">
+            <img src="img/star.png" class="imgIcon">
+            <font class="starNumber" id="starNumber" ></font>
+          </div>
+          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script src="gameNew/gameNew/blockly/js/blockly_compressed.js"></script>
+    <script src="gameNew/gameNew/blockly/js/blocks_compressed.js"></script>
+    <script src="gameNew/gameNew/blockly/msg/js/en.js"></script>
+    <script src="js/home/gameView_blockly.js"></script>
+
+    <script src="gameNew/gameNew/js/p5.min.js"></script>
+    <script src="gameNew/gameNew/js/p5.dom.js"></script>
+    <script src="gameNew/gameNew/js/mian.js"></script>
+  </body>
+</html>

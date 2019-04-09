@@ -1,0 +1,241 @@
+#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: bold;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+#midMapTitle{
+  font-size: 55px;
+  font-family: "DFKai-SB",arial,helvetica,sans-serif;
+  font-weight: 900;
+  margin-top: 20px;
+}
+.mapBk{
+  height: 100%;
+  width: 100%;
+  background-image: url('../img/midMapBk.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.btn{
+  width: 4.5%;
+  height: 5.5%;
+  border-radius: 999em;
+  border: 0px;
+  background: transparent;
+  background-color: none;
+  background-image: url('../img/btn3.png');
+  background-size: 100% 100%;
+  margin: 1px auto;
+  position: absolute;
+}
+.unbtn{
+  width: 4.5%;
+  height: 5.5%;
+  border-radius: 999em;
+  border: 0px;
+  background: transparent;
+  background-color: none;
+  background-image: url('../img/unbtn.png');
+  background-size: 100% 100%;
+  margin: 1px auto;
+  position: absolute;
+  pointer-events: none;
+}
+#btn0{left: 11%;bottom: 5%;}
+#btn1{left: 8.5%;bottom: 23%;}
+#btn2{left: 12%;bottom: 42%;}
+#btn3{left: 11%;bottom: 60%;}
+#btn4{left: 19%;bottom: 74%;}
+#btn5{left: 25%;bottom: 52%;}
+#btn6{left: 32%;bottom: 47%;}
+#btn7{left: 33%;bottom: 30%;}
+#btn8{left: 30%;bottom: 14%;}
+#btn9{left: 39%;bottom: 14%;}
+#btn10{left: 43%;bottom: 27%;}
+#btn11{left: 42%;bottom: 40%;}
+#btn12{left: 47%;bottom: 53%;}
+#btn13{left: 56%;bottom: 44%;}
+#btn14{left: 58%;bottom: 25%;}
+#btn15{left: 67%;bottom: 32%;}
+#btn16{left: 76%;bottom: 34%;}
+#btn17{left: 75%;bottom: 22%;}
+#btn18{left: 84%;bottom: 22%;}
+#btn19{left: 84%;bottom: 37%;}
+#btn20{left: 75%;bottom: 49%;}
+#btn21{left: 68%;bottom: 59%;}
+#btn22{left: 78%;bottom: 62%;}
+#btn23{left: 80%;bottom: 76%;}
+#btn24{left: 87%;bottom: 69%;}
+#btn25{left: 92%;bottom: 63%;}
+#levelDiv{
+  z-index: 3;
+  width: 50vh;
+  height: 35vh;
+  font-weight:bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -17.5vh;
+  margin-left: -25vh;
+  background-color: rgba(232, 136, 23, 0.92);
+  overflow: auto;
+}
+#mainGrammar{
+  width: 80%;
+  height: 5vh;
+  margin-left: 10%;
+}
+.innerGrammar{
+  height: 3vh;
+  width: auto;
+  font-size: 1vw;
+  Display:inline-block;
+  background-color: #C47313;
+  padding-top: 1vh;
+  margin-left: 1vh;
+}
+#levelDescription{
+  color: #000000;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: 10px;
+  font-weight: 0;
+  font-family:fantasy;
+}
+#levelDescriptionTextaera{
+  margin-top: 10vh;
+  line-height: 24px;
+}
+#levelBtn{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  right: 6vh;
+  bottom: 3vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  background-color:#8CEB8C;
+  color: black;
+}
+#historyCode{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  left: 6vh;
+  bottom: 3vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  background-color:#FF9999;
+  color: black;
+}
+.startImg{
+  margin: 5px auto;
+  height: 35px;
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/levelStar.png');
+  background-size: 100% 100%;
+}
+.unStartImg{
+  margin: 5px auto;
+  height: 35px;
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/levelStarNull.png');
+  background-size: 100% 100%;
+}
+#buttonDiv{
+  width: 350px;
+  height: 75px;
+  position: absolute;
+  bottom: 5px;
+  right: 1%;
+}
+#buttonDiv input[type="button"]{
+  width: 75px;
+  height: 75px;
+}
+.equipageButton{
+  border-width: 0px;
+  background-image: url('../img/equipage.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.instructionButton{
+  border-width: 0px;
+  background-image: url('../img/instruction.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.achievementButton{
+  border-width: 0px;
+  background-image: url('../img/achievement.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.settingAllButton{
+  border-width: 0px;
+  background-image: url('../img/setting_all.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+#centerBlocklyBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+}
+#centerBlocklyView{
+  z-index: 4;
+  height: 60%;
+  width: 30%;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#viewRecordTable{
+  width: 100%;
+  margin-top: 20px;
+}
+#viewRecordTable td{
+  height: 50px;
+}
+#viewRecordTextaera{
+  width: 80%;
+  height: 40%;
+  background-color: white;
+  text-align:left;
+  position: absolute;
+  left: 10%;
+  overflow: auto;
+}

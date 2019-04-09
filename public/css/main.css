@@ -1,0 +1,114 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+html,body {
+  height: 100%;
+}
+body {
+  color: black;
+}
+.wrap {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+.main {
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+.center{
+  background-image: url('../img/bk.PNG');
+  background-repeat: no-repeat;
+  background-position:center;
+  background-attachment:fixed;
+  background-size: 100% 100%;
+  width: 80%;
+  height: 90%;
+  line-height: 90%;
+  position: relative;
+}
+.centerBlockly{
+  background-image: url('../img/blockMapBk.png');
+  background-repeat: no-repeat;
+  background-position:center;
+  background-attachment:fixed;
+  background-size: 80% 100%;
+  width: 80%;
+  height: 90%;
+  line-height: 90%;
+  position: relative;
+}
+.centerMidMap{
+  background-image: url('../img/midMapBk.png');
+  background-repeat: no-repeat;
+  background-position:center;
+  background-attachment:fixed;
+  background-size: 80% 100%;
+  width: 80%;
+  height: 90%;
+  line-height: 90%;
+  position: relative;
+}
+.centerLost{
+  background-color: #A7BBD1;
+  width: 80%;
+  height: 100%;
+  line-height: 90%;
+  position: relative;
+}
+.box {
+  display: table-cell;
+}
+.sidebarLeft,.sidebarRight {
+  width: 10%;
+  height: 90%;
+  line-height: 90%;
+  position: relative;
+  background: rgba(103, 195, 59, 0.44);
+}
+.footer {
+  display: table-row;
+  height: 0%;
+  line-height: 80px;
+  background: none;
+}
+#goBack{
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  background-image: url('../img/goBack.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  position: absolute;
+  border-width: 0;
+  top: 10%;
+  left: 1%;
+}
+#goBack2{
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  background-color: rgb(204, 247, 204);
+  position: absolute;
+  top: 2%;
+  left: 1%;
+}
+#goBack3{
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  border-width: 0;
+  background-image: url('../img/goBack.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  position: absolute;
+  top: 2%;
+  left: 1%;
+}

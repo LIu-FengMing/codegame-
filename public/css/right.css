@@ -1,0 +1,105 @@
+.userName{
+  position: absolute;
+  top: 7px;
+  left: 0px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  width: 100%;
+  font-weight: bolder;
+  color: rgb(89, 70, 137);;
+  text-decoration:underline;
+}
+.btnUser {
+  height: 5vh;
+  width: 15vh;
+  border-style: solid;
+  border-color: black;
+  border-radius: 15px;
+  background: -webkit-linear-gradient(white,#B1DE85);
+  background: -o-linear-gradient(white,#B1DE85);
+  background: -moz-linear-gradient(white,#B1DE85);
+  background: linear-gradient(white,#B1DE85);
+  color: black;
+  margin-top: 2vh;
+  font-size: 2vh;
+  cursor: pointer;
+}
+.btnLogout {
+  height: 5vh;
+  width: 15vh;
+  border-style: solid;
+  border-color: black;
+  border-radius: 15px;
+  background: -webkit-linear-gradient(white,#F09090);
+  background: -o-linear-gradient(white,#F09090);
+  background: -moz-linear-gradient(white,#F09090);
+  background: linear-gradient(white,#F09090);
+  color: black;
+  margin-top: 2vh;
+  font-size: 2vh;
+  cursor: pointer;
+}
+.signOut{
+  height: 25px;
+  width: auto;
+}
+.imgIcon{
+  margin: 5px 0px 0px 0px;
+  width: 25px;
+  height: 25px;
+}
+.starNumber,.goldNumber{
+  line-height:5px;
+  font-size: 25px;
+}
+#userDataBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+}
+#userDataView{
+  z-index: 4;
+  height: 58%;
+  width: 40%;
+  position: absolute;
+  top: 21%;
+  left: 30%;
+  background-color: #FFE599;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+}
+#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: bold;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+#allTitle{
+  margin-top: 20px;
+}
+#userInnerDiv{
+  width: 80%;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  background-color: #FFF2CC;
+  border-style: solid;
+  border-color: #D6B656;
+  overflow: auto;
+}
+#userH3Div{
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}

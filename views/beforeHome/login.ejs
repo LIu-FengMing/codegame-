@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/left.css">
+    <link rel="stylesheet" href="css/style_login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+        </div>
+        <div class="box center">
+          <div class="innerBox">
+              <!-- <form class="" action="/login?form=newsletter" method="post"> -->
+              <h1><b>登入</b></h1>
+              <% if (username&&password){%>
+                <!-- <h1><%= username %></h1>
+                <h1><%= password %></h1> -->
+                <input type="text"  id="UsreName" name='usreName' value=<%= username %>>
+                <input type="password" id="UsrePass" name='usrePass' value=<%= password %>
+              <% } else { %>
+              <input type="text"  id="UsreName" name='usreName' placeholder="使用者帳號">
+              <input type="password" id="UsrePass" name='usrePass' placeholder="密碼">
+              <% } %>
+
+           
+
+              <br>
+              <input type="submit"   onclick="login()" value = "">
+              <br>
+              <input type="button" id="signUp" onclick="registered()"  value="註冊">
+              <input type="button" id="forgetPassword" onclick="forgest()" value="忘記密碼">
+            
+            <!-- </form> -->
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+  <script src="js/begorehome/login.js"></script>
+</html>

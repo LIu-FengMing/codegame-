@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/left.css">
+    <link rel="stylesheet" href="css/right.css">
+    <link rel="stylesheet" href="css/style_home.css">
+    <link rel="stylesheet" href="css/homeCenter.css">
+    <link rel="stylesheet" href="css/center.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>全速衝線</title>
+  </head>
+  <body>
+    <audio id="bkMusic" src="Fine_Line.mp3" autoplay loop></audio>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+        </div>
+        <div class="box center" id="center">
+          <div class="">
+            <div class="castle_blockly">
+              <input type="button" class="castle_blockly" value="" onclick="location.href='pruss';">
+            </div>
+            <div class="unCastle_code" id="castle_codeDiv">
+              <input type="button" class="unCastle_code" id="castle_codeBtn" value="" onclick="location.href='kuruma';">
+            </div>
+            <div class="castle_link">
+              <input type="button" class="castle_link" value="" onclick="location.href='oblivion';">
+            </div>
+          </div>
+          <div id = "buttonDiv">
+            <input type="button" class="equipageButton"  value="" onclick="equipageView(center)">
+            <input type="button" class="instructionButton" value="" onclick="instructionView(center)">
+            <input type="button" class="achievementButton" value="" onclick="achievementView(center)">
+            <input type="button" class="settingAllButton" value="" onclick="settingAllView(center)">
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <font class = "userName" id="userName" ></font>
+          <div class="userStar">
+            <img src="img/star.png" class="imgIcon">
+            <font class="starNumber" id="starNumber" ></font>
+          </div>
+          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <!--<input type="button" class="userData" value="個人資料" onclick="userData()">
+          <input type="button" class="signOut" value="登出" onclick="logout()">
+          <div class="userGold">
+            <img src="img/gold.png" class="imgIcon">
+            <font class="goldNumber">:xxx</font>
+          </div>-->
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+
+    <!-- <script src="js/homeBtn.js"></script> -->
+    <!-- <script src="js/right.js"></script> -->
+    <!-- <script src="js/btnClick.js"></script> -->
+    <script src="js/home/home.js"></script>
+  </body>
+</html>

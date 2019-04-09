@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/oblivionDetectionView.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="jquery-linedtextarea/jquery-linedtextarea.js"></script>
+  	<link href="jquery-linedtextarea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>全速衝線</title>
+  </head>
+  <body onload="getArgs()">
+    <audio id="bkMusic" src="Fine_Line.mp3" autoplay loop></audio>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+          <input type="button" id="helperBtn" value="" onclick="helper(blocklyDiv)">
+        </div>
+        <div class="box center" id="center">
+          <div id="titleBar">
+            <input type="button" value="" id="goBack" onclick="history.back()">
+            <font id="titleFont"></font>
+          </div>
+          <div id="textareaBk" style="display: none;">
+            <input type="button" id="clossDiv" value="X">
+            <textarea id="textarea_1"></textarea>
+          </div>
+          <div id = "divcanvas"></div>
+          <div id = "blocklyDiv">
+            <div id = "funcDiv">
+              <div class="func" id="func">
+                main( )<br>
+              </div>
+              <div class="step" id="step" style="display:none;">
+              </div>
+              <div class="judgment" id="judgment" style="display:none;">
+              </div>
+            </div>
+            <div id="textareaDiv">
+              <textarea class="lined" id="textarea_0" style="height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;"></textarea>
+            </div>
+            <div id = "textButtonDiv">
+              <input type="button" id="btn1" class="runButton"  value="" onclick="codeToCompiler();">
+              <input type="button" class="clearButton" value="" onclick="clearButton(textarea_0)">
+              <input type="button" class="restartButton" value="" onclick="myFunction()">
+              <input type="button" class="settingButton" value="" onclick="settingAllView(blocklyDiv)">
+            </div>
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <font class = "userName" id="userName" ></font>
+          <div class="userStar">
+            <img src="img/star.png" class="imgIcon">
+            <font class="starNumber" id="starNumber" ></font>
+          </div>
+          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <!--<div class="userGold">
+            <img src="img/gold.png" class="imgIcon">
+            <font class="starNumber">:xxx</font>
+          </div>-->
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script src="js/oblivion/oblivionDetectionView.js"></script>
+    <script src="oblivionGame/js/p5.min.js"></script>
+    <script src="oblivionGame/js/p5.dom.js"></script>
+    <script src="oblivionGame/js/mian.js"></script>
+    <script>
+  		$(function() {
+  			$(".lined").linedtextarea({
+  				selectedLine: 1
+  			});
+  		});
+  	</script>
+    <script type="text/javascript">
+      $.each($("textarea"), function(i, n){
+        $(n).css("height", n.scrollHeight + "px");
+      })
+  </script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/oblivionCreater.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title></title>
+  </head>
+  <body onload="clearLinkDot();">
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+          <input type="button" id="helperBtn" value="" onclick="helper('divcanvas')">
+        </div>
+        <div class="box centerLost" id="centerLost">
+          <div id="titleBar">
+            <input type="button" value="" id="goBack3" onclick="history.back()">
+            <table id="lostTitleTable" align="left">
+              <tr>
+                <!-- <td id="td00"><input type="button" value="地圖設置" onclick="settingMap()"></td> -->
+                <td id="td01">物件選擇：</td>
+                <td id="td02">
+                  <form>
+                    <select id="objectSelect">
+                      <option value="start">玩家起始位置</option>
+                      <option value="end">終點</option>
+                      <option value="stone">石頭</option>
+                    　<option value="tree">樹木</option>
+                      <option value="gold">金幣</option>
+                      <option value="questionMark">問號標誌</option>
+                      <option value="questionStone">問號石頭</option>
+                      <option value="yellowLock">黃色鎖頭</option>
+                      <option value="yellowArrow">黃色箭頭</option>
+                      <option value="bomb">炸彈</option>
+                      <option value="blueLock">藍色鎖頭</option>
+                      <option value="enemy">敵人</option>
+                      <option value="box">寶箱</option>
+                    </select>
+                  </form>
+                </td>
+                <td id="td03">物件角度：</td>
+                <td id="td04">
+                  <form>
+                    <select id="college-pos">
+                      <option value="0">0度</option>
+                    　<option value="90">90度</option>
+                    　<option value="180">180度</option>
+                      <option value="270">270度</option>
+                    </select>
+                  </form>
+                </td>
+                <td id="td05">
+                  <input type="button" name=""  onclick="input()" value="新增物件">
+                  <input type="button" name="" onclick="del()" value="刪除物件">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div id = "divcanvas"></div>
+          <div id = "functionSetting">
+            <div id="tabsF">
+        			<ul>
+        				<li id="current"><a href="javascript://" onclick="loadTab(this,1);"><span>關卡設定</span></a></li>
+        				<li><a href="javascript://" onclick="loadTab(this,2);"><span>物件屬性</span></a></li>
+                <li><a href="javascript://" onclick="loadTab(this,3);"><span>地圖設置</span></a></li>
+        				<li><a href="javascript://" onclick="loadTab(this,4);"><span>進階</span></a></li>
+        			</ul>
+        		</div>
+        		<div id="tabsC">
+        			<div id="S1" style="display:inline;">
+                <table id="levelDescriptionTable">
+                  <tr>
+                    <td align="right" id="S1Td00">
+                      <h3>關卡名稱</h3>
+                    </td>
+                    <td id="S1Td01">
+                      <textarea id="levelNameTextarea"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" id="S1Td10">
+                      <br>
+                      <h3>關卡簡介</h3>
+                    </td>
+                    <td id="S1Td11">
+                      <textarea id="levelIntroductionTextarea"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" id="S1Td20">
+                      <br>
+                      <br>
+                      <br>
+                      <h3>關卡說明</h3>
+                    </td>
+                    <td id="S1Td21">
+                      <textarea id="levelDescriptionTextarea"></textarea>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+        			<div id="S2" style="display:none;">
+                <table id="enemyTable" style="display:none;">
+                  <tr>
+                    <td align="right" id="S1Td00">
+                      <h3>敵人血量</h3>
+                    </td>
+                    <td id="S1Td01">
+                      <textarea id="enemyBlodTextarea"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" id="S1Td10">
+                      <h3>敵人攻擊力</h3>
+                    </td>
+                    <td id="S1Td11">
+                      <textarea id="enemyAttackTextarea"></textarea>
+                    </td>
+                  </tr>
+                </table>
+                <table id="lockAnswerTable" style="display:none;">
+                  <tr>
+                    <td align="right" id="S1Td00">
+                      <h3>鎖頭答案</h3>
+                    </td>
+                    <td id="S1Td01">
+                      <textarea id="lockAnswerTextarea"></textarea>
+                    </td>
+                </table>
+                <table id="boxTable" style="display:none;">
+                  <tr>
+                    <td align="right" id="S1Td00">
+                      <h3>寶箱字串</h3>
+                    </td>
+                    <td id="S1Td01">
+                      <textarea id="boxTextarea"></textarea>
+                    </td>
+                </table>
+        			</div>
+        			<div id="S3" style="display:none;">
+                <table>
+                  <tr>
+                    <td>
+                      <h2>地圖大小</h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select id="mapSize" onchange="changeObjectAttributes()">
+                        <option value="6*6">6X6</option>
+                        <option value="7*7">7X7</option>
+                        <option value="8*8">8X8</option>
+                        <option value="9*9">9X9</option>
+                        <option value="10*10">10X10</option>
+                        <option value="11*11">11X11</option>
+                        <option value="12*12">12X12</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h2>地圖配置</h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select id="mapDeploy" onchange="changeObjectAttributes()">
+                        <option value="land">陸地</option>
+                        <option value="desert">沙漠</option>
+                        <option value="sea">海洋</option>
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+        			</div>
+              <div id="S4" style="display:none;">
+                <table id="foggyTable">
+                  <tr>
+                    <td align="right" id="S1Td00">
+                      <h3>迷霧</h3>
+                    </td>
+                      <td id="S1Td01">
+                        <form name="form1">
+                          <input name="c1" type="checkbox" id="openFoggy" onclick="return chk(this);">
+                          <font>有</font>
+                          <input name="c1" type="checkbox" id="closeFoggy" checked="true" onclick="return chk(this);">
+                          <font>無</font>
+                        </form>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td align="right" id="S1Td10">
+                      <h3>程式擴充區</h3>
+                    </td>
+                    <td id="S1Td11" colspan="2">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><textarea id="codingTextarea"></textarea></td>
+                  </tr>
+                </table>
+        			</div>
+        		</div>
+            <input type="button" id="saveBtn" value="儲存">
+            <input type="button" id="finishBtn" value="設置完成">
+          </div>
+          <div id="settingMapDiv" style="display:none;">
+            <input type="button" id="clossDiv" value="X" onclick="unSaveMap()">
+            <div id="settingMapTitleBar">
+              <font id="settingMaptitleFont">地圖設置</font>
+              <div id = "settingMapDivCanvas"></div>
+              <div id = "innerSettingMapDiv">
+
+                <input type="button" id="saveMap" value="儲存地圖" onclick="saveMap()">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <font class = "userName" id="userName" ></font>
+          <div class="userStar">
+            <img src="img/star.png" class="imgIcon">
+            <font class="starNumber" id="starNumber" ></font>
+          </div>
+          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script src="js/oblivion/oblivionCreater.js"></script>
+    <script src="createNewMap/js/p5.min.js"></script>
+    <script src="createNewMap/js/p5.min.js"></script>
+    <script src="createNewMap/js/p5.dom.js"></script>
+    <script src="createNewMap/js/mian.js"></script>
+  </body>
+</html>

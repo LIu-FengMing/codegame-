@@ -1,0 +1,456 @@
+#clossDiv{
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: bold;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+#allTitle{
+  margin-top: 20px;
+}
+/*裝備*/
+#equipageBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+}
+#equipageView{
+  z-index: 4;
+  height: 40%;
+  width: 40%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#equipageInnerDiv{
+  z-index: 4;
+  height: 20%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background-color: rgba(112, 159, 222, 1);
+}
+#equipageFont{
+  position: absolute;
+  font-size: 70px;
+  letter-spacing: 100px;
+  color: rgb(255, 255, 255);
+  top:40%;
+  right:0;
+  bottom:0;
+  left:7%;
+  margin:auto;
+}
+#equipageTable{
+  width: 100%;
+  position: relative;
+  top: 10%;
+  border: 1;
+}
+#swordImg{
+  height: 100px;
+  width: 100px;
+  border-radius:10px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: rgb(103, 103, 103);
+  margin: 10px auto;
+}
+#swordLevelUpDivH3{
+  margin-top: 20px;
+  color: rgb(157, 22, 143);
+}
+#shieldLevelUpDivH3{
+  margin-top: 20px;
+  color: rgb(157, 22, 143);
+}
+#shieldImg{
+  height: 100px;
+  width: 100px;
+  border-radius:10px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: rgb(103, 103, 103);
+  margin: 10px auto;
+}
+#swordLevelUpDiv,#shieldLevelUpDiv{
+  height: 50px;
+  width: 200px;
+  border-radius:10px;
+  background-color: white;
+  margin: 5px auto;
+}
+#swordLevelUpTable,#shieldLevelUpTable{
+  height: 50px;
+  width: 200px;
+  border-radius:10px;
+  padding: 0;
+}
+.levelUp{
+  height: 60px;
+  width: 75px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius:10px;
+  background-color: #FF6666;
+}
+.levelUpDefault{
+  height: 60px;
+  width: 75px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius:10px;
+  pointer-events: none;
+}
+#levelUp1{
+  height: 60px;
+  width: 75px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius:10px;
+  background-color: #FF6666;
+}
+#levelUpDefault1{
+  height: 60px;
+  width: 75px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius:10px;
+}
+#levelUpImg{
+  height: 20px;
+  width: 20px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/levelStar.png');
+  background-size: 100% 100%;
+}
+.levelUpFont{
+  font-size: 15px;
+  font-weight: 400;
+}
+.levelFont{
+  height: 50px;
+  width: 15px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: yellow;
+  border-style:solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0;
+}
+.levelLaterDefault{
+  height: 50px;
+  width: 15px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: white;
+  border-style:solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0;
+}
+.levelLater{
+  height: 50px;
+  width: 15px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: yellow;
+  border-style:solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0;
+}
+.levelDefault{
+  height: 50px;
+  width: 15px;
+  background-color: white;
+  border-style:solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0;
+}
+.levelChange{
+  height: 50px;
+  width: 15px;
+  background-color: yellow;
+  border-style:solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0;
+}
+
+/*指令大全*/
+#instructionView{
+  z-index: 4;
+  height: 50%;
+  width: 40%;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#instructionTable{
+  width: 100%;
+  position: relative;
+  border: 1;
+  margin-top: 5%;
+}
+/*#actionFont0,#actionFont2{
+  height: 20px;
+  margin: 5px auto;
+}
+#actionDiv1,#actionDiv3{
+  height: auto;
+  font-style: italic;
+  font-size: 25px;
+  line-height: 24px;
+}
+#actionDiv1 h3{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#actionDiv1 a{
+  text-decoration: none;
+}
+#actionDiv1 p {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+#actionDiv1 p:target {
+  margin-bottom: 5px;
+  height: auto;
+}*/
+#actionFont0,#actionFont2,#actionFont4{
+  height: 20px;
+  margin: 5px auto;
+}
+#actionDiv1,#actionDiv3,#actionDiv5,#actionDiv7,#actionDiv9{
+  height: auto;
+  font-style: italic;
+  font-size: 25px;
+  line-height: 24px;
+}
+#actionDiv1 h3,#actionDiv3 h3,#actionDiv5 h3,#actionDiv7 h3,#actionDiv9 h3{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#actionDiv1 a,#actionDiv3 a,#actionDiv5 a,#actionDiv7 a,#actionDiv9 a{
+  text-decoration: none;
+}
+#actionDiv1 p,#actionDiv3 p,#actionDiv5 p,#actionDiv7 p,#actionDiv9 p{
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+#actionDiv1 p:target,#actionDiv3 p:target,#actionDiv5 p:target,#actionDiv7 p:target,#actionDiv9 p:target {
+  margin-bottom: 5px;
+  height: auto;
+}
+
+/*成就*/
+#achievementView{
+  z-index: 4;
+  height: 50%;
+  width: 40%;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#achievementTable{
+  width: 100%;
+  position: relative;
+  border: 1;
+  margin-top: 5%;
+}
+#crownImgLeft{
+  height: 35px;
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/crown.png');
+  background-size: 100% 100%;
+  position: absolute;
+  top: 10px;
+  right: 60%;
+}
+#crownImgRight{
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/crown.png');
+  background-size: 100% 100%;
+  position: absolute;
+  top: 1
+  0px;
+  left: 60%;
+}
+.champtionGold{
+  width: 50px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/champtionGold.png');
+  background-size: 100% 100%;
+}
+.champtionSilver{
+  width: 50px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/champtionSilver.png');
+  background-size: 100% 100%;
+}
+.champtionCopper{
+  width: 50px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/champtionCopper.png');
+  background-size: 100% 100%;
+}
+.achievementInnerDiv h3{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.achievementInnerDiv a{
+  text-decoration: none;
+}
+.achievementInnerDiv p {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+.achievementInnerDiv p:target {
+  margin-bottom: 5px;
+  height: 20px;
+}
+.achievementFont{
+  color: rgb(52, 175, 9);
+  font-size: 24px;
+}
+.achievementFontDefault{
+  font-weight: bold;
+}
+
+/*設定*/
+#settingAllView{
+  z-index: 4;
+  height: 30%;
+  width: 40%;
+  position: absolute;
+  top: 35%;
+  left: 30%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#settingAllTable{
+  width: 100%;
+  position: relative;
+  top: 20%;
+  border: 1px;
+}
+#settingMusic,#musicVolume,#settingSpeed{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#musicOpen,#musicClose,#speedLow,#speedMid,#speedQuick{
+  margin-right: 5px;
+}
+#openText,#speedLowText,#speedMidText{
+  margin-right: 10px;
+}
+#volumeButtonSub{
+  height: 20px;
+  width: 20px;
+  border-color: black;
+  border-width: 1px;
+  background-color: #FFD966;
+  margin: 5px auto;
+}
+#musicVolumeDiv{
+  height: 50px;
+  width: 200px;
+  margin: 5px auto;
+}
+#settingAllTable input[type = "checkbox"]{
+  height: 20px;
+  width: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#settingAllTable font{
+  font-size: 25px;
+  line-height: 0px;　
+  margin-top: -5px;
+}
+.musicVolumeInnerDivDefault{
+  height: 40px;
+  width: 15px;
+  border-style:solid;
+  border-width: 1px;
+  margin-right: 2px;
+  margin-left: 3px;
+  margin-top: 10px;
+}
+.musicVolumeInnerDiv{
+  width: 15px;
+  border-style:solid;
+  border-width: 1px;
+  margin-right: 2px;
+  margin-left: 3px;
+  background-color: red;
+}
+#musicVolumeInnerDiv0{
+  height: 4px;
+  margin-top: 36px;
+}
+#musicVolumeInnerDiv1{
+  height: 8px;
+  margin-top: 32px;
+}
+#musicVolumeInnerDiv2{
+  height: 12px;
+  margin-top: 28px;
+}
+#musicVolumeInnerDiv3{
+  height: 16px;
+  margin-top: 24px;
+}
+#musicVolumeInnerDiv4{
+  height: 20px;
+  margin-top: 20px;
+}
+#musicVolumeInnerDiv5{
+  height: 24px;
+  margin-top: 16px;
+}
+#musicVolumeInnerDiv6{
+  height: 28px;
+  margin-top: 12px;
+}
+#musicVolumeInnerDiv7{
+  height: 32px;
+  margin-top: 8px;
+}
+#musicVolumeInnerDiv8{
+  height: 36px;
+  margin-top: 4px;
+}
+#musicVolumeInnerDiv9{
+  height: 40px;
+  margin-top: 0px;
+}

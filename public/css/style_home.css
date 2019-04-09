@@ -1,0 +1,124 @@
+.castle_blockly{
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  width: 22%;
+  height: 50%;
+  color: none;
+}
+.castle_blockly input[type="button"]{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 0px;
+  background-image: url('../img/castle2.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+}
+.castle_code{
+  position: absolute;
+  top: 5%;
+  left: 39%;
+  width: 22%;
+  height: 50%;
+  color: none;
+}
+.castle_code input[type="button"]{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 0px;
+  background-image: url('../img/castle1.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+}
+.unCastle_code{
+  position: absolute;
+  top: 5%;
+  left: 39%;
+  width: 22%;
+  height: 50%;
+  color: none;
+}
+.unCastle_code input[type="button"]{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 0px;
+  background-image: url('../img/lockCastle1.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
+.castle_link{
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: 22%;
+  height: 50%;
+  color: none;
+}
+.castle_link input[type="button"]{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 0px;
+  background-image: url('../img/castle3.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+}
+#buttonDiv{
+  width: 350px;
+  height: 75px;
+  position: absolute;
+  bottom: 5px;
+  right: 1%;
+}
+#buttonDiv input[type="button"]{
+  width: 75px;
+  height: 75px;
+}
+.equipageButton{
+  border-width: 0px;
+  background-image: url('../img/equipage.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.instructionButton{
+  border-width: 0px;
+  background-image: url('../img/instruction.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.achievementButton{
+  border-width: 0px;
+  background-image: url('../img/achievement.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.settingAllButton{
+  border-width: 0px;
+  background-image: url('../img/setting_all.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}

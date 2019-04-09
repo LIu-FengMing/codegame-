@@ -1,0 +1,283 @@
+#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: bold;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+#blocklyMapTitle{
+  z-index: 1;
+  font-size: 55px;
+  font-family: "DFKai-SB",arial,helvetica,sans-serif;
+  font-weight: 900;
+  margin-top: 20px;
+}
+.onoffswitch {
+    position: absolute;
+    width: 90px;
+    top: 5px;
+    right: 5px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "積木";
+    padding-left: -10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "程式碼";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 16px; margin: 7px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+.btn{
+  width: 4.5%;
+  height: 5.5%;
+  border-radius: 999em;
+  border: 0px;
+  background: transparent;
+  background-color: none;
+  background-image: url('../img/btn3.png');
+  background-size: 100% 100%;
+  margin: 1px auto;
+  position: absolute;
+}
+.unbtn{
+  width: 4.5%;
+  height: 5.5%;
+  border-radius: 999em;
+  border: 0px;
+  background: transparent;
+  background-color: none;
+  background-image: url('../img/unbtn.png');
+  background-size: 100% 100%;
+  margin: 1px auto;
+  position: absolute;
+  pointer-events: none;
+}
+#btn0{left: 8%;bottom: 21%;}
+#btn1{left: 18%;bottom: 13%;}
+#btn2{left: 28%;bottom: 10%;}
+#btn3{left: 39%;bottom: 10%;}
+#btn4{left: 52%;bottom: 19%;}
+#btn5{left: 40%;bottom: 24%;}
+#btn6{left: 28%;bottom: 30%;}
+#btn7{left: 24%;bottom: 44%;}
+#btn8{left: 26%;bottom: 60%;}
+#btn9{left: 15%;bottom: 60%;}
+#btn10{left: 15%;bottom: 72%;}
+#btn11{left: 26%;bottom: 81%;}
+#btn12{left: 33%;bottom: 72%;}
+#btn13{left: 35%;bottom: 61%;}
+#btn14{left: 42%;bottom: 50%;}
+#btn15{left: 54%;bottom: 50%;}
+#btn16{left: 66%;bottom: 46%;}
+#btn17{left: 69%;bottom: 32%;}
+#btn18{left: 79%;bottom: 31%;}
+#btn19{left: 82%;bottom: 46%;}
+#btn20{left: 78%;bottom: 60%;}
+#btn21{left: 75%;bottom: 73%;}
+#btn22{left: 84%;bottom: 69%;}
+#btn23{left: 94%;bottom: 71%;}
+#levelDiv{
+  z-index: 3;
+  width: 50vh;
+  height: 35vh;
+  font-weight:bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -17.5vh;
+  margin-left: -25vh;
+  background-color: rgba(232, 136, 23, 0.92);
+  overflow: auto;
+}
+#mainGrammar{
+  width: 80%;
+  height: 5vh;
+  margin-left: 10%;
+}
+.innerGrammar{
+  height: 3vh;
+  width: auto;
+  font-size: 1vw;
+  Display:inline-block;
+  background-color: #C47313;
+  padding-top: 1vh;
+  margin-left: 1vh;
+}
+#levelDescription{
+  color: #000000;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: 10px;
+  font-weight: 0;
+  font-family:fantasy;
+}
+#levelDescriptionTextaera{
+  margin-top: 10vh;
+  line-height: 24px;
+}
+#levelBtn{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  right: 6vh;
+  bottom: 3vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  background-color:#8CEB8C;
+  color: black;
+}
+#historyCode{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  left: 6vh;
+  bottom: 3vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  background-color:#FF9999;
+  color: black;
+}
+.startImg{
+  margin: 5px auto;
+  height: 35px;
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/levelStar.png');
+  background-size: 100% 100%;
+}
+.unStartImg{
+  margin: 5px auto;
+  height: 35px;
+  width: 35px;
+  border: 0px;
+  background: transparent;
+  content:url('../img/levelStarNull.png');
+  background-size: 100% 100%;
+}
+#buttonDiv{
+  width: 350px;
+  height: 75px;
+  position: absolute;
+  bottom: 5px;
+  right: 1%;
+}
+#buttonDiv input[type="button"]{
+  width: 75px;
+  height: 75px;
+}
+.equipageButton{
+  border-width: 0px;
+  background-image: url('../img/equipage.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.instructionButton{
+  border-width: 0px;
+  background-image: url('../img/instruction.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.achievementButton{
+  border-width: 0px;
+  background-image: url('../img/achievement.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+.settingAllButton{
+  border-width: 0px;
+  background-image: url('../img/setting_all.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+}
+#centerBlocklyBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+}
+#centerBlocklyView{
+  z-index: 4;
+  height: 60%;
+  width: 30%;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#viewRecordTable{
+  width: 100%;
+  margin-top: 20px;
+}
+#viewRecordTable td{
+  height: 50px;
+}
+#viewRecordTextaera{
+  width: 80%;
+  height: 40%;
+  background-color: white;
+  text-align:left;
+  position: absolute;
+  left: 10%;
+  overflow: auto;
+}
+#instructionFont{
+  font-size: 20px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/left.css">
+    <link rel="stylesheet" href="css/style_signUP.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+        </div>
+        <div class="box center">
+          <input type="button" value="<" id="goBack2" onclick="back()">
+          <div class="innerBox">
+            <!-- <form class="" action="home.html" method="post"> -->
+              <h1>註冊</h1>
+              <input type="text"  id="Name" placeholder="使用者名稱">
+              <input type="text"  id="userName" placeholder="使用者帳號">
+              <input type="email" id="userEmail" placeholder="信箱">
+              <input type="password" id="Pass" placeholder="使用者密碼">
+              <input type="password"  id="checkPass" placeholder="確認密碼">
+              <br>
+              <input type="button" id="signUp" onclick="register()" value="註冊">
+            <!-- </form> -->
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+  <script src="js/begorehome/register.js"></script>
+</html>
