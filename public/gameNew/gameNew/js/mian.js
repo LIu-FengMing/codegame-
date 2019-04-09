@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
-    var path = ["stone", "tree", "tank", "bot",
+    var path = ["stone", "tree", "tank", "bot","start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
@@ -749,6 +749,8 @@ function updateBackgroundGraph() {
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         backgroundGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
     }
+    var img = imgObject[parseInt(imgDic["start"])];
+    backgroundGraph.image(img,people_init["postion"][0]*edgeToWidth,  people_init["postion"][1]*edgeToHeight,edgeToWidth , edgeToHeight);
 }
 
 function updateObjectGraph() {
