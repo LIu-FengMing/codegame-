@@ -1118,7 +1118,6 @@ function codeOutputTranstionAction() {
             }
             temp.push(spaceTranstion);
             if (waitD.length > 0) {
-
                 var spaceListD = [];
                 for (var sdi = 0; sdi < waitD.length; ++sdi) {
                     spaceT = waitD[sdi].split(",,");
@@ -1153,18 +1152,9 @@ function codeOutputTranstionAction() {
                     }
                 }
             }
-            // console.log(mapObject);
-            // console.log(spaceT, o - forgetDel, mapObject[o]);
             if (o > -1 && spaceT[2].length > 1) {
                 // console.log(mapObject[o - forgetDel].ans ,"  ",spaceT[2]);
                 var conditionAns = true;
-                // console.log(spaceT[2].length, mapObject[o].ans.length, spaceT[2].indexOf(mapObject[o - forgetDel].ans));
-                // if (spaceT[2].length - mapObject[o].ans.length < 5) {
-                //     var ansIndex = spaceT[2].indexOf(mapObject[o].ans);
-                //     if (ansIndex > -1) {
-                //         conditionAns = true;
-                //     }
-                // }
                 var inputList = spaceT[2].split(' ');
                 var ansList = mapObject[o].ans.split(' ');
                 // console.log(inputList,ansList);
@@ -1282,7 +1272,8 @@ function codeOutputTranstionAction() {
                 for (var di = 1; di < spaceT.length; di++) {
                     var tempList = spaceT[di];
                     var listTranstion = {
-                        obj: parseInt(tempList) - forgetDel
+                        obj: parseInt(tempList) - forgetDel,
+                        forgetDel:forgetDel
                     }
                     spaceList.push(listTranstion);
                 }
