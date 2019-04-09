@@ -308,7 +308,8 @@ router.post('/gameView_text', function (req, res, next) {
                 submitTime: req.body.submitTime,
                 result: req.body.result,
                 code: req.body.code,
-                instructionNum: req.body.instructionNum,
+                srarNum:req.body.StarNum,
+                instructionNum:req.body.instructionNum
             }]
         }
         User.getUserById(id, function (err, user) {
@@ -526,7 +527,9 @@ router.post('/gameView_blockly', function (req, res, next) {
             challengeLog: [{
                 submitTime: req.body.submitTime,
                 result: req.body.result,
-                code: req.body.code
+                code: req.body.code,
+                srarNum:req.body.StarNum,
+                instructionNum:req.body.instructionNum
             }]
         }
         User.getUserById(id, function (err, user) {

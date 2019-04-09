@@ -392,6 +392,7 @@ function clossFunc(thisDiv, thisDiv2) {
 function clearButton(thisTextarea) {
   document.getElementById(thisTextarea.id).value = "";
   clearcodeAndInit();
+  challengeGameAgain();
 }
 /*清除畫布動作*/
 function restartButton(thisTextarea) {
