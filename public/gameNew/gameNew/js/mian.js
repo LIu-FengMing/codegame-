@@ -39,7 +39,7 @@ var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
 var haveFoggy = false;
-
+var lock2DelObjpos=0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -472,6 +472,8 @@ function draw() {
                 }
                 else if (value == 3 || value == 6 || value == 7) {
                     gameEndingCode = value;
+                    action_now=action_code.length;
+                    action_code=[];
                     onChanged = false;
                     onChanging = false;
                     updateCanvas();
@@ -592,6 +594,7 @@ function draw() {
                                     if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlockfail2") {
                                         if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
                                             o = ssi;
+                                            lock2DelObjpos=o;
                                             break;
                                         }
                                     }
@@ -637,6 +640,21 @@ function draw() {
                             }
                         }
                         // console.log("test O:",o);
+                    }
+                    else if(nowValue.forgetDel>0){
+                        // if(nowValue.obj<=lock2DelObjpos+nowValue.forgetDel){
+                        //     o = nowValue.obj+nowValue.forgetDel;
+                        // }
+                        console.log(nowValue.obj,nowValue.forgetDel,lock2DelObjpos);
+                        
+                        if(nowValue.obj+nowValue.forgetDel<lock2DelObjpos){
+                            o = nowValue.obj+nowValue.forgetDel;
+                        }
+                        else {
+                            o = nowValue.obj;
+                            console.log("123");
+                            
+                        }
                     }
                     else {
                         o = nowValue.obj;
