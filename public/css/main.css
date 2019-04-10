@@ -22,7 +22,7 @@ body {
   overflow: auto;
 }
 .center{
-  width: 60%;
+  width: 80%;
   height: 90%;
   line-height: 90%;
   position: relative;
@@ -35,15 +35,17 @@ body {
   left: 0;
 }
 .centerBlockly{
-  background-image: url('../img/blockMapBk.png');
-  background-repeat: no-repeat;
-  background-position:center;
-  background-attachment:fixed;
-  background-size: 80% 100%;
   width: 80%;
   height: 90%;
   line-height: 90%;
   position: relative;
+  min-width: 900px;
+}
+.centerBlockly #bkImg{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
 .centerMidMap{
   background-image: url('../img/midMapBk.png');
