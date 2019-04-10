@@ -92,47 +92,7 @@ function error() {
 
 }
 function initHome() {
-  try {
-    var openLokCastle=false;
-    var codeLevel=-1;
-    for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
-      const element = user.EasyEmpire.codeLevel[index];
-      if(parseInt(element.level)>codeLevel&&element.HighestStarNum>0){
-        codeLevel=parseInt(element.level);
-        if(parseInt(element.level)>=23){
-          openLokCastle=true;
-          break;
-        }
-        else{
-          console.log(codeLevel,parseInt(element.level));
-        }
-      }
-    }
-    var blockLevel=-1;
-    console.log("bloclky");
-    for (let index = 0; index < user.EasyEmpire.blockLevel.length; index++) {
-      const element = user.EasyEmpire.blockLevel[index];
-      if(parseInt(element.level)>blockLevel&&element.HighestStarNum>0){
-        blockLevel=parseInt(element.level);
-        if(parseInt(element.level)>=23){
-          openLokCastle=true;
-          break;
-        }
-        else{
-          console.log(blockLevel,parseInt(element.level));
-        }
-      }
-    }
 
-    var codeLevel = user.EasyEmpire.codeLevel.length;
-    var blockLevel = user.EasyEmpire.blockLevel.length;
-    var totalLevel = Math.max(codeLevel, blockLevel);
-    console.log(totalLevel);
-    if (openLokCastle) {
-      document.getElementById("castle_codeDiv").className = "castle_code";
-      document.getElementById("castle_codeBtn").className = "castle_code";
-    }
-  } catch (e) { }
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
@@ -548,7 +508,7 @@ function equipageView(mainDiv) {
     document.getElementById("levelUpDefault0").innerHTML = "";
     document.getElementById("levelUpDefault0").innerHTML = "LV Max";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    console.log(swordLevel,equipmentData.weaponLevel.lenrht);
+    console.log(swordLevel, equipmentData.weaponLevel.lenrht);
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
   }

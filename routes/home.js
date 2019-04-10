@@ -143,7 +143,7 @@ router.post('/pruss', function (req, res, next) {
 
         }
 
-    } 
+    }
     /**更新部分 */
     else if (type == "resetEquip") {
         var id = req.user.id;
@@ -297,7 +297,7 @@ router.post('/gameView_text', function (req, res, next) {
         })
     }
     //-----關卡紀錄 ------
-    else if (type == "codeLevelResult"||type == "blockLevelResult") {
+    else if (type == "codeLevelResult" || type == "blockLevelResult") {
         console.log("codeLevelResult");
         var id = req.user.id;
         var empire = req.body.Empire
@@ -308,8 +308,8 @@ router.post('/gameView_text', function (req, res, next) {
                 submitTime: req.body.submitTime,
                 result: req.body.result,
                 code: req.body.code,
-                srarNum:req.body.StarNum,
-                instructionNum:req.body.instructionNum
+                srarNum: req.body.StarNum,
+                instructionNum: req.body.instructionNum
             }]
         }
         User.getUserById(id, function (err, user) {
@@ -517,7 +517,7 @@ router.post('/gameView_blockly', function (req, res, next) {
     }
     //-----暫時的 ------
     //-----關卡紀錄 ------
-    else if (type == "blockLevelResult"||type == "codeLevelResult") {
+    else if (type == "blockLevelResult" || type == "codeLevelResult") {
         console.log("codeLevelResult");
         var id = req.user.id;
         var empire = req.body.Empire
@@ -528,8 +528,8 @@ router.post('/gameView_blockly', function (req, res, next) {
                 submitTime: req.body.submitTime,
                 result: req.body.result,
                 code: req.body.code,
-                srarNum:req.body.StarNum,
-                instructionNum:req.body.instructionNum
+                srarNum: req.body.StarNum,
+                instructionNum: req.body.instructionNum
             }]
         }
         User.getUserById(id, function (err, user) {
@@ -661,9 +661,49 @@ router.post('/gameView_blockly', function (req, res, next) {
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    res.render('home/home', {
-        user: req.user.username
-    });
+    User.getUserById(req.user.id, function (err, user) {
+        if (err) throw err;
+        var openLokCastle = false;
+        var codeLevel = -1;
+        for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
+            const element = user.EasyEmpire.codeLevel[index];
+            if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
+                codeLevel = parseInt(element.level);
+                if (parseInt(element.level) >= 23) {
+                    openLokCastle = true;
+                    break;
+                }
+                else {
+                    console.log(codeLevel, parseInt(element.level));
+                }
+            }
+        }
+        var blockLevel = -1;
+        for (let index = 0; index < user.EasyEmpire.blockLevel.length; index++) {
+            const element = user.EasyEmpire.blockLevel[index];
+            if (parseInt(element.level) > blockLevel && element.HighestStarNum > 0) {
+                blockLevel = parseInt(element.level);
+                if (parseInt(element.level) >= 23) {
+                    openLokCastle = true;
+                    break;
+                }
+                else {
+                    console.log(blockLevel, parseInt(element.level));
+                }
+            }
+        }
+        var codeLevel = user.EasyEmpire.codeLevel.length;
+        var blockLevel = user.EasyEmpire.blockLevel.length;
+        var totalLevel = Math.max(codeLevel, blockLevel);
+        var lock = "unCastle_code";
+        if (openLokCastle) {
+            lock = "castle_code";
+        }
+        res.render('home/home', {
+            user: req.user.username,
+            castlelock:lock
+        });
+    })
 });
 router.post('/', function (req, res, next) {
     console.log(req.body);
