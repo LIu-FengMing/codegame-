@@ -317,8 +317,9 @@ function loopChange(repeatTimes,nowPosition){
           code = code + '&nbsp&nbsp&nbsp&nbsp';
           textcode = textcode + '    ';
         }
-        code = code + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '();<br>';
-        textcode = textcode + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '();\n';
+				console.log(workspace.getBlockById(nowBlock).inputList);
+        code = code + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '();<br>';
+        textcode = textcode + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '();\n';
         break;
       case 'block_loop':
         nextPosition = loopChange(repeatTimes,nextPosition);

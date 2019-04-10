@@ -47,7 +47,7 @@
   margin: 30px auto;
   text-align: center;
   padding: 14px 10px;
-  width: 250px;
+  width: 300px;
   outline: none;
   font-size: 20px;
   color: #000000;
@@ -67,7 +67,7 @@
   margin: 30px auto;
   text-align: center;
   padding: 14px 10px;
-  width: 250px;
+  width: 300px;
   outline: none;
   font-size: 20px;
   color: #000000;
@@ -79,7 +79,7 @@
   opacity: 1; /* Firefox */
 }
 .box input[type = "text"]:focus,.box input[type = "password"]:focus{
-  width: 300px;
+  width: 350px;
   text-align: center;
   border-color: #000000;
 }

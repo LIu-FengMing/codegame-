@@ -289,12 +289,70 @@ body {
   border-width: 2px;
   border-color: black;
 }
-#createrDiv .td01{width: 15%;}
-#createrDiv .td02{width: 25%;}
-#createrDiv .td03{width: 10%;}
-#createrDiv .td04{width: 10%;}
-#createrDiv .td05{width: 15%;}
-#createrDiv .td06{width: 25%;}
+#createrDiv .td01{width: 5%;}
+#createrDiv .td02{width: 5%;}
+#createrDiv .td03{width: 25%;}
+#createrDiv .td04{width: 15%;}
+#createrDiv .td05{width: 10%;}
+#createrDiv .td06{width: 10%;}
+#createrDiv .td07{width: 10%;}
+#createrDiv .td08{width: 20%;}
+
+.lostUserCreateTable .shelfBtn{
+  height: 2.5vw;
+  width: 2.5vw;
+  background-image: url("../img/obtained.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.lostUserCreateTable .unShelfBtn{
+  height: 2.5vw;
+  width: 2.5vw;
+  background-image: url("../img/shelf.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.lostUserCreateTable .modifyBtn{
+  height: 2.5vw;
+  width: 2.5vw;
+  background-image: url("../img/modify.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.lostUserCreateTable .introductionBtn{
+  height: 2.5vw;
+  width: 2.5vw;
+  background-image: url("../img/introduction.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.lostUserCreateTable .deleteBtn{
+  height: 2.5vw;
+  width: 2.5vw;
+  background-image: url("../img/delete.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  cursor: pointer;
+}
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+
 #createrDiv textarea{
   height: 4vh;
   width: 100%;

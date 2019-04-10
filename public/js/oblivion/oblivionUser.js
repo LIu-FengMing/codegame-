@@ -679,7 +679,6 @@ function chk2(input) {
   sendSession();
   return true;
 }
-
 function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
@@ -735,7 +734,7 @@ function sendLoadUsernameMap() {
 /*建立表格*/
 function createLevelTable(scriptData) {
   console.log(scriptData);
-  for (var i = 0; i < scriptData.length; i++) {
+  for (var i = 0; i < 1; i++) {
     var obj = scriptData[i];
     // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
@@ -751,32 +750,61 @@ function createLevelTable(scriptData) {
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
-
+    var obj2 = ["X","X","test123456","81","5/20","2019/04/09","2019/04/20"];
+    var isShelf = true,imgSrc="";
     divTag = document.getElementById("tr" + i);
-    for (var j = 1; j <= 6; j++) {
+    for (var j = 1; j <= 8; j++) {
       b = document.createElement("td");
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
       divTag.appendChild(b);
-      if (j == 6) {
-        divTag = document.getElementById("td0" + i + j);
-        b = document.createElement("textarea");
-        b.setAttribute("id", "textarea" + i + j);
-        b.setAttribute("rows", "1");
-        b.setAttribute("onfocus", "blur()");
-        divTag.appendChild(b);
-        document.getElementById("textarea" + i + j).innerHTML = obj.td06;
-        divTag = document.getElementById("tr" + i);
-      } else if (j == 1) {
-        document.getElementById("td0" + i + j).innerHTML = obj.td01;
+      if (j == 1) {
+        document.getElementById("td0" + i + j).innerHTML = obj2[0]/*obj.td01*/;
       } else if (j == 2) {
-        document.getElementById("td0" + i + j).innerHTML = obj.td02;
+        document.getElementById("td0" + i + j).innerHTML = obj2[1]/*obj.td02*/;
       } else if (j == 3) {
-        document.getElementById("td0" + i + j).innerHTML = obj.td03;
+        document.getElementById("td0" + i + j).innerHTML = obj2[2]/*obj.td03*/;
       } else if (j == 4) {
-        document.getElementById("td0" + i + j).innerHTML = obj.td04;
+        document.getElementById("td0" + i + j).innerHTML = obj2[3]/*obj.td04*/;
       } else if (j == 5) {
-        document.getElementById("td0" + i + j).innerHTML = obj.td05;
+        document.getElementById("td0" + i + j).innerHTML = obj2[4]/*obj.td05*/;
+      } else if (j == 6) {
+        document.getElementById("td0" + i + j).innerHTML = obj2[5]/*obj.td05*/;
+      } else if (j == 7) {
+        document.getElementById("td0" + i + j).innerHTML = obj2[6]/*obj.td05*/;
+      } else if (j == 8) {
+        divTag = document.getElementById("td0" + i + j);
+        /*上架按鈕*/     /*備註:要改成下架按鈕 把class改成unShelfBtn*/    /*要改成不能按的按紐請參考if(isShelf)加上"disabled"記得兩個class中間要有空白*/
+        b = document.createElement("input");
+        b.setAttribute("type", "button");
+        b.setAttribute("id", "shelfBtn" + i + j);
+        divTag.appendChild(b);
+        if(isShelf){
+          document.getElementById("shelfBtn" + i + j).className = "shelfBtn " + "disabled";
+        }else{
+          document.getElementById("shelfBtn" + i + j).className = "unShelfBtn " + "disabled";
+        }
+
+        /*修改按鈕*/
+        b = document.createElement("input");
+        b.setAttribute("type", "button");
+        b.setAttribute("class", "modifyBtn");
+        b.setAttribute("id", "modifyBtn" + i + j);
+        divTag.appendChild(b);
+
+        /*簡介按鈕*/
+        b = document.createElement("input");
+        b.setAttribute("type", "button");
+        b.setAttribute("class", "introductionBtn");
+        b.setAttribute("id", "introductionBtn" + i + j);
+        divTag.appendChild(b);
+
+        /*刪除按紐*/
+        b = document.createElement("input");
+        b.setAttribute("type", "button");
+        b.setAttribute("class", "deleteBtn");
+        b.setAttribute("id", "deleteBtn" + i + j);
+        divTag.appendChild(b);
       }
     }
   }
