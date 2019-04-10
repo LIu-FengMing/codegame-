@@ -1063,37 +1063,37 @@ mainDescription = {
     {
       "level": 17,
       "mode": 1,
-      "textarea1": "新指令出現了！！！<br>新指令：<br>void 函式名稱( ){...}指令，分類於\"函式\"內<br><br>void 函式名稱( ){...}是用來自訂函式的指令，可自訂函式名稱和函式內容。<br><br>使用方法：<br>void 函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何使用它呢？<br>只要在main函式內直接打出函式名稱(函式需要的參數);就可以呼叫該函式<br><br>在自訂函式時，函式內的指令將被計算進結果指令個數，還有呼叫自訂函式也會被計算進結果指令個數<br><br>使用範例：<br>void gogogo( ){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main( ){<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspgogogo( );<br>&nbsp&nbsp}<br>}//自訂一個函式gogogo，內容為前進一格，並且在main中使用迴圈呼叫了gogogo三次，最終結果將為車子前進三格。<br><br>以上這段程式碼於遊戲結果計算指令個數為2，1個是自訂函式時的step( )，1個是在迴圈中呼叫gogogo( )。<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
+      "textarea1": "新指令出現了！！！<br>新指令：<br>void 函式名稱( ){...}指令，分類於\"函式\"內。<br><br>void 函式名稱( ){...}是用來自訂函式的指令，可自訂函式名稱和函式內容。<br><br>使用方法：<br>void 函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何使用它呢？<br>只要在main函式內直接打出函式名稱(函式需要的參數);就可以呼叫該函式<br><br>在自訂函式時，函式內的指令將被計算進結果指令個數，還有呼叫自訂函式也會被計算進結果指令個數<br><br>使用範例：<br>void gogogo( ){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main(int argc, char *argv[ ]){<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspgogogo( );<br>&nbsp&nbsp}<br>return 0;<br>}&nbsp&nbsp&nbsp&nbsp//自訂一個函式gogogo，內容為前進一格，並且在main中使用迴圈呼叫了gogogo三次，最終結果將為車子前進三格。<br><br>以上這段程式碼於遊戲結果計算指令個數為2，1個是自訂函式時的step( )，1個是在迴圈中呼叫gogogo( )。<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 18,
       "mode": 1,
-      "textarea1": "自訂函式的應用千變萬化，請再自訂一個函式來通過關卡吧！！<br>請使用下列程式碼完成關卡：<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可"
+      "textarea1": "自訂函式的應用千變萬化，請再自訂一個函式來通過關卡吧！！<br><br>請使用下列程式碼完成關卡：<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//請自訂clear函式<br>}<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 19,
       "mode": 1,
-      "textarea1": "應該還記得各物件的作用吧！<br>應該是驗收成果的時刻了！<br>請結合教過的各指令抵達終點吧！<br>請注意地圖的大小已變為9*9<br><br>鎖頭精靈的問題是：<br>int i =0;<br>int sum=0;<br>int x=1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x==1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=2;<br>&nbsp&nbsp&nbsp&nbsp}else(x==2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum=多少<br><br>小提示：直走到底再回頭然後左轉再左轉<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else(x == 2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 20,
       "mode": 1,
-      "textarea1": "請結合各指令抵達終點吧！<br>請將全部箭頭照著指示的方向踩過一遍來解開鎖頭精靈的阻礙吧！<br>小提示：直走到底右轉再右轉直走左轉再左轉<br><br>過關條件：<br>3星：14個動作包含14個動作以內<br>2星：16個動作包含16個動作以內<br>1星：滿足過關條件即可"
+      "textarea1": "運用你的智慧結合各指令抵達終點吧！<br><br>請將全部箭頭照著指示的方向踩過一遍來解開鎖頭精靈的阻礙。<br><br>小提示：直走到底右轉再右轉直走左轉再左轉。<br><br>過關條件：<br>3星：14個動作包含14個動作以內<br>2星：16個動作包含16個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 21,
       "mode": 1,
-      "textarea1": "還記得判斷式的用法吧！<br>這可不能忘記啊！<br>請結合各指令抵達終點吧！<br><br>判斷式很重要<br>判斷式很重要<br>判斷式很重要<br>因為很重要所以講三遍<br><br>過關條件：<br>3星：32個動作包含32個動作以內<br>2星：34個動作包含34個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 22,
       "mode": 1,
-      "textarea1": "請結合各指令抵達終點吧！<br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(i=3){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum=sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi=i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>小提示：如果有多種選擇的話switch是很棒的指令<br>小心不要被炸彈炸到唷！<br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可"
+      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i=3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 23,
       "mode": 1,
-      "textarea1": "請結合各指令抵達終點吧！<br>如果能找出規律的話那就好了<br>小提示：<br><br>會用到function<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：11個動作包含11個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"請結合各指令抵達終點吧！<br><br>這路徑看起來好像有規律可循喔！？<br><br>小提示：如果有自訂函式會省下很多指令。<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：11個動作包含11個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level": 24,

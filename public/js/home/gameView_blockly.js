@@ -931,17 +931,17 @@ mainDescription = {
     {
       "level":7,
       "mode":1,
-      "textarea1":"新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於'判斷式'內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於\"判斷式\"內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":8,
       "mode":1,
-      "textarea1":"新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於'判斷式'內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於\"判斷式\"內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":9,
       "mode":1,
-      "textarea1":"新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於'判斷式'內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於\"判斷式\"內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":10,
@@ -982,37 +982,37 @@ mainDescription = {
     {
       "level":17,
       "mode":1,
-      "textarea1":"新指令出現了！！！<br>新指令：<br>function 涵式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處可用function自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>使用指令function自訂一個函式後，使用call function即可呼叫該函式<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>void function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main(){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main(){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":18,
       "mode":1,
-      "textarea1":"function的應用千變萬化，請再使用function通過關卡吧！！<br>請使用下列程式碼完成關卡：<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspturnRight();<br>&nbsp&nbsp&nbsp&nbspcall function clear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"自訂函式的應用千變萬化，請再自訂一個函式通過關卡吧！！<br><br>請使用下列程式碼完成關卡：<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspcall function clear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//請自訂clear函式<br>}<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":19,
       "mode":1,
-      "textarea1":"應該還記得各物件的作用吧！<br>應該是驗收成果的時刻了！<br>請結合教過的各指令抵達終點吧！<br>請注意地圖的大小已變為9*9<br><br>鎖頭精靈的問題是：<br>int i =0;<br>int sum=0;<br>int x=1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x==1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=2;<br>&nbsp&nbsp&nbsp&nbsp}else(x==2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum=多少<br><br>小提示：直走到底再回頭然後左轉再左轉<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else(x == 2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":20,
       "mode":1,
-      "textarea1":"請結合各指令抵達終點吧！<br>請將全部箭頭照著指示的方向踩過一遍來解開鎖頭精靈的阻礙吧！<br>小提示：直走到底右轉再右轉直走左轉再左轉<br><br>過關條件：<br>3星：14個動作包含14個動作以內<br>2星：16個動作包含16個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"運用你的智慧結合各指令抵達終點吧！<br><br>請將全部箭頭照著指示的方向踩過一遍來解開鎖頭精靈的阻礙。<br><br>小提示：直走到底右轉再右轉直走左轉再左轉。<br><br>過關條件：<br>3星：14個動作包含14個動作以內<br>2星：16個動作包含16個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":21,
       "mode":1,
-      "textarea1":"還記得判斷式的用法吧！<br>這可不能忘記啊！<br>請結合各指令抵達終點吧！<br><br>判斷式很重要<br>判斷式很重要<br>判斷式很重要<br>因為很重要所以講三遍<br><br>過關條件：<br>3星：32個動作包含32個動作以內<br>2星：34個動作包含34個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":22,
       "mode":1,
-      "textarea1":"請結合各指令抵達終點吧！<br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(i=3){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum=sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi=i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>小提示：如果有多種選擇的話switch是很棒的指令<br>小心不要被炸彈炸到唷！<br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可"
+      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i=3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":23,
       "mode":1,
-      "textarea1":"請結合各指令抵達終點吧！<br>如果能找出規律的話那就好了<br>小提示：<br><br>會用到function<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：11個動作包含11個動作以內<br>1星：滿足過關條件即可"
+      "textarea1":"請結合各指令抵達終點吧！<br><br>這路徑看起來好像有規律可循喔！？<br><br>小提示：如果有自訂函式會省下很多指令。<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：11個動作包含11個動作以內<br>1星：滿足過關條件即可"
     },
     {
       "level":24,
