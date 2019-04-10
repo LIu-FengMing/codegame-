@@ -209,6 +209,14 @@ function changeToC(isDisplay){
         code = code + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");\n';
         break;
+			case 'block_scanf':
+	       for(var j = 0; j < x; j++){
+	         code = code + '&nbsp&nbsp&nbsp&nbsp';
+	         textcode = textcode + '    ';
+	       }
+	       code = code + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");<br>';
+	       textcode = textcode + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");\n';
+	       break;
       case 'block_call':
         for(var j = 0; j < x; j++){
           code = code + '&nbsp&nbsp&nbsp&nbsp';
@@ -312,6 +320,14 @@ function loopChange(repeatTimes,nowPosition){
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+			case 'block_scanf':
+	       for(var j = 0; j < repeatTimes; j++){
+	         code = code + '&nbsp&nbsp&nbsp&nbsp';
+	         textcode = textcode + '    ';
+	       }
+	       code = code + 'scanf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
+	       textcode = textcode + 'scanf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+	       break;
       case 'block_call':
         for(var j = 0; j < x; j++){
           code = code + '&nbsp&nbsp&nbsp&nbsp';

@@ -96,6 +96,7 @@
   background-color: rgba(102, 216, 246, 0.64);
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 #forgetPassword{
   background: none;

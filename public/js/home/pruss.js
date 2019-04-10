@@ -779,7 +779,7 @@ function equipageView(mainDiv) {
     swordmaxFlag = true;
     swordLevel = 10
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "LV Max";
+    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     console.log(swordLevel,equipmentData.weaponLevel.lenrht);
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
@@ -823,7 +823,7 @@ function equipageView(mainDiv) {
   if (shieldLevel >= 10) {
     shiledmaxFlag = true;
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "LV Max";
+    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;

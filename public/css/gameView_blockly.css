@@ -18,6 +18,7 @@ body {
   height: 100%;
   display: table;
   width: 100%;
+  min-height: 600px;
 }
 .center{
   background-image: url('../img/bk.PNG');
@@ -29,6 +30,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
+  min-width: 100px;
 }
 .box {
   display: table-cell;
@@ -40,6 +42,7 @@ body {
   text-align: center;
   position: relative;
   background: rgba(103, 195, 59, 0.44);
+  min-width: 134px;
 }
 .footer {
   display: table-row;
@@ -60,6 +63,7 @@ body {
   border-width: 0;
   top: 10%;
   left: 1%;
+  cursor: pointer;
 }
 
 /*left*/
@@ -81,6 +85,7 @@ body {
   position: absolute;
   bottom: 5px;
   right: 5px;
+  cursor: pointer;
 }
 #helperView{
   z-index: 999;
@@ -226,6 +231,7 @@ body {
   position: absolute;
   top: 1%;
   right: 1%;
+  cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;
@@ -389,6 +395,7 @@ body {
   position: absolute;
   left: 1vw;
   bottom: 2vh;
+  cursor: pointer;
 }
 #backToMapBtn{
   height: 10vh;
@@ -402,7 +409,9 @@ body {
   position: absolute;
   right: 1vw;
   bottom: 2vh;
+  cursor: pointer;
 }
+
 /*blocklyView按鈕設置*/
 #blocklyButtonBottomDiv{
   height: 10%;
@@ -424,6 +433,7 @@ body {
   position: absolute;
   top: 10%;
   left: 3%;
+  cursor: pointer;
 }
 
 #blocklyButtonRightDiv{
@@ -446,6 +456,7 @@ body {
   position: absolute;
   top: 2%;
   right: 0px;
+  cursor: pointer;
 }
 #blocklyButtonRightDiv .clearButton{
   width: 8vh;
@@ -458,6 +469,7 @@ body {
   position: absolute;
   top: 16%;
   right: 0px;
+  cursor: pointer;
 }
 #blocklyButtonRightDiv .restartButton{
   width: 8vh;
@@ -470,6 +482,7 @@ body {
   position: absolute;
   top: 30%;
   right: 0px;
+  cursor: pointer;
 }
 #blocklyButtonRightDiv .settingButton{
   width: 8vh;
@@ -482,6 +495,7 @@ body {
   position: absolute;
   top: 44%;
   right: 0px;
+  cursor: pointer;
 }
 /*設定*/
 #settingAllView{
@@ -518,6 +532,7 @@ body {
   border-width: 1px;
   background-color: #FFD966;
   margin: 5px auto;
+  cursor: pointer;
 }
 #musicVolumeDiv{
   height: 50px;
@@ -529,6 +544,7 @@ body {
   width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 #settingAllTable font{
   font-size: 25px;

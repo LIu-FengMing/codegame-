@@ -18,7 +18,7 @@ body {
   display: table;
   height: 100%;
   width: 100%;
-  min-height: 900px;
+  min-height: 600px;
   overflow: auto;
 }
 .center{
@@ -26,7 +26,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  min-width: 900px;
+  min-width: 1000px;
 }
 .center #bkImg{
   height: 100%;
@@ -74,7 +74,7 @@ body {
   line-height: 90%;
   position: relative;
   background: rgba(103, 195, 59, 0.44);
-  min-width: 80px;
+  min-width: 134px;
 }
 .footer {
   display: table-row;
@@ -95,6 +95,7 @@ body {
   border-width: 0;
   top: 10%;
   left: 1%;
+  cursor: pointer;
 }
 #goBack2{
   width: 50px;
@@ -104,6 +105,7 @@ body {
   position: absolute;
   top: 2%;
   left: 1%;
+  cursor: pointer;
 }
 #goBack3{
   width: 50px;
@@ -118,4 +120,5 @@ body {
   position: absolute;
   top: 2%;
   left: 1%;
+  cursor: pointer;
 }

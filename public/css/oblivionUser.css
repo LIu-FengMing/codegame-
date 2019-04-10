@@ -301,7 +301,7 @@ body {
 .lostUserCreateTable .shelfBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/obtained.png");
+  background-image: url("../img/shelf.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -311,7 +311,7 @@ body {
 .lostUserCreateTable .unShelfBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/shelf.png");
+  background-image: url("../img/obtained.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;

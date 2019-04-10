@@ -12,6 +12,7 @@ Blockly.Blocks['block_main'] = {
  this.setHelpUrl("");
   }
 };
+
 Blockly.Blocks['block_step'] = {
   init: function() {
     this.appendDummyInput()
@@ -149,6 +150,20 @@ Blockly.Blocks['block_printf'] = {
     this.appendDummyInput()
         .appendField("printf(\"")
         .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("\");");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['block_scanf'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("scanf(\"")
+        .appendField(new Blockly.FieldTextInput(" "), "NAME")
         .appendField("\");");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

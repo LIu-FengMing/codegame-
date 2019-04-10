@@ -10,6 +10,7 @@
   position: absolute;
   top: 1%;
   right: 1%;
+  cursor: pointer;
 }
 #midMapTitle{
   font-size: 55px;
@@ -36,6 +37,7 @@
   background-size: 100% 100%;
   margin: 1px auto;
   position: absolute;
+  cursor: pointer;
 }
 .unbtn{
   width: 4.5%;
@@ -129,6 +131,7 @@
   border-width: 1px;
   background-color:#8CEB8C;
   color: black;
+  cursor: pointer;
 }
 #historyCode{
   width: 15vh;
@@ -143,6 +146,7 @@
   border-width: 1px;
   background-color:#FF9999;
   color: black;
+  cursor: pointer;
 }
 .startImg{
   margin: 5px auto;
@@ -172,6 +176,7 @@
 #buttonDiv input[type="button"]{
   width: 75px;
   height: 75px;
+  cursor: pointer;
 }
 .equipageButton{
   border-width: 0px;

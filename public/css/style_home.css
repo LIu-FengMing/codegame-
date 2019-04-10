@@ -1,22 +1,23 @@
 .castle_blockly{
-  position: absolute;
-  top: 30%;
-  left: 10%;
   width: 22%;
   height: 50%;
   color: none;
+  position: absolute;
+  top: 30%;
+  left: 10%;
 }
 .castle_blockly input[type="button"]{
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
   border: 0px;
   background-image: url('../img/castle2.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 .castle_code{
   position: absolute;
@@ -29,14 +30,15 @@
 .castle_code input[type="button"]{
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
   border: 0px;
   background-image: url('../img/castle1.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 .unCastle_code{
   position: absolute;
@@ -78,6 +80,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
+  cursor: pointer;
 }
 #buttonDiv{
   width: 350px;
@@ -89,6 +92,7 @@
 #buttonDiv input[type="button"]{
   width: 75px;
   height: 75px;
+  cursor: pointer;
 }
 .equipageButton{
   border-width: 0px;

@@ -55,6 +55,7 @@
   position: absolute;
   top: 5%;
   right: 130px;
+  cursor: pointer;
 }
 #textButtonDiv .restartButton{
   width: 60px;
@@ -67,6 +68,7 @@
   position: absolute;
   top: 10%;
   right: 60px;
+  cursor: pointer;
 }
 #textButtonDiv .settingButton{
   width: 60px;
@@ -79,6 +81,7 @@
   position: absolute;
   top: 10%;
   right: 1%;
+  cursor: pointer;
 }
 #blocklyButtonDiv{
   height: 60px;
@@ -100,6 +103,7 @@
   position: absolute;
   top: 5%;
   right: 140px;
+  cursor: pointer;
 }
 #blocklyButtonDiv .transformButton{
   width: 35px;
@@ -112,6 +116,7 @@
   position: absolute;
   top: 10%;
   right: 95px;
+  cursor: pointer;
 }
 #blocklyButtonDiv .restartButton{
   width: 35px;
@@ -124,6 +129,7 @@
   position: absolute;
   top: 10%;
   right: 50px;
+  cursor: pointer;
 }
 #blocklyButtonDiv .settingButton{
   width: 35px;
@@ -136,6 +142,7 @@
   position: absolute;
   top: 10%;
   right: 1%;
+  cursor: pointer;
 }
 #defaultCanvas{
   height: 70%;

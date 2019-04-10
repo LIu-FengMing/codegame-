@@ -730,6 +730,9 @@ function blocklyUsable(thisClassID,thisValue) {
     case "printf":
       blockType = "block_printf";
       break;
+    case "scanf":
+      blockType = "block_scanf";
+      break;
     case "var":
       blockType = "block_var";
       break;
@@ -1033,6 +1036,9 @@ directiveData = {
           "usable":[
             {
               "value":"step"
+            },
+            {
+              "value":"scanf"
             }
           ]
         }

@@ -19,6 +19,7 @@ body {
   height: 100%;
   display: table;
   width: 100%;
+  min-height: 600px;
 }
 .center{
   background-image: url('../img/bk.PNG');
@@ -30,6 +31,13 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
+  min-width: 1000px;
+}
+.center #bkImg{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
 }
 .box {
   display: table-cell;
@@ -40,6 +48,7 @@ body {
   line-height: 90%;
   position: relative;
   background: rgba(103, 195, 59, 0.44);
+  min-width: 134px;
 }
 .footer {
   display: table-row;
@@ -60,6 +69,7 @@ body {
   border-width: 0;
   top: 10%;
   left: 1%;
+  cursor: pointer;
 }
 
 /*left*/
@@ -81,6 +91,7 @@ body {
   position: absolute;
   bottom: 5px;
   right: 5px;
+  cursor: pointer;
 }
 #helperView{
   z-index: 999;
@@ -225,6 +236,7 @@ body {
   position: absolute;
   top: 1%;
   right: 1%;
+  cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;
@@ -395,6 +407,8 @@ body {
 #restartGameBtn{
   height: 10vh;
   width: 8vw;
+  font-size: 3vh;
+  font-weight: bold;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
@@ -402,10 +416,13 @@ body {
   position: absolute;
   left: 1vw;
   bottom: 2vh;
+  cursor: pointer;
 }
 #backToMapBtn{
   height: 10vh;
   width: 8vw;
+  font-size: 3vh;
+  font-weight: bold;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
@@ -413,6 +430,7 @@ body {
   position: absolute;
   right: 1vw;
   bottom: 2vh;
+  cursor: pointer;
 }
 #textButtonDiv{
   height: 10%;
@@ -434,6 +452,7 @@ body {
   position: absolute;
   top: 10%;
   left: 2%;
+  cursor: pointer;
 }
 #textButtonDiv .clearButton{
   width: 15%;
@@ -446,6 +465,7 @@ body {
   position: absolute;
   top: 10%;
   left: 35%;
+  cursor: pointer;
 }
 #textButtonDiv .restartButton{
   width: 15%;
@@ -458,6 +478,7 @@ body {
   position: absolute;
   top: 10%;
   left: 53%;
+  cursor: pointer;
 }
 #textButtonDiv .settingButton{
   width: 15%;
@@ -470,6 +491,7 @@ body {
   position: absolute;
   top: 10%;
   left: 71%;
+  cursor: pointer;
 }
 
 /*設定*/
@@ -507,6 +529,7 @@ body {
   border-width: 1px;
   background-color: #FFD966;
   margin: 5px auto;
+  cursor: pointer;
 }
 #musicVolumeDiv{
   height: 50px;
@@ -518,6 +541,7 @@ body {
   width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 #settingAllTable font{
   font-size: 25px;
