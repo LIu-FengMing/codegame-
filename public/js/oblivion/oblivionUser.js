@@ -358,29 +358,57 @@ function selectionLevel(thisObject) {
 }
 function delMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
-  var obj =  parseInt((mapIndex-8)/10);
-  console.log(obj);
+  var objI = parseInt((mapIndex - 8) / 10);
+  console.log(objI);
+
+  if (confirm('你確定要刪除這張地圖嗎?')) {
+    var obj = userMap[objI];
+    var mapId=obj._id;
+    console.log(obj,"id:",mapId);
+    
+    var scriptData = {
+      type: "DeleteMap",
+      mapId:mapId
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        console.log(res);
+        
+  
+      }
+    })
+
+
+
+  } else {
+    // Do nothing!
+  }
+  
 
 }
 function viewValueMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
-  var obj =  parseInt((mapIndex-8)/10);
+  var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
 
 }
 function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
-  var obj =  parseInt((mapIndex-8)/10);
+  var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
 }
 function helfMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  var obj =  parseInt((mapIndex-8)/10);
+  var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
 }
 function unShelf(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  var obj =  parseInt((mapIndex-8)/10);
+  var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
 }
 
@@ -780,15 +808,15 @@ function sendLoadUsernameMap() {
       userMap = res;
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
-        var obj = res[index], check = "X",post="X";//△ ⌛
-        if(obj.postStage==1){
-          post="⌛"; //代發佈
+        var obj = res[index], check = "X", post = "X";//△ ⌛
+        if (obj.postStage == 1) {
+          post = "⌛"; //代發佈
         }
-        else if(obj.postStage==2){
-          post="✔"; //發佈
+        else if (obj.postStage == 2) {
+          post = "✔"; //發佈
         }
-        else if(obj.postStage==3){
-          post="△"; //已發布
+        else if (obj.postStage == 3) {
+          post = "△"; //已發布
         }
         if (obj.check) {
           check = "✔";
@@ -798,27 +826,27 @@ function sendLoadUsernameMap() {
           avgScoreStr = "--/";
         }
         else {
-          avgScoreStr = avgScore.toString()+"/";
+          avgScoreStr = avgScore.toString() + "/";
         }
         if (obj.score.length == 0) {
           avgScoreStr += "--";
         }
         else {
-          avgScoreStr+=obj.score.length;
+          avgScoreStr += obj.score.length;
         }
-        
-        var updateDate,postDate;
+
+        var updateDate, postDate;
         var data = new Date(obj.updateDate);
-        var year = data.getFullYear(),month = data.getMonth() + 1,day = data.getUTCDate() + 1;
+        var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getUTCDate() + 1;
         updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-        if(obj.postDate.length>0){
+        if (obj.postDate.length > 0) {
           var data = new Date(obj.postDate);
-          var year = data.getFullYear(),month = data.getMonth() + 1,day = data.getUTCDate() + 1;
-         postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+          var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getUTCDate() + 1;
+          postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
 
         }
-        else{
-          postDate="--------"
+        else {
+          postDate = "--------"
         }
         var script = {
           td01: post,
@@ -838,7 +866,7 @@ function sendLoadUsernameMap() {
 /*建立表格*/
 function createLevelTable(scriptData) {
   console.log(scriptData);
-  for (var i = 0; i <scriptData.length ; i++) {
+  for (var i = 0; i < scriptData.length; i++) {
     var obj = scriptData[i];
     console.log(obj);
     // var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
@@ -871,13 +899,13 @@ function createLevelTable(scriptData) {
       } else if (j == 3) {
         document.getElementById("td0" + i + j).innerHTML = obj.td03;
       } else if (j == 4) {
-        document.getElementById("td0" + i + j).innerHTML =  obj.td04;
+        document.getElementById("td0" + i + j).innerHTML = obj.td04;
       } else if (j == 5) {
-        document.getElementById("td0" + i + j).innerHTML =  obj.td05;
+        document.getElementById("td0" + i + j).innerHTML = obj.td05;
       } else if (j == 6) {
-        document.getElementById("td0" + i + j).innerHTML =  obj.td06;
+        document.getElementById("td0" + i + j).innerHTML = obj.td06;
       } else if (j == 7) {
-        document.getElementById("td0" + i + j).innerHTML =  obj.td07;
+        document.getElementById("td0" + i + j).innerHTML = obj.td07;
       } else if (j == 8) {
         divTag = document.getElementById("td0" + i + j);
         /*上架按鈕*/     /*備註:要改成下架按鈕 把class改成unShelfBtn*/    /*要改成不能按的按紐請參考if(isShelf)加上"disabled"記得兩個class中間要有空白*/
