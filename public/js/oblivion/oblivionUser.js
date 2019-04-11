@@ -360,37 +360,39 @@ function delMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
-
-  if (confirm('你確定要刪除這張地圖嗎?')) {
-    var obj = userMap[objI];
-    var mapId = obj._id;
-    console.log(obj, "id:", mapId);
-
-    var scriptData = {
-      type: "DeleteMap",
-      mapId: mapId
-    }
-    $.ajax({
-      url: href,              // 要傳送的頁面
-      method: 'POST',               // 使用 POST 方法傳送請求
-      dataType: 'json',             // 回傳資料會是 json 格式
-      data: scriptData,  // 將表單資料用打包起來送出去
-      success: function (res) {
-        console.log(res);
-        // userMap.splice(obj,1);
-        var str="lostUserCreateTable"+objI.toString();
-        divTag = document.getElementById(str);
-        parentObj = divTag.parentNode;
-        parentObj.removeChild(divTag);
-
-      }
-    })
-
-
-  } else {
-    // Do nothing!
+  var obj = userMap[objI];
+  if(obj.postStage==2){
+    alert("請先下架該地圖");
   }
-
+  else{
+    if (confirm('你確定要刪除這張地圖嗎?')) {
+      var mapId = obj._id;
+      console.log(obj, "id:", mapId);
+      var scriptData = {
+        type: "DeleteMap",
+        mapId: mapId
+      }
+      $.ajax({
+        url: href,              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        data: scriptData,  // 將表單資料用打包起來送出去
+        success: function (res) {
+          console.log(res);
+          // userMap.splice(obj,1);
+          var str="lostUserCreateTable"+objI.toString();
+          divTag = document.getElementById(str);
+          parentObj = divTag.parentNode;
+          parentObj.removeChild(divTag);
+  
+        }
+      })
+  
+  
+    } else {
+      // Do nothing!
+    }
+  }
 
 }
 function viewValueMap(thisObject) {
@@ -408,7 +410,6 @@ function updateMap(thisObject) {
     var mapID = userMap[obj]._id;
     document.location.href = 'oblivionCreater?mapID=' + mapID;
   }
-
 }
 function helfMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
