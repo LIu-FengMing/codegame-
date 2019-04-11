@@ -363,12 +363,12 @@ function delMap(thisObject) {
 
   if (confirm('你確定要刪除這張地圖嗎?')) {
     var obj = userMap[objI];
-    var mapId=obj._id;
-    console.log(obj,"id:",mapId);
-    
+    var mapId = obj._id;
+    console.log(obj, "id:", mapId);
+
     var scriptData = {
       type: "DeleteMap",
-      mapId:mapId
+      mapId: mapId
     }
     $.ajax({
       url: href,              // 要傳送的頁面
@@ -377,8 +377,12 @@ function delMap(thisObject) {
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
         console.log(res);
-        
-  
+        // userMap.splice(obj,1);
+        var str="lostUserCreateTable"+objI.toString();
+        divTag = document.getElementById(str);
+        parentObj = divTag.parentNode;
+        parentObj.removeChild(divTag);
+
       }
     })
 
@@ -387,7 +391,7 @@ function delMap(thisObject) {
   } else {
     // Do nothing!
   }
-  
+
 
 }
 function viewValueMap(thisObject) {
