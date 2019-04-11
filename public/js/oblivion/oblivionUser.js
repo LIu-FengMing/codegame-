@@ -198,53 +198,7 @@ function helper(mainDiv) {
   }
 }
 
-/*上架介面*/
-function shelfBtn() {
-  divTag = document.getElementById("createrDiv");
-  if (levelDivAlive) {
-    divTag = document.getElementById("shelfView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("createrDiv");
-  }
-  b = document.createElement("div");
-  b.setAttribute("id", "shelfView");
-  divTag.appendChild(b);
-  levelDivAlive = true;
-  divTag = document.getElementById("shelfView");
-  divTag.innerHTML = "";
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "clossDiv");
-  b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
-  divTag.appendChild(b);
 
-  b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
-  divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "上架設定";
-
-  b = document.createElement("input");
-  b.setAttribute("type", "datetime-local");
-  b.setAttribute("id", "shelfTime");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "shelfNow");
-  b.setAttribute("value", "立即上架");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "shelfLater");
-  b.setAttribute("value", "設定時間");
-  divTag.appendChild(b);
-}
 
 /*XX按鈕*/
 function clossFunc(thisDiv, thisDiv2) {
@@ -366,6 +320,7 @@ function selectionLevel(thisObject) {
   lastObject = thisObject;
   // console.log(document.getElementById(thisSelectionId).rows[1]);
 }
+/*刪除介面*/
 function delMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
@@ -405,6 +360,7 @@ function delMap(thisObject) {
   }
 
 }
+/*簡介介面*/
 function viewValueMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
@@ -413,6 +369,7 @@ function viewValueMap(thisObject) {
   console.log("關卡簡介:", obj.mapIntroduction);
   console.log("關卡說明:", obj.mapDescription);
 }
+/*更新介面*/
 function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
   var obj = parseInt((mapIndex - 8) / 10);
@@ -432,9 +389,57 @@ function shelfMap(thisObject) {
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
   var obj = userMap[objI];
-
+  shelfBtn();
 
 }
+/*上架介面*/
+function shelfBtn() {
+  divTag = document.getElementById("createrDiv");
+  if (levelDivAlive) {
+    divTag = document.getElementById("shelfView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("createrDiv");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "shelfView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+  divTag = document.getElementById("shelfView");
+  divTag.innerHTML = "";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "上架設定";
+
+  b = document.createElement("input");
+  b.setAttribute("type", "datetime-local");
+  b.setAttribute("id", "shelfTime");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfNow");
+  b.setAttribute("value", "立即上架");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfLater");
+  b.setAttribute("value", "設定時間");
+  divTag.appendChild(b);
+}
+/*下架介面*/
 function unShelf(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
