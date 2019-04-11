@@ -11,10 +11,12 @@ var MapSchema = mongoose.Schema({
     userID: { type: String },
     map: { type: String },
     requireStar: { type: Number, "default": 2 },
-    createDate: { type: String, "default": "" },
+    updateDate: { type: String, "default": "" },
+    check: { type: Boolean, "default": false },
+    postDate: { type: String, "default": "" },
+    postStage: { type: Number, "default": 0 }, //0未發布  1代發布  2發布  3下架
     avgScore: { type: Number, "default": 0 },
-    score: { type: Array, "default": [] },
-    check:{ type: Boolean, "default": false }
+    score: { type: Array, "default": [] }
 })
 
 var MapRecord = module.exports = mongoose.model('Map', MapSchema)
@@ -24,8 +26,8 @@ module.exports.createMap = function (newMap, callback) {
 }
 // getMap
 module.exports.getMap = function (userID, callback) {
-    var query = { userID: { $ne : userID } ,check:true}
-    MapRecord.find(query, callback).sort({requireStar:1})
+    var query = { userID: { $ne: userID }, check: true }
+    MapRecord.find(query, callback).sort({ requireStar: 1 })
 }
 
 // getMapById, 透過id找地圖
@@ -42,11 +44,13 @@ module.exports.getMapByUserID = function (userID, callback) {
 module.exports.updateMapById = function (id, scriptData, callback) {
     var query = { _id: id }
     var setquery = {
-        mapName:  scriptData.mapName ,
-        mapIntroduction: scriptData.mapIntroduction ,
-        mapDescription: scriptData.mapDescription ,
-        map: scriptData.map ,
-        requireStar: scriptData.requireStar ,
+        mapName: scriptData.mapName,
+        mapIntroduction: scriptData.mapIntroduction,
+        mapDescription: scriptData.mapDescription,
+        map: scriptData.map,
+        requireStar: scriptData.requireStar,
+        updateDate: scriptData.updateDate,
+        check: false
     }
     // console.log("scriptData:",scriptData);
     // console.log("setquery:",setquery);
@@ -54,19 +58,25 @@ module.exports.updateMapById = function (id, scriptData, callback) {
 
 }
 module.exports.updateMapCheckById = function (id, callback) {
+    var date = new Date();
     var query = { _id: id }
     var setquery = {
-        check:true
+        check: true,
+        checkDate: date.toString()
     }
     MapRecord.updateOne(query, setquery, callback);
 
 }
-module.exports.updateMapScoreById = function (id,score,avgscore, callback) {
+module.exports.updateMapScoreById = function (id, score, avgscore, callback) {
     var query = { _id: id }
     var setquery = {
-        score:score,
-        avgScore:avgscore
+        score: score,
+        avgScore: avgscore
     }
     MapRecord.updateOne(query, setquery, callback);
 
+}
+module.exports.deleteMapById = function (id, callback) {
+    var setquery = { _id: id }
+    MapRecord.remove(setquery,callback)
 }

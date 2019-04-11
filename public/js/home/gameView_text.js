@@ -68,8 +68,6 @@ function back() {
       href +="pruss";
     }
   }
-
-
   window.location.replace(href);
   console.log(href);
 }
