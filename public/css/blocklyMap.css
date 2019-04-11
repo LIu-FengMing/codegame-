@@ -216,6 +216,7 @@
 #buttonDiv input[type="button"]{
   width: 75px;
   height: 75px;
+  cursor: pointer;
 }
 .equipageButton{
   border-width: 0px;

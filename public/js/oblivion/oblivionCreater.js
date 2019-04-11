@@ -114,7 +114,7 @@ function initHome() {
       }
     }
   }
-  helper('divcanvas');
+  helper('centerLost');
 }
 function logout() {
     // console.log("dddddd");

@@ -467,12 +467,12 @@ body {
 
 /*設定*/
 #settingAllView{
-  z-index: 999;
-  height: 50%;
-  width: 70%;
+  z-index: 4;
+  height: 30%;
+  width: 40%;
   position: absolute;
-  top: 25%;
-  left: 15%;
+  top: 35%;
+  left: 30%;
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;

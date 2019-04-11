@@ -146,6 +146,7 @@ function helper(mainDiv) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
+  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
@@ -400,9 +401,9 @@ function settingAllView(mainDiv) {
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "setAllTitle");
+  b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("setAllTitle").innerHTML = "設定";
+  document.getElementById("allTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
   divTag.appendChild(b);
