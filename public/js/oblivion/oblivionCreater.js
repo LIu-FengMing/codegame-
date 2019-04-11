@@ -138,6 +138,11 @@ function helper(mainDiv) {
       parentObj = divTag.parentNode;
       parentObj.removeChild(divTag);
     } catch (e) { }
+    divTag = document.getElementById("helperBkView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
     levelDivAlive = false;
     divTag = document.getElementById(mainDiv);
   }

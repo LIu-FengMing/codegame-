@@ -118,7 +118,6 @@ function logout() {
 function helper(mainDiv) {
   var thisLevelNum = 1;
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
-  divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
@@ -126,9 +125,19 @@ function helper(mainDiv) {
       parentObj = divTag.parentNode;
       parentObj.removeChild(divTag);
     } catch (e) { }
+    divTag = document.getElementById("helperBkView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
     levelDivAlive = false;
     divTag = document.getElementById(mainDiv);
   }
+  divTag = document.getElementById("centerLost");
+  b = document.createElement("div");
+  b.setAttribute("id", "helperBkView");
+  divTag.appendChild(b);
+  divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
@@ -139,7 +148,7 @@ function helper(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\")");
+  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");

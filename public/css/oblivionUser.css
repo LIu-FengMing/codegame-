@@ -83,6 +83,14 @@ body {
   right: 5px;
   cursor: pointer;
 }
+#helperBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.74);
+}
 #helperView{
   z-index: 999;
   height: 85%;

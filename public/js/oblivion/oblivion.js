@@ -129,9 +129,13 @@ function helper(mainDiv) {
   var thisLevelNum = 0;
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divTag = document.getElementById(mainDiv);
-  console.log(divTag);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    divTag = document.getElementById("helperBkView");
     try {
       parentObj = divTag.parentNode;
       parentObj.removeChild(divTag);
