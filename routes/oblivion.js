@@ -127,6 +127,7 @@ router.post('/oblivionUser', function (req, res, next) {
         })
 
     }
+
     else if (type == "DeleteMap") {
         var id = req.body.mapId;
         MapRecord.deleteMapById(id, function (err, map) {
@@ -135,7 +136,6 @@ router.post('/oblivionUser', function (req, res, next) {
             // console.log(map); 
             res.json(map);
         })
-
     }
     //-------------------
     else {

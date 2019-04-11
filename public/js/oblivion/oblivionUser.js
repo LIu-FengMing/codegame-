@@ -40,7 +40,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 })();
 
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData,levelDivAlive=false;
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var userMap;
@@ -118,6 +118,7 @@ function logout() {
 function helper(mainDiv) {
   var thisLevelNum = 1;
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
+  divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
@@ -125,19 +126,9 @@ function helper(mainDiv) {
       parentObj = divTag.parentNode;
       parentObj.removeChild(divTag);
     } catch (e) { }
-    divTag = document.getElementById("helperBkView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
     levelDivAlive = false;
     divTag = document.getElementById(mainDiv);
   }
-  divTag = document.getElementById("centerLost");
-  b = document.createElement("div");
-  b.setAttribute("id", "helperBkView");
-  divTag.appendChild(b);
-  divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
@@ -148,7 +139,7 @@ function helper(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "clossFunc(\"helperView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -365,6 +356,24 @@ function selectionLevel(thisObject) {
   lastObject = thisObject;
   // console.log(document.getElementById(thisSelectionId).rows[1]);
 }
+function delMap(thisObject) {
+  console.log(thisObject);
+
+}
+function viewValueMap(thisObject) {
+  console.log(thisObject);
+
+}
+function updateMap(thisObject) {
+  console.log(thisObject);
+}
+function helfMap(thisObject) {
+  console.log(thisObject);
+}
+function unShelf(thisObject) {
+  console.log(thisObject);
+}
+
 
 function reviseLevel() {
   if (thisSelectionId) {
@@ -805,8 +814,8 @@ function createLevelTable(scriptData) {
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
-    var obj2 = ["X","X","test123456","81","5/20","2019/04/09","2019/04/20"];
-    var isShelf = true,imgSrc="";
+    var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
+    var isShelf = true, imgSrc = "";
     divTag = document.getElementById("tr" + i);
     for (var j = 1; j <= 8; j++) {
       b = document.createElement("td");
@@ -835,10 +844,16 @@ function createLevelTable(scriptData) {
         b.setAttribute("id", "shelfBtn" + i + j);
         b.setAttribute("onclick", "shelfBtn()");
         divTag.appendChild(b);
-        if(isShelf){
-          document.getElementById("shelfBtn" + i + j).className = "shelfBtn ";
-        }else{
-          document.getElementById("shelfBtn" + i + j).className = "unShelfBtn " + "disabled";
+        if (isShelf) {
+
+          b = document.getElementById("shelfBtn" + i + j);
+          b.className = "shelfBtn " + "disabled";
+          b.className = "shelfBtn " + "disabled";
+          b.setAttribute("onclick", "shelfMap(this)");
+        } else {
+          b = document.getElementById("shelfBtn" + i + j);
+          b.className = "unShelfBtn " + "disabled";
+          b.setAttribute("onclick", "unShelfBtn(this)");
         }
 
         /*修改按鈕*/
@@ -846,6 +861,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         b.setAttribute("class", "modifyBtn");
         b.setAttribute("id", "modifyBtn" + i + j);
+        b.setAttribute("onclick", "updateMap(this)");
         divTag.appendChild(b);
 
         /*簡介按鈕*/
@@ -853,6 +869,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         b.setAttribute("class", "introductionBtn");
         b.setAttribute("id", "introductionBtn" + i + j);
+        b.setAttribute("onclick", "viewValueMap(this)");
         divTag.appendChild(b);
 
         /*刪除按紐*/
@@ -860,6 +877,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         b.setAttribute("class", "deleteBtn");
         b.setAttribute("id", "deleteBtn" + i + j);
+        b.setAttribute("onclick", "delMap(this)");
         divTag.appendChild(b);
       }
     }
@@ -867,31 +885,31 @@ function createLevelTable(scriptData) {
 }
 
 mainDescription = {
-  "oblivionObject":[
+  "oblivionObject": [
     {
-      "level":1,
-      "mode":1,
-      "textarea1":"歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的關卡也可以遊玩其他使用者創建的關卡<br>每一個關卡都有遊玩條件，達成遊玩條件後即可遊玩關卡<br>完成關卡後可給予關卡評價，評價高的關卡會更加吸引人喔<br><br>點擊左下角的”自訂關卡”即可看到自己已創建的關卡以及開始創建屬於你的關卡<br><br>選定欲遊玩的關卡後點擊右下角的”進入關卡”即可開始遊玩。<br><br>未遊玩過的關卡為淡藍色<br>已遊玩過的關卡為淡紫色"
+      "level": 1,
+      "mode": 1,
+      "textarea1": "歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的關卡也可以遊玩其他使用者創建的關卡<br>每一個關卡都有遊玩條件，達成遊玩條件後即可遊玩關卡<br>完成關卡後可給予關卡評價，評價高的關卡會更加吸引人喔<br><br>點擊左下角的”自訂關卡”即可看到自己已創建的關卡以及開始創建屬於你的關卡<br><br>選定欲遊玩的關卡後點擊右下角的”進入關卡”即可開始遊玩。<br><br>未遊玩過的關卡為淡藍色<br>已遊玩過的關卡為淡紫色"
     },
     {
-      "level":2,
-      "mode":1,
-      "textarea1":"創建關卡後，關卡將處於”待發布”的狀態，需先點擊右下角””檢測關卡”，自己先遊玩過一次，並且成功通關才能成功發布關卡<br><br>若要創建關卡，點擊左下角”創建關卡”即可進入創建關卡頁面<br>若要修改已創建關卡，選定欲修改的關卡，然後點擊右下方的”修改關卡”即可修改關卡"
+      "level": 2,
+      "mode": 1,
+      "textarea1": "創建關卡後，關卡將處於”待發布”的狀態，需先點擊右下角””檢測關卡”，自己先遊玩過一次，並且成功通關才能成功發布關卡<br><br>若要創建關卡，點擊左下角”創建關卡”即可進入創建關卡頁面<br>若要修改已創建關卡，選定欲修改的關卡，然後點擊右下方的”修改關卡”即可修改關卡"
     },
     {
-      "level":3,
-      "mode":1,
-      "textarea1":"此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      "level": 3,
+      "mode": 1,
+      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
     },
     {
-      "level":4,
-      "mode":1,
-      "textarea1":"此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      "level": 4,
+      "mode": 1,
+      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
     },
     {
-      "level":5,
-      "mode":1,
-      "textarea1":"此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此關卡中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
+      "level": 5,
+      "mode": 1,
+      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此關卡中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
     }
   ]
 };
