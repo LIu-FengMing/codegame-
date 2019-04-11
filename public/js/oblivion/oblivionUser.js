@@ -421,10 +421,10 @@ function updateMap(thisObject) {
     alert("請先下架該地圖");
   }
   else {
-    if (userMap[obj].check == false) {
+    // if (userMap[obj].check == false) {
       var mapID = userMap[obj]._id;
       document.location.href = 'oblivionCreater?mapID=' + mapID;
-    }
+    // }
   }
 }
 function helfMap(thisObject) {
@@ -980,7 +980,15 @@ function createLevelTable(scriptData) {
         /*修改按鈕*/
         b = document.createElement("input");
         b.setAttribute("type", "button");
-        b.setAttribute("class", "modifyBtn");
+        if (userMap[i].postStage == 2) {
+          console.log("777");
+          
+          b.className = "modifyBtn  " + "disabled";
+        }
+        else{
+          b.className = "modifyBtn";
+        }
+        // b.setAttribute("class", "modifyBtn");
         b.setAttribute("id", "modifyBtn" + i + j);
         b.setAttribute("onclick", "updateMap(this)");
         divTag.appendChild(b);

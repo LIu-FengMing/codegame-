@@ -83,7 +83,7 @@ function error() {
 
 }
 function initHome() {
-  console.log(document.getElementById("objectSelect"));
+  // console.log(document.getElementById("objectSelect"));
   if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
@@ -105,7 +105,7 @@ function initHome() {
   for(var i=1;i<document.getElementById("objectSelect").length;i++){
     var objectName = document.getElementById("op" + i).value;
     for(var j=0;j<objectData.oblivionObject.length;j++){
-      console.log(objectName,objectData.oblivionObject[j].value);
+      // console.log(objectName,objectData.oblivionObject[j].value);
       if(objectName == objectData.oblivionObject[j].value){
         if(objectData.oblivionObject[j].requirementStar > user.starNum){
           document.getElementById("op" + i).className = "unUse";
