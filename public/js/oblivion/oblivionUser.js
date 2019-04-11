@@ -117,11 +117,9 @@ function logout() {
 /*小幫手*/
 function helper(mainDiv) {
   var thisLevelNum = 1;
-  console.log(mainDescription.oblivionObject[thisLevelNum].mode);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
-  console.log(divTag);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
     try {
@@ -188,6 +186,54 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
   }
+}
+
+/*上架介面*/
+function shelfBtn() {
+  divTag = document.getElementById("createrDiv");
+  if (levelDivAlive) {
+    divTag = document.getElementById("shelfView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("createrDiv");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "shelfView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+  divTag = document.getElementById("shelfView");
+  divTag.innerHTML = "";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "上架設定";
+
+  b = document.createElement("input");
+  b.setAttribute("type", "datetime-local");
+  b.setAttribute("id", "shelfTime");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfNow");
+  b.setAttribute("value", "立即上架");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfLater");
+  b.setAttribute("value", "設定時間");
+  divTag.appendChild(b);
 }
 
 /*XX按鈕*/
@@ -778,9 +824,10 @@ function createLevelTable(scriptData) {
         b = document.createElement("input");
         b.setAttribute("type", "button");
         b.setAttribute("id", "shelfBtn" + i + j);
+        b.setAttribute("onclick", "shelfBtn()");
         divTag.appendChild(b);
         if(isShelf){
-          document.getElementById("shelfBtn" + i + j).className = "shelfBtn " + "disabled";
+          document.getElementById("shelfBtn" + i + j).className = "shelfBtn ";
         }else{
           document.getElementById("shelfBtn" + i + j).className = "unShelfBtn " + "disabled";
         }

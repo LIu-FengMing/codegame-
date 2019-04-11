@@ -439,24 +439,26 @@ body {
 }
 #functionSetting{
   height: 75vh;
-  width: 75vh;
+  width: 60vh;
   border-style:solid;
   border-width: 0px;
   position: absolute;
   top: 50%;
-  right: 2.5%;
+  left: 55%;
   margin-top: -32.5vh;
+  min-width: 410px;
 }
 #functionSetting input[type="button"]{
   height: 8vh;
   width: 10vw;
-  font-size: 3vh;
+  font-size: calc(10px + 1.5vw);
   border-radius: 10px;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   background-color: #CCFFFF;
   cursor: pointer;
+  min-width: 95px;
 }
 #saveBtn{
   position: absolute;
@@ -510,15 +512,15 @@ body {
 }
 #tabsF{
 	float:left;
-	width:100%;
+	width:105%;
 	margin:0;
 	padding:0;
 	font-size:13px;
 	line-height:normal;
 	border-left:#FFF 0px solid;
 	border-right:#FFF 0px solid;
-	border-bottom:#000000 2px solid ;
-	*float:none;
+	border-bottom:#000000 0px solid ;
+  margin-left: -10px;
 }
 #tabsF ul{
 	margin-left: 5px;;
