@@ -10,6 +10,7 @@
   position: absolute;
   top: 1%;
   right: 1%;
+  cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;
@@ -106,6 +107,7 @@
   font-weight: 800;
   border-radius:10px;
   background-color: #FF6666;
+  cursor: pointer;
 }
 .levelUpDefault{
   height: 60px;
@@ -211,6 +213,7 @@
   position: absolute;
   right: 0.5vw;
   margin-top: 8vh;
+  cursor: pointer;
 }
 
 /*指令大全*/
@@ -384,6 +387,7 @@
   border-width: 1px;
   background-color: #FFD966;
   margin: 5px auto;
+  cursor: pointer;
 }
 #musicVolumeDiv{
   height: 50px;
@@ -395,6 +399,7 @@
   width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 #settingAllTable font{
   font-size: 25px;

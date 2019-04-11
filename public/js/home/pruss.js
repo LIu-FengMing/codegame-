@@ -190,7 +190,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
      "使用者名稱：",
      "主&nbsp要&nbsp進&nbsp&nbsp度：",
      "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
-     "創造地圖數：",
+     "上架地圖數：",
      "已獲得星星數："];
  function userData() {
      divID = "userDataView";

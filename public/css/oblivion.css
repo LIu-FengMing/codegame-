@@ -401,6 +401,7 @@ body {
   border-width: 1px;
   background-color: #FFD966;
   margin: 5px auto;
+  cursor: pointer;
 }
 #musicVolumeDiv{
   height: 50px;
@@ -412,6 +413,7 @@ body {
   width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 #settingAllTable font{
   font-size: 25px;
