@@ -431,90 +431,62 @@ function btnClick(number) {
 }
 function viewRecord(number) {
   var divTag = document.getElementById("centerBlockly");
-  var isCheckClicked,codeText,codeNum,niceRecord=999;
+  var isCheckClicked,codeText,codeNum,niceRecord=999,niceStar=-1;
   isCheckClicked = document.getElementById("myonoffswitch");
   // console.log(number);
   var lastRecord;
   if(isCheckClicked.checked){
-    if(user.EasyEmpire.blockLevel.length == 0){
+    if(user.EasyEmpire.codeLevel.length == 0){
       codeText = "查無紀錄";
       codeNum = 0;
     }else{
-      for(var i=0;i<user.EasyEmpire.blockLevel[number].challengeLog.length;i++){
-        try{
-          if(user.EasyEmpire.blockLevel[number].level == number){
-            // console.log("查看是否等於number" + user.EasyEmpire.codeLevel[number].level,number,i);
-            if(user.EasyEmpire.blockLevel[number].challengeLog[i].result != "未完成"){
-              // console.log("回傳",user.EasyEmpire.codeLevel[number].challengeLog[i].result);
-              if(niceRecord > user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum){
-                niceRecord = user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum;
-                lastRecord = i;
-              }
-            }else{
-              continue;
+      try{
+        for(var i=0;i<user.EasyEmpire.codeLevel[number].challengeLog.length;i++){
+          if(user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar){
+            niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
+            if(user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord){
+              niceRecord = user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum;
+              lastRecord = i;
             }
-            //lastRecord = user.EasyEmpire.codeLevel[number].challengeLog.length-1;
-            // console.log(lastRecord);
-            var result = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].code;
-            var result2 = result.replace(new RegExp("<", "g"), "&lt");
-            result = result2.replace(new RegExp(">", "g"), "&gt");
-            result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-            result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-            codeText = result.replace(new RegExp("\n", "g"), "<br>");
-            codeNum = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].instructionNum;
-          }else{
-            // console.log("出錯");
-            codeText = "查無紀錄";
-            codeNum = 0;
           }
-        }catch(e){
-          codeText = "查無紀錄";
-          codeNum = 0;
-          // console.log("查無紀錄_blockly_err");
         }
+        var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
+        var result2 = result.replace(new RegExp("<", "g"), "&lt");
+        result = result2.replace(new RegExp(">", "g"), "&gt");
+        result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+        result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+        codeText = result.replace(new RegExp("\n", "g"), "<br>");
+        codeNum = niceRecord;
+      }catch(e){
+        codeText = "查無資料";
+        codeNum = 0;
       }
     }
   }else{
     if(user.EasyEmpire.codeLevel.length == 0){
       codeText = "查無紀錄";
       codeNum = 0;
-    }
-    for(var i=0;i<user.EasyEmpire.codeLevel[number].challengeLog.length;i++){
+    }else{
       try{
-        if(user.EasyEmpire.codeLevel[number].level == number){
-          // console.log("查看是否等於number" + user.EasyEmpire.codeLevel[number].level,number,i);
-          if(user.EasyEmpire.codeLevel[number].challengeLog[i].result != "未完成"){
-            // console.log("回傳",user.EasyEmpire.codeLevel[number].challengeLog[i].result);
-            if(niceRecord > user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum){
+        for(var i=0;i<user.EasyEmpire.codeLevel[number].challengeLog.length;i++){
+          if(user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar){
+            niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
+            if(user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord){
               niceRecord = user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum;
               lastRecord = i;
             }
-          }else{
-            continue;
           }
-          //lastRecord = user.EasyEmpire.codeLevel[number].challengeLog.length-1;
-          // console.log(lastRecord);
-          var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
-          var result2 = result.replace(new RegExp("<", "g"), "&lt");
-          result = result2.replace(new RegExp(">", "g"), "&gt");
-          result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-          result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-          codeText = result.replace(new RegExp("\n", "g"), "<br>");
-          codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
-        }else{
-          // console.log("出錯");
-          codeText = "查無紀錄";
-          codeNum = 0;
         }
+        var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
+        var result2 = result.replace(new RegExp("<", "g"), "&lt");
+        result = result2.replace(new RegExp(">", "g"), "&gt");
+        result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+        result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+        codeText = result.replace(new RegExp("\n", "g"), "<br>");
+        codeNum = niceRecord;
       }catch(e){
-        if(codeText != null){
-          break;
-        }else{
-          codeText = "查無紀錄";
-          codeNum = 0;
-        }
-
-
+        codeText = "查無資料";
+        codeNum = 0;
       }
     }
   }
@@ -567,7 +539,12 @@ function viewRecord(number) {
           for(var k=0;k<3;k++){
             b = document.createElement("img");
             b.setAttribute("id","startImg" + k);
-            b.setAttribute("class","startImg");
+            if(k<niceStar){
+              b.setAttribute("class","startImg");
+            }else{
+              b.setAttribute("class","unStartImg");
+            }
+
             divTag.appendChild(b);
           }
         }else if(i == 1){
@@ -579,6 +556,7 @@ function viewRecord(number) {
       }
       divTag = document.getElementById("viewRecordTr"+i);
     }
+
   }
 }
 

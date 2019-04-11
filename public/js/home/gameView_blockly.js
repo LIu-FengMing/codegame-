@@ -357,14 +357,20 @@ function clossFunc(thisDiv,thisDiv2) {
   levelDivAlive = false;
 }
 
-/*清除指令*/
-function clearButton(thisTextarea) {
-  document.getElementById(thisTextarea.id).value = "";
-}
 /*清除畫布動作*/
-function restartButton(thisTextarea) {
-
+function clearButton(thisTextarea) {
   challengeGameAgain();
+}
+/*重新開始*/
+function restartButton(thisTextarea) {
+  challengeGameAgain();
+  myFunction();
+}
+/*重新開始*/
+function restartGame(thisDiv, thisDiv2) {
+  clossFunc(thisDiv, thisDiv2);
+  myFunction();
+  restartButton();
 }
 
 /*轉換程式碼*/
@@ -849,18 +855,49 @@ function createEndView(starNum,gameResult,instructionNum,code) {
   } else {
     document.getElementById("instructionH3").innerHTML = "(" + gameResult + "!)";
   }
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "restartGameBtn");
-  b.setAttribute("value", "重新闖關");
-  b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
-  divTag.appendChild(b);
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "backToMapBtn");
-  b.setAttribute("value", "返回地圖");
-  b.setAttribute("onclick", "location.href='pruss'");
-  divTag.appendChild(b);
+  if(starNum != 0){
+    b = document.createElement("button");
+    b.setAttribute("id", "restartGameBtn");
+    b.setAttribute("value", "重新開始");
+    b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")");
+    divTag.appendChild(b);
+    divTag = document.getElementById("restartGameBtn");
+    b = document.createElement("img");
+    b.setAttribute("id", "restartImg");
+    b.setAttribute("src", "img/restart.png");
+    divTag.appendChild(b);
+    b = document.createElement("font");
+    b.setAttribute("id", "restartFontImg");
+    divTag.appendChild(b);
+    document.getElementById("restartFontImg").innerHTML = "重新開始";
+    divTag = document.getElementById("startDiv");
+    b = document.createElement("input");
+    b.setAttribute("type", "button");
+    b.setAttribute("id", "backToMapBtn");
+    b.setAttribute("value", "返回地圖");
+    b.setAttribute("onclick", "location.href='pruss'");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("type", "button");
+    b.setAttribute("id", "nextLevelBtn");
+    b.setAttribute("value", "下一關");
+    console.log(thisLevelNum);
+    b.setAttribute("onclick", "location.href='gameView_text?level=" + ++thisLevelNum + "'");
+    divTag.appendChild(b);
+  }else {
+    b = document.createElement("input");
+    b.setAttribute("type", "button");
+    b.setAttribute("id", "successRestartGameBtn");
+    b.setAttribute("value", "重新開始");
+    b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("type", "button");
+    b.setAttribute("id", "successBackToMapBtn");
+    b.setAttribute("value", "返回地圖");
+    b.setAttribute("onclick", "location.href='pruss'");
+    divTag.appendChild(b);
+  }
 }
 
 /*loading*/

@@ -67,15 +67,14 @@ function myFunction(){
   b.setAttribute("id", "blocklyButtonRightDiv");
   divTag.appendChild(b);
 
-	divTag = document.getElementById('blocklyButtonBottomDiv');
+	divTag = document.getElementById('blocklyButtonRightDiv');
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "btn1");
   b.setAttribute("class", "runButton");
   b.setAttribute("onclick","changeToC(0)");
   divTag.appendChild(b);
-
-	divTag = document.getElementById('blocklyButtonRightDiv');
+	
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "transformButton");

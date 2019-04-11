@@ -249,12 +249,16 @@ function userData() {
   createUserView(divID);
 }
 function clossFunc(thisDiv, thisDiv2) {
-  divTag = document.getElementById(thisDiv);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  divTag = document.getElementById(thisDiv2);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
+  try {
+    divTag = document.getElementById(thisDiv);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
+  try {
+    divTag = document.getElementById(thisDiv2);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   levelDivAlive = false;
 }
 function createUserView(mainDiv) {
@@ -1017,7 +1021,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         if (userMap[i].postStage == 2) {
           console.log("777");
-          
+
           b.className = "modifyBtn  " + "disabled";
         }
         else{
