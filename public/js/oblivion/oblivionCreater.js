@@ -83,6 +83,7 @@ function error() {
 
 }
 function initHome() {
+  console.log(document.getElementById("objectSelect"));
   if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
@@ -94,20 +95,25 @@ function initHome() {
     musicLevel = 1;
     gameSpeed = 5;
   }
-  /*myVid=document.getElementById("bkMusic");
-  myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
-  bkMusicSwitch++;*/
-  //console.log(myVid.volume);
-  //sendSession();
+
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;
   userName.textContent = text;
   starNumber.textContent = user.starNum;
 
-  levelUpLevel = user.levelUpLevel;
-  swordLevel = user.weaponLevel;
-  shieldLevel = user.armorLevel;
+  for(var i=1;i<document.getElementById("objectSelect").length;i++){
+    var objectName = document.getElementById("op" + i).value;
+    for(var j=0;j<objectData.oblivionObject.length;j++){
+      console.log(objectName,objectData.oblivionObject[j].value);
+      if(objectName == objectData.oblivionObject[j].value){
+        if(objectData.oblivionObject[j].requirementStar > user.starNum){
+          document.getElementById("op" + i).className = "unUse";
+          break;
+        }
+      }
+    }
+  }
   helper('divcanvas');
 }
 function logout() {
@@ -351,10 +357,12 @@ function loadTab(obj,n){
   }
   if(n == 4 && user.starNum <objectData.oblivionObject[13].requirementStar){
     document.getElementById(layer).style.display='none';
+    console.log("aaa");
     lessRequirement(objectData.oblivionObject[13].requirementStar);
   }
   else if(n == 3 && user.starNum <objectData.oblivionObject[11].requirementStar){
     document.getElementById(layer).style.display='none';
+    console.log("bbb");
     lessRequirement(objectData.oblivionObject[11].requirementStar);
   }
   else{
@@ -374,7 +382,6 @@ function chk(input) {
 /*select選擇->改變分頁內容*/
 function changeObjectAttributes() {
   console.log("123");
-
   var objectName = document.getElementById("objectSelect").value;
   var tableId = ["enemyTable","lockAnswerTable","boxTable"];
   var tableValue = ["enemy","blueLock","box"];
@@ -382,6 +389,7 @@ function changeObjectAttributes() {
     if(objectName == objectData.oblivionObject[i].value){
       if(objectData.oblivionObject[i].requirementStar > user.starNum){
         document.getElementById("objectSelect").selectedIndex = 0;
+        console.log("ccc");
         lessRequirement(objectData.oblivionObject[i].requirementStar);
       }
     }
