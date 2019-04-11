@@ -357,21 +357,31 @@ function selectionLevel(thisObject) {
   // console.log(document.getElementById(thisSelectionId).rows[1]);
 }
 function delMap(thisObject) {
-  console.log(thisObject);
+  var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
+  var obj =  parseInt((mapIndex-8)/10);
+  console.log(obj);
 
 }
 function viewValueMap(thisObject) {
-  console.log(thisObject);
+  var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+  var obj =  parseInt((mapIndex-8)/10);
+  console.log(obj);
 
 }
 function updateMap(thisObject) {
-  console.log(thisObject);
+  var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
+  var obj =  parseInt((mapIndex-8)/10);
+  console.log(obj);
 }
 function helfMap(thisObject) {
-  console.log(thisObject);
+  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
+  var obj =  parseInt((mapIndex-8)/10);
+  console.log(obj);
 }
 function unShelf(thisObject) {
-  console.log(thisObject);
+  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
+  var obj =  parseInt((mapIndex-8)/10);
+  console.log(obj);
 }
 
 
@@ -770,24 +780,54 @@ function sendLoadUsernameMap() {
       userMap = res;
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
-        var obj = res[index], check = "X";
+        var obj = res[index], check = "X",post="X";//△ ⌛
+        if(obj.postStage==1){
+          post="⌛"; //代發佈
+        }
+        else if(obj.postStage==2){
+          post="✔"; //發佈
+        }
+        else if(obj.postStage==3){
+          post="△"; //已發布
+        }
         if (obj.check) {
           check = "✔";
         }
         var avgScore = obj.avgScore, avgScoreStr;
         if (avgScore == 0) {
-          avgScoreStr = "--";
+          avgScoreStr = "--/";
         }
         else {
-          avgScoreStr = avgScore.toString();
+          avgScoreStr = avgScore.toString()+"/";
+        }
+        if (obj.score.length == 0) {
+          avgScoreStr += "--";
+        }
+        else {
+          avgScoreStr+=obj.score.length;
+        }
+        
+        var updateDate,postDate;
+        var data = new Date(obj.updateDate);
+        var year = data.getFullYear(),month = data.getMonth() + 1,day = data.getUTCDate() + 1;
+        updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+        if(obj.postDate.length>0){
+          var data = new Date(obj.postDate);
+          var year = data.getFullYear(),month = data.getMonth() + 1,day = data.getUTCDate() + 1;
+         postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+
+        }
+        else{
+          postDate="--------"
         }
         var script = {
-          td01: check,
-          td02: obj.mapName,
-          td03: obj.requireStar,
-          td04: avgScoreStr,
-          td05: obj.createDate,
-          td06: obj.mapIntroduction,
+          td01: post,
+          td02: check,
+          td03: obj.mapName,
+          td04: obj.requireStar,
+          td05: avgScoreStr,
+          td06: updateDate,
+          td07: postDate,
         }
         mapData.push(script);
       }
@@ -798,8 +838,11 @@ function sendLoadUsernameMap() {
 /*建立表格*/
 function createLevelTable(scriptData) {
   console.log(scriptData);
-  for (var i = 0; i < 1; i++) {
+  for (var i = 0; i <scriptData.length ; i++) {
     var obj = scriptData[i];
+    console.log(obj);
+    // var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
+    // var obj2 = scriptData[i];
     // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
     b = document.createElement("table");
@@ -814,7 +857,6 @@ function createLevelTable(scriptData) {
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
-    var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
     var isShelf = true, imgSrc = "";
     divTag = document.getElementById("tr" + i);
     for (var j = 1; j <= 8; j++) {
@@ -823,19 +865,19 @@ function createLevelTable(scriptData) {
       b.setAttribute("class", "td0" + j);
       divTag.appendChild(b);
       if (j == 1) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[0]/*obj.td01*/;
+        document.getElementById("td0" + i + j).innerHTML = obj.td01;
       } else if (j == 2) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[1]/*obj.td02*/;
+        document.getElementById("td0" + i + j).innerHTML = obj.td02;
       } else if (j == 3) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[2]/*obj.td03*/;
+        document.getElementById("td0" + i + j).innerHTML = obj.td03;
       } else if (j == 4) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[3]/*obj.td04*/;
+        document.getElementById("td0" + i + j).innerHTML =  obj.td04;
       } else if (j == 5) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[4]/*obj.td05*/;
+        document.getElementById("td0" + i + j).innerHTML =  obj.td05;
       } else if (j == 6) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[5]/*obj.td05*/;
+        document.getElementById("td0" + i + j).innerHTML =  obj.td06;
       } else if (j == 7) {
-        document.getElementById("td0" + i + j).innerHTML = obj2[6]/*obj.td05*/;
+        document.getElementById("td0" + i + j).innerHTML =  obj.td07;
       } else if (j == 8) {
         divTag = document.getElementById("td0" + i + j);
         /*上架按鈕*/     /*備註:要改成下架按鈕 把class改成unShelfBtn*/    /*要改成不能按的按紐請參考if(isShelf)加上"disabled"記得兩個class中間要有空白*/
