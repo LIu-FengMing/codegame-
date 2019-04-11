@@ -893,6 +893,7 @@ function closeLoadingView() {
   } catch (e) {}
 }
 
+/*關卡說明*/
 mainDescription = {
   "oblivionObject":[
     {
@@ -1026,6 +1027,7 @@ mainDescription = {
 };
 
 
+/*可用指令*/
 directiveData = {
   "instruction":[
     {
@@ -1036,9 +1038,6 @@ directiveData = {
           "usable":[
             {
               "value":"step"
-            },
-            {
-              "value":"scanf"
             }
           ]
         }

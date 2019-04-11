@@ -969,6 +969,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 }
 
+/*關卡說明*/
 mainDescription = {
   "oblivionObject":[
     {
@@ -1231,7 +1232,7 @@ mainDescription = {
   ]
 }
 
-
+/*可用函式*/
 directiveData = {
   "instruction":[
     {

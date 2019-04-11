@@ -439,38 +439,39 @@ function viewRecord(number) {
     if(user.EasyEmpire.blockLevel.length == 0){
       codeText = "查無紀錄";
       codeNum = 0;
-    }
-    for(var i=0;i<user.EasyEmpire.blockLevel[number].challengeLog.length;i++){
-      try{
-        if(user.EasyEmpire.blockLevel[number].level == number){
-          // console.log("查看是否等於number" + user.EasyEmpire.codeLevel[number].level,number,i);
-          if(user.EasyEmpire.blockLevel[number].challengeLog[i].result != "未完成"){
-            // console.log("回傳",user.EasyEmpire.codeLevel[number].challengeLog[i].result);
-            if(niceRecord > user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum){
-              niceRecord = user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum;
-              lastRecord = i;
+    }else{
+      for(var i=0;i<user.EasyEmpire.blockLevel[number].challengeLog.length;i++){
+        try{
+          if(user.EasyEmpire.blockLevel[number].level == number){
+            // console.log("查看是否等於number" + user.EasyEmpire.codeLevel[number].level,number,i);
+            if(user.EasyEmpire.blockLevel[number].challengeLog[i].result != "未完成"){
+              // console.log("回傳",user.EasyEmpire.codeLevel[number].challengeLog[i].result);
+              if(niceRecord > user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum){
+                niceRecord = user.EasyEmpire.blockLevel[number].challengeLog[i].instructionNum;
+                lastRecord = i;
+              }
+            }else{
+              continue;
             }
+            //lastRecord = user.EasyEmpire.codeLevel[number].challengeLog.length-1;
+            // console.log(lastRecord);
+            var result = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].code;
+            var result2 = result.replace(new RegExp("<", "g"), "&lt");
+            result = result2.replace(new RegExp(">", "g"), "&gt");
+            result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+            result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+            codeText = result.replace(new RegExp("\n", "g"), "<br>");
+            codeNum = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].instructionNum;
           }else{
-            continue;
+            // console.log("出錯");
+            codeText = "查無紀錄";
+            codeNum = 0;
           }
-          //lastRecord = user.EasyEmpire.codeLevel[number].challengeLog.length-1;
-          // console.log(lastRecord);
-          var result = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].code;
-          var result2 = result.replace(new RegExp("<", "g"), "&lt");
-          result = result2.replace(new RegExp(">", "g"), "&gt");
-          result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-          result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-          codeText = result.replace(new RegExp("\n", "g"), "<br>");
-          codeNum = user.EasyEmpire.blockLevel[number].challengeLog[lastRecord].instructionNum;
-        }else{
-          // console.log("出錯");
+        }catch(e){
           codeText = "查無紀錄";
           codeNum = 0;
+          // console.log("查無紀錄_blockly_err");
         }
-      }catch(e){
-        codeText = "查無紀錄";
-        codeNum = 0;
-        // console.log("查無紀錄_blockly_err");
       }
     }
   }else{
