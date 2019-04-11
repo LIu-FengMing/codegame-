@@ -427,8 +427,8 @@ function updateMap(thisObject) {
     // }
   }
 }
-function helfMap(thisObject) {
-  var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+function shelfMap(thisObject) {
+  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
   var obj = userMap[objI];
@@ -436,11 +436,41 @@ function helfMap(thisObject) {
 
 }
 function unShelf(thisObject) {
-  var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
   var obj = userMap[objI];
+  if (confirm('你確定要下架這張地圖嗎?')) {
+    var mapId = obj._id;
+    console.log(obj, "id:", mapId);
+    var scriptData = {
+      type: "unShelfMap",
+      mapId: mapId
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        console.log(res);
+        var str = "td0" + objI.toString()+"1";
+        divTag = document.getElementById(str);
+        console.log(divTag);
+        divTag.innerHTML = "△"; //已發布
 
+        var str = "shelfBtn" + objI.toString()+"8";
+        divTag = document.getElementById(str);
+        console.log(divTag);
+        divTag.innerHTML = "△"; //已發布
+        divTag.className = "shelfBtn";
+        divTag.setAttribute("onclick", "shelfMap(this)");
+
+      }
+    })
+  } else {
+    // Do nothing!
+  }
 }
 
 
@@ -943,7 +973,7 @@ function createLevelTable(scriptData) {
         b = document.createElement("input");
         b.setAttribute("type", "button");
         b.setAttribute("id", "shelfBtn" + i + j);
-        b.setAttribute("onclick", "shelfBtn()");
+        // b.setAttribute("onclick", "shelfBtn()");
         divTag.appendChild(b);
 
         if (userMap[i].check == false){
@@ -959,7 +989,7 @@ function createLevelTable(scriptData) {
         else if (userMap[i].check == true && userMap[i].postStage == 2) {
           b = document.getElementById("shelfBtn" + i + j);
           b.className = "unShelfBtn";
-          b.setAttribute("onclick", "unShelfBtn(this)");
+          b.setAttribute("onclick", "unShelf(this)");
         }
         else{
           console.log("錯誤"+userMap[i].check.toString()+","+userMap[i].postStage.toString());

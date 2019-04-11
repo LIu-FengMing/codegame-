@@ -79,6 +79,16 @@ module.exports.updateMapScoreById = function (id, score, avgscore, callback) {
     MapRecord.updateOne(query, setquery, callback);
 
 }
+module.exports.unShelfMapMapById = function (id, callback) {
+    var query = { _id: id }
+    var setquery = {
+        postStage:3,
+        postDate:""
+    }
+    MapRecord.updateOne(query, setquery, callback);
+
+}
+
 module.exports.deleteMapById = function (id, callback) {
     var setquery = { _id: id }
     MapRecord.remove(setquery,callback)

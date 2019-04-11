@@ -137,7 +137,16 @@ router.post('/oblivionUser', function (req, res, next) {
             res.json(map);
         })
     }
-    //-------------------
+    else if (type == "unShelfMap") {
+        var id = req.body.mapId;
+        MapRecord.unShelfMapMapById(id, function (err, map) {
+            if (err) throw err;
+            // console.log(req.user.id);
+            // console.log(map); 
+            res.json(map);
+        })
+    }
+    //------------------- 
     else {
 
     }
@@ -452,7 +461,8 @@ router.post('/oblivionCreater', function (req, res, next) {
             mapDescription: req.body.description,
             map: req.body.code,
             requireStar: req.body.requireStar,
-            updateDate: data.toString()
+            updateDate: data.toString(),
+            postStage:req.body.postStage
         }
         MapRecord.updateMapById(id, scriptData, function (err, map) {
             if (err) throw err;
