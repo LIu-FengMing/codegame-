@@ -361,10 +361,10 @@ function delMap(thisObject) {
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
   var obj = userMap[objI];
-  if(obj.postStage==2){
+  if (obj.postStage == 2) {
     alert("請先下架該地圖");
   }
-  else{
+  else {
     if (confirm('你確定要刪除這張地圖嗎?')) {
       var mapId = obj._id;
       console.log(obj, "id:", mapId);
@@ -380,15 +380,15 @@ function delMap(thisObject) {
         success: function (res) {
           console.log(res);
           // userMap.splice(obj,1);
-          var str="lostUserCreateTable"+objI.toString();
+          var str = "lostUserCreateTable" + objI.toString();
           divTag = document.getElementById(str);
           parentObj = divTag.parentNode;
           parentObj.removeChild(divTag);
-  
+
         }
       })
-  
-  
+
+
     } else {
       // Do nothing!
     }
@@ -397,29 +397,40 @@ function delMap(thisObject) {
 }
 function viewValueMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
-  var obj = parseInt((mapIndex - 8) / 10);
-  console.log(obj);
-
+  var objI = parseInt((mapIndex - 8) / 10);
+  console.log(objI);
+  var obj = userMap[objI];
+  console.log("關卡簡介:", obj.mapIntroduction);
+  console.log("關卡說明:", obj.mapDescription);
 }
 function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
   var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
-
-  if (userMap[obj].check == false) {
-    var mapID = userMap[obj]._id;
-    document.location.href = 'oblivionCreater?mapID=' + mapID;
+  if (obj.postStage == 2) {
+    alert("請先下架該地圖");
+  }
+  else {
+    if (userMap[obj].check == false) {
+      var mapID = userMap[obj]._id;
+      document.location.href = 'oblivionCreater?mapID=' + mapID;
+    }
   }
 }
 function helfMap(thisObject) {
-  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  var obj = parseInt((mapIndex - 8) / 10);
-  console.log(obj);
+  var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+  var objI = parseInt((mapIndex - 8) / 10);
+  console.log(objI);
+  var obj = userMap[objI];
+
+
 }
 function unShelf(thisObject) {
-  var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  var obj = parseInt((mapIndex - 8) / 10);
-  console.log(obj);
+  var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+  var objI = parseInt((mapIndex - 8) / 10);
+  console.log(objI);
+  var obj = userMap[objI];
+
 }
 
 
@@ -924,17 +935,37 @@ function createLevelTable(scriptData) {
         b.setAttribute("id", "shelfBtn" + i + j);
         b.setAttribute("onclick", "shelfBtn()");
         divTag.appendChild(b);
-        if (isShelf) {
 
+        if (userMap[i].check == false){
           b = document.getElementById("shelfBtn" + i + j);
-          b.className = "shelfBtn " + "disabled";
           b.className = "shelfBtn " + "disabled";
           b.setAttribute("onclick", "shelfMap(this)");
-        } else {
+        }
+        else if (userMap[i].check == true && userMap[i].postStage != 2) {
           b = document.getElementById("shelfBtn" + i + j);
-          b.className = "unShelfBtn " + "disabled";
+          b.className = "shelfBtn";
+          b.setAttribute("onclick", "shelfMap(this)");
+        } 
+        else if (userMap[i].check == true && userMap[i].postStage == 2) {
+          b = document.getElementById("shelfBtn" + i + j);
+          b.className = "unShelfBtn";
           b.setAttribute("onclick", "unShelfBtn(this)");
         }
+        else{
+          console.log("錯誤"+userMap[i].check.toString()+","+userMap[i].postStage.toString());
+          alert("錯誤"+userMap[i].check.toString()+","+userMap[i].postStage.toString());
+        }
+
+        // if (isShelf) {
+        //   b = document.getElementById("shelfBtn" + i + j);
+        //   b.className = "shelfBtn " + "disabled";
+        //   b.setAttribute("onclick", "shelfMap(this)");
+        // } else {
+        //   b = document.getElementById("shelfBtn" + i + j);
+        //   b.className = "unShelfBtn " + "disabled";
+        //   b.setAttribute("onclick", "unShelfBtn(this)");
+        // }
+
 
         /*修改按鈕*/
         b = document.createElement("input");

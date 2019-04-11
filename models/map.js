@@ -43,6 +43,7 @@ module.exports.getMapByUserID = function (userID, callback) {
 // updateMap, 透過mapId更新地圖
 module.exports.updateMapById = function (id, scriptData, callback) {
     var query = { _id: id }
+
     var setquery = {
         mapName: scriptData.mapName,
         mapIntroduction: scriptData.mapIntroduction,
@@ -50,6 +51,8 @@ module.exports.updateMapById = function (id, scriptData, callback) {
         map: scriptData.map,
         requireStar: scriptData.requireStar,
         updateDate: scriptData.updateDate,
+        postDate: "",
+        postStage:scriptData.postStage,
         check: false
     }
     // console.log("scriptData:",scriptData);
