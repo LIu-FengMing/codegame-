@@ -253,12 +253,12 @@ function clossFunc(thisDiv, thisDiv2) {
     divTag = document.getElementById(thisDiv);
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   try {
     divTag = document.getElementById(thisDiv2);
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   levelDivAlive = false;
 }
 function createUserView(mainDiv) {
@@ -383,8 +383,8 @@ function updateMap(thisObject) {
   }
   else {
     // if (userMap[obj].check == false) {
-      var mapID = userMap[obj]._id;
-      document.location.href = 'oblivionCreater?mapID=' + mapID;
+    var mapID = userMap[obj]._id;
+    document.location.href = 'oblivionCreater?mapID=' + mapID;
     // }
   }
 }
@@ -435,6 +435,7 @@ function shelfBtn() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "shelfNow");
   b.setAttribute("value", "立即上架");
+  b.setAttribute("onclick", "nowShelfNow(this)");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -443,6 +444,37 @@ function shelfBtn() {
   b.setAttribute("value", "設定時間");
   divTag.appendChild(b);
 }
+function nowShelfNow(thisObject) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  if (confirm('你確定要上架這張地圖嗎?')) {
+    var mapId = obj._id;
+    console.log(obj, "id:", mapId);
+    var scriptData = {
+      type: "shelfMap",
+      mapId: mapId
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        console.log(res);
+        // var str = "td0" + objI.toString() + "1";
+        // divTag = document.getElementById(str);
+        // console.log(divTag);
+        // divTag.innerHTML = "△"; //已發布
+
+
+      }
+    })
+  } else {
+    // Do nothing!
+  }
+
+}
+
 /*下架介面*/
 function unShelf(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
@@ -463,12 +495,12 @@ function unShelf(thisObject) {
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
         console.log(res);
-        var str = "td0" + objI.toString()+"1";
+        var str = "td0" + objI.toString() + "1";
         divTag = document.getElementById(str);
         console.log(divTag);
         divTag.innerHTML = "△"; //已發布
 
-        var str = "shelfBtn" + objI.toString()+"8";
+        var str = "shelfBtn" + objI.toString() + "8";
         divTag = document.getElementById(str);
         console.log(divTag);
         divTag.innerHTML = "△"; //已發布
@@ -985,7 +1017,7 @@ function createLevelTable(scriptData) {
         // b.setAttribute("onclick", "shelfBtn()");
         divTag.appendChild(b);
 
-        if (userMap[i].check == false){
+        if (userMap[i].check == false) {
           b = document.getElementById("shelfBtn" + i + j);
           b.className = "shelfBtn " + "disabled";
           b.setAttribute("onclick", "shelfMap(this)");
@@ -1000,9 +1032,9 @@ function createLevelTable(scriptData) {
           b.className = "unShelfBtn";
           b.setAttribute("onclick", "unShelf(this)");
         }
-        else{
-          console.log("錯誤"+userMap[i].check.toString()+","+userMap[i].postStage.toString());
-          alert("錯誤"+userMap[i].check.toString()+","+userMap[i].postStage.toString());
+        else {
+          console.log("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
+          alert("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
         }
 
         // if (isShelf) {
@@ -1024,7 +1056,7 @@ function createLevelTable(scriptData) {
 
           b.className = "modifyBtn  " + "disabled";
         }
-        else{
+        else {
           b.className = "modifyBtn";
         }
         // b.setAttribute("class", "modifyBtn");

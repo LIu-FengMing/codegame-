@@ -146,9 +146,18 @@ router.post('/oblivionUser', function (req, res, next) {
             res.json(map);
         })
     }
+    else if (type == "shelfMap") {
+        var id = req.body.mapId;
+        MapRecord.ShelfMapMapById(id, function (err, map) {
+            if (err) throw err;
+            // console.log(req.user.id);
+            // console.log(map); 
+            res.json(map);
+        })
+    }
     //------------------- 
     else {
-
+        
     }
 
 });
