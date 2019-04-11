@@ -387,7 +387,6 @@ function delMap(thisObject) {
     })
 
 
-
   } else {
     // Do nothing!
   }
@@ -404,6 +403,12 @@ function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
   var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
+
+  if (userMap[obj].check == false) {
+    var mapID = userMap[obj]._id;
+    document.location.href = 'oblivionCreater?mapID=' + mapID;
+  }
+
 }
 function helfMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
