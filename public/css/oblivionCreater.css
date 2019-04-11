@@ -8,6 +8,7 @@ html,body {
 }
 body {
   color: black;
+  overflow: auto;
 }
 .wrap {
   height: 100%;
@@ -428,14 +429,15 @@ body {
 #td04{width: 5%;}
 #td05{width: 40%;}
 #divcanvas{
-  height: 75vh;
-  width: 75vh;
+  height: 60vh;
+  width: 60vh;
   border-style:solid;
   background-color: white;
   position: absolute;
   top: 50%;
-  left: 2.5%;
-  margin-top: -32.5vh;
+  right: 55%;
+  margin-top: -30vh;
+  min-width: 410px;
 }
 #functionSetting{
   height: 75vh;
