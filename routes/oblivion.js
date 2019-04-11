@@ -89,7 +89,8 @@ router.post('/oblivionUser', function (req, res, next) {
             if (err) throw err;
             res.json(user);
         })
-    } else if (type == "loadmusicData") {
+    } 
+    else if (type == "loadmusicData") {
         if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
             req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
             req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
@@ -119,6 +120,16 @@ router.post('/oblivionUser', function (req, res, next) {
     }
     else if (type == "LoadUsernameMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
+            if (err) throw err;
+            // console.log(req.user.id);
+            // console.log(map); 
+            res.json(map);
+        })
+
+    }
+    else if (type == "DeleteMap") {
+        var id = req.body.mapId;
+        MapRecord.deleteMapById(id, function (err, map) {
             if (err) throw err;
             // console.log(req.user.id);
             // console.log(map); 
@@ -180,7 +191,7 @@ router.post('/oblivionGameView', function (req, res, next) {
         }
 
     }
-    //-----暫時的 ------
+
     //-----關卡紀錄 ------
     else if (type == "loadMap") {
         var id = req.body.mapId;
@@ -295,137 +306,6 @@ router.post('/oblivionGameView', function (req, res, next) {
 
 
     }
-    else if (type == "codeLevelResult") {
-        console.log("codeLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code
-            }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
-            }
-        })
-    }
     //-------------------
     else {
 
@@ -499,137 +379,7 @@ router.post('/oblivionDetectionView', function (req, res, next) {
         })
 
     }
-    else if (type == "codeLevelResult") {
-        console.log("codeLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code
-            }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
 
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
-            }
-        })
-    }
     //-------------------
     else {
 
@@ -695,12 +445,14 @@ router.post('/oblivionCreater', function (req, res, next) {
     }
     else if (type == "updateMap") {
         var id = req.body.mapID;
+        var data = new Date();
         var scriptData = {
             mapName: req.body.mapName,
             mapIntroduction: req.body.introduction,
             mapDescription: req.body.description,
             map: req.body.code,
             requireStar: req.body.requireStar,
+            updateDate: data.toString()
         }
         MapRecord.updateMapById(id, scriptData, function (err, map) {
             if (err) throw err;
@@ -710,10 +462,10 @@ router.post('/oblivionCreater', function (req, res, next) {
     }
     else if (type == "createMap") {
         var data = new Date();
-        var year = data.getFullYear();
-        var month = data.getMonth() + 1;
-        var day = data.getUTCDate() + 1;
-        var createDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+        // var year = data.getFullYear();
+        // var month = data.getMonth() + 1;
+        // var day = data.getUTCDate() + 1;
+        // var createDate = year.toString() + "/" + month.toString() + "/" + day.toString();
 
         var scriptData = {
             username: req.body.username,
@@ -734,7 +486,7 @@ router.post('/oblivionCreater', function (req, res, next) {
             userID: req.user.id,
             map: scriptData.code,
             requireStar: scriptData.requireStar,
-            createDate: createDate
+            updateDate: data.toString()
         })
         MapRecord.createMap(newMap, function (err, map) {
             if (err) throw err;
