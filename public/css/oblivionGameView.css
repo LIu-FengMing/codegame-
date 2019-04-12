@@ -60,6 +60,7 @@ body {
   border-width: 0;
   top: 10%;
   left: 1%;
+  cursor: pointer;
 }
 
 /*left*/
@@ -81,6 +82,7 @@ body {
   position: absolute;
   bottom: 5px;
   right: 5px;
+  cursor: pointer;
 }
 #helperView{
   z-index: 999;
@@ -383,6 +385,7 @@ body {
   position: absolute;
   left: 3%;
   bottom: 3%;
+  cursor: pointer;
 }
 .failBackBtn{
   height: 10vh;
@@ -394,6 +397,7 @@ body {
   position: absolute;
   right: 3%;
   bottom: 3%;
+  cursor: pointer;
 }
 .successBackBtn{
   height: 10vh;
@@ -407,6 +411,7 @@ body {
   left: 50%;
   bottom: 3%;
   margin-left: -4vw;
+  cursor: pointer;
 }
 #textButtonDiv{
   height: 80%;
@@ -506,6 +511,7 @@ body {
   border-width: 1px;
   background-color: #FFD966;
   margin: 5px auto;
+  cursor: pointer;
 }
 #musicVolumeDiv{
   height: 50px;
@@ -517,6 +523,7 @@ body {
   width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 #settingAllTable font{
   font-size: 25px;
