@@ -794,7 +794,8 @@ function createEndView(starNum,gameResult,instructionNum,code) {
   }
 }
 function backToMapBtn() {
-  href = href.substr(0, index + 1) + "oblivion";
+  // href = href.substr(0, index + 1) + "oblivion";
+  var href = "/oblivionUser";
   window.location.replace(href);
 }
 

@@ -536,7 +536,7 @@ function enterLevel() {
     var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
     var obj = userMap[mapIndex];
     var flag = false;
-    if (obj.check == false) {
+    // if (obj.check == false) {
       if (obj.mapName.length < 1) {
         alert("關卡名稱不能為空白，請修改關卡內容");
       } else if (obj.mapName.length > 10) {
@@ -560,10 +560,10 @@ function enterLevel() {
         var mapID = obj._id;
         document.location.href = 'oblivionCreater?mapID=' + mapID;
       }
-    }
-    else {
-      alert("關卡已發佈");
-    }
+    // }
+    // else {
+    //   alert("關卡已發佈");
+    // }
   }
   else {
     alert("請點選其中一張地圖");
