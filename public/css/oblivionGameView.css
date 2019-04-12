@@ -398,6 +398,7 @@ body {
 .successBackBtn{
   height: 10vh;
   width: 8vw;
+  font-size: 2vw;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
@@ -408,61 +409,66 @@ body {
   margin-left: -4vw;
 }
 #textButtonDiv{
-  height: 10%;
-  width: 60%;
-  z-index: 90;
+  height: 80%;
+  width: 10vh;;
+  z-index: 1;
   background-color: none;
   position: absolute;
-  bottom: 10px;
-  right: 1%;
+  top: 3%;
+  right: 3%;
 }
 #textButtonDiv .runButton{
-  width: 30%;
-  height: 80%;
+  width: 8vh;
+  height: 8vh;
   border: 0px;
-  background-image: url('../img/RunButton.png');
+  background-image: url('../img/start.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 10%;
-  left: 2%;
+  top: 2%;
+  right: 0px;
+  cursor: pointer;
 }
 #textButtonDiv .clearButton{
-  width: 15%;
-  height: 80%;
+  width: 8vh;
+  height: 8vh;
   border: 0px;
   background-image: url('../img/clearButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 10%;
-  left: 35%;
+  top: 16%;
+  right: 0px;
+  cursor: pointer;
 }
 #textButtonDiv .restartButton{
-  width: 15%;
-  height: 80%;
+  width: 8vh;
+  height: 8vh;
   border: 0px;
+  font-size: 5vh;
   background-image: url('../img/RestartButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 10%;
-  left: 53%;
+  top: 30%;
+  right: 0px;
+  cursor: pointer;
 }
 #textButtonDiv .settingButton{
-  width: 15%;
-  height: 80%;
+  width: 8vh;
+  height: 8vh;
   border: 0px;
   background-image: url('../img/SettingButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 10%;
-  left: 71%;
+  top: 44%;
+  right: 0px;
+  cursor: pointer;
 }
 
 /*設定*/

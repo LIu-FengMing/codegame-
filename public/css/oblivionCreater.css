@@ -699,6 +699,7 @@ body {
 }
 #foggyTable #S1Td00{
   width: 30%;
+  margin-left: 5vw;
 }
 #foggyTable #S1Td01,#foggyTable #S1Td02{
   width: 35%;
@@ -720,6 +721,6 @@ body {
 }
 #codingTextarea{
   height: 35vh;
-  width: 30vw;
+  width: 25vw;
   resize : none;
 }
