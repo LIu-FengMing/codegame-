@@ -517,25 +517,24 @@ function equipageView(mainDiv) {
       var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     }
-    else if (swordLevel == 10) {
+    else if (shieldLevel == 10) {
      
       document.getElementById("levelUpDefault1").innerHTML = "";
-      var text = "防禦力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
+      var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     }
-
+    
     document.getElementById("levelUpDefault0").innerHTML = "";
     document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
     document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
-
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
   }
   else {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    document.getElementById ("levelUpFont1").innerHTML = text;
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
       document.getElementById("levelUpDefault1").className = "levelUp";
@@ -631,6 +630,7 @@ function resetEquipClick() {
     }
   })
 }
+
 function swordLevelUp() {
   b = document.getElementById("swordLevelUpinnerDiv" + swordLevel);
   if (swordLevel == 0) {
@@ -719,7 +719,7 @@ function shieldLevelUp() {
     document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+document.getElementById("levelUpDefault1").className = "levelUpDefault";
     
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
