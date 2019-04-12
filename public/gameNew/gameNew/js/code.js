@@ -74,7 +74,7 @@ function myFunction(){
   b.setAttribute("class", "runButton");
   b.setAttribute("onclick","changeToC(0)");
   divTag.appendChild(b);
-	
+
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "transformButton");
@@ -96,7 +96,7 @@ function myFunction(){
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "settingButton");
-  b.setAttribute("onclick","settingAllView('blocklyDiv')");
+  b.setAttribute("onclick","settingAllView(blocklyDiv)");
   divTag.appendChild(b);
   //content.innerHTML = code;
   textarea_0.value = '';
