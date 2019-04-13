@@ -299,7 +299,7 @@ body {
   left: 50%;
   margin-top: -17.5vh;
   margin-left: -25vh;
-  background-color: rgba(232, 136, 23, 0.92);
+  background-color: rgba(232, 136, 23);
   overflow: auto;
 }
 #levelDescription{

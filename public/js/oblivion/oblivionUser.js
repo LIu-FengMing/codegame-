@@ -585,7 +585,7 @@ function shelfChk(input) {
 }
 
 /*確定視窗*/
-var postVar,unShelfVar,delVar;
+var postVar,postLaterVar,unShelfVar,delVar;
 function checkView(checkFont,checkStatus) {
   divTag = document.getElementById("centerLost");
   if (levelDivAlive) {
@@ -624,7 +624,7 @@ function checkView(checkFont,checkStatus) {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(postVar)");
     }else{
-      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(postVar)");
+      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(postLaterVar)");
     }
   }else if(checkFont == "下架關卡"){
     unShelfVar = checkStatus;
@@ -737,14 +737,15 @@ function shelfLater(thisObject) {
       alert("選擇時間錯誤");
     }
     else {
-      // console.log("run 777");
-      // postVar = selectDate.toString();
-      // if (confirm('你確定要上架這張地圖嗎?')) {
-      //   shelfLaterAction(selectDate.toString());
-      // } else {
-      //   // Do nothing!
-      // }
-      checkView("上架關卡","later");
+      console.log("run 777");
+      postVar = selectDate.toString();
+      if (confirm('你確定要上架這張地圖嗎?')) {
+        shelfLaterAction(selectDate.toString());
+      } else {
+        // Do nothing!
+      }
+      // postLaterVar = selectDate.toString();
+      // checkView("上架關卡","later");
     }
   }
   else {
