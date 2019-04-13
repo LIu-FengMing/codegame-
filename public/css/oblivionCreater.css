@@ -619,8 +619,9 @@ body {
 #levelDescriptionTable #S1Td01{
   width: 70%;
 }
-#levelDescriptionTable #S1Td01 textarea,#levelDescriptionTable #S1Td11 textarea,#levelDescriptionTable #S1Td21 textarea{
+#levelDescriptionTable #S1Td01 input,#levelDescriptionTable #S1Td11 textarea,#levelDescriptionTable #S1Td21 textarea{
   width: 80%;
+  font-size: 3vh;
   background-color: #BBCCBA;
   resize : none;
 }
@@ -647,8 +648,10 @@ body {
   #enemyTable #S1Td01,#enemyTable #S1Td11{
     width: 70%;
   }
-  #enemyTable #S1Td01 textarea,#enemyTable #S1Td11 textarea{
+  #enemyTable #S1Td01 input,#enemyTable #S1Td11 input{
     width: 80%;
+    font-size: 3vh;
+    text-align: center;
     height: auto;
     background-color: #BBCCBA;
     resize : none;
@@ -668,6 +671,7 @@ body {
   #lockAnswerTable #S1Td01 textarea{
     width: 70%;
     height: 80%;
+    font-size: 3vh;
     resize : none;
     background-color: #BBCCBA;
   }
@@ -686,6 +690,7 @@ body {
   #boxTable #S1Td01 textarea{
     width: 70%;
     height: 80%;
+    font-size: 3vh;
     resize : none;
     background-color: #BBCCBA;
   }
@@ -715,12 +720,12 @@ body {
 }
 #codingFont{
   text-align:left;
-  font-size: 3vh;
   font-weight: bold;
   margin-right: 20vw;
 }
 #codingTextarea{
   height: 35vh;
   width: 25vw;
+  font-size: 3vh;
   resize : none;
 }

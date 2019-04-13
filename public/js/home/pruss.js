@@ -544,7 +544,6 @@ function viewRecord(number) {
             }else{
               b.setAttribute("class","unStartImg");
             }
-
             divTag.appendChild(b);
           }
         }else if(i == 1){

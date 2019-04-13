@@ -200,13 +200,17 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
      createUserView(divID);
  }
  function clossFunc(thisDiv, thisDiv2) {
+   try {
      divTag = document.getElementById(thisDiv);
      parentObj = divTag.parentNode;
      parentObj.removeChild(divTag);
+   } catch (e) {}
+   try {
      divTag = document.getElementById(thisDiv2);
      parentObj = divTag.parentNode;
      parentObj.removeChild(divTag);
      levelDivAlive = false;
+   } catch (e) {}
  }
  function createUserView(mainDiv) {
      divTag = document.getElementById(mainDiv);
@@ -380,46 +384,32 @@ function btnClick(number) {
 }
 function viewRecord(number) {
   var divTag = document.getElementById("centerMidMap");
-  var codeText,codeNum;
+  var isCheckClicked,codeText,codeNum,niceRecord=999,niceStar=-1;
   var lastRecord;
   if(user.MediumEmpire.codeLevel.length == 0){
     codeText = "查無紀錄";
     codeNum = 0;
-  }
-  for(var i=0;i<user.MediumEmpire.codeLevel[number].challengeLog.length;i++){
+  }else{
     try{
-      if(user.MediumEmpire.codeLevel[number].level == number){
-        // console.log("查看是否等於number" + user.EasyEmpire.codeLevel[number].level,number,i);
-        if(user.MediumEmpire.codeLevel[number].challengeLog[i].result != "未完成"){
-          // console.log("回傳",user.EasyEmpire.codeLevel[number].challengeLog[i].result);
-          if(niceRecord > user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum){
+      for(var i=0;i<user.MediumEmpire.codeLevel[number].challengeLog.length;i++){
+        if(user.MediumEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar){
+          niceStar = user.MediumEmpire.codeLevel[number].challengeLog[i].srarNum;
+          if(user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord){
             niceRecord = user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum;
             lastRecord = i;
           }
-        }else{
-          continue;
         }
-        //lastRecord = user.EasyEmpire.codeLevel[number].challengeLog.length-1;
-        // console.log(lastRecord);
-        var result = user.MediumEmpire.codeLevel[number].challengeLog[lastRecord].code;
-        var result2 = result.replace(new RegExp("<", "g"), "&lt");
-        result = result2.replace(new RegExp(">", "g"), "&gt");
-        result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-        result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-        codeText = result.replace(new RegExp("\n", "g"), "<br>");
-        codeNum = user.MediumEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
-      }else{
-        // console.log("出錯");
-        codeText = "查無紀錄";
-        codeNum = 0;
       }
+      var result = user.MediumEmpire.codeLevel[number].challengeLog[lastRecord].code;
+      var result2 = result.replace(new RegExp("<", "g"), "&lt");
+      result = result2.replace(new RegExp(">", "g"), "&gt");
+      result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+      result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+      codeText = result.replace(new RegExp("\n", "g"), "<br>");
+      codeNum = niceRecord;
     }catch(e){
-      if(codeText != null){
-        break;
-      }else{
-        codeText = "查無紀錄";
-        codeNum = 0;
-      }
+      codeText = "查無資料";
+      codeNum = 0;
     }
   }
   b = document.createElement("div");
@@ -468,7 +458,11 @@ function viewRecord(number) {
           for(var k=0;k<3;k++){
             b = document.createElement("img");
             b.setAttribute("id","startImg" + k);
-            b.setAttribute("class","startImg");
+            if(k<niceStar){
+              b.setAttribute("class","startImg");
+            }else{
+              b.setAttribute("class","unStartImg");
+            }
             divTag.appendChild(b);
           }
         }else if(i == 1){
@@ -487,19 +481,6 @@ function viewRecord(number) {
 //////////////////////////////////////////////////
 //              homeBtn.js                        //
 //////////////////////////////////////////////////
-function back() {
-  var index = 0;
-  var href = window.location.href;
-  for (var i = 0; i < href.length; ++i) {
-      if (href[i] == '/' || href[i] == "\\") {
-          index = i;
-      }
-  }
-  href = href.substr(0, index + 1);
-  window.location.replace(href);
-  console.log(href);
-}
-
 var divTag, b, divID, divID2;
 /*裝備*/
 function equipageView(mainDiv) {
@@ -1518,12 +1499,24 @@ function sendSession() {
 
 /*變更關卡進度*/
 function changeLevelStage() {
-  var codeLevel=user.MediumEmpire.codeLevel.length+1;
-  if(codeLevel==0){
-    ++codeLevel;
+  var codeLevel=-1;
+  for (let index = 0; index < user.MediumEmpire.codeLevel.length; index++) {
+    const element = user.MediumEmpire.codeLevel[index];
+    if(parseInt(element.level)>codeLevel&&element.HighestStarNum>0){
+      codeLevel=parseInt(element.level);
+    }
+  }
+  if(codeLevel==-1){
+    codeLevel=1;
+  }else{
+    codeLevel+=2;
+  }
+  var totalLevel=Math.max(codeLevel,0);
+  if(totalLevel==0){
+    ++totalLevel;
   }
   for(var i=0;i<24;i++){
-    if(i<codeLevel){
+    if(i<totalLevel){
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
     }else{

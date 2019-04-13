@@ -100,9 +100,13 @@ body {
 #goBack2{
   width: 50px;
   height: 50px;
-  font-size: 40px;
-  background-color: rgb(204, 247, 204);
+  background-image: url('../img/goBack.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
   position: absolute;
+  border-width: 0;
   top: 2%;
   left: 1%;
   cursor: pointer;

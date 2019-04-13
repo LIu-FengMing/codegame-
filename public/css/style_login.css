@@ -105,6 +105,7 @@
   text-decoration:underline;
   color: #287286;
   margin: 30px 0px 0px 0px;
+  cursor: pointer;
 }
 
 #signUp{
@@ -114,4 +115,5 @@
   text-decoration:underline;
   border-style:none;
   background: none;
+  cursor: pointer;
 }
