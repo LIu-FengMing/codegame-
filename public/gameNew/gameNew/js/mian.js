@@ -39,7 +39,7 @@ var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
 var haveFoggy = false;
-var lock2DelObjpos=0;
+var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
-    var path = ["stone", "tree", "tank", "bot","start",
+    var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
@@ -151,37 +151,60 @@ function loadData() {
     else {
         haveFoggy = false;
     }
-    if (mapNumber.presetCode) {
-        var file = mapNumber.presetCode;
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                initCode = this.responseText;
-                textarea_0.value = initCode;
-            }
-        };
-        var url = "../json/" + file + ".cpp"
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }
+
     map = mapNumber['mapValue'];
     mapSize = Math.sqrt(mapNumber['mapSize']);
     people_init = mapNumber['people_init'];
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
-    var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-    var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
-    var stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
-    textarea_0.value = linit + stemp;
-    // console.log(initCode);
-    var stemp = initCode.substr(initCode.indexOf('#') - 1);
-    initCode = linit + stemp;
-    // console.log(initCode);
+    if (mapNumber.presetCode) {
+        var file = mapNumber.presetCode;
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var initCode = this.responseText.toString();
+                console.log(initCode);
+                
+                var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+                var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+                var stemp;
+                if (initCode.indexOf('#') > 0) {
+                    stemp = initCode.substr(initCode.indexOf('#') - 1);
+                }
+                else {
+                    stemp = initCode;
+                }
+                textarea_0.value = linit + stemp;
+                var stemp = initCode.substr(initCode.indexOf('#') - 1);
+                initCode = linit + stemp;
+            }
+        };
+        var url = "gameNew/gameNew/json/" + file + ".cpp"
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
+    else {
+        var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+        var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+        var stemp;
+        if (textarea_0.value.indexOf('#') > 0) {
+            stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
+        }
+        else {
+            stemp = textarea_0.value;
+        }
 
+        textarea_0.value = linit + stemp;
+        var stemp = initCode.substr(initCode.indexOf('#') - 1);
+        initCode = linit + stemp;
+    }
+
+
+    // console.log(initCode);
+    // console.log(initCode);
     var dx = people_init["postion"][0] * edgeToWidth, dy = people_init["postion"][1] * edgeToHeight, drotate = 360 - people_init["postion"][2] * 90;
     old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
     now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
-
 
     edgeToWidth = width / mapSize;
     edgeToHeight = height / mapSize;
@@ -228,7 +251,7 @@ function endgame() {
         "turnRight", "turnRight(", "turnRight()", "turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
         "fire", "fire(", "fire()", "fire();",
-        "printf", "printf("];
+        "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
     var words = temp.split('\n');
@@ -472,8 +495,8 @@ function draw() {
                 }
                 else if (value == 3 || value == 6 || value == 7) {
                     gameEndingCode = value;
-                    action_now=action_code.length;
-                    action_code=[];
+                    action_now = action_code.length;
+                    action_code = [];
                     onChanged = false;
                     onChanging = false;
                     updateCanvas();
@@ -594,7 +617,7 @@ function draw() {
                                     if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlockfail2") {
                                         if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
                                             o = ssi;
-                                            lock2DelObjpos=o;
+                                            lock2DelObjpos = o;
                                             break;
                                         }
                                     }
@@ -641,19 +664,19 @@ function draw() {
                         }
                         // console.log("test O:",o);
                     }
-                    else if(nowValue.forgetDel>0){
+                    else if (nowValue.forgetDel > 0) {
                         // if(nowValue.obj<=lock2DelObjpos+nowValue.forgetDel){
                         //     o = nowValue.obj+nowValue.forgetDel;
                         // }
-                        console.log(nowValue.obj,nowValue.forgetDel,lock2DelObjpos);
-                        
-                        if(nowValue.obj+nowValue.forgetDel<lock2DelObjpos){
-                            o = nowValue.obj+nowValue.forgetDel;
+                        console.log(nowValue.obj, nowValue.forgetDel, lock2DelObjpos);
+
+                        if (nowValue.obj + nowValue.forgetDel < lock2DelObjpos) {
+                            o = nowValue.obj + nowValue.forgetDel;
                         }
                         else {
                             o = nowValue.obj;
                             console.log("123");
-                            
+
                         }
                     }
                     else {
@@ -768,7 +791,7 @@ function updateBackgroundGraph() {
         backgroundGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
     }
     var img = imgObject[parseInt(imgDic["start"])];
-    backgroundGraph.image(img,people_init["postion"][0]*edgeToWidth,  people_init["postion"][1]*edgeToHeight,edgeToWidth , edgeToHeight);
+    backgroundGraph.image(img, people_init["postion"][0] * edgeToWidth, people_init["postion"][1] * edgeToHeight, edgeToWidth, edgeToHeight);
 }
 
 function updateObjectGraph() {
@@ -789,8 +812,8 @@ function updateObjectGraph() {
         else if (obj["type"] == "bullet") {
             dx = obj["postion"][0], dy = obj["postion"][1];
             // var drotate = obj["postion"][2] * 90 + 90;
-            
-            var drotate =(4- obj["postion"][2]) *90+ 90;
+
+            var drotate = (4 - obj["postion"][2]) * 90 + 90;
             // var drotate = obj["postion"][2] * 90 + 270;
             var pg = createGraphics(edgeToWidth, edgeToHeight);
             pg.translate(pg.width / 2, pg.height / 2);
@@ -1010,9 +1033,15 @@ function codeToCompiler(stringCode) {
     // console.log("mpaobjStr 數量 [初始位置]:",mpaobjStr);
     var str = [mapStr, peopleStr, endlineStr, mpaobjStr].join('\n');
     inputStr = str;
+    if (data.input != "z0") {  //為第 6 關  11
+        inputStr = inputStr + " " + data.input;
+    }
+    else {
+        inputStr = inputStr + data.input;
+    }
 
     // console.log(tempBefore);
-    // console.log(inputStr);
+    console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
 
@@ -1036,6 +1065,8 @@ function clearcodeAndInit() {
 
 function codeOutputTranstionAction() {
     var source = decodeOutput;
+    console.log(source);
+
     // var temp = new Array();
     var temp = [], tempNew = [];
     temp = source.split("syst");
@@ -1291,7 +1322,7 @@ function codeOutputTranstionAction() {
                     var tempList = spaceT[di];
                     var listTranstion = {
                         obj: parseInt(tempList) - forgetDel,
-                        forgetDel:forgetDel
+                        forgetDel: forgetDel
                     }
                     spaceList.push(listTranstion);
                 }

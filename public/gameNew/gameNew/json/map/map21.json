@@ -3,15 +3,16 @@
     "mapSize": 81,
     "mapValue": "000000000000000000000000000000000000000000000000000000000000000000000000000000000",
     "level": "初階",
+    "input": "z0",
     "winLinit": {
         "threeStar": [
-            32
+            39
         ],
         "twoStar": [
-            34
+            41
         ],
         "oneStar": [
-            35
+            42
         ]
     },
     "people_init": {
@@ -215,7 +216,10 @@
                 4,
                 null
             ],
-            "chooseNum": [0,2]
+            "chooseNum": [
+                0,
+                2
+            ]
         },
         {
             "type": "questionMark",
@@ -224,7 +228,10 @@
                 2,
                 null
             ],
-            "chooseNum": [1,2]
+            "chooseNum": [
+                1,
+                2
+            ]
         },
         {
             "type": "questionMark",
@@ -233,7 +240,20 @@
                 2,
                 null
             ],
-            "chooseNum": [0,1]
+            "chooseNum": [
+                0,
+                1
+            ]
+        },
+        {
+            "type": "lock2",
+            "unlock": "lock_output",
+            "postion": [
+                4,
+                1
+            ],
+            "ans": "z",
+            "response": "Hello"
         }
     ]
 }

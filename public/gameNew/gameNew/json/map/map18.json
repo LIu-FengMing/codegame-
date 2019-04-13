@@ -1,84 +1,84 @@
 {
-    "mapNumber": "game18",
+    "mapNumber": "game16",
     "mapSize": "36",
     "mapValue": "000000000000000000000000000000000000",
     "level": "初階",
     "winLinit": {
         "threeStar": [
-            6
+            3
         ],
         "twoStar": [
-            7
+            4
         ],
         "oneStar": [
-            8
+            5
         ]
     },
     "people_init": {
         "type": "car",
         "postion": [
-            2,
+            0,
             5,
-            1
+            2
         ]
     },
     "end_init": [
         {
             "type": "endline",
             "postion": [
-                4,
-                3,
+                5,
+                5,
                 0
             ]
         }
     ],
     "obj": [
         {
-            "type": "tree",
+            "type": "stone",
             "postion": [
-                0,
-                4
+                1,
+                5
             ]
         },
         {
-            "type": "tree",
+            "type": "stone",
             "postion": [
                 1,
                 3
             ]
         },
         {
-            "type": "tree",
+            "type": "stone",
             "postion": [
-                2,
-                1
-            ]
-        },
-        {
-            "type": "tree",
-            "postion": [
-                5,
-                2
+                1,
+                4
             ]
         },
         {
             "type": "stone",
             "postion": [
                 1,
-                5
+                1
             ]
         },
         {
             "type": "stone",
             "postion": [
-                3,
-                5
+                2,
+                1
             ]
         },
         {
             "type": "stone",
             "postion": [
-                3,
+                4,
+                1
+            ]
+        },
+        {
+            "type": "stone",
+            "postion": [
+                4,
                 3
             ]
         },
@@ -92,26 +92,37 @@
         {
             "type": "stone",
             "postion": [
+                4,
+                5
+            ]
+        },
+        {
+            "type": "tree",
+            "postion": [
+                1,
+                2
+            ]
+        },
+        {
+            "type": "tree",
+            "postion": [
                 3,
                 1
             ]
         },
         {
-            "type": "stone",
+            "type": "tree",
             "postion": [
-                1,
-                1
+                4,
+                2
             ]
         },
         {
-            "type": "lock2",
-            "unlock": "lock_output",
+            "type": "tree",
             "postion": [
-                2,
-                3
-            ],
-            "ans": "20",
-            "response": "Hello"
+                3,
+                4
+            ]
         }
     ]
 }
