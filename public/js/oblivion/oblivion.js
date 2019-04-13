@@ -733,17 +733,28 @@ function sendLoadUsernameMap() {
         }
         var avgScore = obj.avgScore, avgScoreStr;
         if (avgScore == 0) {
-          avgScoreStr = "--";
+          avgScoreStr = "--/";
         }
         else {
-          avgScoreStr = avgScore.toString();
+          avgScoreStr = avgScore.toString() + "/";
         }
+        if (obj.score.length == 0) {
+          avgScoreStr += "--";
+        }
+        else {
+          avgScoreStr += obj.score.length;
+        }
+        var updateDate;
+        var data = new Date(obj.updateDate);
+        var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
+        updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+        
         var script = {
           td01: obj.mapName,
           td02: obj.requireStar,
           td03: obj.author,
           td04: avgScoreStr,
-          td05: obj.createDate,
+          td05: updateDate,
           td06: obj.mapIntroduction,
         }
         mapData.push(script);
@@ -752,7 +763,6 @@ function sendLoadUsernameMap() {
     }
   })
 }
-
 
 /*建立表格*/
 function createLevelTable(scriptData) {
