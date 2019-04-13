@@ -41,7 +41,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed,shelfSwitch=0;
 var musicData;
 var userMap;
 
@@ -249,19 +249,6 @@ function userData() {
   divTag.appendChild(b);
   createUserView(divID);
 }
-function clossFunc(thisDiv, thisDiv2) {
-  try {
-    divTag = document.getElementById(thisDiv);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-  } catch (e) { }
-  try {
-    divTag = document.getElementById(thisDiv2);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-  } catch (e) { }
-  levelDivAlive = false;
-}
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
@@ -399,7 +386,7 @@ function shelfMap(thisObject) {
 }
 /*上架介面*/
 function shelfBtn() {
-  divTag = document.getElementById("createrDiv");
+  divTag = document.getElementById("centerLost");
   if (levelDivAlive) {
     divTag = document.getElementById("shelfView");
     try {
@@ -415,6 +402,7 @@ function shelfBtn() {
   levelDivAlive = true;
   divTag = document.getElementById("shelfView");
   divTag.innerHTML = "";
+
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
@@ -425,16 +413,94 @@ function shelfBtn() {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "上架設定";
+  document.getElementById("allTitle").innerHTML = "上架關卡";
 
-  b = document.createElement("input");
-  b.setAttribute("type", "datetime-local");
-  b.setAttribute("id", "shelfTime");
+  b = document.createElement("table");
+  b.setAttribute("id", "shelfTable");
   divTag.appendChild(b);
 
+  /*上架關卡_定時*/
+  divTag = document.getElementById("shelfTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "shelfTr0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfTr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow0_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow0_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "shelfCheckboxH2");
+  divTag.appendChild(b);
+  document.getElementById("shelfCheckboxH2").innerHTML = "定時";
+  divTag = document.getElementById("shelfTr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow0_1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow0_1");
+  b = document.createElement("form");
+  b.setAttribute("id", "shelfForm");
+  b.setAttribute("name", "shelfForm");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfForm");
+  /*是否定時checkBox*/
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "shelfTrue");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "return shelfChk(this);");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "shelfTrueText");
+  divTag.appendChild(b);
+  document.getElementById("shelfTrueText").innerHTML = "是";
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "shelfFalse");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "2");
+  b.setAttribute("checked", "true");
+  b.setAttribute("onclick", "return shelfChk(this);");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "shelfFalseText");
+  divTag.appendChild(b);
+  document.getElementById("shelfFalseText").innerHTML = "否";
+
+  /*設定上架時間*/
+  divTag = document.getElementById("shelfTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "shelfTr1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfTr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow1_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow1_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "shelfTimeH2");
+  divTag.appendChild(b);
+  document.getElementById("shelfTimeH2").innerHTML = "上架時間";
+  divTag = document.getElementById("shelfTr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow1_1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow1_1");
+  b = document.createElement("input");
+  b.setAttribute("type", "datetime-local");
+  b.setAttribute("id", "shelfDataTime");
+  b.setAttribute("class", "shelfDataTime");
+  divTag.appendChild(b);
+  document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
+
+
+  /*上架按鈕*/
+  divTag = document.getElementById("shelfView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "shelfNow");
+  b.setAttribute("class", "shelfNow");
   b.setAttribute("value", "立即上架");
   b.setAttribute("onclick", "nowShelfNow(this)");
   divTag.appendChild(b);
@@ -442,8 +508,31 @@ function shelfBtn() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "shelfLater");
+  b.setAttribute("class", "shelfLater");
   b.setAttribute("value", "設定時間");
   divTag.appendChild(b);
+  document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+}
+function shelfChk(input) {
+  console.log(input);
+  for (var i = 0; i < document.shelfForm.c1.length; i++) {
+    document.shelfForm.c1[i].checked = false;
+  }
+  input.checked = true;
+  if (input.id == "shelfFalse") {
+    shelfSwitch = 0;
+    console.log("可立即上架");
+    document.getElementById("shelfNow").className = "shelfNow";
+    document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+    document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
+  } else {
+    shelfSwitch = 1;
+    console.log("不可立即上架");
+    document.getElementById("shelfLater").className = "shelfLater";
+    document.getElementById("shelfNow").className = "shelfNow " + "disabled";
+    document.getElementById("shelfDataTime").className = "shelfDataTime";
+  }
+  return true;
 }
 function nowShelfNow(thisObject) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
@@ -853,7 +942,6 @@ function musicLevelDown() {
 }
 
 function chk(input) {
-
   for (var i = 0; i < document.form1.c1.length; i++) {
     document.form1.c1[i].checked = false;
   }

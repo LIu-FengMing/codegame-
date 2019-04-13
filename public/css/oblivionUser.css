@@ -168,23 +168,51 @@ body {
   top: 2%;
   cursor: pointer;
 }
+/*上架關卡*/
 #shelfView{
   z-index: 999;
-  height: 30%;
-  width: 40%;
+  height: 30vh;
+  width: 30vw;
   position: absolute;
-  bottom: 35%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
+  margin-top: -15vh;
+  margin-left: -15vw;
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
-#shelfTime{
-  width: 17vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -7.5vw
+#shelfTable{
+  width: 100%;
+  position: relative;
+  text-align: right;
+  top: 20%;
+  border: 1px;
+}
+#shelfTable td{
+  text-align: center;
+}
+#shelfTrueText,#shelfFalseText{
+  margin-top: 15px;
+  bottom: 5px;
+}
+#shelfTrueText{
+  margin-right: 15px;
+}
+#shelfTable input[type = "checkbox"]{
+  height: 20px;
+  width: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.shelfDataTime{
+  cursor: pointer;
+}
+#shelfTable font{
+  font-size: 25px;
+  line-height: 0px;　
+  margin-top: -5px;
 }
 #shelfNow{
   position: absolute;
@@ -196,6 +224,17 @@ body {
   position: absolute;
   bottom: 5px;
   right: 10px;
+  cursor: pointer;
+}
+.shelfNow,.shelfLater{
+  height: 6vh;
+  width: 8vw;
+  font-size: 20px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(122, 187, 240);
+  background-color: rgb(161, 204, 240);
   cursor: pointer;
 }
 
