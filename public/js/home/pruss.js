@@ -752,32 +752,6 @@ function equipageView(mainDiv) {
       }
     }
   }
-
-  var swordmaxFlag = false, shiledmaxFlag = false;
-  if (swordLevel >= 10) {
-    swordmaxFlag = true;
-    swordLevel = 10
-    document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    console.log(swordLevel,equipmentData.weaponLevel.lenrht);
-    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
-    document.getElementById("swordLevelUpDivH3").innerHTML = text;
-  }
-  else {
-    console.log("xxx:" + swordLevel);
-    var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    var text = "x" + star;
-    document.getElementById("levelUpFont0").innerHTML = text;
-    if (star <= user.starNum) {
-      document.getElementById("levelUpDefault0").className = "levelUp";
-      document.getElementById("levelUpDefault1").className = "levelUp";
-    }
-    else {
-      document.getElementById("levelUpDefault0").className = "levelUpDefault";
-      document.getElementById("levelUpDefault1").className = "levelUpDefault";
-    }
-  }
   for (var li = 0; li < equipmentData.armorLevel.length && li < 10; ++li) {
     var temp = document.getElementById("shieldLevelUpinnerDiv" + li);
     if (li < shieldLevel) {
@@ -799,37 +773,86 @@ function equipageView(mainDiv) {
       }
     }
   }
-  if (shieldLevel >= 10) {
-    shiledmaxFlag = true;
-    document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
-    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
-    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-  }
+  var swordmaxFlag = false, shiledmaxFlag = false;
   if ((swordLevel + shieldLevel) >= 15) {
-    if (!swordmaxFlag) {
-      var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+    if (swordLevel == 10) {
+      document.getElementById("levelUpDefault0").innerHTML = "";
+      var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
       document.getElementById("swordLevelUpDivH3").innerHTML = text;
-
-    }
-    if (!shiledmaxFlag) {
       var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     }
-
+    else if (shieldLevel == 10) {
+      document.getElementById("levelUpDefault1").innerHTML = "";
+      var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
+      document.getElementById("shieldLevelUpDivH3").innerHTML = text;
+      var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+      document.getElementById("swordLevelUpDivH3").innerHTML = text;
+    }
+    else {
+      var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+      document.getElementById("swordLevelUpDivH3").innerHTML = text;
+      var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
+      document.getElementById("shieldLevelUpDivH3").innerHTML = text;
+    }
     document.getElementById("levelUpDefault0").innerHTML = "";
     document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
     document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
-
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
   }
-  else {
+  else if (swordLevel == 10) {
+    document.getElementById("levelUpDefault0").innerHTML = "";
+    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
+    document.getElementById("swordLevelUpDivH3").innerHTML = text;
+    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
+    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
+
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
     document.getElementById("levelUpFont1").innerHTML = text;
+    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
+
+    if (star <= user.starNum) {
+      document.getElementById("levelUpDefault0").className = "levelUpDefault";
+      document.getElementById("levelUpDefault1").className = "levelUp";
+    }
+    else {
+      document.getElementById("levelUpDefault0").className = "levelUpDefault";
+      document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    }
+  }
+  else if (shieldLevel == 10) {
+    document.getElementById("levelUpDefault1").innerHTML = "";
+    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
+    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
+    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+    document.getElementById("swordLevelUpDivH3").innerHTML = text;
+
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont0").innerHTML = text;
+    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
+    if (star <= user.starNum) {
+      document.getElementById("levelUpDefault0").className = "levelUp";
+      document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    }
+    else {
+      document.getElementById("levelUpDefault0").className = "levelUpDefault";
+      document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    }
+  }
+  else{
+    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+    document.getElementById("swordLevelUpDivH3").innerHTML = text;
+    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
+    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont0").innerHTML = text;
+    document.getElementById("levelUpFont1").innerHTML = text;
+
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
       document.getElementById("levelUpDefault1").className = "levelUp";
@@ -838,13 +861,8 @@ function equipageView(mainDiv) {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
-    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
-    document.getElementById("swordLevelUpDivH3").innerHTML = text;
-    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
-    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
   }
   console.log(swordLevel, shieldLevel);
-
 }
 /*武器*/
 function resetEquipClick() {
@@ -864,10 +882,11 @@ function resetEquipClick() {
       levelUpLevel = 0;
       // clossFunc("equipageView","equipageBkViewv");
       clossFunc("equipageView", "equipageBkView");
-      equipageView(centerBlockly);
+      equipageView(center);
     }
   })
 }
+
 function swordLevelUp() {
   b = document.getElementById("swordLevelUpinnerDiv" + swordLevel);
   if (swordLevel == 0) {
@@ -878,6 +897,7 @@ function swordLevelUp() {
     b.className = "levelChange";
   }
   swordLevel++;
+  levelUpLevel++;
   /*   ----------------------------------    */
   weaponLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
@@ -888,7 +908,8 @@ function swordLevelUp() {
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
-
+    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
+    document.getElementById("swordLevelUpDivH3").innerHTML = text;
 
   }
   else if (swordLevel >= 10) {
@@ -897,6 +918,10 @@ function swordLevelUp() {
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
     document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
+
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont1").innerHTML = text;
   }
   else {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
@@ -910,18 +935,24 @@ function swordLevelUp() {
     }
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
-    levelUpLevel++;
+
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
+
     document.getElementById("levelUpFont0").innerHTML = text;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    if (shieldLevel < 10) {
+      document.getElementById("levelUpFont1").innerHTML = text;
+    }
     if (star > user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
     else {
+
       document.getElementById("levelUpDefault0").className = "levelUp";
-      document.getElementById("levelUpDefault1").className = "levelUp";
+      if (shieldLevel < 10) {
+        document.getElementById("levelUpDefault1").className = "levelUp";
+      }
     }
   }
 
@@ -929,6 +960,8 @@ function swordLevelUp() {
 }
 /*防具*/
 function shieldLevelUp() {
+  // console.log("123");
+
   b = document.getElementById("shieldLevelUpinnerDiv" + shieldLevel);
   if (shieldLevel == 0) {
     b.className = "levelFont";
@@ -938,6 +971,7 @@ function shieldLevelUp() {
     b.className = "levelChange";
   }
   shieldLevel++;
+  levelUpLevel++;
   /*   ----------------------------------    */
   armorLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
@@ -948,17 +982,25 @@ function shieldLevelUp() {
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
+
+    var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
+    document.getElementById("shieldLevelUpDivH3").innerHTML = text;
   }
   else if (shieldLevel >= 10) {
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-  } else {
+    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
+    document.getElementById("levelUpDefault1").className = "levelUpDefault";
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
-    document.getElementById("levelUpFont0").innerHTML = text;
+    document.getElementById("levelUpFont1").innerHTML = text;
+
+  }
+  else {
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont1").innerHTML = text;
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault1").className = "levelUp";
     }
@@ -967,21 +1009,30 @@ function shieldLevelUp() {
     }
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-    levelUpLevel++;
+
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
-    document.getElementById("levelUpFont0").innerHTML = text;
+    if (swordLevel < 10) {
+      document.getElementById("levelUpFont0").innerHTML = text;
+    }
     document.getElementById("levelUpFont1").innerHTML = text;
     if (star > user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
     else {
-      document.getElementById("levelUpDefault0").className = "levelUp";
+      if (swordLevel < 10) {
+
+        document.getElementById("levelUpDefault0").className = "levelUp";
+      }
       document.getElementById("levelUpDefault1").className = "levelUp";
     }
 
   }
+
+
+
+
 }
 
 
