@@ -238,6 +238,91 @@ body {
   cursor: pointer;
 }
 
+/*確認介面*/
+#checkView{
+  z-index: 999;
+  height: 30vh;
+  width: 25vw;
+  border-style: solid;
+  border-color: black;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15vh;
+  margin-left: -12.5vw;
+  background-color: #D5E8D4;
+  overflow: auto;
+}
+#checkH2{
+  font-size: 5vh;
+  margin-top: 10vh;
+}
+#checkFalseBtn{
+  height: 5vh;
+  width: 8vw;
+  font-size: 1.5vw;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  background-color: #ff7e79;
+  position: absolute;
+  left: 2vw;
+  bottom: 2vh;
+  cursor: pointer;
+}
+#checkTrueBtn{
+  height: 5vh;
+  width: 8vw;
+  font-size: 1.5vw;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  background-color: #c0ec95;
+  position: absolute;
+  right: 2vw;
+  bottom: 2vh;
+  cursor: pointer;
+}
+
+/*關卡簡介*/
+#levelDiv{
+  z-index: 3;
+  width: 50vh;
+  height: 35vh;
+  font-size: 2.5vh;
+  font-weight:bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -17.5vh;
+  margin-left: -25vh;
+  background-color: rgba(232, 136, 23, 0.92);
+  overflow: auto;
+}
+#levelDescription{
+  color: #000000;
+  margin-top: 3vh;
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: 10px;
+  font-weight: 0;
+}
+#levelDescriptionTextaera{
+  height: 20vh;
+  width: 15vw;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-top: -10vh;
+  margin-left: -7.5vw;
+  line-height: 24px;
+  overflow: auto;
+}
+
+
 /*right*/
 .userName{
   position: absolute;
