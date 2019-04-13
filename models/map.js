@@ -52,7 +52,7 @@ module.exports.updateMapById = function (id, scriptData, callback) {
         requireStar: scriptData.requireStar,
         updateDate: scriptData.updateDate,
         postDate: "",
-        postStage:scriptData.postStage,
+        postStage: scriptData.postStage,
         check: false
     }
     // console.log("scriptData:",scriptData);
@@ -79,23 +79,40 @@ module.exports.updateMapScoreById = function (id, score, avgscore, callback) {
     MapRecord.updateOne(query, setquery, callback);
 
 }
+
+module.exports.updateShelfLaterById = function (id,callback) {
+    var query = { _id: id}
+    var setquery = {
+        postStage: 2
+    }
+    MapRecord.updateOne(query, setquery, callback);
+}
+
 module.exports.ShelfMapMapById = function (id, callback) {
-    var date=new Date();
-    var postDate=date.toString();
+    var date = new Date();
+    var postDate = date.toString();
     var query = { _id: id }
     var setquery = {
-        postStage:2,
-        postDate:postDate
+        postStage: 2,
+        postDate: postDate
     }
     MapRecord.updateOne(query, setquery, callback);
 
+}
+module.exports.ShelfLaterMapById = function (id, postDate, callback) {
+    var query = { _id: id }
+    var setquery = {
+        postStage: 1,
+        postDate: postDate
+    }
+    MapRecord.updateOne(query, setquery, callback);
 }
 
 module.exports.unShelfMapMapById = function (id, callback) {
     var query = { _id: id }
     var setquery = {
-        postStage:3,
-        postDate:""
+        postStage: 3,
+        postDate: ""
     }
     MapRecord.updateOne(query, setquery, callback);
 
@@ -103,5 +120,5 @@ module.exports.unShelfMapMapById = function (id, callback) {
 
 module.exports.deleteMapById = function (id, callback) {
     var setquery = { _id: id }
-    MapRecord.remove(setquery,callback)
+    MapRecord.remove(setquery, callback)
 }

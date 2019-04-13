@@ -41,7 +41,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed,shelfSwitch=0;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed, shelfSwitch = 0;
 var musicData;
 var userMap;
 
@@ -312,13 +312,14 @@ function selectionLevel(thisObject) {
   lastObject = thisObject;
   // console.log(document.getElementById(thisSelectionId).rows[1]);
 }
-/*刪除介面*/
+
+/*刪除關卡--功能*/
 function delMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
   console.log(objI);
   var obj = userMap[objI];
-  if (obj.postStage == 2) {
+  if (obj.postStage == 2 || obj.postStage == 1) {
     alert("請先下架該地圖");
   }
   else {
@@ -352,7 +353,7 @@ function delMap(thisObject) {
   }
 
 }
-/*簡介介面*/
+/*簡介關卡--功能*/
 function viewValueMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
@@ -361,29 +362,26 @@ function viewValueMap(thisObject) {
   console.log("關卡簡介:", obj.mapIntroduction);
   console.log("關卡說明:", obj.mapDescription);
 }
-/*更新介面*/
+/*更新關卡--功能*/
 function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
   var obj = parseInt((mapIndex - 8) / 10);
   console.log(obj);
-  if (obj.postStage == 2) {
+  if (obj.postStage == 2 || obj.postStage == 1) {
     alert("請先下架該地圖");
   }
   else {
-    // if (userMap[obj].check == false) {
     var mapID = userMap[obj]._id;
     document.location.href = 'oblivionCreater?mapID=' + mapID;
-    // }
   }
 }
+/*上架關卡--觸發事件*/
 function shelfMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
-  console.log(objI);
-  var obj = userMap[objI];
   shelfBtn();
-
 }
+
 /*上架介面*/
 function shelfBtn() {
   divTag = document.getElementById("centerLost");
@@ -491,9 +489,16 @@ function shelfBtn() {
   b.setAttribute("type", "datetime-local");
   b.setAttribute("id", "shelfDataTime");
   b.setAttribute("class", "shelfDataTime");
-  divTag.appendChild(b);
-  document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
 
+
+  divTag.appendChild(b);
+  b = document.getElementById("shelfDataTime");
+  b.className = "shelfDataTime " + "disabled";
+  var data = new Date();
+  var year = data.getFullYear().toString(), month = (data.getMonth() + 1).toString(), day = data.getDate().toString();
+  var hour = data.getHours().toString(), minutes = data.getMinutes().toString()
+  var nowDate = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":00";
+  b.min = nowDate;
 
   /*上架按鈕*/
   divTag = document.getElementById("shelfView");
@@ -510,9 +515,15 @@ function shelfBtn() {
   b.setAttribute("id", "shelfLater");
   b.setAttribute("class", "shelfLater");
   b.setAttribute("value", "設定時間");
+  b.className = "shelfLater " + "disabled";
+  b.setAttribute("onclick", "shelfLater(this)");
   divTag.appendChild(b);
-  document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+  // document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+
 }
+
+
+
 function shelfChk(input) {
   console.log(input);
   for (var i = 0; i < document.shelfForm.c1.length; i++) {
@@ -534,38 +545,150 @@ function shelfChk(input) {
   }
   return true;
 }
+
+/*立即上架--檢測*/
 function nowShelfNow(thisObject) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  var obj = userMap[mapIndex];
   if (confirm('你確定要上架這張地圖嗎?')) {
-    var mapId = obj._id;
-    console.log(obj, "id:", mapId);
-    var scriptData = {
-      type: "shelfMap",
-      mapId: mapId
-    }
-    $.ajax({
-      url: href,              // 要傳送的頁面
-      method: 'POST',               // 使用 POST 方法傳送請求
-      dataType: 'json',             // 回傳資料會是 json 格式
-      data: scriptData,  // 將表單資料用打包起來送出去
-      success: function (res) {
-        console.log(res);
-        // var str = "td0" + objI.toString() + "1";
-        // divTag = document.getElementById(str);
-        // console.log(divTag);
-        // divTag.innerHTML = "△"; //已發布
-
-
-      }
-    })
+    nowShelfNowAction(mapIndex);
   } else {
     // Do nothing!
   }
 
 }
+/*立即上架--功能*/
+function nowShelfNowAction(mapIndex) {
+  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "shelfMap",
+    mapId: mapId
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',         // 使用 POST 方法傳送請求
+    dataType: 'json',       // 回傳資料會是 json 格式
+    data: scriptData,       // 將表單資料用打包起來送出去
+    success: function (res) {
+      clossFunc("shelfView");
+      // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+      userMap[mapIndex].postStage = 2;
+      var data = new Date();
+      var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
+      updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+      document.getElementById("td0" + objI.toString() + "7").innerHTML = updateDate;
 
-/*下架介面*/
+      var str = "td0" + objI.toString() + "1";
+      divTag = document.getElementById(str);
+      divTag.innerHTML = "✔"; //已發布
+
+      str = "shelfBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "unShelfBtn";
+      divTag.setAttribute("onclick", "unShelf(this)");
+
+      str = "modifyBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "modifyBtn  " + "disabled";
+      divTag.setAttribute("onclick", "updateMap(this)");
+
+      str = "deleteBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "deleteBtn " + "disabled";
+      divTag.setAttribute("onclick", "delMap(this)");
+    }
+  })
+}
+
+/*稍後上架--檢測*/
+function shelfLater(thisObject) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  var shelfDataTime = document.getElementById("shelfDataTime");
+  if (shelfDataTime.value.length > 0) {
+    var selectDate = new Date(shelfDataTime.value.toString());
+    var nowDate = new Date();
+    if (nowDate - selectDate > 10000 * 60) {
+      console.log("選擇時間錯誤");
+      alert("選擇時間錯誤");
+    }
+    else {
+      console.log("run 777");
+      if (confirm('你確定要上架這張地圖嗎?')) {
+        shelfLaterAction(selectDate.toString());
+      } else {
+        // Do nothing!
+      }
+    }
+  }
+  else {
+    console.log("選擇時間錯誤");
+    alert("選擇時間錯誤");
+  }
+}
+/*稍後上架--功能*/
+function shelfLaterAction(selectDate) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "shelfLaterMap",
+    mapId: mapId,
+    postDate: selectDate
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',         // 使用 POST 方法傳送請求
+    dataType: 'json',       // 回傳資料會是 json 格式
+    data: scriptData,       // 將表單資料用打包起來送出去
+    success: function (res) {
+      console.log("6666666666666");
+      clossFunc("shelfView");
+      var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
+      var str = "td0" + objI.toString() + "1";
+      divTag = document.getElementById(str);
+      divTag.innerHTML = "⌛"; //代發布
+
+      str = "shelfBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "unShelfBtn";
+      divTag.setAttribute("onclick", "unShelf(this)");
+
+      str = "modifyBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "modifyBtn  " + "disabled";
+
+      str = "deleteBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "deleteBtn " + "disabled";
+
+      var data = new Date(selectDate);
+      var nowDate = new Date();
+      var time = data.getTime() - nowDate.getTime();
+      var hours = parseInt(time / (1000 * 60 * 60));
+      if (hours < 24) {
+        if (hours <= 0) {
+          var minutes = parseInt(time / (1000 * 60));
+          postDate = "倒數" + minutes + "分鐘";
+        }
+        else {
+          postDate = "倒數" + hours + "小時";
+        }
+      }
+      else {
+        postDate = "大於一天上架";
+      }
+      document.getElementById("td0" + objI.toString() + "7").innerHTML = postDate;
+      reciprocalDate.push(objI);
+      userMap[objI].postDate=data.toString();
+    }
+  })
+}
+
+/*下架關卡--功能*/
 function unShelf(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var objI = parseInt((mapIndex - 8) / 10);
@@ -585,18 +708,27 @@ function unShelf(thisObject) {
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
         console.log(res);
+        userMap[objI].postStage = 3;
+
         var str = "td0" + objI.toString() + "1";
         divTag = document.getElementById(str);
-        console.log(divTag);
-        divTag.innerHTML = "△"; //已發布
+        divTag.innerHTML = "△"; //代發布
 
-        var str = "shelfBtn" + objI.toString() + "8";
+        document.getElementById("td0" + objI.toString() + "7").innerHTML = "--------";
+        str = "shelfBtn" + objI.toString() + "8";
         divTag = document.getElementById(str);
-        console.log(divTag);
-        divTag.innerHTML = "△"; //已發布
         divTag.className = "shelfBtn";
         divTag.setAttribute("onclick", "shelfMap(this)");
 
+        str = "modifyBtn" + objI.toString() + "8";
+        divTag = document.getElementById(str);
+        divTag.className = "modifyBtn";
+        divTag.setAttribute("onclick", "updateMap(this)");
+
+        str = "deleteBtn" + objI.toString() + "8";
+        divTag = document.getElementById(str);
+        divTag.className = "deleteBtn";
+        divTag.setAttribute("onclick", "delMap(this)");
       }
     })
   } else {
@@ -624,35 +756,29 @@ function enterLevel() {
   if (thisSelectionId) {
     var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
     var obj = userMap[mapIndex];
-    var flag = false;
     // if (obj.check == false) {
-      if (obj.mapName.length < 1) {
-        alert("關卡名稱不能為空白，請修改關卡內容");
-      } else if (obj.mapName.length > 10) {
-        alert("關卡名稱不能超過10個字，請修改關卡內容");
-      } else {
-        if (obj.mapIntroduction.length < 1) {
-          alert("關卡簡介不能為空白，請修改關卡內容");
-        } else {
-          if (obj.mapDescription.length < 1) {
-            alert("關卡介紹不能為空白，請修改關卡內容");
-          } else {
-            flag = true;
-            var mapID = obj._id;
-            console.log("跳轉");
-            console.log('oblivionDetectionView?mapID=' + mapID);
-            document.location.href = 'oblivionDetectionView?mapID=' + mapID;
-          }
+    if (obj.mapName.length < 1) {
+      alert("關卡名稱不能為空白，請修改關卡內容");
+    }
+    else if (obj.mapName.length > 10) {
+      alert("關卡名稱不能超過10個字，請修改關卡內容");
+    }
+    else {
+      if (obj.mapIntroduction.length < 1) {
+        alert("關卡簡介不能為空白，請修改關卡內容");
+      }
+      else {
+        if (obj.mapDescription.length < 1) {
+          alert("關卡介紹不能為空白，請修改關卡內容");
+        }
+        else {
+          var mapID = obj._id;
+          console.log("跳轉");
+          console.log('oblivionDetectionView?mapID=' + mapID);
+          document.location.href = 'oblivionDetectionView?mapID=' + mapID;
         }
       }
-      if (flag == false) {
-        var mapID = obj._id;
-        document.location.href = 'oblivionCreater?mapID=' + mapID;
-      }
-    // }
-    // else {
-    //   alert("關卡已發佈");
-    // }
+    }
   }
   else {
     alert("請點選其中一張地圖");
@@ -984,6 +1110,7 @@ function sendSession() {
   return;
 }
 
+var reciprocalDate = [];
 
 function sendLoadUsernameMap() {
   var scriptData = {
@@ -1028,13 +1155,32 @@ function sendLoadUsernameMap() {
 
         var updateDate, postDate;
         var data = new Date(obj.updateDate);
-        var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getUTCDate() + 1;
+        var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
         updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
         if (obj.postDate.length > 0) {
           var data = new Date(obj.postDate);
-          var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getUTCDate() + 1;
-          postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-
+          if (obj.postStage == 1) {
+            var nowDate = new Date();
+            var time = data.getTime() - nowDate.getTime();
+            var hours = parseInt(time / (1000 * 60 * 60));
+            if (hours < 24) {
+              if (hours <= 0) {
+                var minutes = parseInt(time / (1000 * 60));
+                postDate = "倒數" + minutes + "分鐘";
+              }
+              else {
+                postDate = "倒數" + hours + "小時";
+              }
+            }
+            else {
+              postDate = "大於一天上架";
+            }
+            reciprocalDate.push(index);
+          }
+          else {
+            var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
+            postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+          }
         }
         else {
           postDate = "--------"
@@ -1059,7 +1205,7 @@ function createLevelTable(scriptData) {
   console.log(scriptData);
   for (var i = 0; i < scriptData.length; i++) {
     var obj = scriptData[i];
-    console.log(obj);
+    // console.log(obj);
     // var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
     // var obj2 = scriptData[i];
     // console.log(td01[i]);
@@ -1076,7 +1222,7 @@ function createLevelTable(scriptData) {
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
-    var isShelf = true, imgSrc = "";
+    // var isShelf = true, imgSrc = "";
     divTag = document.getElementById("tr" + i);
     for (var j = 1; j <= 8; j++) {
       b = document.createElement("td");
@@ -1111,44 +1257,35 @@ function createLevelTable(scriptData) {
           b.className = "shelfBtn " + "disabled";
           b.setAttribute("onclick", "shelfMap(this)");
         }
-        else if (userMap[i].check == true && userMap[i].postStage != 2) {
+        else if (userMap[i].check == true && userMap[i].postStage == 1) {
           b = document.getElementById("shelfBtn" + i + j);
-          b.className = "shelfBtn";
-          b.setAttribute("onclick", "shelfMap(this)");
+          b.className = "unShelfBtn";
+          b.setAttribute("onclick", "unShelf(this)");
         }
         else if (userMap[i].check == true && userMap[i].postStage == 2) {
           b = document.getElementById("shelfBtn" + i + j);
           b.className = "unShelfBtn";
           b.setAttribute("onclick", "unShelf(this)");
         }
+        else if (userMap[i].check == true) {
+          b = document.getElementById("shelfBtn" + i + j);
+          b.className = "shelfBtn";
+          b.setAttribute("onclick", "shelfMap(this)");
+        }
         else {
           console.log("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
           alert("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
         }
-
-        // if (isShelf) {
-        //   b = document.getElementById("shelfBtn" + i + j);
-        //   b.className = "shelfBtn " + "disabled";
-        //   b.setAttribute("onclick", "shelfMap(this)");
-        // } else {
-        //   b = document.getElementById("shelfBtn" + i + j);
-        //   b.className = "unShelfBtn " + "disabled";
-        //   b.setAttribute("onclick", "unShelfBtn(this)");
-        // }
-
-
         /*修改按鈕*/
         b = document.createElement("input");
         b.setAttribute("type", "button");
-        if (userMap[i].postStage == 2) {
-          console.log("777");
-
+        if (userMap[i].postStage == 2 || userMap[i].postStage == 1) {
+          // console.log("777");
           b.className = "modifyBtn  " + "disabled";
         }
         else {
           b.className = "modifyBtn";
         }
-        // b.setAttribute("class", "modifyBtn");
         b.setAttribute("id", "modifyBtn" + i + j);
         b.setAttribute("onclick", "updateMap(this)");
         divTag.appendChild(b);
@@ -1164,7 +1301,13 @@ function createLevelTable(scriptData) {
         /*刪除按紐*/
         b = document.createElement("input");
         b.setAttribute("type", "button");
-        b.setAttribute("class", "deleteBtn");
+        if (userMap[i].postStage == 2 || userMap[i].postStage == 1) {
+          // console.log("777");
+          b.className = "deleteBtn  " + "disabled";
+        }
+        else {
+          b.className = "deleteBtn";
+        }
         b.setAttribute("id", "deleteBtn" + i + j);
         b.setAttribute("onclick", "delMap(this)");
         divTag.appendChild(b);
@@ -1183,7 +1326,7 @@ mainDescription = {
     {
       "level": 2,
       "mode": 1,
-      "textarea1":"此為\"我的自訂關卡\"介面，可以在這裡查看到目前自訂關卡的狀態以及可透過關卡右方的工具列編輯關卡。<br>工具列按鈕由左至右依序為：上/下架、修改關卡、關卡簡介、刪除關卡。<br>除了查看狀態及編輯關卡，也可以透過左下角的\"創建關卡\"來創建新的關卡。<br><br>創建了關卡後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測關卡就可以馬上開始檢測自己的關卡。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架關卡了。<br><br>上架關卡可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架關卡後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架關卡了，而下架關卡後若修改了關卡則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架關卡。"
+      "textarea1": "此為\"我的自訂關卡\"介面，可以在這裡查看到目前自訂關卡的狀態以及可透過關卡右方的工具列編輯關卡。<br>工具列按鈕由左至右依序為：上/下架、修改關卡、關卡簡介、刪除關卡。<br>除了查看狀態及編輯關卡，也可以透過左下角的\"創建關卡\"來創建新的關卡。<br><br>創建了關卡後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測關卡就可以馬上開始檢測自己的關卡。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架關卡了。<br><br>上架關卡可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架關卡後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架關卡了，而下架關卡後若修改了關卡則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架關卡。"
     },
     {
       "level": 3,
@@ -1202,3 +1345,49 @@ mainDescription = {
     }
   ]
 };
+
+
+
+var reciprocalInterval = window.setInterval(reciprocal, 1000);
+function reciprocal() {
+  var nowDate = new Date();
+  for (let index = 0; index < reciprocalDate.length; index++) {
+    var ri = reciprocalDate[index],update=false;
+    var obj = userMap[ri];
+    var data = new Date(obj.postDate);
+    var time = data.getTime() - nowDate.getTime();
+    var hours = parseInt(time / (1000 * 60 * 60));
+    if (hours < 24) {
+      if (hours <= 0) {
+        var minutes = parseInt(time / (1000 * 60));
+        if (minutes <= 0) {
+          var minutessss = parseInt(time / (1000));
+          if(minutessss<=300){
+            var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
+            postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+            update=true;
+          }
+          else{
+            postDate = "倒數0分鐘";
+          }
+             
+        }
+        else {
+          postDate = "倒數" + minutes + "分鐘";
+        }
+      }
+      else {
+        postDate = "倒數" + hours + "小時";
+      }
+    }
+    else {
+      postDate = "大於一天上架";
+    }
+    document.getElementById("td0" + ri.toString() + "7").innerHTML = postDate;
+    if(update){
+      nowShelfNowAction(ri)
+      reciprocalDate.splice(ri,1);
+      --ri;
+    }
+  }
+}
