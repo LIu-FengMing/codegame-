@@ -62,6 +62,9 @@ body {
   left: 1%;
   cursor: pointer;
 }
+#defaultCanvas0{
+  display: none;
+}
 
 /*left*/
 .leftMark{
