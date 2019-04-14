@@ -369,8 +369,8 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
-  myFunction();
-  restartButton();
+  // myFunction();
+  // restartButton();
 }
 
 /*轉換程式碼*/

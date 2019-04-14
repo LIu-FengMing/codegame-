@@ -308,7 +308,7 @@
                 7,
                 null
             ],
-            "chooseNum": [2]
+            "chooseNum": [0,1,2]
         },
         {
             "type": "questionstone",

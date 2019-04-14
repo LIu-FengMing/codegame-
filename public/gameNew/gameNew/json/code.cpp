@@ -79,7 +79,7 @@ void systBoon(int x, int y)
 			++dLen;
 		}
 	}
-	cout << "\nddd \n";
+	// cout << "\nddd \n";
 	/* 消除石頭跟樹*/
 	for (int i = 0; i < 5; ++i)
 	{
@@ -97,6 +97,11 @@ void systBoon(int x, int y)
 			cout << " systM,,-1,,-1,-1,-1 ";
 			cout << " systE,,6 "; //被炸彈炸死
 		}
+	}
+	if (x == peopleAdr[0] && y == peopleAdr[1])
+	{
+		cout << " systM,,-1,,-1,-1,-1 ";
+		cout << " systE,,6 "; //被炸彈炸死
 	}
 }
 void bulletHit()
@@ -494,7 +499,7 @@ void turnRight()
 		cout << " systM,,-1,,0,0,-1 ";
 		peopleAdr[2] = (peopleAdr[2] + 3) % 4;
 		actionJudgeNowAdr();
-		actionJudgeNextAdr(dx,dy);
+		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
@@ -510,7 +515,7 @@ void turnLeft()
 		cout << " systM,,-1,,0,0,1 ";
 		peopleAdr[2] = (peopleAdr[2] + 1) % 4;
 		actionJudgeNowAdr();
-		actionJudgeNextAdr(dx,dy);
+		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
@@ -700,4 +705,3 @@ void getBox(char *str)
 		str[i] = treasureStr[i];
 	}
 }
-

@@ -399,8 +399,8 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
-  clearButton(document.getElementById("textarea_0"));
-  restartButton(document.getElementById("textarea_0"))
+  // clearButton(document.getElementById("textarea_0"));
+  // restartButton(document.getElementById("textarea_0"))
 }
 
 /*設定*/

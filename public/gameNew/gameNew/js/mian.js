@@ -164,7 +164,7 @@ function loadData() {
             if (this.readyState == 4 && this.status == 200) {
                 var initCode = this.responseText.toString();
                 console.log(initCode);
-                
+
                 var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
                 var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
                 var stemp;
@@ -494,13 +494,15 @@ function draw() {
                     }
                 }
                 else if (value == 3 || value == 6 || value == 7) {
+                    console.log("gg");
+                    pipleLineSpeed = 0
                     gameEndingCode = value;
-                    action_now = action_code.length;
-                    action_code = [];
+                    // action_now = action_code.length;
+                    // action_code = [];
                     onChanged = false;
                     onChanging = false;
-                    updateCanvas();
-                    break;
+                    // updateCanvas();
+                    // break;
                 }
                 else if (value == 9) {
                     finishCoin = false;
@@ -883,7 +885,8 @@ function updateCanvas() {
             hp = obj["hp"];
             if (obj["type"] == "HPandArmor") {
                 armor = obj["armor"];
-                console.log(dx, dy, " hp:", hp, " armor:", armor);
+                // console.log(dx, dy, )
+                console.log(" hp:", hp, " armor:", armor);
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
@@ -898,13 +901,12 @@ function updateCanvas() {
                     // image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     if (hp < 0) {
                         var d = imgObject[parseInt(imgDic["0".toString()])];
-                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                        image(d, dx + 0.45 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                     else {
                         var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                        image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                        image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
-
                 }
                 if (armor > 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
@@ -926,7 +928,7 @@ function updateCanvas() {
             }
             else if (obj["type"] == "HP") {
                 /*777777 */
-                console.log(dx, dy, "hp:", hp);
+                // console.log(dx, dy, "hp:", hp);
                 // fill(0);
                 var ndy = dy + 0.10 * edgeToHeight;
                 // text(hp, dx+0.65*edgeToWidth, dy);
