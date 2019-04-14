@@ -431,7 +431,7 @@ function init_setup() {
                 loadData();
             }
         };
-        xmlhttp.open("GET", "createNewMap/map.json", true);
+        xmlhttp.open("GET", "newMapCreate/map.json", true);
         xmlhttp.send();
     }
 }
