@@ -68,6 +68,8 @@ var initCode = [
 #include <string.h>
 int main(int argc, char *argv[])
 {
+
+    
 \treturn 0;
  }
 

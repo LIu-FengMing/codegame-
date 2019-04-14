@@ -315,13 +315,14 @@ function clossFunc(thisDiv, thisDiv2) {
 
 /*清除畫布*/
 function clearButton(thisTextarea) {
-  clearcodeAndInit();
+  challengeGameAgain();
   // document.getElementById(thisTextarea.id).value = "";
 }
 
 /*初始遊戲*/
 function myFunction(thisTextarea) {
   clearcodeAndInit();
+  challengeGameAgain();
   // document.getElementById(thisTextarea.id).value = "";
 }
 
