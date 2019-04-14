@@ -98,6 +98,7 @@ body {
 #helperTextarea0{
   height: 50%;
   width: 40%;
+  font-family:Microsoft JhengHei;
   background-color: white;
   position: absolute;
   top: 15%;
@@ -106,6 +107,7 @@ body {
 #helperTextarea1{
   height: 25%;
   width: 90%;
+  font-family:Microsoft JhengHei;
   background-color: white;
   position: absolute;
   bottom: 5%;
