@@ -858,7 +858,7 @@ function createEndView(starNum,gameResult,instructionNum,code) {
   if(starNum != 0){
     b = document.createElement("button");
     b.setAttribute("id", "restartGameBtn");
-    b.setAttribute("value", "重新開始");
+    b.setAttribute("value", "重新挑戰");
     b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")");
     divTag.appendChild(b);
     divTag = document.getElementById("restartGameBtn");
@@ -888,7 +888,7 @@ function createEndView(starNum,gameResult,instructionNum,code) {
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "successRestartGameBtn");
-    b.setAttribute("value", "重新開始");
+    b.setAttribute("value", "重新挑戰");
     b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
     divTag.appendChild(b);
     b = document.createElement("input");
