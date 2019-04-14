@@ -26,7 +26,7 @@ module.exports.createMap = function (newMap, callback) {
 }
 // getMap
 module.exports.getMap = function (userID, callback) {
-    var query = { userID: { $ne: userID }, check: true }
+    var query = { userID: { $ne: userID }, postStage: { $in: [1,2]  } }
     MapRecord.find(query, callback).sort({ requireStar: 1 })
 }
 
@@ -53,7 +53,10 @@ module.exports.updateMapById = function (id, scriptData, callback) {
         updateDate: scriptData.updateDate,
         postDate: "",
         postStage: scriptData.postStage,
-        check: false
+        check: false,
+        score:[],
+        avgScore:0
+
     }
     // console.log("scriptData:",scriptData);
     // console.log("setquery:",setquery);
@@ -97,7 +100,6 @@ module.exports.ShelfMapMapById = function (id, callback) {
         postDate: postDate
     }
     MapRecord.updateOne(query, setquery, callback);
-
 }
 module.exports.ShelfLaterMapById = function (id, postDate, callback) {
     var query = { _id: id }
@@ -112,7 +114,7 @@ module.exports.unShelfMapMapById = function (id, callback) {
     var query = { _id: id }
     var setquery = {
         postStage: 3,
-        postDate: ""
+        postDate: "",
     }
     MapRecord.updateOne(query, setquery, callback);
 

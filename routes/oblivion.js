@@ -57,7 +57,36 @@ router.post('/oblivion', function (req, res, next) {
         MapRecord.getMap(id, function (err, map) {
             if (err) throw err;
             // console.log(map);
-            return res.json(map);
+            // return res.json(map);
+            var update = []
+            var postMap = [];
+            var nowDate = new Date();
+            for (let index = 0; index < map.length; index++) {
+                var element = map[index];
+                if (element.postStage == 1) {
+                    var data = new Date(element.postDate);
+                    var time = data.getTime() - nowDate.getTime();
+                    if (time <= 0) {
+                        map[index].postStage = 2;
+                        update.push(element._id);
+                        postMap.push(element);
+                    }
+                }
+                else {
+                    postMap.push(element);
+                }
+            }
+            // res.json(map);
+            res.json(postMap);
+            console.log("Hello");
+            console.log(update);
+
+            for (let index = 0; index < update.length; index++) {
+                MapRecord.updateShelfLaterById(update[index], function (err, map) {
+                    if (err) throw err;
+                })
+            }
+
         })
     }
     //-----暫時的 ------
@@ -121,20 +150,22 @@ router.post('/oblivionUser', function (req, res, next) {
     else if (type == "LoadUsernameMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
-            var update=[]
-            var nowDate = new Date();     
+            var update = []
+            var nowDate = new Date();
             for (let index = 0; index < map.length; index++) {
                 var element = map[index];
-                var data = new Date(element.postDate);
-                var time = data.getTime() - nowDate.getTime();
-                if (time <= 0) {
-                    map[index].postStage = 2;
-                    update.push(map._id);
+                if (element.postStage == 1) {
+                    var data = new Date(element.postDate);
+                    var time = data.getTime() - nowDate.getTime();
+                    if (time <= 0) {
+                        map[index].postStage = 2;
+                        update.push(element._id);
+                    }
                 }
             }
             res.json(map);
             for (let index = 0; index < update.length; index++) {
-                MapRecord.updateShelfLaterById(update[index],function (err, map) {
+                MapRecord.updateShelfLaterById(update[index], function (err, map) {
                     if (err) throw err;
                 })
             }
@@ -276,7 +307,7 @@ router.post('/oblivionGameView', function (req, res, next) {
                                     break;
                                 }
                             }
-                            if (score.length > 1) {
+                            if (score.length > 4) {
                                 var tot = 0;
                                 for (let scoreIndex = 0; scoreIndex < score.length; scoreIndex++) {
                                     const element = score[scoreIndex];
@@ -323,7 +354,7 @@ router.post('/oblivionGameView', function (req, res, next) {
                             evaluation: evaluation
                         }
                         score.push(recodeDate);
-                        if (score.length > 1) {
+                        if (score.length > 4) {
                             var tot = 0;
                             for (let scoreIndex = 0; scoreIndex < score.length; scoreIndex++) {
                                 const element = score[scoreIndex];

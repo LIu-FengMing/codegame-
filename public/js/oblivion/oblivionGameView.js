@@ -313,10 +313,18 @@ function clossFunc(thisDiv, thisDiv2) {
   levelDivAlive = false;
 }
 
-/*清除指令*/
+/*清除畫布*/
 function clearButton(thisTextarea) {
-  document.getElementById(thisTextarea.id).value = "";
+  clearcodeAndInit();
+  // document.getElementById(thisTextarea.id).value = "";
 }
+
+/*初始遊戲*/
+function myFunction(thisTextarea) {
+  clearcodeAndInit();
+  // document.getElementById(thisTextarea.id).value = "";
+}
+
 
 /*設定*/
 function settingAllView(mainDiv) {
