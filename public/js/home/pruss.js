@@ -38,25 +38,25 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   };
 
  })();
- function back() {
+function back() {
   var index = 0;
   var href = window.location.href;
   for (var i = 0; i < href.length; ++i) {
-      if (href[i] == '/' || href[i] == "\\") {
-          index = i;
-      }
+    if (href[i] == '/' || href[i] == "\\") {
+        index = i;
+    }
   }
   href = href.substr(0, index + 1);
   window.location.replace(href);
   console.log(href);
 }
- var href = window.location.href;
- var scriptData = {
-     type: "init"
- }
- var user, equipmentData,achievemenData,dictionaryData,levelDescription,thisLevelStarNum;
- var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,levelStage,gameSpeed;
- var musicData;
+var href = window.location.href;
+var scriptData = {
+   type: "init"
+}
+var user, equipmentData,achievemenData,dictionaryData,levelDescription,thisLevelStarNum;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,levelStage,gameSpeed;
+var musicData;
  $.ajax({
      url: href,              // 要傳送的頁面
      method: 'POST',               // 使用 POST 方法傳送請求
