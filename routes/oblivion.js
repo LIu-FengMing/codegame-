@@ -79,7 +79,7 @@ router.post('/oblivion', function (req, res, next) {
             // res.json(map);
             res.json(postMap);
             console.log("Hello");
-            console.log(update);
+            // console.log(update);
 
             for (let index = 0; index < update.length; index++) {
                 MapRecord.updateShelfLaterById(update[index], function (err, map) {

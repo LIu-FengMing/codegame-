@@ -352,7 +352,7 @@ var collegeObj = ['people', 'endline', 'stone', 'tree', 'coin', 'lock2', 'questi
     'enemyTank', "treasure",];
 
 function setup() {
-    var path = ["stone", "tree", "tank", "bot",
+    var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
@@ -600,13 +600,18 @@ function updateCanvas() {
         image(pg, dx, dy, edgeToEdge, edgeToEdge);
     }
 
+   
     var pg = createGraphics(edgeToEdge, edgeToEdge);
     var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
     var img = imgObject[parseInt(imgDic[people_init["type"]])];
     pg.translate(pg.width / 2, pg.height / 2);
     pg.rotate(PI / 180 * drotate);
     pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
+    var img = imgObject[parseInt(imgDic["start"])];
+    image(img,dx, dy, edgeToEdge, edgeToEdge);
     image(pg, dx, dy, edgeToEdge, edgeToEdge);
+
+    
 
     stroke('red');
     strokeWeight(4);
