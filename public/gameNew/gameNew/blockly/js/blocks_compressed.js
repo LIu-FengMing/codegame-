@@ -163,8 +163,10 @@ Blockly.Blocks['block_scanf'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("scanf(\"")
+        .appendField(new Blockly.FieldDropdown([["%d","UNOPTIONNAME"], ["%c","OPTIONNAME"], ["%f","OPTIONNAME"]]), "NAME")
+        .appendField("\",")
         .appendField(new Blockly.FieldTextInput(" "), "NAME")
-        .appendField("\");");
+        .appendField(");");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);

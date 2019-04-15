@@ -213,8 +213,8 @@ function changeToC(isDisplay){
 	         code = code + '&nbsp&nbsp&nbsp&nbsp';
 	         textcode = textcode + '    ';
 	       }
-	       code = code + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");<br>';
-	       textcode = textcode + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");\n';
+	       code = code + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_ + ');<br>';
+	       textcode = textcode + 'scanf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_ + ');\n';
 	       break;
       case 'block_call':
         for(var j = 0; j < x; j++){

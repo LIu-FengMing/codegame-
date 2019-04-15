@@ -54,7 +54,7 @@ var href = window.location.href;
 var scriptData = {
    type: "init"
 }
-var user, equipmentData,achievemenData,dictionaryData,levelDescription,thisLevelStarNum;
+var user, equipmentData,achievemenData,dictionaryData,levelDescription,thisLevelStarNum,isBlockly = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,levelStage,gameSpeed;
 var musicData;
  $.ajax({
@@ -114,6 +114,13 @@ var musicData;
 
  }
  function initHome() {
+   if(Session.get("isBlockly") != null){
+     isBlockly = Session.get("isBlockly");
+     console.log("get isBlockly",isBlockly );
+     document.getElementById("myonoffswitch").checked = isBlockly;
+   }else{
+     console.log("no get");
+   }
    if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
      //console.log("???");
      bkMusicVolumn = Session.get("bkMusicVolumn");
@@ -1575,12 +1582,15 @@ function sendSession() {
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
+  Session.set("isBlockly", isBlockly);
   return ;
 }
 /*變更關卡進度*/
 function changeLevelStage() {
   var isCheckClicked;
   isCheckClicked = document.getElementById("myonoffswitch");
+  isBlockly = isCheckClicked.checked;
+  sendSession();
   //console.log(isCheckClicked.checked);
   var codeLevel=-1;
   for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
