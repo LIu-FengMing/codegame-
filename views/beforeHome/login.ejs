@@ -23,15 +23,39 @@
               <% if (username&&password){%>
                 <!-- <h1><%= username %></h1>
                 <h1><%= password %></h1> -->
-                <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" value=<%= username %>>
+                <table>
+                  <tr>
+                    <td>
+                      <img src="img/user.png" id="userImg">
+                    </td>
+                    <td>
+                      <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" value=<%= username %>>
+                    </td>
+                  </tr>
+                </table>
+
                 <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" value=<%= password %>
               <% } else { %>
-                <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" placeholder="使用者帳號">
-                <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" placeholder="密碼">
+                <table>
+                  <tr id="innerTr">
+                    <td id="innerTd">
+                      <img src="img/user.png" id="userImg">
+                    </td>
+                    <td>
+                      <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" placeholder="帳號" value=<%= username %>>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="img/lock-icon.png" id="passwordImg">
+                    </td>
+                    <td>
+                      <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" placeholder="密碼">
+                    </td>
+                  </tr>
+                </table>
+
               <% } %>
-
-
-
               <br>
               <input type="submit"   onclick="login()" value = "">
               <br>
