@@ -211,8 +211,6 @@ function helper(mainDiv) {
   }
 }
 
-
-
 /*XX按鈕*/
 function clossFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
@@ -326,646 +324,6 @@ function selectionLevel(thisObject) {
   // console.log(document.getElementById(thisSelectionId).rows[1]);
   console.log(thisSelectionId);
 }
-
-/*刪除關卡--檢測*/
-function delMap(thisObject) {
-  // var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // var objI = parseInt((mapIndex - 8) / 10);
-  var objI = mapIndex;
-  console.log(objI);
-  var obj = userMap[objI];
-  if (obj.postStage == 2 || obj.postStage == 1) { //預防出錯
-    alert("請先下架該地圖");
-  }
-  else {
-    // if (confirm('你確定要刪除這張地圖嗎?')) {
-    delMapAction(objI);
-    // } else {
-    //   // Do nothing!
-    // }
-  }
-
-}
-/*刪除關卡--功能*/
-function delMapAction(objI) {
-  console.log(objI);
-  var obj = userMap[objI];
-  // if (confirm('你確定要刪除這張地圖嗎?')) {
-  var mapId = obj._id;
-  console.log(obj, "id:", mapId);
-  var scriptData = {
-    type: "DeleteMap",
-    mapId: mapId
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
-      console.log(res);
-      // userMap.splice(obj,1);
-      var str = "lostUserCreateTable" + objI.toString();
-      divTag = document.getElementById(str);
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    }
-  })
-}
-
-/*簡介關卡--功能*/
-function viewValueMap(thisObject) {
-  // var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // var objI = parseInt((mapIndex - 8) / 10);
-  var objI = mapIndex;
-  console.log(objI);
-  var obj = userMap[objI];
-  if (levelDivAlive) {
-    divTag = document.getElementById("levelDiv");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("centerLost");
-  }
-  divTag = document.getElementById("centerLost");
-  b = document.createElement("div");
-  b.setAttribute("id", "levelDiv");
-  divTag.appendChild(b);
-  divTag = document.getElementById("levelDiv");
-  b = document.createElement("form");
-  b.setAttribute("id", "levelForm");
-  levelDivAlive = true;
-  divTag.appendChild(b);
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "clossDiv");
-  b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"levelDiv\")");
-  divTag.appendChild(b);
-  divTag = document.getElementById("levelForm");
-  b = document.createElement("h3");
-  b.setAttribute("id", "levelDescription");
-  b.innerHTML = obj.mapName;
-  divTag.appendChild(b);
-
-  /*關卡說明*/
-  divTag = document.getElementById("levelForm");
-  b = document.createElement("textaera");
-  b.setAttribute("rows", "20");
-  b.setAttribute("cols", "20");
-  b.setAttribute("id", "levelDescriptionTextaera");
-  b.innerHTML = obj.mapIntroduction;
-  divTag.appendChild(b);
-  b = document.createElement("br");
-  divTag.appendChild(b);
-  console.log("關卡簡介:", obj.mapIntroduction);
-  console.log("關卡名稱:", obj.mapName);
-  console.log("關卡說明:", obj.mapDescription);
-}
-/*更新關卡--功能*/
-function updateMap(thisObject) {
-  var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
-  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  var objI = parseInt((mapIndex - 8) / 10);
-  // var objI = mapIndex;
-  var obj = userMap[objI];
-  console.log(obj);
-  if (obj.postStage == 2 || obj.postStage == 1) {
-    alert("請先下架該地圖");
-  }
-  else {
-    var mapID = userMap[objI]._id;
-    document.location.href = 'oblivionCreater?mapID=' + mapID;
-  }
-}
-/*上架關卡--觸發事件*/
-function shelfMap(thisObject) {
-  // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // var objI = parseInt((mapIndex - 8) / 10);
-  // var objI = mapIndex;
-  shelfBtn();
-}
-
-/*上架介面*/
-function shelfBtn() {
-  divTag = document.getElementById("centerLost");
-  if (levelDivAlive) {
-    divTag = document.getElementById("shelfView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("createrDiv");
-  }
-  b = document.createElement("div");
-  b.setAttribute("id", "shelfView");
-  divTag.appendChild(b);
-  levelDivAlive = true;
-  divTag = document.getElementById("shelfView");
-  divTag.innerHTML = "";
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "clossDiv");
-  b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
-  divTag.appendChild(b);
-
-  b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
-  divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "上架關卡";
-
-  b = document.createElement("table");
-  b.setAttribute("id", "shelfTable");
-  divTag.appendChild(b);
-
-  /*上架關卡_定時*/
-  divTag = document.getElementById("shelfTable");
-  b = document.createElement("tr");
-  b.setAttribute("id", "shelfTr0");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfTr0");
-  b = document.createElement("td");
-  b.setAttribute("id", "shelfRow0_0");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfRow0_0");
-  b = document.createElement("h2");
-  b.setAttribute("id", "shelfCheckboxH2");
-  divTag.appendChild(b);
-  document.getElementById("shelfCheckboxH2").innerHTML = "定時";
-  divTag = document.getElementById("shelfTr0");
-  b = document.createElement("td");
-  b.setAttribute("id", "shelfRow0_1");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfRow0_1");
-  b = document.createElement("form");
-  b.setAttribute("id", "shelfForm");
-  b.setAttribute("name", "shelfForm");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfForm");
-  /*是否定時checkBox*/
-  b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
-  b.setAttribute("id", "shelfTrue");
-  b.setAttribute("name", "c1");
-  b.setAttribute("value", "1");
-  b.setAttribute("onclick", "return shelfChk(this);");
-  divTag.appendChild(b);
-  b = document.createElement("font");
-  b.setAttribute("id", "shelfTrueText");
-  divTag.appendChild(b);
-  document.getElementById("shelfTrueText").innerHTML = "是";
-  b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
-  b.setAttribute("id", "shelfFalse");
-  b.setAttribute("name", "c1");
-  b.setAttribute("value", "2");
-  b.setAttribute("checked", "true");
-  b.setAttribute("onclick", "return shelfChk(this);");
-  divTag.appendChild(b);
-  b = document.createElement("font");
-  b.setAttribute("id", "shelfFalseText");
-  divTag.appendChild(b);
-  document.getElementById("shelfFalseText").innerHTML = "否";
-
-  /*設定上架時間*/
-  divTag = document.getElementById("shelfTable");
-  b = document.createElement("tr");
-  b.setAttribute("id", "shelfTr1");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfTr1");
-  b = document.createElement("td");
-  b.setAttribute("id", "shelfRow1_0");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfRow1_0");
-  b = document.createElement("h2");
-  b.setAttribute("id", "shelfTimeH2");
-  divTag.appendChild(b);
-  document.getElementById("shelfTimeH2").innerHTML = "上架時間";
-  divTag = document.getElementById("shelfTr1");
-  b = document.createElement("td");
-  b.setAttribute("id", "shelfRow1_1");
-  divTag.appendChild(b);
-  divTag = document.getElementById("shelfRow1_1");
-  b = document.createElement("input");
-  b.setAttribute("type", "datetime-local");
-  b.setAttribute("id", "shelfDataTime");
-  b.setAttribute("class", "shelfDataTime");
-
-
-  divTag.appendChild(b);
-  b = document.getElementById("shelfDataTime");
-  b.className = "shelfDataTime " + "disabled";
-  var data = new Date();
-  var year = data.getFullYear().toString(), month = (data.getMonth() + 1).toString(), day = data.getDate().toString();
-  var hour = data.getHours().toString(), minutes = data.getMinutes().toString()
-  var nowDate = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":00";
-  b.min = nowDate;
-
-  /*上架按鈕*/
-  divTag = document.getElementById("shelfView");
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "shelfNow");
-  b.setAttribute("class", "shelfNow");
-  b.setAttribute("value", "立即上架");
-  b.setAttribute("onclick", "checkView(\"上架關卡\",\"now\")");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "shelfLater");
-  b.setAttribute("class", "shelfLater");
-  b.setAttribute("value", "設定時間");
-  b.className = "shelfLater " + "disabled";
-  b.setAttribute("onclick", "shelfLater()");
-  divTag.appendChild(b);
-  // document.getElementById("shelfLater").className = "shelfLater " + "disabled";
-
-}
-
-
-
-function shelfChk(input) {
-  console.log(input);
-  for (var i = 0; i < document.shelfForm.c1.length; i++) {
-    document.shelfForm.c1[i].checked = false;
-  }
-  input.checked = true;
-  if (input.id == "shelfFalse") {
-    shelfSwitch = 0;
-    console.log("可立即上架");
-    document.getElementById("shelfNow").className = "shelfNow";
-    document.getElementById("shelfLater").className = "shelfLater " + "disabled";
-    document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
-  } else {
-    shelfSwitch = 1;
-    console.log("不可立即上架");
-    document.getElementById("shelfLater").className = "shelfLater";
-    document.getElementById("shelfNow").className = "shelfNow " + "disabled";
-    document.getElementById("shelfDataTime").className = "shelfDataTime";
-  }
-  return true;
-}
-
-/*確定視窗*/
-var postVar, postLaterVar, unShelfVar, delVar;
-function checkView(checkFont, checkStatus) {
-  divTag = document.getElementById("centerLost");
-  if (levelDivAlive) {
-    divTag = document.getElementById("checkView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("centerLost");
-  }
-  b = document.createElement("div");
-  b.setAttribute("id", "checkView");
-  divTag.appendChild(b);
-  levelDivAlive = true;
-  divTag = document.getElementById("checkView");
-
-  b = document.createElement("h2");
-  b.setAttribute("id", "checkH2");
-  divTag.appendChild(b);
-  document.getElementById("checkH2").innerHTML = "確定要" + checkFont + "嗎?";
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "checkFalseBtn");
-  b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\")");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "checkTrueBtn");
-  b.setAttribute("value", "確定");
-  if (checkFont == "上架關卡") {
-    if (checkStatus == "now") {
-      postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-      b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + postVar.toString() + ")");
-    } else {
-      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(" + postVar.toString() + ")");
-    }
-  } else if (checkFont == "下架關卡") {
-    unShelfVar = checkStatus;
-    var ele = document.createElement("input");
-    b.setAttribute("onclick", "clossFunc(\"checkView\");unShelf(unShelfVar)");
-  } else if (checkFont == "刪除關卡") {
-
-    b.setAttribute("onclick", "clossFunc(\"checkView\");delMap(delVar)");
-  }
-  divTag.appendChild(b);
-}
-/*立即上架--檢測*/
-function nowShelfNow(checkFont) {
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // if (checkView("上架關卡")) {
-  //   nowShelfNowAction(mapIndex);
-  // } else {
-  //   // Do nothing!
-  // }
-  divTag = document.getElementById("centerLost");
-  if (levelDivAlive) {
-    divTag = document.getElementById("checkView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("centerLost");
-  }
-  b = document.createElement("div");
-  b.setAttribute("id", "checkView");
-  divTag.appendChild(b);
-  levelDivAlive = true;
-  divTag = document.getElementById("checkView");
-
-  b = document.createElement("h2");
-  b.setAttribute("id", "checkH2");
-  divTag.appendChild(b);
-  document.getElementById("checkH2").innerHTML = "確定要" + checkFont + "嗎?";
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "checkFalseBtn");
-  b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\")");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "checkTrueBtn");
-  b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + mapIndex.toString() + ")");
-  divTag.appendChild(b);
-}
-/*立即上架--功能*/
-function nowShelfNowAction(mapIndex) {
-  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  var obj = userMap[mapIndex];
-  var mapId = obj._id;
-  console.log(obj, "id:", mapId);
-  var scriptData = {
-    type: "shelfMap",
-    mapId: mapId
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',         // 使用 POST 方法傳送請求
-    dataType: 'json',       // 回傳資料會是 json 格式
-    data: scriptData,       // 將表單資料用打包起來送出去
-    success: function (res) {
-      clossFunc("shelfView");
-      // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-      var objI = mapIndex;
-      userMap[mapIndex].postStage = 2;
-      var data = new Date();
-      var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
-      updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-      document.getElementById("td0" + objI.toString() + "7").innerHTML = updateDate;
-
-      var str = "td0" + objI.toString() + "1";
-      divTag = document.getElementById(str);
-      divTag.innerHTML = "✔"; //已發布
-
-      str = "shelfBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "unShelfBtn";
-      // divTag.setAttribute("onclick", "unShelf(this)");
-      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
-
-      str = "modifyBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "modifyBtn  " + "disabled";
-      divTag.setAttribute("onclick", "updateMap(this)");
-
-      str = "deleteBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "deleteBtn " + "disabled";
-      divTag.setAttribute("onclick", "delMap(this)");
-    }
-  })
-}
-
-/*稍後上架--檢測*/
-function shelfLater(thisObject) {
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-
-  var obj = userMap[mapIndex];
-  var shelfDataTime = document.getElementById("shelfDataTime");
-  if (shelfDataTime.value.length > 0) {
-    var selectDate = new Date(shelfDataTime.value.toString());
-    var nowDate = new Date();
-    if (nowDate - selectDate > 1000*30) {
-      console.log("選擇時間錯誤");
-      alert("選擇時間錯誤");
-    }
-    else {
-      console.log("run 777");
-      postVar = selectDate.toString();
-      if (confirm('你確定要上架這張地圖嗎?')) {
-        shelfLaterAction(selectDate.toString());
-      } else {
-        // Do nothing!
-      }
-      // postLaterVar = selectDate.toString();
-      // checkView("上架關卡","later");
-    }
-  }
-  else {
-    console.log("選擇時間錯誤");
-    alert("選擇時間錯誤");
-  }
-}
-/*稍後上架--功能*/
-function shelfLaterAction(selectDate) {
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  var obj = userMap[mapIndex];
-  var mapId = obj._id;
-  console.log(obj, "id:", mapId);
-  var scriptData = {
-    type: "shelfLaterMap",
-    mapId: mapId,
-    postDate: selectDate
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',         // 使用 POST 方法傳送請求
-    dataType: 'json',       // 回傳資料會是 json 格式
-    data: scriptData,       // 將表單資料用打包起來送出去
-    success: function (res) {
-      console.log("6666666666666");
-      clossFunc("shelfView");
-      var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
-      var str = "td0" + objI.toString() + "1";
-      divTag = document.getElementById(str);
-      divTag.innerHTML = "⌛"; //代發布
-      userMap[objI].postStage = 1;
-      str = "shelfBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "unShelfBtn";
-      // divTag.setAttribute("onclick", "unShelf(this)");
-      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
-
-      str = "modifyBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "modifyBtn  " + "disabled";
-
-      str = "deleteBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "deleteBtn " + "disabled";
-
-      var data = new Date(selectDate);
-      var nowDate = new Date();
-      var time = data.getTime() - nowDate.getTime();
-      var hours = parseInt(time / (1000 * 60 * 60));
-      if (hours < 24) {
-        if (hours <= 0) {
-          var minutes = parseInt(time / (1000 * 60));
-          postDate = "倒數" + minutes + "分鐘";
-        }
-        else {
-          postDate = "倒數" + hours + "小時";
-        }
-      }
-      else {
-        postDate = "大於一天上架";
-      }
-      document.getElementById("td0" + objI.toString() + "7").innerHTML = postDate;
-      reciprocalDate.push(objI);
-      userMap[objI].postDate = data.toString();
-    }
-  })
-}
-
-/*下架關卡--功能*/
-function unShelf(thisObject) {
-  // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // var objI = parseInt((mapIndex - 8) / 10);
-  var objI = mapIndex;
-  console.log(objI);
-  var obj = userMap[objI];
-  // if (confirm('你確定要下架這張地圖嗎?')) {
-  var mapId = obj._id;
-  console.log(obj, "id:", mapId);
-  var scriptData = {
-    type: "unShelfMap",
-    mapId: mapId
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
-      console.log(res);
-      userMap[objI].postStage = 3;
-      userMap[objI].postDate = "";
-      var str = "td0" + objI.toString() + "1";
-      divTag = document.getElementById(str);
-      divTag.innerHTML = "△"; //代發布
-      document.getElementById("td0" + objI.toString() + "7").innerHTML = "--------";
-      str = "shelfBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "shelfBtn";
-      divTag.setAttribute("onclick", "shelfMap(this)");
-
-      str = "modifyBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "modifyBtn";
-      divTag.setAttribute("onclick", "updateMap(this)");
-
-      str = "deleteBtn" + objI.toString() + "8";
-      divTag = document.getElementById(str);
-      divTag.className = "deleteBtn";
-      divTag.setAttribute("onclick", "checkView('刪除關卡',this)");
-
-    }
-  })
-  // } else {
-  //   // Do nothing!
-  // }
-}
-
-
-function reviseLevel() {
-  if (thisSelectionId) {
-    var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-    if (userMap[mapIndex].check == false) {
-      var mapID = userMap[mapIndex]._id;
-      document.location.href = 'oblivionCreater?mapID=' + mapID;
-    }
-    else {
-      alert("關卡已發佈，不可更改");
-    }
-  }
-  else {
-    alert("請點選其中一張地圖");
-  }
-}
-function enterLevel() {
-  if (thisSelectionId) {
-    var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-    var obj = userMap[mapIndex];
-    // if (obj.check == false) {
-    if (obj.mapName.length < 1) {
-      alert("關卡名稱不能為空白，請修改關卡內容");
-    }
-    else if (obj.mapName.length > 10) {
-      alert("關卡名稱不能超過10個字，請修改關卡內容");
-    }
-    else {
-      if (obj.mapIntroduction.length < 1) {
-        alert("關卡簡介不能為空白，請修改關卡內容");
-      }
-      else {
-        if (obj.mapDescription.length < 1) {
-          alert("關卡介紹不能為空白，請修改關卡內容");
-        }
-        else {
-          var mapID = obj._id;
-          console.log("跳轉");
-          console.log('oblivionDetectionView?mapID=' + mapID);
-          document.location.href = 'oblivionDetectionView?mapID=' + mapID;
-        }
-      }
-    }
-  }
-  else {
-    alert("請點選其中一張地圖");
-  }
-}
-function getArgs() {
-  var args = new Object();
-  var query = location.search.substring(1);
-  var pairs = query.split("&");
-  for (var i = 0; i < pairs.length; i++) {
-    var pos = pairs[i].indexOf("=");
-    if (pos == -1) continue;
-    var argname = pairs[i].substring(0, pos);
-    var value = pairs[i].substring(pos + 1);
-    args[argname] = decodeURIComponent(value);
-  }
-  if (args.levelName) {
-    divTag = document.getElementById("titleFont");
-    divTag.innerHTML = "";
-    divTag.innerHTML = args.levelName;
-  }
-}
-
 
 /*設定*/
 function settingAllView(mainDiv) {
@@ -1368,10 +726,6 @@ function createLevelTable(scriptData) {
   console.log(scriptData);
   for (var i = 0; i < scriptData.length; i++) {
     var obj = scriptData[i];
-    // console.log(obj);
-    // var obj2 = ["X", "X", "test123456", "81", "5/20", "2019/04/09", "2019/04/20"];
-    // var obj2 = scriptData[i];
-    // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
     b = document.createElement("table");
     b.setAttribute("id", "lostUserCreateTable" + i);
@@ -1480,6 +834,679 @@ function createLevelTable(scriptData) {
   }
 }
 
+/*提醒視窗*/
+function remindView(remindValue) {
+  divTag = document.getElementById("centerLost");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("centerLost");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\")");
+  divTag.appendChild(b);
+}
+
+/*確定視窗*/
+var postVar,postLaterVar,unShelfVar,delVar,latePostVar;
+function checkView(checkFont, checkStatus) {
+  divTag = document.getElementById("centerLost");
+  if (levelDivAlive) {
+    divTag = document.getElementById("checkView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("centerLost");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "checkView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+  divTag = document.getElementById("checkView");
+
+  b = document.createElement("h2");
+  b.setAttribute("id", "checkH2");
+  divTag.appendChild(b);
+  document.getElementById("checkH2").innerHTML = "確定要" + checkFont + "嗎?";
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "checkFalseBtn");
+  b.setAttribute("value", "取消");
+  b.setAttribute("onclick", "clossFunc(\"checkView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "checkTrueBtn");
+  b.setAttribute("value", "確定");
+  if (checkFont == "上架關卡") {
+    if (checkStatus == "now") {
+      postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+      b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + postVar.toString() + ")");
+    } else {
+      console.log(checkStatus);
+
+      console.log(postVar);
+      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(latePostVar.toString())");
+    }
+  } else if (checkFont == "下架關卡") {
+    unShelfVar = checkStatus;
+    var ele = document.createElement("input");
+    b.setAttribute("onclick", "clossFunc(\"checkView\");unShelf(unShelfVar)");
+  } else if (checkFont == "刪除關卡") {
+      b.setAttribute("onclick", "clossFunc(\"checkView\");delMap(delVar)");
+  }
+  divTag.appendChild(b);
+}
+
+/*刪除關卡--檢測*/
+function delMap(thisObject) {
+  // var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  // var objI = parseInt((mapIndex - 8) / 10);
+  var objI = mapIndex;
+  console.log(objI);
+  var obj = userMap[objI];
+  if (obj.postStage == 2 || obj.postStage == 1) { //預防出錯
+    alert("請先下架該地圖");
+  }
+  else {
+    // if (confirm('你確定要刪除這張地圖嗎?')) {
+    delMapAction(objI);
+    // } else {
+    //   // Do nothing!
+    // }
+  }
+
+}
+/*刪除關卡--功能*/
+function delMapAction(objI) {
+  console.log(objI);
+  var obj = userMap[objI];
+  // if (confirm('你確定要刪除這張地圖嗎?')) {
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "DeleteMap",
+    mapId: mapId
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      console.log(res);
+      // userMap.splice(obj,1);
+      var str = "lostUserCreateTable" + objI.toString();
+      divTag = document.getElementById(str);
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    }
+  })
+}
+
+/*簡介關卡--功能*/
+function viewValueMap(thisObject) {
+  // var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  // var objI = parseInt((mapIndex - 8) / 10);
+  var objI = mapIndex;
+  console.log(objI);
+  var obj = userMap[objI];
+  if (levelDivAlive) {
+    divTag = document.getElementById("levelDiv");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("centerLost");
+  }
+  divTag = document.getElementById("centerLost");
+  b = document.createElement("div");
+  b.setAttribute("id", "levelDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("levelDiv");
+  b = document.createElement("form");
+  b.setAttribute("id", "levelForm");
+  levelDivAlive = true;
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"levelDiv\")");
+  divTag.appendChild(b);
+  divTag = document.getElementById("levelForm");
+  b = document.createElement("h3");
+  b.setAttribute("id", "levelDescription");
+  b.innerHTML = obj.mapName;
+  divTag.appendChild(b);
+
+  /*關卡說明*/
+  divTag = document.getElementById("levelForm");
+  b = document.createElement("textaera");
+  b.setAttribute("rows", "20");
+  b.setAttribute("cols", "20");
+  b.setAttribute("id", "levelDescriptionTextaera");
+  b.innerHTML = obj.mapIntroduction;
+  divTag.appendChild(b);
+  b = document.createElement("br");
+  divTag.appendChild(b);
+  console.log("關卡簡介:", obj.mapIntroduction);
+  console.log("關卡名稱:", obj.mapName);
+  console.log("關卡說明:", obj.mapDescription);
+}
+/*更新關卡--功能*/
+function updateMap(thisObject) {
+  var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
+  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var objI = parseInt((mapIndex - 8) / 10);
+  // var objI = mapIndex;
+  var obj = userMap[objI];
+  console.log(obj);
+  if (obj.postStage == 2 || obj.postStage == 1) {
+    alert("請先下架該地圖");
+  }
+  else {
+    var mapID = userMap[objI]._id;
+    document.location.href = 'oblivionCreater?mapID=' + mapID;
+  }
+}
+/*上架關卡--觸發事件*/
+function shelfMap(thisObject) {
+  // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
+  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  // var objI = parseInt((mapIndex - 8) / 10);
+  // var objI = mapIndex;
+  shelfBtn();
+}
+
+/*上架介面*/
+function shelfBtn() {
+  divTag = document.getElementById("centerLost");
+  if (levelDivAlive) {
+    divTag = document.getElementById("shelfView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("createrDiv");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "shelfView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+  divTag = document.getElementById("shelfView");
+  divTag.innerHTML = "";
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "上架關卡";
+
+  b = document.createElement("table");
+  b.setAttribute("id", "shelfTable");
+  divTag.appendChild(b);
+
+  /*上架關卡_定時*/
+  divTag = document.getElementById("shelfTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "shelfTr0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfTr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow0_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow0_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "shelfCheckboxH2");
+  divTag.appendChild(b);
+  document.getElementById("shelfCheckboxH2").innerHTML = "定時";
+  divTag = document.getElementById("shelfTr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow0_1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow0_1");
+  b = document.createElement("form");
+  b.setAttribute("id", "shelfForm");
+  b.setAttribute("name", "shelfForm");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfForm");
+  /*是否定時checkBox*/
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "shelfTrue");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "return shelfChk(this);");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "shelfTrueText");
+  divTag.appendChild(b);
+  document.getElementById("shelfTrueText").innerHTML = "是";
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "shelfFalse");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "2");
+  b.setAttribute("checked", "true");
+  b.setAttribute("onclick", "return shelfChk(this);");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "shelfFalseText");
+  divTag.appendChild(b);
+  document.getElementById("shelfFalseText").innerHTML = "否";
+
+  /*設定上架時間*/
+  divTag = document.getElementById("shelfTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "shelfTr1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfTr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow1_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow1_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "shelfTimeH2");
+  divTag.appendChild(b);
+  document.getElementById("shelfTimeH2").innerHTML = "上架時間";
+  divTag = document.getElementById("shelfTr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "shelfRow1_1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("shelfRow1_1");
+  b = document.createElement("input");
+  b.setAttribute("type", "datetime-local");
+  b.setAttribute("id", "shelfDataTime");
+  b.setAttribute("class", "shelfDataTime");
+
+
+  divTag.appendChild(b);
+  b = document.getElementById("shelfDataTime");
+  b.className = "shelfDataTime " + "disabled";
+  var data = new Date();
+  var year = data.getFullYear().toString(), month = (data.getMonth() + 1).toString(), day = data.getDate().toString();
+  var hour = data.getHours().toString(), minutes = data.getMinutes().toString()
+  var nowDate = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":00";
+  b.min = nowDate;
+
+  /*上架按鈕*/
+  divTag = document.getElementById("shelfView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfNow");
+  b.setAttribute("class", "shelfNow");
+  b.setAttribute("value", "立即上架");
+  b.setAttribute("onclick", "checkView(\"上架關卡\",\"now\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "shelfLater");
+  b.setAttribute("class", "shelfLater");
+  b.setAttribute("value", "設定時間");
+  b.className = "shelfLater " + "disabled";
+  b.setAttribute("onclick", "shelfLater()");
+  divTag.appendChild(b);
+  // document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+
+}
+
+function shelfChk(input) {
+  console.log(input);
+  for (var i = 0; i < document.shelfForm.c1.length; i++) {
+    document.shelfForm.c1[i].checked = false;
+  }
+  input.checked = true;
+  if (input.id == "shelfFalse") {
+    shelfSwitch = 0;
+    console.log("可立即上架");
+    document.getElementById("shelfNow").className = "shelfNow";
+    document.getElementById("shelfLater").className = "shelfLater " + "disabled";
+    document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
+  } else {
+    shelfSwitch = 1;
+    console.log("不可立即上架");
+    document.getElementById("shelfLater").className = "shelfLater";
+    document.getElementById("shelfNow").className = "shelfNow " + "disabled";
+    document.getElementById("shelfDataTime").className = "shelfDataTime";
+  }
+  return true;
+}
+
+/*立即上架--檢測*/
+function nowShelfNow(checkFont) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  // if (checkView("上架關卡")) {
+  //   nowShelfNowAction(mapIndex);
+  // } else {
+  //   // Do nothing!
+  // }
+  divTag = document.getElementById("centerLost");
+  if (levelDivAlive) {
+    divTag = document.getElementById("checkView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("centerLost");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "checkView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+  divTag = document.getElementById("checkView");
+
+  b = document.createElement("h2");
+  b.setAttribute("id", "checkH2");
+  divTag.appendChild(b);
+  document.getElementById("checkH2").innerHTML = "確定要" + checkFont + "嗎?";
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "checkFalseBtn");
+  b.setAttribute("value", "取消");
+  b.setAttribute("onclick", "clossFunc(\"checkView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "checkTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + mapIndex.toString() + ")");
+  divTag.appendChild(b);
+}
+/*立即上架--功能*/
+function nowShelfNowAction(mapIndex) {
+  // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "shelfMap",
+    mapId: mapId
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',         // 使用 POST 方法傳送請求
+    dataType: 'json',       // 回傳資料會是 json 格式
+    data: scriptData,       // 將表單資料用打包起來送出去
+    success: function (res) {
+      clossFunc("shelfView");
+      // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+      var objI = mapIndex;
+      userMap[mapIndex].postStage = 2;
+      var data = new Date();
+      var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
+      updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+      document.getElementById("td0" + objI.toString() + "7").innerHTML = updateDate;
+
+      var str = "td0" + objI.toString() + "1";
+      divTag = document.getElementById(str);
+      divTag.innerHTML = "✔"; //已發布
+
+      str = "shelfBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "unShelfBtn";
+      // divTag.setAttribute("onclick", "unShelf(this)");
+      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+
+      str = "modifyBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "modifyBtn  " + "disabled";
+      divTag.setAttribute("onclick", "updateMap(this)");
+
+      str = "deleteBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "deleteBtn " + "disabled";
+      divTag.setAttribute("onclick", "delMap(this)");
+    }
+  })
+}
+
+/*稍後上架--檢測*/
+function shelfLater(thisObject) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+
+  var obj = userMap[mapIndex];
+  var shelfDataTime = document.getElementById("shelfDataTime");
+  if (shelfDataTime.value.length > 0) {
+    var selectDate = new Date(shelfDataTime.value.toString());
+    var nowDate = new Date();
+    if (nowDate - selectDate > 1000*30) {
+      console.log("選擇時間錯誤");
+      remindView("選擇時間錯誤");
+    }
+    else {
+      console.log("run 777");
+      postVar = selectDate.toString();
+      latePostVar = selectDate.toString();
+      checkView("上架關卡","later");
+      // if (confirm('你確定要上架這張地圖嗎?')) {
+      //   console.log(latePostVar);
+      //   shelfLaterAction(latePostVar);
+      // } else {
+      //   // Do nothing!
+      // }
+      // postLaterVar = selectDate.toString();
+      // checkView("上架關卡","later");
+    }
+  }
+  else {
+    console.log("選擇時間錯誤");
+    remindView("選擇時間錯誤");
+  }
+}
+/*稍後上架--功能*/
+function shelfLaterAction(selectDate) {
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var obj = userMap[mapIndex];
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "shelfLaterMap",
+    mapId: mapId,
+    postDate: selectDate
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',         // 使用 POST 方法傳送請求
+    dataType: 'json',       // 回傳資料會是 json 格式
+    data: scriptData,       // 將表單資料用打包起來送出去
+    success: function (res) {
+      console.log("6666666666666");
+      clossFunc("shelfView");
+      var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
+      var str = "td0" + objI.toString() + "1";
+      divTag = document.getElementById(str);
+      divTag.innerHTML = "⌛"; //代發布
+      userMap[objI].postStage = 1;
+      str = "shelfBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "unShelfBtn";
+      // divTag.setAttribute("onclick", "unShelf(this)");
+      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+
+      str = "modifyBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "modifyBtn  " + "disabled";
+
+      str = "deleteBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "deleteBtn " + "disabled";
+
+      var data = new Date(selectDate);
+      var nowDate = new Date();
+      var time = data.getTime() - nowDate.getTime();
+      var hours = parseInt(time / (1000 * 60 * 60));
+      if (hours < 24) {
+        if (hours <= 0) {
+          var minutes = parseInt(time / (1000 * 60));
+          postDate = "倒數" + minutes + "分鐘";
+        }
+        else {
+          postDate = "倒數" + hours + "小時";
+        }
+      }
+      else {
+        postDate = "大於一天上架";
+      }
+      document.getElementById("td0" + objI.toString() + "7").innerHTML = postDate;
+      reciprocalDate.push(objI);
+      userMap[objI].postDate = data.toString();
+    }
+  })
+}
+
+/*下架關卡--功能*/
+function unShelf(thisObject) {
+  // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
+  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  // var objI = parseInt((mapIndex - 8) / 10);
+  var objI = mapIndex;
+  console.log(objI);
+  var obj = userMap[objI];
+  // if (confirm('你確定要下架這張地圖嗎?')) {
+  var mapId = obj._id;
+  console.log(obj, "id:", mapId);
+  var scriptData = {
+    type: "unShelfMap",
+    mapId: mapId
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      console.log(res);
+      userMap[objI].postStage = 3;
+      userMap[objI].postDate = "";
+      var str = "td0" + objI.toString() + "1";
+      divTag = document.getElementById(str);
+      divTag.innerHTML = "△"; //代發布
+      document.getElementById("td0" + objI.toString() + "7").innerHTML = "--------";
+      str = "shelfBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "shelfBtn";
+      divTag.setAttribute("onclick", "shelfMap(this)");
+
+      str = "modifyBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "modifyBtn";
+      divTag.setAttribute("onclick", "updateMap(this)");
+
+      str = "deleteBtn" + objI.toString() + "8";
+      divTag = document.getElementById(str);
+      divTag.className = "deleteBtn";
+      divTag.setAttribute("onclick", "checkView('刪除關卡',this)");
+
+    }
+  })
+  // } else {
+  //   // Do nothing!
+  // }
+}
+
+
+function reviseLevel() {
+  if (thisSelectionId) {
+    var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+    if (userMap[mapIndex].check == false) {
+      var mapID = userMap[mapIndex]._id;
+      document.location.href = 'oblivionCreater?mapID=' + mapID;
+    }
+    else {
+      alert("關卡已發佈，不可更改");
+    }
+  }
+  else {
+    alert("請點選其中一張地圖");
+  }
+}
+function enterLevel() {
+  if (thisSelectionId) {
+    var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+    var obj = userMap[mapIndex];
+    // if (obj.check == false) {
+    if (obj.mapName.length < 1) {
+      alert("關卡名稱不能為空白，請修改關卡內容");
+    }
+    else if (obj.mapName.length > 10) {
+      alert("關卡名稱不能超過10個字，請修改關卡內容");
+    }
+    else {
+      if (obj.mapIntroduction.length < 1) {
+        alert("關卡簡介不能為空白，請修改關卡內容");
+      }
+      else {
+        if (obj.mapDescription.length < 1) {
+          alert("關卡介紹不能為空白，請修改關卡內容");
+        }
+        else {
+          var mapID = obj._id;
+          console.log("跳轉");
+          console.log('oblivionDetectionView?mapID=' + mapID);
+          document.location.href = 'oblivionDetectionView?mapID=' + mapID;
+        }
+      }
+    }
+  }
+  else {
+    alert("請點選其中一張地圖");
+  }
+}
+function getArgs() {
+  var args = new Object();
+  var query = location.search.substring(1);
+  var pairs = query.split("&");
+  for (var i = 0; i < pairs.length; i++) {
+    var pos = pairs[i].indexOf("=");
+    if (pos == -1) continue;
+    var argname = pairs[i].substring(0, pos);
+    var value = pairs[i].substring(pos + 1);
+    args[argname] = decodeURIComponent(value);
+  }
+  if (args.levelName) {
+    divTag = document.getElementById("titleFont");
+    divTag.innerHTML = "";
+    divTag.innerHTML = args.levelName;
+  }
+}
 mainDescription = {
   "oblivionObject": [
     {
@@ -1509,8 +1536,6 @@ mainDescription = {
     }
   ]
 };
-
-
 
 var reciprocalInterval = window.setInterval(reciprocal, 1000);
 function reciprocal() {

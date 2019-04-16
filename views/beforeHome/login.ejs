@@ -33,18 +33,28 @@
                     </td>
                   </tr>
                 </table>
-
-                <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" value=<%= password %>
+                <table>
+                  <tr>
+                    <td>
+                      <img src="img/lock-icon.png" id="passwordImg">
+                    </td>
+                    <td>
+                      <input type="password" id="UsrePass" name='usrePass' readonly onfocus="this.removeAttribute('readonly');" value=<%= password %>
+                    </td>
+                  </tr>
+                </table>
               <% } else { %>
                 <table>
-                  <tr id="innerTr">
-                    <td id="innerTd">
+                  <tr>
+                    <td>
                       <img src="img/user.png" id="userImg">
                     </td>
                     <td>
-                      <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" placeholder="帳號" value=<%= username %>>
+                      <input type="text"  id="UsreName" name='usreName' readonly onfocus="this.removeAttribute('readonly');" placeholder="使用者帳號">
                     </td>
                   </tr>
+                </table>
+                <table>
                   <tr>
                     <td>
                       <img src="img/lock-icon.png" id="passwordImg">
@@ -54,7 +64,6 @@
                     </td>
                   </tr>
                 </table>
-
               <% } %>
               <br>
               <input type="submit"   onclick="login()" value = "">

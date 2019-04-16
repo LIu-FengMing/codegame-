@@ -92,7 +92,6 @@ function error() {
 
 }
 function initHome() {
-
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
@@ -245,17 +244,32 @@ function userData() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "clossFunc(\"userDataBkView\",\"userDataView\")");
+  divTag.appendChild(b);
+  /*修改密碼按鈕*/
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "changePasswordBtn");
+  b.setAttribute("value", "修改密碼");
+  b.setAttribute("onclick", "changePassword(\"userDataView\")");
   divTag.appendChild(b);
   createUserView(divID);
+
+
 }
 function clossFunc(thisDiv, thisDiv2) {
-  divTag = document.getElementById(thisDiv);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  divTag = document.getElementById(thisDiv2);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
+  document.getElementById("changePasswordBtn").className = "";
+  document.getElementById("clossDiv").className = "";
+  try {
+    divTag = document.getElementById(thisDiv);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
+  try {
+    divTag = document.getElementById(thisDiv2);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   levelDivAlive = false;
 }
 function createUserView(mainDiv) {
@@ -304,6 +318,62 @@ function createUserView(mainDiv) {
       divTag.appendChild(b);
     }
   }
+}
+function changePassword(thisDiv){
+  var tdValue = ["舊密碼","新密碼","確認新密碼"],inputID = ["oldPassword","newPassword","checkPassword"];
+  document.getElementById("changePasswordBtn").className = "disabled";
+  document.getElementById("clossDiv").className = "disabled";
+  divTag = document.getElementById("userDataView");
+  b = document.createElement("div");
+  b.setAttribute("id", "changePasswordView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordView");
+  b = document.createElement("h1");
+  b.setAttribute("id", "changePasswordTitle");
+  b.innerHTML = "修改密碼";
+  divTag.appendChild(b);
+
+  b = document.createElement("table");
+  b.setAttribute("id", "changePasswordTable");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordTable");
+  for(var i=0;i<3;i++){
+    b = document.createElement("tr");
+    b.setAttribute("id", "changePasswordTr" + i);
+    divTag.appendChild(b);
+    for(var j=0;j<2;j++){
+      divTag = document.getElementById("changePasswordTr" + i);
+      b = document.createElement("td");
+      b.setAttribute("id", "changePasswordTd" + i + j);
+      divTag.appendChild(b);
+      divTag = document.getElementById("changePasswordTd" + i + j);
+      if(j == 0){
+        b = document.createElement("h2");
+        b.setAttribute("id", "changePasswordH2" + i + j);
+        b.innerHTML = tdValue[i];
+        divTag.appendChild(b);
+      }else{
+        b = document.createElement("input");
+        b.setAttribute("type","password");
+        b.setAttribute("id",inputID[i]);
+        divTag.appendChild(b);
+      }
+    }
+    divTag = document.getElementById("changePasswordTable");
+  }
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "cancelBtn");
+  b.setAttribute("value", "取消修改");
+  b.setAttribute("onclick", "clossFunc(\"changePasswordView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "confirmBtn");
+  b.setAttribute("value", "確認修改");
+  b.setAttribute("onclick", "clossFunc(\"changePasswordView\")");
+  divTag.appendChild(b);
 }
 
 //////////////////////////////////////////////////
@@ -612,7 +682,7 @@ function equipageView(mainDiv) {
   }
   console.log(swordLevel, shieldLevel);
 }
-/*武器*/
+
 function resetEquipClick() {
   console.log("123123131321");
   var scriptData = {
@@ -634,7 +704,7 @@ function resetEquipClick() {
     }
   })
 }
-
+/*武器*/
 function swordLevelUp() {
   b = document.getElementById("swordLevelUpinnerDiv" + swordLevel);
   if (swordLevel == 0) {

@@ -4,7 +4,8 @@
   position: absolute;
   left: 10%;
   right: 10%;
-  margin: 150px auto;
+  /* margin: 150px auto; */
+  margin-top: 100px;
   border-style: none;
   text-align: center;
 }
@@ -17,47 +18,54 @@
   font-style: 10px;
   font-family:Georgia;
 }
+#userImg,#passwordImg,#emailImg{
+  width: 45px;
+  height: 45px;
+  margin-left: -45px;
+}
+.innerBox table{
+  margin-left: auto;
+  margin-right:auto;
+}
 .box input[type = "text"],.box input[type = "password"],.box input[type = "email"]{
-  background: url('../img/user.png');
-  background-size: 45px 45px;
-  background-repeat: no-repeat;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
   border:2px;
   border-bottom-style: solid;
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
-  display: block;
-  margin: 30px auto;
-  text-align: center;
+  display: inline;
+  margin: 25px auto;
   padding: 14px 10px;
-  width: 300px;
+  width: 250px;
   outline: none;
   font-size: 20px;
   color: #000000;
   transition: 0.25s;
 }
-.box #userEmail{
-  background: url('../img/email.png');
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-}
-.box #Name{
-  background: url('../img/name.png');
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-}
-.box input[type = "password"]{
-  background: url('../img/lock-icon.png');
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-}
-::placeholder {
+.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder,.box input[type = "email"]::placeholder {
   color: #7e7b7b;
   font-size: 25px;
+  text-align: center;
   opacity: 1; /* Firefox */
 }
 .box input[type = "text"]:focus,.box input[type = "password"]:focus,.box input[type = "email"]:focus{
   width: 350px;
   text-align: center;
   border-color: #000000;
+}
+.box #signUp{
+  height: 74px;
+  width: 74px;
+  margin: 10px auto 0px 0px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #000000;
+  background-image: url('../img/Car.png');
+  background-size:50px 40px;
+  background-color: rgba(102, 216, 246, 0.64);
+  background-repeat: no-repeat;
+  background-position: center;
 }

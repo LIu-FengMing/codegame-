@@ -37,12 +37,14 @@
 #userImg,#passwordImg{
   width: 45px;
   height: 45px;
+  margin-left: -45px;
 }
 .innerBox table{
-  margin-left:auto;
+  margin-left: auto;
   margin-right:auto;
 }
-.box input[type = "text"]{
+.box input[type = "text"],.box input[type = "password"]{
+  text-align: center;
   background-color: rgba(255, 255, 255, 0);
   border:2px;
   border-bottom-style: solid;
@@ -58,41 +60,15 @@
   color: #000000;
   transition: 0.25s;
 }
-.box input[type = "password"]{
-  background-color: rgba(255, 255, 255, 0);
-  border:2px;
-  border-bottom-style: solid;
-  border-top-style: none;
-  border-left-style: none;
-  border-right-style: none;
-  display: block;
-  margin: 30px auto;
-  /* text-align: left;
-  text-indent: calc(50% - 55px); */
-  padding: 14px 10px;
-  width: 250px;
-  outline: none;
-  font-size: 20px;
-  color: #000000;
-  transition: 0.25s;
-}
-::placeholder {
+.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder {
   color: #7e7b7b;
   font-size: 25px;
-  text-align: left;
-  text-indent: calc(50% - 55px);
+  text-align: center;
   opacity: 1; /* Firefox */
 }
 .box input[type = "text"]:focus,.box input[type = "password"]:focus{
   width: 350px;
-  text-align: left;
-  /* text-indent: calc(30%); */
-  border-color: #000000;
-}
-.box input[type = "text"]:after,.box input[type = "password"]:after{
-  width: 350px;
-  text-align: left;
-  /* text-indent: calc(30%); */
+  text-align: center;
   border-color: #000000;
 }
 .box input[type = "submit"]{
