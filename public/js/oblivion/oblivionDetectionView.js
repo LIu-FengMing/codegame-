@@ -108,6 +108,7 @@ function initHome() {
   }
   myVid=document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myVid.play();
   bkMusicSwitch++;
   //console.log(myVid.volume);
   sendSession();

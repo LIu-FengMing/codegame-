@@ -92,6 +92,7 @@ function error() {
 
 }
 function initHome() {
+  myAudio = document.getElementById("bkMusic");
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
@@ -103,10 +104,10 @@ function initHome() {
     musicLevel = 1;
     gameSpeed = 5;
   }
-  myVid = document.getElementById("bkMusic");
-  myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myAudio.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myAudio.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //console.log(myAudio.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -200,7 +201,7 @@ function logout() {
 //              right.js                        //
 //////////////////////////////////////////////////
 
-var myVid;
+var myAudio;
 var divID, divID2, divTag, b;
 var userdataFont;
 var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
@@ -234,7 +235,7 @@ function userData() {
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "closeFunc(divID,divID2)");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -244,7 +245,7 @@ function userData() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataBkView\",\"userDataView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataBkView\",\"userDataView\")");
   divTag.appendChild(b);
   /*修改密碼按鈕*/
   b = document.createElement("input");
@@ -257,9 +258,11 @@ function userData() {
 
 
 }
-function clossFunc(thisDiv, thisDiv2) {
-  document.getElementById("changePasswordBtn").className = "";
-  document.getElementById("clossDiv").className = "";
+function closeFunc(thisDiv, thisDiv2) {
+  try {
+    document.getElementById("changePasswordBtn").className = "";
+    document.getElementById("clossDiv").className = "";
+  } catch (e) {}
   try {
     divTag = document.getElementById(thisDiv);
     parentObj = divTag.parentNode;
@@ -365,14 +368,14 @@ function changePassword(thisDiv){
   b.setAttribute("type", "button");
   b.setAttribute("id", "cancelBtn");
   b.setAttribute("value", "取消修改");
-  b.setAttribute("onclick", "clossFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "confirmBtn");
   b.setAttribute("value", "確認修改");
-  b.setAttribute("onclick", "clossFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
   divTag.appendChild(b);
 }
 
@@ -392,7 +395,7 @@ function equipageView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"equipageView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "equipageView");
@@ -402,7 +405,7 @@ function equipageView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"equipageView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -698,8 +701,8 @@ function resetEquipClick() {
       swordLevel = 0;
       shieldLevel = 0;
       levelUpLevel = 0;
-      // clossFunc("equipageView","equipageBkViewv");
-      clossFunc("equipageView", "equipageBkView");
+      // closeFunc("equipageView","equipageBkViewv");
+      closeFunc("equipageView", "equipageBkView");
       equipageView(center);
     }
   })
@@ -863,7 +866,7 @@ function instructionView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"instructionView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "instructionView");
@@ -873,7 +876,7 @@ function instructionView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"instructionView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -972,7 +975,7 @@ function achievementView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "achievementView");
@@ -982,7 +985,7 @@ function achievementView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
   /*b = document.createElement("img");
   b.setAttribute("id","crownImgLeft");
@@ -1095,7 +1098,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "settingAllView");
@@ -1105,7 +1108,7 @@ function settingAllView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -1323,8 +1326,8 @@ function musicLevelUp() {
   if (musicLevel > 9) {
     musicLevel = 10;
   }
-  myVid = document.getElementById("bkMusic");
-  myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
+  myAudio = document.getElementById("bkMusic");
+  myAudio.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
   //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
@@ -1346,8 +1349,8 @@ function musicLevelDown() {
     b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
     b.className = "musicVolumeInnerDivDefault";
   }
-  myVid = document.getElementById("bkMusic");
-  myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
+  myAudio = document.getElementById("bkMusic");
+  myAudio.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
   bkMusicSwitch++;
   sendSession();
 }
@@ -1357,13 +1360,13 @@ function chk(input) {
     document.form1.c1[i].checked = false;
   }
   input.checked = true;
-  myVid = document.getElementById("bkMusic");
+  myAudio = document.getElementById("bkMusic");
   if (input.id == "musicOpen") {
     bkMusicSwitch = 2;
   } else {
     bkMusicSwitch = 1;
   }
-  myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
+  myAudio.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
   bkMusicSwitch++;
   sendSession();
   return true;

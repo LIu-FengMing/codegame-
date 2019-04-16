@@ -107,7 +107,10 @@ function initHome() {
     musicLevel = 1;
     gameSpeed = 5;
   }
-
+  myVid=document.getElementById("bkMusic");
+  myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myVid.play();
+  bkMusicSwitch++;
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;

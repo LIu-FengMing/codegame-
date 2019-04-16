@@ -100,6 +100,7 @@ function initHome() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myVid.play();
   bkMusicSwitch++;
   //console.log(myVid.volume);
   //sendSession();
@@ -748,7 +749,7 @@ function sendLoadUsernameMap() {
         var data = new Date(obj.updateDate);
         var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
         updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-        
+
         var script = {
           td01: obj.mapName,
           td02: obj.requireStar,
