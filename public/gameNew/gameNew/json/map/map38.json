@@ -67,7 +67,7 @@
                 1,
                 1
             ],
-            "ans": "Hello world,C!",
+            "ans": "Hello world,C!","a":"Hello world,C!",
             "response": "Hello"
         },
         {
