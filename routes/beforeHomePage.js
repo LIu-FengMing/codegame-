@@ -14,7 +14,7 @@ router.get('/login', function (req, res, next) {
     var token = local.toString();
     var token = token.split(' ')
     // if(local.error.split(' ')[0]=="IncorrectUsername"||local.error.split(' ')[0]=="InvalidPassword"){
-    console.log(token[0]);
+    // console.log(token[0]);
     if (token[0] == "IncorrectUsername" || token[0] == "InvalidPassword") {
         req.session.username = token[1];
         req.session.pass = token[2];
@@ -127,7 +127,7 @@ router.post('/forgetPass', function (req, res, next) {
                             if (err) throw err;
                             if (user) {
                                 User.givePassBcrypt(results, function (err, hash) {
-                                    console.log(hash);
+                                    // console.log(hash);
                                     var url = req.body.homeUrl + "changePassword?token=";
                                     url += hash;
                                     var text = "你的密碼已被改為'" + results + "' 請利用這組密碼當成新密碼,並由\n";
@@ -141,7 +141,7 @@ router.post('/forgetPass', function (req, res, next) {
                                     // Validation
                                     SendMail.sendMail(newOption)
                                     req.session.updatePassKey = hash;
-                                    console.log(req.session.updatePassKey);
+                                    // console.log(req.session.updatePassKey);
 
                                     return res.json({ responce: 'sucesss' });
                                 });
@@ -193,7 +193,7 @@ router.post('/changePassword', function (req, res, next) {
                         req.flash('success_msg', 'you are updatePass now')
                         User.updatePassword(username, password, function (err, user) {
                             if (err) throw err;
-                            console.log("update :", user);
+                            // console.log("update :", user);
                         })
                         req.session.updatePassKey = null;
                         return res.json({ responce: 'sucesss' });

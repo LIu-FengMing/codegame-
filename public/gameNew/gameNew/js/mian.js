@@ -213,6 +213,7 @@ function loadData() {
     peopleGraph = createGraphics(width, height);
     objectGraph = createGraphics(width, height);
     backgroundGraph = createGraphics(width, height);
+    pg = createGraphics(edgeToWidth, edgeToHeight);
     updateBackgroundGraph();
     updateObjectGraph();
     updatePeopleGraph();
@@ -575,6 +576,9 @@ function draw() {
                                     if (dif <= stepSpeed) {
                                         onChanging = false;
                                     }
+                                    /*
+                 
+                                    */ 
                                 }
                             }
                             updatePeopleGraph();
@@ -635,7 +639,11 @@ function draw() {
                             else {
                                 o = nowValue.obj;
                             }
-                            mapObject[o].type = nowValue.type;
+                            if(nowValue.type&&o>-1){
+                                // console.log(nowValue.type);
+                                // console.log(o,mapObject[o]);
+                                mapObject[o].type = nowValue.type;
+                            }
                         }
                     }
                 }
@@ -797,13 +805,16 @@ function updateBackgroundGraph() {
     }
 
     for (var i = 0; i < end_init.length; ++i) {
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = end_init[i]["postion"][0] * edgeToWidth, dy = end_init[i]["postion"][1] * edgeToHeight, drotate = 360 - end_init[i]["postion"][2] * 90;
         var img = imgObject[parseInt(imgDic[end_init[i]["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         backgroundGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+        pg.pop();
     }
     var img = imgObject[parseInt(imgDic["start"])];
     backgroundGraph.image(img, people_init["postion"][0] * edgeToWidth, people_init["postion"][1] * edgeToHeight, edgeToWidth, edgeToHeight);
@@ -819,11 +830,14 @@ function updateObjectGraph() {
         var img = imgObject[parseInt(imgDic[obj["type"]])];
         if (obj["type"] == "arrow" || obj["type"] == "arrowWite" || obj["type"] == "enemyTank") {
             var drotate = 360 - obj["postion"][2] * 90;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "bullet") {
             dx = obj["postion"][0], dy = obj["postion"][1];
@@ -831,11 +845,14 @@ function updateObjectGraph() {
 
             var drotate = (4 - obj["postion"][2]) * 90 + 90;
             // var drotate = obj["postion"][2] * 90 + 270;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "unlock2" || obj["type"] == "unlockfail2") {
             dx = obj["postion"][0] * edgeToWidth;
@@ -858,13 +875,17 @@ function updatePeopleGraph() {
     if (people_init) {
         // peopleGraph = createGraphics(width, height);
         peopleGraph.clear();
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
         var img = imgObject[parseInt(imgDic[people_init["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         peopleGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+
+        pg.pop();
     }
 
 }
@@ -873,7 +894,6 @@ function updateCanvas() {
     // clear();
     if (haveFoggy) {
         // console.log("sucess");
-        // var pg = createGraphics(width, height);
         var img = imgObject[parseInt(imgDic["foggy"])];
         var peopleFoggyImg = imgObject[parseInt(imgDic["peopleFoggy"])];
 
