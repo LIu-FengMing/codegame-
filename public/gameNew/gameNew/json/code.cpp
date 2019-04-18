@@ -146,6 +146,8 @@ void bulletHit()
 		cout << ",," << systemObj[nowLen + i] << ",," << checkE[i][0] << "," << checkE[i][1] << "," << checkE[i][2] << ",bullet";
 	}
 	cout << " ";
+
+	vector <int>  list;
 	for (int fstep = 0; fstep < 2; fstep++)
 	{
 		firstOut = false;
@@ -268,6 +270,7 @@ void bulletHit()
 		cout << " ";
 		systObjNowL -= subHPC;
 		/*  讓生命條憶起消失 */
+
 		for (int i = 0; i < checkN; i++)
 		{
 			if (checkE[i][5] == 4)
@@ -281,10 +284,11 @@ void bulletHit()
 
 						if (enemy[ci][3] <= 0)
 						{
-							cout << "systC,," << system_map[nsy][nsx][1] << ",,"
-								 << "enemyDead "; //obj x y hp HP
+							// cout << "systC,," << system_map[nsy][nsx][1] << ",,"<< "enemyDead "; //obj x y hp HP
+							cout << "systC,," << systemObj[system_map[nsy][nsx][1]] << ",,"<< "enemyDead "; //obj x y hp HP
 							enemy[ci][0] = 100, enemy[ci][1] = 100, enemy[ci][2] = 0, enemy[ci][3] = 0;
-							systD(system_map[nsy][nsx][1]);
+							// systD(systemObj[system_map[nsy][nsx][1]]);
+							list.push_back(system_map[nsy][nsx][1]);
 							system_map[nsy][nsx][0] -= 15;
 						}
 						systD(systObjNowL);
@@ -329,9 +333,18 @@ void bulletHit()
 	{ //最後都沒打到東西 刪掉
 		if (checkE[i][5] == 0)
 		{
+			// systD(nowLen + i);
 			systD(nowLen + i);
+			
 		}
 	}
+	for (int i = 0; i < list.size(); i++)
+	{
+		systD(list[i]);
+		/* code */
+	}
+	
+
 }
 
 void actionJudgeNowAdr()

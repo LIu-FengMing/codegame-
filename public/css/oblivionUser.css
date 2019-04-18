@@ -274,7 +274,14 @@ body {
   bottom: 2vh;
   cursor: pointer;
 }
-
+.bkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.74);
+}
 /*確認介面*/
 #checkView{
   z-index: 999;

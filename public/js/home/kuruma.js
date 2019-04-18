@@ -290,7 +290,7 @@ viewRecordFontText = ["星星","指令個數","程式碼"];
 function btnClick(number) {
   var divTag = document.getElementById("centerMidMap");
   var b;
-  number+=24;
+  number+=25;
   if(levelDivAlive){
     divTag = document.getElementById("levelDiv");
     try {
@@ -334,13 +334,11 @@ function btnClick(number) {
   var codeStar=0,blockStar=0;
   //number--;
   console.log(number);
-  if(user.EasyEmpire.codeLevel.length>number){
-    codeStar = user.EasyEmpire.codeLevel[number].HighestStarNum;
+  number-=25;
+  if(user.MediumEmpire.codeLevel.length>number){
+    codeStar = user.MediumEmpire.codeLevel[number].HighestStarNum;
   }
-  if(user.EasyEmpire.blockLevel.length>number){
-    blockStar = user.EasyEmpire.blockLevel[number].HighestStarNum;
-  }
-  thisLevelStarNum=Math.max(codeStar,blockStar);
+  thisLevelStarNum=codeStar;
   // if(user.EasyEmpire.codeLevel[--number].HighestStarNum)
   // try {
   //   thisLevelStarNum = user.EasyEmpire.codeLevel[--number].HighestStarNum;
@@ -351,6 +349,7 @@ function btnClick(number) {
     document.getElementById("startImg" + i).className = "startImg";
   }
   /*主要函式*/
+  number+=24;
   b = document.createElement("div");
   b.setAttribute("id", "mainGrammar");
   divTag.appendChild(b);
@@ -390,7 +389,7 @@ function btnClick(number) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "levelBtn");
   b.setAttribute("value", "進入關卡");
-  number+=24
+  number+=24;
   b.setAttribute("onclick", "location.href='gameView_text?level=" + number + "'");
   divTag.appendChild(b);
 }
@@ -967,7 +966,6 @@ function shieldLevelUp() {
 
 
 /*----------------*/
-/*指令大全*/
 
 /*指令大全*/
 function instructionView(mainDiv) {
@@ -1514,6 +1512,7 @@ function changeLevelStage() {
   var codeLevel=-1;
   for (let index = 0; index < user.MediumEmpire.codeLevel.length; index++) {
     const element = user.MediumEmpire.codeLevel[index];
+    console.log("element=",element);
     if(parseInt(element.level)>codeLevel&&element.HighestStarNum>0){
       codeLevel=parseInt(element.level);
     }
@@ -1527,7 +1526,9 @@ function changeLevelStage() {
   if(totalLevel==0){
     ++totalLevel;
   }
-  for(var i=0;i<24;i++){
+  console.log(totalLevel-24);
+  totalLevel-=24;
+  for(var i=0;i<26;i++){
     if(i<totalLevel){
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";

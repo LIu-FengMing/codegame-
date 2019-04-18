@@ -24,31 +24,49 @@ function changePassword() {
     var strP = UserPass.value;
     var strCP = UserCheckPass.value;
 if (UserName.value == "") {
-        alert("動作失敗\n" + "\"使用者帳號\"不能為空");
+        // alert("動作失敗\n" + "\"使用者帳號\"不能為空");
+        remindValue = "動作失敗\n" + "\"使用者帳號\"不能為空";
+        remindView(remindValue);
     }
     else if (strN.indexOf(" ") != -1) {
-        alert("動作失敗\n" + "使用者帳號有空白字元");
+        // alert("動作失敗\n" + "使用者帳號有空白字元");
+        remindValue = "動作失敗\n" + "使用者帳號有空白字元";
+        remindView(remindValue);
     }
     else if (OldPass.value == "") {
-        alert("動作失敗\n" + "\"舊密碼\"不能為空");
+        // alert("動作失敗\n" + "\"舊密碼\"不能為空");
+        remindValue = "動作失敗\n" + "\"舊密碼\"不能為空";
+        remindView(remindValue);
     }
     else if (strOP.indexOf(" ") != -1) {
-        alert("動作失敗\n" + "\"舊密碼\"有空白字元");
+        // alert("動作失敗\n" + "\"舊密碼\"有空白字元");
+        remindValue = "動作失敗\n" + "\"舊密碼\"有空白字元";
+        remindView(remindValue);
     }
     else if (UserPass.value == "") {
-        alert("動作失敗\n" + "\"密碼\"不能為空");
+        // alert("動作失敗\n" + "\"密碼\"不能為空");
+        remindValue = "動作失敗\n" + "\"密碼\"不能為空";
+        remindView(remindValue);
     }
     else if (strP.indexOf(" ") != -1) {
-        alert("動作失敗\n" + "\"密碼\"有空白字元");
+        // alert("動作失敗\n" + "\"密碼\"有空白字元");
+        remindValue = "動作失敗\n" + "\"密碼\"有空白字元";
+        remindView(remindValue);
     }
     else if (UserCheckPass.value == "") {
-        alert("動作失敗\n" + "\"確認密碼\"不能為空");
+        // alert("動作失敗\n" + "\"確認密碼\"不能為空");
+        remindValue = "動作失敗\n" + "\"確認密碼\"不能為空";
+        remindView(remindValue);
     }
     else if (strCP.indexOf(" ") != -1) {
-        alert("動作失敗\n" + "\"確認密碼\"有空白字元");
+        // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
+        remindValue = "動作失敗\n" + "\"確認密碼\"有空白字元";
+        remindView(remindValue);
     }
     else if (UserCheckPass.value != UserPass.value) {
-        alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
+        // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
+        remindValue = "動作失敗\n" + "\"密碼\"與\"確認密碼\"不同";
+        remindView(remindValue);
     }
     else {
         var scriptData = {
@@ -67,17 +85,23 @@ if (UserName.value == "") {
                 // alert(res.responce );
                 if (res.responce == "sucesss") {
                     result = "修改成功";
-                    alert(result);
+                    // alert(result);
+                    remindValue = result;
+                    remindView(remindValue);
                     var href = "/login";
                     window.location.replace(href);
                 }
                 else if (res.responce == "failPassUndifine") {
                     result += "\"密碼\"未被啟用";
-                    alert(result);
+                    // alert(result);
+                    remindValue = result;
+                    remindView(remindValue);
                 }
                 else if (res.responce == "failNamUndifine") {
                     result += "\"使用者帳號\"未被啟用";
-                    alert(result);
+                    // alert(result);
+                    remindValue = result;
+                    remindView(remindValue);
                 }
             },
         });
@@ -111,3 +135,53 @@ function post_to_url(path, params, method) {
     document.body.appendChild(form);    // Not entirely sure if this is necessary
     form.submit();
 }
+
+var levelDivAlive = false;
+function remindView(remindValue) {
+  divTag = document.getElementById("center");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("center");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  divTag.appendChild(b);
+}
+function clossFunc(thisDiv, thisDiv2) {
+    var divTag = document.getElementById(thisDiv);
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    divTag = document.getElementById(thisDiv2);
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+  }

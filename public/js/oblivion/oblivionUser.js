@@ -84,7 +84,8 @@ $.ajax({
 })
 
 function error() {
-  alert("有不當的操作發生");
+  // alert("有不當的操作發生");
+  remindView("有不當的操作發生");
   window.location.replace(href);
 
 }
@@ -814,7 +815,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         b.setAttribute("class", "introductionBtn");
         b.setAttribute("id", "introductionBtn" + i + j);
-        b.setAttribute("onclick", "viewValueMap(this)");
+        b.setAttribute("onclick", "viewValueMap(\"lostUserCreateTable" + i + "\")");
         divTag.appendChild(b);
 
         /*刪除按紐*/
@@ -848,6 +849,11 @@ function remindView(remindValue) {
     divTag = document.getElementById("centerLost");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "remindView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -856,13 +862,14 @@ function remindView(remindValue) {
   b = document.createElement("h2");
   b.setAttribute("id", "remindH2");
   divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
   document.getElementById("remindH2").innerHTML = remindValue;
 
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\")");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
 
@@ -880,6 +887,11 @@ function checkView(checkFont, checkStatus) {
     divTag = document.getElementById("centerLost");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "checkBkView");
+  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "checkView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -894,7 +906,7 @@ function checkView(checkFont, checkStatus) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkFalseBtn");
   b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\")");
+  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -904,19 +916,19 @@ function checkView(checkFont, checkStatus) {
   if (checkFont == "上架關卡") {
     if (checkStatus == "now") {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-      b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + postVar.toString() + ")");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
     } else {
       console.log(checkStatus);
 
       console.log(postVar);
-      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(latePostVar.toString())");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
     }
   } else if (checkFont == "下架關卡") {
     unShelfVar = checkStatus;
     var ele = document.createElement("input");
-    b.setAttribute("onclick", "clossFunc(\"checkView\");unShelf(unShelfVar)");
+    b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
   } else if (checkFont == "刪除關卡") {
-      b.setAttribute("onclick", "clossFunc(\"checkView\");delMap(delVar)");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
   }
   divTag.appendChild(b);
 }
@@ -930,7 +942,9 @@ function delMap(thisObject) {
   console.log(objI);
   var obj = userMap[objI];
   if (obj.postStage == 2 || obj.postStage == 1) { //預防出錯
-    alert("請先下架該地圖");
+    // alert("請先下架該地圖");
+    remindView("請先下架該地圖");
+
   }
   else {
     // if (confirm('你確定要刪除這張地圖嗎?')) {
@@ -971,10 +985,9 @@ function delMapAction(objI) {
 /*簡介關卡--功能*/
 function viewValueMap(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var mapIndex = parseInt(thisObject.substr("lostUserCreateTable".length));
   // var objI = parseInt((mapIndex - 8) / 10);
   var objI = mapIndex;
-  console.log(objI);
   var obj = userMap[objI];
   if (levelDivAlive) {
     divTag = document.getElementById("levelDiv");
@@ -1029,7 +1042,9 @@ function updateMap(thisObject) {
   var obj = userMap[objI];
   console.log(obj);
   if (obj.postStage == 2 || obj.postStage == 1) {
-    alert("請先下架該地圖");
+    // alert("請先下架該地圖");
+    remindView("請先下架該地圖");
+
   }
   else {
     var mapID = userMap[objI]._id;
@@ -1058,6 +1073,11 @@ function shelfBtn() {
     divTag = document.getElementById("createrDiv");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "shelfBkView");
+  b.setAttribute("class", "bkView");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "shelfView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -1068,7 +1088,7 @@ function shelfBtn() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("h1");
@@ -1267,7 +1287,7 @@ function nowShelfNowAction(mapIndex) {
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
-      clossFunc("shelfView");
+      clossFunc("shelfView","shelfBkView");
       // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       var objI = mapIndex;
       userMap[mapIndex].postStage = 2;
@@ -1452,11 +1472,15 @@ function reviseLevel() {
       document.location.href = 'oblivionCreater?mapID=' + mapID;
     }
     else {
-      alert("關卡已發佈，不可更改");
+      // alert("關卡已發佈，不可更改");
+      remindView("關卡已發佈，不可更改");
+
     }
   }
   else {
-    alert("請點選其中一張地圖");
+    // alert("請點選其中一張地圖");
+
+    remindView("請點選其中一張地圖");
   }
 }
 function enterLevel() {
@@ -1465,18 +1489,22 @@ function enterLevel() {
     var obj = userMap[mapIndex];
     // if (obj.check == false) {
     if (obj.mapName.length < 1) {
-      alert("關卡名稱不能為空白，請修改關卡內容");
+      // alert("關卡名稱不能為空白，請修改關卡內容");
+    remindView("關卡名稱不能為空白，請修改關卡內容");
     }
     else if (obj.mapName.length > 10) {
-      alert("關卡名稱不能超過10個字，請修改關卡內容");
+      // alert("關卡名稱不能超過10個字，請修改關卡內容");
+    remindView("關卡名稱不能超過10個字，請修改關卡內容");
     }
     else {
       if (obj.mapIntroduction.length < 1) {
-        alert("關卡簡介不能為空白，請修改關卡內容");
+        // alert("關卡簡介不能為空白，請修改關卡內容");
+        remindView("關卡簡介不能為空白，請修改關卡內容");
       }
       else {
         if (obj.mapDescription.length < 1) {
-          alert("關卡介紹不能為空白，請修改關卡內容");
+          // alert("關卡介紹不能為空白，請修改關卡內容");
+          remindView("關卡介紹不能為空白，請修改關卡內容");
         }
         else {
           var mapID = obj._id;
@@ -1488,7 +1516,8 @@ function enterLevel() {
     }
   }
   else {
-    alert("請點選其中一張地圖");
+    // alert("請點選其中一張地圖");
+    remindView("請點選其中一張地圖");
   }
 }
 function getArgs() {

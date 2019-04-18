@@ -82,10 +82,49 @@ $.ajax({
 })
 
 function error() {
-  alert("有不當的操作發生");
+  // alert("有不當的操作發生");
+  remindView("有不當的操作發生");
   window.location.replace(href);
 
 }
+/*提醒視窗*/
+var levelDivAlive=false;
+function remindView(remindValue) {
+  divTag = document.getElementById("center");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("center");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  divTag.appendChild(b);
+}
+
 function initHome() {
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     //
@@ -281,22 +320,11 @@ function helper(mainDiv) {
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "關卡說明";
-  b = document.createElement("textarea");
-  b.setAttribute("id", "helperTextarea0");
+  divTag = document.getElementById("helperView");
+  b = document.createElement("div");
+  b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
-  document.getElementById("helperTextarea0").innerHTML = "文字塊1";
-  b = document.createElement("img");
-  b.setAttribute("id", "helperImg0");
-  b.setAttribute("class", "helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("img");
-  b.setAttribute("id", "helperImg1");
-  b.setAttribute("class", "helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("textarea");
-  b.setAttribute("id", "helperTextarea1");
-  divTag.appendChild(b);
-  document.getElementById("helperTextarea1").innerHTML = "文字塊2";
+  document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 }
 
 /*XX按鈕*/
@@ -826,7 +854,9 @@ function backToMapBtn() {
     window.location.replace(href);
   }
   else if (evaluation < 1) {
-    alert("請給關卡評價");
+    
+    remindView("請給關卡評價");
+    // alert("請給關卡評價");
   }
   else {
     let nowurl = new URL(window.location.href);
