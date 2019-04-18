@@ -84,7 +84,8 @@ $.ajax({
 })
 
 function error() {
-  alert("有不當的操作發生");
+  // alert("有不當的操作發生");
+  remindView("有不當的操作發生");
   window.location.replace(href);
 
 }
@@ -856,6 +857,7 @@ function remindView(remindValue) {
   b = document.createElement("h2");
   b.setAttribute("id", "remindH2");
   divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
   document.getElementById("remindH2").innerHTML = remindValue;
 
   b = document.createElement("input");
@@ -1029,7 +1031,9 @@ function updateMap(thisObject) {
   var obj = userMap[objI];
   console.log(obj);
   if (obj.postStage == 2 || obj.postStage == 1) {
-    alert("請先下架該地圖");
+    // alert("請先下架該地圖");
+    remindView("請先下架該地圖");
+
   }
   else {
     var mapID = userMap[objI]._id;
@@ -1452,11 +1456,15 @@ function reviseLevel() {
       document.location.href = 'oblivionCreater?mapID=' + mapID;
     }
     else {
-      alert("關卡已發佈，不可更改");
+      // alert("關卡已發佈，不可更改");
+      remindView("關卡已發佈，不可更改");
+
     }
   }
   else {
-    alert("請點選其中一張地圖");
+    // alert("請點選其中一張地圖");
+    
+    remindView("請點選其中一張地圖");
   }
 }
 function enterLevel() {
@@ -1465,18 +1473,22 @@ function enterLevel() {
     var obj = userMap[mapIndex];
     // if (obj.check == false) {
     if (obj.mapName.length < 1) {
-      alert("關卡名稱不能為空白，請修改關卡內容");
+      // alert("關卡名稱不能為空白，請修改關卡內容");
+    remindView("關卡名稱不能為空白，請修改關卡內容");
     }
     else if (obj.mapName.length > 10) {
-      alert("關卡名稱不能超過10個字，請修改關卡內容");
+      // alert("關卡名稱不能超過10個字，請修改關卡內容");
+    remindView("關卡名稱不能超過10個字，請修改關卡內容");
     }
     else {
       if (obj.mapIntroduction.length < 1) {
-        alert("關卡簡介不能為空白，請修改關卡內容");
+        // alert("關卡簡介不能為空白，請修改關卡內容");
+        remindView("關卡簡介不能為空白，請修改關卡內容");
       }
       else {
         if (obj.mapDescription.length < 1) {
-          alert("關卡介紹不能為空白，請修改關卡內容");
+          // alert("關卡介紹不能為空白，請修改關卡內容");
+          remindView("關卡介紹不能為空白，請修改關卡內容");
         }
         else {
           var mapID = obj._id;
@@ -1488,7 +1500,8 @@ function enterLevel() {
     }
   }
   else {
-    alert("請點選其中一張地圖");
+    // alert("請點選其中一張地圖");
+    remindView("請點選其中一張地圖");
   }
 }
 function getArgs() {
