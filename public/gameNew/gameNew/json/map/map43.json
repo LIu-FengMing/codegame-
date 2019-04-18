@@ -6,13 +6,13 @@
     "extendCode":"  void getString(char* str){  char* tmp=\"3SL1R1T1C2L2LF3R3L1RF2R1T2R2CLA2\";   strcpy(str,tmp);} ",
     "winLinit": {
         "threeStar": [
-            4
-        ],
-        "twoStar": [
             5
         ],
-        "oneStar": [
+        "twoStar": [
             6
+        ],
+        "oneStar": [
+            7
         ]
     },
     "people_init": {
@@ -64,7 +64,7 @@
                 1,
                 6
             ],
-            "ans": "-1 1 2 4 5 8 9 10 11 12",
+            "ans": "1 3 5 9 11",
             "response": "Hello"
         },
         {

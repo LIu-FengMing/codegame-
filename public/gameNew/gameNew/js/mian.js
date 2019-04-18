@@ -97,7 +97,7 @@ function setup() {
     gameEndingCodeDic['3'] = "駛出地圖_失敗";
     gameEndingCodeDic['4'] = "撞到障礙物_失敗";
     gameEndingCodeDic['5'] = "編譯失敗";
-    gameEndingCodeDic['6'] = "被炸彈炸死";
+    gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
     var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
     canvas.parent('divcanvas');
