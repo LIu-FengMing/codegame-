@@ -412,6 +412,7 @@ function endgame() {
 }
 
 
+
 function draw() {
     // //
     if (iscreatecanvas == 1 && iscreateImg == 1) {
@@ -435,6 +436,8 @@ function draw() {
         }
     }
 
+    // console.log(createGraphics(width, height));
+
     if (onChanged) {
         // console.log("running");
         if (!onChanging) {
@@ -453,6 +456,7 @@ function draw() {
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
+            var mapObjectChange = true;
             // console.log(action_now);
             if (pipleLineSpeed > 0) {
                 // console.log(pipleLineSpeed);
@@ -731,14 +735,17 @@ function draw() {
                         }
                     }
                     delayResSpeed * 2;
+                    updateObjectGraph();
+
                 }
                 else {
+                    mapObjectChange = false;
                     --delayResSpeed;
                     if (delayResSpeed < 0) {
                         onChanging = false;
                     }
                 }
-                updateObjectGraph();
+
                 if (!onChanging) {
                     onChanging = false;
                     // console.log(mapObject);
@@ -748,7 +755,9 @@ function draw() {
             break;
         }
         // sleep(50);
-        updateCanvas();
+        if (mapObjectChange == true) {
+            updateCanvas();
+        }
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
@@ -948,7 +957,6 @@ function updateCanvas() {
                         image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-
                 image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
             }
         }
@@ -1206,8 +1214,48 @@ function codeOutputTranstionAction() {
             if (o > -1 && spaceT[2].length > 1) {
                 // console.log(mapObject[o - forgetDel].ans ,"  ",spaceT[2]);
                 var conditionAns = true;
-                var inputList = spaceT[2].split(' ');
+                var inputList = [];
+                // if (spaceT[2].indexOf('') > -1) { //c++的空白
+                //     let s=spaceT[2].split('');
+                //     for (let indexS = 0; indexS < s.length; indexS++) {
+                //         var element = s[indexS];
+                //         let temp=element[2].split(' ');
+                //         for (let indexST = 0; indexST < temp.length; indexST++) {
+                //             inputList.push(temp[indexST]);
+                //         }
+                //     }
+                // }
+                // else{
+                //     inputList = spaceT[2].split(' ');
+                // }
+                var indexSpace = spaceT[2].indexOf('');
+                // while(indexSpace>-1){
+                //     console.log(indexSpace,spaceT[2][indexSpace]);
+                //     spaceT[2] = spaceT[2].substr(0, indexSpace-1) + ' ' + spaceT[2].substring(indexSpace+1, spaceT[2].length);
+                //     // spaceT[2][indexSpace]=" ";
+                //     console.log(indexSpace,spaceT[2],spaceT[2][indexSpace]);
+                //     indexSpace=spaceT[2].indexOf('');
+                // }
+                var ns="";
+                if (indexSpace > -1) {
+                    for (let indexS = 0; indexS < spaceT[2].length; indexS++) {
+                        if(spaceT[2][indexS]==''){
+                            ns=ns+" ";
+                        }
+                        else{
+                            ns=ns+spaceT[2][indexS];
+                        }
+                    }
+                }
+                spaceT[2]=ns;
+                inputList = spaceT[2].split(' ');
+
+
+                //  
+
                 var ansList = mapObject[o].ans.split(' ');
+                console.log("ans:", ansList);
+                console.log("input:", inputList);
                 // console.log(inputList,ansList);
                 for (let ansI = 0; ansI < ansList.length; ansI++) {
                     if (ansList[ansI].length < 1) {
@@ -1241,6 +1289,9 @@ function codeOutputTranstionAction() {
                         continue;
                     }
                 }
+
+                console.log("ans:", ansList);
+                console.log("input:", inputList);
                 if (inputList.length > 0) {
                     conditionAns = false;
                 }

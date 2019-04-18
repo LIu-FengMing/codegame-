@@ -210,7 +210,9 @@ function loadData() {
     edgeToHeight = height / mapSize;
     iscreatecanvas = 1;
     action_now = 0;
-
+    peopleGraph = createGraphics(width, height);
+    objectGraph = createGraphics(width, height);
+    backgroundGraph = createGraphics(width, height);
     updateBackgroundGraph();
     updateObjectGraph();
     updatePeopleGraph();
@@ -451,7 +453,8 @@ function draw() {
             now_PeooleX = old_PeooleX;
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
-            stepSpeed = gameSpeed; //控制車子速度
+            // stepSpeed = gameSpeed; //控制車子速度
+            stepSpeed = gameSpeed+2; //控制車子速度
             delayResSpeed = 30;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
@@ -766,7 +769,8 @@ function draw() {
 
 }
 function updateBackgroundGraph() {
-    backgroundGraph = createGraphics(width, height);
+    // backgroundGraph = createGraphics(width, height);
+    backgroundGraph.clear();
     backgroundGraph.noStroke();
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
@@ -807,7 +811,8 @@ function updateBackgroundGraph() {
 
 function updateObjectGraph() {
     HPObject = [];
-    objectGraph = createGraphics(width, height);
+    // objectGraph = createGraphics(width, height);
+    objectGraph.clear();
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];
         var dx = obj["postion"][0] * edgeToWidth, dy = obj["postion"][1] * edgeToHeight;
@@ -851,7 +856,8 @@ function updateObjectGraph() {
 function updatePeopleGraph() {
     // console.log("updatePeopleGraph");
     if (people_init) {
-        peopleGraph = createGraphics(width, height);
+        // peopleGraph = createGraphics(width, height);
+        peopleGraph.clear();
         var pg = createGraphics(edgeToWidth, edgeToHeight);
         var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
         var img = imgObject[parseInt(imgDic[people_init["type"]])];
@@ -867,7 +873,7 @@ function updateCanvas() {
     // clear();
     if (haveFoggy) {
         // console.log("sucess");
-        var pg = createGraphics(width, height);
+        // var pg = createGraphics(width, height);
         var img = imgObject[parseInt(imgDic["foggy"])];
         var peopleFoggyImg = imgObject[parseInt(imgDic["peopleFoggy"])];
 
@@ -1236,18 +1242,21 @@ function codeOutputTranstionAction() {
                 //     console.log(indexSpace,spaceT[2],spaceT[2][indexSpace]);
                 //     indexSpace=spaceT[2].indexOf('');
                 // }
-                var ns="";
+                var ns = "";
                 if (indexSpace > -1) {
                     for (let indexS = 0; indexS < spaceT[2].length; indexS++) {
-                        if(spaceT[2][indexS]==''){
-                            ns=ns+" ";
+                        if (spaceT[2][indexS] == '') {
+                            ns = ns + " ";
                         }
-                        else{
-                            ns=ns+spaceT[2][indexS];
+                        else {
+                            ns = ns + spaceT[2][indexS];
                         }
                     }
                 }
-                spaceT[2]=ns;
+                else{
+                    ns=spaceT[2];
+                }
+                spaceT[2] = ns;
                 inputList = spaceT[2].split(' ');
 
 
