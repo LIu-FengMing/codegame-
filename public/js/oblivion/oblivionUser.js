@@ -932,7 +932,6 @@ function delMap(thisObject) {
   console.log(objI);
   var obj = userMap[objI];
   if (obj.postStage == 2 || obj.postStage == 1) { //預防出錯
-    alert("請先下架該地圖");
     // alert("請先下架該地圖");
     remindView("請先下架該地圖");
 
