@@ -1,0 +1,43 @@
+int x,y;
+int i;
+getKey(&x,&y);
+step();
+turnLeft();
+for(i=0;i<2;i++){
+ step();
+ step();
+ turnRight();
+}
+for(i=0;i<2;i++){
+ step();
+}
+turnLeft();
+for(i=0;i<2;i++){
+ step();
+}
+turnRight();
+step();
+turnLeft();
+step();
+for(i=0;i<2;i++){
+turnRight();
+ step();
+ step();
+}
+turnRight();
+step();
+turnLeft();
+for(i=0;i<2;i++){
+ step();
+}
+turnLeft();
+step();
+turnRight();
+step();
+turnLeft();
+printf("%d",x+y);
+for(i=0;i<2;i++){
+ step();
+}
+turnRight();
+step();
