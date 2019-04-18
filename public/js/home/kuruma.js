@@ -349,6 +349,7 @@ function btnClick(number) {
     document.getElementById("startImg" + i).className = "startImg";
   }
   /*主要函式*/
+  number+=24;
   b = document.createElement("div");
   b.setAttribute("id", "mainGrammar");
   divTag.appendChild(b);
@@ -377,7 +378,7 @@ function btnClick(number) {
   b = document.createElement("br");
   divTag.appendChild(b);
 
-  // number-=25;
+  number-=24;
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "historyCode");
