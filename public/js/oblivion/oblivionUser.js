@@ -849,6 +849,11 @@ function remindView(remindValue) {
     divTag = document.getElementById("centerLost");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "remindView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -864,7 +869,7 @@ function remindView(remindValue) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\")");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
 
@@ -882,6 +887,11 @@ function checkView(checkFont, checkStatus) {
     divTag = document.getElementById("centerLost");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "checkBkView");
+  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "checkView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -896,7 +906,7 @@ function checkView(checkFont, checkStatus) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkFalseBtn");
   b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\")");
+  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -906,19 +916,19 @@ function checkView(checkFont, checkStatus) {
   if (checkFont == "上架關卡") {
     if (checkStatus == "now") {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-      b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + postVar.toString() + ")");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
     } else {
       console.log(checkStatus);
 
       console.log(postVar);
-      b.setAttribute("onclick", "clossFunc(\"checkView\");shelfLaterAction(latePostVar.toString())");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
     }
   } else if (checkFont == "下架關卡") {
     unShelfVar = checkStatus;
     var ele = document.createElement("input");
-    b.setAttribute("onclick", "clossFunc(\"checkView\");unShelf(unShelfVar)");
+    b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
   } else if (checkFont == "刪除關卡") {
-      b.setAttribute("onclick", "clossFunc(\"checkView\");delMap(delVar)");
+      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
   }
   divTag.appendChild(b);
 }
@@ -1064,6 +1074,11 @@ function shelfBtn() {
     divTag = document.getElementById("createrDiv");
   }
   b = document.createElement("div");
+  b.setAttribute("id", "shelfBkView");
+  b.setAttribute("class", "bkView");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "shelfView");
   divTag.appendChild(b);
   levelDivAlive = true;
@@ -1074,7 +1089,7 @@ function shelfBtn() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\")");
+  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("h1");
@@ -1273,7 +1288,7 @@ function nowShelfNowAction(mapIndex) {
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
-      clossFunc("shelfView");
+      clossFunc("shelfView","shelfBkView");
       // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       var objI = mapIndex;
       userMap[mapIndex].postStage = 2;
@@ -1465,7 +1480,7 @@ function reviseLevel() {
   }
   else {
     // alert("請點選其中一張地圖");
-    
+
     remindView("請點選其中一張地圖");
   }
 }

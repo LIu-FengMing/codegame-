@@ -1000,9 +1000,12 @@ function insertAtCursor(myValue) {
   }
 }
 document.getElementById('textarea_0').onkeydown = function (e) {
+  console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
+  }else if(e.keyCode == 17){
+    console.log("按壓ctrl");
   }
 }
 

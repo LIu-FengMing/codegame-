@@ -281,22 +281,11 @@ function helper(mainDiv) {
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "關卡說明";
-  b = document.createElement("textarea");
-  b.setAttribute("id", "helperTextarea0");
+  divTag = document.getElementById("helperView");
+  b = document.createElement("div");
+  b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
-  document.getElementById("helperTextarea0").innerHTML = "文字塊1";
-  b = document.createElement("img");
-  b.setAttribute("id", "helperImg0");
-  b.setAttribute("class", "helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("img");
-  b.setAttribute("id", "helperImg1");
-  b.setAttribute("class", "helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("textarea");
-  b.setAttribute("id", "helperTextarea1");
-  divTag.appendChild(b);
-  document.getElementById("helperTextarea1").innerHTML = "文字塊2";
+  document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 }
 
 /*XX按鈕*/
