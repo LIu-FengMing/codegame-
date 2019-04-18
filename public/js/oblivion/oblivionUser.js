@@ -815,7 +815,7 @@ function createLevelTable(scriptData) {
         b.setAttribute("type", "button");
         b.setAttribute("class", "introductionBtn");
         b.setAttribute("id", "introductionBtn" + i + j);
-        b.setAttribute("onclick", "viewValueMap(this)");
+        b.setAttribute("onclick", "viewValueMap(\"lostUserCreateTable" + i + "\")");
         divTag.appendChild(b);
 
         /*刪除按紐*/
@@ -985,10 +985,9 @@ function delMapAction(objI) {
 /*簡介關卡--功能*/
 function viewValueMap(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
-  var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
+  var mapIndex = parseInt(thisObject.substr("lostUserCreateTable".length));
   // var objI = parseInt((mapIndex - 8) / 10);
   var objI = mapIndex;
-  console.log(objI);
   var obj = userMap[objI];
   if (levelDivAlive) {
     divTag = document.getElementById("levelDiv");
