@@ -38,7 +38,7 @@ var btn1 = document.getElementById('btn1');
 var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
-var haveFoggy = false;
+var haveFoggy = false, complementStep = false;
 var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
@@ -455,7 +455,7 @@ function draw() {
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
-            stepSpeed = gameSpeed+2; //控制車子速度
+            stepSpeed = gameSpeed + 1+Math.floor(ActionLen/50); //控制車子速度
             delayResSpeed = 30;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
@@ -573,12 +573,19 @@ function draw() {
                                     var difY = Math.abs(now_PeooleY - old_PeooleY)
                                     var difE = Math.abs(now_PeooleEESW - old_PeooleEESW)
                                     var dif = difX + difY + difE;
-                                    if (dif <= stepSpeed) {
+                                    if (complementStep) {
+                                        complementStep = false;
+                                        now_PeooleX = old_PeooleX;
+                                        now_PeooleY = old_PeooleY;
+                                        now_PeooleEESW = old_PeooleEESW;
                                         onChanging = false;
+                                    }
+                                    else if (dif <= stepSpeed) {
+                                        complementStep = true;
                                     }
                                     /*
                  
-                                    */ 
+                                    */
                                 }
                             }
                             updatePeopleGraph();
@@ -602,9 +609,17 @@ function draw() {
                                 }
                                 onChanging = true;
                             }
-                            else {
-                                onChanging = false;
+                            else if (complementStep) {
+                                    mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX; 
+                                    mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
+                                    onChanging = false;
                             }
+                            else {
+                                complementStep = true;
+                            }
+                            // else {
+                            //     onChanging = false;
+                            // }
                             updateObjectGraph();
                         }
                     }
@@ -639,7 +654,7 @@ function draw() {
                             else {
                                 o = nowValue.obj;
                             }
-                            if(nowValue.type&&o>-1){
+                            if (nowValue.type && o > -1) {
                                 // console.log(nowValue.type);
                                 // console.log(o,mapObject[o]);
                                 mapObject[o].type = nowValue.type;
@@ -1273,8 +1288,8 @@ function codeOutputTranstionAction() {
                         }
                     }
                 }
-                else{
-                    ns=spaceT[2];
+                else {
+                    ns = spaceT[2];
                 }
                 spaceT[2] = ns;
                 inputList = spaceT[2].split(' ');
@@ -1551,8 +1566,16 @@ function call_JDOODLE_api(scriptData, inputData) {
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
         console.log(obj);
-        //   output.innerHTML = "輸出:\n" + obj.body.output;
-        decode_JDOODLE_api(obj.body.output)
+        
+        if (obj.body.cpuTime!=null && obj.body.memory!=null) {
+            //   output.innerHTML = "輸出:\n" + obj.body.output;
+            decode_JDOODLE_api(obj.body.output)
+        }
+        else {
+            gameEndingCode = 5;
+            console.log("Error =  compiler error");
+            endgame();
+        }
 
     });
 }
@@ -1575,15 +1598,15 @@ function challengeGameAgain() {
 
 /*btn1.onclick = function () {
     challengeGameAgain();
-
+ 
     textarea_1.value = "   .....編譯中~請稍後....."
     codeToCompiler();
-
+ 
     //測試用//
     // decodeOutput = textarea_1.value
     // codeOutputTranstionAction();
     ////
-
+ 
 }*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',

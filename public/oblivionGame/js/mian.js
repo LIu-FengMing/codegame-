@@ -38,8 +38,8 @@ var btn1 = document.getElementById('btn1');
 var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
-var haveFoggy = false;
-var mapID;
+var haveFoggy = false, complementStep = false;
+var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -69,7 +69,7 @@ var initCode = [
 int main(int argc, char *argv[])
 {
 
-    
+
 \treturn 0;
  }
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
-    var path = ["stone", "tree", "tank", "bot",
+    var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
@@ -88,6 +88,7 @@ function setup() {
         "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     ]
     for (var i = 0; i < path.length; ++i) {
+        // var imgpath = "gameNew/gameNew/image/" + path[i] + ".png";
         var imgpath = "GameImage/" + path[i] + ".png";
         var img = loadImage(imgpath);
         imgObject.push(img), imgDic[path[i]] = i.toString();
@@ -98,7 +99,7 @@ function setup() {
     gameEndingCodeDic['3'] = "駛出地圖_失敗";
     gameEndingCodeDic['4'] = "撞到障礙物_失敗";
     gameEndingCodeDic['5'] = "編譯失敗";
-    gameEndingCodeDic['6'] = "被炸彈炸死";
+    gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
     var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
     canvas.parent('divcanvas');
@@ -112,6 +113,7 @@ function setup() {
     textSize(12);
 
 }
+
 
 function init_setup() {
     // changeCollege(10) ;
@@ -262,7 +264,10 @@ function loadData() {
     edgeToHeight = height / mapSize;
     iscreatecanvas = 1;
     action_now = 0;
-
+    peopleGraph = createGraphics(width, height);
+    objectGraph = createGraphics(width, height);
+    backgroundGraph = createGraphics(width, height);
+    pg = createGraphics(edgeToWidth, edgeToHeight);
     updateBackgroundGraph();
     updateObjectGraph();
     updatePeopleGraph();
@@ -303,7 +308,7 @@ function endgame() {
         "turnRight", "turnRight(", "turnRight()", "turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
         "fire", "fire(", "fire()", "fire();",
-        "printf", "printf("];
+        "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
     var words = temp.split('\n');
@@ -429,7 +434,8 @@ function endgame() {
         }
     }
     var result = "";
-    var tc = counter + funname.length + funcounter;
+    // var tc = counter + funname.length + funcounter;
+    var tc = counter + funcounter;
     if (gameEndingCode == 1) {
 
 
@@ -486,6 +492,8 @@ function draw() {
         }
     }
 
+    // console.log(createGraphics(width, height));
+
     if (onChanged) {
         // console.log("running");
         if (!onChanging) {
@@ -499,11 +507,13 @@ function draw() {
             now_PeooleX = old_PeooleX;
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
-            stepSpeed = gameSpeed; //控制車子速度
+            // stepSpeed = gameSpeed; //控制車子速度
+            stepSpeed = gameSpeed + 1+Math.floor(ActionLen/50); //控制車子速度
             delayResSpeed = 30;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
+            var mapObjectChange = true;
             // console.log(action_now);
             if (pipleLineSpeed > 0) {
                 // console.log(pipleLineSpeed);
@@ -545,11 +555,15 @@ function draw() {
                     }
                 }
                 else if (value == 3 || value == 6 || value == 7) {
+                    console.log("gg");
+                    pipleLineSpeed = 0
                     gameEndingCode = value;
+                    // action_now = action_code.length;
+                    // action_code = [];
                     onChanged = false;
                     onChanging = false;
-                    updateCanvas();
-                    break;
+                    // updateCanvas();
+                    // break;
                 }
                 else if (value == 9) {
                     finishCoin = false;
@@ -612,9 +626,19 @@ function draw() {
                                     var difY = Math.abs(now_PeooleY - old_PeooleY)
                                     var difE = Math.abs(now_PeooleEESW - old_PeooleEESW)
                                     var dif = difX + difY + difE;
-                                    if (dif <= stepSpeed) {
+                                    if (complementStep) {
+                                        complementStep = false;
+                                        now_PeooleX = old_PeooleX;
+                                        now_PeooleY = old_PeooleY;
+                                        now_PeooleEESW = old_PeooleEESW;
                                         onChanging = false;
                                     }
+                                    else if (dif <= stepSpeed) {
+                                        complementStep = true;
+                                    }
+                                    /*
+                 
+                                    */
                                 }
                             }
                             updatePeopleGraph();
@@ -638,9 +662,17 @@ function draw() {
                                 }
                                 onChanging = true;
                             }
-                            else {
-                                onChanging = false;
+                            else if (complementStep) {
+                                    mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX; 
+                                    mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
+                                    onChanging = false;
                             }
+                            else {
+                                complementStep = true;
+                            }
+                            // else {
+                            //     onChanging = false;
+                            // }
                             updateObjectGraph();
                         }
                     }
@@ -666,6 +698,7 @@ function draw() {
                                     if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlockfail2") {
                                         if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
                                             o = ssi;
+                                            lock2DelObjpos = o;
                                             break;
                                         }
                                     }
@@ -674,7 +707,11 @@ function draw() {
                             else {
                                 o = nowValue.obj;
                             }
-                            mapObject[o].type = nowValue.type;
+                            if (nowValue.type && o > -1) {
+                                // console.log(nowValue.type);
+                                // console.log(o,mapObject[o]);
+                                mapObject[o].type = nowValue.type;
+                            }
                         }
                     }
                 }
@@ -711,6 +748,21 @@ function draw() {
                             }
                         }
                         // console.log("test O:",o);
+                    }
+                    else if (nowValue.forgetDel > 0) {
+                        // if(nowValue.obj<=lock2DelObjpos+nowValue.forgetDel){
+                        //     o = nowValue.obj+nowValue.forgetDel;
+                        // }
+                        console.log(nowValue.obj, nowValue.forgetDel, lock2DelObjpos);
+
+                        if (nowValue.obj + nowValue.forgetDel < lock2DelObjpos) {
+                            o = nowValue.obj + nowValue.forgetDel;
+                        }
+                        else {
+                            o = nowValue.obj;
+                            console.log("123");
+
+                        }
                     }
                     else {
                         o = nowValue.obj;
@@ -762,14 +814,17 @@ function draw() {
                         }
                     }
                     delayResSpeed * 2;
+                    updateObjectGraph();
+
                 }
                 else {
+                    mapObjectChange = false;
                     --delayResSpeed;
                     if (delayResSpeed < 0) {
                         onChanging = false;
                     }
                 }
-                updateObjectGraph();
+
                 if (!onChanging) {
                     onChanging = false;
                     // console.log(mapObject);
@@ -779,7 +834,9 @@ function draw() {
             break;
         }
         // sleep(50);
-        updateCanvas();
+        if (mapObjectChange == true) {
+            updateCanvas();
+        }
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
@@ -788,7 +845,8 @@ function draw() {
 
 }
 function updateBackgroundGraph() {
-    backgroundGraph = createGraphics(width, height);
+    // backgroundGraph = createGraphics(width, height);
+    backgroundGraph.clear();
     backgroundGraph.noStroke();
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
@@ -815,39 +873,54 @@ function updateBackgroundGraph() {
     }
 
     for (var i = 0; i < end_init.length; ++i) {
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = end_init[i]["postion"][0] * edgeToWidth, dy = end_init[i]["postion"][1] * edgeToHeight, drotate = 360 - end_init[i]["postion"][2] * 90;
         var img = imgObject[parseInt(imgDic[end_init[i]["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         backgroundGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+        pg.pop();
     }
+    var img = imgObject[parseInt(imgDic["start"])];
+    backgroundGraph.image(img, people_init["postion"][0] * edgeToWidth, people_init["postion"][1] * edgeToHeight, edgeToWidth, edgeToHeight);
 }
 
 function updateObjectGraph() {
     HPObject = [];
-    objectGraph = createGraphics(width, height);
+    // objectGraph = createGraphics(width, height);
+    objectGraph.clear();
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];
         var dx = obj["postion"][0] * edgeToWidth, dy = obj["postion"][1] * edgeToHeight;
         var img = imgObject[parseInt(imgDic[obj["type"]])];
         if (obj["type"] == "arrow" || obj["type"] == "arrowWite" || obj["type"] == "enemyTank") {
             var drotate = 360 - obj["postion"][2] * 90;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "bullet") {
             dx = obj["postion"][0], dy = obj["postion"][1];
-            var drotate = obj["postion"][2] * 90 + 90;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var drotate = obj["postion"][2] * 90 + 90;
+
+            var drotate = (4 - obj["postion"][2]) * 90 + 90;
+            // var drotate = obj["postion"][2] * 90 + 270;
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "unlock2" || obj["type"] == "unlockfail2") {
             dx = obj["postion"][0] * edgeToWidth;
@@ -868,14 +941,19 @@ function updateObjectGraph() {
 function updatePeopleGraph() {
     // console.log("updatePeopleGraph");
     if (people_init) {
-        peopleGraph = createGraphics(width, height);
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // peopleGraph = createGraphics(width, height);
+        peopleGraph.clear();
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
         var img = imgObject[parseInt(imgDic[people_init["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         peopleGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+
+        pg.pop();
     }
 
 }
@@ -884,7 +962,6 @@ function updateCanvas() {
     // clear();
     if (haveFoggy) {
         // console.log("sucess");
-        var pg = createGraphics(width, height);
         var img = imgObject[parseInt(imgDic["foggy"])];
         var peopleFoggyImg = imgObject[parseInt(imgDic["peopleFoggy"])];
 
@@ -911,7 +988,8 @@ function updateCanvas() {
             hp = obj["hp"];
             if (obj["type"] == "HPandArmor") {
                 armor = obj["armor"];
-                console.log(dx, dy, " hp:", hp, " armor:", armor);
+                // console.log(dx, dy, )
+                console.log(" hp:", hp, " armor:", armor);
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
@@ -922,8 +1000,16 @@ function updateCanvas() {
                     image(d, dx + 0.4 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {  //35
-                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    // var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    // image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
                 }
                 if (armor > 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
@@ -932,14 +1018,20 @@ function updateCanvas() {
                     image(d, dx + 0.75 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {
-                    var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
-                    image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    if (armor < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
                 }
                 image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
             }
             else if (obj["type"] == "HP") {
                 /*777777 */
-                console.log(dx, dy, "hp:", hp);
+                // console.log(dx, dy, "hp:", hp);
                 // fill(0);
                 var ndy = dy + 0.10 * edgeToHeight;
                 // text(hp, dx+0.65*edgeToWidth, dy);
@@ -950,10 +1042,15 @@ function updateCanvas() {
                     image(d, dx + 0.55 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {  //45
-                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
                 }
-
                 image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
             }
         }
@@ -987,13 +1084,6 @@ function codeToCompiler(stringCode) {
     tempBefore = addfun + tempStr;
     var mapStr = map;
     // console.log("map為:",mapStr);
-
-    console.log( equipmentData.weaponLevel);
-
-    console.log(equipmentData.armorLevel);
-    console.log(user);
-
-
     var peopleAtk = equipmentData.weaponLevel[user.weaponLevel].attack;
     var peopleArmor = equipmentData.armorLevel[user.armorLevel].attack;
     console.log(peopleAtk, peopleArmor);
@@ -1047,9 +1137,15 @@ function codeToCompiler(stringCode) {
     // console.log("mpaobjStr 數量 [初始位置]:",mpaobjStr);
     var str = [mapStr, peopleStr, endlineStr, mpaobjStr].join('\n');
     inputStr = str;
+    if (data.input != "z0") {  //為第 6 關  11
+        inputStr = inputStr + " " + data.input;
+    }
+    else {
+        inputStr = inputStr + data.input;
+    }
 
     // console.log(tempBefore);
-    // console.log(inputStr);
+    console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
 
@@ -1073,6 +1169,8 @@ function clearcodeAndInit() {
 
 function codeOutputTranstionAction() {
     var source = decodeOutput;
+    console.log(source);
+
     // var temp = new Array();
     var temp = [], tempNew = [];
     temp = source.split("syst");
@@ -1173,7 +1271,6 @@ function codeOutputTranstionAction() {
             }
             temp.push(spaceTranstion);
             if (waitD.length > 0) {
-
                 var spaceListD = [];
                 for (var sdi = 0; sdi < waitD.length; ++sdi) {
                     spaceT = waitD[sdi].split(",,");
@@ -1208,20 +1305,54 @@ function codeOutputTranstionAction() {
                     }
                 }
             }
-            // console.log(mapObject);
-            // console.log(spaceT, o - forgetDel, mapObject[o]);
             if (o > -1 && spaceT[2].length > 1) {
                 // console.log(mapObject[o - forgetDel].ans ,"  ",spaceT[2]);
                 var conditionAns = true;
-                // console.log(spaceT[2].length, mapObject[o].ans.length, spaceT[2].indexOf(mapObject[o - forgetDel].ans));
-                // if (spaceT[2].length - mapObject[o].ans.length < 5) {
-                //     var ansIndex = spaceT[2].indexOf(mapObject[o].ans);
-                //     if (ansIndex > -1) {
-                //         conditionAns = true;
+                var inputList = [];
+                // if (spaceT[2].indexOf('') > -1) { //c++的空白
+                //     let s=spaceT[2].split('');
+                //     for (let indexS = 0; indexS < s.length; indexS++) {
+                //         var element = s[indexS];
+                //         let temp=element[2].split(' ');
+                //         for (let indexST = 0; indexST < temp.length; indexST++) {
+                //             inputList.push(temp[indexST]);
+                //         }
                 //     }
                 // }
-                var inputList = spaceT[2].split(' ');
+                // else{
+                //     inputList = spaceT[2].split(' ');
+                // }
+                var indexSpace = spaceT[2].indexOf('');
+                // while(indexSpace>-1){
+                //     console.log(indexSpace,spaceT[2][indexSpace]);
+                //     spaceT[2] = spaceT[2].substr(0, indexSpace-1) + ' ' + spaceT[2].substring(indexSpace+1, spaceT[2].length);
+                //     // spaceT[2][indexSpace]=" ";
+                //     console.log(indexSpace,spaceT[2],spaceT[2][indexSpace]);
+                //     indexSpace=spaceT[2].indexOf('');
+                // }
+                var ns = "";
+                if (indexSpace > -1) {
+                    for (let indexS = 0; indexS < spaceT[2].length; indexS++) {
+                        if (spaceT[2][indexS] == '') {
+                            ns = ns + " ";
+                        }
+                        else {
+                            ns = ns + spaceT[2][indexS];
+                        }
+                    }
+                }
+                else {
+                    ns = spaceT[2];
+                }
+                spaceT[2] = ns;
+                inputList = spaceT[2].split(' ');
+
+
+                //  
+
                 var ansList = mapObject[o].ans.split(' ');
+                console.log("ans:", ansList);
+                console.log("input:", inputList);
                 // console.log(inputList,ansList);
                 for (let ansI = 0; ansI < ansList.length; ansI++) {
                     if (ansList[ansI].length < 1) {
@@ -1255,6 +1386,9 @@ function codeOutputTranstionAction() {
                         continue;
                     }
                 }
+
+                console.log("ans:", ansList);
+                console.log("input:", inputList);
                 if (inputList.length > 0) {
                     conditionAns = false;
                 }
@@ -1337,7 +1471,8 @@ function codeOutputTranstionAction() {
                 for (var di = 1; di < spaceT.length; di++) {
                     var tempList = spaceT[di];
                     var listTranstion = {
-                        obj: parseInt(tempList) - forgetDel
+                        obj: parseInt(tempList) - forgetDel,
+                        forgetDel: forgetDel
                     }
                     spaceList.push(listTranstion);
                 }
@@ -1471,6 +1606,8 @@ function decode_codesheet_api(resp) {
     }
     // runBtn.disabled = false // enable run button
 }
+
+
 function call_JDOODLE_api(scriptData, inputData) {
     var scriptData = {
         input: inputData,
@@ -1483,9 +1620,17 @@ function call_JDOODLE_api(scriptData, inputData) {
     socket.emit('script', scriptData);
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
-        // console.log(obj);
-        //   output.innerHTML = "輸出:\n" + obj.body.output;
-        decode_JDOODLE_api(obj.body.output)
+        console.log(obj);
+        
+        if (obj.body.cpuTime!=null && obj.body.memory!=null) {
+            //   output.innerHTML = "輸出:\n" + obj.body.output;
+            decode_JDOODLE_api(obj.body.output)
+        }
+        else {
+            gameEndingCode = 5;
+            console.log("Error =  compiler error");
+            endgame();
+        }
 
     });
 }
@@ -1508,15 +1653,15 @@ function challengeGameAgain() {
 
 /*btn1.onclick = function () {
     challengeGameAgain();
-
+ 
     textarea_1.value = "   .....編譯中~請稍後....."
     codeToCompiler();
-
+ 
     //測試用//
     // decodeOutput = textarea_1.value
     // codeOutputTranstionAction();
     ////
-
+ 
 }*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',

@@ -38,9 +38,9 @@ var btn1 = document.getElementById('btn1');
 var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
-var haveFoggy = false;
-var animationStack = [], animationStackIndex = 0,animationPlay=false,playSpeed=2;
-
+var haveFoggy = false, complementStep = false;
+var lock2DelObjpos = 0;
+var mapID;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -69,6 +69,8 @@ var initCode = [
 #include <string.h>
 int main(int argc, char *argv[])
 {
+
+    
 \treturn 0;
  }
 
@@ -78,7 +80,7 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
-    var path = ["stone", "tree", "tank", "bot",
+    var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
@@ -87,7 +89,7 @@ function setup() {
         "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     ]
     for (var i = 0; i < path.length; ++i) {
-        var imgpath = "gameNew/gameNew/image/" + path[i] + ".png";
+        var imgpath = "GameImage/" + path[i] + ".png";
         var img = loadImage(imgpath);
         imgObject.push(img), imgDic[path[i]] = i.toString();
     }
@@ -97,7 +99,7 @@ function setup() {
     gameEndingCodeDic['3'] = "駛出地圖_失敗";
     gameEndingCodeDic['4'] = "撞到障礙物_失敗";
     gameEndingCodeDic['5'] = "編譯失敗";
-    gameEndingCodeDic['6'] = "被炸彈炸死";
+    gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
     var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
     canvas.parent('divcanvas');
@@ -108,39 +110,113 @@ function setup() {
     iscreateImg = 1;
 
     /*777777 */
-    textSize(12);
+    // textSize(12);
 
 }
 
 function init_setup() {
     // changeCollege(10) ;
-    var args = new Object();
-    var query = location.search.substring(1);
-    var pairs = query.split("&");
-    for (var i = 0; i < pairs.length; i++) {
-        var pos = pairs[i].indexOf("=");
-        if (pos == -1) continue;
-        var argname = pairs[i].substring(0, pos);
-        var value = pairs[i].substring(pos + 1);
-        args[argname] = decodeURIComponent(value);
-    }
-    mapNum = args.level;
-    var url = "gameNew/gameNew/json/map/map" + colleges[args.level] + ".json";
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            data = JSON.parse(this.responseText);
-            Res_data = JSON.parse(JSON.stringify(data));
-            loadData();
-            loadCanvas();
-            // changeCollege(0);
-            // loadData();
-        }
-    };
-    // xmlhttp.open("GET", "../json/map/maptest.json", true);
 
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    let nowurl = new URL(window.location.href);
+    let pathname = nowurl.pathname;   // "/search"
+    let params = nowurl.searchParams;
+    if (params.has('mapID')) {
+        mapID = params.get('mapID').toString();    // "react"
+        console.log(mapID);
+        var scriptData = {
+            type: "loadMap",
+            mapId: mapID
+        }
+        $.ajax({
+            url: href,              // 要傳送的頁面
+            method: 'POST',               // 使用 POST 方法傳送請求
+            dataType: 'json',             // 回傳資料會是 json 格式
+            data: scriptData,  // 將表單資料用打包起來送出去
+            success: function (res) {
+                var jumpPage = false;
+                console.log(res);
+                //不是自己的地圖檢測畫面
+                console.log(pathname);
+                if (pathname == "/oblivionDetectionView") {
+                    if (res.checked == true) {
+                        jumpPage = true;
+                        alert("已檢測通過");
+                        var index = 0, href = window.location.href;
+                        for (var i = 0; i < href.length; ++i) {
+                            if (href[i] == '/' || href[i] == "\\") {
+                                index = i;
+                            }
+                        }
+                        href = href.substr(0, index + 1) + "oblivionUser";
+                        window.location.replace(href);
+                    }
+                    else if (res.author != user.name) {
+                        jumpPage = true;
+                        alert("不是你的地圖");
+                        var index = 0, href = window.location.href;
+                        for (var i = 0; i < href.length; ++i) {
+                            if (href[i] == '/' || href[i] == "\\") {
+                                index = i;
+                            }
+                        }
+                        href = href.substr(0, index + 1) + "oblivionUser";
+                        window.location.replace(href);
+                    }
+                }
+                //是自己的地圖遊戲畫面
+                else if (pathname == "/oblivionGameView") {
+                    if (res.checked == false) {
+                        jumpPage = true;
+                        alert("地圖測通尚未通過");
+                        var index = 0, href = window.location.href;
+                        for (var i = 0; i < href.length; ++i) {
+                            if (href[i] == '/' || href[i] == "\\") {
+                                index = i;
+                            }
+                        }
+                        href = href.substr(0, index + 1) + "oblivion";
+                        window.location.replace(href);
+                    }
+                    else if (res.author == user.name) {
+                        jumpPage = true;
+                        alert("不能玩自己的地圖");
+                        var index = 0, href = window.location.href;
+                        for (var i = 0; i < href.length; ++i) {
+                            if (href[i] == '/' || href[i] == "\\") {
+                                index = i;
+                            }
+                        }
+                        href = href.substr(0, index + 1) + "oblivion";
+                        window.location.replace(href);
+                    }
+                }
+                if (jumpPage == false) {
+                  divTag = document.getElementById("titleFont");
+                  divTag.innerHTML = "";
+                  divTag.innerHTML = res.mapName;
+                    data = JSON.parse(res.map);
+                    Res_data = JSON.parse(JSON.stringify(data));
+                    loadData();
+                    updateCanvas();
+                }
+            }
+        })
+    }
+    else {
+        var index = 0, href = window.location.href;
+        for (var i = 0; i < href.length; ++i) {
+            if (href[i] == '/' || href[i] == "\\") {
+                index = i;
+            }
+        }
+        href = href.substr(0, index + 1) + "oblivionUser";
+        window.location.replace(href);
+    }
+    // data = JSON.parse(this.responseText);
+    // Res_data = JSON.parse(JSON.stringify(data));
+    // loadData();
+    // updateCanvas();
+
 }
 
 function loadData() {
@@ -169,8 +245,8 @@ function loadData() {
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
-    var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-    var linit = "/* 三星限:" + s1 + "個動作  \n   二星限:" + s2 + "個動作  \n   一星限至為滿足過關條件即可*/ \n\n";
+    // var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    var linit = "";
     var stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
     textarea_0.value = linit + stemp;
     // console.log(initCode);
@@ -202,7 +278,7 @@ function endgame() {
     onChanging = false;
     action_code = [];
     clear();
-    loadCanvas();
+    updateCanvas();
     for (var i = 0; i < end_init.length; ++i) {
         var dx = end_init[i]["postion"][0] * edgeToWidth, dy = end_init[i]["postion"][1] * edgeToHeight, drotate = (360 - end_init[i]["postion"][2] * 90) % 180;
         var ddx = Math.abs(dx - old_PeooleX);
@@ -387,7 +463,7 @@ function endgame() {
     // alert(result);
 }
 
-var test1 = 0;
+
 function draw() {
     // //
     if (iscreatecanvas == 1 && iscreateImg == 1) {
@@ -397,7 +473,7 @@ function draw() {
         updateObjectGraph();
         updatePeopleGraph();
         updateBackgroundGraph();
-        loadCanvas();
+        updateCanvas();
         iscreatecanvas = 2;
     }
     if (iscreatecanvas > 1 && iscreatecanvas < 400) {
@@ -407,109 +483,311 @@ function draw() {
             updateObjectGraph();
             updatePeopleGraph();
             updateBackgroundGraph();
-            loadCanvas();
+            updateCanvas();
         }
     }
-    if(animationPlay){
-        if(iscreatecanvas%playSpeed==0){
-            image(animationStack[animationStackIndex],0,0,width,height);
-            ++animationStackIndex;
-            if(animationStackIndex>=animationStack.length){
-                animationPlay=false
-                animationStackIndex=0;
-                animationStack.length=0;
-                endgame();
+
+    if (onChanged) {
+        // console.log("running");
+        if (!onChanging) {
+            /*優化部分*/
+            ActionLen = action_code.length;
+            if (ActionLen - action_now > 0) {
+                tempAction = action_code[action_now];
+            }
+            /*  */
+            now_PeooleEESW = old_PeooleEESW;
+            now_PeooleX = old_PeooleX;
+            now_PeooleY = old_PeooleY;
+            // stepSpeed = 7; //控制車子速度
+            stepSpeed = gameSpeed; //控制車子速度
+            delayResSpeed = 30;
+            turnSpeed = 2 + Math.floor(stepSpeed / 2);
+        }
+        while (ActionLen - action_now > 0) {
+            // console.log(action_now);
+            if (pipleLineSpeed > 0) {
+                // console.log(pipleLineSpeed);
+                --pipleLineSpeed;
+            }
+            else if (pipleLineO > 0) {
+                var temp = pipleLineO - 1
+                pipleLineO = -1 * (2 + action_now);
+                action_now = temp;
+                tempAction = action_code[action_now];
+            }
+            else if (pipleLineO < -1) {
+                pipleLineO = -1 * (2 + pipleLineO);
+                action_now = pipleLineO;
+                pipleLineO = 0;
+                tempAction = action_code[action_now];
             }
 
+            var type = tempAction.type;
+            if (type == "E") {
+                var value = tempAction.value; // 3駛出地圖 4 碰壁 6被炸死  9金幣未完成 10金幣完成  7沒血了
+                if (value == 2) {
+                    gameEndingCode = value;
+                }
+                else if (value == 4) {
+                    for (let ssi = 0; ssi < mapObject.length; ssi++) {
+                        const x = mapObject[ssi].postion[0];
+                        const y = mapObject[ssi].postion[1];
+                        var dx = Math.abs(x * edgeToWidth - old_PeooleX);
+                        var dy = Math.abs(y * edgeToHeight - old_PeooleY);
+                        // console.log(dx,dy,ssi);
+                        if (dx < stepSpeed && dy < stepSpeed) {
+                            gameEndingCode = value;
+                            onChanged = false;
+                            onChanging = false;
+                            updateCanvas();
+                            break;
+                        }
+                    }
+                }
+                else if (value == 3 || value == 6 || value == 7) {
+                    gameEndingCode = value;
+                    onChanged = false;
+                    onChanging = false;
+                    updateCanvas();
+                    break;
+                }
+                else if (value == 9) {
+                    finishCoin = false;
+                }
+                else if (value == 10) {
+                    finishCoin = true;
+                }
+
+                else {
+                    alert("'E'還未處理,", value);
+                    console.log("'E'還未處理,", value);
+                }
+                ++action_now;
+            }
+            else if (type == "W") {
+                // console.log("123");
+                pipleLineSpeed = 20;
+                ++action_now;
+                pipleLineO = action_now + 1;
+                ++action_now;
+            }
+            else if (type == "M") {
+                var value = tempAction.value;
+                if (!onChanging) {
+                    for (var i = 0; i < value.length; ++i) {
+                        var nowValue = value[i];
+                        if (nowValue.obj == -1) {
+                            old_PeooleX = old_PeooleX + nowValue.value[0] * edgeToWidth;
+                            old_PeooleY = old_PeooleY + nowValue.value[1] * edgeToHeight;
+                            old_PeooleEESW = old_PeooleEESW - nowValue.value[2] * 90;
+                        }
+                        else {
+                            var dx = mapObject[nowValue.obj].postion[0];
+                            var dy = mapObject[nowValue.obj].postion[1];
+                            mapObject[nowValue.obj].oldX = dx + nowValue.value[0] * edgeToWidth;
+                            mapObject[nowValue.obj].oldY = dy + nowValue.value[1] * edgeToHeight;
+                            // console.log(mapObject[nowValue.obj]);
+                        }
+                    }
+                    onChanging = true;
+                }
+                else {
+                    for (var i = 0; i < value.length; ++i) {
+                        var nowValue = value[i];
+                        if (nowValue.obj == -1) {  //人
+                            if (nowValue.value[0] + nowValue.value[1] + nowValue.value[2] == -3) {
+                                //-1,-1,-1 丟到世界外
+                                now_PeooleX = mapSize * edgeToWidth;
+                                now_PeooleY = mapSize * edgeToHeight;
+                                old_PeooleX = mapSize * edgeToWidth;
+                                old_PeooleY = mapSize * edgeToHeight;
+                                onChanging = false;
+                            }
+                            else {
+                                if (pipleLineSpeed == 0) {
+                                    now_PeooleX = now_PeooleX + (stepSpeed * nowValue.value[0]);
+                                    now_PeooleY = now_PeooleY + (stepSpeed * nowValue.value[1]);
+                                    now_PeooleEESW = now_PeooleEESW - (turnSpeed * nowValue.value[2]);
+                                    var difX = Math.abs(now_PeooleX - old_PeooleX)
+                                    var difY = Math.abs(now_PeooleY - old_PeooleY)
+                                    var difE = Math.abs(now_PeooleEESW - old_PeooleEESW)
+                                    var dif = difX + difY + difE;
+                                    if (dif <= stepSpeed) {
+                                        onChanging = false;
+                                    }
+                                }
+                            }
+                            updatePeopleGraph();
+                            break;
+                        }
+                        else {      //物件的
+                            var difX = Math.abs(mapObject[nowValue.obj].postion[0] - mapObject[nowValue.obj].oldX);
+                            var difY = Math.abs(mapObject[nowValue.obj].postion[1] - mapObject[nowValue.obj].oldY);
+                            var dif = difX + difY;
+                            // console.log(dif);
+                            if (dif > stepSpeed) {
+                                for (var ssi = 0; ssi < 2; ++ssi) {
+                                    if (Math.abs(nowValue.value[ssi]) > 0.1) {
+                                        if (nowValue.value[ssi] > 0) {
+                                            mapObject[nowValue.obj].postion[ssi] += stepSpeed;
+                                        }
+                                        else {
+                                            mapObject[nowValue.obj].postion[ssi] -= stepSpeed;
+                                        }
+                                    }
+                                }
+                                onChanging = true;
+                            }
+                            else {
+                                onChanging = false;
+                            }
+                            updateObjectGraph();
+                        }
+                    }
+
+                }
+                if (onChanging == false) {
+                    ++action_now;
+                }
+            }
+            else if (type == "C") {
+                if (onChanging == false) {
+                    var value = tempAction.value;
+                    for (var i = 0; i < value.length; ++i) {
+                        var o = -1;
+                        var nowValue = value[i];
+                        if (nowValue.obj == -1) {
+                            people_init["type"] = nowValue.type;
+                        }
+                        else {
+                            if (nowValue.x > -1 && nowValue.y > -1) {
+                                for (let ssi = 0; ssi < mapObject.length && o < 0; ssi++) {
+                                    // console.log(mapObject[ssi].type);
+                                    if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlockfail2") {
+                                        if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
+                                            o = ssi;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                o = nowValue.obj;
+                            }
+                            mapObject[o].type = nowValue.type;
+                        }
+                    }
+                }
+                var delayAnimn = tempAction.value[0].type;
+                if (delayAnimn == "unlock" || delayAnimn == "unlock2" || delayAnimn == "unlockfail2" || delayAnimn == "enemyDead") {
+                    onChanging = true;
+                    --delayResSpeed;
+                    if (delayResSpeed < 0) {
+                        onChanging = false;
+                        ++action_now;
+                    }
+                }
+                else {
+                    onChanging = false;
+                    ++action_now;
+                }
+                updateObjectGraph();
+            }
+            else if (type == "D") {
+                var value = tempAction.value;
+                // console.log(mapObject);
+                for (var i = 0; i < value.length; ++i) {
+                    var nowValue = value[i];
+                    var o = -1;
+                    // console.log("und Test:",nowValue,nowValue.x,nowValue.y);
+                    if (nowValue.x > -1 && nowValue.y > -1) {
+                        for (let ssi = 0; ssi < mapObject.length && o < 0; ssi++) {
+                            // console.log(mapObject[ssi].type);
+                            if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlock2") {
+                                if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
+                                    o = ssi;
+                                    break;
+                                }
+                            }
+                        }
+                        // console.log("test O:",o);
+                    }
+                    else {
+                        o = nowValue.obj;
+                    }
+                    mapObject.splice(o, 1);
+                }
+                // console.log(mapObject);
+                updateObjectGraph();
+                ++action_now;
+            }
+            else if (type == "A") {
+                var value = tempAction.value;
+                if (onChanging == false) {
+                    for (var i = 0; i < value.length; ++i) {
+                        var nowValue = value[i];
+                        var nowList = [nowValue.value[0], nowValue.value[1], nowValue.value[2]]
+                        if (nowValue.type == "bullet") {
+                            nowList[0] = nowList[0] * edgeToWidth;
+                            nowList[1] = nowList[1] * edgeToHeight;
+                            var obj = { "type": "bullet", "postion": nowList };
+                            mapObject.push(obj);
+                        }
+                        else if (nowValue.type == "HP") {
+                            onChanging = true;
+                            if (nowValue.obj == -1) {
+                                var hp = 5, armor = 0;
+                                if (nowValue.value[2] >= 5) {
+                                    hp = 5;
+                                    armor = nowValue.value[2] - hp;
+                                }
+                                else {
+                                    hp = nowValue.value[2];
+                                    armor = 0;
+                                }
+                                var obj = { "type": "HPandArmor", "postion": nowList, "hp": hp, "armor": armor };
+                                mapObject.push(obj);
+                            }
+                            else {
+                                var obj = { "type": "HP", "postion": nowList, "hp": nowValue.value[2] };
+                                mapObject.push(obj);
+                            }
+                        }
+                        else {
+                            var obj = { "type": nowValue.type, "postion": nowList };
+                            mapObject.push(obj);
+                        }
+                        if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
+                            console.log("error:", mapObject.length - 1, " ", nowValue.obj);
+                        }
+                    }
+                    delayResSpeed * 2;
+                }
+                else {
+                    --delayResSpeed;
+                    if (delayResSpeed < 0) {
+                        onChanging = false;
+                    }
+                }
+                updateObjectGraph();
+                if (!onChanging) {
+                    onChanging = false;
+                    // console.log(mapObject);
+                    ++action_now;
+                }
+            }
+            break;
         }
-        ++iscreatecanvas;
-        if(iscreatecanvas>10000000000){
-            iscreatecanvas=400;
+        // sleep(50);
+        updateCanvas();
+        ////old///
+        if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
+            endgame();
         }
     }
-
 
 }
-function loadCanvas() {
-    // clear();
-    if (haveFoggy) {
-        // console.log("sucess");
-        var img = imgObject[parseInt(imgDic["foggy"])];
-        var peopleFoggyImg = imgObject[parseInt(imgDic["peopleFoggy"])];
-
-        var dx = now_PeooleX - edgeToWidth, dy = now_PeooleY - edgeToHeight;
-
-        var dWidth = edgeToWidth * 3, dHight = edgeToHeight * 3;
-        // console.log(dWidth, dHight);
-        image(img, 0, 0, width, height);
-        image(backgroundGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        image(objectGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        image(peopleGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        image(peopleFoggyImg, dx, dy, dWidth, dHight);
-
-    }
-    else {
-        image(backgroundGraph, 0, 0, width, height);
-        image(objectGraph, 0, 0, width, height);
-        image(peopleGraph, 0, 0, width, height);
-        for (let HPi = 0; HPi < HPObject.length; HPi++) {
-            var obj = HPObject[HPi];
-            var img = imgObject[parseInt(imgDic[obj["type"]])];
-            var dx = obj["postion"][0] * edgeToWidth;
-            var dy = obj["postion"][1] * edgeToHeight + 0.85 * edgeToHeight;
-            hp = obj["hp"];
-            if (obj["type"] == "HPandArmor") {
-                armor = obj["armor"];
-                console.log(dx, dy, " hp:", hp, " armor:", armor);
-                // fill(0);
-                // text(hp, dx+0.35*edgeToWidth, dy);
-                // text(armor, dx+0.85*edgeToWidth, dy);
-                if(hp>10){//30 40
-                    var d10= imgObject[parseInt(imgDic[Math.floor(hp/10).toString()])];
-                    var d= imgObject[parseInt(imgDic[Math.floor(hp%10).toString()])];
-                    image(d10,dx+0.3*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                    image(d,dx+0.4*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-                else{  //35
-                    var d= imgObject[parseInt(imgDic[Math.floor(hp%10).toString()])];
-                    image(d,dx+0.30*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-                if(armor>10){ //60 70
-                    var d10= imgObject[parseInt(imgDic[Math.floor(armor/10).toString()])];
-                    var d= imgObject[parseInt(imgDic[Math.floor(armor%10).toString()])];
-                    image(d10,dx+0.65*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                    image(d,dx+0.75*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-                else{
-                    var d= imgObject[parseInt(imgDic[Math.floor(armor%10).toString()])];
-                    image(d,dx+0.65*edgeToWidth, dy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-                image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
-            }
-            else if (obj["type"] == "HP") {
-                 /*777777 */
-                console.log(dx, dy, "hp:", hp);
-                // fill(0);
-                var ndy=dy+0.10*edgeToHeight;
-                // text(hp, dx+0.65*edgeToWidth, dy);
-                if(hp>10){//40 50
-                    var d10= imgObject[parseInt(imgDic[Math.floor(hp/10).toString()])];
-                    var d= imgObject[parseInt(imgDic[Math.floor(hp%10).toString()])];
-                    image(d10,dx+0.45*edgeToWidth, ndy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                    image(d,dx+0.55*edgeToWidth, ndy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-                else{  //45
-                    var d= imgObject[parseInt(imgDic[Math.floor(hp%10).toString()])];
-                    image(d,dx+0.45*edgeToWidth, ndy, edgeToWidth*0.1, edgeToHeight * 0.15);
-                }
-
-                image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
-            }
-        }
-    }
-    return true;
-}
-
 function updateBackgroundGraph() {
     backgroundGraph = createGraphics(width, height);
     backgroundGraph.noStroke();
@@ -605,7 +883,6 @@ function updatePeopleGraph() {
 
 function updateCanvas() {
     // clear();
-    var stackPg = createGraphics(width, height);
     if (haveFoggy) {
         // console.log("sucess");
         var pg = createGraphics(width, height);
@@ -616,17 +893,17 @@ function updateCanvas() {
 
         var dWidth = edgeToWidth * 3, dHight = edgeToHeight * 3;
         // console.log(dWidth, dHight);
-        stackPg.image(img, 0, 0, width, height);
-        stackPg.image(backgroundGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        stackPg.image(objectGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        stackPg.image(peopleGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        stackPg.image(peopleFoggyImg, dx, dy, dWidth, dHight);
+        image(img, 0, 0, width, height);
+        image(backgroundGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
+        image(objectGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
+        image(peopleGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
+        image(peopleFoggyImg, dx, dy, dWidth, dHight);
 
     }
     else {
-        stackPg.image(backgroundGraph, 0, 0, width, height);
-        stackPg.image(objectGraph, 0, 0, width, height);
-        stackPg.image(peopleGraph, 0, 0, width, height);
+        image(backgroundGraph, 0, 0, width, height);
+        image(objectGraph, 0, 0, width, height);
+        image(peopleGraph, 0, 0, width, height);
         for (let HPi = 0; HPi < HPObject.length; HPi++) {
             var obj = HPObject[HPi];
             var img = imgObject[parseInt(imgDic[obj["type"]])];
@@ -635,31 +912,31 @@ function updateCanvas() {
             hp = obj["hp"];
             if (obj["type"] == "HPandArmor") {
                 armor = obj["armor"];
-                // console.log(dx, dy, " hp:", hp, " armor:", armor);
+                console.log(dx, dy, " hp:", hp, " armor:", armor);
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
                 if (hp > 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    stackPg.image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
-                    stackPg.image(d, dx + 0.4 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.4 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {  //35
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    stackPg.image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 if (armor > 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
-                    stackPg.image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
-                    stackPg.image(d, dx + 0.75 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.75 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
-                    stackPg.image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
-                stackPg.image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
+                image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
             }
             else if (obj["type"] == "HP") {
                 /*777777 */
@@ -670,19 +947,18 @@ function updateCanvas() {
                 if (hp > 10) {//40 50
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    stackPg.image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
-                    stackPg.image(d, dx + 0.55 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.55 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
                 else {  //45
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                    stackPg.image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                 }
 
-                stackPg.image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
+                image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
             }
         }
     }
-    animationStack.push(stackPg);
     return true;
 }
 
@@ -712,9 +988,16 @@ function codeToCompiler(stringCode) {
     tempBefore = addfun + tempStr;
     var mapStr = map;
     // console.log("map為:",mapStr);
+
+    console.log( equipmentData.weaponLevel);
+
+    console.log(equipmentData.armorLevel);
+    console.log(user);
+
+
     var peopleAtk = equipmentData.weaponLevel[user.weaponLevel].attack;
     var peopleArmor = equipmentData.armorLevel[user.armorLevel].attack;
-    // console.log(peopleAtk, peopleArmor);
+    console.log(peopleAtk, peopleArmor);
     var peopleStr = people_init["postion"][0].toString() + " " + people_init["postion"][1].toString() + " " + people_init["postion"][2].toString();
     // if (people_init["hp"]) {
     //     peopleStr = peopleStr + " " + people_init["hp"] + " " + people_init["armor"] + " " + people_init["atk"];
@@ -784,317 +1067,6 @@ function codeToCompiler(stringCode) {
 
     // }  //編譯結果在  decodeOutput
 }
-
-function createAnimationImage() {
-    animationStack=[],animationStackIndex=0;
-    while (1) {
-        if (onChanged) {
-            // console.log("running");
-            if (!onChanging) {
-                /*優化部分*/
-                ActionLen = action_code.length;
-                if (ActionLen - action_now > 0) {
-                    tempAction = action_code[action_now];
-                }
-                /*  */
-                now_PeooleEESW = old_PeooleEESW;
-                now_PeooleX = old_PeooleX;
-                now_PeooleY = old_PeooleY;
-                // stepSpeed = 7; //控制車子速度
-                stepSpeed = 2; //控制車子速度
-                delayResSpeed = 30;
-                // turnSpeed = Math.floor(stepSpeed / 5) * 5;
-                turnSpeed = 2;
-            }
-            while (ActionLen - action_now > 0) {
-                // console.log(action_now);
-                if (pipleLineSpeed > 0) {
-                    // console.log(pipleLineSpeed);
-                    --pipleLineSpeed;
-                }
-                else if (pipleLineO > 0) {
-                    var temp = pipleLineO - 1
-                    pipleLineO = -1 * (2 + action_now);
-                    action_now = temp;
-                    tempAction = action_code[action_now];
-                }
-                else if (pipleLineO < -1) {
-                    pipleLineO = -1 * (2 + pipleLineO);
-                    action_now = pipleLineO;
-                    pipleLineO = 0;
-                    tempAction = action_code[action_now];
-                }
-
-                var type = tempAction.type;
-                if (type == "E") {
-                    var value = tempAction.value; // 3駛出地圖 4 碰壁 6被炸死  9金幣未完成 10金幣完成  7沒血了
-                    if (value == 2) {
-                        gameEndingCode = value;
-                    }
-                    else if (value == 4) {
-                        for (let ssi = 0; ssi < mapObject.length; ssi++) {
-                            const x = mapObject[ssi].postion[0];
-                            const y = mapObject[ssi].postion[1];
-                            var dx = Math.abs(x * edgeToWidth - old_PeooleX);
-                            var dy = Math.abs(y * edgeToHeight - old_PeooleY);
-                            // console.log(dx,dy,ssi);
-                            if (dx < stepSpeed && dy < stepSpeed) {
-                                gameEndingCode = value;
-                                onChanged = false;
-                                onChanging = false;
-                                updateCanvas();
-                                break;
-                            }
-                        }
-                    }
-                    else if (value == 3 || value == 6 || value == 7) {
-                        gameEndingCode = value;
-                        onChanged = false;
-                        onChanging = false;
-                        updateCanvas();
-                        break;
-                    }
-                    else if (value == 9) {
-                        finishCoin = false;
-                    }
-                    else if (value == 10) {
-                        finishCoin = true;
-                    }
-
-                    else {
-                        alert("'E'還未處理,", value);
-                        console.log("'E'還未處理,", value);
-                    }
-                    ++action_now;
-                }
-                else if (type == "W") {
-                    // console.log("123");
-                    pipleLineSpeed = 20;
-                    ++action_now;
-                    pipleLineO = action_now + 1;
-                    ++action_now;
-                }
-                else if (type == "M") {
-                    var value = tempAction.value;
-                    if (!onChanging) {
-                        for (var i = 0; i < value.length; ++i) {
-                            var nowValue = value[i];
-                            if (nowValue.obj == -1) {
-                                old_PeooleX = old_PeooleX + nowValue.value[0] * edgeToWidth;
-                                old_PeooleY = old_PeooleY + nowValue.value[1] * edgeToHeight;
-                                old_PeooleEESW = old_PeooleEESW - nowValue.value[2] * 90;
-                            }
-                            else {
-                                var dx = mapObject[nowValue.obj].postion[0];
-                                var dy = mapObject[nowValue.obj].postion[1];
-                                mapObject[nowValue.obj].oldX = dx + nowValue.value[0] * edgeToWidth;
-                                mapObject[nowValue.obj].oldY = dy + nowValue.value[1] * edgeToHeight;
-                                // console.log(mapObject[nowValue.obj]);
-                            }
-                        }
-                        onChanging = true;
-                    }
-                    else {
-                        for (var i = 0; i < value.length; ++i) {
-                            var nowValue = value[i];
-                            if (nowValue.obj == -1) {  //人
-                                if (nowValue.value[0] + nowValue.value[1] + nowValue.value[2] == -3) {
-                                    //-1,-1,-1 丟到世界外
-                                    now_PeooleX = mapSize * edgeToWidth;
-                                    now_PeooleY = mapSize * edgeToHeight;
-                                    old_PeooleX = mapSize * edgeToWidth;
-                                    old_PeooleY = mapSize * edgeToHeight;
-                                    onChanging = false;
-                                }
-                                else {
-                                    if (pipleLineSpeed == 0) {
-                                        now_PeooleX = now_PeooleX + (stepSpeed * nowValue.value[0]);
-                                        now_PeooleY = now_PeooleY + (stepSpeed * nowValue.value[1]);
-                                        now_PeooleEESW = now_PeooleEESW - (turnSpeed * nowValue.value[2]);
-                                        var difX = Math.abs(now_PeooleX - old_PeooleX)
-                                        var difY = Math.abs(now_PeooleY - old_PeooleY)
-                                        var difE = Math.abs(now_PeooleEESW - old_PeooleEESW)
-                                        var dif = difX + difY + difE;
-                                        if (dif <= stepSpeed) {
-                                            onChanging = false;
-                                        }
-                                    }
-                                }
-                                updatePeopleGraph();
-                                break;
-                            }
-                            else {      //物件的
-                                var difX = Math.abs(mapObject[nowValue.obj].postion[0] - mapObject[nowValue.obj].oldX);
-                                var difY = Math.abs(mapObject[nowValue.obj].postion[1] - mapObject[nowValue.obj].oldY);
-                                var dif = difX + difY;
-                                // console.log(dif);
-                                if (dif > stepSpeed) {
-                                    for (var ssi = 0; ssi < 2; ++ssi) {
-                                        if (Math.abs(nowValue.value[ssi]) > 0.1) {
-                                            if (nowValue.value[ssi] > 0) {
-                                                mapObject[nowValue.obj].postion[ssi] += stepSpeed;
-                                            }
-                                            else {
-                                                mapObject[nowValue.obj].postion[ssi] -= stepSpeed;
-                                            }
-                                        }
-                                    }
-                                    onChanging = true;
-                                }
-                                else {
-                                    onChanging = false;
-                                }
-                                updateObjectGraph();
-                            }
-                        }
-
-                    }
-                    if (onChanging == false) {
-                        ++action_now;
-                    }
-                }
-                else if (type == "C") {
-                    if (onChanging == false) {
-                        var value = tempAction.value;
-                        for (var i = 0; i < value.length; ++i) {
-                            var o = -1;
-                            var nowValue = value[i];
-                            if (nowValue.obj == -1) {
-                                people_init["type"] = nowValue.type;
-                            }
-                            else {
-                                if (nowValue.x > -1 && nowValue.y > -1) {
-                                    for (let ssi = 0; ssi < mapObject.length && o < 0; ssi++) {
-                                        // console.log(mapObject[ssi].type);
-                                        if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlockfail2") {
-                                            if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
-                                                o = ssi;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                else {
-                                    o = nowValue.obj;
-                                }
-                                mapObject[o].type = nowValue.type;
-                            }
-                        }
-                    }
-                    var delayAnimn = tempAction.value[0].type;
-                    if (delayAnimn == "unlock" || delayAnimn == "unlock2" || delayAnimn == "unlockfail2" || delayAnimn == "enemyDead") {
-                        onChanging = true;
-                        --delayResSpeed;
-                        if (delayResSpeed < 0) {
-                            onChanging = false;
-                            ++action_now;
-                        }
-                    }
-                    else {
-                        onChanging = false;
-                        ++action_now;
-                    }
-                    updateObjectGraph();
-                }
-                else if (type == "D") {
-                    var value = tempAction.value;
-                    // console.log(mapObject);
-                    for (var i = 0; i < value.length; ++i) {
-                        var nowValue = value[i];
-                        var o = -1;
-                        // console.log("und Test:",nowValue,nowValue.x,nowValue.y);
-                        if (nowValue.x > -1 && nowValue.y > -1) {
-                            for (let ssi = 0; ssi < mapObject.length && o < 0; ssi++) {
-                                // console.log(mapObject[ssi].type);
-                                if (mapObject[ssi].type == "lock2" || mapObject[ssi].type == "unlock2") {
-                                    if (mapObject[ssi].postion[0] == nowValue.x && mapObject[ssi].postion[1] == nowValue.y) {
-                                        o = ssi;
-                                        break;
-                                    }
-                                }
-                            }
-                            // console.log("test O:",o);
-                        }
-                        else {
-                            o = nowValue.obj;
-                        }
-                        mapObject.splice(o, 1);
-                    }
-                    // console.log(mapObject);
-                    updateObjectGraph();
-                    ++action_now;
-                }
-                else if (type == "A") {
-                    var value = tempAction.value;
-                    if (onChanging == false) {
-                        for (var i = 0; i < value.length; ++i) {
-                            var nowValue = value[i];
-                            var nowList = [nowValue.value[0], nowValue.value[1], nowValue.value[2]]
-                            if (nowValue.type == "bullet") {
-                                nowList[0] = nowList[0] * edgeToWidth;
-                                nowList[1] = nowList[1] * edgeToHeight;
-                                var obj = { "type": "bullet", "postion": nowList };
-                                mapObject.push(obj);
-                            }
-                            else if (nowValue.type == "HP") {
-                                onChanging = true;
-                                if (nowValue.obj == -1) {
-                                    var hp = 5, armor = 0;
-                                    if (nowValue.value[2] >= 5) {
-                                        hp = 5;
-                                        armor = nowValue.value[2] - hp;
-                                    }
-                                    else {
-                                        hp = nowValue.value[2];
-                                        armor = 0;
-                                    }
-                                    var obj = { "type": "HPandArmor", "postion": nowList, "hp": hp, "armor": armor };
-                                    mapObject.push(obj);
-                                }
-                                else {
-                                    var obj = { "type": "HP", "postion": nowList, "hp": nowValue.value[2] };
-                                    mapObject.push(obj);
-                                }
-                            }
-                            else {
-                                var obj = { "type": nowValue.type, "postion": nowList };
-                                mapObject.push(obj);
-                            }
-                            if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
-                                console.log("error:", mapObject.length - 1, " ", nowValue.obj);
-                            }
-                        }
-                        delayResSpeed * 2;
-                    }
-                    else {
-                        --delayResSpeed;
-                        if (delayResSpeed < 0) {
-                            onChanging = false;
-                        }
-                    }
-                    updateObjectGraph();
-                    if (!onChanging) {
-                        onChanging = false;
-                        // console.log(mapObject);
-                        ++action_now;
-                    }
-                }
-                break;
-            }
-            // sleep(50);
-            updateCanvas();
-            ////old///
-            if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
-                // endgame();
-                break;
-            }
-        }
-    }
-    animationPlay=true;
-    console.log(animationStack);
-}
-
-
 function clearcodeAndInit() {
     // console.log(initCode);
     textarea_0.value = initCode;
@@ -1420,7 +1392,6 @@ function codeOutputTranstionAction() {
         action_code = temp;
         gameEndingCode = 0;
         action_now = 0;
-        createAnimationImage();
         console.log(action_code);
     }
     else {
