@@ -114,7 +114,10 @@ function setup() {
 
 }
 
-
+window.onresize = function () {
+    console.log("ddd");
+    setup();
+}
 function init_setup() {
     // changeCollege(10) ;
 

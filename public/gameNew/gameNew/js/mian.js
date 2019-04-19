@@ -77,6 +77,8 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
+    console.log("setup");
+    
     var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
@@ -142,7 +144,10 @@ function init_setup() {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
-
+window.onresize = function () {
+    console.log("ddd");
+    setup();
+}
 function loadData() {
     let mapNumber = data;
     if (mapNumber.foggy) {
@@ -455,7 +460,7 @@ function draw() {
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
-            stepSpeed = gameSpeed + 1+Math.floor(ActionLen/50); //控制車子速度
+            stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
             delayResSpeed = 30;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
@@ -610,9 +615,9 @@ function draw() {
                                 onChanging = true;
                             }
                             else if (complementStep) {
-                                    mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX; 
-                                    mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
-                                    onChanging = false;
+                                mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX;
+                                mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
+                                onChanging = false;
                             }
                             else {
                                 complementStep = true;
@@ -1566,8 +1571,8 @@ function call_JDOODLE_api(scriptData, inputData) {
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
         console.log(obj);
-        
-        if (obj.body.cpuTime!=null && obj.body.memory!=null) {
+
+        if (obj.body.cpuTime != null && obj.body.memory != null) {
             //   output.innerHTML = "輸出:\n" + obj.body.output;
             decode_JDOODLE_api(obj.body.output)
         }
