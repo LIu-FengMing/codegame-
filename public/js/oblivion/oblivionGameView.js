@@ -51,8 +51,9 @@ function back() {
   window.location.replace(href);
   console.log(href);
 }
+var mapMessage;
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData;
+var user,equipmentData, achievemenData, dictionaryData;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData, evaluation = 0, GamestarNum = 0;
 var scriptData = {
@@ -124,10 +125,8 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-
 function initHome() {
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
-    //
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
@@ -167,8 +166,10 @@ function initHome() {
       passLevel++;
     }
   }
-
   selectFunc(passLevel);
+}
+function getMapDescription(thisDescription) {
+  mapMessage = thisDescription;
 }
 
 //---------紀錄關卡資訊---------//
@@ -304,6 +305,10 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
+
+
+  console.log("mapMessage=",mapMessage);
+  console.log(mapMessage);
   divID = "equipageView";
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
@@ -324,7 +329,7 @@ function helper(mainDiv) {
   b = document.createElement("div");
   b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
-  document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  document.getElementById("helperTextarea3").innerHTML = mapMessage;
 }
 
 /*XX按鈕*/
@@ -854,7 +859,7 @@ function backToMapBtn() {
     window.location.replace(href);
   }
   else if (evaluation < 1) {
-    
+
     remindView("請給關卡評價");
     // alert("請給關卡評價");
   }
@@ -935,7 +940,6 @@ function createLoadingView() {
     divTag.appendChild(b);
   }
 }
-
 
 function closeLoadingView() {
   var divTag = document.getElementById("loadingView");

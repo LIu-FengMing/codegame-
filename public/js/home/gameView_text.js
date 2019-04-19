@@ -125,7 +125,6 @@ function error() {
 }
 function initHome() {
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
-    //
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");

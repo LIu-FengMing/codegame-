@@ -315,8 +315,6 @@ var divTag, level;
 var lastObject = null;
 
 function selectionLevel(thisObject) {
-
-
   if (lastObject != null) {
     lastObject.style.backgroundColor = "#99CCFF";
   }
