@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/oblivionUser.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all/js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
     <title></title>
   </head>
   <body>
@@ -15,8 +17,18 @@
           <input type="button" id="helperBtn" value="" onclick="helper('createrDiv')">
         </div>
         <div class="box centerLost" id="centerLost">
-          <h1>我的自訂關卡</h1>
+          <h1 class="titleH1">我的自訂關卡</h1>
           <input type="button" value="" id="goBack3" onclick="back()">
+          <select id="levelSelect" name="">
+            <option value="all">&nbsp全&nbsp部</option>
+            <option value="canPlay">可遊玩</option>
+          </select>
+          <div class="search-box">
+            <input class="search-text" type="text" name="" placeholder="關卡名稱">
+            <a class="search-btn"href="#">
+              <i class="fas fa-search"></i>
+            </a>
+          </div>
           <div id="createrDiv">
             <table id="lostCreateTable" border=5 RULES=ALL>
               <tr>

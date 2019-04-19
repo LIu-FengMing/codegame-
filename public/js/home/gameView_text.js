@@ -976,7 +976,17 @@ function closeLoadingView() {
 
 }
 
-/*textarea tab鍵*/
+/*文字區加行數*/
+$(function() {
+  $(".lined").linedtextarea({
+    selectedLine: 1
+  });
+});
+$.each($("textarea"), function(i, n){
+  $(n).css("height", n.scrollHeight + "px");
+})
+
+/*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
   //IE support
@@ -999,14 +1009,43 @@ function insertAtCursor(myValue) {
   }
 }
 document.getElementById('textarea_0').onkeydown = function (e) {
+  var el = document.getElementById('textarea_0');
+  var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+  var fontSize = parseFloat(style);
   console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
-  }else if(e.keyCode == 17){
-    console.log("按壓ctrl");
+  }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
+    fontSize = parseFloat(style);
+    fontSize += 1;
+    if(fontSize > 25){
+      fontSize = 25
+    }
+    el.style.fontSize = fontSize + 'px';
+  }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
+    fontSize = parseFloat(style);
+    el.style.fontSize = (fontSize - 1) + 'px';
+  }
+  fontSize = parseFloat(style);
+  console.log(fontSize);
+}
+
+/*滑鼠事件區*/
+/*將ctrl+滾輪事件移除*/
+var scrollFunc=function(e){
+  e=e || window.event;
+  if(e.wheelDelta && event.ctrlKey){//IE/Opera/Chrome
+    event.returnValue=false;
+  }else if(e.detail){//Firefox
+    event.returnValue=false;
   }
 }
+/*註冊事件*/
+if(document.addEventListener){
+document.addEventListener('DOMMouseScroll',scrollFunc,false);
+}
+window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome/Safari
 
 /*關卡說明*/
 mainDescription = {
