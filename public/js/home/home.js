@@ -375,7 +375,9 @@ function changePassword(thisDiv){
   b.setAttribute("type", "button");
   b.setAttribute("id", "confirmBtn");
   b.setAttribute("value", "確認修改");
-  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  // b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "changePass()");
+
   divTag.appendChild(b);
 }
 
@@ -383,8 +385,15 @@ function changePassword(thisDiv){
 //              homeBtn.js                        //
 //////////////////////////////////////////////////
 var divTag, b, divID, divID2;
+function changePass() {
+  oldPassword = document.getElementById(oldPassword).value;  
+  newPassword = document.getElementById(newPassword).value;
+  checkPassword = document.getElementById(checkPassword).value;
+  if(oldPassword.length<1||newPassword.length<1||checkPassword.length<1){
+    alert("未填完")
+  }
 
-
+}
 
 /*裝備*/
 function equipageView(mainDiv) {
