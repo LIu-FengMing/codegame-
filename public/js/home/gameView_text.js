@@ -1012,7 +1012,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  console.log(e.keyCode);
+  // console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
@@ -1028,7 +1028,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
     el.style.fontSize = (fontSize - 1) + 'px';
   }
   fontSize = parseFloat(style);
-  console.log(fontSize);
+  // console.log(fontSize);
 }
 
 /*滑鼠事件區*/

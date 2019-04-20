@@ -78,7 +78,7 @@ textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
     console.log("setup");
-    
+
     var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
@@ -102,10 +102,10 @@ function setup() {
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
     // if(windowWidth * 0.4>=560&&windowHeight * 0.565.8)
-    var winW=Math.max(windowWidth * 0.4,506);
-    var winH=Math.max(windowHeight * 0.895,540);
+    var winW = Math.max(windowWidth * 0.4, 506);
+    var winH = Math.max(windowHeight * 0.895, 540);
     // var canvas = createCanvas((windowWidth * 0.4)-6, (windowHeight * 0.895)-5);
-    var canvas = createCanvas(winW-6,winH-5);
+    var canvas = createCanvas(winW - 6, winH - 5);
     canvas.parent('divcanvas');
     canvas.background(211, 211, 211);
     width = canvas.width;
@@ -137,8 +137,43 @@ function init_setup() {
         if (this.readyState == 4 && this.status == 200) {
             data = JSON.parse(this.responseText);
             Res_data = JSON.parse(JSON.stringify(data));
-            loadData();
-            updateCanvas();
+            if (data.presetCode) {
+                var file = data.presetCode;
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        initCode = this.responseText.toString();
+                        // console.log(initCode);
+
+                        mapwinLinit = data['winLinit'];
+                        var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+                        var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+                        var stemp;
+                        if (initCode.indexOf('#') > 0) {
+                            stemp = initCode.substr(initCode.indexOf('#') - 1);
+                        }
+                        else {
+                            stemp = initCode;
+                        }
+                        textarea_0.value = linit + stemp;
+                        
+                        // stemp = initCode.substr(initCode.indexOf('#') - 1);
+                        initCode = linit + stemp;
+                        // console.log("linit + stemp=",linit,stemp);
+                        // console.log("initCode=",initCode);
+                        
+                        loadData();
+                        updateCanvas();
+                    }
+                };
+                var url = "gameNew/gameNew/json/" + file + ".cpp"
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
+            else {
+                loadData();
+                updateCanvas();
+            }
+
             // changeCollege(0);
             // loadData();
         }
@@ -167,46 +202,60 @@ function loadData() {
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
-    if (mapNumber.presetCode) {
-        var file = mapNumber.presetCode;
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var initCode = this.responseText.toString();
-                console.log(initCode);
+    // if (mapNumber.presetCode) {
+    //     var file = mapNumber.presetCode;
+    //     xmlhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             var initCode = this.responseText.toString();
+    //             console.log(initCode);
 
-                var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-                var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
-                var stemp;
-                if (initCode.indexOf('#') > 0) {
-                    stemp = initCode.substr(initCode.indexOf('#') - 1);
-                }
-                else {
-                    stemp = initCode;
-                }
-                textarea_0.value = linit + stemp;
-                var stemp = initCode.substr(initCode.indexOf('#') - 1);
-                initCode = linit + stemp;
-            }
-        };
-        var url = "gameNew/gameNew/json/" + file + ".cpp"
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+    //             var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    //             var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    //             var stemp;
+    //             if (initCode.indexOf('#') > 0) {
+    //                 stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //             }
+    //             else {
+    //                 stemp = initCode;
+    //             }
+    //             textarea_0.value = linit + stemp;
+    //             var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //             initCode = linit + stemp;
+    //         }
+    //     };
+    //     var url = "gameNew/gameNew/json/" + file + ".cpp"
+    //     xmlhttp.open("GET", url, true);
+    //     xmlhttp.send();
+    // }
+    // else {
+    //     var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    //     var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    //     var stemp;
+    //     if (textarea_0.value.indexOf('#') > 0) {
+    //         stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
+    //     }
+    //     else {
+    //         stemp = textarea_0.value;
+    //     }
+
+    //     textarea_0.value = linit + stemp;
+    //     var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //     initCode = linit + stemp;
+    // }
+    var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    var stemp;
+    if (textarea_0.value.indexOf('#') > 0) {
+        stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
     }
     else {
-        var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-        var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
-        var stemp;
-        if (textarea_0.value.indexOf('#') > 0) {
-            stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
-        }
-        else {
-            stemp = textarea_0.value;
-        }
-
-        textarea_0.value = linit + stemp;
-        var stemp = initCode.substr(initCode.indexOf('#') - 1);
-        initCode = linit + stemp;
+        stemp = textarea_0.value;
     }
+
+    textarea_0.value = linit + stemp;
+    var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    initCode = linit + stemp;
+
 
 
     // console.log(initCode);
