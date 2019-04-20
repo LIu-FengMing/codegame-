@@ -1631,6 +1631,7 @@ function call_JDOODLE_api(scriptData, inputData) {
         }
         else {
             gameEndingCode = 5;
+            closeLoadingView();
             console.log("Error =  compiler error");
             endgame();
         }
