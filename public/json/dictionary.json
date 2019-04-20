@@ -68,8 +68,12 @@
                     "value":"&nbsp&nbsp&nbsp&nbsp用來創出一個自訂函式。",
                     "limit":17
                 },{
+                    "name": "void&nbsp函式名稱(&nbsp)",
+                    "value":"&nbsp&nbsp&nbsp&nbsp建立一個自訂函式也稱作副程式，能夠自訂函式型態、函式名稱、函式內容。\n自訂函式後，想呼叫自訂函式時，只需要直接打出函式名稱即可。\n使用方法：\n傳回值型態  函數名稱(參數一的型態  參數一的名稱, 參數二的型態  參數二的名稱, ....)\n{\n  變數宣告\n  程式碼\n  return  傳回值;\n}\n傳回值型態若為void則代表不會回傳任何數值。\n\n範例1：\nvoid ABC(){\n    step();\n    step();\n}\nvoid main(){\n    turnRight();\n    turnRight();\n    ABC();\n}\n宣告一個自訂函式ABC，當呼叫ABC時會執行2次step。\n而整個程式執行後會是右轉兩次後前進兩格。\n\n範例2：\nint C(int a){\n  int b=5;\n  a=a+b;\n  return a;\n}\nvoid main(){\n  int sum=2;\n  sum=C(sum);\n}\n宣告一個自訂函式C，當呼叫C時，需給C一個型態為int的變數，而C會將這個變數加上b的數值後傳回來。\n整個程式執行後，sum的值將變為7。\n",
+                    "limit":17
+                },{
                     "name": "call&nbspfunction&nbsp函式名稱(&nbsp)",
-                    "value":"&nbsp&nbsp&nbsp&nbsp用來呼叫已創建的自訂函式。",
+                    "value":"&nbsp&nbsp&nbsp&nbsp在Blockly模式中用來呼叫已創建的自訂函式。",
                     "limit":17
                 },
                 {
