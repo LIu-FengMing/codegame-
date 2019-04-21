@@ -19,7 +19,7 @@ string treasureStr;
 char hint = 'X';
 void systD(int temp)
 {
-	cout << "$sD,," << systemObj[temp] << " ";
+	cout << "$D,," << systemObj[temp] << " ";
 	systemObj[temp] -= 1;
 	for (int i = temp + 1; i < systObjNowL + 100; i++)
 	{
@@ -51,7 +51,7 @@ void systBoon(int x, int y)
 	int nowLen = systObjNowL;
 
 	int dLen = 0;
-	cout << "$sA";
+	cout << "$A";
 	for (int i = 0; i < 5; ++i)
 	{
 		int newX = x + stepValue[i][0];
@@ -65,7 +65,7 @@ void systBoon(int x, int y)
 		}
 	}
 	dLen = 0;
-	cout << "$sW,,";
+	cout << "$W,,";
 	// cout << "  dis \n";
 	for (int i = 0; i < 5; ++i)
 	{
@@ -94,14 +94,14 @@ void systBoon(int x, int y)
 		}
 		else if (newX == peopleAdr[0] && newY == peopleAdr[1])
 		{
-			cout << "$sM,,-1,,-1,-1,-1";
-			cout << "$sE,,6"; //被炸彈炸死
+			cout << "$M,,-1,,-1,-1,-1";
+			cout << "$E,,6"; //被炸彈炸死
 		}
 	}
 	if (x == peopleAdr[0] && y == peopleAdr[1])
 	{
-		cout << "$sM,,-1,,-1,-1,-1";
-		cout << "$sE,,6"; //被炸彈炸死
+		cout << "$M,,-1,,-1,-1,-1";
+		cout << "$E,,6"; //被炸彈炸死
 	}
 }
 void bulletHit()
@@ -141,7 +141,7 @@ void bulletHit()
 		if (!firstOut)
 		{
 			firstOut = true;
-			cout << "$sA"; //創子彈
+			cout << "$A"; //創子彈
 		}
 		cout << ",," << systemObj[nowLen + i] << ",," << checkE[i][0] << "," << checkE[i][1] << "," << checkE[i][2] << ",bullet";
 	}
@@ -159,7 +159,7 @@ void bulletHit()
 				if (!firstOut)
 				{
 					firstOut = true;
-					cout << "$sM"; //第一格 第二格
+					cout << "$M"; //第一格 第二格
 				}
 				int sdx = stepValue[checkE[i][2]][0], sdy = stepValue[checkE[i][2]][1];
 				int nx = checkE[i][0] + sdx, ny = checkE[i][1] + sdy;
@@ -245,7 +245,7 @@ void bulletHit()
 						enemy[ci][3] = enemy[ci][3] - checkE[i][4];
 						if (subHPC == 1)
 						{
-							cout << "$sA";
+							cout << "$A";
 						}
 						cout << ",," << systemObj[systObjNowL] << ",," << nsx << "," << nsy << "," << enemy[ci][3] << ",HP"; //obj x y hp HP
 						++systObjNowL;
@@ -260,7 +260,7 @@ void bulletHit()
 				++systObjNowL;
 				if (subHPC == 1)
 				{
-					cout << "$sA";
+					cout << "$A";
 				} //// 0 1 2 xyz  hp armor atk  car0tank1bot2
 				int hp = peopleAdr[3] + peopleAdr[4] - checkE[i][4];
 				cout << ",,-1,," << peopleAdr[0] << "," << peopleAdr[1] << "," << hp << ",HP"; //obj x y hp HP
@@ -284,8 +284,8 @@ void bulletHit()
 
 						if (enemy[ci][3] <= 0)
 						{
-							// cout << "$sC,," << system_map[nsy][nsx][1] << ",,"<< "enemyDead "; //obj x y hp HP
-							cout << " $sC,," << systemObj[system_map[nsy][nsx][1]] << ",,"<< "enemyDead "; //obj x y hp HP
+							// cout << "$C,," << system_map[nsy][nsx][1] << ",,"<< "enemyDead "; //obj x y hp HP
+							cout << " $C,," << systemObj[system_map[nsy][nsx][1]] << ",,"<< "enemyDead "; //obj x y hp HP
 							enemy[ci][0] = 100, enemy[ci][1] = 100, enemy[ci][2] = 0, enemy[ci][3] = 0;
 							// systD(systemObj[system_map[nsy][nsx][1]]);
 							list.push_back(system_map[nsy][nsx][1]);
@@ -306,7 +306,7 @@ void bulletHit()
 				++systObjNowL;
 				if (hp <= 0)
 				{
-					cout << "$sE,,7 ";
+					cout << "$E,,7 ";
 				}
 				//敵人打到自己  //扣寫機制&顯示
 			}
@@ -322,7 +322,7 @@ void bulletHit()
 			if (!firstOut)
 			{
 				firstOut = true;
-				cout << "$sM";
+				cout << "$M";
 			}
 			cout << ",," << systemObj[nowLen + i] << ",," << (double)sdx * 0.3 << "," << (double)sdy * 0.3 << "," << checkE[i][2];
 		}
@@ -355,15 +355,15 @@ void actionJudgeNowAdr()
 
 	if (x < 0 || y < 0 || x >= system_mapsize || x >= system_mapsize)
 	{
-		cout << "$sE,,3"; //駛出地圖
+		cout << "$E,,3"; //駛出地圖
 	}
 	else if (var == 1 || var == 2 || var == 5 || var == 6 || var == 16)
 	{
-		cout << "$sE,,4"; //撞到障礙物
+		cout << "$E,,4"; //撞到障礙物
 	}
 	else if (var == 50 || var == 51)
 	{						  //終點線
-		cout << "$sE,,2"; //抵達終點
+		cout << "$E,,2"; //抵達終點
 	}
 	else if (var == 3)
 	{ // 3  為硬幣
@@ -373,21 +373,21 @@ void actionJudgeNowAdr()
 		--coinNum;
 		if (coinNum == 0)
 		{
-			cout << "$sE,,10"; //金幣完成
+			cout << "$E,,10"; //金幣完成
 		}
 	}
 	else if (var == 4 || var == 15)
 	{ // 4  為炸彈
-		cout << "$sM,,-1,,-1,-1,-1";
+		cout << "$M,,-1,,-1,-1,-1";
 		systBoon(x, y);
-		cout << "$sE,,6"; //被炸彈炸死
+		cout << "$E,,6"; //被炸彈炸死
 	}
 	else if (var >= 7 && var <= 10)
 	{ // 7 8 9 10 為箭頭
 		if ((var - 7) == peopleAdr[2])
 		{
 			int temp = system_map[y][x][1];
-			cout << " $sC,," << systemObj[temp] << ",,arrowWite ";
+			cout << " $C,," << systemObj[temp] << ",,arrowWite ";
 			--arrowNum;
 			system_map[y][x][0] -= var;
 			if (arrowNum == 0)
@@ -395,7 +395,7 @@ void actionJudgeNowAdr()
 				for (int di = 0; di < arrowLockX.size(); di++)
 				{
 					int tempd = system_map[arrowLockY[di]][arrowLockX[di]][1];
-					cout << " $sC,," << systemObj[tempd] << ",,unlock ";
+					cout << " $C,," << systemObj[tempd] << ",,unlock ";
 					// cout << "  systW,,  ";
 					systD(tempd);
 					system_map[arrowLockY[di]][arrowLockX[di]][0] -= 5;
@@ -418,22 +418,22 @@ void actionJudgeNowAdr()
 		string systStr = "RFL";
 		if (peopleAdr[2] == 0)
 		{
-			cout << " $sC,," << systemObj[temp] << ",," << systStr[(systRand + 1) % 4] << " ";
+			cout << " $C,," << systemObj[temp] << ",," << systStr[(systRand + 1) % 4] << " ";
 			hint = systStr[(systRand + 1) % 4];
 		}
 		else if (peopleAdr[2] == 1)
 		{
-			cout << " $sC,," << systemObj[temp] << ",," << systStr[systRand] << " ";
+			cout << " $C,," << systemObj[temp] << ",," << systStr[systRand] << " ";
 			hint = systStr[systRand];
 		}
 		else if (peopleAdr[2] == 2)
 		{
-			cout << " $sC,," << systemObj[temp] << ",," << systStr[systRand - 1] << " ";
+			cout << " $C,," << systemObj[temp] << ",," << systStr[systRand - 1] << " ";
 			hint = systStr[systRand - 1];
 		}
 		else if (peopleAdr[2] == 3)
 		{
-			cout << "$sC,," << systemObj[temp] << ",," << systStr[(systRand + 2) % 4] << " ";
+			cout << "$C,," << systemObj[temp] << ",," << systStr[(systRand + 2) % 4] << " ";
 			hint = systStr[(systRand + 2) % 4];
 		}
 		system_map[y][x][0] -= var;
@@ -472,7 +472,7 @@ void actionJudgeNextAdr(int x, int y)
 		{ // 6  為輸出鎖頭
 			int temp = system_map[y + stepValue[i][1]][x + stepValue[i][0]][1];
 			// cout << " systI,," << systemObj[temp] << ",,";
-			cout << "$sI,," << x + stepValue[i][0] << "," << y + stepValue[i][1] << ",,";
+			cout << "$I,," << x + stepValue[i][0] << "," << y + stepValue[i][1] << ",,";
 			break;
 		}
 	}
@@ -490,7 +490,7 @@ void step()
 		peopleAdr[0] += addx;
 		peopleAdr[1] += addy;
 		// cout << " px: " << peopleAdr[0]<< " py:" <<peopleAdr[1];
-		cout << "$sM,,-1,," << addx << "," << addy << ",0";
+		cout << "$M,,-1,," << addx << "," << addy << ",0";
 		// 	cout << endl;
 		actionJudgeNowAdr();
 		// actionJudgeNextAdr(peopleAdr[0] + addx, peopleAdr[1] + addy);
@@ -498,7 +498,7 @@ void step()
 	}
 	else
 	{
-		cout << "$sM,,-1,,0,0,0";
+		cout << "$M,,-1,,0,0,0";
 		// 	cout << endl;
 	}
 }
@@ -508,14 +508,14 @@ void turnRight()
 	int mapEvloution = (system_map[dy][dx][0] / 100) - 1;
 	if (peopleAdr[6] == mapEvloution)
 	{
-		cout << "$sM,,-1,,0,0,-1";
+		cout << "$M,,-1,,0,0,-1";
 		peopleAdr[2] = (peopleAdr[2] + 3) % 4;
 		actionJudgeNowAdr();
 		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
-		cout << "$sM,,-1,,0,0,0";
+		cout << "$M,,-1,,0,0,0";
 	}
 }
 void turnLeft()
@@ -524,20 +524,20 @@ void turnLeft()
 	int mapEvloution = (system_map[dy][dx][0] / 100) - 1;
 	if (peopleAdr[6] == mapEvloution)
 	{
-		cout << "$sM,,-1,,0,0,1";
+		cout << "$M,,-1,,0,0,1";
 		peopleAdr[2] = (peopleAdr[2] + 1) % 4;
 		actionJudgeNowAdr();
 		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
-		cout << "$sM,,-1,,0,0,0";
+		cout << "$M,,-1,,0,0,0";
 	}
 }
 void becameCar()
 {
 	peopleAdr[6] = 0;
-	cout << "$sC,,-1,,car ";
+	cout << "$C,,-1,,car ";
 	// 	cout << endl;
 	bulletHit();
 	int dx = peopleAdr[0], dy = peopleAdr[1];
@@ -546,7 +546,7 @@ void becameCar()
 void becameTank()
 {
 	peopleAdr[6] = 1;
-	cout << "$sC,,-1,,tank ";
+	cout << "$C,,-1,,tank ";
 	// 	cout << endl;
 	bulletHit();
 	int dx = peopleAdr[0], dy = peopleAdr[1];
@@ -555,7 +555,7 @@ void becameTank()
 void becameShip()
 {
 	peopleAdr[6] = 2;
-	cout << "$sC,,-1,,bot ";
+	cout << "$C,,-1,,bot ";
 	// 	cout << endl;
 	bulletHit();
 	int dx = peopleAdr[0], dy = peopleAdr[1];
@@ -684,7 +684,7 @@ void input_init()
 	}
 	if (coinNum > 0)
 	{
-		cout << "$sE,,9"; //金幣未完成
+		cout << "$E,,9"; //金幣未完成
 	}
 	//	//test//
 	// for (int i = 0; i < 7; ++i)

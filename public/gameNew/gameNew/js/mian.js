@@ -1261,7 +1261,7 @@ function codeOutputTranstionAction() {
 
     // var temp = new Array();
     var temp = [], tempNew = [];
-    temp = source.split("$s");
+    temp = source.split("$");
     // console.log(temp);
     for (var i = 0; i < temp.length; ++i) {
         if (temp[i][0] != ' ') {
