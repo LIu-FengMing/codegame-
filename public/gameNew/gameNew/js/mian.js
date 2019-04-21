@@ -681,6 +681,7 @@ function draw() {
                                 onChanging = true;
                             }
                             else if (complementStep) {
+                                complementStep = false;
                                 mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX;
                                 mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
                                 onChanging = false;
