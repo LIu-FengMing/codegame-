@@ -1,0 +1,112 @@
+/* 三星:53個動作包含53個動作以內  
+   二星:56個動作包含56個動作以內53個動作以上  
+   一星限為滿足過關條件即可*/ 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(int argc, char *argv[])
+{
+int i,j,length,times=0;
+char str[SIZE];
+getString(str);
+length=strlen(str);
+for(i=0;i<length-1;i++){
+ if(key[0]==str[i]){
+  if(key[1]==str[i+1]){
+   times++;
+}
+}
+}
+turnLeft();
+step();
+turnRight();
+for(i=0;i<3;i++){
+ step();
+}
+turnLeft();
+fire();
+step();
+turnRight();
+for(i=0;i<2;i++){
+ step();
+}
+turnRight();
+step();
+turnLeft();
+fire();
+for(i=0;i<2;i++){
+ step();
+}
+turnLeft();
+fire();
+for(i=0;i<3;i++){
+ step();
+}
+turnLeft();
+fire();
+for(i=0;i<5;i++){
+ step();
+}
+becameTank();
+step();
+turnRight();
+step();
+becameShip();
+for(i=0;i<2;i++){
+ step();
+}
+becameCar();
+step();
+becameShip();
+turnRight();
+step();
+turnLeft();
+step();
+becameTank();
+step();
+turnLeft();
+step();
+becameCar();
+step();
+turnLeft();
+step();
+becameShip();
+step();
+turnLeft();
+for(i=0;i<3;i++){
+ step();
+}
+turnRight();
+step();
+becameCar();
+turnLeft();
+for(i=0;i<2;i++){
+ step();
+}
+becameTank();
+for(i=0;i<3;i++){
+ step();
+}
+turnLeft();
+step();
+turnRight();
+fire();
+step();
+becameShip();
+for(i=0;i<2;i++){
+ step();
+}
+turnLeft();
+printf("%d",times);
+for(i=0;i<2;i++){
+ step();
+}
+becameCar();
+step();
+
+	return 0;
+ }
+
+
