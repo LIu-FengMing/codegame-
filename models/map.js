@@ -42,8 +42,6 @@ module.exports.getMapByUserID = function (userID, callback) {
 
 // updateMap, 透過mapId更新地圖
 module.exports.updateMapById = function (id, scriptData, callback) {
-    console.log(scriptData);
-    
     var query = { _id: id }
     var setquery = {
         mapName: scriptData.mapName,
@@ -63,6 +61,7 @@ module.exports.updateMapById = function (id, scriptData, callback) {
         if (err) throw err;
         MapRecord.findById(id, function (err, map) {
             if (err) throw err;
+            console.log(map);
             var newMap = new MapRecord({
                 mapName: map.mapName,
                 mapIntroduction: map.mapIntroduction,

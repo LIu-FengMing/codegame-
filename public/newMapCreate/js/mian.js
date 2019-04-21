@@ -318,6 +318,7 @@ function sendFinishMap(scriptData) {
         console.log("mapID:", mapID);
         scriptData.type = "updateMap";
         scriptData.mapID = mapID;
+        alert(mapID)
         $.ajax({
             url: href,              // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
@@ -371,8 +372,8 @@ function sendSaveMap(scriptData) {
             success: function (res) {
                 // console.log(res._id);
                 console.log(res);
+                mapID=res._id;
                 // alert("儲存成功");
-
                 remindView("儲存成功");
             }
         })
