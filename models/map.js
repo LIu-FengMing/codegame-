@@ -26,7 +26,7 @@ module.exports.createMap = function (newMap, callback) {
 }
 // getMap
 module.exports.getMap = function (userID, callback) {
-    var query = { userID: { $ne: userID }, postStage: { $in: [1,2]  } }
+    var query = { userID: { $ne: userID }, postStage: { $in: [1, 2] } }
     MapRecord.find(query, callback).sort({ requireStar: 1 })
 }
 
@@ -43,7 +43,6 @@ module.exports.getMapByUserID = function (userID, callback) {
 // updateMap, 透過mapId更新地圖
 module.exports.updateMapById = function (id, scriptData, callback) {
     var query = { _id: id }
-
     var setquery = {
         mapName: scriptData.mapName,
         mapIntroduction: scriptData.mapIntroduction,
@@ -54,14 +53,32 @@ module.exports.updateMapById = function (id, scriptData, callback) {
         postDate: "",
         postStage: scriptData.postStage,
         check: false,
-        score:[],
-        avgScore:0
-
+        score: [],
+        avgScore: 0
     }
-    // console.log("scriptData:",scriptData);
-    // console.log("setquery:",setquery);
-    MapRecord.updateOne(query, setquery, callback);
+    // MapRecord.updateOne(query, setquery, callback);
+    MapRecord.updateOne(query, setquery, function (err, map) {
+        if (err) throw err;
+        MapRecord.findById(id, function (err, map) {
+            if (err) throw err;
+            var newMap = new MapRecord({
+                mapName: map.mapName,
+                mapIntroduction: map.mapIntroduction,
+                mapDescription: map.mapDescription,
+                author: map.author,
+                userID: map.userID,
+                map: map.map,
+                requireStar: map.requireStar,
+                updateDate: map.updateDate,
+                postStage: map.postStage
+            })
+            MapRecord.remove({ _id: id }, function (err, map) {
+                if (err) throw err;
 
+                MapRecord.createMap(newMap, callback);
+            })
+        });
+    });
 }
 module.exports.updateMapCheckById = function (id, callback) {
     var date = new Date();
@@ -83,8 +100,8 @@ module.exports.updateMapScoreById = function (id, score, avgscore, callback) {
 
 }
 
-module.exports.updateShelfLaterById = function (id,callback) {
-    var query = { _id: id}
+module.exports.updateShelfLaterById = function (id, callback) {
+    var query = { _id: id }
     var setquery = {
         postStage: 2
     }

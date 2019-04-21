@@ -1,44 +1,54 @@
 #include <vector>
 #include <iostream>
 #include <math.h>
+#define SIZE 256
 using namespace std;
 string system_mapstr;
 int system_map[20][20][2] = {0}; // ex: x,y=5,3 system_map[5][3][0]  [1]為元件位置
 int systObjMax = 0, systemObj[2048] = {0}, systObjNowL = 0;
 int system_mapsize;
 int arrowNum = 0, coinNum = 0;
-vector<int> arrowLockX, arrowLockY; //x,y
-int peopleAdr[7] = {};				// 0 1 2 xyz  hp armor atk  car0tank1bot2
+vector<int> arrowLockX, arrowLockY, treasureX, treasureY; //x,y
+vector<string> treasureString;
+int peopleAdr[7] = {}; // 0 1 2 xyz  hp armor atk  car0tank1bot2
 bool peopleFire = false;
 int enemyN = 0, enemy[20][5] = {};								  // 0 1 2 xyz  hp  atk
 int stepValue[5][2] = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}, {0, 0}}; // x,y
 
+string treasureStr;
 char hint = 'X';
 void systD(int temp)
 {
-	cout << " systD,," << systemObj[temp];
+	cout << " systD,," << systemObj[temp] << " ";
 	systemObj[temp] -= 1;
 	for (int i = temp + 1; i < systObjNowL + 100; i++)
 	{
-		systemObj[i] = systemObj[i - 1] + 1;
+		if (systemObj[i] == systemObj[i - 1] + 1)
+		{
+			systemObj[i] = systemObj[i - 1];
+		}
+		else
+		{
+			systemObj[i] = systemObj[i - 1] + 1;
+		}
 	}
 	// cout << "\nTest:";
-	// for (int i = 0; i < 50; i++)
+	// for (int i = 0; i < 15; i++)
 	// {
 	// 	cout << systemObj[i] << " ";
 	// }
-	// // 	cout << endl;
+	// cout << endl;
 
 	// 	cout << endl;
 }
 void systBoon(int x, int y)
 {
 	int temp = system_map[y][x][1]; //僅線消除  炸彈
+	system_map[y][x][0] -= 4;
 	systD(temp);
 	//開始產生 煙霧
 	// int nowLen = systemObj[systObjNowL];
 	int nowLen = systObjNowL;
-	cout<<"test: "<<systemObj[nowLen] <<endl;
 
 	int dLen = 0;
 	cout << "  systA";
@@ -55,26 +65,28 @@ void systBoon(int x, int y)
 		}
 	}
 	dLen = 0;
-	cout << "  systW  ";
+	cout << "  systW,,  ";
+	// cout << "  dis \n";
 	for (int i = 0; i < 5; ++i)
 	{
 		int newX = x + stepValue[i][0];
-		int newY = x + stepValue[i][1];
+		int newY = y + stepValue[i][1];
+
 		if (newX > -1 && newY > -1)
 		{
+			// cout<<"\n"<<nowLen + dLen;
 			systD(nowLen + dLen);
-			// cout << ",," << systemObj[nowLen+dLen];
 			++dLen;
 		}
 	}
-
+	// cout << "\nddd \n";
 	/* 消除石頭跟樹*/
 	for (int i = 0; i < 5; ++i)
 	{
 		int newX = x + stepValue[i][0];
-		int newY = x + stepValue[i][1];
+		int newY = y + stepValue[i][1];
 		int stemp = system_map[newY][newX][0];
-		if (stemp == 1)
+		if (stemp % 100 == 1)
 		{
 			int sysTemp = system_map[newY][newX][1];
 			systD(sysTemp);
@@ -85,6 +97,11 @@ void systBoon(int x, int y)
 			cout << " systM,,-1,,-1,-1,-1 ";
 			cout << " systE,,6 "; //被炸彈炸死
 		}
+	}
+	if (x == peopleAdr[0] && y == peopleAdr[1])
+	{
+		cout << " systM,,-1,,-1,-1,-1 ";
+		cout << " systE,,6 "; //被炸彈炸死
 	}
 }
 void bulletHit()
@@ -129,10 +146,12 @@ void bulletHit()
 		cout << ",," << systemObj[nowLen + i] << ",," << checkE[i][0] << "," << checkE[i][1] << "," << checkE[i][2] << ",bullet";
 	}
 	cout << " ";
+
+	vector <int>  list;
 	for (int fstep = 0; fstep < 2; fstep++)
 	{
 		firstOut = false;
-
+		int subHPC = 0;
 		for (int i = checkN - 1; i > -1; i--)
 		{
 			if (checkE[i][5] == 0)
@@ -160,7 +179,6 @@ void bulletHit()
 				else if (condition == 15)
 				{ //敵人打到敵人  //扣寫機制&顯示
 					cout << ",," << systemObj[nowLen + i] << ",," << (double)sdx * 0.7 << "," << (double)sdy * 0.7 << "," << checkE[i][2];
-					// cout << ",," << systemObj[nowLen + i] << "," << sdx * 0.7 << "," << sdy * 0.7 << checkE[2];
 					checkE[i][5] = 4;
 				}
 				else if (nx == peopleAdr[0] && ny == peopleAdr[1])
@@ -177,13 +195,13 @@ void bulletHit()
 					}
 					else
 					{
-
 						cout << ",," << systemObj[nowLen + i] << ",," << (double)sdx * 0.8 << "," << (double)sdy * 0.8 << "," << checkE[i][2];
 					}
 				}
 			}
 		}
 		cout << " ";
+		/*  讓子彈一起消失 */
 		for (int i = 0; i < checkN; i++)
 		{
 			if (checkE[i][5] == 1)
@@ -194,20 +212,103 @@ void bulletHit()
 			else if (checkE[i][5] == 3)
 			{
 				systD(nowLen + i);
-				checkE[i][5] = 2;
-				systBoon(checkE[i][0], checkE[i][1]);
 			}
 			else if (checkE[i][5] == 4)
 			{
 				systD(nowLen + i);
-				checkE[i][5] = 2;
-				//未完成  敵人打到敵人  //扣寫機制&顯示
 			}
 			else if (checkE[i][5] == 5)
 			{
 				systD(nowLen + i);
+			}
+		}
+		/*  讓炸彈出現 */
+		for (int i = 0; i < checkN; i++)
+		{
+			if (checkE[i][5] == 3)
+			{
 				checkE[i][5] = 2;
-				//未完成  敵人打到自己  //扣寫機制&顯示
+				systBoon(checkE[i][0], checkE[i][1]);
+			}
+		}
+		/*  讓生命條憶起出現 */
+		for (int i = 0; i < checkN; i++)
+		{
+			if (checkE[i][5] == 4)
+			{
+				++subHPC;
+				int nsx = checkE[i][0], nsy = checkE[i][1];
+				for (int ci = 0; ci < enemyN; ci++)
+				{
+					if (enemy[ci][0] == nsx && enemy[ci][1] == nsy)
+					{
+						enemy[ci][3] = enemy[ci][3] - checkE[i][4];
+						if (subHPC == 1)
+						{
+							cout << "systA";
+						}
+						cout << ",," << systemObj[systObjNowL] << ",," << nsx << "," << nsy << "," << enemy[ci][3] << ",HP"; //obj x y hp HP
+						++systObjNowL;
+						break;
+					}
+				}
+				//打到敵人  //扣寫機制&顯示
+			}
+			else if (checkE[i][5] == 5)
+			{
+				++subHPC;
+				++systObjNowL;
+				if (subHPC == 1)
+				{
+					cout << "systA";
+				} //// 0 1 2 xyz  hp armor atk  car0tank1bot2
+				int hp = peopleAdr[3] + peopleAdr[4] - checkE[i][4];
+				cout << ",,-1,," << peopleAdr[0] << "," << peopleAdr[1] << "," << hp << ",HP"; //obj x y hp HP
+																							   //敵人打到自己  //扣寫機制&顯示
+			}
+		}
+		cout << " ";
+		systObjNowL -= subHPC;
+		/*  讓生命條憶起消失 */
+
+		for (int i = 0; i < checkN; i++)
+		{
+			if (checkE[i][5] == 4)
+			{
+				checkE[i][5] = 2;
+				int nsx = checkE[i][0], nsy = checkE[i][1];
+				for (int ci = 0; ci < enemyN; ci++)
+				{
+					if (enemy[ci][0] == nsx && enemy[ci][1] == nsy)
+					{
+
+						if (enemy[ci][3] <= 0)
+						{
+							// cout << "systC,," << system_map[nsy][nsx][1] << ",,"<< "enemyDead "; //obj x y hp HP
+							cout << "systC,," << systemObj[system_map[nsy][nsx][1]] << ",,"<< "enemyDead "; //obj x y hp HP
+							enemy[ci][0] = 100, enemy[ci][1] = 100, enemy[ci][2] = 0, enemy[ci][3] = 0;
+							// systD(systemObj[system_map[nsy][nsx][1]]);
+							list.push_back(system_map[nsy][nsx][1]);
+							system_map[nsy][nsx][0] -= 15;
+						}
+						systD(systObjNowL);
+						++systObjNowL;
+						break;
+					}
+				}
+			}
+			else if (checkE[i][5] == 5)
+			{
+				checkE[i][5] = 2;
+				int hp = peopleAdr[3] + peopleAdr[4] - checkE[i][4];
+				peopleAdr[4] = peopleAdr[4] - checkE[i][4];
+				systD(systObjNowL);
+				++systObjNowL;
+				if (hp <= 0)
+				{
+					cout << "systE,,7 ";
+				}
+				//敵人打到自己  //扣寫機制&顯示
 			}
 		}
 	}
@@ -232,9 +333,18 @@ void bulletHit()
 	{ //最後都沒打到東西 刪掉
 		if (checkE[i][5] == 0)
 		{
+			// systD(nowLen + i);
 			systD(nowLen + i);
+			
 		}
 	}
+	for (int i = 0; i < list.size(); i++)
+	{
+		systD(list[i]);
+		/* code */
+	}
+	
+
 }
 
 void actionJudgeNowAdr()
@@ -247,15 +357,14 @@ void actionJudgeNowAdr()
 	{
 		cout << " systE,,3 "; //駛出地圖
 	}
-	else if (var == 1 || var == 2 || var == 5 || var == 6)
-	{	
-		int passT=4+system_map[y][x][1]*10;
-		cout << " systE,,"<<passT<<" "; //撞到障礙物
+	else if (var == 1 || var == 2 || var == 5 || var == 6 || var == 16)
+	{
+		cout << " systE,,4"
+			 << " "; //撞到障礙物
 	}
 	else if (var == 50 || var == 51)
 	{						  //終點線
-		int passT=2+system_map[y][x][1]*10;
-		cout << " systE,,2 "; //撞到障礙物
+		cout << " systE,,2 "; //抵達終點
 	}
 	else if (var == 3)
 	{ // 3  為硬幣
@@ -288,9 +397,18 @@ void actionJudgeNowAdr()
 				{
 					int tempd = system_map[arrowLockY[di]][arrowLockX[di]][1];
 					cout << " systC,," << systemObj[tempd] << ",,unlock ";
+					// cout << "  systW,,  ";
 					systD(tempd);
 					system_map[arrowLockY[di]][arrowLockX[di]][0] -= 5;
 				}
+				// cout << "  systW,,  ";
+				// for (int di = 0; di < arrowLockX.size(); di++)
+				// {
+				// 	int tempd = system_map[arrowLockY[di]][arrowLockX[di]][1];
+				// 	// cout << " systC,," << systemObj[tempd] << ",,unlock ";
+				// 	systD(tempd);
+				// 	system_map[arrowLockY[di]][arrowLockX[di]][0] -= 5;
+				// }
 			}
 		}
 	}
@@ -329,15 +447,36 @@ void actionJudgeNowAdr()
 }
 void actionJudgeNextAdr(int x, int y)
 {
-	int var = system_map[y][x][0] % 100;
-	if (var == 6)
-	{ // 6  為輸出鎖頭
-		int temp = system_map[y][x][1];
-		cout << " systI,," << systemObj[temp] << ",,";
+	int nx = x + stepValue[peopleAdr[2]][0], ny = y + stepValue[peopleAdr[2]][1];
+	int varS = system_map[ny][nx][0] % 100;
+	if (varS == 16)
+	{ // 16  為寶箱
+		int temp = system_map[ny][nx][1];
+		for (int i = 0; i < treasureX.size(); i++)
+		{
+			if (treasureX[i] == nx && treasureY[i] == ny)
+			{
+				treasureStr = treasureString[i];
+				treasureX.erase(treasureX.begin() + i);
+				treasureY.erase(treasureY.begin() + i);
+				treasureString.erase(treasureString.begin() + i);
+				break;
+			}
+		}
+		systD(temp);
+		system_map[ny][nx][0] -= 16;
 	}
-	// else{
-	// 	cout<<"\n qqqqqqq(  "<<var<<"<<  qqqqqq)\n ";
-	// }
+	for (int i = 0; i < 4; ++i)
+	{
+		int var = system_map[y + stepValue[i][1]][x + stepValue[i][0]][0] % 100;
+		if (var == 6)
+		{ // 6  為輸出鎖頭
+			int temp = system_map[y + stepValue[i][1]][x + stepValue[i][0]][1];
+			// cout << " systI,," << systemObj[temp] << ",,";
+			cout << " systI,," << x + stepValue[i][0] << "," << y + stepValue[i][1] << ",,";
+			break;
+		}
+	}
 }
 void step()
 {
@@ -355,7 +494,8 @@ void step()
 		cout << " systM,,-1,," << addx << "," << addy << ",0 ";
 		// 	cout << endl;
 		actionJudgeNowAdr();
-		actionJudgeNextAdr(peopleAdr[0] + addx, peopleAdr[1] + addy);
+		// actionJudgeNextAdr(peopleAdr[0] + addx, peopleAdr[1] + addy);
+		actionJudgeNextAdr(peopleAdr[0], peopleAdr[1]);
 	}
 	else
 	{
@@ -372,13 +512,12 @@ void turnRight()
 		cout << " systM,,-1,,0,0,-1 ";
 		peopleAdr[2] = (peopleAdr[2] + 3) % 4;
 		actionJudgeNowAdr();
+		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
 		cout << " systM,,-1,,0,0,0 ";
 	}
-	// 	cout << endl;
-	bulletHit();
 }
 void turnLeft()
 {
@@ -389,13 +528,12 @@ void turnLeft()
 		cout << " systM,,-1,,0,0,1 ";
 		peopleAdr[2] = (peopleAdr[2] + 1) % 4;
 		actionJudgeNowAdr();
+		actionJudgeNextAdr(dx, dy);
 	}
 	else
 	{
 		cout << " systM,,-1,,0,0,0 ";
 	}
-	// 	cout << endl;
-	bulletHit();
 }
 void becameCar()
 {
@@ -418,13 +556,11 @@ void becameShip()
 	// 	cout << endl;
 	bulletHit();
 }
-
 void fire()
 {
 	peopleFire = true;
 	bulletHit();
 }
-
 void input_init()
 {
 
@@ -529,6 +665,15 @@ void input_init()
 			system_map[y][x][0] += 15; //15 敵人
 			system_map[y][x][1] = i;
 		}
+		else if (temp == "treasure")
+		{
+			cin >> temp;
+			treasureString.push_back(temp);
+			treasureX.push_back(x);
+			treasureY.push_back(y);
+			system_map[y][x][0] += 16; //16 寶箱
+			system_map[y][x][1] = i;
+		}
 	}
 	if (coinNum > 0)
 	{
@@ -566,7 +711,10 @@ void input_init()
 
 	//  //
 }
-
-
-
-
+void getBox(char *str)
+{
+	for (int i = 0; i < treasureStr.length(); i++)
+	{
+		str[i] = treasureStr[i];
+	}
+}

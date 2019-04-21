@@ -235,7 +235,7 @@ function clossFunc(thisDiv, thisDiv2) {
     parentObj.removeChild(divTag);
     levelDivAlive = false;
   } catch (e) { }
-  
+
   levelDivAlive = false;
 }
 function closeFunc(thisDiv, thisDiv2) {
@@ -400,10 +400,10 @@ function btnClick(number) {
   divTag.appendChild(b);
 
   /*關卡說明*/
-  b = document.createElement("textaera");
+  b = document.createElement("textarea");
   b.setAttribute("rows", "20");
   b.setAttribute("cols", "20");
-  b.setAttribute("id", "levelDescriptionTextaera");
+  b.setAttribute("id", "levelDescriptiontextarea");
   divTag.appendChild(b);
   b.innerHTML = levelDescription.Early[number].description;
   b = document.createElement("br");
@@ -475,10 +475,10 @@ function viewRecord(number) {
   b = document.createElement("table");
   b.setAttribute("id", "viewRecordTable");
   divTag.appendChild(b);
-  b = document.createElement("textaera");
-  b.setAttribute("id", "viewRecordTextaera");
+  b = document.createElement("textarea");
+  b.setAttribute("id", "viewRecordtextarea");
   divTag.appendChild(b);
-  document.getElementById("viewRecordTextaera").innerHTML = codeText;
+  document.getElementById("viewRecordtextarea").innerHTML = codeText;
   for (var i = 0; i < 3; i++) {
     divTag = document.getElementById("viewRecordTable");
     b = document.createElement("tr");
@@ -1014,9 +1014,9 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
 
-    var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    var text = "x" + star;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    // var text = "x" + star;
+    // document.getElementById("levelUpFont1").innerHTML = text;
   }
   else {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
@@ -1087,9 +1087,9 @@ function shieldLevelUp() {
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
-    var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    var text = "x" + star;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    // var text = "x" + star;
+    // document.getElementById("levelUpFont1").innerHTML = text;
 
   }
   else {
@@ -1743,5 +1743,3 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-
-
