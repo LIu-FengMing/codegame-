@@ -365,7 +365,7 @@ body {
   width: 8vw;
   padding: 0 6px;
 }
-.search-box:hover > .search-btn,.search-box > .search-text:focus{
+.search-box:hover > .search-btn{
   color: #e84118;
   background: white;
 }
