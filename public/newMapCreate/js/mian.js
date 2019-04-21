@@ -110,7 +110,7 @@ finishBtn.onclick = function () {
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
-                if (element.mapName == scriptData.mapName) {
+                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
                     notrep = false;
                     break;
                 }
@@ -143,7 +143,7 @@ finishBtn.onclick = function () {
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
-            if (element.mapName == scriptData.mapName) {
+            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
                 notrep = false;
                 break;
             }
@@ -169,7 +169,7 @@ saveBtn.onclick = function () {
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
-                if (element.mapName == scriptData.mapName) {
+                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
                     notrep = false;
                     break;
                 }
@@ -196,7 +196,7 @@ saveBtn.onclick = function () {
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
-            if (element.mapName == scriptData.mapName) {
+            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
                 notrep = false;
                 break;
             }
@@ -240,13 +240,13 @@ function precessSaveData() {
             qMarkL.push(obj);
         }
         else if (obj == "boon") {
-            if (heightestLevelStar < 39) {
-                heightestLevelStar = 39;
+            if (heightestLevelStar < 45) {
+                heightestLevelStar = 45;
             }
         }
         else if (obj == "questionstone") {
-            if (heightestLevelStar < 15) {
-                heightestLevelStar = 15;
+            if (heightestLevelStar < 21) {
+                heightestLevelStar = 21;
             }
         }
         else if (obj == "coin") {
@@ -318,7 +318,7 @@ function sendFinishMap(scriptData) {
         console.log("mapID:", mapID);
         scriptData.type = "updateMap";
         scriptData.mapID = mapID;
-        alert(mapID)
+        // alert(mapID)
         $.ajax({
             url: href,              // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
@@ -372,6 +372,15 @@ function sendSaveMap(scriptData) {
             success: function (res) {
                 // console.log(res._id);
                 console.log(res);
+                for (let indexS = 0; indexS < mapAll.length; indexS++) {
+                    // const element = mapAll[indexS];
+                    if(mapAll[indexS]._id==mapID){
+                        mapAll.splice(indexS,1);
+                        break;
+                    }
+                    
+                }
+
                 mapID=res._id;
                 // alert("儲存成功");
                 remindView("儲存成功");
@@ -878,16 +887,16 @@ function input() {
         data['obj'].push(obj);
         nowEditOId = data['obj'].length - 1;
         //"end_init":[{"type":"endline","postion":[5,2,1]}],
-        if (heightestLevelStar < 33) {
-            heightestLevelStar = 33;
+        if (heightestLevelStar < 39) {
+            heightestLevelStar = 39;
         }
     }
     else if (obj == "lock") {
         var obj = { "type": "lock", "unlock": "lock_arrow", "postion": [MouseX, MouseY] };
         data['obj'].push(obj);
         nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 33) {
-            heightestLevelStar = 33;
+        if (heightestLevelStar < 39) {
+            heightestLevelStar = 39;
         }
         //"end_init":[{"type":"endline","postion":[5,2,1]}],
     }
@@ -896,8 +905,8 @@ function input() {
         data['obj'].push(obj);
         // console.log(data['obj']);
         nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 51) {
-            heightestLevelStar = 51;
+        if (heightestLevelStar < 15) {
+            heightestLevelStar = 15;
         }
         //"end_init":[{"type":"endline","postion":[5,2,1]}],
     }
@@ -906,8 +915,8 @@ function input() {
         data['obj'].push(obj);
         // console.log(data['obj']);
         nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 15) {
-            heightestLevelStar = 15;
+        if (heightestLevelStar < 21) {
+            heightestLevelStar = 21;
         }
         //"end_init":[{"type":"endline","postion":[5,2,1]}],
     }
