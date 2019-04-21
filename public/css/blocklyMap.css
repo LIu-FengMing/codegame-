@@ -154,9 +154,15 @@
   font-weight: 0;
   font-family:fantasy;
 }
-#levelDescriptionTextaera{
-  height: 2vh;
-  margin-top: 10vh;
+#levelDescriptiontextarea{
+  height: 10vh;
+  width: 20vw;
+  font-size: 1.2vw;
+  font-family:Microsoft JhengHei;
+  text-align: center;
+  background: none;
+  border: none;
+  margin-top: -1vh;
   line-height: 24px;
   overflow: auto;
 }
@@ -277,7 +283,7 @@
 #viewRecordTable td{
   height: 50px;
 }
-#viewRecordTextaera{
+#viewRecordtextarea{
   width: 80%;
   height: 40%;
   background-color: white;
