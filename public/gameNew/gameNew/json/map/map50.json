@@ -6,7 +6,7 @@
     "extendCode":"void getString(char* str){char* tmp=\"9705647231468721643205 856473210460548031465\";strcpy(str,tmp);}",
     "winLinit": {
         "threeStar": [
-            97
+            98
         ],
         "twoStar": [
             100
