@@ -976,13 +976,7 @@ function updateCanvas() {
         image(backgroundGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
         image(objectGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
         image(peopleGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        image(peopleFoggyImg, dx, dy, dWidth, dHight);
 
-    }
-    else {
-        image(backgroundGraph, 0, 0, width, height);
-        image(objectGraph, 0, 0, width, height);
-        image(peopleGraph, 0, 0, width, height);
         for (let HPi = 0; HPi < HPObject.length; HPi++) {
             var obj = HPObject[HPi];
             var img = imgObject[parseInt(imgDic[obj["type"]])];
@@ -996,7 +990,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp > 10) {//30 40
+                if (hp >=10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1014,7 +1008,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor > 10) { //60 70
+                if (armor >=10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1038,7 +1032,90 @@ function updateCanvas() {
                 // fill(0);
                 var ndy = dy + 0.10 * edgeToHeight;
                 // text(hp, dx+0.65*edgeToWidth, dy);
-                if (hp > 10) {//40 50
+                if (hp >= 10) {//40 50
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.55 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {  //45
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
+            }
+        }
+
+        image(peopleFoggyImg, dx, dy, dWidth, dHight);
+
+
+    }
+    else {
+        image(backgroundGraph, 0, 0, width, height);
+        image(objectGraph, 0, 0, width, height);
+        image(peopleGraph, 0, 0, width, height);
+        for (let HPi = 0; HPi < HPObject.length; HPi++) {
+            var obj = HPObject[HPi];
+            var img = imgObject[parseInt(imgDic[obj["type"]])];
+            var dx = obj["postion"][0] * edgeToWidth;
+            var dy = obj["postion"][1] * edgeToHeight + 0.85 * edgeToHeight;
+            hp = obj["hp"];
+            if (obj["type"] == "HPandArmor") {
+                armor = obj["armor"];
+                // console.log(dx, dy, )
+                console.log(" hp:", hp, " armor:", armor);
+                // fill(0);
+                // text(hp, dx+0.35*edgeToWidth, dy);
+                // text(armor, dx+0.85*edgeToWidth, dy);
+                if (hp >=10) {//30 40
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.4 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {  //35
+                    // var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    // image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                if (armor >=10) { //60 70
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
+                    image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.75 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {
+                    if (armor < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
+            }
+            else if (obj["type"] == "HP") {
+                /*777777 */
+                // console.log(dx, dy, "hp:", hp);
+                // fill(0);
+                var ndy = dy + 0.10 * edgeToHeight;
+                // text(hp, dx+0.65*edgeToWidth, dy);
+                if (hp >= 10) {//40 50
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);

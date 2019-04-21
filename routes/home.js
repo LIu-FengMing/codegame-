@@ -91,6 +91,36 @@ router.post('/kuruma', function (req, res, next) {
             }
         })
     }
+    else if (type == "changePassword") {
+        var id = req.user.id
+        var password = req.body.password
+        var oldPassword = req.body.oldPassword
+        // console.log(password,oldPassword);
+        
+        User.getUserById(id, function (err, user) {
+            if (err) throw err;
+            if (user) {
+                // console.log(user);
+                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
+                    if (err) throw err
+                    if (isMatch) {
+                        req.flash('success_msg', 'you are updatePass now')
+                        User.updatePassword(user.username, password, function (err, user) {
+                            if (err) throw err;
+                            // console.log("update :", user);
+                        })
+                        req.session.updatePassKey = null;
+                        return res.json({ responce: 'sucesss' });
+                    } else {
+                        return res.json({ responce: 'failPassUndifine' });
+                    }
+                })
+            }else{
+                return res.json({ responce: 'error' });
+            }
+        })
+        // res.redirect('/login')
+    }
     else {
 
     }
@@ -211,7 +241,36 @@ router.post('/pruss', function (req, res, next) {
             }
         })
     }
-
+    else if (type == "changePassword") {
+        var id = req.user.id
+        var password = req.body.password
+        var oldPassword = req.body.oldPassword
+        // console.log(password,oldPassword);
+        
+        User.getUserById(id, function (err, user) {
+            if (err) throw err;
+            if (user) {
+                // console.log(user);
+                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
+                    if (err) throw err
+                    if (isMatch) {
+                        req.flash('success_msg', 'you are updatePass now')
+                        User.updatePassword(user.username, password, function (err, user) {
+                            if (err) throw err;
+                            // console.log("update :", user);
+                        })
+                        req.session.updatePassKey = null;
+                        return res.json({ responce: 'sucesss' });
+                    } else {
+                        return res.json({ responce: 'failPassUndifine' });
+                    }
+                })
+            }else{
+                return res.json({ responce: 'error' });
+            }
+        })
+        // res.redirect('/login')
+    }
     else {
 
     }
@@ -312,8 +371,8 @@ router.post('/gameView_text', function (req, res, next) {
                 instructionNum: req.body.instructionNum
             }]
         }
-        console.log("data:",data);
-        
+        console.log("data:", data);
+
         User.getUserById(id, function (err, user) {
             if (err) throw err;
             if (empire == "EasyEmpire") {
@@ -374,7 +433,7 @@ router.post('/gameView_text', function (req, res, next) {
             else if (empire == "MediumEmpire") {
                 var MediumEmpire = user.MediumEmpire
                 var starChange = false, starChangeNum = 0;
-                if ((MediumEmpire.HighestLevel == data.level||MediumEmpire.HighestLevel <= data.level )&& data.HighestStarNum > 0) {
+                if ((MediumEmpire.HighestLevel == data.level || MediumEmpire.HighestLevel <= data.level) && data.HighestStarNum > 0) {
                     MediumEmpire.HighestLevel = parseInt(data.level) + 1;
                     starChange = true;
                     starChangeNum = data.HighestStarNum;
@@ -703,7 +762,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         }
         res.render('home/home', {
             user: req.user.username,
-            castlelock:lock
+            castlelock: lock
         });
     })
 });
@@ -771,8 +830,6 @@ router.post('/', function (req, res, next) {
         })
     }
     /********* */
-
-
     else if (type == "weaponLevelup") {
         var id = req.user.id;
         User.getUserById(id, function (err, user) {
@@ -818,213 +875,38 @@ router.post('/', function (req, res, next) {
         })
     }
     //-----暫時的 ------
-    //-----關卡紀錄 ------
-    else if (type == "codeLevelResult") {
-        console.log("codeLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code
-            }]
-        }
+
+    else if (type == "changePassword") {
+        var id = req.user.id
+        var password = req.body.password
+        var oldPassword = req.body.oldPassword
+        // console.log(password,oldPassword);
+        
         User.getUserById(id, function (err, user) {
             if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
+            if (user) {
+                // console.log(user);
+                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
+                    if (err) throw err
+                    if (isMatch) {
+                        req.flash('success_msg', 'you are updatePass now')
+                        User.updatePassword(user.username, password, function (err, user) {
                             if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
+                            // console.log("update :", user);
                         })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
+                        req.session.updatePassKey = null;
+                        return res.json({ responce: 'sucesss' });
+                    } else {
+                        return res.json({ responce: 'failPassUndifine' });
                     }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
+                })
+            }else{
+                return res.json({ responce: 'error' });
             }
         })
+        // res.redirect('/login')
     }
-    else if (type == "blockLevelResult") {
-        console.log("blockLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code
-            }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
 
-                if (EasyEmpire.blockHighestLevel == data.level && data.HighestStarNum > 0) {
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum - EasyEmpire.blockHighestLevel;
-                    EasyEmpire.blockHighestLevel = parseInt(EasyEmpire.blockHighestLevel) + 1;
-
-                }
-                var codeLevel = EasyEmpire.blockLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.blockLevel[levelnum].HighestStarNum;
-                        EasyEmpire.blockLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.blockLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.blockLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-            }
-        })
-    }
     //-------------------
     else {
 

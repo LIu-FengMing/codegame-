@@ -51,7 +51,7 @@ module.exports.getUserByEmail = function (email, callback) {
 }
 // getUserById, 用id來找使用者
 module.exports.getUserById = function (id, callback) {
-    User.findById(id, { password: 0, __v: 0 }, callback)
+    User.findById(id, { __v: 0 }, callback)
 }
 
 
