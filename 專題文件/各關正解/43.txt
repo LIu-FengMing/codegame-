@@ -43,9 +43,6 @@ for(i=0;i<length;i++){
 }else if(str[i]=='T'){
  becameTank();
 }
-else if(str[i]=='F'){
- fire();
-}
 else if(str[i]=='A'){
  for(j=0;j<size;j++){
   if(key[j]%2!=0){
