@@ -1,11 +1,18 @@
-/* 三星:4個動作包含4個動作以內  
-   二星:5個動作包含5個動作以內4個動作以上  
+/* 三星:5個動作包含5個動作以內  
+   二星:6個動作包含6個動作以內5個動作以上  
    一星限為滿足過關條件即可*/ 
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+void getKeyArray(int* arr,int size){
+	int i;
+	int key[10]={6,9,12,5,3,2,10,1,4,11};
+	for(i=0;i<10;i++){
+		arr[i]=key[i];
+	}
+}
 int main(int argc, char *argv[])
 {
 int i,j,tmp;
@@ -34,6 +41,8 @@ for(i=0;i<length;i++){
  turnLeft();
 }else if(str[i]=='R'){
  turnRight();
+}else if(str[i]=='F'){
+ fire();
 }else if(str[i]=='S'){
  becameShip();
 }else if(str[i]=='C'){
@@ -43,7 +52,7 @@ for(i=0;i<length;i++){
 }else if(str[i]=='A'){
  for(j=0;j<size;j++){
   if(key[j]%2!=0){
-    printf("%d",key[j]);
+    printf("%d ",key[j]);
 }
 }
 }
