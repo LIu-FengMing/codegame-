@@ -424,6 +424,24 @@
       "description":"看來前方的路上充滿著各種埋伏\n小心前進，躲不掉那就擊破他。"
     },
     {
+      "level": 31,
+      "mainGrammar":[
+        {
+          "innerGrammar":"基本移動"
+        },
+        {
+          "innerGrammar":"宣告變數"
+        },
+        {
+          "innerGrammar":"迴圈"
+        },
+        {
+          "innerGrammar":"陣列"
+        }
+      ],
+      "description":"前方的路詭譎多變，能閃則閃。\n不必要的對峙只會消耗士氣。\n在這個關卡將會學到陣列。"
+    },
+    {
       "level": 32,
       "mainGrammar":[
         {
