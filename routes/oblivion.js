@@ -514,6 +514,30 @@ router.post('/oblivionCreater', function (req, res, next) {
         })
 
     }
+    else if (type == "LoadUsernameMap") {
+        MapRecord.getMapByUserID(req.user.id, function (err, map) {
+            if (err) throw err;
+            var update = []
+            var nowDate = new Date();
+            for (let index = 0; index < map.length; index++) {
+                var element = map[index];
+                if (element.postStage == 1) {
+                    var data = new Date(element.postDate);
+                    var time = data.getTime() - nowDate.getTime();
+                    if (time <= 0) {
+                        map[index].postStage = 2;
+                        update.push(element._id);
+                    }
+                }
+            }
+            res.json(map);
+            for (let index = 0; index < update.length; index++) {
+                MapRecord.updateShelfLaterById(update[index], function (err, map) {
+                    if (err) throw err;
+                })
+            }
+        })
+    }
     else if (type == "updateMap") {
         var id = req.body.mapID;
         var data = new Date();

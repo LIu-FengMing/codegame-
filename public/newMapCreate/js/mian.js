@@ -16,7 +16,7 @@ var selsize = document.getElementById('mapSize');
 var selobj = document.getElementById('objectSelect');
 var pos = document.getElementById('college-pos');
 var cmap = document.getElementById('mapDeploy');
-var mapID, mapOri;
+var mapID, mapOri, mapAll;
 var editMapterrain = false;
 var heightestLevelStar = 0;
 var secondCanvans;
@@ -105,8 +105,23 @@ finishBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log(scriptData);
-            sendFinishMap(scriptData);
+            var notrep = true;
+            for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+                const element = mapAll[indexMap];
+                if (element.mapName == scriptData.mapName) {
+                    notrep = false;
+                    break;
+                }
+            }
+            if (notrep) {
+                console.log(scriptData);
+                sendFinishMap(scriptData);
+            }
+            else {
+                // alert("")
+                remindView("關卡名稱重複");
+            }
+
         }
         else {
             var index = 0, href = window.location.href;
@@ -121,8 +136,22 @@ finishBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
-        console.log(scriptData);
-        sendFinishMap(scriptData);
+        var notrep = true;
+        for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+            const element = mapAll[indexMap];
+            if (element.mapName == scriptData.mapName) {
+                notrep = false;
+                break;
+            }
+        }
+        if (notrep) {
+            console.log(scriptData);
+            sendFinishMap(scriptData);
+        }
+        else {
+            // alert("")
+            remindView("關卡名稱重複");
+        }
     }
 }
 
@@ -132,10 +161,23 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log(scriptData);
-            sendSaveMap(scriptData);
+            var notrep = true;
+            for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+                const element = mapAll[indexMap];
+                if (element.mapName == scriptData.mapName) {
+                    notrep = false;
+                    break;
+                }
+            }
+            if (notrep) {
+                console.log(scriptData);
+                sendSaveMap(scriptData);
+            }
+            else {
+                // alert("")
+                remindView("關卡名稱重複");
+            }
         }
-
         else {
             console.log("123");
             // alert("儲存成功")
@@ -144,8 +186,22 @@ saveBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
-        console.log(scriptData);
-        sendSaveMap(scriptData);
+        var notrep = true;
+        for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+            const element = mapAll[indexMap];
+            if (element.mapName == scriptData.mapName) {
+                notrep = false;
+                break;
+            }
+        }
+        if (notrep) {
+            console.log(scriptData);
+            sendSaveMap(scriptData);
+        }
+        else {
+            // alert("")
+            remindView("關卡名稱重複");
+        }
     }
 }
 function precessSaveData() {
@@ -225,7 +281,7 @@ function precessSaveData() {
     var levelDescriptionTextarea = document.getElementById('levelDescriptionTextarea');
     var levelNameTextarea = document.getElementById('levelNameTextarea');
     var postStage = 0;
-    if (mapID&&mapOri) {
+    if (mapID && mapOri) {
         if (mapOri.postStage) {
             postStage = mapOri.postStage;
         }
@@ -438,6 +494,20 @@ function init_setup() {
         xmlhttp.open("GET", "newMapCreate/map.json", true);
         xmlhttp.send();
     }
+    var scriptData = {
+        type: "LoadUsernameMap",
+    }
+    $.ajax({
+        url: href,              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        data: scriptData,  // 將表單資料用打包起來送出去
+        success: function (res) {
+            mapAll = res;
+            console.log(res);
+        }
+    })
+
 }
 
 function loadData() {
