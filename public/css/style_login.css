@@ -1,10 +1,9 @@
 .innerBox{
   width: 80%;
-  padding: 40px;
   position: absolute;
   left: 10%;
   right: 10%;
-  margin: 200px auto;
+  margin-top: 25vh;
   border-style: none;
   text-align: center;
 }
@@ -35,9 +34,9 @@
   background-position: center;
 }
 #userImg,#passwordImg{
-  width: 45px;
-  height: 45px;
-  margin-left: -45px;
+  width: 5.5vh;
+  height: 5.5vh;
+  margin-left: -5.5vh;
 }
 .innerBox table{
   margin-left: auto;
@@ -54,20 +53,21 @@
   display: inline;
   margin: 25px auto;
   padding: 14px 10px;
-  width: 250px;
+  height: 2vh;
+  width: 15vw;
   outline: none;
-  font-size: 20px;
+  font-size: 3vh;
   color: #000000;
   transition: 0.25s;
 }
 .box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder {
   color: #7e7b7b;
-  font-size: 25px;
+  font-size: 3vh;
   text-align: center;
   opacity: 1; /* Firefox */
 }
 .box input[type = "text"]:focus,.box input[type = "password"]:focus{
-  width: 350px;
+  width: 18vw;
   text-align: center;
   border-color: #000000;
 }
@@ -121,16 +121,17 @@
   margin-top: -15vh;
   margin-left: -12.5vw;
   background-color: #D5E8D4;
+  min-width: 300px;
   overflow: auto;
 }
 #remindH2{
-  font-size: 5vh;
+  font-size: calc(20px + 1vw);
   margin-top: 10vh;
 }
 #remindTrueBtn{
   height: 5vh;
   width: 8vw;
-  font-size: 1.5vw;
+  font-size: calc(15px + 1vw);
   border-radius: 10px;
   border-style: solid;
   border-width: 1px;

@@ -29,17 +29,17 @@ function call_Registered_api() {
     var strCP = UserCheckPass.value;
     if (Name.value == "") {
         // alert("註冊失敗\n" + "使用者名稱有空白字元");
-        remindValue = "註冊失敗\n" + "使用者名稱有空白字元";
+        remindValue = "註冊失敗<br>" + "使用者名稱有空白字元";
         remindView(remindValue);
     }
     else if (sN.indexOf(" ") != -1) {
         // alert("註冊失敗\n" + "\"使用者名稱\"不能為空");
-        remindValue = "註冊失敗\n" + "\"使用者名稱\"不能為空";
+        remindValue = "註冊失敗<br>" + "\"使用者名稱\"不能為空";
         remindView(remindValue);
     }
     else if (UserName.value == "") {
         // alert("註冊失敗\n" + "\"使用者帳號\"不能為空");
-        remindValue = "註冊失敗\n" + "\"使用者帳號\"不能為空";
+        remindValue = "註冊失敗<br>" + "\"使用者帳號\"不能為空";
         remindView(remindValue);
     }
     else if (strN.indexOf(" ") != -1) {
@@ -49,42 +49,42 @@ function call_Registered_api() {
     }
     else if (eMail.value == "") {
         // alert("註冊失敗\n" + "\"信箱\"不能為空");
-        remindValue = "註冊失敗\n" + "\"信箱\"不能為空";
+        remindValue = "註冊失敗<br>" + "\"信箱\"不能為空";
         remindView(remindValue);
     }
     else if (strE.indexOf(" ") != -1) {
         // alert("註冊失敗\n" + "\"信箱\"有空白字元");
-        remindValue = "註冊失敗\n" + "\"信箱\"有空白字元";
+        remindValue = "註冊失敗<br>" + "\"信箱\"有空白字元";
         remindView(remindValue);
     }
     else if (!validateEmail(eMail.value)) {
         // alert("註冊失敗\n" + "\"信箱\"格式錯誤");
-        remindValue = "註冊失敗\n" + "\"信箱\"格式錯誤";
+        remindValue = "註冊失敗<br>" + "\"信箱\"格式錯誤";
         remindView(remindValue);
     }
     else if (UserPass.value == "") {
         // alert("註冊失敗\n" + "\"密碼\"不能為空");
-        remindValue = "註冊失敗\n" + "\"密碼\"不能為空";
+        remindValue = "註冊失敗<br>" + "\"密碼\"不能為空";
         remindView(remindValue);
     }
     else if (strP.indexOf(" ") != -1) {
         // alert("註冊失敗\n" + "\"密碼\"有空白字元");
-        remindValue = "註冊失敗\n" + "\"密碼\"有空白字元";
+        remindValue = "註冊失敗<br>" + "\"密碼\"有空白字元";
         remindView(remindValue);
     }
     else if (UserCheckPass.value == "") {
         // alert("註冊失敗\n" + "\"確認密碼\"不能為空");
-        remindValue = "註冊失敗\n" + "\"確認密碼\"不能為空";
+        remindValue = "註冊失敗<br>" + "\"確認密碼\"不能為空";
         remindView(remindValue);
     }
     else if (strCP.indexOf(" ") != -1) {
         // alert("註冊失敗\n" + "\"確認密碼\"有空白字元");
-        remindValue = "註冊失敗\n" + "\"確認密碼\"有空白字元";
+        remindValue = "註冊失敗<br>" + "\"確認密碼\"有空白字元";
         remindView(remindValue);
     }
     else if (UserCheckPass.value != UserPass.value) {
         // alert("註冊失敗\n" + "\"密碼\"與\"確認密碼\"不同");
-        remindValue = "註冊失敗\n" + "\"密碼\"與\"確認密碼\"不同";
+        remindValue = "註冊失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
         remindView(remindValue);
     }
     else {
