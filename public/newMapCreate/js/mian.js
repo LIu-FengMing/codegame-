@@ -105,6 +105,8 @@ finishBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
+            
+            console.log("scriptData:",scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
@@ -136,6 +138,8 @@ finishBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
+        
+        console.log("scriptData:",scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
@@ -161,6 +165,7 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
+            console.log("scriptData:",scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
@@ -186,6 +191,8 @@ saveBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
+        
+        console.log("scriptData:",scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
