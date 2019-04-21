@@ -41,29 +41,33 @@ io.on('connection', function (socket) {
 
 var sendScriptToApi = function (script, input, language, socket) {
   var program = {
-      stdin: input,
-      script: script,
-      language: language,
-      versionIndex: "0",
-      clientId:"264e6ff43435e0f0ff02a5a0ca3d5fdd",
-      clientSecret: "e7fa5fe51f02c6bee8b6bd322fb2da9ca11f45d5ab9e784b804f4a200d37dcb9"
+    stdin: input,
+    script: script,
+    language: language,
+    versionIndex: "0",
+    // fdm的
+    clientId:"99c2672f5dce9ee9171173169c6c5fb9",
+    clientSecret: "a7d1e2ea03bd4e32cd1284c17f51b94ff71c1473b38b98b53aab81138a902ea7"
+    //der的
+    // clientId:"264e6ff43435e0f0ff02a5a0ca3d5fdd",
+    // clientSecret: "e7fa5fe51f02c6bee8b6bd322fb2da9ca11f45d5ab9e784b804f4a200d37dcb9"
   };
   var answer = {
-      error: "",
-      statusCode: "",
-      body: ""
+    error: "",
+    statusCode: "",
+    body: ""
   }
   request({
-          url: 'https://api.jdoodle.com/execute',
-          method: "POST",
-          json: program
-      },
-      function (error, response, body) {
-          answer.error = error;
-          answer.statusCode = response;
-          answer.body = body;
-          socket.emit('answer', answer);
-      });
+    url: 'https://api.jdoodle.com/execute',
+    method: "POST",
+    json: program
+  },
+    function (error, response, body) {
+      answer.error = error;
+      answer.statusCode = response;
+      answer.body = body;
+      socket.emit('answer', answer);
+    });
 }
 
 

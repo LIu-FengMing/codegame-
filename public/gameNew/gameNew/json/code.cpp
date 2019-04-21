@@ -540,6 +540,8 @@ void becameCar()
 	cout << "$sC,,-1,,car ";
 	// 	cout << endl;
 	bulletHit();
+	int dx = peopleAdr[0], dy = peopleAdr[1];
+	actionJudgeNextAdr(dx, dy);
 }
 void becameTank()
 {
@@ -547,6 +549,8 @@ void becameTank()
 	cout << "$sC,,-1,,tank ";
 	// 	cout << endl;
 	bulletHit();
+	int dx = peopleAdr[0], dy = peopleAdr[1];
+	actionJudgeNextAdr(dx, dy);
 }
 void becameShip()
 {
@@ -554,11 +558,15 @@ void becameShip()
 	cout << "$sC,,-1,,bot ";
 	// 	cout << endl;
 	bulletHit();
+	int dx = peopleAdr[0], dy = peopleAdr[1];
+	actionJudgeNextAdr(dx, dy);
 }
 void fire()
 {
 	peopleFire = true;
 	bulletHit();
+	int dx = peopleAdr[0], dy = peopleAdr[1];
+	actionJudgeNextAdr(dx, dy);
 }
 void input_init()
 {
