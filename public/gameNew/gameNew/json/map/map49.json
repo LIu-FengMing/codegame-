@@ -6,13 +6,13 @@
     "extendCode":"int y=55468;void getString(char* str){char* tmp=\"124836479513468213464\";strcpy(str,tmp);}",
     "winLinit": {
         "threeStar": [
-            68
+            70
         ],
         "twoStar": [
-            71
+            72
         ],
         "oneStar": [
-            72
+            73
         ]
     },
     "people_init": {

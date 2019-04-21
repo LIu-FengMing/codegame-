@@ -511,7 +511,7 @@ function draw() {
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
-            stepSpeed = gameSpeed + 1+Math.floor(ActionLen/50); //控制車子速度
+            stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
             delayResSpeed = 30;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
@@ -666,9 +666,9 @@ function draw() {
                                 onChanging = true;
                             }
                             else if (complementStep) {
-                                    mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX; 
-                                    mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
-                                    onChanging = false;
+                                mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX;
+                                mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
+                                onChanging = false;
                             }
                             else {
                                 complementStep = true;
@@ -691,7 +691,6 @@ function draw() {
                     for (var i = 0; i < value.length; ++i) {
                         var o = -1;
                         var nowValue = value[i];
-                        
                         if (nowValue.obj == -1) {
                             people_init["type"] = nowValue.type;
                         }
@@ -765,6 +764,7 @@ function draw() {
                         else {
                             o = nowValue.obj;
                             console.log("123");
+
                         }
                     }
                     else {
@@ -1224,7 +1224,7 @@ function codeToCompiler(stringCode) {
         inputStr = inputStr + data.input;
     }
 
-    // console.log(tempBefore);
+    console.log(tempBefore);
     console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
@@ -1253,7 +1253,7 @@ function codeOutputTranstionAction() {
 
     // var temp = new Array();
     var temp = [], tempNew = [];
-    temp = source.split("syst");
+    temp = source.split("$");
     // console.log(temp);
     for (var i = 0; i < temp.length; ++i) {
         if (temp[i][0] != ' ') {
@@ -1319,14 +1319,13 @@ function codeOutputTranstionAction() {
                 console.log(spaceT);
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
+                    var o = parseInt(spaceT[di]) - forgetDel;
                     if(loopCount>0&&parseInt(spaceT[di])==-1){
                         o=-1-loopCount;
                     }
                     var listTranstion = {
                         obj: o + loopCount,
-                        type: spaceT[di + 1],
-                        forgetDel: forgetDel
-
+                        type: spaceT[di + 1]
                     }
                     spaceList.push(listTranstion);
                 }
@@ -1362,8 +1361,7 @@ function codeOutputTranstionAction() {
                     for (var di = 1; di < spaceT.length; di++) {
                         var tempList = spaceT[di];
                         var listTranstion = {
-                            obj: parseInt(tempList) - forgetDel,
-                            forgetDel: forgetDel
+                            obj: parseInt(tempList) - forgetDel
                         }
                         spaceListD.push(listTranstion);
                     }
@@ -1667,7 +1665,6 @@ function decode_codesheet_api(resp) {
         else {
             codeOutputTranstionAction()
         }
-        // alert("Output = \n"+resp.stdout)
     } else if (resp.status === 'Failed' || resp.status === 'BadRequest' || resp.message === 'Forbidden') {
         console.log('Run response', resp);
         // runOutput.value = `Failed: ${resp.error}${resp.stdout}` // stdout for php which puts error in stdout

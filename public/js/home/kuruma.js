@@ -1679,21 +1679,21 @@ function changeLevelStage() {
   var codeLevel = -1;
   for (let index = 0; index < user.MediumEmpire.codeLevel.length; index++) {
     const element = user.MediumEmpire.codeLevel[index];
-    console.log("element=", element);
     if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
       codeLevel = parseInt(element.level);
     }
   }
   if (codeLevel == -1) {
-    codeLevel = 1;
+    codeLevel = 25;
   } else {
     codeLevel += 2;
   }
+
   var totalLevel = Math.max(codeLevel, 0);
   if (totalLevel == 0) {
     ++totalLevel;
   }
-  console.log(totalLevel - 24);
+  // console.log(totalLevel);
   totalLevel -= 24;
   for (var i = 0; i < 26; i++) {
     if (i < totalLevel) {
