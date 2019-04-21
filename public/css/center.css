@@ -195,13 +195,14 @@
   overflow: auto;
 }
 #remindH2{
-  font-size: 5vh;
-  margin-top: 10vh;
+  font-size: calc(20px + 1vw);
+  margin-top: 8vh;
+  line-height: 5vh;
 }
 #remindTrueBtn{
   height: 5vh;
   width: 8vw;
-  font-size: 1.5vw;
+  font-size: calc(15px + 1vw);
   border-radius: 10px;
   border-style: solid;
   border-width: 1px;
