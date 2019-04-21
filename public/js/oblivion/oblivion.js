@@ -807,12 +807,39 @@ function sendLoadUsernameMap() {
   })
 }
 
-
+var levelNameStatus=0,conditionStatus=0,creatorStatus=0,evaluateStatus=0,dateStatus=0,introductionStatus=0;
+var tdStatus = [0,0,0,0,0,0,0];
+function changeTdName(thisObiect) {
+  var str = thisObiect.className,s,s2;
+  var thisStatus = str.substr(str.length-1,1);
+  s = thisObiect.innerHTML;
+  // console.log(s2.length);
+  if(tdStatus[thisStatus] == 0){
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    thisObiect.innerHTML = s + "&nbsp▴";
+    tdStatus[thisStatus]++;
+  }else if(tdStatus[thisStatus] == 1){
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    s = s.substring(0,s.length-7);
+    // s = s.substring(0,s.length-1);
+    thisObiect.innerHTML = s + "&nbsp▾";
+    tdStatus[thisStatus]++;
+  }else if(tdStatus[thisStatus] == 2){
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    s = s.substring(0,s.length-7);
+    // s = s.substring(0,s.length-1);
+    thisObiect.innerHTML = s;
+    tdStatus[thisStatus] = 0;
+  }
+}
 
 var searchText=document.getElementById("searchText");
 searchText.onchange=function (){
   console.log("123");
-  
+
 }
 
 /*建立表格*/
