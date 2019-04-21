@@ -155,8 +155,10 @@
   font-family:fantasy;
 }
 #levelDescriptionTextaera{
+  height: 2vh;
   margin-top: 10vh;
   line-height: 24px;
+  overflow: auto;
 }
 #levelBtn{
   width: 15vh;
