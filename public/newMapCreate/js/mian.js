@@ -16,7 +16,7 @@ var selsize = document.getElementById('mapSize');
 var selobj = document.getElementById('objectSelect');
 var pos = document.getElementById('college-pos');
 var cmap = document.getElementById('mapDeploy');
-var mapID,mapOri;
+var mapID, mapOri;
 var editMapterrain = false;
 var heightestLevelStar = 0;
 var secondCanvans;
@@ -102,49 +102,50 @@ function loadObjectValue() {
 var finishBtn = document.getElementById('finishBtn');
 finishBtn.onclick = function () {
     // console.log(changeFile);
-    if(mapID){
-      if (changeFile) {
-          var scriptData = precessSaveData();
-          console.log(scriptData);
-          sendFinishMap(scriptData);
-      }
-      else {
-          var index = 0, href = window.location.href;
-          for (var i = 0; i < href.length; ++i) {
-              if (href[i] == '/' || href[i] == "\\") {
-                  index = i;
-              }
-          }
-          href = href.substr(0, index + 1) + "oblivionUser";
-          window.location.replace(href);
-      }
+    if (mapID) {
+        if (changeFile) {
+            var scriptData = precessSaveData();
+            console.log(scriptData);
+            sendFinishMap(scriptData);
+        }
+        else {
+            var index = 0, href = window.location.href;
+            for (var i = 0; i < href.length; ++i) {
+                if (href[i] == '/' || href[i] == "\\") {
+                    index = i;
+                }
+            }
+            href = href.substr(0, index + 1) + "oblivionUser";
+            window.location.replace(href);
+        }
     }
-  else{
-    var scriptData = precessSaveData();
-    console.log(scriptData);
-    sendFinishMap(scriptData);
-  }
+    else {
+        var scriptData = precessSaveData();
+        console.log(scriptData);
+        sendFinishMap(scriptData);
+    }
 }
 
 var saveBtn = document.getElementById('saveBtn');
 saveBtn.onclick = function () {
     // console.log(changeFile);
-if(mapID){
-  if (changeFile) {
-      var scriptData = precessSaveData();
-      console.log(scriptData);
-      sendSaveMap(scriptData);
-  }
+    if (mapID) {
+        if (changeFile) {
+            var scriptData = precessSaveData();
+            console.log(scriptData);
+            sendSaveMap(scriptData);
+        }
 
-  else {
-      console.log("123");
-      alert("儲存成功")
-  }
-}
-    else{
-      var scriptData = precessSaveData();
-      console.log(scriptData);
-      sendSaveMap(scriptData);
+        else {
+            console.log("123");
+            // alert("儲存成功")
+            remindView("儲存成功");
+        }
+    }
+    else {
+        var scriptData = precessSaveData();
+        console.log(scriptData);
+        sendSaveMap(scriptData);
     }
 }
 function precessSaveData() {
@@ -223,14 +224,14 @@ function precessSaveData() {
     var levelIntroductionTextarea = document.getElementById('levelIntroductionTextarea');
     var levelDescriptionTextarea = document.getElementById('levelDescriptionTextarea');
     var levelNameTextarea = document.getElementById('levelNameTextarea');
-    var postStage=0;
-    if(mapID){
-      if(mapOri.postStage){
-        postStage = mapOri.postStage;
-      }
-      if (postStage == 1) {
-          postStage = 0;
-      }
+    var postStage = 0;
+    if (mapID&&mapOri) {
+        if (mapOri.postStage) {
+            postStage = mapOri.postStage;
+        }
+        if (postStage == 1) {
+            postStage = 0;
+        }
     }
 
 
@@ -307,7 +308,9 @@ function sendSaveMap(scriptData) {
             success: function (res) {
                 // console.log(res._id);
                 console.log(res);
-                alert("儲存成功");
+                // alert("儲存成功");
+
+                remindView("儲存成功");
             }
         })
     }
@@ -321,7 +324,8 @@ function sendSaveMap(scriptData) {
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
                 // console.log(res._id);
-                alert("儲存成功");
+                // alert("儲存成功");
+                remindView("儲存成功");
                 mapID = res._id;
 
                 // let nowurl = new URL(window.location.href);
@@ -396,7 +400,7 @@ function init_setup() {
                 }
                 else {
                     data = JSON.parse(res.map);
-                    mapOri=res;
+                    mapOri = res;
                     Res_data = JSON.parse(JSON.stringify(data));
                     loadData();
                     var levelIntroductionTextarea = document.getElementById('levelIntroductionTextarea');
@@ -600,7 +604,7 @@ function updateCanvas() {
         image(pg, dx, dy, edgeToEdge, edgeToEdge);
     }
 
-   
+
     var pg = createGraphics(edgeToEdge, edgeToEdge);
     var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
     var img = imgObject[parseInt(imgDic[people_init["type"]])];
@@ -608,10 +612,10 @@ function updateCanvas() {
     pg.rotate(PI / 180 * drotate);
     pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
     var img = imgObject[parseInt(imgDic["start"])];
-    image(img,dx, dy, edgeToEdge, edgeToEdge);
+    image(img, dx, dy, edgeToEdge, edgeToEdge);
     image(pg, dx, dy, edgeToEdge, edgeToEdge);
 
-    
+
 
     stroke('red');
     strokeWeight(4);
