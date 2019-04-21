@@ -378,9 +378,7 @@ function sendSaveMap(scriptData) {
                         mapAll.splice(indexS,1);
                         break;
                     }
-                    
                 }
-
                 mapID=res._id;
                 // alert("儲存成功");
                 remindView("儲存成功");

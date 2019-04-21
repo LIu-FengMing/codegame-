@@ -1276,6 +1276,7 @@ function codeOutputTranstionAction() {
             }
         }
     }
+    console.log(tempNew);
     // temp = tempNew.slice(0);
     temp.length = 0;
 
@@ -1397,7 +1398,7 @@ function codeOutputTranstionAction() {
                     }
                 }
             }
-            if (o > -1 && spaceT[2].length > 1) {
+            if (o > -1 && spaceT[2].length > 0) {
                 // console.log(mapObject[o - forgetDel].ans ,"  ",spaceT[2]);
                 var conditionAns = true;
                 var inputList = [];
