@@ -1327,6 +1327,10 @@ function codeOutputTranstionAction() {
                 console.log(spaceT);
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
+                    var o = parseInt(spaceT[di]) - forgetDel;
+                    if(loopCount>0&&parseInt(spaceT[di])==-1){
+                        o=-1-loopCount;
+                    }
                     var listTranstion = {
                         obj: o + loopCount,
                         type: spaceT[di + 1]

@@ -6,13 +6,13 @@
     "extendCode":"void getString(char* str){char* tmp=\"14569 76835\";strcpy(str,tmp);}",
     "winLinit": {
         "threeStar": [
-            73
+            75
         ],
         "twoStar": [
-            76
+            77
         ],
         "oneStar": [
-            77
+            78
         ]
     },
     "people_init": {

@@ -494,7 +494,7 @@ function lessRequirement(starNum){
 
 var levelDivAlive=false;
 function remindView(remindValue) {
-  divTag = document.getElementById("center");
+  divTag = document.getElementById("centerLost");
   if (levelDivAlive) {
     divTag = document.getElementById("remindView");
     try {

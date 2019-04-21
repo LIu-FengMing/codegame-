@@ -691,6 +691,7 @@ function draw() {
                     for (var i = 0; i < value.length; ++i) {
                         var o = -1;
                         var nowValue = value[i];
+                        
                         if (nowValue.obj == -1) {
                             people_init["type"] = nowValue.type;
                         }
@@ -764,7 +765,6 @@ function draw() {
                         else {
                             o = nowValue.obj;
                             console.log("123");
-
                         }
                     }
                     else {
@@ -1319,9 +1319,14 @@ function codeOutputTranstionAction() {
                 console.log(spaceT);
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
+                    if(loopCount>0&&parseInt(spaceT[di])==-1){
+                        o=-1-loopCount;
+                    }
                     var listTranstion = {
                         obj: o + loopCount,
-                        type: spaceT[di + 1]
+                        type: spaceT[di + 1],
+                        forgetDel: forgetDel
+
                     }
                     spaceList.push(listTranstion);
                 }
@@ -1357,7 +1362,8 @@ function codeOutputTranstionAction() {
                     for (var di = 1; di < spaceT.length; di++) {
                         var tempList = spaceT[di];
                         var listTranstion = {
-                            obj: parseInt(tempList) - forgetDel
+                            obj: parseInt(tempList) - forgetDel,
+                            forgetDel: forgetDel
                         }
                         spaceListD.push(listTranstion);
                     }
