@@ -1012,9 +1012,11 @@ $.each($("textarea"), function(i, n){
   $(n).css("height", n.scrollHeight + "px");
 })
 
+
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
+  myValue+="\n";
   //IE support
   if (document.selection) {
     myField.focus();
@@ -1023,6 +1025,7 @@ function insertAtCursor(myValue) {
   }
   //MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart == '0') {
+    // console.log("type 2");
     var startPos = myField.selectionStart;
     var endPos = myField.selectionEnd;
     myField.value = myField.value.substring(0, startPos)
