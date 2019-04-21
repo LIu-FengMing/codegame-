@@ -312,6 +312,8 @@ router.post('/gameView_text', function (req, res, next) {
                 instructionNum: req.body.instructionNum
             }]
         }
+        console.log("data:",data);
+        
         User.getUserById(id, function (err, user) {
             if (err) throw err;
             if (empire == "EasyEmpire") {

@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
-    console.log("setup");
+    // console.log("setup");
 
     var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
@@ -184,7 +184,7 @@ function init_setup() {
     xmlhttp.send();
 }
 window.onresize = function () {
-    console.log("ddd");
+    // console.log("ddd");
     setup();
 }
 function loadData() {

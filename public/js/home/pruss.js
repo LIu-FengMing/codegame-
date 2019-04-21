@@ -889,7 +889,7 @@ function resetEquipClick() {
       levelUpLevel = 0;
       // clossFunc("equipageView","equipageBkViewv");
       clossFunc("equipageView", "equipageBkView");
-      equipageView(center);
+      equipageView({id:"centerBlockly"});
     }
   })
 }
