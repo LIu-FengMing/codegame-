@@ -1678,7 +1678,7 @@ function sendSession() {
 function changeLevelStage() {
   var codeLevel = -1;
   for (let index = 0; index < user.MediumEmpire.codeLevel.length; index++) {
-    onst element = user.MediumEmpire.codeLevel[index];
+    const element = user.MediumEmpire.codeLevel[index];
     if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
       codeLevel = parseInt(element.level);
     }
@@ -1688,7 +1688,7 @@ function changeLevelStage() {
   } else {
     codeLevel += 2;
   }
-  
+
   var totalLevel = Math.max(codeLevel, 0);
   if (totalLevel == 0) {
     ++totalLevel;
