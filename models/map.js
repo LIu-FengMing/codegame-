@@ -42,6 +42,8 @@ module.exports.getMapByUserID = function (userID, callback) {
 
 // updateMap, 透過mapId更新地圖
 module.exports.updateMapById = function (id, scriptData, callback) {
+    console.log(scriptData);
+    
     var query = { _id: id }
     var setquery = {
         mapName: scriptData.mapName,
