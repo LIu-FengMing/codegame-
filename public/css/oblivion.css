@@ -159,8 +159,8 @@ body {
 
 /*center*/
 .settingAllButton{
-  width: 8vh;
-  height: 8vh;
+  width: 6vh;
+  height: 6vh;
   border-width: 0px;
   background-image: url('../img/setting_all.png');
   background-repeat: no-repeat;
@@ -168,7 +168,7 @@ body {
   background-color: transparent;
   position: absolute;
   right: 5%;
-  top: 2%;
+  top: 1.5vh;
   cursor: pointer;
 }
 
@@ -189,13 +189,14 @@ body {
   overflow: auto;
 }
 #remindH2{
-  font-size: 5vh;
-  margin-top: 10vh;
+  font-size: calc(20px + 1vw);
+  margin-top: 8vh;
+  line-height: 5vh;
 }
 #remindTrueBtn{
   height: 5vh;
   width: 8vw;
-  font-size: 1.5vw;
+  font-size: calc(15px + 1vw);
   border-radius: 10px;
   border-style: solid;
   border-width: 1px;
@@ -320,24 +321,93 @@ body {
   top: 5%;
   left: 5%;
 }
-
+.titleH1{
+  font-size: 6vh;
+  letter-spacing: 3px;
+  margin-top: 2vh;
+}
 .centerLost font{
   font-size: 6vh;
   letter-spacing: 3px;
   margin-top: 1vh;
 }
+#levelSelect{
+  height: 4vh;
+  width: 6vw;
+  font-size: calc(10px + 0.5vw);
+  background-color: #A9C4EB;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  position: absolute;
+  top: 3vh;
+  left: 10%;
+}
+
+.clear {
+  display: none;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0 -22px;
+  background:url("../img/close.png") no-repeat;outline: none;
+}
+
+.search-box{
+  height: 3vh;
+  position: absolute;
+  top: 2vh;
+  right: 10%;
+  background: #7A7A7A;
+  border-radius: 3vh;
+  padding: 10px;
+}
+.search-box:hover > .search-text,.search-box > .search-text:focus{
+  width: 8vw;
+  padding: 0 6px;
+}
+.search-box:hover > .search-btn{
+  color: #e84118;
+  background: white;
+}
+.search-btn{
+  height: 3vh;
+  width: 3vh;
+  color: white;
+  float: right;
+  border-radius: 50%;
+  background-color: #7A7A7A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.search-text{
+  width: 0vw;
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 2vh;
+  transition: 0.4s;
+  line-height: 3vh;
+}
+.search-text::placeholder{
+  color: white;
+}
 #createrDiv{
   width: 90%;
-  height: 80%;
+  height: 81%;
   background-color: #8494A6;
   position: absolute;
-  top: 10%;
+  top: 9%;
   left: 5%;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   overflow: auto;
-  margin-top: 1vh;
 }
 #createrDiv #lostCreateTable{
   width: 99.9%;

@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,262 +20,293 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   return {
 
     // 設定一個 session 變數
-    set: function(name, value) {
+    set: function (name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function(name) {
+    get: function (name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function() { store = {}; },
+    clear: function () { store = {}; },
 
     // 列出所有存入的資料
-    dump: function() { return JSON.stringify(store); }
+    dump: function () { return JSON.stringify(store); }
 
   };
 
- })();
+})();
 function back() {
- var index = 0;
- var href = window.location.href;
- for (var i = 0; i < href.length; ++i) {
-   if (href[i] == '/' || href[i] == "\\") {
-       index = i;
-   }
- }
- href = href.substr(0, index + 1);
- window.location.replace(href);
- console.log(href);
+  var index = 0;
+  var href = window.location.href;
+  for (var i = 0; i < href.length; ++i) {
+    if (href[i] == '/' || href[i] == "\\") {
+      index = i;
+    }
+  }
+  href = href.substr(0, index + 1);
+  window.location.replace(href);
+  console.log(href);
 }
- var href = window.location.href;
- var scriptData = {
-     type: "init"
- }
- var user, equipmentData,achievemenData,dictionaryData,levelDescription,thisLevelStarNum;
- var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,levelStage,gameSpeed;
- var musicData;
- $.ajax({
-     url: href,              // 要傳送的頁面
-     method: 'POST',               // 使用 POST 方法傳送請求
-     dataType: 'json',             // 回傳資料會是 json 格式
-     data: scriptData,  // 將表單資料用打包起來送出去
-     success: function (res) {
-       scriptData={
-         bkMusicVolumn: res.bkMusicVolumn
-         ,bkMusicSwitch: res.bkMusicSwitch
-         ,musicLevel: res.musicLevel
-       }
-       user = res
-       // console.log(user);
-       var xmlhttp = new XMLHttpRequest();
-       xmlhttp.onreadystatechange = function () {
-           if (this.readyState == 4 && this.status == 200) {
-               equipmentData = JSON.parse(this.responseText);
-               initHome();
-           }
-       };
-       xmlhttp.open("GET", "json/equipment.json", true);
-       xmlhttp.send();
-   }
- })
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function () {
-     if (this.readyState == 4 && this.status == 200) {
-         achievemenData = JSON.parse(this.responseText);
-     }
- };
- xmlhttp.open("GET", "json/achievement.json", true);
- xmlhttp.send();
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function () {
-     if (this.readyState == 4 && this.status == 200) {
-         dictionaryData = JSON.parse(this.responseText);
-     }
- };
- xmlhttp.open("GET", "json/dictionary.json", true);
- xmlhttp.send();
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function () {
-     if (this.readyState == 4 && this.status == 200) {
-         levelDescription = JSON.parse(this.responseText);
-     }
- };
- xmlhttp.open("GET", "json/levelDescription.json", true);
- xmlhttp.send();
+var href = window.location.href;
+var scriptData = {
+  type: "init"
+}
+var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
+var musicData;
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  success: function (res) {
+    scriptData = {
+      bkMusicVolumn: res.bkMusicVolumn
+      , bkMusicSwitch: res.bkMusicSwitch
+      , musicLevel: res.musicLevel
+    }
+    user = res
+    // console.log(user);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        equipmentData = JSON.parse(this.responseText);
+        initHome();
+      }
+    };
+    xmlhttp.open("GET", "json/equipment.json", true);
+    xmlhttp.send();
+  }
+})
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    achievemenData = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "json/achievement.json", true);
+xmlhttp.send();
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    dictionaryData = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "json/dictionary.json", true);
+xmlhttp.send();
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    levelDescription = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "json/levelDescription.json", true);
+xmlhttp.send();
 
- function error() {
-     alert("有不當的操作發生");
-     window.location.replace(href);
+function error() {
+  alert("有不當的操作發生");
+  window.location.replace(href);
 
- }
- function initHome() {
-   if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
-     //console.log("???");
-     bkMusicVolumn = Session.get("bkMusicVolumn");
-     bkMusicSwitch = Session.get("bkMusicSwitch");
-     musicLevel = Session.get("musicLevel");
-     gameSpeed = Session.get("gameSpeed");
-   }else{
-     bkMusicVolumn = 0.1;
-     bkMusicSwitch = 2;
-     musicLevel = 1;
-     gameSpeed = 5;
-   }
-   myVid=document.getElementById("bkMusic");
-   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
-   myVid.play();
-   bkMusicSwitch++;
-   //console.log(myVid.volume);
-   sendSession();
-   var userName = document.getElementById("userName");
-   var starNumber = document.getElementById("starNumber");
-   var text = user.name;
-   userName.textContent = text;
-   starNumber.textContent = user.starNum;
+}
+function initHome() {
+  if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
+    //console.log("???");
+    bkMusicVolumn = Session.get("bkMusicVolumn");
+    bkMusicSwitch = Session.get("bkMusicSwitch");
+    musicLevel = Session.get("musicLevel");
+    gameSpeed = Session.get("gameSpeed");
+  } else {
+    bkMusicVolumn = 0.1;
+    bkMusicSwitch = 2;
+    musicLevel = 1;
+    gameSpeed = 5;
+  }
+  myVid = document.getElementById("bkMusic");
+  myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  myVid.play();
+  bkMusicSwitch++;
+  //console.log(myVid.volume);
+  sendSession();
+  var userName = document.getElementById("userName");
+  var starNumber = document.getElementById("starNumber");
+  var text = user.name;
+  userName.textContent = text;
+  starNumber.textContent = user.starNum;
 
-   levelUpLevel = user.levelUpLevel;
-   swordLevel = user.weaponLevel;
-   shieldLevel = user.armorLevel;
-   changeLevelStage();
- }
- function weaponLevelup() {
-     var scriptData = {
-         type: "weaponLevelup",
-     }
-     $.ajax({
-         url: href,              // 要傳送的頁面
-         method: 'POST',               // 使用 POST 方法傳送請求
-         dataType: 'json',             // 回傳資料會是 json 格式
-         data: scriptData,  // 將表單資料用打包起來送出去
-         success: function (res) {
-             if (res.err) {
-                 error();
-             }
-             user = res
-             // console.log(user);
-         }
-     })
- }
- function armorLevelup() {
-     var scriptData = {
-         type: "armorLevelup",
-     }
-     $.ajax({
-         url: href,              // 要傳送的頁面
-         method: 'POST',               // 使用 POST 方法傳送請求
-         dataType: 'json',             // 回傳資料會是 json 格式
-         data: scriptData,  // 將表單資料用打包起來送出去
-         success: function (res) {
-             if (res.err) {
-                 error();
-             }
-             // console.log(res.err);
-             // console.log(user);
-         }
-     })
- }
+  levelUpLevel = user.levelUpLevel;
+  swordLevel = user.weaponLevel;
+  shieldLevel = user.armorLevel;
+  changeLevelStage();
+}
+function weaponLevelup() {
+  var scriptData = {
+    type: "weaponLevelup",
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      if (res.err) {
+        error();
+      }
+      user = res
+      // console.log(user);
+    }
+  })
+}
+function armorLevelup() {
+  var scriptData = {
+    type: "armorLevelup",
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      if (res.err) {
+        error();
+      }
+      // console.log(res.err);
+      // console.log(user);
+    }
+  })
+}
 
- //////////////////////////////////////////////////
- //              right.js                        //
- //////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//              right.js                        //
+//////////////////////////////////////////////////
 
- var myVid;
- var divID, divID2, divTag, b;
- var userdataFont;
- var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
-     "使用者名稱：",
-     "主&nbsp要&nbsp進&nbsp&nbsp度：",
-     "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
-     "上架地圖數：",
-     "已獲得星星數："];
- function userData() {
-     divID = "userDataView";
-     divID2 = "userDataBkView";
-     divTag = document.getElementById("centerMidMap");
-     b = document.createElement("div");
-     b.setAttribute("id", "userDataBkView");
-     b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
-     divTag.appendChild(b);
-     b = document.createElement("div");
-     b.setAttribute("id", "userDataView");
-     divTag.appendChild(b);
-     divTag = document.getElementById("userDataView");
-     b = document.createElement("input");
-     b.setAttribute("type", "button");
-     b.setAttribute("id", "clossDiv");
-     b.setAttribute("value", "X");
-     b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
-     divTag.appendChild(b);
-     createUserView(divID);
- }
- function clossFunc(thisDiv, thisDiv2) {
-   try {
-     divTag = document.getElementById(thisDiv);
-     parentObj = divTag.parentNode;
-     parentObj.removeChild(divTag);
-   } catch (e) {}
-   try {
-     divTag = document.getElementById(thisDiv2);
-     parentObj = divTag.parentNode;
-     parentObj.removeChild(divTag);
-     levelDivAlive = false;
-   } catch (e) {}
- }
- function createUserView(mainDiv) {
-     divTag = document.getElementById(mainDiv);
-     b = document.createElement("h1");
-     b.setAttribute("id", "allTitle");
-     divTag.appendChild(b);
-     document.getElementById("allTitle").innerHTML = "個人資料";
-     b = document.createElement("div");
-     b.setAttribute("id", "userInnerDiv");
-     divTag.appendChild(b);
-     divTag = document.getElementById("userInnerDiv");
-     b = document.createElement("div");
-     b.setAttribute("id", "userH3Div");
-     divTag.appendChild(b);
-     divTag = document.getElementById("userH3Div");
-     for (var i = 0; i < dataTitle.length; i++) {
-         b = document.createElement("h3");
-         b.setAttribute("id", "titleDatah3" + i);
-         b.setAttribute("align", "left");
-         divTag.appendChild(b);
-         if(i == 0){
-           userdataFont = user.username;
-         }else if(i == 1){
-           userdataFont = user.name;
-         }else if(i == 2){
-           if(user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel){
-             userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
-           }else{
-             if(user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel){
-               userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
-             }else{
-               userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
-             }
-           }
-         }else if(i == 3){
-           userdataFont = "5/10";
-         }else if(i == 4){
-           userdataFont = user.createMap.length;
-         }else if(i ==5){
-           userdataFont = user.starNum;
-         }
-         document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-         for (var j = 0; j < 3; j++) {
-             b = document.createElement("br");
-             divTag.appendChild(b);
-         }
-     }
- }
- function logout() {
-     // console.log("dddddd");
-     var href = "/logout";
-     window.location.replace(href);
- }
+var myVid;
+var divID, divID2, divTag, b;
+var userdataFont;
+var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
+  "使用者名稱：",
+  "主&nbsp要&nbsp進&nbsp&nbsp度：",
+  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
+  "上架地圖數：",
+  "已獲得星星數："];
+function userData() {
+  divID = "userDataView";
+  divID2 = "userDataBkView";
+  divTag = document.getElementById("centerMidMap");
+  b = document.createElement("div");
+  b.setAttribute("id", "userDataBkView");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "userDataView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userDataView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  divTag.appendChild(b);
+  // createUserView(divID);
+  /*修改密碼按鈕*/
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "changePasswordBtn");
+  b.setAttribute("value", "修改密碼");
+  b.setAttribute("onclick", "changePassword(\"userDataView\")");
+  divTag.appendChild(b);
+  createUserView(divID);
+}
+function clossFunc(thisDiv, thisDiv2) {
+  try {
+    document.getElementById("changePasswordBtn").className = "";
+    document.getElementById("clossDiv").className = "";
+  } catch (e) { }
+  try {
+    divTag = document.getElementById(thisDiv);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  try {
+    divTag = document.getElementById(thisDiv2);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    levelDivAlive = false;
+  } catch (e) { }
+  
+  levelDivAlive = false;
+}
+function closeFunc(thisDiv, thisDiv2) {
+  try {
+    document.getElementById("changePasswordBtn").className = "";
+    document.getElementById("clossDiv").className = "";
+  } catch (e) { }
+  try {
+    divTag = document.getElementById(thisDiv);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  try {
+    divTag = document.getElementById(thisDiv2);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  levelDivAlive = false;
+}
+function createUserView(mainDiv) {
+  divTag = document.getElementById(mainDiv);
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "個人資料";
+  b = document.createElement("div");
+  b.setAttribute("id", "userInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userInnerDiv");
+  b = document.createElement("div");
+  b.setAttribute("id", "userH3Div");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userH3Div");
+  for (var i = 0; i < dataTitle.length; i++) {
+    b = document.createElement("h3");
+    b.setAttribute("id", "titleDatah3" + i);
+    b.setAttribute("align", "left");
+    divTag.appendChild(b);
+    if (i == 0) {
+      userdataFont = user.username;
+    } else if (i == 1) {
+      userdataFont = user.name;
+    } else if (i == 2) {
+      if (user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel) {
+        userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
+      } else {
+        if (user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel) {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
+        } else {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
+        }
+      }
+    } else if (i == 3) {
+      userdataFont = "5/10";
+    } else if (i == 4) {
+      userdataFont = user.createMap.length;
+    } else if (i == 5) {
+      userdataFont = user.starNum;
+    }
+    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 3; j++) {
+      b = document.createElement("br");
+      divTag.appendChild(b);
+    }
+  }
+}
+function logout() {
+  // console.log("dddddd");
+  var href = "/logout";
+  window.location.replace(href);
+}
 
 
 
@@ -286,76 +317,76 @@ function back() {
 
 var levelDivAlive = false;
 var parentObj, divID;
-viewRecordFontText = ["星星","指令個數","程式碼"];
+viewRecordFontText = ["星星", "指令個數", "程式碼"];
 function btnClick(number) {
   var divTag = document.getElementById("centerMidMap");
   var b;
-  number+=25;
-  if(levelDivAlive){
+  number += 25;
+  if (levelDivAlive) {
     divTag = document.getElementById("levelDiv");
     try {
       parentObj = divTag.parentNode;
-    　parentObj.removeChild(divTag);
-    } catch (e) {}
+      parentObj.removeChild(divTag);
+    } catch (e) { }
     levelDivAlive = false;
     divTag = document.getElementById("centerMidMap");
   }
   b = document.createElement("div");
-  b.setAttribute("id","levelDiv");
+  b.setAttribute("id", "levelDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("levelDiv");
   b = document.createElement("form");
-  b.setAttribute("id","levelForm");
+  b.setAttribute("id", "levelForm");
   levelDivAlive = true;
   divTag.appendChild(b);
   b = document.createElement("input");
-  b.setAttribute("type","button");
-  b.setAttribute("id","clossDiv");
-  b.setAttribute("value","X");
-  b.setAttribute("onclick","clossFunc(\"levelDiv\")");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"levelDiv\")");
   divTag.appendChild(b);
   divTag = document.getElementById("levelForm");
   b = document.createElement("h3");
-  b.setAttribute("id","levelDescription");
-  b.innerHTML= "第" + number + "關";
+  b.setAttribute("id", "levelDescription");
+  b.innerHTML = "第" + number + "關";
   divTag.appendChild(b);
   /*星星圖*/
   b = document.createElement("div");
-  b.setAttribute("id","startDiv");
+  b.setAttribute("id", "startDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("startDiv");
-  for(var i=0;i<3;i++){
+  for (var i = 0; i < 3; i++) {
     b = document.createElement("img");
-    b.setAttribute("id","startImg" + i);
-    b.setAttribute("class","unStartImg");
+    b.setAttribute("id", "startImg" + i);
+    b.setAttribute("class", "unStartImg");
     //b.setAttribute("src","img/levelStart.png");
     divTag.appendChild(b);
   }
-  var codeStar=0,blockStar=0;
+  var codeStar = 0, blockStar = 0;
   //number--;
   console.log(number);
-  number-=25;
-  if(user.MediumEmpire.codeLevel.length>number){
+  number -= 25;
+  if (user.MediumEmpire.codeLevel.length > number) {
     codeStar = user.MediumEmpire.codeLevel[number].HighestStarNum;
   }
-  thisLevelStarNum=codeStar;
+  thisLevelStarNum = codeStar;
   // if(user.EasyEmpire.codeLevel[--number].HighestStarNum)
   // try {
   //   thisLevelStarNum = user.EasyEmpire.codeLevel[--number].HighestStarNum;
   // } catch (e) {
   //   thisLevelStarNum = 0;
   // }
-  for(var i=0;i<thisLevelStarNum;i++){
+  for (var i = 0; i < thisLevelStarNum; i++) {
     document.getElementById("startImg" + i).className = "startImg";
   }
   /*主要函式*/
-  number+=24;
+  number += 24;
   b = document.createElement("div");
   b.setAttribute("id", "mainGrammar");
   divTag.appendChild(b);
   divTag = document.getElementById("mainGrammar");
   console.log(levelDescription.Early[number].mainGrammar.length);
-  for(var i=0;i<levelDescription.Early[number].mainGrammar.length;i++){
+  for (var i = 0; i < levelDescription.Early[number].mainGrammar.length; i++) {
     b = document.createElement("div");
     b.setAttribute("class", "innerGrammar");
     b.setAttribute("id", "innerGrammar" + i);
@@ -378,34 +409,34 @@ function btnClick(number) {
   b = document.createElement("br");
   divTag.appendChild(b);
 
-  number-=24;
+  number -= 24;
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "historyCode");
   b.setAttribute("value", "查看紀錄");
-  b.setAttribute("onclick","viewRecord(" + number + ")");
+  b.setAttribute("onclick", "viewRecord(" + number + ")");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "levelBtn");
   b.setAttribute("value", "進入關卡");
-  number+=24;
+  number += 24;
   b.setAttribute("onclick", "location.href='gameView_text?level=" + number + "'");
   divTag.appendChild(b);
 }
 function viewRecord(number) {
   var divTag = document.getElementById("centerMidMap");
-  var isCheckClicked,codeText,codeNum,niceRecord=999,niceStar=-1;
+  var isCheckClicked, codeText, codeNum, niceRecord = 999, niceStar = -1;
   var lastRecord;
-  if(user.MediumEmpire.codeLevel.length == 0){
+  if (user.MediumEmpire.codeLevel.length == 0) {
     codeText = "查無紀錄";
     codeNum = 0;
-  }else{
-    try{
-      for(var i=0;i<user.MediumEmpire.codeLevel[number].challengeLog.length;i++){
-        if(user.MediumEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar){
+  } else {
+    try {
+      for (var i = 0; i < user.MediumEmpire.codeLevel[number].challengeLog.length; i++) {
+        if (user.MediumEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar) {
           niceStar = user.MediumEmpire.codeLevel[number].challengeLog[i].srarNum;
-          if(user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord){
+          if (user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord) {
             niceRecord = user.MediumEmpire.codeLevel[number].challengeLog[i].instructionNum;
             lastRecord = i;
           }
@@ -418,76 +449,212 @@ function viewRecord(number) {
       result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
       codeText = result.replace(new RegExp("\n", "g"), "<br>");
       codeNum = niceRecord;
-    }catch(e){
+    } catch (e) {
       codeText = "查無資料";
       codeNum = 0;
     }
   }
   b = document.createElement("div");
-  b.setAttribute("id","centerBlocklyBkView");
-  b.setAttribute("onclick","clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
+  b.setAttribute("id", "centerBlocklyBkView");
+  b.setAttribute("onclick", "clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
-  b.setAttribute("id","centerBlocklyView");
+  b.setAttribute("id", "centerBlocklyView");
   divTag.appendChild(b);
   divTag = document.getElementById("centerBlocklyView");
   b = document.createElement("input");
-  b.setAttribute("type","button");
-  b.setAttribute("id","clossDiv");
-  b.setAttribute("value","X");
-  b.setAttribute("onclick","clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id","allTitle");
+  b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "最佳紀錄";
   b = document.createElement("table");
-  b.setAttribute("id","viewRecordTable");
+  b.setAttribute("id", "viewRecordTable");
   divTag.appendChild(b);
   b = document.createElement("textaera");
-  b.setAttribute("id","viewRecordTextaera");
+  b.setAttribute("id", "viewRecordTextaera");
   divTag.appendChild(b);
   document.getElementById("viewRecordTextaera").innerHTML = codeText;
-  for(var i=0;i<3;i++){
+  for (var i = 0; i < 3; i++) {
     divTag = document.getElementById("viewRecordTable");
     b = document.createElement("tr");
-    b.setAttribute("id","viewRecordTr"+i);
+    b.setAttribute("id", "viewRecordTr" + i);
     divTag.appendChild(b);
-    divTag = document.getElementById("viewRecordTr"+i);
-    for(var j=0;j<2;j++){
+    divTag = document.getElementById("viewRecordTr" + i);
+    for (var j = 0; j < 2; j++) {
       b = document.createElement("td");
-      b.setAttribute("id","viewRecordTr" + i + "viewRecordTd" + j);
+      b.setAttribute("id", "viewRecordTr" + i + "viewRecordTd" + j);
       divTag.appendChild(b);
       divTag = document.getElementById("viewRecordTr" + i + "viewRecordTd" + j);
-      if(j == 0){
+      if (j == 0) {
         b = document.createElement("font");
-        b.setAttribute("id","viewRecordFont" + i);
+        b.setAttribute("id", "viewRecordFont" + i);
         divTag.appendChild(b);
         document.getElementById("viewRecordFont" + i).innerHTML = viewRecordFontText[i];
-      }else if( j == 1){
-        if(i == 0){
-          for(var k=0;k<3;k++){
+      } else if (j == 1) {
+        if (i == 0) {
+          for (var k = 0; k < 3; k++) {
             b = document.createElement("img");
-            b.setAttribute("id","startImg" + k);
-            if(k<niceStar){
-              b.setAttribute("class","startImg");
-            }else{
-              b.setAttribute("class","unStartImg");
+            b.setAttribute("id", "startImg" + k);
+            if (k < niceStar) {
+              b.setAttribute("class", "startImg");
+            } else {
+              b.setAttribute("class", "unStartImg");
             }
             divTag.appendChild(b);
           }
-        }else if(i == 1){
+        } else if (i == 1) {
           b = document.createElement("font");
-          b.setAttribute("id","instructionFont");
+          b.setAttribute("id", "instructionFont");
           divTag.appendChild(b);
           document.getElementById("instructionFont").innerHTML = codeNum;
         }
       }
-      divTag = document.getElementById("viewRecordTr"+i);
+      divTag = document.getElementById("viewRecordTr" + i);
     }
   }
 }
 
+function changePassword(thisDiv) {
+  var tdValue = ["舊密碼", "新密碼", "確認新密碼"], inputID = ["oldPassword", "newPassword", "checkPassword"];
+  document.getElementById("changePasswordBtn").className = "disabled";
+  document.getElementById("clossDiv").className = "disabled";
+  divTag = document.getElementById("userDataView");
+  b = document.createElement("div");
+  b.setAttribute("id", "changePasswordView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordView");
+  b = document.createElement("h1");
+  b.setAttribute("id", "changePasswordTitle");
+  b.innerHTML = "修改密碼";
+  divTag.appendChild(b);
+
+  b = document.createElement("table");
+  b.setAttribute("id", "changePasswordTable");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordTable");
+  for (var i = 0; i < 3; i++) {
+    b = document.createElement("tr");
+    b.setAttribute("id", "changePasswordTr" + i);
+    divTag.appendChild(b);
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("changePasswordTr" + i);
+      b = document.createElement("td");
+      b.setAttribute("id", "changePasswordTd" + i + j);
+      divTag.appendChild(b);
+      divTag = document.getElementById("changePasswordTd" + i + j);
+      if (j == 0) {
+        b = document.createElement("h2");
+        b.setAttribute("id", "changePasswordH2" + i + j);
+        b.innerHTML = tdValue[i];
+        divTag.appendChild(b);
+      } else {
+        b = document.createElement("input");
+        b.setAttribute("type", "password");
+        b.setAttribute("id", inputID[i]);
+        divTag.appendChild(b);
+      }
+    }
+    divTag = document.getElementById("changePasswordTable");
+  }
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "cancelBtn");
+  b.setAttribute("value", "取消修改");
+  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "confirmBtn");
+  b.setAttribute("value", "確認修改");
+  // b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "changePass()");
+
+  divTag.appendChild(b);
+}
+function changePass() {
+  oldPassword = document.getElementById("oldPassword");
+  newPassword = document.getElementById("newPassword");
+  checkPassword = document.getElementById("checkPassword");
+
+  var strOP = oldPassword.value;
+  var strP = newPassword.value;
+  var strCP = checkPassword.value;
+  if (oldPassword.value == "") {
+    // alert("動作失敗<br>" + "\"舊密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strOP.indexOf(" ") != -1) {
+    // alert("動作失敗<br>" + "\"舊密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value == "") {
+    // alert("動作失敗<br>" + "\"密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (checkPassword.value == "") {
+    // alert("動作失敗\n" + "\"確認密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strCP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value != checkPassword.value) {
+    // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
+    remindValue = "動作失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
+    remindView(remindValue);
+  }
+  else {
+    var scriptData = {
+      type: "changePassword",
+      oldPassword: oldPassword.value,
+      password: newPassword.value,
+    }
+    // console.log(scriptData);
+    // alert("wait");
+    var href = window.location.href;
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',         // 使用 POST 方法傳送請求
+      dataType: 'json',       // 回傳資料會是 json 格式
+      data: scriptData,       // 將表單資料用打包起來送出去
+      success: function (res) {
+        result = "動作失敗<br>";
+        // alert(res.responce );
+        if (res.responce == "sucesss") {
+          result = "修改成功";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+          closeFunc("changePasswordView");
+        }
+        else if (res.responce == "failPassUndifine") {
+          result += "\"舊密碼\"錯誤";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+        }
+
+      },
+    });
+  }
+}
 
 //////////////////////////////////////////////////
 //              homeBtn.js                        //
@@ -771,7 +938,7 @@ function equipageView(mainDiv) {
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
   }
-  else{
+  else {
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
@@ -810,7 +977,7 @@ function resetEquipClick() {
       levelUpLevel = 0;
       // clossFunc("equipageView","equipageBkViewv");
       clossFunc("equipageView", "equipageBkView");
-      equipageView(center);
+      equipageView({ id: "centerMidMap" });
     }
   })
 }
@@ -1078,389 +1245,389 @@ function instructionView(mainDiv) {
 }
 /*成就*/
 function achievementView(mainDiv) {
-    divID = "achievementView";
-    divID2 = "equipageBkView";
-    divTag = document.getElementById(mainDiv.id);
-    b = document.createElement("div");
-    b.setAttribute("id", "equipageBkView");
-    b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  divID = "achievementView";
+  divID2 = "equipageBkView";
+  divTag = document.getElementById(mainDiv.id);
+  b = document.createElement("div");
+  b.setAttribute("id", "equipageBkView");
+  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "achievementView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("achievementView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  /*b = document.createElement("img");
+  b.setAttribute("id","crownImgLeft");
+  divTag.appendChild(b);*/
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "成就";
+  /*b = document.createElement("img");
+  b.setAttribute("id","crownImgRight");
+  divTag.appendChild(b);*/
+  b = document.createElement("table");
+  b.setAttribute("id", "achievementTable");
+  b.setAttribute("rules", "rows");
+  b.setAttribute("border", "1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("achievementTable");
+  for (var i = 0; i < achievemenData.record.length; i++) {
+    b = document.createElement("tr");
+    b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
-    b = document.createElement("div");
-    b.setAttribute("id", "achievementView");
-    divTag.appendChild(b);
-    divTag = document.getElementById("achievementView");
-    b = document.createElement("input");
-    b.setAttribute("type", "button");
-    b.setAttribute("id", "clossDiv");
-    b.setAttribute("value", "X");
-    b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
-    divTag.appendChild(b);
-    /*b = document.createElement("img");
-    b.setAttribute("id","crownImgLeft");
-    divTag.appendChild(b);*/
-    b = document.createElement("h1");
-    b.setAttribute("id", "allTitle");
-    divTag.appendChild(b);
-    document.getElementById("allTitle").innerHTML = "成就";
-    /*b = document.createElement("img");
-    b.setAttribute("id","crownImgRight");
-    divTag.appendChild(b);*/
-    b = document.createElement("table");
-    b.setAttribute("id", "achievementTable");
-    b.setAttribute("rules", "rows");
-    b.setAttribute("border", "1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("achievementTable");
-    for (var i = 0; i < achievemenData.record.length; i++) {
-        b = document.createElement("tr");
-        b.setAttribute("id", "tr" + i);
-        divTag.appendChild(b);
-        for (var j = 0; j < 3; j++) {
-            divTag = document.getElementById("tr" + i);
-            b = document.createElement("td");
-            b.setAttribute("id", "row" + i + "col" + j);
-            divTag.appendChild(b);
-            if (j == 0) {
-                divTag = document.getElementById("row" + i + "col" + j);
-                b = document.createElement("img");
-                b.setAttribute("id", "champtionImg" + i);
-                // if (i == 0) {
-                //     b.setAttribute("class", "champtionCopper");
-                // } else if (i == 1) {
-                //     b.setAttribute("class", "champtionSilver");
-                // } else {
-                //     b.setAttribute("class", "champtionGold");
-                // }
-                if(achievemenData.record[i].level==0){
-                    b.setAttribute("class", "champtionCopper");
-                }
-                else if(achievemenData.record[i].level==1){
-                    b.setAttribute("class", "champtionSilver");
-                }
-                else if(achievemenData.record[i].level==2){
-                    b.setAttribute("class", "champtionGold");
-                }
-                divTag.appendChild(b);
-            } else if (j == 1) {
-                divTag = document.getElementById("row" + i + "col" + j);
-                b = document.createElement("div");
-                b.setAttribute("id", "achievementInnerDiv" + i);
-                b.setAttribute("class", "achievementInnerDiv");
-                divTag.appendChild(b);
-                divTag = document.getElementById("achievementInnerDiv" + i);
-                b = document.createElement("h3");
-                b.setAttribute("id", "h3Inner" + i);
-                divTag.appendChild(b);
-                divTag = document.getElementById("h3Inner" + i);
-                b = document.createElement("a");
-                b.setAttribute("id", "aInner" + i);
-                b.setAttribute("href", "#item" + i);
-                divTag.appendChild(b);
-                // if (i == 0) {
-                //     document.getElementById("aInner" + i).innerHTML = "初學者";
-                // } else if (i == 1) {
-                //     document.getElementById("aInner" + i).innerHTML = "左紐又扭";
-                // } else {
-                //     document.getElementById("aInner" + i).innerHTML = "????????";
-                // }
-
-                // divTag = document.getElementById("achievementInnerDiv" + i);
-                // b = document.createElement("p");
-                // b.setAttribute("id", "item" + i);
-                // divTag.appendChild(b);
-                // document.getElementById("item" + i).innerHTML = "通過第二關";
-
-                //////---------------------new-----------------------///////////////
-                document.getElementById("aInner" + i).innerHTML =achievemenData.record[i].name
-                divTag = document.getElementById("achievementInnerDiv" + i);
-                b = document.createElement("p");
-                b.setAttribute("id", "item" + i);
-                divTag.appendChild(b);
-                document.getElementById("item" + i).innerHTML = achievemenData.record[i].value;
-
-            } else {
-                divTag = document.getElementById("row" + i + "col" + j);
-                b = document.createElement("font");
-                b.setAttribute("id", "achievementFont" + i);
-                if (i == 0) {
-                    b.setAttribute("class", "achievementFont");
-                } else {
-                    b.setAttribute("class", "achievementFontDefault");
-                }
-                divTag.appendChild(b);
-                if (i == 0) {
-                    document.getElementById("achievementFont" + i).innerHTML = "✔";
-                } else {
-                    document.getElementById("achievementFont" + i).innerHTML = "未完成";
-                }
-
-            }
+    for (var j = 0; j < 3; j++) {
+      divTag = document.getElementById("tr" + i);
+      b = document.createElement("td");
+      b.setAttribute("id", "row" + i + "col" + j);
+      divTag.appendChild(b);
+      if (j == 0) {
+        divTag = document.getElementById("row" + i + "col" + j);
+        b = document.createElement("img");
+        b.setAttribute("id", "champtionImg" + i);
+        // if (i == 0) {
+        //     b.setAttribute("class", "champtionCopper");
+        // } else if (i == 1) {
+        //     b.setAttribute("class", "champtionSilver");
+        // } else {
+        //     b.setAttribute("class", "champtionGold");
+        // }
+        if (achievemenData.record[i].level == 0) {
+          b.setAttribute("class", "champtionCopper");
         }
-        divTag = document.getElementById("achievementTable");
+        else if (achievemenData.record[i].level == 1) {
+          b.setAttribute("class", "champtionSilver");
+        }
+        else if (achievemenData.record[i].level == 2) {
+          b.setAttribute("class", "champtionGold");
+        }
+        divTag.appendChild(b);
+      } else if (j == 1) {
+        divTag = document.getElementById("row" + i + "col" + j);
+        b = document.createElement("div");
+        b.setAttribute("id", "achievementInnerDiv" + i);
+        b.setAttribute("class", "achievementInnerDiv");
+        divTag.appendChild(b);
+        divTag = document.getElementById("achievementInnerDiv" + i);
+        b = document.createElement("h3");
+        b.setAttribute("id", "h3Inner" + i);
+        divTag.appendChild(b);
+        divTag = document.getElementById("h3Inner" + i);
+        b = document.createElement("a");
+        b.setAttribute("id", "aInner" + i);
+        b.setAttribute("href", "#item" + i);
+        divTag.appendChild(b);
+        // if (i == 0) {
+        //     document.getElementById("aInner" + i).innerHTML = "初學者";
+        // } else if (i == 1) {
+        //     document.getElementById("aInner" + i).innerHTML = "左紐又扭";
+        // } else {
+        //     document.getElementById("aInner" + i).innerHTML = "????????";
+        // }
+
+        // divTag = document.getElementById("achievementInnerDiv" + i);
+        // b = document.createElement("p");
+        // b.setAttribute("id", "item" + i);
+        // divTag.appendChild(b);
+        // document.getElementById("item" + i).innerHTML = "通過第二關";
+
+        //////---------------------new-----------------------///////////////
+        document.getElementById("aInner" + i).innerHTML = achievemenData.record[i].name
+        divTag = document.getElementById("achievementInnerDiv" + i);
+        b = document.createElement("p");
+        b.setAttribute("id", "item" + i);
+        divTag.appendChild(b);
+        document.getElementById("item" + i).innerHTML = achievemenData.record[i].value;
+
+      } else {
+        divTag = document.getElementById("row" + i + "col" + j);
+        b = document.createElement("font");
+        b.setAttribute("id", "achievementFont" + i);
+        if (i == 0) {
+          b.setAttribute("class", "achievementFont");
+        } else {
+          b.setAttribute("class", "achievementFontDefault");
+        }
+        divTag.appendChild(b);
+        if (i == 0) {
+          document.getElementById("achievementFont" + i).innerHTML = "✔";
+        } else {
+          document.getElementById("achievementFont" + i).innerHTML = "未完成";
+        }
+
+      }
     }
+    divTag = document.getElementById("achievementTable");
+  }
 }
 /*設定*/
 function settingAllView(mainDiv) {
-    divID = "settingAllView";
-    divID2 = "equipageBkView";
-    divTag = document.getElementById(mainDiv.id);
-    b = document.createElement("div");
-    b.setAttribute("id", "equipageBkView");
-    b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
-    divTag.appendChild(b);
-    b = document.createElement("div");
-    b.setAttribute("id", "settingAllView");
-    divTag.appendChild(b);
-    divTag = document.getElementById("settingAllView");
-    b = document.createElement("input");
-    b.setAttribute("type", "button");
-    b.setAttribute("id", "clossDiv");
-    b.setAttribute("value", "X");
-    b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
-    divTag.appendChild(b);
-    b = document.createElement("h1");
-    b.setAttribute("id", "allTitle");
-    divTag.appendChild(b);
-    document.getElementById("allTitle").innerHTML = "設定";
-    b = document.createElement("table");
-    b.setAttribute("id", "settingAllTable");
-    divTag.appendChild(b);
+  divID = "settingAllView";
+  divID2 = "equipageBkView";
+  divTag = document.getElementById(mainDiv.id);
+  b = document.createElement("div");
+  b.setAttribute("id", "equipageBkView");
+  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "settingAllView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("settingAllView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "設定";
+  b = document.createElement("table");
+  b.setAttribute("id", "settingAllTable");
+  divTag.appendChild(b);
 
-    /*設定音樂開或關*/
-    divTag = document.getElementById("settingAllTable");
-    b = document.createElement("tr");
-    b.setAttribute("id", "tr0");
-    divTag.appendChild(b);
-    divTag = document.getElementById("tr0");
-    b = document.createElement("td");
-    b.setAttribute("id", "row0_0");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row0_0");
-    b = document.createElement("h2");
-    b.setAttribute("id", "settingMusic");
-    divTag.appendChild(b);
-    document.getElementById("settingMusic").innerHTML = "遊戲音樂";
-    divTag = document.getElementById("tr0");
-    b = document.createElement("td");
-    b.setAttribute("id", "row0_1");
-    b.setAttribute("colspan", "2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row0_1");
-    b = document.createElement("form");
-    b.setAttribute("id", "musicForm");
-    b.setAttribute("name", "form1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("musicForm");
-    b = document.createElement("input");
-    b.setAttribute("type", "checkbox");
-    b.setAttribute("id", "musicOpen");
-    b.setAttribute("name", "c1");
-    b.setAttribute("value", "1");
-    b.setAttribute("onclick", "return chk(this);");
-    if(bkMusicSwitch == 2){
-      b.setAttribute("checked", "true");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("font");
-    b.setAttribute("id", "openText");
-    divTag.appendChild(b);
-    document.getElementById("openText").innerHTML = "開";
-    b = document.createElement("input");
-    b.setAttribute("type", "checkbox");
-    b.setAttribute("id", "musicClose");
-    b.setAttribute("name", "c1");
-    b.setAttribute("value", "2");
-    b.setAttribute("onclick", "return chk(this);");
-    if(bkMusicSwitch == 1){
-      b.setAttribute("checked", "true");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("font");
-    b.setAttribute("id", "closeText");
-    divTag.appendChild(b);
-    document.getElementById("closeText").innerHTML = "關";
-    /*設定音量大小*/
-    divTag = document.getElementById("settingAllTable");
-    b = document.createElement("tr");
-    b.setAttribute("id", "tr1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("tr1");
-    b = document.createElement("td");
-    b.setAttribute("id", "row1_0");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row1_0");
-    b = document.createElement("h2");
-    b.setAttribute("id", "musicVolume");
-    divTag.appendChild(b);
-    document.getElementById("musicVolume").innerHTML = "音樂大小";
-    divTag = document.getElementById("tr1");
-    b = document.createElement("td");
-    b.setAttribute("id", "row1_1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row1_1");
-    b = document.createElement("input");
-    b.setAttribute('type', 'button');
-    b.setAttribute('id', 'volumeButtonSub');
-    b.setAttribute('onclick', 'musicLevelDown()');
-    b.setAttribute('value', '-');
-    divTag.appendChild(b);
+  /*設定音樂開或關*/
+  divTag = document.getElementById("settingAllTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "tr0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("tr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "row0_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row0_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "settingMusic");
+  divTag.appendChild(b);
+  document.getElementById("settingMusic").innerHTML = "遊戲音樂";
+  divTag = document.getElementById("tr0");
+  b = document.createElement("td");
+  b.setAttribute("id", "row0_1");
+  b.setAttribute("colspan", "2");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row0_1");
+  b = document.createElement("form");
+  b.setAttribute("id", "musicForm");
+  b.setAttribute("name", "form1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("musicForm");
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "musicOpen");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "return chk(this);");
+  if (bkMusicSwitch == 2) {
+    b.setAttribute("checked", "true");
+  }
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "openText");
+  divTag.appendChild(b);
+  document.getElementById("openText").innerHTML = "開";
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "musicClose");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "return chk(this);");
+  if (bkMusicSwitch == 1) {
+    b.setAttribute("checked", "true");
+  }
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "closeText");
+  divTag.appendChild(b);
+  document.getElementById("closeText").innerHTML = "關";
+  /*設定音量大小*/
+  divTag = document.getElementById("settingAllTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "tr1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("tr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "row1_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row1_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "musicVolume");
+  divTag.appendChild(b);
+  document.getElementById("musicVolume").innerHTML = "音樂大小";
+  divTag = document.getElementById("tr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "row1_1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row1_1");
+  b = document.createElement("input");
+  b.setAttribute('type', 'button');
+  b.setAttribute('id', 'volumeButtonSub');
+  b.setAttribute('onclick', 'musicLevelDown()');
+  b.setAttribute('value', '-');
+  divTag.appendChild(b);
 
-    divTag = document.getElementById("tr1");
+  divTag = document.getElementById("tr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "row1_2");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row1_2");
+  b = document.createElement("div");
+  b.setAttribute('id', 'musicVolumeDiv');
+  divTag.appendChild(b);
+  divTag = document.getElementById("musicVolumeDiv");
+  b = document.createElement("table");
+  b.setAttribute("id", "musicVolumeTable");
+  b.setAttribute("rules", "rows");
+  divTag.appendChild(b);
+  divTag = document.getElementById("musicVolumeTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "musicVolumeTr");
+  divTag.appendChild(b);
+  divTag = document.getElementById("musicVolumeTr");
+  for (var i = 0; i < 10; i++) {
     b = document.createElement("td");
-    b.setAttribute("id", "row1_2");
+    b.setAttribute("id", "musicVolumeTd" + i);
     divTag.appendChild(b);
-    divTag = document.getElementById("row1_2");
+    divTag = document.getElementById("musicVolumeTd" + i);
     b = document.createElement("div");
-    b.setAttribute('id', 'musicVolumeDiv');
-    divTag.appendChild(b);
-    divTag = document.getElementById("musicVolumeDiv");
-    b = document.createElement("table");
-    b.setAttribute("id", "musicVolumeTable");
-    b.setAttribute("rules", "rows");
-    divTag.appendChild(b);
-    divTag = document.getElementById("musicVolumeTable");
-    b = document.createElement("tr");
-    b.setAttribute("id", "musicVolumeTr");
+    if (i == 0) {
+      b.setAttribute('class', 'musicVolumeInnerDiv');
+      b.setAttribute('id', 'musicVolumeInnerDiv' + i);
+    } else {
+      b.setAttribute('class', 'musicVolumeInnerDivDefault');
+      b.setAttribute('id', 'musicVolumeInnerDiv' + i);
+    }
     divTag.appendChild(b);
     divTag = document.getElementById("musicVolumeTr");
-    for (var i = 0; i < 10; i++) {
-        b = document.createElement("td");
-        b.setAttribute("id", "musicVolumeTd" + i);
-        divTag.appendChild(b);
-        divTag = document.getElementById("musicVolumeTd" + i);
-        b = document.createElement("div");
-        if (i == 0) {
-            b.setAttribute('class', 'musicVolumeInnerDiv');
-            b.setAttribute('id', 'musicVolumeInnerDiv' + i);
-        } else {
-            b.setAttribute('class', 'musicVolumeInnerDivDefault');
-            b.setAttribute('id', 'musicVolumeInnerDiv' + i);
-        }
-        divTag.appendChild(b);
-        divTag = document.getElementById("musicVolumeTr");
-    }
+  }
 
-    divTag = document.getElementById("tr1");
-    b = document.createElement("td");
-    b.setAttribute("id", "row1_3");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row1_3");
-    b = document.createElement("input");
-    b.setAttribute('type', 'button');
-    b.setAttribute('id', 'volumeButtonSub');
-    b.setAttribute('onclick', 'musicLevelUp()');
-    b.setAttribute('value', '+');
-    divTag.appendChild(b);
+  divTag = document.getElementById("tr1");
+  b = document.createElement("td");
+  b.setAttribute("id", "row1_3");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row1_3");
+  b = document.createElement("input");
+  b.setAttribute('type', 'button');
+  b.setAttribute('id', 'volumeButtonSub');
+  b.setAttribute('onclick', 'musicLevelUp()');
+  b.setAttribute('value', '+');
+  divTag.appendChild(b);
 
-    /*調整遊戲速度*/
-    divTag = document.getElementById("settingAllTable");
-    b = document.createElement("tr");
-    b.setAttribute("id", "tr2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("tr2");
-    b = document.createElement("td");
-    b.setAttribute("id", "row2_0");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row2_0");
-    b = document.createElement("h2");
-    b.setAttribute("id", "settingSpeed");
-    divTag.appendChild(b);
-    document.getElementById("settingSpeed").innerHTML = "遊戲速度";
-    divTag = document.getElementById("tr2");
-    b = document.createElement("td");
-    b.setAttribute("id", "row2_1");
-    b.setAttribute("colspan", "2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("row2_1");
-    b = document.createElement("form");
-    b.setAttribute("id", "speedForm");
-    b.setAttribute("name", "form2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("speedForm");
-    b = document.createElement("input");
-    b.setAttribute("type", "checkbox");
-    b.setAttribute("id", "speedLow");
-    b.setAttribute("name", "c1");
-    b.setAttribute("value", "1");
-    b.setAttribute("onclick", "return chk2(this);");
-    if(gameSpeed == 3){
-      b.setAttribute("checked", "true");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("font");
-    b.setAttribute("id", "speedLowText");
-    divTag.appendChild(b);
-    document.getElementById("speedLowText").innerHTML = "慢";
-    b = document.createElement("input");
-    b.setAttribute("type", "checkbox");
-    b.setAttribute("id", "speedMid");
-    b.setAttribute("name", "c1");
-    b.setAttribute("value", "2");
-    b.setAttribute("onclick", "return chk2(this);");
-    if(gameSpeed == 5){
-      b.setAttribute("checked", "true");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("font");
-    b.setAttribute("id", "speedMidText");
-    divTag.appendChild(b);
-    document.getElementById("speedMidText").innerHTML = "中";
-    b = document.createElement("input");
-    b.setAttribute("type", "checkbox");
-    b.setAttribute("id", "speedQuick");
-    b.setAttribute("name", "c1");
-    b.setAttribute("value", "3");
-    b.setAttribute("onclick", "return chk2(this);");
-    if(gameSpeed == 7){
-      b.setAttribute("checked", "true");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("font");
-    b.setAttribute("id", "speedQuickText");
-    divTag.appendChild(b);
-    document.getElementById("speedQuickText").innerHTML = "快";
+  /*調整遊戲速度*/
+  divTag = document.getElementById("settingAllTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "tr2");
+  divTag.appendChild(b);
+  divTag = document.getElementById("tr2");
+  b = document.createElement("td");
+  b.setAttribute("id", "row2_0");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row2_0");
+  b = document.createElement("h2");
+  b.setAttribute("id", "settingSpeed");
+  divTag.appendChild(b);
+  document.getElementById("settingSpeed").innerHTML = "遊戲速度";
+  divTag = document.getElementById("tr2");
+  b = document.createElement("td");
+  b.setAttribute("id", "row2_1");
+  b.setAttribute("colspan", "2");
+  divTag.appendChild(b);
+  divTag = document.getElementById("row2_1");
+  b = document.createElement("form");
+  b.setAttribute("id", "speedForm");
+  b.setAttribute("name", "form2");
+  divTag.appendChild(b);
+  divTag = document.getElementById("speedForm");
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "speedLow");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "return chk2(this);");
+  if (gameSpeed == 3) {
+    b.setAttribute("checked", "true");
+  }
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "speedLowText");
+  divTag.appendChild(b);
+  document.getElementById("speedLowText").innerHTML = "慢";
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "speedMid");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "return chk2(this);");
+  if (gameSpeed == 5) {
+    b.setAttribute("checked", "true");
+  }
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "speedMidText");
+  divTag.appendChild(b);
+  document.getElementById("speedMidText").innerHTML = "中";
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "speedQuick");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "3");
+  b.setAttribute("onclick", "return chk2(this);");
+  if (gameSpeed == 7) {
+    b.setAttribute("checked", "true");
+  }
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "speedQuickText");
+  divTag.appendChild(b);
+  document.getElementById("speedQuickText").innerHTML = "快";
 
-    for(var i=0;i<musicLevel;i++){
-      b = document.getElementById("musicVolumeInnerDiv" + i);
-      b.className = "musicVolumeInnerDiv";
-    }
+  for (var i = 0; i < musicLevel; i++) {
+    b = document.getElementById("musicVolumeInnerDiv" + i);
+    b.className = "musicVolumeInnerDiv";
+  }
 }
 function musicLevelUp() {
-    b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
-    if (musicLevel <= 9) {
-        b.className = "musicVolumeInnerDiv";
-        musicLevel++;
-    }
-    if (musicLevel > 9) {
-        musicLevel = 10;
-    }
-    myVid=document.getElementById("bkMusic");
-    myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-    //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
-    bkMusicSwitch++;
-    sendSession();
+  b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
+  if (musicLevel <= 9) {
+    b.className = "musicVolumeInnerDiv";
+    musicLevel++;
+  }
+  if (musicLevel > 9) {
+    musicLevel = 10;
+  }
+  myVid = document.getElementById("bkMusic");
+  myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
+  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  bkMusicSwitch++;
+  sendSession();
 }
 function musicLevelDown() {
-    if (musicLevel < 9) {
-      b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
-      b.className = "musicVolumeInnerDivDefault";
-      musicLevel--;
-      if (musicLevel < 0) {
-          musicLevel = 0;
-      }
-    } else if (musicLevel == 9) {
-      b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
-      b.className = "musicVolumeInnerDivDefault";
-      musicLevel--;
-    }else if(musicLevel > 9){
-      musicLevel--;
-      b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
-      b.className = "musicVolumeInnerDivDefault";
+  if (musicLevel < 9) {
+    b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
+    b.className = "musicVolumeInnerDivDefault";
+    musicLevel--;
+    if (musicLevel < 0) {
+      musicLevel = 0;
     }
-    myVid=document.getElementById("bkMusic");
-    myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-    bkMusicSwitch++;
-    sendSession();
+  } else if (musicLevel == 9) {
+    b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
+    b.className = "musicVolumeInnerDivDefault";
+    musicLevel--;
+  } else if (musicLevel > 9) {
+    musicLevel--;
+    b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
+    b.className = "musicVolumeInnerDivDefault";
+  }
+  myVid = document.getElementById("bkMusic");
+  myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
+  bkMusicSwitch++;
+  sendSession();
 }
 
 function chk(input) {
@@ -1468,10 +1635,10 @@ function chk(input) {
     document.form1.c1[i].checked = false;
   }
   input.checked = true;
-  myVid=document.getElementById("bkMusic");
-  if(input.id == "musicOpen"){
+  myVid = document.getElementById("bkMusic");
+  if (input.id == "musicOpen") {
     bkMusicSwitch = 2;
-  }else{
+  } else {
     bkMusicSwitch = 1;
   }
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
@@ -1480,19 +1647,19 @@ function chk(input) {
   return true;
 }
 function chk2(input) {
-    for (var i = 0; i < document.form2.c1.length; i++) {
-        document.form2.c1[i].checked = false;
-    }
-    input.checked = true;
-    if(input.id == "speedLow"){
-      gameSpeed = 3;
-    }else if(input.id == "speedMid"){
-      gameSpeed = 5;
-    }else if(input.id == "speedQuick"){
-      gameSpeed = 7;
-    }
-    sendSession();
-    return true;
+  for (var i = 0; i < document.form2.c1.length; i++) {
+    document.form2.c1[i].checked = false;
+  }
+  input.checked = true;
+  if (input.id == "speedLow") {
+    gameSpeed = 3;
+  } else if (input.id == "speedMid") {
+    gameSpeed = 5;
+  } else if (input.id == "speedQuick") {
+    gameSpeed = 7;
+  }
+  sendSession();
+  return true;
 }
 
 function sendSession() {
@@ -1504,37 +1671,77 @@ function sendSession() {
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
-  return ;
+  return;
 }
 
 /*變更關卡進度*/
 function changeLevelStage() {
-  var codeLevel=-1;
+  var codeLevel = -1;
   for (let index = 0; index < user.MediumEmpire.codeLevel.length; index++) {
     const element = user.MediumEmpire.codeLevel[index];
-    console.log("element=",element);
-    if(parseInt(element.level)>codeLevel&&element.HighestStarNum>0){
-      codeLevel=parseInt(element.level);
+    console.log("element=", element);
+    if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
+      codeLevel = parseInt(element.level);
     }
   }
-  if(codeLevel==-1){
-    codeLevel=1;
-  }else{
-    codeLevel+=2;
+  if (codeLevel == -1) {
+    codeLevel = 1;
+  } else {
+    codeLevel += 2;
   }
-  var totalLevel=Math.max(codeLevel,0);
-  if(totalLevel==0){
+  var totalLevel = Math.max(codeLevel, 0);
+  if (totalLevel == 0) {
     ++totalLevel;
   }
-  console.log(totalLevel-24);
-  totalLevel-=24;
-  for(var i=0;i<26;i++){
-    if(i<totalLevel){
+  console.log(totalLevel - 24);
+  totalLevel -= 24;
+  for (var i = 0; i < 26; i++) {
+    if (i < totalLevel) {
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
-    }else{
+    } else {
       divTag = document.getElementById("btn" + i);
       divTag.className = "unbtn";
     }
   }
 }
+
+
+var levelDivAlive = false;
+function remindView(remindValue) {
+  divTag = document.getElementById("centerMidMap");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("center");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  divTag.appendChild(b);
+}
+
+

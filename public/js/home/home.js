@@ -262,17 +262,17 @@ function closeFunc(thisDiv, thisDiv2) {
   try {
     document.getElementById("changePasswordBtn").className = "";
     document.getElementById("clossDiv").className = "";
-  } catch (e) {}
+  } catch (e) { }
   try {
     divTag = document.getElementById(thisDiv);
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   try {
     divTag = document.getElementById(thisDiv2);
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   levelDivAlive = false;
 }
 function createUserView(mainDiv) {
@@ -322,8 +322,8 @@ function createUserView(mainDiv) {
     }
   }
 }
-function changePassword(thisDiv){
-  var tdValue = ["舊密碼","新密碼","確認新密碼"],inputID = ["oldPassword","newPassword","checkPassword"];
+function changePassword(thisDiv) {
+  var tdValue = ["舊密碼", "新密碼", "確認新密碼"], inputID = ["oldPassword", "newPassword", "checkPassword"];
   document.getElementById("changePasswordBtn").className = "disabled";
   document.getElementById("clossDiv").className = "disabled";
   divTag = document.getElementById("userDataView");
@@ -340,25 +340,25 @@ function changePassword(thisDiv){
   b.setAttribute("id", "changePasswordTable");
   divTag.appendChild(b);
   divTag = document.getElementById("changePasswordTable");
-  for(var i=0;i<3;i++){
+  for (var i = 0; i < 3; i++) {
     b = document.createElement("tr");
     b.setAttribute("id", "changePasswordTr" + i);
     divTag.appendChild(b);
-    for(var j=0;j<2;j++){
+    for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("changePasswordTr" + i);
       b = document.createElement("td");
       b.setAttribute("id", "changePasswordTd" + i + j);
       divTag.appendChild(b);
       divTag = document.getElementById("changePasswordTd" + i + j);
-      if(j == 0){
+      if (j == 0) {
         b = document.createElement("h2");
         b.setAttribute("id", "changePasswordH2" + i + j);
         b.innerHTML = tdValue[i];
         divTag.appendChild(b);
-      }else{
+      } else {
         b = document.createElement("input");
-        b.setAttribute("type","password");
-        b.setAttribute("id",inputID[i]);
+        b.setAttribute("type", "password");
+        b.setAttribute("id", inputID[i]);
         divTag.appendChild(b);
       }
     }
@@ -375,15 +375,93 @@ function changePassword(thisDiv){
   b.setAttribute("type", "button");
   b.setAttribute("id", "confirmBtn");
   b.setAttribute("value", "確認修改");
-  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  // b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "changePass()");
+
   divTag.appendChild(b);
 }
+function changePass() {
+  oldPassword = document.getElementById("oldPassword");
+  newPassword = document.getElementById("newPassword");
+  checkPassword = document.getElementById("checkPassword");
 
+  var strOP = oldPassword.value;
+  var strP = newPassword.value;
+  var strCP = checkPassword.value;
+  if (oldPassword.value == "") {
+    // alert("動作失敗<br>" + "\"舊密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strOP.indexOf(" ") != -1) {
+    // alert("動作失敗<br>" + "\"舊密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value == "") {
+    // alert("動作失敗<br>" + "\"密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (checkPassword.value == "") {
+    // alert("動作失敗\n" + "\"確認密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strCP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value != checkPassword.value) {
+    // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
+    remindValue = "動作失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
+    remindView(remindValue);
+  }
+  else {
+    var scriptData = {
+      type: "changePassword",
+      oldPassword: oldPassword.value,
+      password: newPassword.value,
+    }
+    // console.log(scriptData);
+    // alert("wait");
+    var href = window.location.href;
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',         // 使用 POST 方法傳送請求
+      dataType: 'json',       // 回傳資料會是 json 格式
+      data: scriptData,       // 將表單資料用打包起來送出去
+      success: function (res) {
+        result = "動作失敗<br>";
+        // alert(res.responce );
+        if (res.responce == "sucesss") {
+          result = "修改成功";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+          closeFunc("changePasswordView");
+        }
+        else if (res.responce == "failPassUndifine") {
+          result += "\"舊密碼\"錯誤";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+        }
+
+      },
+    });
+  }
+}
 //////////////////////////////////////////////////
 //              homeBtn.js                        //
 //////////////////////////////////////////////////
 var divTag, b, divID, divID2;
-
 
 
 /*裝備*/
@@ -664,7 +742,7 @@ function equipageView(mainDiv) {
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
   }
-  else{
+  else {
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
@@ -1397,4 +1475,58 @@ function sendSession() {
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
   return;
+}
+
+
+
+
+var levelDivAlive = false;
+function remindView(remindValue) {
+  divTag = document.getElementById("center");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("center");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  divTag.appendChild(b);
+}
+
+function clossFunc(thisDiv, thisDiv2) {
+  var divTag = document.getElementById(thisDiv);
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  divTag = document.getElementById(thisDiv2);
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  levelDivAlive = false;
 }

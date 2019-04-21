@@ -21,30 +21,30 @@ function forgetPass() {
 function call_forgetPass_api() {
     var strN = UserName.value;
     var strE = eMail.value;
-    
+
     if (UserName.value == "") {
         // alert("動作失敗\n" + "\"使用者名稱\"不能為空");
-        remindValue = "動作失敗\n" + "\"使用者名稱\"不能為空";
+        remindValue = "動作失敗<br>" + "\"使用者名稱\"不能為空";
         remindView(remindValue);
     }
     else if (strN.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "使用者名稱有空白字元");
-        remindValue = "動作失敗\n" + "使用者名稱有空白字元";
+        remindValue = "動作失敗<br>" + "使用者名稱有空白字元";
         remindView(remindValue);
     }
     else if (eMail.value == "") {
         // alert("動作失敗\n" + "\"信箱\"不能為空");
-        remindValue = "動作失敗\n" + "\"信箱\"不能為空";
+        remindValue = "動作失敗<br>" + "\"信箱\"不能為空";
         remindView(remindValue);
     }
     else if (strE.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "\"信箱\"有空白字元");
-        remindValue = "動作失敗\n" + "\"信箱\"有空白字元";
+        remindValue = "動作失敗<br>" + "\"信箱\"有空白字元";
         remindView(remindValue);
     }
     else if (!validateEmail(eMail.value)) {
         // alert("動作失敗\n" + "\"信箱\"格式錯誤");
-        remindValue = "動作失敗\n" + "\"信箱\"格式錯誤";
+        remindValue = "動作失敗<br>" + "\"信箱\"格式錯誤";
         remindView(remindValue);
 
     }

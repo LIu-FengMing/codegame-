@@ -330,13 +330,16 @@ body {
   position: absolute;
   left: 0px;
 }
-#funcDiv div{
+.func,.step,.judgment{
   margin-top: 5px;
   font-size: 20px;
   padding: 1vh;
   border-style: solid;
   border-color: black;
   border-width: 0px 0px 2px 0px;
+}
+.func div,.step div,.judgment div{
+  cursor: pointer;
 }
 #textareaDiv{
   width: 78%;

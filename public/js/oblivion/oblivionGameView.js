@@ -51,8 +51,9 @@ function back() {
   window.location.replace(href);
   console.log(href);
 }
+var mapMessage;
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData;
+var user,equipmentData, achievemenData, dictionaryData;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData, evaluation = 0, GamestarNum = 0;
 var scriptData = {
@@ -124,10 +125,8 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-
 function initHome() {
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
-    //
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
@@ -167,8 +166,10 @@ function initHome() {
       passLevel++;
     }
   }
-
   selectFunc(passLevel);
+}
+function getMapDescription(thisDescription) {
+  mapMessage = thisDescription;
 }
 
 //---------紀錄關卡資訊---------//
@@ -304,6 +305,10 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
+
+
+  console.log("mapMessage=",mapMessage);
+  console.log(mapMessage);
   divID = "equipageView";
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
@@ -324,7 +329,7 @@ function helper(mainDiv) {
   b = document.createElement("div");
   b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
-  document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  document.getElementById("helperTextarea3").innerHTML = mapMessage;
 }
 
 /*XX按鈕*/
@@ -854,7 +859,7 @@ function backToMapBtn() {
     window.location.replace(href);
   }
   else if (evaluation < 1) {
-    
+
     remindView("請給關卡評價");
     // alert("請給關卡評價");
   }
@@ -936,7 +941,6 @@ function createLoadingView() {
   }
 }
 
-
 function closeLoadingView() {
   var divTag = document.getElementById("loadingView");
   try {
@@ -952,7 +956,17 @@ function closeLoadingView() {
 
 }
 
-/*textarea tab鍵*/
+/*文字區加行數*/
+$(function() {
+  $(".lined").linedtextarea({
+    selectedLine: 1
+  });
+});
+$.each($("textarea"), function(i, n){
+  $(n).css("height", n.scrollHeight + "px");
+})
+
+/*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
   //IE support
@@ -975,11 +989,43 @@ function insertAtCursor(myValue) {
   }
 }
 document.getElementById('textarea_0').onkeydown = function (e) {
+  var el = document.getElementById('textarea_0');
+  var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+  var fontSize = parseFloat(style);
+  console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
+  }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
+    fontSize = parseFloat(style);
+    fontSize += 1;
+    if(fontSize > 25){
+      fontSize = 25
+    }
+    el.style.fontSize = fontSize + 'px';
+  }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
+    fontSize = parseFloat(style);
+    el.style.fontSize = (fontSize - 1) + 'px';
+  }
+  fontSize = parseFloat(style);
+  console.log(fontSize);
+}
+
+/*滑鼠事件區*/
+/*將ctrl+滾輪事件移除*/
+var scrollFunc=function(e){
+  e=e || window.event;
+  if(e.wheelDelta && event.ctrlKey){//IE/Opera/Chrome
+    event.returnValue=false;
+  }else if(e.detail){//Firefox
+    event.returnValue=false;
   }
 }
+/*註冊事件*/
+if(document.addEventListener){
+document.addEventListener('DOMMouseScroll',scrollFunc,false);
+}
+window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome/Safari
 
 directiveData = {
   "instruction":[

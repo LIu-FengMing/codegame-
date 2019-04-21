@@ -63,7 +63,6 @@ body {
   cursor: pointer;
 }
 
-
 /*提醒介面*/
 #remindView{
   z-index: 999;
@@ -81,13 +80,14 @@ body {
   overflow: auto;
 }
 #remindH2{
-  font-size: 5vh;
-  margin-top: 10vh;
+  font-size: calc(20px + 1vw);
+  margin-top: 8vh;
+  line-height: 5vh;
 }
 #remindTrueBtn{
   height: 5vh;
   width: 8vw;
-  font-size: 1.5vw;
+  font-size: calc(15px + 1vw);
   border-radius: 10px;
   border-style: solid;
   border-width: 1px;
@@ -155,6 +155,18 @@ body {
   position: absolute;
   bottom: 5%;
   left: 5%;
+}
+#helperTextarea3{
+  height: 80%;
+  width: 80%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
 }
 .helperImg{
   height: 22%;
@@ -355,10 +367,6 @@ body {
   position: absolute;
   right: 0px;
 }
-#textarea_0{
-  width: 100%;
-  height: 100%;
-}
 #textarea_0 {
  width:100%;/*自动适应父布局宽度*/
  overflow:auto;
@@ -423,6 +431,7 @@ body {
 #restartGameBtn{
   height: 10vh;
   width: 8vw;
+  font-size: 3vh;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
@@ -435,6 +444,7 @@ body {
 .failBackBtn{
   height: 10vh;
   width: 8vw;
+  font-size: 3vh;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
