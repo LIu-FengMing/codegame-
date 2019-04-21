@@ -1014,9 +1014,9 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
 
-    var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    var text = "x" + star;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    // var text = "x" + star;
+    // document.getElementById("levelUpFont1").innerHTML = text;
   }
   else {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
@@ -1087,9 +1087,9 @@ function shieldLevelUp() {
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
-    var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    var text = "x" + star;
-    document.getElementById("levelUpFont1").innerHTML = text;
+    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    // var text = "x" + star;
+    // document.getElementById("levelUpFont1").innerHTML = text;
 
   }
   else {
