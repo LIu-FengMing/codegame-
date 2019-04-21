@@ -647,7 +647,8 @@ function sendLoadUsernameMap() {
       console.log(res);
       userMap = res;
       var mapData = [];
-      for (let index = 0; index < res.length; index++) {
+      // for (let index = 0; index < res.length; index++) {
+      for (let index = res.length-1; index >-1; index--) {
         var obj = res[index], check = "X", post = "X";//△ ⌛
         if (obj.postStage == 1) {
           post = "⌛"; //代發佈
