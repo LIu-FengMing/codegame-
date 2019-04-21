@@ -1086,8 +1086,8 @@ mainDescription = {
     {
       "level": 2,
       "mode": 2,
-      "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight();<br>左轉：turnLeft();<br>皆分類於\"動作\"內。",
-      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step();<br>turnRight();<br>step();<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight( );<br>左轉：turnLeft( );<br>皆分類於\"動作\"內。",
+      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step();<br>turnRight( );<br>step( );<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level2img1.gif",
       "img2": "level2img2.gif"
     },
