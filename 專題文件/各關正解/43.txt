@@ -1,6 +1,6 @@
-/* �T�P:4�Ӱʧ@�]�t4�Ӱʧ@�H��  
-   �G�P:5�Ӱʧ@�]�t5�Ӱʧ@�H��4�Ӱʧ@�H�W  
-   �@�P���������L������Y�i*/ 
+/* 三星:5個動作包含5個動作以內  
+   二星:6個動作包含6個動作以內5個動作以上  
+   一星限為滿足過關條件即可*/ 
 
 
 #include <stdio.h>
@@ -40,10 +40,14 @@ for(i=0;i<length;i++){
  becameCar();
 }else if(str[i]=='T'){
  becameTank();
-}else if(str[i]=='A'){
+}
+else if(str[i]=='F'){
+ fire();
+}
+else if(str[i]=='A'){
  for(j=0;j<size;j++){
   if(key[j]%2!=0){
-    printf("%d",key[j]);
+    printf("%d ",key[j]);
 }
 }
 }

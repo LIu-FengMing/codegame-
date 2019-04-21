@@ -374,8 +374,8 @@ router.post('/gameView_text', function (req, res, next) {
             else if (empire == "MediumEmpire") {
                 var MediumEmpire = user.MediumEmpire
                 var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
+                if ((MediumEmpire.HighestLevel == data.level||MediumEmpire.HighestLevel <= data.level )&& data.HighestStarNum > 0) {
+                    MediumEmpire.HighestLevel = parseInt(data.level) + 1;
                     starChange = true;
                     starChangeNum = data.HighestStarNum;
                 }
