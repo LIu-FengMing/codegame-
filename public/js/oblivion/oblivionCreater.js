@@ -492,6 +492,43 @@ function lessRequirement(starNum){
   divTag.appendChild(b);
 }
 
+var levelDivAlive=false;
+function remindView(remindValue) {
+  divTag = document.getElementById("center");
+  if (levelDivAlive) {
+    divTag = document.getElementById("remindView");
+    try {
+      parentObj = divTag.parentNode;
+      parentObj.removeChild(divTag);
+    } catch (e) { }
+    levelDivAlive = false;
+    divTag = document.getElementById("center");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "remindBkView");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "remindView");
+  divTag.appendChild(b);
+  levelDivAlive = true;
+
+  divTag = document.getElementById("remindView");
+  b = document.createElement("h2");
+  b.setAttribute("id", "remindH2");
+  divTag.appendChild(b);
+  document.getElementById("remindH2").innerHTML = "";
+  document.getElementById("remindH2").innerHTML = remindValue;
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "remindTrueBtn");
+  b.setAttribute("value", "確定");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  divTag.appendChild(b);
+}
+
 mainDescription = {
   "oblivionObject":[
     {
