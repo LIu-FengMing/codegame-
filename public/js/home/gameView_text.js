@@ -855,6 +855,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
   if(thisLevelNum>23){
     empire="MediumEmpire";
   }
+  // alert(thisLevelNum)
   var scriptData = {
     type: "codeLevelResult",  //"codeLevelResult" or "blockLevelResult"限"EasyEmpire"
     Empire:empire,     //"EasyEmpire" or "MediumEmpire"
@@ -950,7 +951,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     b.setAttribute("id", "nextLevelBtn");
     b.setAttribute("value", "下一關");
     console.log(thisLevelNum);
-    b.setAttribute("onclick", "location.href='gameView_text?level=" + ++thisLevelNum + "'");
+    b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum+1) + "'");
     divTag.appendChild(b);
   }else {
     b = document.createElement("input");
