@@ -807,6 +807,14 @@ function sendLoadUsernameMap() {
   })
 }
 
+
+
+var searchText=document.getElementById("searchText");
+searchText.onchange=function (){
+  console.log("123");
+  
+}
+
 /*建立表格*/
 function createLevelTable(scriptData) {
   console.log("--playMap---");

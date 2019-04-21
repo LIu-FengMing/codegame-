@@ -324,7 +324,7 @@ function endgame() {
                     var pos = wt[wi].indexOf(systemCall[di]);
                     if (pos > -1) {
                         if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(')) {
+                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(' || wt[wi][pos - 1] == '{')) {
                                 continue;
                             }
                         }
