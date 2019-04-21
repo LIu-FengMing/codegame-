@@ -308,41 +308,47 @@ function endgame() {
 
     /*     actionCode       */
     var str = textarea_0.value, temp = "";
-    var systemCall = ["step", "step(", "step()", "step();",
-        "turnRight", "turnRight(", "turnRight()", "turnRight();",
-        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
-        "fire", "fire(", "fire()", "fire();",
+    var systemCall = ["step", "step(", "step()", "step();",";step();",
+        "turnRight", "turnRight(", "turnRight()", "turnRight();",";turnRight();",
+        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",";turnLeft();",
+        "fire", "fire(", "fire()", "fire();",";fire();",
         "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
     var words = temp.split('\n');
     for (var i = 1; i < words.length; ++i) {
-        var wt = words[i].split(' ');
-        for (var wi = 0; wi < wt.length; ++wi) {
-            if (wt[wi].length > 1) {
-                for (var di = 0; di < systemCall.length; ++di) {
-                    var pos = wt[wi].indexOf(systemCall[di]);
-                    if (pos > -1) {
-                        if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(')) {
-                                continue;
+        var wwt = words[i].split(';');
+        for (var wwi = 0; wwi < wwt.length; ++wwi) {
+            var wt = wwt[wwi].split(' ');
+            for (var wi = 0; wi < wt.length; ++wi) {
+                if (wt[wi].length > 1) {
+                    for (var di = 0; di < systemCall.length; ++di) {
+                        var pos = wt[wi].indexOf(systemCall[di]);
+                        if (pos > -1) {
+                            if (pos > 0) {
+                                if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(' || wt[wi][pos - 1] == '{')) {
+                                    continue;
+                                }
                             }
-                        }
-                        if (pos + systemCall[di].length < wt[wi].length - 1) {
-                            var del = systemCall[di].length;
-                            if (!(wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
-                                continue;
+                            if (pos + systemCall[di].length < wt[wi].length - 1) {
+                                var del = systemCall[di].length;
+                                if (!(wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
+                                    continue;
+                                }
                             }
+                            ++counter;
+                            var strTemp = wt[wi].substr(pos + systemCall[di].length);
+                            wt[wi] = strTemp;
+                            --wi;
+                            break;
                         }
-                        ++counter;
-                        var strTemp = wt[wi].substr(pos + systemCall[di].length);
-                        wt[wi] = strTemp;
-                        --wi;
-                        break;
                     }
                 }
             }
+
         }
+
+
     }
     // console.log("指令個數:", counter);
 
