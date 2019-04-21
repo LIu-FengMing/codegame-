@@ -155,12 +155,12 @@ function init_setup() {
                             stemp = initCode;
                         }
                         textarea_0.value = linit + stemp;
-                        
+
                         // stemp = initCode.substr(initCode.indexOf('#') - 1);
                         initCode = linit + stemp;
                         // console.log("linit + stemp=",linit,stemp);
                         // console.log("initCode=",initCode);
-                        
+
                         loadData();
                         updateCanvas();
                     }
@@ -253,6 +253,13 @@ function loadData() {
     }
 
     textarea_0.value = linit + stemp;
+    var tA=textarea_0.value.indexOf("main");
+    var tEnd=textarea_0.value.indexOf("{",tA);
+    console.log("tEnd",tEnd);
+    
+    textarea_0.selectionStart = tEnd+1;
+    textarea_0.selectionEnd = tEnd+1;
+
     var stemp = initCode.substr(initCode.indexOf('#') - 1);
     initCode = linit + stemp;
 
@@ -308,10 +315,10 @@ function endgame() {
 
     /*     actionCode       */
     var str = textarea_0.value, temp = "";
-    var systemCall = ["step", "step(", "step()", "step();",";step();",
-        "turnRight", "turnRight(", "turnRight()", "turnRight();",";turnRight();",
-        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",";turnLeft();",
-        "fire", "fire(", "fire()", "fire();",";fire();",
+    var systemCall = ["step", "step(", "step()", "step();", ";step();",
+        "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
+        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
+        "fire", "fire(", "fire()", "fire();", ";fire();",
         "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
@@ -998,7 +1005,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp >=10) {//30 40
+                if (hp >= 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1016,7 +1023,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor >=10) { //60 70
+                if (armor >= 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1081,7 +1088,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp >=10) {//30 40
+                if (hp >= 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1099,7 +1106,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor >=10) { //60 70
+                if (armor >= 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1329,8 +1336,8 @@ function codeOutputTranstionAction() {
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
                     var o = parseInt(spaceT[di]) - forgetDel;
-                    if(loopCount>0&&parseInt(spaceT[di])==-1){
-                        o=-1-loopCount;
+                    if (loopCount > 0 && parseInt(spaceT[di]) == -1) {
+                        o = -1 - loopCount;
                     }
                     var listTranstion = {
                         obj: o + loopCount,
