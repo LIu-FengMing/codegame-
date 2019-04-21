@@ -421,15 +421,31 @@ body {
   border-width: 2px;
   border-color: black;
 }
-#createrDiv #td01{
+#createrDiv .td01{
   width: 25%;
   overflow: auto;
+  cursor: pointer;
 }
-#createrDiv .td02{width: 15%;}
-#createrDiv .td03{width: 10%;}
-#createrDiv .td04{width: 10%;}
-#createrDiv .td05{width: 15%;}
-#createrDiv .td06{width: 25%;}
+#createrDiv .td02{
+  width: 15%;
+  cursor: pointer;
+}
+#createrDiv .td03{
+  width: 10%;
+  cursor: pointer;
+}
+#createrDiv .td04{
+  width: 10%;
+  cursor: pointer;
+}
+#createrDiv .td05{
+  width: 15%;
+  cursor: pointer;
+}
+#createrDiv .td06{
+  width: 25%;
+  cursor: pointer;
+}
 #createrDiv textarea{
   height: 4vh;
   width: 100%;
