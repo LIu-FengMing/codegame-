@@ -244,7 +244,7 @@ function clossFunc(thisDiv, thisDiv2) {
     parentObj.removeChild(divTag);
     levelDivAlive = false;
   } catch (e) { }
-  
+
   levelDivAlive = false;
 }
 function closeFunc(thisDiv, thisDiv2) {
@@ -427,10 +427,10 @@ function btnClick(number) {
   divTag.appendChild(b);
 
   /*關卡說明*/
-  b = document.createElement("textaera");
+  b = document.createElement("textarea");
   b.setAttribute("rows", "20");
   b.setAttribute("cols", "20");
-  b.setAttribute("id", "levelDescriptionTextaera");
+  b.setAttribute("id", "levelDescriptiontextarea");
   divTag.appendChild(b);
   b.innerHTML = levelDescription.Early[number].description;
   b = document.createElement("br");
@@ -553,10 +553,10 @@ function viewRecord(number) {
   b = document.createElement("table");
   b.setAttribute("id", "viewRecordTable");
   divTag.appendChild(b);
-  b = document.createElement("textaera");
-  b.setAttribute("id", "viewRecordTextaera");
+  b = document.createElement("textarea");
+  b.setAttribute("id", "viewRecordtextarea");
   divTag.appendChild(b);
-  document.getElementById("viewRecordTextaera").innerHTML = codeText;
+  document.getElementById("viewRecordtextarea").innerHTML = codeText;
   for (var i = 0; i < 3; i++) {
     divTag = document.getElementById("viewRecordTable");
     b = document.createElement("tr");
