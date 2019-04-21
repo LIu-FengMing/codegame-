@@ -1,0 +1,133 @@
+/* 三星:20個動作包含20個動作以內  
+   二星:22個動作包含22個動作以內20個動作以上  
+   一星限為滿足過關條件即可*/ 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(int argc, char *argv[])
+{
+int i,j,x,y;
+int size=9,dire=0;
+int map[9][9];
+getMap(map[0],size);
+x=0;
+y=8;
+i=map[y][x];
+j=1;
+while(i!=4){
+ if(x<8){
+  if(map[y][x+1]>0){
+  if(dire==0){
+   turnRight();
+   step();
+}else if(dire==1){
+ step();
+}else if(dire==2){
+ turnLeft();
+ step();
+}
+map[y][x]=-1;
+x++;
+dire=1;
+i=map[y][x];
+if(i!=j){
+ if(i==1){
+  becameCar();
+}else if(i==2){
+ becameShip();
+}else if(i==3){
+ becameTank();
+}
+j=i;
+}
+}
+} 
+if(x>0){
+  if(map[y][x-1]>0){
+  if(dire==0){
+   turnLeft();
+   step();
+}else if(dire==3){
+ step();
+}else if(dire==2){
+ turnRight();
+ step();
+}
+map[y][x]=-1;
+x--;
+dire=3;
+i=map[y][x];
+if(i!=j){
+ if(i==1){
+  becameCar();
+}else if(i==2){
+ becameShip();
+}else if(i==3){
+ becameTank();
+}
+j=i;
+}
+}
+}
+if(y>0){
+  if(map[y-1][x]>0){
+  if(dire==0){
+   step();
+}else if(dire==3){
+ turnRight();
+step();
+}else if(dire==1){
+ turnLeft();
+ step();
+}
+map[y][x]=-1;
+y--;
+dire=0;
+i=map[y][x];
+if(i!=j){
+ if(i==1){
+  becameCar();
+}else if(i==2){
+ becameShip();
+}else if(i==3){
+ becameTank();
+}
+j=i;
+}
+}
+}
+if(y<8){
+  if(map[y+1][x]>0){
+  if(dire==2){
+   step();
+}else if(dire==1){
+ turnRight();
+step();
+}else if(dire==3){
+ turnLeft();
+ step();
+}
+map[y][x]=-1;
+y++;
+dire=2;
+i=map[y][x];
+if(i!=j){
+ if(i==1){
+  becameCar();
+}else if(i==2){
+ becameShip();
+}else if(i==3){
+ becameTank();
+}
+j=i;
+}
+}
+}
+}
+
+	return 0;
+ }
+
+
