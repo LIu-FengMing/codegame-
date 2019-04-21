@@ -947,7 +947,15 @@ levelSelect.onchange = function (index) {
   }
   updateMapData(userMap)
 }
-
+function searchFunc() {
+    var a = document.getElementById("searchTextBox");
+    if(a.value == ""){
+      a.className = "search-text";
+      clearSearch();
+    }else{
+      a.className = "searchFocus";
+    }
+  }
 /*表單更動*/
 function updateMapData(res) {
   var mapData = [];

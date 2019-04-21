@@ -443,11 +443,11 @@ function viewRecord(number) {
         }
       }
       var result = user.MediumEmpire.codeLevel[number].challengeLog[lastRecord].code;
-      var result2 = result.replace(new RegExp("<", "g"), "&lt");
-      result = result2.replace(new RegExp(">", "g"), "&gt");
-      result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-      result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-      codeText = result.replace(new RegExp("\n", "g"), "<br>");
+      // var result2 = result.replace(new RegExp("<", "g"), "&lt");
+      // result = result2.replace(new RegExp(">", "g"), "&gt");
+      // result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+      // result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+      codeText = result;
       codeNum = niceRecord;
     } catch (e) {
       codeText = "查無資料";

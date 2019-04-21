@@ -352,7 +352,7 @@ body {
   margin: 4px 0 0 -22px;
   background:url("../img/close.png") no-repeat;outline: none;
 }
-
+/*搜尋*/
 .search-box{
   height: 3vh;
   position: absolute;
@@ -365,6 +365,7 @@ body {
 .search-box:hover > .search-text,.search-box > .search-text:focus{
   width: 8vw;
   padding: 0 6px;
+  margin-right: 0.5vw;
 }
 .search-box:hover > .search-btn{
   color: #e84118;
@@ -381,6 +382,19 @@ body {
   justify-content: center;
   align-items: center;
   transition: 0.4s;
+}
+.searchFocus{
+  width: 8vw;
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 2vh;
+  transition: 0.4s;
+  line-height: 3vh;
+  margin-right: 0.5vw;
 }
 .search-text{
   width: 0vw;
