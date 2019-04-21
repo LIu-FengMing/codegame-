@@ -146,7 +146,7 @@ function init_setup() {
 
                         mapwinLinit = data['winLinit'];
                         var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-                        var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+                        var linit = "/* 3星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   2星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   1星:滿足過關條件即可*/ \n\n";
                         var stemp;
                         if (initCode.indexOf('#') > 0) {
                             stemp = initCode.substr(initCode.indexOf('#') - 1);
@@ -243,7 +243,7 @@ function loadData() {
     //     initCode = linit + stemp;
     // }
     var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-    var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    var linit = "/* 3星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   2星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   1星:滿足過關條件即可*/ \n\n";
     var stemp;
     if (textarea_0.value.indexOf('#') > 0) {
         stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
@@ -1261,7 +1261,7 @@ function codeOutputTranstionAction() {
 
     // var temp = new Array();
     var temp = [], tempNew = [];
-    temp = source.split("syst");
+    temp = source.split("$s");
     // console.log(temp);
     for (var i = 0; i < temp.length; ++i) {
         if (temp[i][0] != ' ') {
