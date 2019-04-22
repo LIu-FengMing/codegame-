@@ -1099,7 +1099,7 @@ var searchTextBox = document.getElementById("searchTextBox");
 searchTextBox.onkeydown = function () {
   console.log("search:");
   console.log(searchTextBox.value);
-
+  searchTextBox.className = "searchFocus";
   if (searchTextBox.value.length > 0) {
     userMap.length = 0;
     for (let indexS = 0; indexS < completUserMap.length; indexS++) {

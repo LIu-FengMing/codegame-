@@ -355,14 +355,15 @@ body {
   letter-spacing: 10px;
   font-weight: 0;
 }
-#levelDescriptionTextaera{
-  height: 20vh;
-  width: 15vw;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  margin-top: -10vh;
-  margin-left: -7.5vw;
+#levelDescriptiontextarea{
+  height: 10vh;
+  width: 20vw;
+  font-size: 1.2vw;
+  font-family:Microsoft JhengHei;
+  text-align: center;
+  background: none;
+  border: none;
+  margin-top: -1vh;
   line-height: 24px;
   overflow: auto;
 }

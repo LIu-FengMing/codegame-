@@ -647,7 +647,7 @@ function sendLoadUsernameMap() {
       console.log(res);
       userMap = res;
       var mapData = [];
-      res = res.reverse(); 
+      res = res.reverse();
       for (let index = 0; index < res.length; index++) {
         var obj = res[index], check = "X", post = "X";//△ ⌛
         if (obj.postStage == 1) {
@@ -1015,15 +1015,16 @@ function viewValueMap(thisObject) {
   divTag = document.getElementById("levelForm");
   b = document.createElement("h3");
   b.setAttribute("id", "levelDescription");
+  console.log(obj.mapName);
   b.innerHTML = obj.mapName;
   divTag.appendChild(b);
 
   /*關卡說明*/
   divTag = document.getElementById("levelForm");
-  b = document.createElement("textaera");
+  b = document.createElement("textarea");
   b.setAttribute("rows", "20");
   b.setAttribute("cols", "20");
-  b.setAttribute("id", "levelDescriptionTextaera");
+  b.setAttribute("id", "levelDescriptiontextarea");
   b.innerHTML = obj.mapIntroduction;
   divTag.appendChild(b);
   b = document.createElement("br");
