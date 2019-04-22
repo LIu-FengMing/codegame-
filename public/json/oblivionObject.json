@@ -32,43 +32,43 @@
       "index":4,
       "name":"問號標誌",
       "value":"questionMark",
-      "requirementStar":15,
-      "correspondLevel":5
+      "requirementStar":21,
+      "correspondLevel":7
     },
     {
       "index":5,
       "name":"問號石頭",
       "value":"questionStone",
-      "requirementStar":15,
-      "correspondLevel":5
+      "requirementStar":21,
+      "correspondLevel":7
     },
     {
       "index":6,
       "name":"黃色鎖頭",
       "value":"yellowLock",
-      "requirementStar":33,
-      "correspondLevel":11
+      "requirementStar":39,
+      "correspondLevel":13
     },
     {
       "index":7,
       "name":"黃色箭頭",
       "value":"yellowArrow",
-      "requirementStar":33,
-      "correspondLevel":11
+      "requirementStar":39,
+      "correspondLevel":13
     },
     {
       "index":8,
       "name":"炸彈",
       "value":"bomb",
-      "requirementStar":39,
-      "correspondLevel":13
+      "requirementStar":45,
+      "correspondLevel":15
     },
     {
       "index":9,
       "name":"藍色鎖頭",
       "value":"blueLock",
-      "requirementStar":51,
-      "correspondLevel":17
+      "requirementStar":15,
+      "correspondLevel":5
     },
     {
       "index":10,

@@ -148,9 +148,9 @@
   margin-bottom: 5px;
 }
 .disabled {
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
 }
 #cancelBtn{
   height: 5vh;
@@ -162,6 +162,7 @@
   position: absolute;
   bottom: 3%;
   left: 10%;
+  cursor: pointer;
 }
 #confirmBtn{
   height: 5vh;
@@ -173,4 +174,5 @@
   position: absolute;
   bottom: 3%;
   right: 10%;
+  cursor: pointer;
 }

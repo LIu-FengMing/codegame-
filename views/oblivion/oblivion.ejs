@@ -23,8 +23,9 @@
             <option value="canPlay">可遊玩</option>
           </select>
           <div class="search-box">
-            <input class="search-text" type="search" name="" id="searchText"  placeholder="關卡名稱">
-            <a href="javascript:;" class="clear"></a>
+            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="關卡名稱" onsearch = "searchFunc()">
+            <!-- <a href="javascript:;" class="clear"></a> -->
+            <!-- <a href="#" onclick="console.log('1235464654');" class="clear"></a> -->
             <a class="search-btn"href="#">
               <i class="fas fa-search"></i>
             </a>
@@ -59,12 +60,8 @@
     </div>
     <script src="js/oblivion/oblivion.js"></script>
 
-    <script type="text/javascript">
-      if(document.getElementById('id').getInputText() != "") {
-                  $("#clear").show();
-      } else {
-                  $("#clear").hide();
-      }
-    </script>
+    <!-- <script type="text/javascript">
+
+    </script> -->
   </body>
 </html>

@@ -49,10 +49,10 @@
           "innerGrammar":"基本移動"
         },
         {
-          "innerGrammar":"判斷式"
+          "innerGrammar":"輸出"
         }
       ],
-      "description":"兩個選擇，但只會開一邊，如何選擇\n在這個關卡將會學習到判斷式if。"
+      "description":"捷徑被鎖頭擋住了。\n回答它的問題或許它會讓道?\n在這個關卡將會學習到輸出。"
     },
     {
       "level": 6,
@@ -61,10 +61,16 @@
           "innerGrammar":"基本移動"
         },
         {
-          "innerGrammar":"判斷式"
+          "innerGrammar":"宣告變數"
+        },
+        {
+          "innerGrammar":"輸入"
+        },
+        {
+          "innerGrammar":"輸出"
         }
       ],
-      "description":"兩個選擇，但只會開一邊，如何選擇\n在這個關卡將會學習到判斷式if…else。"
+      "description":"唯一道路被擋住了。\n以你的智慧破解它吧！\n在這個關卡將會學習到輸入。"
     },
     {
       "level": 7,
@@ -76,7 +82,7 @@
           "innerGrammar":"判斷式"
         }
       ],
-      "description":"又多了一個選擇，該如何是好呢?\n在這個關卡將會學習到判斷式switch。"
+      "description":"兩個選擇，但只會開一邊，如何選擇？\n在這個關卡將會學習到判斷式if(){…}。"
     },
     {
       "level": 8,
@@ -85,13 +91,10 @@
           "innerGrammar":"基本移動"
         },
         {
-          "innerGrammar":"宣告變數"
-        },
-        {
-          "innerGrammar":"迴圈"
+          "innerGrammar":"判斷式"
         }
       ],
-      "description":"不用再打一堆重複的指令了\n在這個關卡將會學習到迴圈。"
+      "description":"兩個選擇，但只會開一邊，如何選擇？\n在這個關卡將會學習到判斷式if(){…}else(){…}。"
     },
     {
       "level": 9,
@@ -100,13 +103,10 @@
           "innerGrammar":"基本移動"
         },
         {
-          "innerGrammar":"宣告變數"
-        },
-        {
-          "innerGrammar":"迴圈"
+          "innerGrammar":"判斷式"
         }
       ],
-      "description":"不撞南牆不轉彎。"
+      "description":"又多了一個選擇，該如何是好呢？\n在這個關卡將會學習到判斷式switch(){…}。"
     },
     {
       "level": 10,
@@ -121,7 +121,7 @@
           "innerGrammar":"迴圈"
         }
       ],
-      "description":"地上又有錢了!!快撿快撿!!\n別被金錢蒙蔽了雙眼撞上樹。"
+      "description":"不用再打一堆重複的指令了。\n在這個關卡將會學習到迴圈。"
     },
     {
       "level": 11,
@@ -136,7 +136,7 @@
           "innerGrammar":"迴圈"
         }
       ],
-      "description":"完成特殊條件來解開鎖頭\n繼續前進！"
+      "description":"不撞南牆不轉彎。"
     },
     {
       "level": 12,
@@ -151,10 +151,40 @@
           "innerGrammar":"迴圈"
         }
       ],
-      "description":"左扭右扭，使用迴圈來編寫指令，\n閃開樹和石頭。"
+      "description":"地上又有錢了！！快撿快撿！！\n別被金錢蒙蔽了雙眼撞上樹。"
     },
     {
       "level": 13,
+      "mainGrammar":[
+        {
+          "innerGrammar":"基本移動"
+        },
+        {
+          "innerGrammar":"宣告變數"
+        },
+        {
+          "innerGrammar":"迴圈"
+        }
+      ],
+      "description":"完成特殊條件來解開鎖頭。\n繼續前進！"
+    },
+    {
+      "level": 14,
+      "mainGrammar":[
+        {
+          "innerGrammar":"基本移動"
+        },
+        {
+          "innerGrammar":"宣告變數"
+        },
+        {
+          "innerGrammar":"迴圈"
+        }
+      ],
+      "description":"左扭右扭，使用迴圈來編寫指令，\n閃開樹和石頭。"
+    },
+    {
+      "level": 15,
       "mainGrammar":[
         {
           "innerGrammar":"基本移動"
@@ -172,7 +202,7 @@
       "description":"怎麼有人放一顆炸彈在路中間！\n請安全引爆它。\n在這個關卡將會學習到開火射擊。"
     },
     {
-      "level": 14,
+      "level": 16,
       "mainGrammar":[
         {
           "innerGrammar":"基本移動"
@@ -190,7 +220,7 @@
       "description":"看來不小心進入了地雷區！\n小心被炸到。"
     },
     {
-      "level": 15,
+      "level": 17,
       "mainGrammar":[
         {
           "innerGrammar":"基本移動"
@@ -208,7 +238,7 @@
       "description":"WOW!可以自己自訂函式來使用了\n用自己的函式來左扭右扭吧!\n在這個關卡將會學習到自訂函式。"
     },
     {
-      "level": 16,
+      "level": 18,
       "mainGrammar":[
         {
           "innerGrammar":"基本移動"
@@ -224,42 +254,6 @@
         }
       ],
       "description":"前方被擋住了\n只好走一個風騷的ㄇ字型。\n"
-    },
-    {
-      "level": 17,
-      "mainGrammar":[
-        {
-          "innerGrammar":"基本移動"
-        },
-        {
-          "innerGrammar":"宣告變數"
-        },
-        {
-          "innerGrammar":"迴圈"
-        },
-        {
-          "innerGrammar":"輸出"
-        }
-      ],
-      "description":"捷徑被鎖頭擋住了!\n回答它的問題或許它會讓道?\n在這個關卡將會學習到輸出。"
-    },
-    {
-      "level": 18,
-      "mainGrammar":[
-        {
-          "innerGrammar":"基本移動"
-        },
-        {
-          "innerGrammar":"宣告變數"
-        },
-        {
-          "innerGrammar":"迴圈"
-        },
-        {
-          "innerGrammar":"輸出"
-        }
-      ],
-      "description":"唯一道路被擋住了!\n以你的智慧破解它吧!\n"
     },
     {
       "level": 19,
@@ -304,7 +298,7 @@
           "innerGrammar":"綜合"
         }
       ],
-      "description":"繞了一大圈，原來終點就在身邊"
+      "description":"繞了一大圈，原來終點就在身邊。"
     },
     {
       "level": 24,
@@ -313,7 +307,7 @@
           "innerGrammar":"綜合"
         }
       ],
-      "description":"G代表Good，也可能代表GoGoGo"
+      "description":"G代表Good，也可能代表GoGoGo。"
     },
     {
       "level": 25,

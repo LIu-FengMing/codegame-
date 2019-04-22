@@ -191,13 +191,30 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
   "已獲得星星數："];
+var userMap = [];
+var scriptData = {
+  type: "userMap"
+}
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  success: function (res) {
+    // console.log(res);
+    console.log("res:", res);
+
+    userMap = res.length;
+  }
+})
+
 function userData() {
   divID = "userDataView";
   divID2 = "userDataBkView";
   divTag = document.getElementById("centerMidMap");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(divID,divID2)");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -207,9 +224,8 @@ function userData() {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataBkView\",\"userDataView\")");
   divTag.appendChild(b);
-  // createUserView(divID);
   /*修改密碼按鈕*/
   b = document.createElement("input");
   b.setAttribute("type", "button");
@@ -218,25 +234,6 @@ function userData() {
   b.setAttribute("onclick", "changePassword(\"userDataView\")");
   divTag.appendChild(b);
   createUserView(divID);
-}
-function clossFunc(thisDiv, thisDiv2) {
-  try {
-    document.getElementById("changePasswordBtn").className = "";
-    document.getElementById("clossDiv").className = "";
-  } catch (e) { }
-  try {
-    divTag = document.getElementById(thisDiv);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-  } catch (e) { }
-  try {
-    divTag = document.getElementById(thisDiv2);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-    levelDivAlive = false;
-  } catch (e) { }
-
-  levelDivAlive = false;
 }
 function closeFunc(thisDiv, thisDiv2) {
   try {
@@ -291,7 +288,7 @@ function createUserView(mainDiv) {
     } else if (i == 3) {
       userdataFont = "5/10";
     } else if (i == 4) {
-      userdataFont = user.createMap.length;
+      userdataFont = userMap;
     } else if (i == 5) {
       userdataFont = user.starNum;
     }
@@ -300,6 +297,140 @@ function createUserView(mainDiv) {
       b = document.createElement("br");
       divTag.appendChild(b);
     }
+  }
+}
+function changePassword(thisDiv) {
+  var tdValue = ["舊密碼", "新密碼", "確認新密碼"], inputID = ["oldPassword", "newPassword", "checkPassword"];
+  document.getElementById("changePasswordBtn").className = "disabled";
+  document.getElementById("clossDiv").className = "disabled";
+  divTag = document.getElementById("userDataView");
+  b = document.createElement("div");
+  b.setAttribute("id", "changePasswordView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordView");
+  b = document.createElement("h1");
+  b.setAttribute("id", "changePasswordTitle");
+  b.innerHTML = "修改密碼";
+  divTag.appendChild(b);
+
+  b = document.createElement("table");
+  b.setAttribute("id", "changePasswordTable");
+  divTag.appendChild(b);
+  divTag = document.getElementById("changePasswordTable");
+  for (var i = 0; i < 3; i++) {
+    b = document.createElement("tr");
+    b.setAttribute("id", "changePasswordTr" + i);
+    divTag.appendChild(b);
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("changePasswordTr" + i);
+      b = document.createElement("td");
+      b.setAttribute("id", "changePasswordTd" + i + j);
+      divTag.appendChild(b);
+      divTag = document.getElementById("changePasswordTd" + i + j);
+      if (j == 0) {
+        b = document.createElement("h2");
+        b.setAttribute("id", "changePasswordH2" + i + j);
+        b.innerHTML = tdValue[i];
+        divTag.appendChild(b);
+      } else {
+        b = document.createElement("input");
+        b.setAttribute("type", "password");
+        b.setAttribute("id", inputID[i]);
+        divTag.appendChild(b);
+      }
+    }
+    divTag = document.getElementById("changePasswordTable");
+  }
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "cancelBtn");
+  b.setAttribute("value", "取消修改");
+  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "confirmBtn");
+  b.setAttribute("value", "確認修改");
+  // b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
+  b.setAttribute("onclick", "changePass()");
+  divTag.appendChild(b);
+}
+function changePass() {
+  oldPassword = document.getElementById("oldPassword");
+  newPassword = document.getElementById("newPassword");
+  checkPassword = document.getElementById("checkPassword");
+
+  var strOP = oldPassword.value;
+  var strP = newPassword.value;
+  var strCP = checkPassword.value;
+  if (oldPassword.value == "") {
+    // alert("動作失敗<br>" + "\"舊密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strOP.indexOf(" ") != -1) {
+    // alert("動作失敗<br>" + "\"舊密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"舊密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value == "") {
+    // alert("動作失敗<br>" + "\"密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (checkPassword.value == "") {
+    // alert("動作失敗\n" + "\"確認密碼\"不能為空");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"不能為空";
+    remindView(remindValue);
+  }
+  else if (strCP.indexOf(" ") != -1) {
+    // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
+    remindValue = "動作失敗<br>" + "\"確認密碼\"有空白字元";
+    remindView(remindValue);
+  }
+  else if (newPassword.value != checkPassword.value) {
+    // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
+    remindValue = "動作失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
+    remindView(remindValue);
+  }
+  else {
+    var scriptData = {
+      type: "changePassword",
+      oldPassword: oldPassword.value,
+      password: newPassword.value,
+    }
+    // console.log(scriptData);
+    // alert("wait");
+    var href = window.location.href;
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',         // 使用 POST 方法傳送請求
+      dataType: 'json',       // 回傳資料會是 json 格式
+      data: scriptData,       // 將表單資料用打包起來送出去
+      success: function (res) {
+        result = "動作失敗<br>";
+        // alert(res.responce );
+        if (res.responce == "sucesss") {
+          result = "修改成功";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+          closeFunc("changePasswordView");
+        }
+        else if (res.responce == "failPassUndifine") {
+          result += "\"舊密碼\"錯誤";
+          // alert(result);
+          remindValue = result;
+          remindView(remindValue);
+        }
+        },
+    });
   }
 }
 function logout() {
@@ -343,7 +474,7 @@ function btnClick(number) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"levelDiv\")");
+  b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
   divTag.appendChild(b);
   divTag = document.getElementById("levelForm");
   b = document.createElement("h3");
@@ -443,11 +574,11 @@ function viewRecord(number) {
         }
       }
       var result = user.MediumEmpire.codeLevel[number].challengeLog[lastRecord].code;
-      var result2 = result.replace(new RegExp("<", "g"), "&lt");
-      result = result2.replace(new RegExp(">", "g"), "&gt");
-      result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-      result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-      codeText = result.replace(new RegExp("\n", "g"), "<br>");
+      // var result2 = result.replace(new RegExp("<", "g"), "&lt");
+      // result = result2.replace(new RegExp(">", "g"), "&gt");
+      // result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
+      // result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+      codeText = result;
       codeNum = niceRecord;
     } catch (e) {
       codeText = "查無資料";
@@ -456,7 +587,7 @@ function viewRecord(number) {
   }
   b = document.createElement("div");
   b.setAttribute("id", "centerBlocklyBkView");
-  b.setAttribute("onclick", "clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "centerBlocklyView");
@@ -466,7 +597,7 @@ function viewRecord(number) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -669,7 +800,7 @@ function equipageView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"equipageView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "equipageView");
@@ -679,7 +810,7 @@ function equipageView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"equipageView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -975,8 +1106,8 @@ function resetEquipClick() {
       swordLevel = 0;
       shieldLevel = 0;
       levelUpLevel = 0;
-      // clossFunc("equipageView","equipageBkViewv");
-      clossFunc("equipageView", "equipageBkView");
+      // closeFunc("equipageView","equipageBkViewv");
+      closeFunc("equipageView", "equipageBkView");
       equipageView({ id: "centerMidMap" });
     }
   })
@@ -1141,7 +1272,7 @@ function instructionView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"instructionView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "instructionView");
@@ -1151,7 +1282,7 @@ function instructionView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"instructionView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -1250,7 +1381,7 @@ function achievementView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "achievementView");
@@ -1260,7 +1391,7 @@ function achievementView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"achievementView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
   /*b = document.createElement("img");
   b.setAttribute("id","crownImgLeft");
@@ -1373,7 +1504,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "settingAllView");
@@ -1383,7 +1514,7 @@ function settingAllView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -1721,7 +1852,7 @@ function remindView(remindValue) {
   }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -1740,6 +1871,6 @@ function remindView(remindValue) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }

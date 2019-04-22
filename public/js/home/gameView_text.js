@@ -797,7 +797,7 @@ function blocklyUsable(thisClassID, thisValue) {
       break;
     case "if_else":
       blockType = "if(&nbsp){...}else{...}<br>";
-      b.setAttribute("onclick", "insertAtCursor('if(){}else(){}');");
+      b.setAttribute("onclick", "insertAtCursor('if(){}else{}');");
       break;
     case "switch":
       blockType = "switch(&nbsp){...}<br>";
@@ -1012,9 +1012,11 @@ $.each($("textarea"), function(i, n){
   $(n).css("height", n.scrollHeight + "px");
 })
 
+
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
+  myValue+="\n";
   //IE support
   if (document.selection) {
     myField.focus();
@@ -1023,6 +1025,7 @@ function insertAtCursor(myValue) {
   }
   //MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart == '0') {
+    // console.log("type 2");
     var startPos = myField.selectionStart;
     var endPos = myField.selectionEnd;
     myField.value = myField.value.substring(0, startPos)
@@ -1080,7 +1083,7 @@ mainDescription = {
       "level": 1,
       "mode": 2,
       "textarea1": "哈囉！我是小幫手，將會幫助你通過重重難關。<br><br>目標：避開障礙物以正確的方向通過終點。",
-      "textarea2": "請在左方程式區使用 code 編寫你的程式，編寫完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>程式區右上方按鈕名稱及功能依序為<br>開始－執行程式碼<br>刷新遊戲畫面－將遊戲畫面初始化<br>刷新指令及遊戲畫面－刷新指令區及遊戲畫面<br>設定－環境設定<br><br>在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea2": "請在左方程式區使用 code 編寫你的程式，編寫完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>程式區右上方按鈕名稱及功能依序為<br>開始－執行程式碼<br>重置地圖－將遊戲畫面初始化<br>重置關卡－刷新指令區及遊戲畫面<br>設定－環境設定<br><br>在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level1img1.png",
       "img2": "level1img2.png"
     },
@@ -1088,7 +1091,7 @@ mainDescription = {
       "level": 2,
       "mode": 2,
       "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight( );<br>左轉：turnLeft( );<br>皆分類於\"動作\"內。",
-      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step();<br>turnRight( );<br>step( );<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step( );<br>turnRight( );<br>step( );<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level2img1.gif",
       "img2": "level2img2.gif"
     },
@@ -1110,7 +1113,7 @@ mainDescription = {
     {
       "level": 6,
       "mode": 1,
-      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>藍色鎖頭精靈的問題為：<br>請問系統給予的值加上地圖上出現的樹木數為多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>如果要使用printf()函式來輸出變數的話，使用方法如下：<br>int i=5;<br>printf(\"%d\",i);<br>在雙引號中間放入以'%'開頭的格式文字來對應到逗點後的變數名稱<br>對應不同資料型態的變數，可以使用不同的格式文字來輸出，如下：<br>'%d'：輸出十進制整數<br>'%f'：輸出浮點數<br>'%c'：輸出字元<br><br>藍色鎖頭精靈的問題為：<br>請問系統給予的值加上地圖上出現的樹木數為多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 7,
@@ -1130,13 +1133,13 @@ mainDescription = {
     {
       "level": 10,
       "mode": 1,
-      "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>是不是覺得走好幾步的時候，要打好幾個step( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"hello\"、\"HAHA@_@\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>是不是覺得走好幾步的時候，要打好幾個step( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"lol\"、\"HA\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
 
     },
     {
       "level": 11,
       "mode": 1,
-      "textarea1": "請將第八關所學會的迴圈指令與前進、左轉、右轉等動作指令結合來抵達終點吧！<br><br>過關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "請將第十關所學會的迴圈指令與前進、左轉、右轉等動作指令結合來抵達終點吧！<br><br>過關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 12,

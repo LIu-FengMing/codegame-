@@ -933,10 +933,6 @@ function shieldLevelUp() {
 
 
 }
-
-
-/*----------------*/
-
 /*指令大全*/
 function instructionView(mainDiv) {
   divID = "instructionView";
@@ -1048,8 +1044,8 @@ function instructionView(mainDiv) {
 }
 /*成就*/
 function achievementView(mainDiv) {
-  divID = "achievementView";
-  divID2 = "equipageBkView";
+  var achievementStr = achievementJudge();
+  console.log(achievementStr);
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
@@ -1065,16 +1061,12 @@ function achievementView(mainDiv) {
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
-  /*b = document.createElement("img");
-  b.setAttribute("id","crownImgLeft");
-  divTag.appendChild(b);*/
+
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "成就";
-  /*b = document.createElement("img");
-  b.setAttribute("id","crownImgRight");
-  divTag.appendChild(b);*/
+
   b = document.createElement("table");
   b.setAttribute("id", "achievementTable");
   b.setAttribute("rules", "rows");
@@ -1094,13 +1086,7 @@ function achievementView(mainDiv) {
         divTag = document.getElementById("row" + i + "col" + j);
         b = document.createElement("img");
         b.setAttribute("id", "champtionImg" + i);
-        // if (i == 0) {
-        //     b.setAttribute("class", "champtionCopper");
-        // } else if (i == 1) {
-        //     b.setAttribute("class", "champtionSilver");
-        // } else {
-        //     b.setAttribute("class", "champtionGold");
-        // }
+
         if (achievemenData.record[i].level == 1) {
           b.setAttribute("class", "champtionCopper");
         }
@@ -1126,19 +1112,6 @@ function achievementView(mainDiv) {
         b.setAttribute("id", "aInner" + i);
         b.setAttribute("href", "#item" + i);
         divTag.appendChild(b);
-        // if (i == 0) {
-        //     document.getElementById("aInner" + i).innerHTML = "初學者";
-        // } else if (i == 1) {
-        //     document.getElementById("aInner" + i).innerHTML = "左紐又扭";
-        // } else {
-        //     document.getElementById("aInner" + i).innerHTML = "????????";
-        // }
-
-        // divTag = document.getElementById("achievementInnerDiv" + i);
-        // b = document.createElement("p");
-        // b.setAttribute("id", "item" + i);
-        // divTag.appendChild(b);
-        // document.getElementById("item" + i).innerHTML = "通過第二關";
 
         //////---------------------new-----------------------///////////////
         document.getElementById("aInner" + i).innerHTML = achievemenData.record[i].name
@@ -1152,13 +1125,13 @@ function achievementView(mainDiv) {
         divTag = document.getElementById("row" + i + "col" + j);
         b = document.createElement("font");
         b.setAttribute("id", "achievementFont" + i);
-        if (i == 0) {
+        if (achievementStr[i] == 1) {
           b.setAttribute("class", "achievementFont");
         } else {
           b.setAttribute("class", "achievementFontDefault");
         }
         divTag.appendChild(b);
-        if (i == 0) {
+        if (achievementStr[i] == 1) {
           document.getElementById("achievementFont" + i).innerHTML = "✔";
         } else {
           document.getElementById("achievementFont" + i).innerHTML = "未完成";
@@ -1168,6 +1141,62 @@ function achievementView(mainDiv) {
     }
     divTag = document.getElementById("achievementTable");
   }
+}
+/*成就判斷*/
+function achievementJudge() {
+  var maxValue = [1,2,1],isGet = [0,0,0,0,0,0,0,0,0];
+  var empire = [user.EasyEmpire,user.MediumEmpire]
+  var maxLevel = 0,getThreeStar = 0,equipmentLevel = user.levelUpLevel,highestLevel = [empire[0].codeHighestLevel,empire[1].HighestLevel];
+  if (highestLevel[0] > highestLevel[1]) {
+    maxLevel = highestLevel[0];
+  } else {
+    maxLevel = highestLevel[1];
+  }
+  for(var i=0;i<2;i++){
+    var maxJ = highestLevel[i];
+    if(i == 1){
+      maxJ = (highestLevel[i]-24);
+    }
+    for(var j=0;j<maxJ;j++){
+      if(empire[i].codeLevel[j].HighestStarNum == 3){
+        getThreeStar++;
+      }
+    }
+  }
+  console.log("最高過關數:",maxLevel);
+  console.log("獲得三星數:",getThreeStar);
+  for(var typeVar=0;typeVar<3;typeVar++){
+    for(var valueVar=0;valueVar<3;valueVar++){
+      // console.log(typeVar + valueVar);
+      switch (typeVar) {
+        /*通關數*/
+        case 0:
+          console.log(maxLevel,achievemenData.record[typeVar + valueVar].limit[0].value);
+          if(maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value){
+            isGet[typeVar + valueVar] = 1;
+          }
+          break;
+        /*獲得三星數*/
+        case 1:
+          // console.log(typeVar + valueVar + 2,achievemenData.record[typeVar + valueVar + 2]);
+          if(getThreeStar >= achievemenData.record[typeVar + valueVar + 2].limit[0].value){
+            isGet[typeVar + valueVar + 2] = 1;
+          }
+          break;
+        /*裝備升級數*/
+        case 2:
+          if(equipmentLevel >= achievemenData.record[typeVar + valueVar + 4].limit[0].value){
+            isGet[typeVar + valueVar + 4] = 1;
+          }
+          break;
+      }
+    }
+  }
+  // console.log("長度:",isGet.length);
+  // for (var i = 0; i < isGet.length; i++) {
+  //   console.log(isGet[i],i);
+  // }
+  return isGet;
 }
 /*設定*/
 function settingAllView(mainDiv) {
