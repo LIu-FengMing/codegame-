@@ -684,101 +684,126 @@ function selectFunc(levelNumber) {
       divString = "main(&nbsp)<br>";
       for (var j = 0; j < usableSize; j++) {
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        divString = divString + blocklyUsable(className, usableValue);
+        blocklyUsable("func", usableValue);
       }
     } else if (className == "動作") {
       document.getElementById("step").style.display = "";
       for (var j = 0; j < usableSize; j++) {
         divTag = document.getElementById("step");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        divString = divString + blocklyUsable(className, usableValue);
+        blocklyUsable("step", usableValue);
       }
     } else if (className == "判斷式") {
       document.getElementById("judgment").style.display = "";
       for (var j = 0; j < usableSize; j++) {
         divTag = document.getElementById("judgment");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        divString = divString + blocklyUsable(className, usableValue);
+        blocklyUsable("judgment", usableValue);
       }
     }
-    divTag.innerHTML = divString;
-    divString = "";
+    // divTag.innerHTML = divString;
+    // divString = "";
   }
 }
 function blocklyUsable(thisClassID, thisValue) {
   var blockType;
+  console.log(thisClassID);
+  divTag = document.getElementById(thisClassID);
+  b = document.createElement("div");
   switch (thisValue) {
     case "step":
       blockType = "step(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('step();');");
       break;
     case "turnRight":
       blockType = "turnRight(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('turnRight();');");
       break;
     case "turnLeft":
       blockType = "turnLeft(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('turnLeft();');");
       break;
     case "fire":
       blockType = "fire(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('fire();');");
       break;
     case "printf":
       blockType = "printf(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('printf();');");
+      break;
+    case "scanf":
+      blockType = "scanf(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('scanf();');");
       break;
     case "var":
       blockType = " ";
       break;
     case "for":
-      blockType = "for(&nbsp)<br>";
+      blockType = "for(&nbsp){...}<br>";
+      b.setAttribute("onclick", "insertAtCursor('for(){}');");
       break;
     case "function":
-      blockType = "function&nbspX(&nbsp)<br>";
+      blockType = "function&nbspX(&nbsp){...}<br>";
+      b.setAttribute("onclick", "insertAtCursor('function(){}');");
       break;
     case "call":
       blockType = " ";
       break;
     case "if":
-      blockType = "if(&nbsp)<br>";
+      blockType = "if(&nbsp){...}<br>";
+      b.setAttribute("onclick", "insertAtCursor('if(){}');");
       break;
     case "if_else":
-      blockType = "if(&nbsp)...else<br>";
+      blockType = "if(&nbsp){...}else{...}<br>";
+      b.setAttribute("onclick", "insertAtCursor('if(){}else{}');");
       break;
     case "switch":
-      blockType = "switch(&nbsp)<br>";
-      break;
-    case "switch":
-      blockType = "switch(&nbsp)<br>";
+      blockType = "switch(&nbsp){...}<br>";
+      b.setAttribute("onclick", "insertAtCursor('switch(){}');");
       break;
     case "becameCar(&nbsp)":
       blockType = "becameCar(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('becameCar();');");
       break;
     case "becameTank(&nbsp)":
       blockType = "becameTank(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('becameTank();');");
       break;
     case "becameShip(&nbsp)":
       blockType = "becameShip(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('becameShip();');");
       break;
     case "getKeyArray(&nbsp)":
       blockType = "getKeyArray(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getKeyArray();');");
       break;
     case "getDistance(&nbsp)":
       blockType = "getDistance(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getDistance();');");
       break;
     case "getKey(&nbsp)":
       blockType = "getKey(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getKey();');");
       break;
     case "getBox(&nbsp)":
       blockType = "getBox(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getBox();');");
       break;
     case "getString(&nbsp)":
       blockType = "getString(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getString();');");
       break;
     case "getKeyArray(&nbsp)":
       blockType = "getKeyArray(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getKeyArray();');");
       break;
     case "getKeyMap(&nbsp)":
       blockType = "getKeyMap(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getKeyMap();');");
       break;
   }
-  return blockType;
+  b.innerHTML = blockType;
+  divTag.appendChild(b);
 }
 
 /*遊戲結果*/

@@ -797,7 +797,7 @@ function blocklyUsable(thisClassID, thisValue) {
       break;
     case "if_else":
       blockType = "if(&nbsp){...}else{...}<br>";
-      b.setAttribute("onclick", "insertAtCursor('if(){}else(){}');");
+      b.setAttribute("onclick", "insertAtCursor('if(){}else{}');");
       break;
     case "switch":
       blockType = "switch(&nbsp){...}<br>";

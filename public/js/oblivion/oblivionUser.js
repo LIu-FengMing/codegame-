@@ -1370,7 +1370,7 @@ function shelfLaterAction(selectDate) {
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
       console.log("6666666666666");
-      clossFunc("shelfView");
+      clossFunc("shelfView","shelfBkView");
       var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
       var str = "td0" + objI.toString() + "1";
       divTag = document.getElementById(str);
