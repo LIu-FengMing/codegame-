@@ -975,21 +975,22 @@ mainDescription = {
 
 var levelSelect = document.getElementById("levelSelect");
 levelSelect.onchange = function (index) {
-  var index = levelSelect.selectedIndex;
-  console.log(index);
-  if (index == 0) { //全部
-    userMap = completUserMap.slice(0);
-  }
-  else { //可遊玩
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (user.starNum >= element.requireStar) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-  updateMapData(userMap)
+  changeTdNameDisplay();
+  // var index = levelSelect.selectedIndex;
+  // console.log(index);
+  // if (index == 0) { //全部
+  //   userMap = completUserMap.slice(0);
+  // }
+  // else { //可遊玩
+  //   userMap.length = 0;
+  //   for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+  //     const element = completUserMap[indexS];
+  //     if (user.starNum >= element.requireStar) {
+  //       userMap.push(completUserMap[indexS]);
+  //     }
+  //   }
+  // }
+  // updateMapData(userMap)
 }
 function searchFunc() {
   var a = document.getElementById("searchTextBox");
