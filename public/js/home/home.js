@@ -39,6 +39,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 
 })();
 
+var achievementStr;
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, test;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, gameSpeed;
@@ -118,6 +119,7 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
+  achievementStr = achievementJudge();
 }
 function weaponLevelup() {
   var scriptData = {
@@ -309,7 +311,13 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = "5/10";
+      var count=0;
+      for(var achievementI=0;achievementI<achievementStr.length;achievementI++){
+        if(achievementStr[achievementI] == 1){
+          count++;
+        }
+      }
+      userdataFont = count + "/9";
     } else if (i == 4) {
       userdataFont = userMap;
     } else if (i == 5) {
@@ -1015,22 +1023,25 @@ function instructionView(mainDiv) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
         //console.log(li[j].limit,li[j].name,passLevel);
+        divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
         }
-        b = document.createElement("h3");
-        b.setAttribute("id", "h3Inner" + i + j);
+        b = document.createElement("details");
+        b.setAttribute("id", "detailsInner" + i + j);
+        b.setAttribute("class", "instructionDetailsInner");
         divTag.appendChild(b);
-        divTag = document.getElementById("h3Inner" + i + j);
-        b = document.createElement("a");
-        b.setAttribute("id", "aInner" + i + j);
-        b.setAttribute("href", "#item" + i + j);
+        divTag = document.getElementById("detailsInner" + i + j);
+        b = document.createElement("summary");
+        b.setAttribute("id", "summaryInner" + i + j);
+        b.setAttribute("class", "summaryInner");
         divTag.appendChild(b);
         // document.getElementById("aInner" + j).innerHTML = "step( )▼";
-        document.getElementById("aInner" + i + j).innerHTML = "&nbsp" + li[j].name + "▼";
-        divTag = document.getElementById("actionDiv" + i);
-        b = document.createElement("h6");
+        document.getElementById("summaryInner" + i + j).innerHTML = li[j].name;
+        //
+        b = document.createElement("p");
         b.setAttribute("id", "item" + i + j);
+        b.setAttribute("class", "itemP");
         divTag.appendChild(b);
         // document.getElementById("item" + j).innerHTML = "&nbsp&nbsp&nbsp&";
         document.getElementById("item" + i + j).innerHTML = "&nbsp&nbsp&nbsp&nbsp" + li[j].value;
@@ -1044,8 +1055,6 @@ function instructionView(mainDiv) {
 }
 /*成就*/
 function achievementView(mainDiv) {
-  var achievementStr = achievementJudge();
-  console.log(achievementStr);
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
@@ -1104,22 +1113,24 @@ function achievementView(mainDiv) {
         b.setAttribute("class", "achievementInnerDiv");
         divTag.appendChild(b);
         divTag = document.getElementById("achievementInnerDiv" + i);
-        b = document.createElement("h3");
-        b.setAttribute("id", "h3Inner" + i);
+        b = document.createElement("details");
+        b.setAttribute("id", "achievementDetailsInner" + i);
+        b.setAttribute("class", "achievementDetailsInner");
         divTag.appendChild(b);
-        divTag = document.getElementById("h3Inner" + i);
-        b = document.createElement("a");
-        b.setAttribute("id", "aInner" + i);
-        b.setAttribute("href", "#item" + i);
+        divTag = document.getElementById("achievementDetailsInner" + i);
+        b = document.createElement("summary");
+        b.setAttribute("id", "achievementSummaryInner" + i);
+        b.setAttribute("class", "achievementSummaryInner");
         divTag.appendChild(b);
 
         //////---------------------new-----------------------///////////////
-        document.getElementById("aInner" + i).innerHTML = achievemenData.record[i].name
-        divTag = document.getElementById("achievementInnerDiv" + i);
+        document.getElementById("achievementSummaryInner" + i).innerHTML = achievemenData.record[i].name
+        // divTag = document.getElementById("achievementInnerDiv" + i);
         b = document.createElement("p");
-        b.setAttribute("id", "item" + i);
+        b.setAttribute("id", "achievementItem" + i);
+        b.setAttribute("class", "achievementItem");
         divTag.appendChild(b);
-        document.getElementById("item" + i).innerHTML = achievemenData.record[i].value;
+        document.getElementById("achievementItem" + i).innerHTML = achievemenData.record[i].value;
 
       } else {
         divTag = document.getElementById("row" + i + "col" + j);

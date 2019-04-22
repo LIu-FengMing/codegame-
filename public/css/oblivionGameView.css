@@ -263,6 +263,7 @@ body {
   position: absolute;
   top: 1%;
   right: 1%;
+  cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;

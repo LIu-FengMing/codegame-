@@ -1016,7 +1016,9 @@ $.each($("textarea"), function(i, n){
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
-  myValue+="\n";
+  if (myValue.indexOf('\t') < 0) {
+    myValue += "\n";
+  }
   //IE support
   if (document.selection) {
     myField.focus();

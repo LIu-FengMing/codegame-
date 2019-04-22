@@ -746,7 +746,6 @@ function sendLoadUsernameMap() {
     success: function (res) {
       console.log(res);
       userMap = res;
-      completUserMap = res.slice(0);
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
 
@@ -801,18 +800,22 @@ function sendLoadUsernameMap() {
           td05: updateDate,
           td06: obj.mapIntroduction,
         }
+        userMap[index].avgScoreStr = avgScoreStr;
+
         mapData.push(script);
       }
+
+      completUserMap = userMap.slice(0);
       createLevelTable(mapData);
     }
   })
 }
 
 var levelNameStatus = 0, conditionStatus = 0, creatorStatus = 0, evaluateStatus = 0, dateStatus = 0, introductionStatus = 0;
-var tdStatus = [0, 0, 0, 0, 0, 0, 0];
+var tdStatus = [0, 0, 0, 0, 0, 0];
 function changeTdName(thisObiect) {
   var str = thisObiect.className, s, s2;
-  var thisStatus = str.substr(str.length - 1, 1);
+  var thisStatus = parseInt(str.substr(str.length - 1, 1)) - 1;
   s = thisObiect.innerHTML;
   // console.log(s2.length);
   if (tdStatus[thisStatus] == 0) {
@@ -835,8 +838,50 @@ function changeTdName(thisObiect) {
     thisObiect.innerHTML = s;
     tdStatus[thisStatus] = 0;
   }
+  changeTdNameDisplay();
 }
 
+var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDate", "mapIntroduction"]
+function changeTdNameDisplay() {
+  // console.log(tdStatus);
+  // console.log(userMap);
+  var index = levelSelect.selectedIndex;
+  console.log(index);
+  if (index == 0) { //全部
+    userMap = completUserMap.slice(0);
+  }
+  else { //可遊玩
+    userMap.length = 0;
+    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+      const element = completUserMap[indexS];
+      if (user.starNum >= element.requireStar) {
+        userMap.push(completUserMap[indexS]);
+      }
+    }
+  }
+
+  // for (let index = 0; index < tdStatus.length; index++) {
+  for (let index = tdStatus.length-1; index >-1; index--){ 
+    var item=TdNameTable[index];
+    console.log("item:",item);
+    console.log("tdStatus[index]:",item);
+    if(tdStatus[index]==1){
+      userMap = userMap.sort(function (a, b) {
+        return a[item] > b[item] ? 1 : -1;
+       });
+    }
+    else if(tdStatus[index]==2){
+      userMap = userMap.sort(function (a, b) {
+        return a[item] < b[item] ? 1 : -1;
+       });
+    }
+  }
+
+  console.log(userMap);
+
+  updateMapData(userMap)
+
+}
 
 
 /*建立表格*/
@@ -931,31 +976,32 @@ mainDescription = {
 
 var levelSelect = document.getElementById("levelSelect");
 levelSelect.onchange = function (index) {
-  var index = levelSelect.selectedIndex;
-  console.log(index);
-  if (index == 0) { //全部
-    userMap = completUserMap.slice(0);
-  }
-  else { //可遊玩
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (user.starNum >= element.requireStar) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-  updateMapData(userMap)
+  changeTdNameDisplay();
+  // var index = levelSelect.selectedIndex;
+  // console.log(index);
+  // if (index == 0) { //全部
+  //   userMap = completUserMap.slice(0);
+  // }
+  // else { //可遊玩
+  //   userMap.length = 0;
+  //   for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+  //     const element = completUserMap[indexS];
+  //     if (user.starNum >= element.requireStar) {
+  //       userMap.push(completUserMap[indexS]);
+  //     }
+  //   }
+  // }
+  // updateMapData(userMap)
 }
 function searchFunc() {
-    var a = document.getElementById("searchTextBox");
-    if(a.value == ""){
-      a.className = "search-text";
-      clearSearch();
-    }else{
-      a.className = "searchFocus";
-    }
+  var a = document.getElementById("searchTextBox");
+  if (a.value == "") {
+    a.className = "search-text";
+    clearSearch();
+  } else {
+    a.className = "searchFocus";
   }
+}
 /*表單更動*/
 function updateMapData(res) {
   var mapData = [];
@@ -1159,7 +1205,7 @@ searchTextBox.onkeyup = function () {
 }
 searchTextBox.onchange = function () {
   console.log("happy");
-  if (searchTextBox.value==""||searchTextBox.value.length==0) {
+  if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
 
     clearSearch();
   }
