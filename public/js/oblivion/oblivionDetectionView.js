@@ -136,11 +136,11 @@ function initHome() {
       passLevel++;
     }
   }
-
   selectFunc((passLevel-1));
 }
 function getMapDescription(thisDescription) {
   mapMessage = thisDescription;
+  helper("blocklyDiv");
 }
 //---------紀錄關卡資訊---------//
 function recordLevel(scriptData) {
@@ -281,7 +281,7 @@ function helper(mainDiv) {
     var parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-  divTag = document.getElementById(mainDiv.id);
+  divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
