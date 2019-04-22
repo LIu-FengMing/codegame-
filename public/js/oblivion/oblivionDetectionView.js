@@ -884,6 +884,9 @@ $.each($("textarea"), function(i, n){
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
   //IE support
+  if (myValue.indexOf('\t') < 0) {
+    myValue += "\n";
+  }
   if (document.selection) {
     myField.focus();
     sel = document.selection.createRange();

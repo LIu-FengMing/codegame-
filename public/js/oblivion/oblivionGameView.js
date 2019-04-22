@@ -43,17 +43,17 @@ function back() {
   var href = window.location.href;
   for (var i = 0; i < href.length; ++i) {
     if (href[i] == '/' || href[i] == "\\") {
-        index = i;
+      index = i;
     }
   }
   href = href.substr(0, index + 1);
-  href+="oblivion";
+  href += "oblivion";
   window.location.replace(href);
   console.log(href);
 }
 var mapMessage;
 var href = window.location.href;
-var user,equipmentData, achievemenData, dictionaryData;
+var user, equipmentData, achievemenData, dictionaryData;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData, evaluation = 0, GamestarNum = 0;
 var scriptData = {
@@ -89,7 +89,7 @@ function error() {
 
 }
 /*提醒視窗*/
-var levelDivAlive=false;
+var levelDivAlive = false;
 function remindView(remindValue) {
   divTag = document.getElementById("center");
   if (levelDivAlive) {
@@ -154,14 +154,14 @@ function initHome() {
   shieldLevel = user.armorLevel;
 
   var passLevel;
-  if(user.MediumEmpire.codeLevel.length != 0){
+  if (user.MediumEmpire.codeLevel.length != 0) {
     passLevel = user.MediumEmpire.codeLevel.length;
-    passLevel+=24;
-  }else{
-    if(user.EasyEmpire.codeLevel.length > user.EasyEmpire.blockLevel.length){
+    passLevel += 24;
+  } else {
+    if (user.EasyEmpire.codeLevel.length > user.EasyEmpire.blockLevel.length) {
       passLevel = user.EasyEmpire.codeLevel.length;
       passLevel++;
-    }else{
+    } else {
       passLevel = user.EasyEmpire.blockLevel.length;
       passLevel++;
     }
@@ -307,7 +307,7 @@ function getArgs() {
 function helper(mainDiv) {
 
 
-  console.log("mapMessage=",mapMessage);
+  console.log("mapMessage=", mapMessage);
   console.log(mapMessage);
   divID = "equipageView";
   divTag = document.getElementById(mainDiv.id);
@@ -902,7 +902,7 @@ function backToMapBtn() {
       dataType: 'json',             // 回傳資料會是 json 格式
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
-        console.log("success",res);
+        console.log("success", res);
         var index = 0, href = window.location.href;
         for (var i = 0; i < href.length; ++i) {
           if (href[i] == '/' || href[i] == "\\") {
@@ -982,12 +982,12 @@ function closeLoadingView() {
 }
 
 /*文字區加行數*/
-$(function() {
+$(function () {
   $(".lined").linedtextarea({
     selectedLine: 1
   });
 });
-$.each($("textarea"), function(i, n){
+$.each($("textarea"), function (i, n) {
   $(n).css("height", n.scrollHeight + "px");
 })
 
@@ -995,7 +995,9 @@ $.each($("textarea"), function(i, n){
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
   //IE support
-  myValue+="\n";
+  if (myValue.indexOf('\t') < 0) {
+    myValue += "\n";
+  }
   if (document.selection) {
     myField.focus();
     sel = document.selection.createRange();
@@ -1022,14 +1024,14 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
-  }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
+  } else if (e.ctrlKey && e.keyCode == 38) {/*ctrl+上鍵加大字體*/
     fontSize = parseFloat(style);
     fontSize += 1;
-    if(fontSize > 25){
+    if (fontSize > 25) {
       fontSize = 25
     }
     el.style.fontSize = fontSize + 'px';
-  }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
+  } else if (e.ctrlKey && e.keyCode == 40) {/*ctrl+下鍵縮小字體*/
     fontSize = parseFloat(style);
     el.style.fontSize = (fontSize - 1) + 'px';
   }
@@ -1039,2858 +1041,2858 @@ document.getElementById('textarea_0').onkeydown = function (e) {
 
 /*滑鼠事件區*/
 /*將ctrl+滾輪事件移除*/
-var scrollFunc=function(e){
-  e=e || window.event;
-  if(e.wheelDelta && event.ctrlKey){//IE/Opera/Chrome
-    event.returnValue=false;
-  }else if(e.detail){//Firefox
-    event.returnValue=false;
+var scrollFunc = function (e) {
+  e = e || window.event;
+  if (e.wheelDelta && event.ctrlKey) {//IE/Opera/Chrome
+    event.returnValue = false;
+  } else if (e.detail) {//Firefox
+    event.returnValue = false;
   }
 }
 /*註冊事件*/
-if(document.addEventListener){
-document.addEventListener('DOMMouseScroll',scrollFunc,false);
+if (document.addEventListener) {
+  document.addEventListener('DOMMouseScroll', scrollFunc, false);
 }
-window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome/Safari
+window.onmousewheel = document.onmousewheel = scrollFunc;//IE/Opera/Chrome/Safari
 
 directiveData = {
-  "instruction":[
+  "instruction": [
     {
-      "level":1,
-      "class":[
+      "level": 1,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             }
           ]
         }
       ]
     },
     {
-      "level":2,
-      "class":[
+      "level": 2,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         }
       ]
     },
     {
-      "level":3,
-      "class":[
+      "level": 3,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         }
       ]
     },
     {
-      "level":4,
-      "class":[
+      "level": 4,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         }
       ]
     },
     {
-      "level":5,
-      "class":[
+      "level": 5,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "level":6,
-      "class":[
-        {
-          "name":"動作",
-          "usable":[
-            {
-              "value":"step"
-            },
-            {
-              "value":"turnRight"
-            },
-            {
-              "value":"turnLeft"
-            }
-          ]
-        },
-        {
-          "name":"判斷式",
-          "usable":[
-            {
-              "value":"if"
-            },
-            {
-              "value":"if_else"
+              "value": "if"
             }
           ]
         }
       ]
     },
     {
-      "level":7,
-      "class":[
+      "level": 6,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"switch"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "level":8,
-      "class":[
-        {
-          "name":"動作",
-          "usable":[
-            {
-              "value":"step"
+              "value": "if"
             },
             {
-              "value":"turnRight"
-            },
-            {
-              "value":"turnLeft"
-            }
-          ]
-        },
-        {
-          "name":"判斷式",
-          "usable":[
-            {
-              "value":"if"
-            },
-            {
-              "value":"if_else"
-            },
-            {
-              "value":"switch"
-            }
-          ]
-        },
-        {
-          "name":"函式",
-          "usable":[
-            {
-              "value":"for"
+              "value": "if_else"
             }
           ]
         }
       ]
     },
     {
-      "level":9,
-      "class":[
+      "level": 7,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
-            },
-            {
-              "value":"if_else"
-            },
-            {
-              "value":"switch"
-            }
-          ]
-        },
-        {
-          "name":"函式",
-          "usable":[
-            {
-              "value":"for"
+              "value": "switch"
             }
           ]
         }
       ]
     },
     {
-      "level":10,
-      "class":[
+      "level": 8,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "level":11,
-      "class":[
-        {
-          "name":"動作",
-          "usable":[
-            {
-              "value":"step"
-            },
-            {
-              "value":"turnRight"
-            },
-            {
-              "value":"turnLeft"
-            }
-          ]
-        },
-        {
-          "name":"判斷式",
-          "usable":[
-            {
-              "value":"if"
-            },
-            {
-              "value":"if_else"
-            },
-            {
-              "value":"switch"
-            }
-          ]
-        },
-        {
-          "name":"函式",
-          "usable":[
-            {
-              "value":"for"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":12,
-      "class":[
+      "level": 9,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "level":13,
-      "class":[
-        {
-          "name":"動作",
-          "usable":[
-            {
-              "value":"step"
-            },
-            {
-              "value":"turnRight"
-            },
-            {
-              "value":"turnLeft"
-            },
-            {
-              "value":"fire"
-            }
-          ]
-        },
-        {
-          "name":"判斷式",
-          "usable":[
-            {
-              "value":"if"
-            },
-            {
-              "value":"if_else"
-            },
-            {
-              "value":"switch"
-            }
-          ]
-        },
-        {
-          "name":"函式",
-          "usable":[
-            {
-              "value":"for"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":14,
-      "class":[
+      "level": 10,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
-            },
-            {
-              "value":"fire"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":15,
-      "class":[
+      "level": 11,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
-            },
-            {
-              "value":"fire"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            },
-            {
-              "value":"function"
-            },
-            {
-              "value":"call"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":16,
-      "class":[
+      "level": 12,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
-            },
-            {
-              "value":"fire"
+              "value": "turnLeft"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            },
-            {
-              "value":"function"
-            },
-            {
-              "value":"call"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":17,
-      "class":[
+      "level": 13,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
-            },
-            {
-              "value":"printf"
+              "value": "fire"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            },
-            {
-              "value":"function"
-            },
-            {
-              "value":"call"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":18,
-      "class":[
+      "level": 14,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
-            },
-            {
-              "value":"printf"
+              "value": "fire"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
-            },
-            {
-              "value":"function"
-            },
-            {
-              "value":"call"
+              "value": "for"
             }
           ]
         }
       ]
     },
     {
-      "level":19,
-      "class":[
+      "level": 15,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
-            },
-            {
-              "value":"printf"
+              "value": "fire"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":20,
-      "class":[
+      "level": 16,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
-            },
-            {
-              "value":"printf"
+              "value": "fire"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":21,
-      "class":[
+      "level": 17,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":22,
-      "class":[
+      "level": 18,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":23,
-      "class":[
+      "level": 19,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":24,
-      "class":[
+      "level": 20,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":25,
-      "class":[
+      "level": 21,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":26,
-      "class":[
+      "level": 22,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":27,
-      "class":[
+      "level": 23,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
-            },
-            {
-              "value":"becameCar(&nbsp)"
-            },
-            {
-              "value":"becameTank(&nbsp)"
-            },
-            {
-              "value":"becameShip(&nbsp)"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":28,
-      "class":[
+      "level": 24,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
-            },
-            {
-              "value":"becameCar(&nbsp)"
-            },
-            {
-              "value":"becameTank(&nbsp)"
-            },
-            {
-              "value":"becameShip(&nbsp)"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":29,
-      "class":[
+      "level": 25,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
-            },
-            {
-              "value":"becameCar(&nbsp)"
-            },
-            {
-              "value":"becameTank(&nbsp)"
-            },
-            {
-              "value":"becameShip(&nbsp)"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":30,
-      "class":[
+      "level": 26,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
-            },
-            {
-              "value":"becameCar(&nbsp)"
-            },
-            {
-              "value":"becameTank(&nbsp)"
-            },
-            {
-              "value":"becameShip(&nbsp)"
+              "value": "call"
             }
           ]
         }
       ]
     },
     {
-      "level":31,
-      "class":[
+      "level": 27,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":32,
-      "class":[
+      "level": 28,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
+              "value": "becameShip(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":33,
-      "class":[
+      "level": 29,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getDistance(&nbsp)"
+              "value": "becameShip(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":34,
-      "class":[
+      "level": 30,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getDistance(&nbsp)"
+              "value": "becameShip(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":35,
-      "class":[
+      "level": 31,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getDistance(&nbsp)"
+              "value": "becameShip(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":36,
-      "class":[
+      "level": 32,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getDistance(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":37,
-      "class":[
+      "level": 33,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
-            },
-            {
-              "value":"getKey(&nbsp)"
+              "value": "getDistance(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":38,
-      "class":[
+      "level": 34,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
-            },
-            {
-              "value":"getKey(&nbsp)"
-            },
-            {
-              "value":"getBox(&nbsp)"
+              "value": "getDistance(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":39,
-      "class":[
+      "level": 35,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
-            },
-            {
-              "value":"getKey(&nbsp)"
-            },
-            {
-              "value":"getBox(&nbsp)"
-            },
-            {
-              "value":"getString(&nbsp)"
+              "value": "getDistance(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":40,
-      "class":[
+      "level": 36,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
-            },
-            {
-              "value":"getKey(&nbsp)"
-            },
-            {
-              "value":"getBox(&nbsp)"
-            },
-            {
-              "value":"getString(&nbsp)"
+              "value": "getDistance(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":41,
-      "class":[
+      "level": 37,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
-            },
-            {
-              "value":"getBox(&nbsp)"
-            },
-            {
-              "value":"getString(&nbsp)"
+              "value": "getKey(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":42,
-      "class":[
+      "level": 38,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
-            },
-            {
-              "value":"getString(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getBox(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":43,
-      "class":[
+      "level": 39,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getString(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":44,
-      "class":[
+      "level": 40,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getString(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":45,
-      "class":[
+      "level": 41,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
-            },
-            {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getString(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":46,
-      "class":[
+      "level": 42,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
+              "value": "getString(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":47,
-      "class":[
+      "level": 43,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
+              "value": "getString(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
-            },
-            {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":48,
-      "class":[
+      "level": 44,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
+              "value": "getString(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getKeyMap(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":49,
-      "class":[
+      "level": 45,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
+              "value": "getString(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getKeyMap(&nbsp)"
             }
           ]
         }
       ]
     },
     {
-      "level":50,
-      "class":[
+      "level": 46,
+      "class": [
         {
-          "name":"動作",
-          "usable":[
+          "name": "動作",
+          "usable": [
             {
-              "value":"step"
+              "value": "step"
             },
             {
-              "value":"turnRight"
+              "value": "turnRight"
             },
             {
-              "value":"turnLeft"
+              "value": "turnLeft"
             },
             {
-              "value":"fire"
+              "value": "fire"
             },
             {
-              "value":"printf"
+              "value": "printf"
             }
           ]
         },
         {
-          "name":"判斷式",
-          "usable":[
+          "name": "判斷式",
+          "usable": [
             {
-              "value":"if"
+              "value": "if"
             },
             {
-              "value":"if_else"
+              "value": "if_else"
             },
             {
-              "value":"switch"
+              "value": "switch"
             }
           ]
         },
         {
-          "name":"函式",
-          "usable":[
+          "name": "函式",
+          "usable": [
             {
-              "value":"for"
+              "value": "for"
             },
             {
-              "value":"function"
+              "value": "function"
             },
             {
-              "value":"call"
+              "value": "call"
             },
             {
-              "value":"becameCar(&nbsp)"
+              "value": "becameCar(&nbsp)"
             },
             {
-              "value":"becameTank(&nbsp)"
+              "value": "becameTank(&nbsp)"
             },
             {
-              "value":"becameShip(&nbsp)"
+              "value": "becameShip(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getDistance(&nbsp)"
+              "value": "getDistance(&nbsp)"
             },
             {
-              "value":"getKey(&nbsp)"
+              "value": "getKey(&nbsp)"
             },
             {
-              "value":"getBox(&nbsp)"
+              "value": "getBox(&nbsp)"
             },
             {
-              "value":"getString(&nbsp)"
+              "value": "getString(&nbsp)"
             },
             {
-              "value":"getKeyArray(&nbsp)"
+              "value": "getKeyArray(&nbsp)"
             },
             {
-              "value":"getKeyMap(&nbsp)"
+              "value": "getKeyMap(&nbsp)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 47,
+      "class": [
+        {
+          "name": "動作",
+          "usable": [
+            {
+              "value": "step"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "fire"
+            },
+            {
+              "value": "printf"
+            }
+          ]
+        },
+        {
+          "name": "判斷式",
+          "usable": [
+            {
+              "value": "if"
+            },
+            {
+              "value": "if_else"
+            },
+            {
+              "value": "switch"
+            }
+          ]
+        },
+        {
+          "name": "函式",
+          "usable": [
+            {
+              "value": "for"
+            },
+            {
+              "value": "function"
+            },
+            {
+              "value": "call"
+            },
+            {
+              "value": "becameCar(&nbsp)"
+            },
+            {
+              "value": "becameTank(&nbsp)"
+            },
+            {
+              "value": "becameShip(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getDistance(&nbsp)"
+            },
+            {
+              "value": "getKey(&nbsp)"
+            },
+            {
+              "value": "getBox(&nbsp)"
+            },
+            {
+              "value": "getString(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getKeyMap(&nbsp)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 48,
+      "class": [
+        {
+          "name": "動作",
+          "usable": [
+            {
+              "value": "step"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "fire"
+            },
+            {
+              "value": "printf"
+            }
+          ]
+        },
+        {
+          "name": "判斷式",
+          "usable": [
+            {
+              "value": "if"
+            },
+            {
+              "value": "if_else"
+            },
+            {
+              "value": "switch"
+            }
+          ]
+        },
+        {
+          "name": "函式",
+          "usable": [
+            {
+              "value": "for"
+            },
+            {
+              "value": "function"
+            },
+            {
+              "value": "call"
+            },
+            {
+              "value": "becameCar(&nbsp)"
+            },
+            {
+              "value": "becameTank(&nbsp)"
+            },
+            {
+              "value": "becameShip(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getDistance(&nbsp)"
+            },
+            {
+              "value": "getKey(&nbsp)"
+            },
+            {
+              "value": "getBox(&nbsp)"
+            },
+            {
+              "value": "getString(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getKeyMap(&nbsp)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 49,
+      "class": [
+        {
+          "name": "動作",
+          "usable": [
+            {
+              "value": "step"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "fire"
+            },
+            {
+              "value": "printf"
+            }
+          ]
+        },
+        {
+          "name": "判斷式",
+          "usable": [
+            {
+              "value": "if"
+            },
+            {
+              "value": "if_else"
+            },
+            {
+              "value": "switch"
+            }
+          ]
+        },
+        {
+          "name": "函式",
+          "usable": [
+            {
+              "value": "for"
+            },
+            {
+              "value": "function"
+            },
+            {
+              "value": "call"
+            },
+            {
+              "value": "becameCar(&nbsp)"
+            },
+            {
+              "value": "becameTank(&nbsp)"
+            },
+            {
+              "value": "becameShip(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getDistance(&nbsp)"
+            },
+            {
+              "value": "getKey(&nbsp)"
+            },
+            {
+              "value": "getBox(&nbsp)"
+            },
+            {
+              "value": "getString(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getKeyMap(&nbsp)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 50,
+      "class": [
+        {
+          "name": "動作",
+          "usable": [
+            {
+              "value": "step"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "fire"
+            },
+            {
+              "value": "printf"
+            }
+          ]
+        },
+        {
+          "name": "判斷式",
+          "usable": [
+            {
+              "value": "if"
+            },
+            {
+              "value": "if_else"
+            },
+            {
+              "value": "switch"
+            }
+          ]
+        },
+        {
+          "name": "函式",
+          "usable": [
+            {
+              "value": "for"
+            },
+            {
+              "value": "function"
+            },
+            {
+              "value": "call"
+            },
+            {
+              "value": "becameCar(&nbsp)"
+            },
+            {
+              "value": "becameTank(&nbsp)"
+            },
+            {
+              "value": "becameShip(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getDistance(&nbsp)"
+            },
+            {
+              "value": "getKey(&nbsp)"
+            },
+            {
+              "value": "getBox(&nbsp)"
+            },
+            {
+              "value": "getString(&nbsp)"
+            },
+            {
+              "value": "getKeyArray(&nbsp)"
+            },
+            {
+              "value": "getKeyMap(&nbsp)"
             }
           ]
         }
