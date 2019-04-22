@@ -237,37 +237,24 @@
   border: 1;
   margin-top: 5%;
 }
-
 #actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
   height: 20px;
   margin: 5px auto;
 }
 
-#actionDiv1,#actionDiv3,#actionDiv5,#actionDiv7,#actionDiv9{
-  height: auto;
-  font-style: italic;
-  font-size: 25px;
-  line-height: 24px;
+.summaryInner::-webkit-details-marker {
+  height: 2vh;
+  width: 2vh;
 }
-#actionDiv1 h3,#actionDiv3 h3,#actionDiv5 h3,#actionDiv7 h3,#actionDiv9 h3{
-  margin-top: 5px;
-  margin-bottom: 5px;
+.summaryInner{
+  font-size: calc(15px + 1vw);
+  line-height: 5vh;
+  outline:none;
+  cursor: pointer;
 }
-#actionDiv1 a,#actionDiv3 a,#actionDiv5 a,#actionDiv7 a,#actionDiv9 a{
-  font-size: 25px;
-  text-decoration: none;
+.itemP{
+  font-family:Microsoft JhengHei;
 }
-#actionDiv1 h6,#actionDiv3 h6,#actionDiv5 h6,#actionDiv7 h6,#actionDiv9 h6{
-  font-style:normal;
-  height: 0;
-  overflow: hidden;
-  transition: height 0.5s ease;
-}
-#actionDiv1 h6:target,#actionDiv3 h6:target,#actionDiv5 h6:target,#actionDiv7 h6:target,#actionDiv9 h6:target {
-  margin-bottom: 5px;
-  height: auto;
-}
-
 /*成就*/
 #achievementView{
   z-index: 4;
@@ -329,22 +316,6 @@
   content:url('../img/champtionCopper.png');
   background-size: 100% 100%;
 }
-.achievementInnerDiv h3{
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.achievementInnerDiv a{
-  text-decoration: none;
-}
-.achievementInnerDiv p {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.5s ease;
-}
-.achievementInnerDiv p:target {
-  margin-bottom: 5px;
-  height: 20px;
-}
 .achievementFont{
   color: rgb(52, 175, 9);
   font-size: 24px;
@@ -352,7 +323,17 @@
 .achievementFontDefault{
   font-weight: bold;
 }
-
+.achievementSummaryInner::-webkit-details-marker { display:none; }
+.achievementSummaryInner{
+  font-size: calc(15px + 1vw);
+  line-height: 5vh;
+  outline:none;
+  cursor: pointer;
+}
+.achievementItem{
+  line-height: 3vh;
+  font-family:Microsoft JhengHei;
+}
 /*設定*/
 #settingAllView{
   z-index: 4;
