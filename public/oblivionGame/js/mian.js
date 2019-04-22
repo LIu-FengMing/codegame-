@@ -154,17 +154,19 @@ function init_setup() {
                         href = href.substr(0, index + 1) + "oblivionUser";
                         window.location.replace(href);
                     }
-                    else if (res.author != user.name) {
-                        jumpPage = true;
-                        alert("不是你的地圖");
-                        var index = 0, href = window.location.href;
-                        for (var i = 0; i < href.length; ++i) {
-                            if (href[i] == '/' || href[i] == "\\") {
-                                index = i;
+                    else if (user) {
+                        if (res.author != user.name) {
+                            jumpPage = true;
+                            alert("不是你的地圖");
+                            var index = 0, href = window.location.href;
+                            for (var i = 0; i < href.length; ++i) {
+                                if (href[i] == '/' || href[i] == "\\") {
+                                    index = i;
+                                }
                             }
+                            href = href.substr(0, index + 1) + "oblivionUser";
+                            window.location.replace(href);
                         }
-                        href = href.substr(0, index + 1) + "oblivionUser";
-                        window.location.replace(href);
                     }
                 }
                 //是自己的地圖遊戲畫面
@@ -195,9 +197,9 @@ function init_setup() {
                     }
                 }
                 if (jumpPage == false) {
-                  divTag = document.getElementById("titleFont");
-                  divTag.innerHTML = "";
-                  divTag.innerHTML = res.mapName;
+                    divTag = document.getElementById("titleFont");
+                    divTag.innerHTML = "";
+                    divTag.innerHTML = res.mapName;
                     data = JSON.parse(res.map);
                     Res_data = JSON.parse(JSON.stringify(data));
                     loadData();
@@ -257,6 +259,13 @@ function loadData() {
     var stemp = initCode.substr(initCode.indexOf('#') - 1);
     initCode = linit + stemp;
     // console.log(initCode);
+    var tA = textarea_0.value.indexOf("main");
+    var tEnd = textarea_0.value.indexOf("{", tA);
+    console.log("tEnd", tEnd);
+
+    textarea_0.selectionStart = tEnd + 1;
+    textarea_0.selectionEnd = tEnd + 1;
+
 
     var dx = people_init["postion"][0] * edgeToWidth, dy = people_init["postion"][1] * edgeToHeight, drotate = 360 - people_init["postion"][2] * 90;
     old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
@@ -990,7 +999,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp >=10) {//30 40
+                if (hp >= 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1008,7 +1017,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor >=10) { //60 70
+                if (armor >= 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1073,7 +1082,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp >=10) {//30 40
+                if (hp >= 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1091,7 +1100,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor >=10) { //60 70
+                if (armor >= 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -1320,8 +1329,8 @@ function codeOutputTranstionAction() {
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
                     var o = parseInt(spaceT[di]) - forgetDel;
-                    if(loopCount>0&&parseInt(spaceT[di])==-1){
-                        o=-1-loopCount;
+                    if (loopCount > 0 && parseInt(spaceT[di]) == -1) {
+                        o = -1 - loopCount;
                     }
                     var listTranstion = {
                         obj: o + loopCount,
@@ -1704,8 +1713,8 @@ function call_JDOODLE_api(scriptData, inputData) {
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
         console.log(obj);
-        
-        if (obj.body.cpuTime!=null && obj.body.memory!=null) {
+
+        if (obj.body.cpuTime != null && obj.body.memory != null) {
             //   output.innerHTML = "輸出:\n" + obj.body.output;
             decode_JDOODLE_api(obj.body.output)
         }
