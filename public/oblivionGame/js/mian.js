@@ -142,19 +142,22 @@ function init_setup() {
                 //不是自己的地圖檢測畫面
                 console.log(pathname);
                 if (pathname == "/oblivionDetectionView") {
-                    if (res.checked == true) {
-                        jumpPage = true;
-                        alert("已檢測通過");
-                        var index = 0, href = window.location.href;
-                        for (var i = 0; i < href.length; ++i) {
-                            if (href[i] == '/' || href[i] == "\\") {
-                                index = i;
-                            }
-                        }
-                        href = href.substr(0, index + 1) + "oblivionUser";
-                        window.location.replace(href);
-                    }
-                    else if (user) {
+                    console.log(res.check);
+                    
+                    // if (res.check == true) {
+                    //     jumpPage = true;
+                    //     alert("已檢測通過");
+                    //     var index = 0, href = window.location.href;
+                    //     for (var i = 0; i < href.length; ++i) {
+                    //         if (href[i] == '/' || href[i] == "\\") {
+                    //             index = i;
+                    //         }
+                    //     }
+                    //     href = href.substr(0, index + 1) + "oblivionUser";
+                    //     window.location.replace(href);
+                    // }
+                    // else 
+                    if (user) {
                         if (res.author != user.name) {
                             jumpPage = true;
                             alert("不是你的地圖");
@@ -171,7 +174,7 @@ function init_setup() {
                 }
                 //是自己的地圖遊戲畫面
                 else if (pathname == "/oblivionGameView") {
-                    if (res.checked == false) {
+                    if (res.check == false) {
                         jumpPage = true;
                         alert("地圖測通尚未通過");
                         var index = 0, href = window.location.href;
@@ -183,7 +186,7 @@ function init_setup() {
                         href = href.substr(0, index + 1) + "oblivion";
                         window.location.replace(href);
                     }
-                    else if (res.author == user.name) {
+                    else if (user&&res.author == user.name) {
                         jumpPage = true;
                         alert("不能玩自己的地圖");
                         var index = 0, href = window.location.href;
@@ -200,6 +203,8 @@ function init_setup() {
                     divTag = document.getElementById("titleFont");
                     divTag.innerHTML = "";
                     divTag.innerHTML = res.mapName;
+                    console.log(res.mapDescription);       
+                    getMapDescription(res.mapDescription);
                     data = JSON.parse(res.map);
                     Res_data = JSON.parse(JSON.stringify(data));
                     loadData();
