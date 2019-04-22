@@ -860,7 +860,8 @@ function changeTdNameDisplay() {
     }
   }
 
-  for (let index = 0; index < tdStatus.length; index++) {
+  // for (let index = 0; index < tdStatus.length; index++) {
+  for (let index = tdStatus.length-1; index >-1; index--){ 
     var item=TdNameTable[index];
     console.log("item:",item);
     console.log("tdStatus[index]:",item);
