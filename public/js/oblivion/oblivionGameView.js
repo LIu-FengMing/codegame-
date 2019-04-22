@@ -166,7 +166,7 @@ function initHome() {
       passLevel++;
     }
   }
-  selectFunc(passLevel);
+  selectFunc((passLevel-1));
 }
 function getMapDescription(thisDescription) {
   mapMessage = thisDescription;
@@ -305,11 +305,13 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-
-
   console.log("mapMessage=", mapMessage);
   console.log(mapMessage);
-  divID = "equipageView";
+  divTag = document.getElementById("helperView");
+  try {
+    var parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
@@ -671,6 +673,7 @@ function sendSession() {
 
 /*選擇可用函式*/
 function selectFunc(levelNumber) {
+  console.log(levelNumber);
   console.log(directiveData.instruction[levelNumber]);
   var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
   var className, usableValue;
@@ -870,9 +873,6 @@ function createEndView(starNum, gameResult, instructionNum, code) {
 
 function backToMapBtn() {
   console.log(evaluation);
-
-
-
   if (GamestarNum < 1) {
     var index = 0, href = window.location.href;
     for (var i = 0; i < href.length; ++i) {

@@ -51,6 +51,7 @@ function back() {
  window.location.replace(href);
  console.log(href);
 }
+var mapMessage;
 var href = window.location.href;
 var user,equipmentData,achievemenData,dictionaryData;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
@@ -136,9 +137,11 @@ function initHome() {
     }
   }
 
-  selectFunc(passLevel);
+  selectFunc((passLevel-1));
 }
-
+function getMapDescription(thisDescription) {
+  mapMessage = thisDescription;
+}
 //---------紀錄關卡資訊---------//
 function recordLevel(scriptData) {
     var NowDate = new Date();
@@ -271,38 +274,33 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  divID = "equipageView";
+  console.log("mapMessage=", mapMessage);
+  console.log(mapMessage);
+  divTag = document.getElementById("helperView");
+  try {
+    var parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
-  b.setAttribute("id","helperView");
+  b.setAttribute("id", "helperView");
   divTag.appendChild(b);
   divTag = document.getElementById("helperView");
   b = document.createElement("input");
-  b.setAttribute("type","button");
-  b.setAttribute("id","clossDiv");
-  b.setAttribute("value","X");
-  b.setAttribute("onclick","clossFunc(\"helperView\")");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"helperView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id","allTitle");
+  b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "關卡說明";
-  b = document.createElement("textarea");
-  b.setAttribute("id","helperTextarea0");
+  divTag = document.getElementById("helperView");
+  b = document.createElement("div");
+  b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
-  document.getElementById("helperTextarea0").innerHTML = "文字塊1";
-  b = document.createElement("img");
-  b.setAttribute("id","helperImg0");
-  b.setAttribute("class","helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("img");
-  b.setAttribute("id","helperImg1");
-  b.setAttribute("class","helperImg");
-  divTag.appendChild(b);
-  b = document.createElement("textarea");
-  b.setAttribute("id","helperTextarea1");
-  divTag.appendChild(b);
-  document.getElementById("helperTextarea1").innerHTML = "文字塊2";
+  document.getElementById("helperTextarea3").innerHTML = mapMessage;
 }
 
 /*XX按鈕*/

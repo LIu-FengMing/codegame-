@@ -95,23 +95,17 @@ body {
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
-#helperTextarea0{
-  height: 50%;
-  width: 40%;
-  font-family:Microsoft JhengHei;
-  background-color: white;
+#helperTextarea3{
+  height: 80%;
+  width: 80%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
   position: absolute;
-  top: 15%;
-  left: 5%;
-}
-#helperTextarea1{
-  height: 25%;
-  width: 90%;
-  font-family:Microsoft JhengHei;
-  background-color: white;
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
+  bottom: 10%;
+  left: 10%;
 }
 .helperImg{
   height: 22%;
