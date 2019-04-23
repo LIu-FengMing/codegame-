@@ -109,7 +109,6 @@ function initHome() {
   myAudio.play();
   bkMusicSwitch++;
   //console.log(myAudio.volume);
-  sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;
@@ -120,6 +119,7 @@ function initHome() {
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
   achievementStr = achievementJudge();
+  sendSession();
 }
 function weaponLevelup() {
   var scriptData = {
@@ -1506,6 +1506,12 @@ function chk2(input) {
 }
 
 function sendSession() {
+  var count=0;
+  for(var achievementI=0;achievementI<achievementStr.length;achievementI++){
+    if(achievementStr[achievementI] == 1){
+      count++;
+    }
+  }
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
@@ -1514,6 +1520,7 @@ function sendSession() {
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
+  Session.set("getAchievement", count);
   return;
 }
 
