@@ -76,7 +76,7 @@ $.ajax({
         href = "";
         window.location.replace(href);
     }
-    var maplevelId =  params.get('level');  
+    var maplevelId =  params.get('level');
     console.log(maplevelId);
     console.log(user.EasyEmpire.codeLevel.length);
     if (maplevelId < 24) {
@@ -232,9 +232,9 @@ function userData() {
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "個人資料";
+  document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
@@ -263,7 +263,7 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = "5/10";
+      userdataFont = Session.get("getAchievement") + "/9";
     } else if (i == 4) {
       userdataFont = user.createMap.length;
     } else if (i == 5) {

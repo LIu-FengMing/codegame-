@@ -241,7 +241,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle{
+#allTitle,#userTitle{
   margin-top: 20px;
 }
 #userInnerDiv{
