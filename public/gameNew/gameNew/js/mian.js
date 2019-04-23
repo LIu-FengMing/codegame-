@@ -155,7 +155,6 @@ function init_setup() {
                             stemp = initCode;
                         }
                         textarea_0.value = linit + stemp;
-
                         // stemp = initCode.substr(initCode.indexOf('#') - 1);
                         initCode = linit + stemp;
                         // console.log("linit + stemp=",linit,stemp);
