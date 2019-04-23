@@ -3,6 +3,7 @@
     "mapSize": 81,
     "mapValue": "000012022000012202000000112000000002000000000000000002000000002011100210011110111",
     "level": "初階",
+    "foggy": true,
     "extendCode":" void getString(char* str){ char* tmp=\"1L2R2R1F2L2L2R1L1R2R2R1L2LA1R2\";strcpy(str,tmp);}void getKeyArray(int* arr,int size){int i;int key[10]={9,10,-1,5,8,11,4,12,2,1};for(i=0;i<10;i++){arr[i]=key[i]; }  }",
     "winLinit": {
         "threeStar": [

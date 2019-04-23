@@ -3,6 +3,7 @@
     "mapSize": 81,
     "mapValue": "000012022000012202000000112000000002000000000000002002000022202011100210011110111",
     "level": "初階",
+    "foggy": true,
     "extendCode":"  void getString(char* str){  char* tmp=\"1L2R1S1R2C1L2R2LF3R1\";   strcpy(str,tmp);} ",
     "winLinit": {
         "threeStar": [

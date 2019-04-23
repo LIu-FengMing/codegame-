@@ -81,6 +81,37 @@ $.ajax({
     myVid.volume = 0;
     // console.log(res);
     user = res;
+    let nowurl = new URL(window.location.href);
+    let params = nowurl.searchParams;
+    if (!params.has('level')) {
+        href = "";
+        window.location.replace(href);
+    }
+    var maplevelId =  params.get('level');  
+    console.log(maplevelId);
+    console.log(user.EasyEmpire.codeLevel.length);
+    if (maplevelId < 24) {
+      if (user.EasyEmpire.codeLevel.length < maplevelId) {
+        console.log("Bye 實力不夠");
+        alert("不能越級過關喔");
+        href = "pruss";
+        window.location.replace(href);
+      }
+    }
+    else {
+      if (user.MediumEmpire.codeLevel.length < maplevelId) {
+        console.log("Bye 實力不夠");
+        alert("不能越級過關喔");
+        href = "kuruma";
+        window.location.replace(href);
+      }
+      else if (user.EasyEmpire.codeLevel.length < 24||(user.EasyEmpire.codeLevel.length>=23&&user.EasyEmpire.codeLevel[23].HighestStarNum < 1)) {
+        console.log("Bye 實力不夠");
+        alert("不能越級過關喔");
+        href = "pruss";
+        window.location.replace(href);
+      }
+    }
     /*loadmusicData();*/
     // console.log(user);
     var xmlhttp = new XMLHttpRequest();
