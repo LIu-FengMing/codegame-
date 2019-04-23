@@ -295,7 +295,7 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = "5/10";
+      userdataFont = Session.get("getAchievement") + "/9";
     } else if (i == 4) {
       userdataFont = user.createMap.length;
     } else if (i == 5) {

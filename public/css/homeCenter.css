@@ -326,6 +326,7 @@
 .achievementSummaryInner::-webkit-details-marker { display:none; }
 .achievementSummaryInner{
   font-size: calc(15px + 1vw);
+  font-family:Microsoft JhengHei;
   line-height: 5vh;
   outline:none;
   cursor: pointer;

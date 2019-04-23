@@ -300,7 +300,7 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = "5/10";
+      userdataFont = Session.get("getAchievement") + "/9";
     } else if (i == 4) {
       userdataFont = user.createMap.length;
     } else if (i == 5) {
@@ -861,7 +861,7 @@ function changeTdNameDisplay() {
   }
 
   // for (let index = 0; index < tdStatus.length; index++) {
-  for (let index = tdStatus.length-1; index >-1; index--){ 
+  for (let index = tdStatus.length-1; index >-1; index--){
     var item=TdNameTable[index];
     console.log("item:",item);
     console.log("tdStatus[index]:",item);

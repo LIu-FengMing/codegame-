@@ -54,7 +54,7 @@ var href = window.location.href;
 var scriptData = {
   type: "init"
 }
-var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = false;
+var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = false,achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
 $.ajax({
@@ -149,6 +149,7 @@ function initHome() {
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
   changeLevelStage();
+  achievementStr = achievementJudge();
 }
 function weaponLevelup() {
   var scriptData = {
@@ -294,7 +295,13 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = "5/10";
+      var count=0;
+      for(var achievementI=0;achievementI<achievementStr.length;achievementI++){
+        if(achievementStr[achievementI] == 1){
+          count++;
+        }
+      }
+      userdataFont = count + "/9";
     } else if (i == 4) {
       userdataFont = userMap;
     } else if (i == 5) {
@@ -722,142 +729,6 @@ function viewRecord(number) {
       divTag = document.getElementById("viewRecordTr" + i);
     }
 
-  }
-}
-function changePassword(thisDiv) {
-  var tdValue = ["舊密碼", "新密碼", "確認新密碼"], inputID = ["oldPassword", "newPassword", "checkPassword"];
-  document.getElementById("changePasswordBtn").className = "disabled";
-  document.getElementById("clossDiv").className = "disabled";
-  divTag = document.getElementById("userDataView");
-  b = document.createElement("div");
-  b.setAttribute("id", "changePasswordView");
-  divTag.appendChild(b);
-  divTag = document.getElementById("changePasswordView");
-  b = document.createElement("h1");
-  b.setAttribute("id", "changePasswordTitle");
-  b.innerHTML = "修改密碼";
-  divTag.appendChild(b);
-
-  b = document.createElement("table");
-  b.setAttribute("id", "changePasswordTable");
-  divTag.appendChild(b);
-  divTag = document.getElementById("changePasswordTable");
-  for (var i = 0; i < 3; i++) {
-    b = document.createElement("tr");
-    b.setAttribute("id", "changePasswordTr" + i);
-    divTag.appendChild(b);
-    for (var j = 0; j < 2; j++) {
-      divTag = document.getElementById("changePasswordTr" + i);
-      b = document.createElement("td");
-      b.setAttribute("id", "changePasswordTd" + i + j);
-      divTag.appendChild(b);
-      divTag = document.getElementById("changePasswordTd" + i + j);
-      if (j == 0) {
-        b = document.createElement("h2");
-        b.setAttribute("id", "changePasswordH2" + i + j);
-        b.innerHTML = tdValue[i];
-        divTag.appendChild(b);
-      } else {
-        b = document.createElement("input");
-        b.setAttribute("type", "password");
-        b.setAttribute("id", inputID[i]);
-        divTag.appendChild(b);
-      }
-    }
-    divTag = document.getElementById("changePasswordTable");
-  }
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "cancelBtn");
-  b.setAttribute("value", "取消修改");
-  b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
-  divTag.appendChild(b);
-
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("id", "confirmBtn");
-  b.setAttribute("value", "確認修改");
-  // b.setAttribute("onclick", "closeFunc(\"changePasswordView\")");
-  b.setAttribute("onclick", "changePass()");
-
-  divTag.appendChild(b);
-}
-function changePass() {
-  oldPassword = document.getElementById("oldPassword");
-  newPassword = document.getElementById("newPassword");
-  checkPassword = document.getElementById("checkPassword");
-
-  var strOP = oldPassword.value;
-  var strP = newPassword.value;
-  var strCP = checkPassword.value;
-  if (oldPassword.value == "") {
-    // alert("動作失敗<br>" + "\"舊密碼\"不能為空");
-    remindValue = "動作失敗<br>" + "\"舊密碼\"不能為空";
-    remindView(remindValue);
-  }
-  else if (strOP.indexOf(" ") != -1) {
-    // alert("動作失敗<br>" + "\"舊密碼\"有空白字元");
-    remindValue = "動作失敗<br>" + "\"舊密碼\"有空白字元";
-    remindView(remindValue);
-  }
-  else if (newPassword.value == "") {
-    // alert("動作失敗<br>" + "\"密碼\"不能為空");
-    remindValue = "動作失敗<br>" + "\"密碼\"不能為空";
-    remindView(remindValue);
-  }
-  else if (strP.indexOf(" ") != -1) {
-    // alert("動作失敗\n" + "\"密碼\"有空白字元");
-    remindValue = "動作失敗<br>" + "\"密碼\"有空白字元";
-    remindView(remindValue);
-  }
-  else if (checkPassword.value == "") {
-    // alert("動作失敗\n" + "\"確認密碼\"不能為空");
-    remindValue = "動作失敗<br>" + "\"確認密碼\"不能為空";
-    remindView(remindValue);
-  }
-  else if (strCP.indexOf(" ") != -1) {
-    // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
-    remindValue = "動作失敗<br>" + "\"確認密碼\"有空白字元";
-    remindView(remindValue);
-  }
-  else if (newPassword.value != checkPassword.value) {
-    // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
-    remindValue = "動作失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
-    remindView(remindValue);
-  }
-  else {
-    var scriptData = {
-      type: "changePassword",
-      oldPassword: oldPassword.value,
-      password: newPassword.value,
-    }
-    // console.log(scriptData);
-    // alert("wait");
-    var href = window.location.href;
-    $.ajax({
-      url: href,              // 要傳送的頁面
-      method: 'POST',         // 使用 POST 方法傳送請求
-      dataType: 'json',       // 回傳資料會是 json 格式
-      data: scriptData,       // 將表單資料用打包起來送出去
-      success: function (res) {
-        result = "動作失敗<br>";
-        // alert(res.responce );
-        if (res.responce == "sucesss") {
-          result = "修改成功";
-          // alert(result);
-          remindValue = result;
-          remindView(remindValue);
-          closeFunc("changePasswordView");
-        }
-        else if (res.responce == "failPassUndifine") {
-          result += "\"舊密碼\"錯誤";
-          // alert(result);
-          remindValue = result;
-          remindView(remindValue);
-        }
-
-      },
-    });
   }
 }
 
@@ -1334,11 +1205,6 @@ function shieldLevelUp() {
 
 
 }
-
-
-
-/*----------------*/
-
 /*指令大全*/
 function instructionView(mainDiv) {
   divID = "instructionView";
@@ -1450,8 +1316,6 @@ function instructionView(mainDiv) {
 }
 /*成就*/
 function achievementView(mainDiv) {
-  divID = "achievementView";
-  divID2 = "equipageBkView";
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
@@ -1467,16 +1331,12 @@ function achievementView(mainDiv) {
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
-  /*b = document.createElement("img");
-  b.setAttribute("id","crownImgLeft");
-  divTag.appendChild(b);*/
+
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "成就";
-  /*b = document.createElement("img");
-  b.setAttribute("id","crownImgRight");
-  divTag.appendChild(b);*/
+
   b = document.createElement("table");
   b.setAttribute("id", "achievementTable");
   b.setAttribute("rules", "rows");
@@ -1496,20 +1356,14 @@ function achievementView(mainDiv) {
         divTag = document.getElementById("row" + i + "col" + j);
         b = document.createElement("img");
         b.setAttribute("id", "champtionImg" + i);
-        // if (i == 0) {
-        //     b.setAttribute("class", "champtionCopper");
-        // } else if (i == 1) {
-        //     b.setAttribute("class", "champtionSilver");
-        // } else {
-        //     b.setAttribute("class", "champtionGold");
-        // }
-        if (achievemenData.record[i].level == 0) {
+
+        if (achievemenData.record[i].level == 1) {
           b.setAttribute("class", "champtionCopper");
         }
-        else if (achievemenData.record[i].level == 1) {
+        else if (achievemenData.record[i].level == 2) {
           b.setAttribute("class", "champtionSilver");
         }
-        else if (achievemenData.record[i].level == 2) {
+        else if (achievemenData.record[i].level == 3) {
           b.setAttribute("class", "champtionGold");
         }
         divTag.appendChild(b);
@@ -1520,47 +1374,36 @@ function achievementView(mainDiv) {
         b.setAttribute("class", "achievementInnerDiv");
         divTag.appendChild(b);
         divTag = document.getElementById("achievementInnerDiv" + i);
-        b = document.createElement("h3");
-        b.setAttribute("id", "h3Inner" + i);
+        b = document.createElement("details");
+        b.setAttribute("id", "achievementDetailsInner" + i);
+        b.setAttribute("class", "achievementDetailsInner");
         divTag.appendChild(b);
-        divTag = document.getElementById("h3Inner" + i);
-        b = document.createElement("a");
-        b.setAttribute("id", "aInner" + i);
-        b.setAttribute("href", "#item" + i);
+        divTag = document.getElementById("achievementDetailsInner" + i);
+        b = document.createElement("summary");
+        b.setAttribute("id", "achievementSummaryInner" + i);
+        b.setAttribute("class", "achievementSummaryInner");
         divTag.appendChild(b);
-        // if (i == 0) {
-        //     document.getElementById("aInner" + i).innerHTML = "初學者";
-        // } else if (i == 1) {
-        //     document.getElementById("aInner" + i).innerHTML = "左紐又扭";
-        // } else {
-        //     document.getElementById("aInner" + i).innerHTML = "????????";
-        // }
-
-        // divTag = document.getElementById("achievementInnerDiv" + i);
-        // b = document.createElement("p");
-        // b.setAttribute("id", "item" + i);
-        // divTag.appendChild(b);
-        // document.getElementById("item" + i).innerHTML = "通過第二關";
 
         //////---------------------new-----------------------///////////////
-        document.getElementById("aInner" + i).innerHTML = achievemenData.record[i].name
-        divTag = document.getElementById("achievementInnerDiv" + i);
+        document.getElementById("achievementSummaryInner" + i).innerHTML = achievemenData.record[i].name
+        // divTag = document.getElementById("achievementInnerDiv" + i);
         b = document.createElement("p");
-        b.setAttribute("id", "item" + i);
+        b.setAttribute("id", "achievementItem" + i);
+        b.setAttribute("class", "achievementItem");
         divTag.appendChild(b);
-        document.getElementById("item" + i).innerHTML = achievemenData.record[i].value;
+        document.getElementById("achievementItem" + i).innerHTML = achievemenData.record[i].value;
 
       } else {
         divTag = document.getElementById("row" + i + "col" + j);
         b = document.createElement("font");
         b.setAttribute("id", "achievementFont" + i);
-        if (i == 0) {
+        if (achievementStr[i] == 1) {
           b.setAttribute("class", "achievementFont");
         } else {
           b.setAttribute("class", "achievementFontDefault");
         }
         divTag.appendChild(b);
-        if (i == 0) {
+        if (achievementStr[i] == 1) {
           document.getElementById("achievementFont" + i).innerHTML = "✔";
         } else {
           document.getElementById("achievementFont" + i).innerHTML = "未完成";
@@ -1570,6 +1413,62 @@ function achievementView(mainDiv) {
     }
     divTag = document.getElementById("achievementTable");
   }
+}
+/*成就判斷*/
+function achievementJudge() {
+  var maxValue = [1,2,1],isGet = [0,0,0,0,0,0,0,0,0];
+  var empire = [user.EasyEmpire,user.MediumEmpire]
+  var maxLevel = 0,getThreeStar = 0,equipmentLevel = user.levelUpLevel,highestLevel = [empire[0].codeHighestLevel,empire[1].HighestLevel];
+  if (highestLevel[0] > highestLevel[1]) {
+    maxLevel = highestLevel[0];
+  } else {
+    maxLevel = highestLevel[1];
+  }
+  for(var i=0;i<2;i++){
+    var maxJ = highestLevel[i];
+    if(i == 1){
+      maxJ = (highestLevel[i]-24);
+    }
+    for(var j=0;j<maxJ;j++){
+      if(empire[i].codeLevel[j].HighestStarNum == 3){
+        getThreeStar++;
+      }
+    }
+  }
+  console.log("最高過關數:",maxLevel);
+  console.log("獲得三星數:",getThreeStar);
+  for(var typeVar=0;typeVar<3;typeVar++){
+    for(var valueVar=0;valueVar<3;valueVar++){
+      // console.log(typeVar + valueVar);
+      switch (typeVar) {
+        /*通關數*/
+        case 0:
+          console.log(maxLevel,achievemenData.record[typeVar + valueVar].limit[0].value);
+          if(maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value){
+            isGet[typeVar + valueVar] = 1;
+          }
+          break;
+        /*獲得三星數*/
+        case 1:
+          // console.log(typeVar + valueVar + 2,achievemenData.record[typeVar + valueVar + 2]);
+          if(getThreeStar >= achievemenData.record[typeVar + valueVar + 2].limit[0].value){
+            isGet[typeVar + valueVar + 2] = 1;
+          }
+          break;
+        /*裝備升級數*/
+        case 2:
+          if(equipmentLevel >= achievemenData.record[typeVar + valueVar + 4].limit[0].value){
+            isGet[typeVar + valueVar + 4] = 1;
+          }
+          break;
+      }
+    }
+  }
+  // console.log("長度:",isGet.length);
+  // for (var i = 0; i < isGet.length; i++) {
+  //   console.log(isGet[i],i);
+  // }
+  return isGet;
 }
 /*設定*/
 function settingAllView(mainDiv) {
