@@ -41,9 +41,18 @@ router.post('/kuruma', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
+            var dataMap=[];
+            for (let indexM = 0; indexM < map.length; indexM++) {
+                const element = map[indexM];
+                if(element.check==true&&element.postStage==2){
+                    dataMap.push(element);
+                }
+                
+            }
+            res.json(dataMap);
             // console.log(req.user.id);
             // console.log(map); 
-            res.json(map);
+            // res.json(map);
         })
     }
     /********* */
@@ -189,9 +198,18 @@ router.post('/pruss', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
+            var dataMap=[];
+            for (let indexM = 0; indexM < map.length; indexM++) {
+                const element = map[indexM];
+                if(element.check==true&&element.postStage==2){
+                    dataMap.push(element);
+                }
+                
+            }
+            res.json(dataMap);
             // console.log(req.user.id);
             // console.log(map); 
-            res.json(map);
+            // res.json(map);
         })
     }
     /********* */
@@ -824,9 +842,18 @@ router.post('/', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
+            var dataMap=[];
+            for (let indexM = 0; indexM < map.length; indexM++) {
+                const element = map[indexM];
+                if(element.check==true&&element.postStage==2){
+                    dataMap.push(element);
+                }
+                
+            }
+            res.json(dataMap);
             // console.log(req.user.id);
             // console.log(map); 
-            res.json(map);
+            // res.json(map);
         })
     }
     /********* */
