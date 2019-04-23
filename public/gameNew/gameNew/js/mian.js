@@ -103,7 +103,7 @@ function setup() {
     gameEndingCodeDic['7'] = "被打死了";
     // if(windowWidth * 0.4>=560&&windowHeight * 0.565.8)
     var winW = Math.max(windowWidth * 0.4, 506);
-    var winH = Math.max(windowHeight * 0.895, 540);
+    var winH = Math.max(windowHeight * 0.892, 540);
     // var canvas = createCanvas((windowWidth * 0.4)-6, (windowHeight * 0.895)-5);
     var canvas = createCanvas(winW - 6, winH - 5);
     canvas.parent('divcanvas');
@@ -255,7 +255,7 @@ function loadData() {
     var tA=textarea_0.value.indexOf("main");
     var tEnd=textarea_0.value.indexOf("{",tA);
     console.log("tEnd",tEnd);
-    
+
     textarea_0.selectionStart = tEnd+1;
     textarea_0.selectionEnd = tEnd+1;
 
@@ -654,7 +654,7 @@ function draw() {
                                         complementStep = true;
                                     }
                                     /*
-                 
+
                                     */
                                 }
                             }
@@ -1448,7 +1448,7 @@ function codeOutputTranstionAction() {
                 inputList = spaceT[2].split(' ');
 
 
-                //  
+                //
 
                 var ansList = mapObject[o].ans.split(' ');
                 console.log("ans:", ansList);
@@ -1752,15 +1752,15 @@ function challengeGameAgain() {
 
 /*btn1.onclick = function () {
     challengeGameAgain();
- 
+
     textarea_1.value = "   .....編譯中~請稍後....."
     codeToCompiler();
- 
+
     //測試用//
     // decodeOutput = textarea_1.value
     // codeOutputTranstionAction();
     ////
- 
+
 }*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',

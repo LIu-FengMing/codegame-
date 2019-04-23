@@ -15,7 +15,7 @@ body {
   width: 100%;
 }
 .main {
-  height: 100%;
+  height: 99.9%;
   display: table;
   width: 100%;
   min-height: 600px;
@@ -289,7 +289,7 @@ body {
 }
 #blocklyDiv{
   height: 89%;
-  width: 50%;
+  width: 49.5%;
   display: inline;
   border-style:solid;
   z-index: 1;
