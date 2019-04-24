@@ -38,21 +38,21 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   };
 
  })();
- function back() {
-   var index = 0;
-   var href = window.location.href;
-   for (var i = 0; i < href.length; ++i) {
-     if (href[i] == '/' || href[i] == "\\") {
-         index = i;
-     }
+function back() {
+ var index = 0;
+ var href = window.location.href;
+ for (var i = 0; i < href.length; ++i) {
+   if (href[i] == '/' || href[i] == "\\") {
+       index = i;
    }
-   href = href.substr(0, index + 1);
-   href+="oblivionUser";
-   window.location.replace(href);
-   console.log(href);
  }
+ href = href.substr(0, index + 1);
+ href+="oblivionUser";
+ window.location.replace(href);
+ console.log(href);
+}
 var href = window.location.href;
-var user,objectData,levelDivAlive=false;
+var user,objectData,levelDivAlive=false,isOblivionCreaterOpen;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
 var musicData;
 var scriptData = {
@@ -129,7 +129,14 @@ function initHome() {
       }
     }
   }
-  helper('centerLost');
+  try{
+    isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
+  }catch(e){
+    isOblivionCreaterOpen = false;
+  }
+  if(!isOblivionCreaterOpen){
+    helper('centerLost');
+  }
 }
 function logout() {
     // console.log("dddddd");
@@ -150,6 +157,8 @@ function helper(mainDiv) {
   }else if(user.starNum >= 120){
     thisLevelNum = 4;
   }
+  isOblivionCreaterOpen = true;
+  Session.set("isOblivionCreaterOpen", isOblivionCreaterOpen);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);

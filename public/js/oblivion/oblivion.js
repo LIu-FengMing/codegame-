@@ -51,7 +51,7 @@ function back() {
   console.log(href);
 }
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false;
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionOpen;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var userMap, completUserMap, oldDisMapNum = 0, playMap = [];
@@ -113,7 +113,14 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
-  helper('createrDiv');
+  try {
+    isOblivionOpen = Session.get("isOblivionOpen");
+  } catch (e) {
+    isOblivionOpen = false;
+  }
+  if(!isOblivionOpen){
+    helper('createrDiv');
+  }
   sendLoadUsernameMap();
 }
 function logout() {
@@ -129,6 +136,8 @@ function logout() {
 function helper(mainDiv) {
   var thisLevelNum = 0;
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
+  isOblivionOpen = true;
+  sendSession();
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
@@ -729,6 +738,7 @@ function sendSession() {
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
+  Session.set("isOblivionOpen", isOblivionOpen);
   return;
 }
 

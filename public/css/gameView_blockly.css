@@ -355,11 +355,14 @@ body {
   text-align: center;
   border-radius: 30px;
   position: absolute;
-  top: 20%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
+  min-width: 300px;
+  min-height: 340px;
 }
 #endViewTitle{
   font-size: 7vh;
@@ -389,13 +392,14 @@ body {
 }
 #restartGameBtn{
   height: 10vh;
-  width: 8vw;
+  width: 60%;
+  font-size: calc(10px + 0.5vw);
   border: 0px;
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
   left: 50%;
   bottom: 13vh;
-  margin-left: -4vw;
+  transform: translate(-50%,0);
   cursor: pointer;
 }
 #backToMapBtn{
@@ -413,8 +417,8 @@ body {
   cursor: pointer;
 }
 #restartGameBtn img{
-  height: 5vh;
-  width: 5vh;
+  height: 2vw;
+  width: 2vw;
   background-size: 100% 100%;
   vertical-align:middle;
 }
