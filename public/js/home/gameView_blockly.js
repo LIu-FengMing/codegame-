@@ -88,18 +88,9 @@ $.ajax({
       }
     }
     else {
-      if (user.MediumEmpire.codeLevel.length < maplevelId) {
-        console.log("Bye 實力不夠");
-        alert("不能越級過關喔");
-        href = "kuruma";
-        window.location.replace(href);
-      }
-      else if (user.EasyEmpire.codeLevel.length < 24||(user.EasyEmpire.codeLevel.length>=23&&user.EasyEmpire.codeLevel[23].HighestStarNum < 1)) {
-        console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "pruss";
         window.location.replace(href);
-      }
     }
 
     /*loadmusicData();*/

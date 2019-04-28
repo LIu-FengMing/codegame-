@@ -99,7 +99,7 @@ $.ajax({
       }
     }
     else {
-      if (user.MediumEmpire.codeLevel.length < maplevelId) {
+      if (user.MediumEmpire.codeLevel.length < maplevelId-24) {
         console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "kuruma";
