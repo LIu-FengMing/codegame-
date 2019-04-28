@@ -814,7 +814,7 @@ function sendLoadUsernameMap() {
           td06: obj.mapIntroduction,
         }
         userMap[index].avgScoreStr = avgScoreStr;
-
+        userMap[index].updateDateSecond = data.getTime();
         mapData.push(script);
       }
 
@@ -854,7 +854,7 @@ function changeTdName(thisObiect) {
   changeTdNameDisplay();
 }
 
-var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDate", "mapIntroduction"]
+var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDateSecond", "mapIntroduction"]
 function changeTdNameDisplay() {
   // console.log(tdStatus);
   // console.log(userMap);
