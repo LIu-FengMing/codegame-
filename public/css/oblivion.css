@@ -424,7 +424,7 @@ body {
   overflow: auto;
 }
 #createrDiv #lostCreateTable{
-  width: 99.9%;
+  width: 100.01%;
   height: 70px;
   font-size: 25px;
   background-color: #A7BBD1;
@@ -461,9 +461,10 @@ body {
   cursor: pointer;
 }
 #createrDiv textarea{
-  height: 4vh;
-  width: 100%;
+  height: 90%;
+  width: 98%;
   text-align: center;
+  padding-top: 5%;
   font-size: 3vh;
   background-color: transparent;
   border-color: transparent;
@@ -478,7 +479,7 @@ body {
   height: 70px;
 }
 .lostUserCreateTable{
-  width: 99.9%;
+  width: 100.01%;
   height: 70px;
   font-size: 25px;
   background-color: #99CCFF;
