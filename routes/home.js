@@ -895,10 +895,16 @@ router.post('/managementUser', function (req, res, next) {
 
 });
 
+
+
 router.get('/', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+
     User.getUserById(req.user.id, function (err, user) {
         if (err) throw err;
+        if(user.username=="NKUSTCCEA"){ //如有其他管理者 在這加
+            res.redirect('/managementUser')
+        }
         var openLokCastle = false;
         var codeLevel = -1;
         for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
