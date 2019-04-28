@@ -354,7 +354,7 @@ window.onload = function createLevelTable(scriptData) {
   console.log(scriptData);
   oldDisMapNum = scriptData.length;
   // for (var i = 0; i < scriptData.length; i++) {
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 20; i++) {
     var obj = scriptData[i];
     // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
@@ -390,7 +390,7 @@ window.onload = function createLevelTable(scriptData) {
         document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 3) {/*使用者信箱*/
         // document.getElementById("td0" + i + j).innerHTML = obj.td03;
-        document.getElementById("td0" + i + j).innerHTML = "aa@gmail.com";
+        document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
       } else if (j == 4) {/*星星數*/
         // document.getElementById("td0" + i + j).innerHTML = obj.td04;
         document.getElementById("td0" + i + j).innerHTML = "50";
