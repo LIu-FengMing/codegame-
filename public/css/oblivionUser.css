@@ -556,7 +556,7 @@ body {
   overflow: auto;
 }
 #createrDiv #lostCreateTable{
-  width: 99.9%;
+  width: 100.0%;
   height: 70px;
   font-size: 25px;
   background-color: #A7BBD1;
@@ -652,7 +652,7 @@ body {
   height: 70px;
 }
 .lostUserCreateTable{
-  width: 99.9%;
+  width: 100.01%;
   height: 70px;
   font-size: 25px;
   background-color: #99CCFF;
