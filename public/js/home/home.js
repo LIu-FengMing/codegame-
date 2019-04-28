@@ -58,7 +58,6 @@ $.ajax({
     user = res;
     if(user._id=="5cc5c6db5261bd19705ec615"){
       window.location.replace("managementUser");
-
     }
 
     /*loadmusicData();*/
