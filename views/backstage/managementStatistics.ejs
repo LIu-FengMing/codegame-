@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/managementStatistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <title></title>
+  </head>
+  <body>
+    <!-- <audio id="bkMusic" src="Fine_Line.mp3" preload loop volume="0"></audio> -->
+    <div class="wrap">
+      <div class="main">
+        <div class="box sidebarLeft"><!--left-->
+          <img src="img/MARK.png" class = "leftMark">
+          <input type="button" name="" value="主頁" onclick="location.href='management';">
+          <!-- <input type="button" id="helperBtn" value="" onclick="helper('createrDiv')"> -->
+        </div>
+        <div class="box centerLost" id="centerLost">
+          <img  id="bkImg">
+          <h1 class="titleH1">統計資料</h1>
+          <input type="button" value="" id="goBack3"  onclick="back()">
+          <select id="levelSelect" onchange="selectChart(this.value)">
+            <option value="playNumber">已遊玩人數</option>
+            <option value="successRate">通關率</option>
+            <option value="averageFailureRate">失敗率</option>
+          </select>
+          <canvas class="myChart" id="playNumberChart" style="display:none"></canvas>
+          <canvas class="myChart" id="successRateChart" style="display:none"></canvas>
+          <canvas class="myChart" id="averageFailureRateChart" style="display:none"></canvas>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script src="js/home/managementStatistics.js"></script>
+  </body>
+</html>

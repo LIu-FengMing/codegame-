@@ -335,12 +335,10 @@ function selectionLevel(thisObject) {
 
 /*設定*/
 function settingAllView(mainDiv) {
-  divID = "settingAllView";
-  divID2 = "equipageBkView";
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
-  b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("id", "helperBkView");
+  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "settingAllView");
@@ -350,7 +348,7 @@ function settingAllView(mainDiv) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
