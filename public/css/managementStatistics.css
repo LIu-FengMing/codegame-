@@ -182,7 +182,8 @@ body {
   top: 3vh;
   left: 6%;
 }
-#myChart{
+.myChart{
+  background-color: white;
   position: absolute;
   top: 10vh;
 }

@@ -21,11 +21,14 @@
           <img  id="bkImg">
           <h1 class="titleH1">統計資料</h1>
           <input type="button" value="" id="goBack3"  onclick="back()">
-          <select id="levelSelect" name="">
-            <option value="all">&nbsp全&nbsp部</option>
-            <option value="canPlay">&nbsp封&nbsp鎖</option>
+          <select id="levelSelect" onchange="selectChart(this.value)">
+            <option value="playNumber">已遊玩人數</option>
+            <option value="successRate">通關率</option>
+            <option value="averageFailureRate">失敗率</option>
           </select>
-          <canvas id="myChart"></canvas>
+          <canvas class="myChart" id="playNumberChart" style="display:none"></canvas>
+          <canvas class="myChart" id="successRateChart" style="display:none"></canvas>
+          <canvas class="myChart" id="averageFailureRateChart" style="display:none"></canvas>
         </div>
         <div class="box sidebarRight"><!--right-->
           <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
