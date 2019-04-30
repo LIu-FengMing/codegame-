@@ -2,7 +2,8 @@
 <html  dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/managementUser.css">
+    <link rel="stylesheet" href="css/managementStatistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
     <title></title>
@@ -18,33 +19,13 @@
         </div>
         <div class="box centerLost" id="centerLost">
           <img  id="bkImg">
-          <h1 class="titleH1">管理會員</h1>
+          <h1 class="titleH1">統計資料</h1>
           <input type="button" value="" id="goBack3"  onclick="back()">
           <select id="levelSelect" name="">
             <option value="all">&nbsp全&nbsp部</option>
             <option value="canPlay">&nbsp封&nbsp鎖</option>
           </select>
-          <div class="search-box">
-            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="關卡名稱" onsearch = "searchFunc()">
-            <!-- <a href="javascript:;" class="clear"></a> -->
-            <!-- <a href="#" onclick="console.log('1235464654');" class="clear"></a> -->
-            <a class="search-btn"href="#">
-              <i class="fas fa-search"></i>
-            </a>
-          </div>
-          <div id="createrDiv">
-            <table id="lostCreateTable" border=5 RULES=ALL>
-              <tr>
-                <td class="td01" onclick="changeTdName(this)">使用者帳號</td>
-                <td class="td02" onclick="changeTdName(this)">使用者名稱</td>
-                <td class="td03" onclick="changeTdName(this)">信箱</td>
-                <td class="td04" onclick="changeTdName(this)">星星數</td>
-                <td class="td05" onclick="changeTdName(this)">最高的關卡</td>
-                <td class="td06" onclick="changeTdName(this)">使用者狀態</td>
-              </tr>
-            </table>
-          </div>
-          <input type="button" class="centerButton" id="changeStatus" value="封鎖" onclick="changeStatus()">
+          <canvas id="myChart"></canvas>
         </div>
         <div class="box sidebarRight"><!--right-->
           <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
@@ -52,6 +33,6 @@
       </div>
       <div class="footer"></div>
     </div>
-    <script src="js/home/managementUser.js"></script>
+    <script src="js/home/managementStatistics.js"></script>
   </body>
 </html>
