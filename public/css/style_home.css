@@ -1,3 +1,6 @@
+*{
+  font-family: Microsoft JhengHei;
+}
 .castle_blockly{
   width: 22%;
   height: 50%;
@@ -126,4 +129,3 @@
   background-color: transparent;
   margin-right: 5px;
 }
-
