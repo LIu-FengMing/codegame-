@@ -755,144 +755,14 @@ router.post('/managementUser', function (req, res, next) {
             if (err) throw err;
             res.json(user);
         })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
     }
-    /**更新部分 */
-    else if (type == "resetEquip") {
-        var id = req.user.id;
-        User.updateResetEquip(id, function (err, user) {
+    else if (type == "LoadUser") {
+        User.getUser(req.user.id, function (err, users) {
             if (err) throw err;
-            console.log("up   :", user);
-            User.getUserById(id, function (err, user) {
-                if (err) throw err;
-                res.json(user);
-            })
+            res.json(users);
+           
         })
     }
-    else if (type == "userMap") {
-        MapRecord.getMapByUserID(req.user.id, function (err, map) {
-            if (err) throw err;
-            var dataMap=[];
-            for (let indexM = 0; indexM < map.length; indexM++) {
-                const element = map[indexM];
-                if(element.check==true&&element.postStage==2){
-                    dataMap.push(element);
-                }
-
-            }
-            res.json(dataMap);
-            // console.log(req.user.id);
-            // console.log(map);
-            // res.json(map);
-        })
-    }
-    /********* */
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                    if (err) throw err;
-                    console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
-                })
-            }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                    if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
-                })
-            }
-        })
-    }
-    else if (type == "changePassword") {
-        var id = req.user.id
-        var password = req.body.password
-        var oldPassword = req.body.oldPassword
-        // console.log(password,oldPassword);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (user) {
-                // console.log(user);
-                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
-                    if (err) throw err
-                    if (isMatch) {
-                        req.flash('success_msg', 'you are updatePass now')
-                        User.updatePassword(user.username, password, function (err, user) {
-                            if (err) throw err;
-                            // console.log("update :", user);
-                        })
-                        req.session.updatePassKey = null;
-                        return res.json({ responce: 'sucesss' });
-                    } else {
-                        return res.json({ responce: 'failPassUndifine' });
-                    }
-                })
-            }else{
-                return res.json({ responce: 'error' });
-            }
-        })
-        // res.redirect('/login')
-    }
-    else {
-
-    }
-
 });
 
 router.get('/management', ensureAuthenticated, function (req, res, next) {

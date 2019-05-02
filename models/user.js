@@ -38,6 +38,12 @@ module.exports.createUser = function (newUser, callback) {
         })
     })
 }
+// getUSER
+module.exports.getUser = function (userID, callback) {
+    var query = { _id: { $ne: userID }}
+    User.find(query, callback)
+}
+
 
 // getUserByUsername, 用username來找使用者
 module.exports.getUserByUsername = function (username, callback) {
@@ -53,6 +59,9 @@ module.exports.getUserByEmail = function (email, callback) {
 module.exports.getUserById = function (id, callback) {
     User.findById(id, { __v: 0 }, callback)
 }
+
+
+
 
 
 // comparePassword, 當使用者登入的時候我們要比對登入密碼跟我們資料庫密碼相同

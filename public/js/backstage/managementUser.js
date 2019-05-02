@@ -38,6 +38,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
   };
 
 })();
+
 function back() {
   var index = 0;
   var href = window.location.href;
@@ -54,32 +55,24 @@ var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionOpen;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
-var userMap, completUserMap, oldDisMapNum = 0, playMap = [];
-var scriptData = {
-  type: "init"
-}
+var allUserData, completallUserData, oldDisMapNum = 0, playMap = [];
 
-$.ajax({
-  url: href,              // 要傳送的頁面
-  method: 'POST',               // 使用 POST 方法傳送請求
-  dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
-  success: function (res) {
-    // console.log(res);
-    user = res;
-    /*loadmusicData();*/
-    // console.log(user);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
-        initHome();
-      }
-    };
-    xmlhttp.open("GET", "json/equipment.json", true);
-    xmlhttp.send();
-  }
-})
+// var scriptData = {
+//   type: "init"
+// }
+
+// $.ajax({
+//   url: href,              // 要傳送的頁面
+//   method: 'POST',               // 使用 POST 方法傳送請求
+//   dataType: 'json',             // 回傳資料會是 json 格式
+//   data: scriptData,  // 將表單資料用打包起來送出去
+//   success: function (res) {
+//     user = res;
+    
+//   }
+// })
+initHome();
+
 
 function error() {
   alert("有不當的操作發生");
@@ -87,7 +80,11 @@ function error() {
 
 }
 function initHome() {
+  sendLoadUsernameMap();
 }
+
+
+
 function logout() {
   // console.log("dddddd");
   var href = "/logout";
@@ -196,10 +193,11 @@ function getArgs() {
 }
 
 
+
 /*建立表格*/
 function sendLoadUsernameMap() {
   var scriptData = {
-    type: "LoadMap",
+    type: "LoadUser",
   }
   $.ajax({
     url: href,              // 要傳送的頁面
@@ -208,147 +206,33 @@ function sendLoadUsernameMap() {
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       console.log(res);
-      userMap = res;
+      allUserData = res;
+      console.log(allUserData);
+      
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
-
-        var playF = false;
-        for (let pfi = 0; pfi < user.finishMapNum.length; pfi++) {
-          var item = user.finishMapNum[pfi].mapID;
-          if (item == res[index]._id) {
-            playF = true;
-            playMap.push(1);
-            break;
-          }
-        }
-        if (playF == false) {
-          playMap.push(0);
-        }
-        // var findLike = user.finishMapNum.find(function (item, index, array) {
-        //   return item.mapID == res._id;  // 取得陣列 like === '蘿蔔泥'
-        // });
-        // if (findLike) {
-        //   playMap.push(1);
-        // }
-        // else {
-        //   playMap.push(0);
-        // }
-        var obj = res[index], check = "X";
-        if (obj.check) {
-          check = "✔";
-        }
-        var avgScore = obj.avgScore, avgScoreStr;
-        if (avgScore == 0) {
-          avgScoreStr = "--/";
-        }
-        else {
-          avgScoreStr = avgScore.toString() + "/";
-        }
-        if (obj.score.length == 0) {
-          avgScoreStr += "--";
-        }
-        else {
-          avgScoreStr += obj.score.length;
-        }
-        var updateDate;
-        var data = new Date(obj.updateDate);
-        var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
-        updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-
+        var obj = res[index]
         var script = {
-          td01: obj.mapName,
-          td02: obj.requireStar,
-          td03: obj.author,
-          td04: avgScoreStr,
-          td05: updateDate,
-          td06: obj.mapIntroduction,
+          td01: obj.username,
+          td02: obj.name,
+          td03: obj.email,
+          td04: obj.starNum,
+          // td05: updateDate,
+          // td06: obj.mapIntroduction,
         }
-        userMap[index].avgScoreStr = avgScoreStr;
-
         mapData.push(script);
       }
 
-      completUserMap = userMap.slice(0);
+      completallUserData = allUserData.slice(0);
       createLevelTable(mapData);
     }
   })
 }
 
-var levelNameStatus = 0, conditionStatus = 0, creatorStatus = 0, evaluateStatus = 0, dateStatus = 0, introductionStatus = 0;
-var tdStatus = [0, 0, 0, 0, 0, 0];
-function changeTdName(thisObiect) {
-  var str = thisObiect.className, s, s2;
-  var thisStatus = parseInt(str.substr(str.length - 1, 1)) - 1;
-  s = thisObiect.innerHTML;
-  // console.log(s2.length);
-  if (tdStatus[thisStatus] == 0) {
-    // s = thisObiect.innerHTML;
-    // console.log(s.length);
-    thisObiect.innerHTML = s + "&nbsp▴";
-    tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 1) {
-    // s = thisObiect.innerHTML;
-    // console.log(s.length);
-    s = s.substring(0, s.length - 7);
-    // s = s.substring(0,s.length-1);
-    thisObiect.innerHTML = s + "&nbsp▾";
-    tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 2) {
-    // s = thisObiect.innerHTML;
-    // console.log(s.length);
-    s = s.substring(0, s.length - 7);
-    // s = s.substring(0,s.length-1);
-    thisObiect.innerHTML = s;
-    tdStatus[thisStatus] = 0;
-  }
-  changeTdNameDisplay();
-}
-
-var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDate", "mapIntroduction"]
-function changeTdNameDisplay() {
-  // console.log(tdStatus);
-  // console.log(userMap);
-  var index = levelSelect.selectedIndex;
-  console.log(index);
-  if (index == 0) { //全部
-    userMap = completUserMap.slice(0);
-  }
-  else { //可遊玩
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (user.starNum >= element.requireStar) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-
-  // for (let index = 0; index < tdStatus.length; index++) {
-  for (let index = tdStatus.length-1; index >-1; index--){
-    var item=TdNameTable[index];
-    console.log("item:",item);
-    console.log("tdStatus[index]:",item);
-    if(tdStatus[index]==1){
-      userMap = userMap.sort(function (a, b) {
-        return a[item] > b[item] ? 1 : -1;
-       });
-    }
-    else if(tdStatus[index]==2){
-      userMap = userMap.sort(function (a, b) {
-        return a[item] < b[item] ? 1 : -1;
-       });
-    }
-  }
-
-  console.log(userMap);
-
-  updateMapData(userMap)
-
-}
-
 
 /*建立表格*/
-window.onload = function createLevelTable(scriptData) {
+// window.onload = function createLevelTable(scriptData) {
+function createLevelTable(scriptData) {
   console.log("--playMap---");
   console.log(playMap);
   console.log(scriptData);
@@ -403,6 +287,81 @@ window.onload = function createLevelTable(scriptData) {
 }
 
 
+var levelNameStatus = 0, conditionStatus = 0, creatorStatus = 0, evaluateStatus = 0, dateStatus = 0, introductionStatus = 0;
+var tdStatus = [0, 0, 0, 0, 0, 0];
+function changeTdName(thisObiect) {
+  var str = thisObiect.className, s, s2;
+  var thisStatus = parseInt(str.substr(str.length - 1, 1)) - 1;
+  s = thisObiect.innerHTML;
+  // console.log(s2.length);
+  if (tdStatus[thisStatus] == 0) {
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    thisObiect.innerHTML = s + "&nbsp▴";
+    tdStatus[thisStatus]++;
+  } else if (tdStatus[thisStatus] == 1) {
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    s = s.substring(0, s.length - 7);
+    // s = s.substring(0,s.length-1);
+    thisObiect.innerHTML = s + "&nbsp▾";
+    tdStatus[thisStatus]++;
+  } else if (tdStatus[thisStatus] == 2) {
+    // s = thisObiect.innerHTML;
+    // console.log(s.length);
+    s = s.substring(0, s.length - 7);
+    // s = s.substring(0,s.length-1);
+    thisObiect.innerHTML = s;
+    tdStatus[thisStatus] = 0;
+  }
+  changeTdNameDisplay();
+}
+
+var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDate", "mapIntroduction"]
+function changeTdNameDisplay() {
+  // console.log(tdStatus);
+  // console.log(allUserData);
+  var index = levelSelect.selectedIndex;
+  console.log(index);
+  if (index == 0) { //全部
+    allUserData = completallUserData.slice(0);
+  }
+  else { //可遊玩
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      const element = completallUserData[indexS];
+      if (user.starNum >= element.requireStar) {
+        allUserData.push(completallUserData[indexS]);
+      }
+    }
+  }
+
+  // for (let index = 0; index < tdStatus.length; index++) {
+  for (let index = tdStatus.length-1; index >-1; index--){
+    var item=TdNameTable[index];
+    console.log("item:",item);
+    console.log("tdStatus[index]:",item);
+    if(tdStatus[index]==1){
+      allUserData = allUserData.sort(function (a, b) {
+        return a[item] > b[item] ? 1 : -1;
+       });
+    }
+    else if(tdStatus[index]==2){
+      allUserData = allUserData.sort(function (a, b) {
+        return a[item] < b[item] ? 1 : -1;
+       });
+    }
+  }
+
+  console.log(allUserData);
+
+  updateMapData(allUserData)
+
+}
+
+
+
+
 /*選單*/
 
 var levelSelect = document.getElementById("levelSelect");
@@ -411,18 +370,18 @@ levelSelect.onchange = function (index) {
   // var index = levelSelect.selectedIndex;
   // console.log(index);
   // if (index == 0) { //全部
-  //   userMap = completUserMap.slice(0);
+  //   allUserData = completallUserData.slice(0);
   // }
   // else { //可遊玩
-  //   userMap.length = 0;
-  //   for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-  //     const element = completUserMap[indexS];
+  //   allUserData.length = 0;
+  //   for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+  //     const element = completallUserData[indexS];
   //     if (user.starNum >= element.requireStar) {
-  //       userMap.push(completUserMap[indexS]);
+  //       allUserData.push(completallUserData[indexS]);
   //     }
   //   }
   // }
-  // updateMapData(userMap)
+  // updateMapData(allUserData)
 }
 // function searchFunc() {
 //   var a = document.getElementById("searchTextBox");
@@ -433,6 +392,8 @@ levelSelect.onchange = function (index) {
 //     a.className = "searchFocus";
 //   }
 // }
+
+
 /*表單更動*/
 function updateMapData(res) {
   var mapData = [];
@@ -578,11 +539,11 @@ searchTextBox.onkeydown = function () {
   console.log(searchTextBox.value);
   searchTextBox.className = "searchFocus";
   if (searchTextBox.value.length > 0) {
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        userMap.push(completUserMap[indexS]);
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      const element = completallUserData[indexS];
+      if (completallUserData[indexS].author.indexOf(searchTextBox.value) > -1 || completallUserData[indexS].mapName.indexOf(searchTextBox.value) > -1) {
+        allUserData.push(completallUserData[indexS]);
       }
     }
   }
@@ -590,29 +551,29 @@ searchTextBox.onkeydown = function () {
     var index = levelSelect.selectedIndex;
     console.log(index);
     if (index == 0) { //全部
-      userMap = completUserMap.slice(0);
+      allUserData = completallUserData.slice(0);
     }
     else { //可遊玩
-      userMap.length = 0;
-      for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-        const element = completUserMap[indexS];
+      allUserData.length = 0;
+      for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+        const element = completallUserData[indexS];
         if (user.starNum >= element.requireStar) {
-          userMap.push(completUserMap[indexS]);
+          allUserData.push(completallUserData[indexS]);
         }
       }
     }
   }
-  updateMapData(userMap)
+  updateMapData(allUserData)
 }
 searchTextBox.onkeyup = function () {
   // console.log("search:");
   // console.log(searchTextBox.value);
   if (searchTextBox.value.length > 0) {
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        userMap.push(completUserMap[indexS]);
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      const element = completallUserData[indexS];
+      if (completallUserData[indexS].author.indexOf(searchTextBox.value) > -1 || completallUserData[indexS].mapName.indexOf(searchTextBox.value) > -1) {
+        allUserData.push(completallUserData[indexS]);
       }
     }
   }
@@ -620,19 +581,19 @@ searchTextBox.onkeyup = function () {
     var index = levelSelect.selectedIndex;
     console.log(index);
     if (index == 0) { //全部
-      userMap = completUserMap.slice(0);
+      allUserData = completallUserData.slice(0);
     }
     else { //可遊玩
-      userMap.length = 0;
-      for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-        const element = completUserMap[indexS];
+      allUserData.length = 0;
+      for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+        const element = completallUserData[indexS];
         if (user.starNum >= element.requireStar) {
-          userMap.push(completUserMap[indexS]);
+          allUserData.push(completallUserData[indexS]);
         }
       }
     }
   }
-  updateMapData(userMap)
+  updateMapData(allUserData)
 }
 searchTextBox.onchange = function () {
   console.log("happy");
@@ -646,16 +607,16 @@ function clearSearch() {
   var index = levelSelect.selectedIndex;
   console.log(index);
   if (index == 0) { //全部
-    userMap = completUserMap.slice(0);
+    allUserData = completallUserData.slice(0);
   }
   else { //可遊玩
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      const element = completallUserData[indexS];
       if (user.starNum >= element.requireStar) {
-        userMap.push(completUserMap[indexS]);
+        allUserData.push(completallUserData[indexS]);
       }
     }
   }
-  updateMapData(userMap)
+  updateMapData(allUserData)
 }
