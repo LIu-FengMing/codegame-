@@ -67,9 +67,8 @@ var initCode = [
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[])
-{
-
-
+{\t/*請在此處輸入程式碼(ps:我是註解)*/
+\t
 \treturn 0;
  }
 
@@ -1740,7 +1739,22 @@ function decode_JDOODLE_api(str) {
 
 function challengeGameAgain() {
     data = JSON.parse(JSON.stringify(Res_data));
-    loadData();
+    // loadData();
+    var dx = people_init["postion"][0] * edgeToWidth, dy = people_init["postion"][1] * edgeToHeight, drotate = 360 - people_init["postion"][2] * 90;
+    old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
+    now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
+    edgeToWidth = width / mapSize;
+    edgeToHeight = height / mapSize;
+    iscreatecanvas = 1;
+    action_now = 0;
+    peopleGraph = createGraphics(width, height);
+    objectGraph = createGraphics(width, height);
+    backgroundGraph = createGraphics(width, height);
+    pg = createGraphics(edgeToWidth, edgeToHeight);
+    updateBackgroundGraph();
+    updateObjectGraph();
+    updatePeopleGraph();
+    //
     updateCanvas();
     gameEndingCode = 0;
     decodeOutput = "";

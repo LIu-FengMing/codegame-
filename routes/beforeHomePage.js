@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local').Strategy
 
 var User = require('../models/user')
 var SendMail = require('../models/sendMail')
+
 /* GET users listing. */
 
 
@@ -33,12 +34,12 @@ router.get('/login', function (req, res, next) {
 });
 router.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
     }),
     function (req, res) {
-        res.redirect('/')
+        res.redirect('/home')
     }
 );
 

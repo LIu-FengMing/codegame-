@@ -800,21 +800,21 @@ function sendLoadUsernameMap() {
         else {
           avgScoreStr += obj.score.length;
         }
-        var updateDate;
-        var data = new Date(obj.updateDate);
+        var postDate;  
+        var data = new Date(obj.postDate);
         var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
-        updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
+        postDate = year.toString() + "/" + month.toString() + "/" + day.toString();
 
         var script = {
           td01: obj.mapName,
           td02: obj.requireStar,
           td03: obj.author,
           td04: avgScoreStr,
-          td05: updateDate,
+          td05: postDate,
           td06: obj.mapIntroduction,
         }
         userMap[index].avgScoreStr = avgScoreStr;
-        userMap[index].updateDateSecond = data.getTime();
+        userMap[index].postDateSecond = data.getTime();
         mapData.push(script);
       }
 
@@ -854,7 +854,7 @@ function changeTdName(thisObiect) {
   changeTdNameDisplay();
 }
 
-var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDateSecond", "mapIntroduction"]
+var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "postDateSecond", "mapIntroduction"]
 function changeTdNameDisplay() {
   // console.log(tdStatus);
   // console.log(userMap);
