@@ -13,11 +13,11 @@
       <div class="main">
         <div class="box sidebarLeft"><!--left-->
           <img src="img/MARK.png" class = "leftMark">
-          <input type="button" id="helperBtn" value="" onclick="helper('createrDiv')">
+          <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('createrDiv')">
         </div>
         <div class="box centerLost" id="centerLost">
           <h1 class="titleH1">玩家自訂關卡</h1>
-          <input type="button" value="" id="goBack3"  onclick="back()">
+          <input type="button" title="返回鍵" value="" id="goBack3"  onclick="back()">
           <select id="levelSelect" name="">
             <option value="all">&nbsp全&nbsp部</option>
             <option value="canPlay">可遊玩</option>
@@ -44,7 +44,7 @@
           </div>
           <input type="button" class="centerButton" id="createLevel" value="自訂關卡" onclick="location.href='oblivionUser';">
           <input type="button" class="centerButton" id="enterLevel" value="進入關卡" onclick="enterLevel()">
-          <input type="button" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
+          <input type="button" title="設定" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
         </div>
         <div class="box sidebarRight"><!--right-->
           <font class = "userName" id="userName" ></font>
@@ -52,8 +52,8 @@
             <img src="img/star.png" class="imgIcon">
             <font class="starNumber" id="starNumber" ></font>
           </div>
-          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
         </div>
       </div>
       <div class="footer"></div>

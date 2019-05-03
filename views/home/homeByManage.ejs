@@ -27,20 +27,20 @@
           <!-- <input type="button" value="" id="goBack3"  onclick="location.href='management';"> -->
           <div class="">
             <div class="castle_blockly">
-              <input type="button" class="castle_blockly" value="" onclick="location.href='pruss';">
+              <input type="button" title="普魯斯帝國" class="castle_blockly" value="" onclick="location.href='pruss';">
             </div>
             <div class=<%= castlelock %> id="castle_codeDiv">
-              <input type="button" class=<%= castlelock %> id="castle_codeBtn" value="" onclick="location.href='kuruma';">
+              <input type="button" title="庫魯瑪帝國" class=<%= castlelock %> id="castle_codeBtn" value="" onclick="location.href='kuruma';">
             </div>
             <div class="castle_link">
-              <input type="button" class="castle_link" value="" onclick="location.href='oblivion';">
+              <input type="button" title="失落帝國" class="castle_link" value="" onclick="location.href='oblivion';">
             </div>
           </div>
           <div id = "buttonDiv">
-            <input type="button" class="equipageButton"  value="" onclick="equipageView(center)">
-            <input type="button" class="instructionButton" value="" onclick="instructionView(center)">
-            <input type="button" class="achievementButton" value="" onclick="achievementView(center)">
-            <input type="button" class="settingAllButton" value="" onclick="settingAllView(center)">
+            <input type="button" title="裝備" class="equipageButton"  value="" onclick="equipageView(center)">
+            <input type="button" title="指令大全" class="instructionButton" value="" onclick="instructionView(center)">
+            <input type="button" title="成就" class="achievementButton" value="" onclick="achievementView(center)">
+            <input type="button" title="設定" class="settingAllButton" value="" onclick="settingAllView(center)">
           </div>
         </div>
         <div class="box sidebarRight"><!--right-->
@@ -49,8 +49,8 @@
             <img src="img/star.png" class="imgIcon">
             <font class="starNumber" id="starNumber" ></font>
           </div>
-          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
         </div>
       </div>
       <div class="footer"></div>

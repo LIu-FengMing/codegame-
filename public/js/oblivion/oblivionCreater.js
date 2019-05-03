@@ -189,6 +189,7 @@ function helper(mainDiv) {
   divTag.innerHTML = "";
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
@@ -282,6 +283,7 @@ function userData() {
     divTag = document.getElementById("userDataView");
     b = document.createElement("input");
     b.setAttribute("type", "button");
+    b.setAttribute("title", "關閉");
     b.setAttribute("id", "clossDiv");
     b.setAttribute("value", "X");
     b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");

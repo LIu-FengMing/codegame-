@@ -167,6 +167,7 @@ function helper(mainDiv) {
   divTag.innerHTML = "";
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
@@ -260,6 +261,7 @@ function userData() {
   divTag = document.getElementById("userDataView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(divID,divID2)");
@@ -451,6 +453,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("settingAllView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"helperBkView\")");
@@ -800,7 +803,7 @@ function sendLoadUsernameMap() {
         else {
           avgScoreStr += obj.score.length;
         }
-        var postDate;  
+        var postDate;
         var data = new Date(obj.postDate);
         var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
         postDate = year.toString() + "/" + month.toString() + "/" + day.toString();

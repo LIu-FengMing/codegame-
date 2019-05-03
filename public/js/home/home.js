@@ -245,6 +245,7 @@ function userData() {
   divTag = document.getElementById("userDataView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"userDataBkView\",\"userDataView\")");
@@ -489,6 +490,7 @@ function equipageView(mainDiv) {
   divTag = document.getElementById("equipageView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
@@ -956,6 +958,7 @@ function instructionView(mainDiv) {
   divTag = document.getElementById("instructionView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
@@ -1066,6 +1069,7 @@ function achievementView(mainDiv) {
   divTag = document.getElementById("achievementView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
@@ -1224,6 +1228,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("settingAllView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");

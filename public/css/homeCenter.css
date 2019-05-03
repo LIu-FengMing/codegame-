@@ -1,3 +1,6 @@
+*{
+  font-family: Microsoft JhengHei;
+}
 #clossDiv{
   width: 35px;
   height: 35px;
@@ -233,7 +236,6 @@
   z-index: 4;
   height: 60vh;
   width: 40vw;
-  font-family: Microsoft JhengHei;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -245,7 +247,6 @@
 }
 #instructionTable{
   width: 100%;
-  font-family: Microsoft JhengHei;
   position: relative;
   border: 1;
   margin-top: 5%;
@@ -267,7 +268,6 @@
   cursor: pointer;
 }
 .itemP{
-  font-family:Microsoft JhengHei;
   margin-top: 1.5vh;
 }
 /*成就*/

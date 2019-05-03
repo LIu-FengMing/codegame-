@@ -20,18 +20,18 @@
       <div class="main">
         <div class="box sidebarLeft"><!--left-->
           <img src="img/MARK.png" class = "leftMark">
-          <input type="button" id="helperBtn" value="" onclick="helper('blocklyDiv')">
+          <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('blocklyDiv')">
           <!-- <input type="button" name="" value="testEndView" onclick="createEndView(3, 'gameResult', 20, 'code')"> -->
           <!-- <input type="button" name="" value="testLoadingView" onclick="createLoadingView()"> -->
         </div>
         <div class="box center" id="center">
           <img src="img/bk.PNG" id="bkImg">
           <div id="titleBar">
-            <input type="button" value="" id="goBack" onclick="back()">
+            <input type="button" title="返回鍵" value="" id="goBack" onclick="back()">
             <font id="titleFont"></font>
           </div>
           <div id="textareaBk" style="display: none;">
-            <input type="button" id="clossDiv" value="X">
+            <input type="button" title="關閉" id="clossDiv" value="X">
             <textarea id="textarea_1"></textarea>
           </div>
           <div id = "divcanvas"></div>
@@ -51,10 +51,10 @@
               <textarea class="lined" id="textarea_0" style="height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;"></textarea>
             </div>
             <div id = "textButtonDiv">
-              <input type="button" id="btn1" class="runButton"  value="" onclick="codeToCompiler();">
-              <input type="button" class="clearButton" value="" onclick="restartButton()">
-              <input type="button" class="restartButton" value="" onclick="clearButton(textarea_0)">
-              <input type="button" class="settingButton" value="" onclick="settingAllView(blocklyDiv)">
+              <input type="button" title="開始" id="btn1" class="runButton"  value="" onclick="codeToCompiler();">
+              <input type="button" title="重置地圖" class="clearButton" value="" onclick="restartButton()">
+              <input type="button" title="重置關卡" class="restartButton" value="" onclick="clearButton(textarea_0)">
+              <input type="button" title="設定" class="settingButton" value="" onclick="settingAllView(blocklyDiv)">
             </div>
           </div>
         </div>
@@ -64,8 +64,8 @@
             <img src="img/star.png" class="imgIcon">
             <font class="starNumber" id="starNumber" ></font>
           </div>
-          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
           <!--<div class="userGold">
             <img src="img/gold.png" class="imgIcon">
             <font class="starNumber">:xxx</font>

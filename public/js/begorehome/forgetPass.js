@@ -167,6 +167,7 @@ function remindView(remindValue) {
 
     b = document.createElement("input");
     b.setAttribute("type", "button");
+    b.setAttribute("title", "關閉");
     b.setAttribute("id", "remindTrueBtn");
     b.setAttribute("value", "確定");
     b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

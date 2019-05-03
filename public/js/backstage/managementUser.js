@@ -68,7 +68,7 @@ var allUserData, completallUserData, oldDisMapNum = 0, playMap = [];
 //   data: scriptData,  // 將表單資料用打包起來送出去
 //   success: function (res) {
 //     user = res;
-    
+
 //   }
 // })
 initHome();
@@ -169,6 +169,7 @@ function remindView(remindValue) {
 
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
@@ -208,7 +209,7 @@ function sendLoadUsernameMap() {
       console.log(res);
       allUserData = res;
       console.log(allUserData);
-      
+
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
         var obj = res[index]

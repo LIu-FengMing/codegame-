@@ -72,30 +72,35 @@ function myFunction(){
   b.setAttribute("type", "button");
   b.setAttribute("id", "btn1");
   b.setAttribute("class", "runButton");
+	b.setAttribute("title", "開始");
   b.setAttribute("onclick","changeToC(0)");
   divTag.appendChild(b);
 
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "transformButton");
+	b.setAttribute("title", "轉譯積木");
   b.setAttribute("onclick","transformButton('blocklyDiv')");
 	divTag.appendChild(b);
 
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "clearButton");
+	b.setAttribute("title", "重置地圖");
   b.setAttribute("onclick","myFunction()");
 	divTag.appendChild(b);
 
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "restartButton");
+	b.setAttribute("title", "重置遊戲");
   b.setAttribute("onclick","restartButton()");
 	divTag.appendChild(b);
 
 	b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("class", "settingButton");
+	b.setAttribute("title", "設定");
   b.setAttribute("onclick","settingAllView(blocklyDiv)");
   divTag.appendChild(b);
   //content.innerHTML = code;

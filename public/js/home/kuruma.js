@@ -223,6 +223,7 @@ function userData() {
   divTag = document.getElementById("userDataView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"userDataBkView\",\"userDataView\")");
@@ -479,6 +480,7 @@ function btnClick(number) {
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
@@ -602,6 +604,7 @@ function viewRecord(number) {
   divTag = document.getElementById("centerBlocklyView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
@@ -678,6 +681,7 @@ function equipageView(mainDiv) {
   divTag = document.getElementById("equipageView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
@@ -1144,6 +1148,7 @@ function instructionView(mainDiv) {
   divTag = document.getElementById("instructionView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
@@ -1211,22 +1216,25 @@ function instructionView(mainDiv) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
         //console.log(li[j].limit,li[j].name,passLevel);
+        divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
         }
-        b = document.createElement("h3");
-        b.setAttribute("id", "h3Inner" + i + j);
+        b = document.createElement("details");
+        b.setAttribute("id", "detailsInner" + i + j);
+        b.setAttribute("class", "instructionDetailsInner");
         divTag.appendChild(b);
-        divTag = document.getElementById("h3Inner" + i + j);
-        b = document.createElement("a");
-        b.setAttribute("id", "aInner" + i + j);
-        b.setAttribute("href", "#item" + i + j);
+        divTag = document.getElementById("detailsInner" + i + j);
+        b = document.createElement("summary");
+        b.setAttribute("id", "summaryInner" + i + j);
+        b.setAttribute("class", "summaryInner");
         divTag.appendChild(b);
         // document.getElementById("aInner" + j).innerHTML = "step( )▼";
-        document.getElementById("aInner" + i + j).innerHTML = "&nbsp" + li[j].name + "▼";
-        divTag = document.getElementById("actionDiv" + i);
-        b = document.createElement("h6");
+        document.getElementById("summaryInner" + i + j).innerHTML = li[j].name;
+        //
+        b = document.createElement("p");
         b.setAttribute("id", "item" + i + j);
+        b.setAttribute("class", "itemP");
         divTag.appendChild(b);
         // document.getElementById("item" + j).innerHTML = "&nbsp&nbsp&nbsp&";
         document.getElementById("item" + i + j).innerHTML = "&nbsp&nbsp&nbsp&nbsp" + li[j].value;
@@ -1251,6 +1259,7 @@ function achievementView(mainDiv) {
   divTag = document.getElementById("achievementView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
@@ -1409,6 +1418,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("settingAllView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");

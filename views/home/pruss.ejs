@@ -23,7 +23,7 @@
         </div>
         <div class="box centerBlockly" id="centerBlockly">
           <img src="img/blockMapBk.png" id="bkImg">
-          <input type="button" value="" id="goBack3"  onclick="back()">
+          <input type="button" title="返回鍵" value="" id="goBack3"  onclick="back()">
           <div class="onoffswitch">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="changeLevelStage()">
             <label class="onoffswitch-label" for="myonoffswitch">
@@ -31,30 +31,30 @@
               <span class="onoffswitch-switch"></span>
             </label>
           </div>
-          <input type="button" id="btn0" class="unbtn" value="" onclick="btnClick(0)">
-          <input type="button" id="btn1" class="unbtn" value="" onclick="btnClick(1)">
-          <input type="button" id="btn2" class="unbtn" value="" onclick="btnClick(2)">
-          <input type="button" id="btn3" class="unbtn" value="" onclick="btnClick(3)">
-          <input type="button" id="btn4" class="unbtn" value="" onclick="btnClick(4)">
-          <input type="button" id="btn5" class="unbtn" value="" onclick="btnClick(5)">
-          <input type="button" id="btn6" class="unbtn" value="" onclick="btnClick(6)">
-          <input type="button" id="btn7" class="unbtn" value="" onclick="btnClick(7)">
-          <input type="button" id="btn8" class="unbtn" value="" onclick="btnClick(8)">
-          <input type="button" id="btn9" class="unbtn" value="" onclick="btnClick(9)">
-          <input type="button" id="btn10" class="unbtn" value="" onclick="btnClick(10)">
-          <input type="button" id="btn11" class="unbtn" value="" onclick="btnClick(11)">
-          <input type="button" id="btn12" class="unbtn" value="" onclick="btnClick(12)">
-          <input type="button" id="btn13" class="unbtn" value="" onclick="btnClick(13)">
-          <input type="button" id="btn14" class="unbtn" value="" onclick="btnClick(14)">
-          <input type="button" id="btn15" class="unbtn" value="" onclick="btnClick(15)">
-          <input type="button" id="btn16" class="unbtn" value="" onclick="btnClick(16)">
-          <input type="button" id="btn17" class="unbtn" value="" onclick="btnClick(17)">
-          <input type="button" id="btn18" class="unbtn" value="" onclick="btnClick(18)">
-          <input type="button" id="btn19" class="unbtn" value="" onclick="btnClick(19)">
-          <input type="button" id="btn20" class="unbtn" value="" onclick="btnClick(20)">
-          <input type="button" id="btn21" class="unbtn" value="" onclick="btnClick(21)">
-          <input type="button" id="btn22" class="unbtn" value="" onclick="btnClick(22)">
-          <input type="button" id="btn23" class="unbtn" value="" onclick="btnClick(23)">
+          <input type="button" title="第1關" id="btn0" class="unbtn" value="" onclick="btnClick(0)">
+          <input type="button" title="第2關" id="btn1" class="unbtn" value="" onclick="btnClick(1)">
+          <input type="button" title="第3關" id="btn2" class="unbtn" value="" onclick="btnClick(2)">
+          <input type="button" title="第4關" id="btn3" class="unbtn" value="" onclick="btnClick(3)">
+          <input type="button" title="第5關" id="btn4" class="unbtn" value="" onclick="btnClick(4)">
+          <input type="button" title="第6關" id="btn5" class="unbtn" value="" onclick="btnClick(5)">
+          <input type="button" title="第7關" id="btn6" class="unbtn" value="" onclick="btnClick(6)">
+          <input type="button" title="第8關" id="btn7" class="unbtn" value="" onclick="btnClick(7)">
+          <input type="button" title="第9關" id="btn8" class="unbtn" value="" onclick="btnClick(8)">
+          <input type="button" title="第10關" id="btn9" class="unbtn" value="" onclick="btnClick(9)">
+          <input type="button" title="第11關" id="btn10" class="unbtn" value="" onclick="btnClick(10)">
+          <input type="button" title="第12關" id="btn11" class="unbtn" value="" onclick="btnClick(11)">
+          <input type="button" title="第13關" id="btn12" class="unbtn" value="" onclick="btnClick(12)">
+          <input type="button" title="第14關" id="btn13" class="unbtn" value="" onclick="btnClick(13)">
+          <input type="button" title="第15關" id="btn14" class="unbtn" value="" onclick="btnClick(14)">
+          <input type="button" title="第16關" id="btn15" class="unbtn" value="" onclick="btnClick(15)">
+          <input type="button" title="第17關" id="btn16" class="unbtn" value="" onclick="btnClick(16)">
+          <input type="button" title="第18關" id="btn17" class="unbtn" value="" onclick="btnClick(17)">
+          <input type="button" title="第19關" id="btn18" class="unbtn" value="" onclick="btnClick(18)">
+          <input type="button" title="第20關" id="btn19" class="unbtn" value="" onclick="btnClick(19)">
+          <input type="button" title="第21關" id="btn20" class="unbtn" value="" onclick="btnClick(20)">
+          <input type="button" title="第22關" id="btn21" class="unbtn" value="" onclick="btnClick(21)">
+          <input type="button" title="第23關" id="btn22" class="unbtn" value="" onclick="btnClick(22)">
+          <input type="button" title="第24關" id="btn23" class="unbtn" value="" onclick="btnClick(23)">
           <div id = "buttonDiv">
             <input type="button" class="equipageButton"  value="" onclick="equipageView(centerBlockly)">
             <input type="button" class="instructionButton" value="" onclick="instructionView(centerBlockly)">
@@ -68,8 +68,8 @@
             <img src="img/star.png" class="imgIcon">
             <font class="starNumber" id="starNumber" ></font>
           </div>
-          <button class="btnUser" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-          <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <button class="btnUser" onclick="userData()" title="個人資料"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" onclick="logout()" title="登出"><i class="fas fa-sign-out-alt"></i> 登出</button>
           <!--<input type="button" class="userData" value="個人資料" onclick="userData()">
           <input type="button" class="signOut" value="登出" onclick="logout()">
           <div class="userGold">

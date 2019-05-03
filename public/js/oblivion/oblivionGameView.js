@@ -222,6 +222,7 @@ function userData() {
   divTag = document.getElementById("userDataView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(divID,divID2)");
@@ -320,6 +321,7 @@ function helper(mainDiv) {
   divTag = document.getElementById("helperView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"helperView\")");
@@ -379,6 +381,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("settingAllView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
