@@ -412,6 +412,10 @@ body {
 .search-text::placeholder{
   color: white;
 }
+#selectType{
+  background-color: #7A7A7A;
+  color: white;
+}
 #createrDiv{
   width: 90%;
   height: 81%;

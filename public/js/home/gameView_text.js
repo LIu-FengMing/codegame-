@@ -40,7 +40,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 })();
 
 var href = window.location.href;
-var user, directiveData, thisLevelNum, mainDescription, levelDivAlive = true;
+var user, directiveData, thisLevelNum, mainDescription, levelDivAlive = true,nowTexrareaVar;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var scriptData = {
@@ -125,17 +125,6 @@ $.ajax({
     xmlhttp.send();
   }
 })
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function () {
-//     if (this.readyState == 4 && this.status == 200) {
-//         mainDescription = JSON.parse(this.responseText);
-//         console.log(directiveData);
-//         getArgs();
-//         // getJson();
-//     }
-// };
-// xmlhttp.open("GET", "json/mainDescription.json", true);
-// xmlhttp.send();
 function getJson() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
@@ -1044,8 +1033,28 @@ $(function() {
 });
 $.each($("textarea"), function(i, n){
   $(n).css("height", n.scrollHeight + "px");
-})
 
+})
+window.onresize = function() {
+  nowTexrareaVar = document.getElementById("textarea_0").value;
+  var temp = document.getElementById("divcanvas").innerHTML;
+  document.getElementById("textareaDiv").innerHTML = "";
+  divTag = document.getElementById("textareaDiv");
+  b = document.createElement("textarea");
+  b.setAttribute("id", "textarea_0");
+  b.setAttribute("class", "lined");
+  b.setAttribute("style", "height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;");
+  b.innerHTML = nowTexrareaVar;
+  divTag.appendChild(b);
+  $(function() {
+    $(".lined").linedtextarea({
+      selectedLine: 10
+    });
+  });
+  $.each($("textarea"), function(i, n){
+    $(n).css("height", n.scrollHeight + "px");
+  })
+}
 
 /*鍵盤事件*/
 function insertAtCursor(myValue) {

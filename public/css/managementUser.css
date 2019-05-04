@@ -199,7 +199,6 @@ body {
   top: 3vh;
   left: 6%;
 }
-
 .clear {
   display: none;
   position: absolute;
@@ -221,6 +220,8 @@ body {
 .search-box:hover > .search-text,.search-box > .search-text:focus{
   width: 8vw;
   padding: 0 6px;
+  color: white;
+  box-shadow:-50px -50px 5px #7A7A7A inset;
   margin-right: 0.5vw;
 }
 .search-box:hover > .search-btn{
@@ -247,6 +248,7 @@ body {
   float: left;
   padding: 0;
   color: white;
+  box-shadow:-50px -50px 5px #7A7A7A inset;
   font-size: 2vh;
   transition: 0.4s;
   line-height: 3vh;
@@ -265,6 +267,10 @@ body {
   line-height: 3vh;
 }
 .search-text::placeholder{
+  color: white;
+}
+#selectType{
+  background-color: #7A7A7A;
   color: white;
 }
 
@@ -302,19 +308,19 @@ body {
   cursor: pointer;
 }
 #createrDiv .td03{
-  width: 25%;
+  width: 27%;
   cursor: pointer;
 }
 #createrDiv .td04{
-  width: 15%;
+  width: 9%;
   cursor: pointer;
 }
 #createrDiv .td05{
-  width: 10%;
+  width: 12%;
   cursor: pointer;
 }
 #createrDiv .td06{
-  width: 10%;
+  width: 12%;
   cursor: pointer;
 }
 #createrDiv textarea{

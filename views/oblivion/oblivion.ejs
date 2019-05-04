@@ -23,9 +23,14 @@
             <option value="canPlay">可遊玩</option>
           </select>
           <div class="search-box">
+            <select id="selectType" name="">
+              <option value="all">關卡名稱</option>
+              <option value="canPlay">遊玩條件</option>
+              <option value="canPlay">製作者</option>
+              <option value="canPlay">評價</option>
+              <option value="canPlay">發布日期</option>
+            </select>
             <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="關卡名稱" onsearch = "searchFunc()">
-            <!-- <a href="javascript:;" class="clear"></a> -->
-            <!-- <a href="#" onclick="console.log('1235464654');" class="clear"></a> -->
             <a class="search-btn"href="#">
               <i class="fas fa-search"></i>
             </a>

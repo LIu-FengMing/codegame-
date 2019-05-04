@@ -21,12 +21,16 @@
           <h1 class="titleH1">管理會員</h1>
           <input type="button" value="" id="goBack3" onclick="location.href='management';">
           <select id="levelSelect" name="">
-            <option value="all">&nbsp&nbsp&nbsp全&nbsp部</option>
-            <option value="canPlay">&nbsp&nbsp&nbsp封&nbsp鎖</option>
-            <option value="canPlay">&nbsp未&nbsp封&nbsp鎖</option>
+            <option value="all">&nbsp&nbsp全&nbsp部</option>
+            <option value="canPlay">&nbsp&nbsp封&nbsp鎖</option>
+            <option value="canPlay">未&nbsp封&nbsp鎖</option>
           </select>
           <div class="search-box">
-            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="關卡名稱" onsearch = "searchFunc()">
+            <select id="selectType" name="">
+              <option value="all">&nbsp&nbsp&nbsp帳&nbsp號</option>
+              <option value="canPlay">&nbsp&nbsp&nbsp名&nbsp稱</option>
+            </select>
+            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="搜尋" onsearch = "searchFunc()">
             <!-- <a href="javascript:;" class="clear"></a> -->
             <!-- <a href="#" onclick="console.log('1235464654');" class="clear"></a> -->
             <a class="search-btn"href="#">
