@@ -1048,7 +1048,7 @@ window.onresize = function() {
   divTag.appendChild(b);
   $(function() {
     $(".lined").linedtextarea({
-      selectedLine: 10
+      selectedLine: 1
     });
   });
   $.each($("textarea"), function(i, n){
