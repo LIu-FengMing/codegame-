@@ -40,7 +40,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 })();
 
 var href = window.location.href;
-var user, directiveData, thisLevelNum, mainDescription, levelDivAlive = true,nowTexrareaVar;
+var user, directiveData, thisLevelNum, mainDescription, levelDivAlive = true,nowTexrareaVar,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var scriptData = {
@@ -136,7 +136,6 @@ function getJson() {
   xmlhttp.open("GET", "json/directive.json", true);
   xmlhttp.send();
 }
-
 
 function error() {
   alert("有不當的操作發生");
@@ -735,8 +734,10 @@ function sendSession() {
 }
 
 /*選擇可用函式*/
+function forManagement() {
+  isSelectFunc = true;
+}
 function selectFunc(levelNumber) {
-  console.log(directiveData.instruction[levelNumber]);
   var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
   var className, usableValue;
   var divString = "";
@@ -772,7 +773,6 @@ function selectFunc(levelNumber) {
 }
 function blocklyUsable(thisClassID, thisValue) {
   var blockType;
-  console.log(thisClassID);
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
@@ -868,6 +868,10 @@ function blocklyUsable(thisClassID, thisValue) {
       break;
   }
   b.innerHTML = blockType;
+  if(!isSelectFunc){
+    b.setAttribute("onclick", "");
+    b.style.cursor = "default";
+  }
   divTag.appendChild(b);
 }
 
