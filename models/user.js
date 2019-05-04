@@ -25,6 +25,7 @@ var UserSchema = mongoose.Schema({
     },
     createMap: { type: Array, "default": [] },
     finishMapNum: { type: Array, "default": []  },
+    userstatus:{ type: Number, "default": 0 }
 })
 
 var User = module.exports = mongoose.model('User', UserSchema)
@@ -79,6 +80,17 @@ module.exports.givePassBcrypt = function (candidatePassword, callback) {
         })
     })
 }
+
+// updateUserStatus, 更新使用者狀態
+module.exports.updateUserStatus = function (id,userstatus, callback) {
+    var query = { _id: id}
+    var setquery = {
+        userstatus:userstatus
+    }
+    User.updateOne(query, setquery, callback);
+}
+
+
 // updatePassword, 更新密碼
 module.exports.updatePassword = function (username, candidatePassword, callback) {
     bcrypt.genSalt(10, function (err, salt) {

@@ -760,9 +760,17 @@ router.post('/managementUser', function (req, res, next) {
         User.getUser(req.user.id, function (err, users) {
             if (err) throw err;
             res.json(users);
-           
         })
     }
+    else if (type == "changeUserStatus") {
+        var userstatus=req.body.userstatus;
+        var userId=req.body.userId;
+        User.updateUserStatus(userId,userstatus, function (err, users) {
+            if (err) throw err;
+            res.json(users);
+        })
+    }
+    
 });
 
 router.get('/management', ensureAuthenticated, function (req, res, next) {

@@ -39,6 +39,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 
 })();
 
+
 function back() {
   var index = 0;
   var href = window.location.href;
@@ -52,25 +53,13 @@ function back() {
   console.log(href);
 }
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionOpen;
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false, isOblivionOpen;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
-var allUserData, completallUserData, oldDisMapNum = 0, playMap = [];
 
-// var scriptData = {
-//   type: "init"
-// }
+var allUserData, completallUserData, oldDisMapNum = 0;
 
-// $.ajax({
-//   url: href,              // 要傳送的頁面
-//   method: 'POST',               // 使用 POST 方法傳送請求
-//   dataType: 'json',             // 回傳資料會是 json 格式
-//   data: scriptData,  // 將表單資料用打包起來送出去
-//   success: function (res) {
-//     user = res;
 
-//   }
-// })
 initHome();
 
 
@@ -83,8 +72,6 @@ function initHome() {
   sendLoadUsernameMap();
 }
 
-
-
 function logout() {
   // console.log("dddddd");
   var href = "/logout";
@@ -96,7 +83,7 @@ function logout() {
 
 var thisSelectionId;
 var args;
-var divTag, level,thisIndex;
+var divTag, level, thisIndex;
 var lastObject = null;
 
 function selectionLevel(thisObject) {
@@ -107,35 +94,58 @@ function selectionLevel(thisObject) {
     thisIndex = mapIndex;
     console.log(thisIndex);
   }
-
   if (lastObject != null) {
     // console.log(lastObject);
-    console.log(mapIndex);
-
-    if (playMap[mapIndex] == 1) {
-      lastObject.style.backgroundColor = "rgb(152, 140, 186)";
-    }
-    else {
-      lastObject.style.backgroundColor = "#F5F5F5";
-    }
+    // console.log(mapIndex);
+    lastObject.style.backgroundColor = "#F5F5F5";
   }
   thisObject.style.backgroundColor = "#C2C2C2";
   lastObject = thisObject;
-  console.log(document.getElementById("td0" + mapIndex + "6").innerHTML);
-  if(document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖"){
+  // console.log(document.getElementById("td0" + mapIndex + "6").innerHTML);
+  if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
     document.getElementById("changeStatus").value = "解除封鎖";
-  }else {
+  } else {
     document.getElementById("changeStatus").value = "封鎖";
   }
 }
-function changeStatus(){
-  console.log(document.getElementById("td0" + thisIndex + "6").innerHTML);
-  if(document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖"){
-    document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
-    document.getElementById("changeStatus").value = "封鎖";
-  }else {
-    document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
-    document.getElementById("changeStatus").value = "解除封鎖";
+function changeStatus() {
+  console.log(thisIndex)
+  // console.log(document.getElementById("td0" + thisIndex + "6").innerHTML);
+  if (thisSelectionId) {
+    var userstatus = 0;
+    if (document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖") {
+      document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
+      document.getElementById("changeStatus").value = "封鎖";
+      allUserData[thisIndex].userstatus = 0;
+      userstatus = 0
+    } else {
+      document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
+      document.getElementById("changeStatus").value = "解除封鎖";
+      allUserData[thisIndex].userstatus = 1;
+      userstatus = 1
+    }
+
+    var scriptData = {
+      type: "changeUserStatus",
+      userId: allUserData[thisIndex]._id,
+      userstatus: userstatus
+    }
+    console.log(scriptData)
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        console.log(res);
+
+      }
+    })
+
+  }
+  else {
+    remindValue = "請點選其中一張地圖";
+    remindView(remindValue);
   }
 }
 var levelDivAlive = false;
@@ -192,7 +202,19 @@ function getArgs() {
     divTag.innerHTML = args.levelName;
   }
 }
-
+function clossFunc(thisDiv, thisDiv2) {
+  var divTag = document.getElementById(thisDiv);
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  divTag = document.getElementById(thisDiv2);
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  levelDivAlive = false;
+}
 
 
 /*建立表格*/
@@ -206,24 +228,34 @@ function sendLoadUsernameMap() {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       allUserData = res;
-      console.log(allUserData);
-
+      // console.log(allUserData);
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
         var obj = res[index]
+        var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
+        if (hightLevel == 51) {
+          hightLevel = 50;
+        }
+        allUserData[index].hightLevel = hightLevel;
+        var userstatusStr = "正常"
+        if (obj.userstatus) {
+          userstatusStr = "封鎖"
+        }
+        else {
+          allUserData[index].userstatus = 0;
+        }
         var script = {
           td01: obj.username,
           td02: obj.name,
           td03: obj.email,
           td04: obj.starNum,
-          // td05: updateDate,
-          // td06: obj.mapIntroduction,
+          td05: allUserData[index].hightLevel,
+          td06: userstatusStr
         }
         mapData.push(script);
       }
-
       completallUserData = allUserData.slice(0);
       createLevelTable(mapData);
     }
@@ -234,12 +266,11 @@ function sendLoadUsernameMap() {
 /*建立表格*/
 // window.onload = function createLevelTable(scriptData) {
 function createLevelTable(scriptData) {
-  console.log("--playMap---");
-  console.log(playMap);
+
   console.log(scriptData);
   oldDisMapNum = scriptData.length;
-  // for (var i = 0; i < scriptData.length; i++) {
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < scriptData.length; i++) {
+    // for (var i = 0; i < 20; i++) {
     var obj = scriptData[i];
     // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
@@ -252,9 +283,7 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("lostUserCreateTable" + i);
-    if (playMap[i] == 1) {
-      divTag.style.backgroundColor = "rgb(152, 140, 186)";
-    }
+
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
@@ -265,23 +294,23 @@ function createLevelTable(scriptData) {
       b.setAttribute("class", "td0" + j);
       divTag.appendChild(b);
       if (j == 6) {/*使用者狀態*/
-        // document.getElementById("textarea" + i + j).innerHTML = obj.td06;
-        document.getElementById("td0" + i + j).innerHTML = "封鎖"
+        document.getElementById("td0" + i + j).innerHTML = obj.td06;
+        // document.getElementById("td0" + i + j).innerHTML = "封鎖"
       } else if (j == 1) {/*使用者帳號*/
-        // document.getElementById("td0" + i + j).innerHTML = obj.td01;
-        document.getElementById("td0" + i + j).innerHTML = "aa";
+        document.getElementById("td0" + i + j).innerHTML = obj.td01;
+        // document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 2) {/*使用者名稱*/
-        // document.getElementById("td0" + i + j).innerHTML = obj.td02;
-        document.getElementById("td0" + i + j).innerHTML = "aa";
+        document.getElementById("td0" + i + j).innerHTML = obj.td02;
+        // document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 3) {/*使用者信箱*/
-        // document.getElementById("td0" + i + j).innerHTML = obj.td03;
-        document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
+        document.getElementById("td0" + i + j).innerHTML = obj.td03;
+        // document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
       } else if (j == 4) {/*星星數*/
-        // document.getElementById("td0" + i + j).innerHTML = obj.td04;
-        document.getElementById("td0" + i + j).innerHTML = "50";
+        document.getElementById("td0" + i + j).innerHTML = obj.td04;
+        // document.getElementById("td0" + i + j).innerHTML = "50";
       } else if (j == 5) {/*最高的關卡*/
-        // document.getElementById("td0" + i + j).innerHTML = obj.td05;
-        document.getElementById("td0" + i + j).innerHTML = "13";
+        document.getElementById("td0" + i + j).innerHTML = obj.td05;
+        // document.getElementById("td0" + i + j).innerHTML = "13";
       }
     }
   }
@@ -318,145 +347,144 @@ function changeTdName(thisObiect) {
   changeTdNameDisplay();
 }
 
-var TdNameTable = ["mapName", "requireStar", "author", "avgScoreStr", "updateDate", "mapIntroduction"]
+var TdNameTable = ["username", "name", "email", "starNum", "hightLevel", "userstatus"]
 function changeTdNameDisplay() {
-  // console.log(tdStatus);
-  // console.log(allUserData);
   var index = levelSelect.selectedIndex;
-  console.log(index);
+  // console.log(index);
   if (index == 0) { //全部
     allUserData = completallUserData.slice(0);
   }
-  else { //可遊玩
+  else if (index == 1) { //封鎖
     allUserData.length = 0;
     for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-      const element = completallUserData[indexS];
-      if (user.starNum >= element.requireStar) {
+      if (completallUserData[indexS].userstatus == 1) {
+        allUserData.push(completallUserData[indexS]);
+      }
+    }
+  }
+  else { //未封鎖
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      if (completallUserData[indexS].userstatus == 0) {
         allUserData.push(completallUserData[indexS]);
       }
     }
   }
 
-  // for (let index = 0; index < tdStatus.length; index++) {
-  for (let index = tdStatus.length-1; index >-1; index--){
-    var item=TdNameTable[index];
-    console.log("item:",item);
-    console.log("tdStatus[index]:",item);
-    if(tdStatus[index]==1){
+  for (let index = tdStatus.length - 1; index > -1; index--) {
+    var item = TdNameTable[index];
+    // console.log("item:",item);
+    // console.log("tdStatus[index]:",item);
+    if (tdStatus[index] == 1) {
       allUserData = allUserData.sort(function (a, b) {
         return a[item] > b[item] ? 1 : -1;
-       });
+      });
     }
-    else if(tdStatus[index]==2){
+    else if (tdStatus[index] == 2) {
       allUserData = allUserData.sort(function (a, b) {
         return a[item] < b[item] ? 1 : -1;
-       });
+      });
     }
   }
-
-  console.log(allUserData);
-
+  // console.log(allUserData);
   updateMapData(allUserData)
 
 }
 
-
-
-
 /*選單*/
-
 var levelSelect = document.getElementById("levelSelect");
 levelSelect.onchange = function (index) {
   changeTdNameDisplay();
-  // var index = levelSelect.selectedIndex;
-  // console.log(index);
-  // if (index == 0) { //全部
-  //   allUserData = completallUserData.slice(0);
-  // }
-  // else { //可遊玩
-  //   allUserData.length = 0;
-  //   for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-  //     const element = completallUserData[indexS];
-  //     if (user.starNum >= element.requireStar) {
-  //       allUserData.push(completallUserData[indexS]);
-  //     }
-  //   }
-  // }
-  // updateMapData(allUserData)
 }
-// function searchFunc() {
-//   var a = document.getElementById("searchTextBox");
-//   if (a.value == "") {
-//     a.className = "search-text";
-//     clearSearch();
-//   } else {
-//     a.className = "searchFocus";
-//   }
-// }
+var selectType = document.getElementById("selectType");
+var searchType=0;
+var searchTypeTable=["username", "name", "email", "hightLevel", "starNum", "userstatus"];
+selectType.onchange = function (index) {
+  searchType= selectType.selectedIndex;
+  // console.log(searchType);
+  // console.log(searchTypeTable[searchType]);
+  searchFunc();
+}
+
+function searchFunc() {
+  // var a = document.getElementById("searchTextBox");
+  // if (a.value == "") {
+  //   a.className = "search-text";
+  //   clearSearch();
+  // } else {
+  //   a.className = "searchFocus";
+  // }
+ // console.log("search:up");
+  // console.log(searchTextBox.value);
+  if (searchTextBox.value.length > 0) {
+    allUserData.length = 0;
+    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+      // const element = completallUserData[indexS];
+      var compareStr=completallUserData[indexS][searchTypeTable[searchType]].toString()
+      if (compareStr.indexOf(searchTextBox.value) > -1) {
+        allUserData.push(completallUserData[indexS]);
+      }
+    }
+    for (let index = tdStatus.length - 1; index > -1; index--) {
+      var item = TdNameTable[index];
+      // console.log("item:",item);
+      // console.log("tdStatus[index]:",item);
+      if (tdStatus[index] == 1) {
+        allUserData = allUserData.sort(function (a, b) {
+          return a[item] > b[item] ? 1 : -1;
+        });
+      }
+      else if (tdStatus[index] == 2) {
+        allUserData = allUserData.sort(function (a, b) {
+          return a[item] < b[item] ? 1 : -1;
+        });
+      }
+    }
+    updateMapData(allUserData)
+  }
+  else {
+    changeTdNameDisplay();
+  }
+  // updateMapData(allUserData)
+
+}
 
 
 /*表單更動*/
 function updateMapData(res) {
   var mapData = [];
-  playMap.length = 0;
   for (let index = 0; index < res.length; index++) {
-    var playF = false;
-    for (let pfi = 0; pfi < user.finishMapNum.length; pfi++) {
-      var item = user.finishMapNum[pfi].mapID;
-      if (item == res[index]._id) {
-        playF = true;
-        playMap.push(1);
-        break;
-      }
+    var obj = res[index]
+    var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
+    if (hightLevel == 51) {
+      hightLevel = 50;
     }
-    if (playF == false) {
-      playMap.push(0);
-    }
-    var obj = res[index], check = "X";
-    if (obj.check) {
-      check = "✔";
-    }
-    var avgScore = obj.avgScore, avgScoreStr;
-    if (avgScore == 0) {
-      avgScoreStr = "--/";
+    allUserData[index].hightLevel = hightLevel;
+    var userstatusStr = "正常"
+    if (obj.userstatus) {
+      userstatusStr = "封鎖"
     }
     else {
-      avgScoreStr = avgScore.toString() + "/";
+      allUserData[index].userstatus = 0;
     }
-    if (obj.score.length == 0) {
-      avgScoreStr += "--";
-    }
-    else {
-      avgScoreStr += obj.score.length;
-    }
-    var updateDate;
-    var data = new Date(obj.updateDate);
-    var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
-    updateDate = year.toString() + "/" + month.toString() + "/" + day.toString();
-
     var script = {
-      td01: obj.mapName,
-      td02: obj.requireStar,
-      td03: obj.author,
-      td04: avgScoreStr,
-      td05: updateDate,
-      td06: obj.mapIntroduction,
+      td01: obj.username,
+      td02: obj.name,
+      td03: obj.email,
+      td04: obj.starNum,
+      td05: allUserData[index].hightLevel,
+      td06: userstatusStr
     }
     mapData.push(script);
   }
   console.log(mapData);
-
   updateLevelTable(mapData);
 }
 function updateLevelTable(scriptData) {
-  // console.log(scriptData);
-
-  // console.log(oldDisMapNum, scriptData.length);
-
   for (var i = 0; i < scriptData.length; i++) {
     var obj = scriptData[i];
     if (i < oldDisMapNum) {
-      document.getElementById("textarea" + i + "6").innerHTML = obj.td06;
+      document.getElementById("td0" + i + "6").innerHTML = obj.td06;
       document.getElementById("td0" + i + "1").innerHTML = obj.td01;
       document.getElementById("td0" + i + "2").innerHTML = obj.td02;
       document.getElementById("td0" + i + "3").innerHTML = obj.td03;
@@ -464,13 +492,8 @@ function updateLevelTable(scriptData) {
       document.getElementById("td0" + i + "5").innerHTML = obj.td05;
 
       divTag = document.getElementById("lostUserCreateTable" + i);
-      if (playMap[i] == 1) {
-        divTag.style.backgroundColor = "rgb(152, 140, 186)";
-      }
-      else {
-        divTag.style.backgroundColor = "rgb(153, 204, 255)";
-      }
 
+      divTag.style.backgroundColor = "#F5F5F5";;
       // divTag.style.backgroundColor = "rgb(153, 204, 255)";
     }
     else {
@@ -485,9 +508,6 @@ function updateLevelTable(scriptData) {
       divTag.appendChild(b);
 
       divTag = document.getElementById("lostUserCreateTable" + i);
-      if (playMap[i] == 1) {
-        divTag.style.backgroundColor = "rgb(152, 140, 186)";
-      }
 
       b = document.createElement("tr");
       b.setAttribute("id", "tr" + i);
@@ -505,7 +525,7 @@ function updateLevelTable(scriptData) {
           b.setAttribute("rows", "1");
           b.setAttribute("onfocus", "blur()");
           divTag.appendChild(b);
-          document.getElementById("textarea" + i + j).innerHTML = obj.td06;
+          document.getElementById("td0" + i + j).innerHTML = obj.td06;
           divTag = document.getElementById("tr" + i);
         } else if (j == 1) {
           document.getElementById("td0" + i + j).innerHTML = obj.td01;
@@ -535,89 +555,34 @@ function updateLevelTable(scriptData) {
 }
 
 var searchTextBox = document.getElementById("searchTextBox");
-searchTextBox.onkeydown = function () {
-  console.log("search:");
-  console.log(searchTextBox.value);
-  searchTextBox.className = "searchFocus";
-  if (searchTextBox.value.length > 0) {
-    allUserData.length = 0;
-    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-      const element = completallUserData[indexS];
-      if (completallUserData[indexS].author.indexOf(searchTextBox.value) > -1 || completallUserData[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        allUserData.push(completallUserData[indexS]);
-      }
-    }
-  }
-  else {
-    var index = levelSelect.selectedIndex;
-    console.log(index);
-    if (index == 0) { //全部
-      allUserData = completallUserData.slice(0);
-    }
-    else { //可遊玩
-      allUserData.length = 0;
-      for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-        const element = completallUserData[indexS];
-        if (user.starNum >= element.requireStar) {
-          allUserData.push(completallUserData[indexS]);
-        }
-      }
-    }
-  }
-  updateMapData(allUserData)
-}
+// searchTextBox.onkeydown = function () {
+  // searchFunc();
+// }
 searchTextBox.onkeyup = function () {
-  // console.log("search:");
-  // console.log(searchTextBox.value);
-  if (searchTextBox.value.length > 0) {
-    allUserData.length = 0;
-    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-      const element = completallUserData[indexS];
-      if (completallUserData[indexS].author.indexOf(searchTextBox.value) > -1 || completallUserData[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        allUserData.push(completallUserData[indexS]);
-      }
-    }
-  }
-  else {
-    var index = levelSelect.selectedIndex;
-    console.log(index);
-    if (index == 0) { //全部
-      allUserData = completallUserData.slice(0);
-    }
-    else { //可遊玩
-      allUserData.length = 0;
-      for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-        const element = completallUserData[indexS];
-        if (user.starNum >= element.requireStar) {
-          allUserData.push(completallUserData[indexS]);
-        }
-      }
-    }
-  }
-  updateMapData(allUserData)
+  searchFunc();
 }
 searchTextBox.onchange = function () {
-  console.log("happy");
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
-
     clearSearch();
   }
 }
+
+
 function clearSearch() {
-  console.log("happy");
-  var index = levelSelect.selectedIndex;
-  console.log(index);
-  if (index == 0) { //全部
-    allUserData = completallUserData.slice(0);
-  }
-  else { //可遊玩
-    allUserData.length = 0;
-    for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-      const element = completallUserData[indexS];
-      if (user.starNum >= element.requireStar) {
-        allUserData.push(completallUserData[indexS]);
-      }
-    }
-  }
-  updateMapData(allUserData)
+  changeTdNameDisplay();
+  // var index = levelSelect.selectedIndex;
+  // console.log(index);
+  // if (index == 0) { //全部
+  //   allUserData = completallUserData.slice(0);
+  // }
+  // else { //可遊玩
+  //   allUserData.length = 0;
+  //   for (let indexS = 0; indexS < completallUserData.length; indexS++) {
+  //     const element = completallUserData[indexS];
+  //     if (user.starNum >= element.requireStar) {
+  //       allUserData.push(completallUserData[indexS]);
+  //     }
+  //   }
+  // }
+  // updateMapData(allUserData)
 }

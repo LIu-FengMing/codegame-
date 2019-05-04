@@ -1009,14 +1009,59 @@ levelSelect.onchange = function (index) {
   // }
   // updateMapData(userMap)
 }
+var selectType = document.getElementById("selectType");
+var searchType=0;
+var searchTypeTable=["mapName", "requireStar", "author", "avgScoreStr", "postDateSecond", "mapIntroduction"]
+selectType.onchange = function (index) {
+  searchType= selectType.selectedIndex;
+  // console.log(searchType);
+  // console.log(searchTypeTable[searchType]);
+  searchFunc();
+}
+
+
+
 function searchFunc() {
-  var a = document.getElementById("searchTextBox");
-  if (a.value == "") {
-    a.className = "search-text";
-    clearSearch();
-  } else {
-    a.className = "searchFocus";
+  // var a = document.getElementById("searchTextBox");
+  // if (a.value == "") {
+  //   a.className = "search-text";
+  //   clearSearch();
+  // } else {
+  //   a.className = "searchFocus";
+  // }
+  if (searchTextBox.value.length > 0) {
+    userMap.length = 0;
+    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+      // const element = completUserMap[indexS];
+      var compareStr=completUserMap[indexS][searchTypeTable[searchType]].toString()
+      if (compareStr.indexOf(searchTextBox.value) > -1) {
+        userMap.push(completUserMap[indexS]);
+      }
+    }
+    for (let index = tdStatus.length - 1; index > -1; index--) {
+      var item = TdNameTable[index];
+      // console.log("item:",item);
+      // console.log("tdStatus[index]:",item);
+      if (tdStatus[index] == 1) {
+        userMap = userMap.sort(function (a, b) {
+          return a[item] > b[item] ? 1 : -1;
+        });
+      }
+      else if (tdStatus[index] == 2) {
+        userMap = userMap.sort(function (a, b) {
+          return a[item] < b[item] ? 1 : -1;
+        });
+      }
+    }
+    updateMapData(userMap)
   }
+  else {
+    changeTdNameDisplay();
+  }
+  // updateMapData(userMap)
+
+
+
 }
 /*表單更動*/
 function updateMapData(res) {
@@ -1158,89 +1203,90 @@ function updateLevelTable(scriptData) {
 }
 
 var searchTextBox = document.getElementById("searchTextBox");
-searchTextBox.onkeydown = function () {
-  console.log("search:");
-  console.log(searchTextBox.value);
-  searchTextBox.className = "searchFocus";
-  if (searchTextBox.value.length > 0) {
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-  else {
-    var index = levelSelect.selectedIndex;
-    console.log(index);
-    if (index == 0) { //全部
-      userMap = completUserMap.slice(0);
-    }
-    else { //可遊玩
-      userMap.length = 0;
-      for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-        const element = completUserMap[indexS];
-        if (user.starNum >= element.requireStar) {
-          userMap.push(completUserMap[indexS]);
-        }
-      }
-    }
-  }
-  updateMapData(userMap)
-}
+// searchTextBox.onkeydown = function () {
+//   console.log("search:");
+//   console.log(searchTextBox.value);
+//   searchTextBox.className = "searchFocus";
+//   if (searchTextBox.value.length > 0) {
+//     userMap.length = 0;
+//     for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+//       const element = completUserMap[indexS];
+//       if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
+//         userMap.push(completUserMap[indexS]);
+//       }
+//     }
+//   }
+//   else {
+//     var index = levelSelect.selectedIndex;
+//     console.log(index);
+//     if (index == 0) { //全部
+//       userMap = completUserMap.slice(0);
+//     }
+//     else { //可遊玩
+//       userMap.length = 0;
+//       for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+//         const element = completUserMap[indexS];
+//         if (user.starNum >= element.requireStar) {
+//           userMap.push(completUserMap[indexS]);
+//         }
+//       }
+//     }
+//   }
+//   updateMapData(userMap)
+// }
 searchTextBox.onkeyup = function () {
+  searchFunc();
   // console.log("search:");
   // console.log(searchTextBox.value);
-  if (searchTextBox.value.length > 0) {
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-  else {
-    var index = levelSelect.selectedIndex;
-    console.log(index);
-    if (index == 0) { //全部
-      userMap = completUserMap.slice(0);
-    }
-    else { //可遊玩
-      userMap.length = 0;
-      for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-        const element = completUserMap[indexS];
-        if (user.starNum >= element.requireStar) {
-          userMap.push(completUserMap[indexS]);
-        }
-      }
-    }
-  }
-  updateMapData(userMap)
+  // if (searchTextBox.value.length > 0) {
+  //   userMap.length = 0;
+  //   for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+  //     const element = completUserMap[indexS];
+  //     if (completUserMap[indexS].author.indexOf(searchTextBox.value) > -1 || completUserMap[indexS].mapName.indexOf(searchTextBox.value) > -1) {
+  //       userMap.push(completUserMap[indexS]);
+  //     }
+  //   }
+  // }
+  // else {
+  //   var index = levelSelect.selectedIndex;
+  //   console.log(index);
+  //   if (index == 0) { //全部
+  //     userMap = completUserMap.slice(0);
+  //   }
+  //   else { //可遊玩
+  //     userMap.length = 0;
+  //     for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+  //       const element = completUserMap[indexS];
+  //       if (user.starNum >= element.requireStar) {
+  //         userMap.push(completUserMap[indexS]);
+  //       }
+  //     }
+  //   }
+  // }
+  // updateMapData(userMap)
 }
 searchTextBox.onchange = function () {
   console.log("happy");
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
-
     clearSearch();
   }
 }
 function clearSearch() {
-  console.log("happy");
-  var index = levelSelect.selectedIndex;
-  console.log(index);
-  if (index == 0) { //全部
-    userMap = completUserMap.slice(0);
-  }
-  else { //可遊玩
-    userMap.length = 0;
-    for (let indexS = 0; indexS < completUserMap.length; indexS++) {
-      const element = completUserMap[indexS];
-      if (user.starNum >= element.requireStar) {
-        userMap.push(completUserMap[indexS]);
-      }
-    }
-  }
-  updateMapData(userMap)
+  changeTdNameDisplay();
+  // console.log("happy");
+  // var index = levelSelect.selectedIndex;
+  // console.log(index);
+  // if (index == 0) { //全部
+  //   userMap = completUserMap.slice(0);
+  // }
+  // else { //可遊玩
+  //   userMap.length = 0;
+  //   for (let indexS = 0; indexS < completUserMap.length; indexS++) {
+  //     const element = completUserMap[indexS];
+  //     if (user.starNum >= element.requireStar) {
+  //       userMap.push(completUserMap[indexS]);
+  //     }
+  //   }
+  // }
+  // updateMapData(userMap)
 }
