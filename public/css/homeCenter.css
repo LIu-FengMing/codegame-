@@ -269,6 +269,7 @@
 }
 .itemP{
   margin-top: 1.5vh;
+  line-height: calc(5px + 2vh);
 }
 /*成就*/
 #achievementView{
