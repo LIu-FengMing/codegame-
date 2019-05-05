@@ -20,7 +20,6 @@ function selectChart(thisSelect) {
 function createselectChart(thisSelect) {
   var datasetsData = [0], chartType;
   console.log(jsonData);
-  
   switch (thisSelect) {
     case "playNumber":
       chartType = "line";
@@ -203,6 +202,10 @@ function createselectChart(thisSelect) {
                     display: true,
                     fontSize: 25,
                     labelString: '通關率'
+                  },
+                  ticks : {
+                      max : 1,
+                      min : 0
                   }
                 }],
                 xAxes: [{
@@ -355,6 +358,10 @@ function createselectChart(thisSelect) {
                     display: true,
                     fontSize: 25,
                     labelString: '失敗率'
+                  },
+                  ticks : {
+                      max : 1,
+                      min : 0
                   }
                 }],
                 xAxes: [{
@@ -501,7 +508,7 @@ function prosessUserData() {
       // mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
     }
     else{
-      mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }     
+      mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
     }
     /*  SuccessRate   */
@@ -575,6 +582,3 @@ function prosessUserData() {
   }
 
 }
-
-
-
