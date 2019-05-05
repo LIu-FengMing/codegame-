@@ -50,6 +50,10 @@ function createselectChart(thisSelect) {
                     display: true,
                     fontSize: 25,
                     labelString: '遊玩人數'
+                  },
+                  ticks : {
+                    min : 0,
+                    callback: function (value) { if (Number.isInteger(value)) { return value; } }
                   }
                 }],
                 xAxes: [{
