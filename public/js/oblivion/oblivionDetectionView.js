@@ -53,7 +53,7 @@ function back() {
 }
 var mapMessage;
 var href = window.location.href;
-var user,equipmentData,achievemenData,dictionaryData;
+var user,equipmentData,achievemenData,dictionaryData,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
 var musicData;
 var scriptData = {
@@ -635,6 +635,9 @@ function sendSession() {
 }
 
 /*選擇可用函式*/
+function forManagement() {
+  isSelectFunc = true;
+}
 function selectFunc(levelNumber) {
   console.log(directiveData.instruction[levelNumber]);
   var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
@@ -768,6 +771,10 @@ function blocklyUsable(thisClassID, thisValue) {
       break;
   }
   b.innerHTML = blockType;
+  if(!isSelectFunc){
+    b.setAttribute("onclick", "");
+    b.style.cursor = "default";
+  }
   divTag.appendChild(b);
 }
 
