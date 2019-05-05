@@ -25,6 +25,12 @@ router.get('/login', function (req, res, next) {
         // console.log(loginURL);
         res.redirect(loginURL);
     }
+    else if(local.toString() == "userBlocked"){
+        let loginURL = '/login?';
+        var searchParams = new URLSearchParams({ token: "userBlocked" });
+        loginURL += searchParams.toString();
+        res.redirect(loginURL);
+    }
     else {
         var username = req.session.username, pass = req.session.pass;
         req.session.username = null
@@ -223,6 +229,13 @@ passport.use(new LocalStrategy(
                 var script = 'IncorrectUsername ' + username + " " + password;
                 return done(null, false, { message: script });
             }
+            if(user.userstatus){
+                if(user.userstatus==1){//被封鎖
+                    var script = 'userBlocked';
+                    return done(null, false, { message: script })
+                } 
+            }
+            
             User.comparePassword(password, user.password, function (err, isMatch) {
                 if (err) throw err
                 if (isMatch) {

@@ -738,6 +738,9 @@ router.post('/gameView_blockly', function (req, res, next) {
 
 router.get('/managementUser', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+        res.redirect('/login')
+    }
     res.render('backstage/managementUser', {
         user: req.user.username
     });
@@ -775,12 +778,16 @@ router.post('/managementUser', function (req, res, next) {
 
 router.get('/management', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+        res.redirect('/login')
+    }
     res.render('backstage/management', {
         user: req.user.username
     });
 });
 router.post('/management', function (req, res, next) {
     // Parse Info
+
     var type = req.body.type
     console.log("home post--------");
     console.log(req.body.type);
@@ -825,6 +832,9 @@ router.post('/management', function (req, res, next) {
 
 router.get('/managementStatistics', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+        res.redirect('/login')
+    }
     res.render('backstage/managementStatistics', {
         user: req.user.username
     });
@@ -926,7 +936,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         if (openLokCastle) {
             lock = "castle_code";
         }
-        res.render('home/home', {
+        res.render('home/homeByManage', {
             user: req.user.username,
             castlelock: lock
         });
@@ -1133,7 +1143,7 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
         if (openLokCastle) {
             lock = "castle_code";
         }
-        res.render('home/homeByManage', {
+        res.render('home/home', {
             user: req.user.username,
             castlelock: lock
         });

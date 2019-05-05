@@ -24,17 +24,17 @@
         </div>
         <div class="box center" id="center">
           <img src="img/bk.PNG" id="bkImg">
-
-          <input type="button" value="" id="goBack3"  onclick="location.href='management';" title="返回鍵">
+          <!-- <input type="button" value="" id="goBack3"  onclick="location.href='management';"> -->
+          <!-- <input type="button" value="" id="goBack3"  onclick="location.href='management';" title="返回鍵"> -->
           <div class="">
             <div class="castle_blockly">
-              <input type="button" class="castle_blockly" value="" onclick="location.href='pruss';" title="普魯斯帝國">
+              <input type="button" title="普魯斯帝國" class="castle_blockly" value="" onclick="location.href='pruss';">
             </div>
             <div class=<%= castlelock %> id="castle_codeDiv">
               <input type="button" title="庫魯瑪帝國" class=<%= castlelock %> id="castle_codeBtn" value="" onclick="location.href='kuruma';">
             </div>
             <div class="castle_link">
-              <input type="button" class="castle_link" value="" onclick="location.href='oblivion';" title="失落帝國">
+              <input type="button" title="失落帝國" class="castle_link" value="" onclick="location.href='oblivion';">
             </div>
           </div>
           <div id = "buttonDiv">
@@ -50,8 +50,8 @@
             <img src="img/star.png" class="imgIcon">
             <font class="starNumber" id="starNumber" ></font>
           </div>
-          <button class="btnUser" onclick="userData()" title="個人資料"><i class="fas fa-user"></i> 個人資料</button>
-          <button class="btnLogout" onclick="logout()" title="登出"><i class="fas fa-sign-out-alt"></i> 登出</button>
+          <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
+          <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
         </div>
       </div>
       <div class="footer"></div>

@@ -4,7 +4,6 @@ window.onload = function () {
   selectChart(selectChartVar);
 }
 function selectChart(thisSelect) {
-  var datasetsData = [0], chartType;
   switch (thisSelect) {
     case "playNumber":
       getPlayNumberJson(thisSelect);
@@ -357,10 +356,10 @@ function createselectChart(thisSelect) {
                   scaleLabel: {
                     display: true,
                     fontSize: 25,
-                    labelString: '失敗率'
+                    labelString: '平均失敗率'
                   },
                   ticks : {
-                      max : 1,
+                      // max : 1,
                       min : 0
                   }
                 }],
@@ -368,7 +367,7 @@ function createselectChart(thisSelect) {
                   scaleLabel: {
                     display: true,
                     fontSize: 25,
-                    labelString: 'Ｘ：關卡　Ｙ：失敗率（提交失敗次數／總提交次數）'
+                    labelString: 'Ｘ：關卡　Ｙ：平均失敗率（提交失敗次數／遊玩人數）'
                   }
                 }]
               },
@@ -385,22 +384,6 @@ function createselectChart(thisSelect) {
       break;
   }
 }
-
-
-
-function getAverageFailureRateJson(thisSelect) {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      jsonData = JSON.parse(this.responseText);
-      createselectChart(thisSelect)
-    }
-  };
-  xmlhttp.open("GET", "json/averageFailureRate.json", true);
-  xmlhttp.send();
-  return jsonData;
-}
-
 
 var href = window.location.href;
 var readAllPlayFlag = false
@@ -460,34 +443,34 @@ function getSuccessRateJson(thisSelect) {
   }
 }
 
-// function getAverageFailureRateJson(thisSelect) {
-//   if (readAllPlayFlag) { //有資料了
-//     // jsonData = AverageFailureRate.slice(0);
-//     jsonData = JSON.parse(JSON.stringify(AverageFailureRate));
-//     createselectChart(thisSelect);
-//   }
-//   else {
-//     var scriptData = {
-//       type: "readAllPlay",
-//     }
-//     $.ajax({
-//       url: href,              // 要傳送的頁面
-//       method: 'POST',               // 使用 POST 方法傳送請求
-//       dataType: 'json',             // 回傳資料會是 json 格式
-//       data: scriptData,  // 將表單資料用打包起來送出去
-//       success: function (res) {
-//         AlluserData = res;
-//         prosessUserData();
+function getAverageFailureRateJson(thisSelect) {
+  if (readAllPlayFlag) { //有資料了
+    // jsonData = AverageFailureRate.slice(0);
+    jsonData = JSON.parse(JSON.stringify(AverageFailureRate));
+    createselectChart(thisSelect);
+  }
+  else {
+    var scriptData = {
+      type: "readAllPlay",
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        AlluserData = res;
+        prosessUserData();
 
-//         // jsonData = AverageFailureRate.slice(0);
+        // jsonData = AverageFailureRate.slice(0);
 
-//         jsonData = JSON.parse(JSON.stringify(AverageFailureRate));
-//         createselectChart(thisSelect);
-//         readAllPlayFlag = true
-//       }
-//     })
-//   }
-// }
+        jsonData = JSON.parse(JSON.stringify(AverageFailureRate));
+        createselectChart(thisSelect);
+        readAllPlayFlag = true
+      }
+    })
+  }
+}
 
 function prosessUserData() {
   console.log(AlluserData);
@@ -508,7 +491,7 @@ function prosessUserData() {
       // mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
     }
     else{
-      mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
+      mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
     }
     /*  SuccessRate   */
@@ -524,6 +507,54 @@ function prosessUserData() {
       }
     }
     /*  mapFailureCount   */
+    for (let indexFail = 0; indexFail < obj.EasyEmpire.codeLevel.length; indexFail++) {
+      var thisLevelRecord=obj.EasyEmpire.codeLevel[indexFail].challengeLog;
+      for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+        var thisRecordData=thisLevelRecord[indexLevel];
+        var failF=false;
+        if(thisRecordData.srarNum=="0"){
+          failF=true;
+        }
+      
+        if (mapNumber[indexFail]) {
+          if(failF){
+            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+          }
+          mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
+        }
+        else{
+          mapNumber[indexFail] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
+          if(failF){
+            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+          }
+          mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
+        }
+      }
+    }
+    for (let indexFail = 0; indexFail < obj.MediumEmpire.codeLevel.length; indexFail++) {
+      var thisLevelRecord=obj.MediumEmpire.codeLevel[indexFail].challengeLog;
+      for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+        var thisRecordData=thisLevelRecord[indexLevel];
+        var failF=false;
+        if(thisRecordData.srarNum=="0"){
+          failF=true;
+        }
+      
+        if (mapNumber[indexFail+24]) {
+          if(failF){
+            mapNumber[indexFail+24].failCount = mapNumber[indexFail+24].failCount + 1;
+          }
+          mapNumber[indexFail+24].playCount = mapNumber[indexFail+24].playCount + 1;
+        }
+        else{
+          mapNumber[indexFail+24] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
+          if(failF){
+            mapNumber[indexFail+24].failCount = mapNumber[indexFail+24].failCount + 1;
+          }
+          mapNumber[indexFail+24].playCount = mapNumber[indexFail+24].playCount + 1;
+        }
+      }
+    }
 
 
   }
@@ -533,7 +564,6 @@ function prosessUserData() {
   var dataSuccessNumber = new Array(50)
   var dataFailureNumber = new Array(50)
   for (let index = 49; index > -1; index--) {
-    // data[index]={countdata:0,SuccessCountdata:0,FailureCountdata:0}
 
     var level = index + 1;
     /*  PlayNumber   */
@@ -546,7 +576,7 @@ function prosessUserData() {
       };
     }
     else {
-      mapNumber[index] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
+      mapNumber[index] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0  }
       dataPlayNumber[index] = {
         "level": level,
         "number": totPlayNumber
@@ -565,11 +595,19 @@ function prosessUserData() {
       "level": level,
       "number": num
     };
+
     /*  mapFailureCount   */
-    // dataFailureNumber[index] = {
-    //   "level": level,
-    //   "number": 0
-    // };
+    var num =0;
+    if(mapNumber[index].playCount!=0){
+      // num=mapNumber[index].failCount/mapNumber[index].playCount
+      num=mapNumber[index].failCount/(dataPlayNumber[index].number-mapNumber[index].mapSuccessCountDel)
+    }
+    
+    num = num.toFixed(2); // 输出结果为 2.45
+    dataFailureNumber[index] = {
+      "level": level,
+      "number": num
+    };
   }
   PlayNumber = {
     "playNumber": dataPlayNumber

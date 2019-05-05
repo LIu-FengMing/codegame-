@@ -12,7 +12,6 @@ window.onload = function () {
         console.log(UserPass.value);
         if (UserName.value && UserPass.value) {
             if (params.get('token') == "IncorrectUsername") {
-
                 // alert("'使用者帳號'輸入錯誤");
                 remindValue = "使用者帳號輸入錯誤";
                 remindView(remindValue);
@@ -22,6 +21,11 @@ window.onload = function () {
                 remindValue = "密碼輸入錯誤";
                 remindView(remindValue);
             }
+        }
+        else if (params.get('token') == "userBlocked") {
+            // alert("'密碼'輸入錯誤");
+            remindValue = "此帳號已被封鎖<br>請聯絡官方";
+            remindView(remindValue);
         }
     }
 }
