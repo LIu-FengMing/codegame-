@@ -270,6 +270,8 @@ body {
   color: white;
 }
 #selectType{
+  height: 3vh;
+  border: none;
   background-color: #7A7A7A;
   color: white;
 }
@@ -313,6 +315,7 @@ body {
 }
 #createrDiv .td04{
   width: 9%;
+  overflow: auto;
   cursor: pointer;
 }
 #createrDiv .td05{

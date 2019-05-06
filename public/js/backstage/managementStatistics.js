@@ -1,3 +1,8 @@
+function logout() {
+  // console.log("dddddd");
+  var href = "/logout";
+  window.location.replace(href);
+}
 var selectChartVar, jsonData;
 window.onload = function () {
   selectChartVar = "playNumber";
@@ -196,7 +201,8 @@ function createselectChart(thisSelect) {
                   'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
-              }]
+                }
+              ]
             },
             options: {
               scales: {
@@ -207,7 +213,6 @@ function createselectChart(thisSelect) {
                     labelString: '通關率'
                   },
                   ticks : {
-                      max : 1,
                       min : 0
                   }
                 }],
@@ -245,7 +250,7 @@ function createselectChart(thisSelect) {
             data: {
               labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
               datasets: [{
-                label: '平均失敗率（%）：',
+                label: '平均失敗次數（%）：',
                 data: datasetsData,
                 backgroundColor: [
                   'rgba(54, 162, 235, 1)',
@@ -363,7 +368,6 @@ function createselectChart(thisSelect) {
                     labelString: '平均失敗率'
                   },
                   ticks : {
-                      // max : 1,
                       min : 0
                   }
                 }],
@@ -519,7 +523,7 @@ function prosessUserData() {
         if(thisRecordData.srarNum=="0"){
           failF=true;
         }
-      
+
         if (mapNumber[indexFail]) {
           if(failF){
             mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
@@ -543,7 +547,7 @@ function prosessUserData() {
         if(thisRecordData.srarNum=="0"){
           failF=true;
         }
-      
+
         if (mapNumber[indexFail+24]) {
           if(failF){
             mapNumber[indexFail+24].failCount = mapNumber[indexFail+24].failCount + 1;
@@ -606,7 +610,7 @@ function prosessUserData() {
       // num=mapNumber[index].failCount/mapNumber[index].playCount
       num=mapNumber[index].failCount/(dataPlayNumber[index].number-mapNumber[index].mapSuccessCountDel)
     }
-    
+
     num = num.toFixed(2); // 输出结果为 2.45
     dataFailureNumber[index] = {
       "level": level,

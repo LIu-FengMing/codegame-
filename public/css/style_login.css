@@ -115,6 +115,7 @@
   z-index: 999;
   height: 30vh;
   width: 25vw;
+  line-height: calc(15px + 2.5vh);
   border-style: solid;
   border-color: black;
   border-radius: 15px;

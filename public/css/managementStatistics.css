@@ -173,7 +173,7 @@ body {
 /*center*/
 #levelSelect{
   height: 4vh;
-  width: 6vw;
+  width: 10vw;
   font-size: calc(10px + 0.5vw);
   background-color: #DAE8FC;
   border-style: solid;

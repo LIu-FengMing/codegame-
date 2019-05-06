@@ -413,6 +413,7 @@ body {
   color: white;
 }
 #selectType{
+  height: 3vh;
   background-color: #7A7A7A;
   color: white;
 }
