@@ -3,7 +3,7 @@ function logout() {
   var href = "/logout";
   window.location.replace(href);
 }
-var selectChartVar, jsonData;
+var selectChartVar, jsonData,mycanvas;
 window.onload = function () {
   selectChartVar = "playNumber";
   selectChart(selectChartVar);
@@ -33,7 +33,7 @@ function createselectChart(thisSelect) {
             datasetsData[i] = jsonData.playNumber[i].number;
           }
           var ctx = document.getElementById('playNumberChart').getContext('2d');
-          var chart = new Chart(ctx, {
+          mycanvas = new Chart(ctx, {
             // The type of chart we want to create
             type: chartType,
             // The data for our dataset
@@ -103,7 +103,7 @@ function createselectChart(thisSelect) {
             datasetsData[i] = jsonData.successRate[i].number;
           }
           var ctx = document.getElementById('successRateChart');
-          var myChart = new Chart(ctx, {
+          mycanvas = new Chart(ctx, {
             type: 'bar',
             data: {
               labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
@@ -274,12 +274,12 @@ function createselectChart(thisSelect) {
             datasetsData[i] = jsonData.averageFailureRate[i].number;
           }
           var ctx = document.getElementById('averageFailureRateChart');
-          var myChart = new Chart(ctx, {
+          mycanvas = new Chart(ctx, {
             type: 'bar',
             data: {
               labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
               datasets: [{
-                label: '平均失敗次數（%）：',
+                label: '平均失敗次數：',
                 data: datasetsData,
                 backgroundColor: [
                   'rgba(54, 162, 235, 1)',
@@ -394,7 +394,7 @@ function createselectChart(thisSelect) {
                   scaleLabel: {
                     display: true,
                     fontSize: 25,
-                    labelString: '平均失敗率'
+                    labelString: '平均失敗次數'
                   },
                   ticks : {
                       min : 0
@@ -673,11 +673,36 @@ function prosessUserData() {
 
 }
 
-function resetZoom() {
-  // window.myLine.resetZoom();
-  createselectChart("playNumber");
+$('#reset_zoom').click(function() {
+  mycanvas.resetZoom();
+})
+
+function changeTimeFunc(timeType) {
+  console.log("此為" + timeType + "事件:oneDayFunc()");
+  switch (timeType) {
+    case 'oneDay':
+      /*一日*/
+      break;
+    case 'sevenDay':
+      /*七日*/
+      break;
+    case 'oneMonth':
+      /*一個月*/
+      break;
+    case 'sixMonth':
+      /*六個月*/
+      break;
+    case 'oneYear':
+      /*一年*/
+      break;
+  }
+  mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  mycanvas.update();
 }
 
-function oneDayFunc() {
-  console.log("此為一日事件:oneDayFunc()");
+function setTimeFunc() {
+  var startTime = document.getElementById("timeStart");//起始日期
+  var endTime = document.getElementById("timeEnd");//結束日期
+  mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  mycanvas.update();
 }

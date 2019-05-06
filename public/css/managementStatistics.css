@@ -188,12 +188,12 @@ body {
   top: 10vh;
 }
 .selectBar a{
-  margin-left: 1.5vw;
-  margin-right: 1.5vw;
-  color: red;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
-.myChart{
+.mycanvas{
   background-color: white;
   position: absolute;
-  bottom: 5vh;
+  bottom: 1vh;
+  /* max-height: 750px; */
 }
