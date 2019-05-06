@@ -183,8 +183,17 @@ body {
   top: 3vh;
   left: 6%;
 }
+.selectBar{
+  position: absolute;
+  top: 10vh;
+}
+.selectBar a{
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  color: red;
+}
 .myChart{
   background-color: white;
   position: absolute;
-  top: 10vh;
+  bottom: 5vh;
 }

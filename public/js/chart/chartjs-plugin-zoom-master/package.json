@@ -1,0 +1,39 @@
+{
+  "name": "chartjs-plugin-zoom",
+  "description": "Plugin that enables zoom and pan functionality in Chart.js charts.",
+  "version": "0.7.0",
+  "license": "MIT",
+  "jsdelivr": "dist/chartjs-plugin-zoom.min.js",
+  "unpkg": "dist/chartjs-plugin-zoom.min.js",
+  "main": "dist/chartjs-plugin-zoom.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chartjs/chartjs-plugin-zoom.git"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-chartjs": "^0.1.0",
+    "eslint-plugin-html": "^5.0.0",
+    "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-file": "^0.4.0",
+    "gulp-htmllint": "^0.0.16",
+    "gulp-replace": "^1.0.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.2.0",
+    "inquirer": "^6.2.1",
+    "merge-stream": "^1.0.1",
+    "rollup": "^1.1.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^4.0.2",
+    "semver": "^5.6.0"
+  },
+  "peerDependencies": {
+    "chart.js": "^2.6.0"
+  },
+  "dependencies": {
+    "hammerjs": "^2.0.8"
+  }
+}

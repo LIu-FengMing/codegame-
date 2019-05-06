@@ -1,0 +1,16 @@
+.DS_Store
+
+node_modules/*
+custom/*
+
+docs/index.md
+
+bower.json
+bower_components/
+
+coverage/*
+
+nbproject/*
+dist/
+chartjs-plugin-zoom.js
+chartjs-plugin-zoom.min.js

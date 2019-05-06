@@ -23,7 +23,6 @@ function selectChart(thisSelect) {
 }
 function createselectChart(thisSelect) {
   var datasetsData = [0], chartType;
-  console.log(jsonData);
   switch (thisSelect) {
     case "playNumber":
       chartType = "line";
@@ -71,6 +70,21 @@ function createselectChart(thisSelect) {
               },
               legend: {
                 display: false
+              },
+              pan: {
+                enabled: true,
+                mode: "y",
+                speed: 10,
+                threshold: 10
+              },
+              zoom: {
+                enabled: true,
+                drag: false,
+                mode: "y",
+                limits: {
+                  max: 10,
+                  min: 0.5
+                }
               }
             }
           });
@@ -226,6 +240,21 @@ function createselectChart(thisSelect) {
               },
               legend: {
                 display: false
+              },
+              pan: {
+                enabled: true,
+                mode: "y",
+                speed: 10,
+                threshold: 10
+              },
+              zoom: {
+                enabled: true,
+                drag: false,
+                mode: "y",
+                limits: {
+                  max: 10,
+                  min: 0.5
+                }
               }
             }
           });
@@ -381,6 +410,21 @@ function createselectChart(thisSelect) {
               },
               legend: {
                 display: false
+              },
+              pan: {
+                enabled: true,
+                mode: "y",
+                speed: 10,
+                threshold: 10
+              },
+              zoom: {
+                enabled: true,
+                drag: false,
+                mode: "y",
+                limits: {
+                  max: 10,
+                  min: 0.5
+                }
               }
             }
           });
@@ -627,4 +671,13 @@ function prosessUserData() {
     "averageFailureRate": dataFailureNumber
   }
 
+}
+
+function resetZoom() {
+  // window.myLine.resetZoom();
+  createselectChart("playNumber");
+}
+
+function oneDayFunc() {
+  console.log("此為一日事件:oneDayFunc()");
 }
