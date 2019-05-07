@@ -1,3 +1,6 @@
+var playerData,playerData_All,playerData_OneDay,playerData_SevenDay,playerData_OneMonth,playerData_SixMonth,playerData_OneYear,playerData_Var;
+var playNumberFirst=false,successRateFirst=false,averageFailureRateFirst=false;
+var playNumberVar,successRateVar,averageFailureRateVar;
 function logout() {
   // console.log("dddddd");
   var href = "/logout";
@@ -31,6 +34,10 @@ function createselectChart(thisSelect) {
         if (jsonData != undefined) {
           for (var i = 0; i < jsonData.playNumber.length; i++) {
             datasetsData[i] = jsonData.playNumber[i].number;
+            playerData_All = datasetsData;
+          }
+          if(!playNumberFirst){
+            playNumberVar = datasetsData;
           }
           var ctx = document.getElementById('playNumberChart').getContext('2d');
           mycanvas = new Chart(ctx, {
@@ -93,6 +100,7 @@ function createselectChart(thisSelect) {
           document.getElementById('averageFailureRateChart').style.display = "none";
         }
       }, 500);
+      playerData = playerData_All;
       break;
     case "successRate":
       chartType = "bar";
@@ -101,6 +109,9 @@ function createselectChart(thisSelect) {
         if (jsonData != undefined) {
           for (var i = 0; i < jsonData.successRate.length; i++) {
             datasetsData[i] = jsonData.successRate[i].number;
+          }
+          if(!successRateFirst){
+            successRateVar = datasetsData;
           }
           var ctx = document.getElementById('successRateChart');
           mycanvas = new Chart(ctx, {
@@ -215,7 +226,7 @@ function createselectChart(thisSelect) {
                   'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
-                }
+              }
               ]
             },
             options: {
@@ -227,7 +238,8 @@ function createselectChart(thisSelect) {
                     labelString: '通關率'
                   },
                   ticks : {
-                      min : 0
+                      min : 0,
+                      max : 1.1
                   }
                 }],
                 xAxes: [{
@@ -255,6 +267,14 @@ function createselectChart(thisSelect) {
                   max: 10,
                   min: 0.5
                 }
+              },
+              tooltips: {
+              	callbacks: {
+                	label: function(tooltipItem) {
+                  console.log(tooltipItem)
+                  	return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
+                  }
+                }
               }
             }
           });
@@ -272,6 +292,9 @@ function createselectChart(thisSelect) {
           console.log(jsonData);
           for (var i = 0; i < jsonData.averageFailureRate.length; i++) {
             datasetsData[i] = jsonData.averageFailureRate[i].number;
+          }
+          if(!averageFailureRateFirst){
+            averageFailureRateVar = datasetsData;
           }
           var ctx = document.getElementById('averageFailureRateChart');
           mycanvas = new Chart(ctx, {
@@ -386,7 +409,8 @@ function createselectChart(thisSelect) {
                   'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
-              }]
+              }
+              ]
             },
             options: {
               scales: {
@@ -424,6 +448,14 @@ function createselectChart(thisSelect) {
                 limits: {
                   max: 10,
                   min: 0.5
+                }
+              },
+              tooltips: {
+                callbacks: {
+                  label: function(tooltipItem) {
+                    console.log(tooltipItem)
+                    return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
+                  }
                 }
               }
             }
@@ -678,25 +710,37 @@ $('#reset_zoom').click(function() {
 })
 
 function changeTimeFunc(timeType) {
-  console.log("此為" + timeType + "事件:oneDayFunc()");
+  console.log(document.getElementById("levelSelect").value);
+  var thisPlayer;
+  /*將遊玩人數存入thisPlayer中*/
   switch (timeType) {
     case 'oneDay':
       /*一日*/
+      thisPlayer = playerData_OneDay;
       break;
     case 'sevenDay':
       /*七日*/
+      thisPlayer = playerData_SevenDay;
       break;
     case 'oneMonth':
       /*一個月*/
+      thisPlayer = playerData_OneMonth;
       break;
     case 'sixMonth':
       /*六個月*/
+      thisPlayer = playerData_SixMonth;
       break;
     case 'oneYear':
       /*一年*/
+      thisPlayer = playerData_OneYear;
       break;
   }
   mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  /*以下為改變標籤內容*/
+  if(document.getElementById("levelSelect").value != "playNumber"){
+    playerData = [7,8,9,10];
+    // playerData = thisPlayer;
+  }
   mycanvas.update();
 }
 
@@ -704,5 +748,26 @@ function setTimeFunc() {
   var startTime = document.getElementById("timeStart");//起始日期
   var endTime = document.getElementById("timeEnd");//結束日期
   mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  if(document.getElementById("levelSelect").value != "playNumber"){
+    playerData = [7,8,9,10];
+    // playerData = thisPlayer;
+  }
+  mycanvas.update();
+}
+
+function clrFunc() {
+  switch (document.getElementById("levelSelect").value) {
+  case "playNumber":
+    mycanvas.data.datasets[0].data = playNumberVar;
+    break;
+  case "successRate":
+    mycanvas.data.datasets[0].data = successRateVar;
+    playerData = playNumberVar;
+    break;
+  case "averageFailureRate":
+    mycanvas.data.datasets[0].data = averageFailureRateVar;
+    playerData = playNumberVar;
+    break;
+  }
   mycanvas.update();
 }
