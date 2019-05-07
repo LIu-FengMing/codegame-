@@ -38,19 +38,6 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   };
 
  })();
-function back() {
- var index = 0;
- var href = window.location.href;
- for (var i = 0; i < href.length; ++i) {
-   if (href[i] == '/' || href[i] == "\\") {
-       index = i;
-   }
- }
- href = href.substr(0, index + 1);
- href+="oblivionUser";
- window.location.replace(href);
- console.log(href);
-}
 var mapMessage;
 var href = window.location.href;
 var user,equipmentData,achievemenData,dictionaryData,isSelectFunc = false;
@@ -58,6 +45,19 @@ var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwi
 var musicData;
 var scriptData = {
     type: "init"
+}
+function back() {
+var index = 0;
+var href = window.location.href;
+for (var i = 0; i < href.length; ++i) {
+  if (href[i] == '/' || href[i] == "\\") {
+      index = i;
+  }
+}
+href = href.substr(0, index + 1);
+href+="oblivionUser";
+window.location.replace(href);
+console.log(href);
 }
 
 $.ajax({
@@ -81,6 +81,14 @@ $.ajax({
       xmlhttp.send();
   }
 })
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    dictionaryData = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "json/dictionary.json", true);
+xmlhttp.send();
 
 function error() {
     alert("有不當的操作發生");
@@ -182,7 +190,7 @@ function userData() {
     divTag = document.getElementById("center");
     b = document.createElement("div");
     b.setAttribute("id", "userDataBkView");
-    b.setAttribute("onclick", "clossFunc(divID,divID2)");
+    b.setAttribute("onclick", "closeFunc(divID,divID2)");
     divTag.appendChild(b);
     b = document.createElement("div");
     b.setAttribute("id", "userDataView");
@@ -193,11 +201,11 @@ function userData() {
     b.setAttribute("title", "關閉");
     b.setAttribute("id", "clossDiv");
     b.setAttribute("value", "X");
-    b.setAttribute("onclick", "clossFunc(divID,divID2)");
+    b.setAttribute("onclick", "closeFunc(divID,divID2)");
     divTag.appendChild(b);
     createUserView(divID);
 }
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
     divTag = document.getElementById(thisDiv);
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
@@ -292,7 +300,7 @@ function helper(mainDiv) {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -306,7 +314,7 @@ function helper(mainDiv) {
 }
 
 /*XX按鈕*/
-function clossFunc(thisDiv,thisDiv2) {
+function closeFunc(thisDiv,thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   try {
     parentObj = divTag.parentNode;
@@ -325,6 +333,119 @@ function clearButton(thisTextarea) {
   document.getElementById(thisTextarea.id).value = "";
 }
 
+/*指令大全*/
+function instructionView(mainDiv) {
+  divID = "instructionView";
+  divID2 = "equipageBkView";
+  divTag = document.getElementById(mainDiv.id);
+  b = document.createElement("div");
+  b.setAttribute("id", "equipageBkView");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "instructionView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("instructionView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "指令大全";
+  b = document.createElement("table");
+  b.setAttribute("id", "instructionTable");
+  b.setAttribute("rules", "rows");
+  b.setAttribute("border", "1");
+  divTag.appendChild(b);
+  divTag = document.getElementById("instructionTable");
+  var dic = dictionaryData.code;
+  var passLevel;
+  if (user.MediumEmpire.codeLevel.length != 0) {
+    passLevel = user.MediumEmpire.codeLevel.length;
+    passLevel += 24;
+  } else {
+    if (user.EasyEmpire.codeLevel.length > user.EasyEmpire.blockLevel.length) {
+      passLevel = user.EasyEmpire.codeLevel.length;
+      passLevel++;
+    } else {
+      passLevel = user.EasyEmpire.blockLevel.length;
+      passLevel++;
+    }
+  }
+  for (var i = 0; i < dic.length * 2; i++) {
+    if ((i % 2) == 0) {
+      var li = dic[parseInt(i / 2)].element;
+      var minLimit = 999;
+      for (var j = 0; j < li.length; j++) {
+        if (minLimit > li[j].limit) {
+          minLimit = li[j].limit;
+        }
+      }
+      if (minLimit > passLevel) {
+        continue;
+      }
+      b = document.createElement("tr");
+      b.setAttribute("id", "tr" + i);
+      divTag.appendChild(b);
+      divTag = document.getElementById("tr" + i);
+      b = document.createElement("td");
+      b.setAttribute("id", "td" + i);
+      divTag.appendChild(b);
+      divTag = document.getElementById("td" + i);
+      b = document.createElement("h1");
+      b.setAttribute("id", "actionFont" + i);
+      divTag.appendChild(b);
+      document.getElementById("actionFont" + i).innerHTML = dic[i / 2].type;
+    } else {
+      b = document.createElement("tr");
+      b.setAttribute("id", "tr" + i);
+      b.setAttribute("align", "left");
+      divTag.appendChild(b);
+      divTag = document.getElementById("tr" + i);
+      b = document.createElement("div");
+      b.setAttribute("id", "actionDiv" + i);
+      divTag.appendChild(b);
+      divTag = document.getElementById("actionDiv" + i);
+      // if (i == 1) {
+      // for (var j = 0; j < 5; j++) {
+      var li = dic[parseInt(i / 2)].element;
+      for (var j = 0; j < li.length; j++) {
+        //console.log(li[j].limit,li[j].name,passLevel);
+        divTag = document.getElementById("actionDiv" + i);
+        if (li[j].limit > passLevel) {
+          continue;
+        }
+        b = document.createElement("details");
+        b.setAttribute("id", "detailsInner" + i + j);
+        b.setAttribute("class", "instructionDetailsInner");
+        divTag.appendChild(b);
+        divTag = document.getElementById("detailsInner" + i + j);
+        b = document.createElement("summary");
+        b.setAttribute("id", "summaryInner" + i + j);
+        b.setAttribute("class", "summaryInner");
+        divTag.appendChild(b);
+        // document.getElementById("aInner" + j).innerHTML = "step( )▼";
+        document.getElementById("summaryInner" + i + j).innerHTML = li[j].name;
+        //
+        b = document.createElement("p");
+        b.setAttribute("id", "item" + i + j);
+        b.setAttribute("class", "itemP");
+        divTag.appendChild(b);
+        // document.getElementById("item" + j).innerHTML = "&nbsp&nbsp&nbsp&";
+        document.getElementById("item" + i + j).innerHTML = "&nbsp&nbsp&nbsp&nbsp" + li[j].value;
+      }
+      // } else {
+      //     document.getElementById("actionDiv" + i).innerHTML = functionVar;
+      // }
+    }
+    divTag = document.getElementById("instructionTable");
+  }
+}
 /*設定*/
 function settingAllView(mainDiv) {
     divID = "settingAllView";
@@ -332,7 +453,7 @@ function settingAllView(mainDiv) {
     divTag = document.getElementById(mainDiv.id);
     b = document.createElement("div");
     b.setAttribute("id", "equipageBkView");
-    b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+    b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
     divTag.appendChild(b);
     b = document.createElement("div");
     b.setAttribute("id", "settingAllView");
@@ -343,7 +464,7 @@ function settingAllView(mainDiv) {
     b.setAttribute("title", "關閉");
     b.setAttribute("id", "clossDiv");
     b.setAttribute("value", "X");
-    b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+    b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
     divTag.appendChild(b);
     b = document.createElement("h1");
     b.setAttribute("id", "allTitle");
@@ -828,7 +949,7 @@ function createEndView(starNum,gameResult,instructionNum,code) {
     b.setAttribute("type", "button");
     b.setAttribute("id", "restartGameBtn");
     b.setAttribute("value", "重新挑戰");
-    b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
+    b.setAttribute("onclick", "closeFunc(\"createEndView\",\"createEndBkView\")");
     divTag.appendChild(b);
     b = document.createElement("input");
     b.setAttribute("type", "button");
@@ -850,7 +971,7 @@ function createLoadingView() {
   divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "loadingBkView");
-  b.setAttribute("onclick", "clossFunc(\"loadingBkView\",\"loadingView\")");
+  b.setAttribute("onclick", "closeFunc(\"loadingBkView\",\"loadingView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "loadingView");
