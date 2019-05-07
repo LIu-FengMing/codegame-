@@ -331,7 +331,7 @@ body {
   position: absolute;
   left: 0px;
 }
-.func,.step,.judgment{
+.func,.step,.judgment,.titleDiv{
   margin-top: 5px;
   font-size: 20px;
   padding: 1vh;
@@ -556,6 +556,60 @@ body {
   cursor: pointer;
 }
 
+/*指令大全*/
+.instructionButton{
+  width: 1.5vw;
+  height: 1.5vw;
+  cursor: pointer;
+  border-width: 0px;
+  background-image: url('../img/instruction.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  margin-right: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+#instructionView{
+  z-index: 4;
+  height: 60vh;
+  width: 40vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30vh;
+  margin-left: -20vw;
+  background-color: #FFF2CC;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  overflow: auto;
+}
+#instructionTable{
+  width: 100%;
+  position: relative;
+  border: 1;
+  margin-top: 5%;
+}
+#actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
+  height: 20px;
+  margin-top: 1.5vh;
+  margin-bottom: 5px;
+}
+
+.summaryInner::-webkit-details-marker {
+  height: 2vh;
+  width: 2vh;
+}
+.summaryInner{
+  font-size: calc(15px + 1vw);
+  line-height: 5vh;
+  outline:none;
+  cursor: pointer;
+}
+.itemP{
+  margin-top: 1.5vh;
+  line-height: calc(5px + 2vh);
+}
 /*設定*/
 #settingAllView{
   z-index: 999;

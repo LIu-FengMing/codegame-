@@ -37,6 +37,11 @@
           <div id = "divcanvas"></div>
           <div id = "blocklyDiv">
             <div id = "funcDiv">
+              <div class="titleDiv" id="titleDiv">
+                <div style="cursor: default;">
+                  可用指令
+                </div>
+              </div>
               <div class="func" id="func">
                 <div style="cursor: default;">
                   main( )
@@ -46,6 +51,7 @@
               </div>
               <div class="judgment" id="judgment" style="display:none;">
               </div>
+              <input type="button" title="指令大全" class="instructionButton" value="" onclick="instructionView(center)">
             </div>
             <div id="textareaDiv">
               <textarea class="lined" id="textarea_0" style="height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;"></textarea>
