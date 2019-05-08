@@ -1841,22 +1841,34 @@ function changeLevelStage() {
 
 var levelDivAlive = false;
 function remindView(remindValue) {
-  divTag = document.getElementById("centerBlockly");
+  var isTwoLine = false;
+  for (var i = 0; i < remindValue.length; i++) {
+    if(remindValue[i] == "<"){
+      isTwoLine = true;
+      break;
+    }
+  }
+  divTag = document.getElementById("center");
   if (levelDivAlive) {
-    divTag = document.getElementById("remindView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById("center");
+      divTag = document.getElementById("remindView");
+      try {
+          parentObj = divTag.parentNode;
+          parentObj.removeChild(divTag);
+      } catch (e) { }
+      levelDivAlive = false;
+      divTag = document.getElementById("center");
   }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
+  if(isTwoLine){
+    b.setAttribute("class", "twoLine");
+  }else{
+    b.setAttribute("class", "oneLine");
+  }
   b.setAttribute("id", "remindView");
   divTag.appendChild(b);
   levelDivAlive = true;

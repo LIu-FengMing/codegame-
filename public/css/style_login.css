@@ -111,11 +111,25 @@
 
 
 /*提醒介面*/
+.oneLine{
+  height: 20vh;
+}
+.oneLine > #remindH2{
+  margin-top: 5vh;
+}
+.twoLine{
+  height: 25vh;
+}
+.twoLine > #remindH2{
+  line-height: 5vh;
+  margin-top: 3vh;
+}
+.twoLine > #remindTrueBtn{
+  bottom: 3.5vh;
+}
 #remindView{
   z-index: 999;
-  height: 30vh;
   width: 25vw;
-  line-height: calc(15px + 2.5vh);
   border-style: solid;
   border-color: black;
   border-radius: 15px;
@@ -130,7 +144,6 @@
 }
 #remindH2{
   font-size: calc(20px + 1vw);
-  margin-top: 10vh;
 }
 #remindTrueBtn{
   height: 5vh;
@@ -143,7 +156,7 @@
   background-color: #c0ec95;
   position: absolute;
   right: calc(50% - 4vw);
-  bottom: 2vh;
+  bottom: 3vh;
   cursor: pointer;
 }
 .bkView{

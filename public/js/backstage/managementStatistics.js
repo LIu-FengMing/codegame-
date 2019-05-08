@@ -738,6 +738,7 @@ function changeTimeFunc(timeType) {
   showjson=UseTimeUpdateFunc(startTime,endTime);
 
   // mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  console.log(showjson.data);
   mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
 
   /*以下為改變標籤內容*/
@@ -775,7 +776,7 @@ function setTimeFunc() {
 
 function UseTimeUpdateFunc(startTime,endTime) {
   console.log(startTime,endTime);
-  
+
   // AlluserData
   // for (let index = 0; index < AlluserData.length; index++) {
 
