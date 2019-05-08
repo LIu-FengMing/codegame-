@@ -1,12 +1,12 @@
-var playerData,playerData_All,playerData_OneDay,playerData_SevenDay,playerData_OneMonth,playerData_SixMonth,playerData_OneYear,playerData_Var;
-var playNumberFirst=false,successRateFirst=false,averageFailureRateFirst=false;
-var playNumberVar,successRateVar,averageFailureRateVar;
+var playerData, playerData_All, playerData_OneDay, playerData_SevenDay, playerData_OneMonth, playerData_SixMonth, playerData_OneYear, playerData_Var;
+var playNumberFirst = false, successRateFirst = false, averageFailureRateFirst = false;
+var playNumberVar, successRateVar, averageFailureRateVar;
 function logout() {
   // console.log("dddddd");
   var href = "/logout";
   window.location.replace(href);
 }
-var selectChartVar, jsonData,mycanvas;
+var selectChartVar, jsonData, mycanvas;
 window.onload = function () {
   selectChartVar = "playNumber";
   selectChart(selectChartVar);
@@ -36,7 +36,7 @@ function createselectChart(thisSelect) {
             datasetsData[i] = jsonData.playNumber[i].number;
             playerData_All = datasetsData;
           }
-          if(!playNumberFirst){
+          if (!playNumberFirst) {
             playNumberVar = datasetsData;
           }
           var ctx = document.getElementById('playNumberChart').getContext('2d');
@@ -62,9 +62,9 @@ function createselectChart(thisSelect) {
                     fontSize: 25,
                     labelString: '遊玩人數'
                   },
-                  ticks : {
-                    min : 0,
-                    max : jsonData.playNumber[0].number+1,
+                  ticks: {
+                    min: 0,
+                    max: jsonData.playNumber[0].number + 1,
                     callback: function (value) { if (Number.isInteger(value)) { return value; } }
                   }
                 }],
@@ -111,7 +111,7 @@ function createselectChart(thisSelect) {
           for (var i = 0; i < jsonData.successRate.length; i++) {
             datasetsData[i] = jsonData.successRate[i].number;
           }
-          if(!successRateFirst){
+          if (!successRateFirst) {
             successRateVar = datasetsData;
           }
           var ctx = document.getElementById('successRateChart');
@@ -238,9 +238,9 @@ function createselectChart(thisSelect) {
                     fontSize: 25,
                     labelString: '通關率'
                   },
-                  ticks : {
-                      min : 0,
-                      max : 1.1
+                  ticks: {
+                    min: 0,
+                    max: 1.1
                   }
                 }],
                 xAxes: [{
@@ -270,10 +270,10 @@ function createselectChart(thisSelect) {
                 }
               },
               tooltips: {
-              	callbacks: {
-                	label: function(tooltipItem) {
-                  // console.log(tooltipItem)
-                  	return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
+                callbacks: {
+                  label: function (tooltipItem) {
+                    // console.log(tooltipItem)
+                    return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
                   }
                 }
               }
@@ -294,7 +294,7 @@ function createselectChart(thisSelect) {
           for (var i = 0; i < jsonData.averageFailureRate.length; i++) {
             datasetsData[i] = jsonData.averageFailureRate[i].number;
           }
-          if(!averageFailureRateFirst){
+          if (!averageFailureRateFirst) {
             averageFailureRateVar = datasetsData;
           }
           var ctx = document.getElementById('averageFailureRateChart');
@@ -421,8 +421,8 @@ function createselectChart(thisSelect) {
                     fontSize: 25,
                     labelString: '平均失敗次數'
                   },
-                  ticks : {
-                      min : 0
+                  ticks: {
+                    min: 0
                   }
                 }],
                 xAxes: [{
@@ -453,9 +453,9 @@ function createselectChart(thisSelect) {
               },
               tooltips: {
                 callbacks: {
-                  label: function(tooltipItem) {
+                  label: function (tooltipItem) {
                     // console.log(tooltipItem)
-                    return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
+                    return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
                   }
                 }
               }
@@ -557,87 +557,243 @@ function getAverageFailureRateJson(thisSelect) {
   }
 }
 
+// function prosessUserData() {
+//   console.log(AlluserData);
+//   var mapNumber = new Array(50);
+//   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
+//   for (let index = 0; index < AlluserData.length; index++) {
+//     var obj = AlluserData[index];
+//     var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
+//     /*  PlayNumber   */
+//     if (hightLevel == 51) {
+//       hightLevel = 50;
+//       mapNumber[50].mapcount = mapNumber[50].mapcount + 1;
+//     }
+
+//     // mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
+//     if (mapNumber[hightLevel - 1]) {
+//       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
+//       // mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
+//     }
+//     else {
+//       mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+//       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
+//     }
+//     /*  SuccessRate   */
+//     if (hightLevel < 25) {
+//       /*還未挑戰最高的 */
+//       if (obj.EasyEmpire.codeLevel.length < hightLevel) {
+//         mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
+//       }
+//     }
+//     else {
+//       if (obj.MediumEmpire.codeLevel.length < hightLevel - 25) {
+//         mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
+//       }
+//     }
+//     /*  mapFailureCount   */
+//     for (let indexFail = 0; indexFail < obj.EasyEmpire.codeLevel.length; indexFail++) {
+//       var thisLevelRecord = obj.EasyEmpire.codeLevel[indexFail].challengeLog;
+//       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+//         var thisRecordData = thisLevelRecord[indexLevel];
+//         var failF = false;
+//         if (thisRecordData.srarNum == "0") {
+//           failF = true;
+//         }
+
+//         if (mapNumber[indexFail]) {
+//           if (failF) {
+//             mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+//           }
+//           mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
+//         }
+//         else {
+//           mapNumber[indexFail] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+//           if (failF) {
+//             mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+//           }
+//           mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
+//         }
+//       }
+//     }
+//     for (let indexFail = 0; indexFail < obj.MediumEmpire.codeLevel.length; indexFail++) {
+//       var thisLevelRecord = obj.MediumEmpire.codeLevel[indexFail].challengeLog;
+//       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+//         var thisRecordData = thisLevelRecord[indexLevel];
+//         var failF = false;
+//         if (thisRecordData.srarNum == "0") {
+//           failF = true;
+//         }
+
+//         if (mapNumber[indexFail + 24]) {
+//           if (failF) {
+//             mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+//           }
+//           mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
+//         }
+//         else {
+//           mapNumber[indexFail + 24] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+//           if (failF) {
+//             mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+//           }
+//           mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
+//         }
+//       }
+//     }
+//   }
+
+//   var totPlayNumber = 0;
+//   var dataPlayNumber = new Array(50)
+//   var dataSuccessNumber = new Array(50)
+//   var dataFailureNumber = new Array(50)
+//   for (let index = 49; index > -1; index--) {
+
+//     var level = index + 1;
+//     /*  PlayNumber   */
+//     if (mapNumber[index]) {
+//       var sum = (mapNumber[index].mapcount - mapNumber[index].mapSuccessCountDel) + totPlayNumber;
+//       totPlayNumber = sum;
+//       dataPlayNumber[index] = {
+//         "level": level,
+//         "number": sum
+//       };
+//     }
+//     else {
+//       mapNumber[index] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+//       dataPlayNumber[index] = {
+//         "level": level,
+//         "number": totPlayNumber
+//       };
+//     }
+//     /*  SuccessRate   */
+//     var num = 0;
+//     if (index == 49) {
+//       num = mapNumber[50].mapcount / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
+//     }
+//     else {
+//       num = dataPlayNumber[index + 1].number / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
+//     }
+//     num = num.toFixed(2); // 输出结果为 2.45
+//     dataSuccessNumber[index] = {
+//       "level": level,
+//       "number": num
+//     };
+
+//     /*  mapFailureCount   */
+//     var num = 0;
+//     if (mapNumber[index].playCount != 0) {
+//       // num=mapNumber[index].failCount/mapNumber[index].playCount
+//       num = mapNumber[index].failCount / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
+//     }
+
+//     num = num.toFixed(2); // 输出结果为 2.45
+//     dataFailureNumber[index] = {
+//       "level": level,
+//       "number": num
+//     };
+//   }
+//   PlayNumber = {
+//     "playNumber": dataPlayNumber
+//   }
+//   SuccessRate = {
+//     "successRate": dataSuccessNumber
+//   }
+//   AverageFailureRate = {
+//     "averageFailureRate": dataFailureNumber
+//   }
+
+// }
+
 function prosessUserData() {
   console.log(AlluserData);
   var mapNumber = new Array(50);
   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
   for (let index = 0; index < AlluserData.length; index++) {
     var obj = AlluserData[index];
-    var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
-    /*  PlayNumber   */
-    if (hightLevel == 51) {
-      hightLevel = 50;
-      mapNumber[50].mapcount = mapNumber[50].mapcount + 1;
-    }
-
-    // mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-    if (mapNumber[hightLevel - 1]) {
-      mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-      // mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
-    }
-    else{
-      mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
-      mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-    }
-    /*  SuccessRate   */
-    if (hightLevel < 25) {
-      /*還未挑戰最高的 */
-      if (obj.EasyEmpire.codeLevel.length < hightLevel) {
-        mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
-      }
-    }
-    else {
-      if (obj.MediumEmpire.codeLevel.length < hightLevel - 25) {
-        mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
-      }
-    }
-    /*  mapFailureCount   */
     for (let indexFail = 0; indexFail < obj.EasyEmpire.codeLevel.length; indexFail++) {
-      var thisLevelRecord=obj.EasyEmpire.codeLevel[indexFail].challengeLog;
+      var thisLevelRecord = obj.EasyEmpire.codeLevel[indexFail].challengeLog;
+      var addF = false, playCountF = false;
       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
-        var thisRecordData=thisLevelRecord[indexLevel];
-        var failF=false;
-        if(thisRecordData.srarNum=="0"){
-          failF=true;
+        var thisRecordData = thisLevelRecord[indexLevel];
+
+        var failF = false;
+        if (thisRecordData.srarNum == "0") {
+          failF = true;
+        }
+        if (mapNumber[indexFail]) {
+          if (failF) {
+            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+          }
+          else {
+            if (addF == false) {
+              addF = true;
+              mapNumber[indexFail].mapSuccessCount = mapNumber[indexFail].mapSuccessCount + 1;
+            }
+          }
+          if (playCountF == false) {
+            playCountF = true
+            mapNumber[indexFail].mapcount = mapNumber[indexFail].mapcount + 1;
+          }
+        }
+        else {
+          mapNumber[indexFail] = { mapcount: 0, mapSuccessCount: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+          if (failF) {
+            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+          }
+          else {
+            addF = true;
+            mapNumber[indexFail].mapSuccessCount = mapNumber[indexFail].mapSuccessCount + 1;
+          }
+          playCountF = true
+          mapNumber[indexFail].mapcount = mapNumber[indexFail].mapcount + 1;
+
+          mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
         }
 
-        if (mapNumber[indexFail]) {
-          if(failF){
-            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
-          }
-          mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
-        }
-        else{
-          mapNumber[indexFail] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
-          if(failF){
-            mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
-          }
-          mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
-        }
+
       }
     }
     for (let indexFail = 0; indexFail < obj.MediumEmpire.codeLevel.length; indexFail++) {
-      var thisLevelRecord=obj.MediumEmpire.codeLevel[indexFail].challengeLog;
+      var thisLevelRecord = obj.MediumEmpire.codeLevel[indexFail].challengeLog;
+      var addF = false, playCountF = false;
       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
-        var thisRecordData=thisLevelRecord[indexLevel];
-        var failF=false;
-        if(thisRecordData.srarNum=="0"){
-          failF=true;
-        }
+        var thisRecordData = thisLevelRecord[indexLevel];
 
-        if (mapNumber[indexFail+24]) {
-          if(failF){
-            mapNumber[indexFail+24].failCount = mapNumber[indexFail+24].failCount + 1;
+          var failF = false;
+          if (thisRecordData.srarNum == "0") {
+            failF = true;
           }
-          mapNumber[indexFail+24].playCount = mapNumber[indexFail+24].playCount + 1;
-        }
-        else{
-          mapNumber[indexFail+24] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0 }
-          if(failF){
-            mapNumber[indexFail+24].failCount = mapNumber[indexFail+24].failCount + 1;
+          if (mapNumber[indexFail + 24]) {
+            if (failF) {
+              mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+            }
+            else {
+              if (addF == false) {
+                addF = true;
+                mapNumber[indexFail + 24].mapSuccessCount = mapNumber[indexFail + 24].mapSuccessCount + 1;
+              }
+            }
+            if (playCountF == false) {
+              playCountF = true
+              mapNumber[indexFail + 24].mapcount = mapNumber[indexFail + 24].mapcount + 1;
+            }
           }
-          mapNumber[indexFail+24].playCount = mapNumber[indexFail+24].playCount + 1;
-        }
+          else {
+            mapNumber[indexFail + 24] = { mapcount: 0, mapSuccessCount: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+            if (failF) {
+              mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+            }
+            else {
+              addF = true;
+              mapNumber[indexFail + 24].mapSuccessCount = mapNumber[indexFail + 24].mapSuccessCount + 1;
+            }
+            playCountF = true
+            mapNumber[indexFail + 24].mapcount = mapNumber[indexFail + 24].mapcount + 1;
+
+            mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
+          }
+
+        
       }
     }
   }
@@ -647,49 +803,46 @@ function prosessUserData() {
   var dataSuccessNumber = new Array(50)
   var dataFailureNumber = new Array(50)
   for (let index = 49; index > -1; index--) {
-
     var level = index + 1;
-    /*  PlayNumber   */
+    var number = 0;
     if (mapNumber[index]) {
-      var sum = (mapNumber[index].mapcount-mapNumber[index].mapSuccessCountDel) + totPlayNumber;
-      totPlayNumber = sum;
-      dataPlayNumber[index] = {
-        "level": level,
-        "number": sum
-      };
+      number = mapNumber[index].mapcount
     }
     else {
-      mapNumber[index] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0,failCount:0,playCount:0  }
-      dataPlayNumber[index] = {
-        "level": level,
-        "number": totPlayNumber
-      };
+      number = 0
     }
-     /*  SuccessRate   */
-    var num =0;
-    if(index==49){
-      num=mapNumber[50].mapcount/(dataPlayNumber[index].number-mapNumber[index].mapSuccessCountDel)
+    dataPlayNumber[index] = {
+      "level": level,
+      "number": number
+    };
+    if (mapNumber[index]) {
+      var num = 0;
+      num = mapNumber[index].mapSuccessCount / (mapNumber[index].mapcount)
+      num = num.toFixed(2); // 输出结果为 2.45
+      number = num
     }
-    else{
-      num=dataPlayNumber[index+1].number/(dataPlayNumber[index].number-mapNumber[index].mapSuccessCountDel)
+    else {
+      number = 0
     }
-    num = num.toFixed(2); // 输出结果为 2.45
     dataSuccessNumber[index] = {
       "level": level,
-      "number": num
+      "number": number
     };
 
-    /*  mapFailureCount   */
-    var num =0;
-    if(mapNumber[index].playCount!=0){
-      // num=mapNumber[index].failCount/mapNumber[index].playCount
-      num=mapNumber[index].failCount/(dataPlayNumber[index].number-mapNumber[index].mapSuccessCountDel)
+    if (mapNumber[index]) {
+      var num = 0;
+      if (mapNumber[index].playCount != 0) {
+        // num=mapNumber[index].failCount/mapNumber[index].playCount
+        num = mapNumber[index].failCount / (mapNumber[index].mapcount)
+      }
+      number = num
     }
-
-    num = num.toFixed(2); // 输出结果为 2.45
+    else {
+      number = 0
+    }
     dataFailureNumber[index] = {
       "level": level,
-      "number": num
+      "number": number
     };
   }
   PlayNumber = {
@@ -704,41 +857,40 @@ function prosessUserData() {
 
 }
 
-$('#reset_zoom').click(function() {
+$('#reset_zoom').click(function () {
   mycanvas.resetZoom();
 })
 
 
 function changeTimeFunc(timeType) {
-  console.log(document.getElementById("levelSelect").value);
   var thisPlayer;
   /*將遊玩人數存入thisPlayer中*/
   var showjson
-  var nowTime=new Date()
-  var startTime=nowTime.getTime(),endTime=nowTime.getTime()
-  var oneMinute=1000*60;
-  if(timeType=="oneDay"){
-    startTime=startTime-oneMinute*60*24;
+  var nowTime = new Date()
+  var startTime = nowTime.getTime(), endTime = nowTime.getTime()
+  var oneMinute = 1000 * 60;
+  if (timeType == "oneDay") {
+    startTime = startTime - oneMinute * 60 * 24;
   }
-  else if(timeType=="sevenDay"){
-    startTime=startTime-oneMinute*60*24*7;
+  else if (timeType == "sevenDay") {
+    startTime = startTime - oneMinute * 60 * 24 * 7;
   }
-  else if(timeType=="oneMonth"){
-    startTime=startTime-oneMinute*60*24*30;
+  else if (timeType == "oneMonth") {
+    startTime = startTime - oneMinute * 60 * 24 * 30;
   }
-  else if(timeType=="sixMonth"){
-    startTime=startTime-oneMinute*60*24*(31*4+30*3);
+  else if (timeType == "sixMonth") {
+    startTime = startTime - oneMinute * 60 * 24 * (31 * 4 + 30 * 3);
   }
-  else if(timeType=="oneYear"){
-    startTime=startTime-oneMinute*60*24*365;
+  else if (timeType == "oneYear") {
+    startTime = startTime - oneMinute * 60 * 24 * 365;
   }
-  else{
+  else {
     console.log("error here");
   }
-  showjson=UseTimeUpdateFunc(startTime,endTime);
+  showjson = UseTimeUpdateFunc(startTime, endTime);
 
   // mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
-  console.log(showjson.data);
+  // console.log(showjson.data);
   mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
 
   /*以下為改變標籤內容*/
@@ -752,17 +904,17 @@ function setTimeFunc() {
   var startTime = document.getElementById("timeStart");//起始日期
   var endTime = document.getElementById("timeEnd");//結束日期
 
-  if(startTime.value.length < 1){
+  if (startTime.value.length < 1) {
     alert("開始時間尚未填完整");
   }
-  else if(endTime.value.length < 1){
+  else if (endTime.value.length < 1) {
     alert("結束時間尚未填完整");
   }
-  else{
-    var ST=new Date(startTime.value.toString());
-    var ET=new Date(endTime.value.toString());
-    showjson=UseTimeUpdateFunc(ST.getTime(),ET.getTime());
-    mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  else {
+    var ST = new Date(startTime.value.toString());
+    var ET = new Date(endTime.value.toString());
+    showjson = UseTimeUpdateFunc(ST.getTime(), ET.getTime());
+    mycanvas.data.datasets[0].data = [1, 2, 3, 4];//在此改變資料集
     mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
 
     /*以下為改變標籤內容*/
@@ -774,36 +926,185 @@ function setTimeFunc() {
   }
 }
 
-function UseTimeUpdateFunc(startTime,endTime) {
-  console.log(startTime,endTime);
+function UseTimeUpdateFunc(startTime, endTime) {
+  console.log(startTime, endTime);
 
-  // AlluserData
-  // for (let index = 0; index < AlluserData.length; index++) {
+  // AlluserData 
+  var mapNumber = new Array(50);
+  mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
+  for (let index = 0; index < AlluserData.length; index++) {
+    var obj = AlluserData[index];
+    for (let indexFail = 0; indexFail < obj.EasyEmpire.codeLevel.length; indexFail++) {
+      var thisLevelRecord = obj.EasyEmpire.codeLevel[indexFail].challengeLog;
+      var addF = false, playCountF = false;
+      for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+        var thisRecordData = thisLevelRecord[indexLevel];
+        var RecordTime = new Date(thisRecordData.submitTime.toString());
+        var thisRecordTime = RecordTime.getTime();
 
+        if (thisRecordTime >= startTime && thisRecordTime <= endTime) {
 
+          var failF = false;
+          if (thisRecordData.srarNum == "0") {
+            failF = true;
+          }
+          if (mapNumber[indexFail]) {
+            if (failF) {
+              mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+            }
+            else {
+              if (addF == false) {
+                addF = true;
+                mapNumber[indexFail].mapSuccessCount = mapNumber[indexFail].mapSuccessCount + 1;
+              }
+            }
+            if (playCountF == false) {
+              playCountF = true
+              mapNumber[indexFail].mapcount = mapNumber[indexFail].mapcount + 1;
+            }
+          }
+          else {
+            mapNumber[indexFail] = { mapcount: 0, mapSuccessCount: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+            if (failF) {
+              mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
+            }
+            else {
+              addF = true;
+              mapNumber[indexFail].mapSuccessCount = mapNumber[indexFail].mapSuccessCount + 1;
+            }
+            playCountF = true
+            mapNumber[indexFail].mapcount = mapNumber[indexFail].mapcount + 1;
 
+            mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
+          }
 
+        }
+      }
+    }
+    for (let indexFail = 0; indexFail < obj.MediumEmpire.codeLevel.length; indexFail++) {
+      var thisLevelRecord = obj.MediumEmpire.codeLevel[indexFail].challengeLog;
+      var addF = false, playCountF = false;
+      for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
+        var thisRecordData = thisLevelRecord[indexLevel];
+        var RecordTime = new Date(thisRecordData.submitTime.toString());
+        var thisRecordTime = RecordTime.getTime();
 
+        if (thisRecordTime >= startTime && thisRecordTime <= endTime) {
+          var failF = false;
+          if (thisRecordData.srarNum == "0") {
+            failF = true;
+          }
+          if (mapNumber[indexFail + 24]) {
+            if (failF) {
+              mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+            }
+            else {
+              if (addF == false) {
+                addF = true;
+                mapNumber[indexFail + 24].mapSuccessCount = mapNumber[indexFail + 24].mapSuccessCount + 1;
+              }
+            }
+            if (playCountF == false) {
+              playCountF = true
+              mapNumber[indexFail + 24].mapcount = mapNumber[indexFail + 24].mapcount + 1;
+            }
+          }
+          else {
+            mapNumber[indexFail + 24] = { mapcount: 0, mapSuccessCount: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
+            if (failF) {
+              mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
+            }
+            else {
+              addF = true;
+              mapNumber[indexFail + 24].mapSuccessCount = mapNumber[indexFail + 24].mapSuccessCount + 1;
+            }
+            playCountF = true
+            mapNumber[indexFail + 24].mapcount = mapNumber[indexFail + 24].mapcount + 1;
 
+            mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
+          }
 
-  return {data:[7,8,9],playerData:[1,2,3]}
+        }
+      }
+    }
+  }
+  console.log("mapNumber:", mapNumber);
+  var dataPlayNumber = new Array(50)
+  var playerData = new Array(50)
+
+  levelSelectValue = document.getElementById("levelSelect").value
+  console.log(levelSelectValue);
+  if (levelSelectValue == "playNumber") {
+    for (let index = 49; index > -1; index--) {
+      if (mapNumber[index]) {
+        dataPlayNumber[index] = mapNumber[index].mapcount
+        playerData[index] = mapNumber[index].mapcount
+      }
+      else {
+        dataPlayNumber[index] = 0
+        playerData[index] = 0
+      }
+    }
+  }
+  else if (levelSelectValue == "successRate") {
+    for (let index = 49; index > -1; index--) {
+      if (mapNumber[index]) {
+        var num = 0;
+        num = mapNumber[index].mapSuccessCount / (mapNumber[index].mapcount)
+        num = num.toFixed(2); // 输出结果为 2.45
+
+        dataPlayNumber[index] = num
+        playerData[index] = mapNumber[index].mapcount
+      }
+      else {
+        dataPlayNumber[index] = 0
+        playerData[index] = 0
+      }
+    }
+  }
+  else if (levelSelectValue == "averageFailureRate") {
+    for (let index = 49; index > -1; index--) {
+      if (mapNumber[index]) {
+        var num = 0;
+        if (mapNumber[index].playCount != 0) {
+          // num=mapNumber[index].failCount/mapNumber[index].playCount
+          num = mapNumber[index].failCount / (mapNumber[index].mapcount)
+        }
+
+        dataPlayNumber[index] = num
+        playerData[index] = mapNumber[index].mapcount
+      }
+      else {
+        dataPlayNumber[index] = 0
+        playerData[index] = 0
+      }
+    }
+  }
+  else {
+    console.log("error here");
+
+  }
+  console.log(dataPlayNumber);
+  console.log(playerData);
+  return { data: dataPlayNumber, playerData: playerData }
+  // return { data: [7, 8, 9], playerData: [1, 2, 3] }
 }
 
 
 
 function clrFunc() {
   switch (document.getElementById("levelSelect").value) {
-  case "playNumber":
-    mycanvas.data.datasets[0].data = playNumberVar;
-    break;
-  case "successRate":
-    mycanvas.data.datasets[0].data = successRateVar;
-    playerData = playNumberVar;
-    break;
-  case "averageFailureRate":
-    mycanvas.data.datasets[0].data = averageFailureRateVar;
-    playerData = playNumberVar;
-    break;
+    case "playNumber":
+      mycanvas.data.datasets[0].data = playNumberVar;
+      break;
+    case "successRate":
+      mycanvas.data.datasets[0].data = successRateVar;
+      playerData = playNumberVar;
+      break;
+    case "averageFailureRate":
+      mycanvas.data.datasets[0].data = averageFailureRateVar;
+      playerData = playNumberVar;
+      break;
   }
   mycanvas.update();
 }
