@@ -716,20 +716,21 @@ function changeTimeFunc(timeType) {
   var showjson
   var nowTime=new Date()
   var startTime=nowTime.getTime(),endTime=nowTime.getTime()
+  var oneMinute=1000*60;
   if(timeType=="oneDay"){
-
+    startTime=startTime-oneMinute*60*24;
   }
   else if(timeType=="sevenDay"){
-    
+    startTime=startTime-oneMinute*60*24*7;
   }
   else if(timeType=="oneMonth"){
-    
+    startTime=startTime-oneMinute*60*24*30;
   }
   else if(timeType=="sixMonth"){
-    
+    startTime=startTime-oneMinute*60*24*(31*4+30*3);
   }
   else if(timeType=="oneYear"){
-    
+    startTime=startTime-oneMinute*60*24*365;
   }
   else{
     console.log("error here");
@@ -749,18 +750,34 @@ function changeTimeFunc(timeType) {
 function setTimeFunc() {
   var startTime = document.getElementById("timeStart");//起始日期
   var endTime = document.getElementById("timeEnd");//結束日期
-  mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
-  if(document.getElementById("levelSelect").value != "playNumber"){
-    playerData = [7,8,9,10];
-    // playerData = thisPlayer;
+
+  if(startTime.value.length < 1){
+    alert("開始時間尚未填完整");
   }
-  mycanvas.update();
+  else if(endTime.value.length < 1){
+    alert("結束時間尚未填完整");
+  }
+  else{
+    var ST=new Date(startTime.value.toString());
+    var ET=new Date(endTime.value.toString());
+    showjson=UseTimeUpdateFunc(ST.getTime(),ET.getTime());
+    mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+    mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
+
+    /*以下為改變標籤內容*/
+    // if(document.getElementById("levelSelect").value != "playNumber"){
+    // playerData = [7,8,9,10];
+    playerData = showjson.playerData;
+    // }
+    mycanvas.update();
+  }
 }
 
-function UseTimeUpdateFunc(srtart,endTime) {
+function UseTimeUpdateFunc(startTime,endTime) {
+  console.log(startTime,endTime);
   
-
-
+  // AlluserData
+  // for (let index = 0; index < AlluserData.length; index++) {
 
 
 
