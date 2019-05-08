@@ -71,14 +71,14 @@ function call_forgetPass_api() {
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
                 // alert(res.responce);
-                var result = "動作失敗\n";
+                var result = "動作失敗<br>";
                 if (res.responce == "sucesss") {
                     result = "請收信確認";
                     // alert(result);
                     remindValue = result;
                     remindView(remindValue);
-                    var href = "/login";
-                    window.location.replace(href);
+                    // var href = "/login";
+                    // window.location.replace(href);
                 }
                 else if (res.responce == "failNamUndifine") {
                     result += "\"使用者\"未被啟用";
