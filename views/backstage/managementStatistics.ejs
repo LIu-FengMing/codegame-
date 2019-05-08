@@ -22,44 +22,50 @@
         </div>
         <div class="box centerLost" id="centerLost">
           <img  id="bkImg">
-          <h1 class="titleH1">統計資料</h1>
-          <input type="button" value="" id="goBack3" onclick="location.href='management';">
-          <select id="levelSelect" onchange="selectChart(this.value)">
-            <option value="playNumber">已遊玩人數</option>
-            <option value="successRate">通關率</option>
-            <option value="averageFailureRate">平均失敗次數</option>
-          </select>
-          <table class="selectBar">
-            <tr>
-              <td>
-                <a href="#" onclick="changeTimeFunc('oneDay')">一日</a>
-              </td>
-              <td>
-                <a href="#" onclick="changeTimeFunc('sevenDay')">七日</a>
-              </td>
-              <td>
-                <a href="#" onclick="changeTimeFunc('oneMonth')">一個月</a>
-              </td>
-              <td>
-                <a href="#" onclick="changeTimeFunc('sixMonth')">六個月</a>
-              </td>
-              <td>
-                <a href="#" onclick="changeTimeFunc('oneYear')">一年</a>
-              </td>
-              <td>
-                起：<input type="datetime-local" id="timeStart" value="">
-                迄：<input type="datetime-local" id="timeEnd" value="">
-                <input type="button" id="selectBtn" value="搜尋" onclick="setTimeFunc()">
-                <input type="button" id="clrBtn" value="取消" onclick="clrFunc()">
-              </td>
-              <td>
-                <input type="button" id="reset_zoom" value="重設比例">
-              </td>
-            </tr>
-          </table>
-          <canvas class="mycanvas" id="playNumberChart" style="display:none"></canvas>
-          <canvas class="mycanvas" id="successRateChart" style="display:none"></canvas>
-          <canvas class="mycanvas" id="averageFailureRateChart" style="display:none"></canvas>
+          <div class="titleBar">
+            <h1 class="titleH1">統計資料</h1>
+            <input type="button" value="" id="goBack3" onclick="location.href='management';">
+            <select id="levelSelect" onchange="selectChart(this.value)">
+              <option value="playNumber">已遊玩人數</option>
+              <option value="successRate">通關率</option>
+              <option value="averageFailureRate">平均失敗次數</option>
+            </select>
+          </div>
+          <div class="selectBarDiv">
+            <table class="selectBar">
+              <tr>
+                <td>
+                  <a href="#" onclick="changeTimeFunc('oneDay')">一日</a>
+                </td>
+                <td>
+                  <a href="#" onclick="changeTimeFunc('sevenDay')">七日</a>
+                </td>
+                <td>
+                  <a href="#" onclick="changeTimeFunc('oneMonth')">一個月</a>
+                </td>
+                <td>
+                  <a href="#" onclick="changeTimeFunc('sixMonth')">六個月</a>
+                </td>
+                <td>
+                  <a href="#" onclick="changeTimeFunc('oneYear')">一年</a>
+                </td>
+                <td>
+                  起：<input type="datetime-local" id="timeStart" value="">
+                  迄：<input type="datetime-local" id="timeEnd" value="">
+                  <input type="button" id="selectBtn" value="搜尋" onclick="setTimeFunc()">
+                  <input type="button" id="clrBtn" value="取消" onclick="clrFunc()">
+                </td>
+                <td>
+                  <input type="button" id="reset_zoom" value="重設比例">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="canvasDiv">
+            <canvas class="mycanvas" id="playNumberChart" style="display:none"></canvas>
+            <canvas class="mycanvas" id="successRateChart" style="display:none"></canvas>
+            <canvas class="mycanvas" id="averageFailureRateChart" style="display:none"></canvas>
+          </div>
         </div>
         <div class="box sidebarRight"><!--right-->
           <button class="btnLogout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
