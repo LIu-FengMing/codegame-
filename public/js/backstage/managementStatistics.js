@@ -64,6 +64,7 @@ function createselectChart(thisSelect) {
                   },
                   ticks : {
                     min : 0,
+                    max : jsonData.playNumber[0].number+1,
                     callback: function (value) { if (Number.isInteger(value)) { return value; } }
                   }
                 }],
@@ -271,7 +272,7 @@ function createselectChart(thisSelect) {
               tooltips: {
               	callbacks: {
                 	label: function(tooltipItem) {
-                  console.log(tooltipItem)
+                  // console.log(tooltipItem)
                   	return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
                   }
                 }
@@ -453,7 +454,7 @@ function createselectChart(thisSelect) {
               tooltips: {
                 callbacks: {
                   label: function(tooltipItem) {
-                    console.log(tooltipItem)
+                    // console.log(tooltipItem)
                     return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel-1];
                   }
                 }
@@ -639,8 +640,6 @@ function prosessUserData() {
         }
       }
     }
-
-
   }
 
   var totPlayNumber = 0;
@@ -652,7 +651,7 @@ function prosessUserData() {
     var level = index + 1;
     /*  PlayNumber   */
     if (mapNumber[index]) {
-      var sum = mapNumber[index].mapcount + totPlayNumber;
+      var sum = (mapNumber[index].mapcount-mapNumber[index].mapSuccessCountDel) + totPlayNumber;
       totPlayNumber = sum;
       dataPlayNumber[index] = {
         "level": level,
@@ -709,41 +708,44 @@ $('#reset_zoom').click(function() {
   mycanvas.resetZoom();
 })
 
+
 function changeTimeFunc(timeType) {
   console.log(document.getElementById("levelSelect").value);
   var thisPlayer;
   /*將遊玩人數存入thisPlayer中*/
-  switch (timeType) {
-    case 'oneDay':
-      /*一日*/
-      thisPlayer = playerData_OneDay;
-      break;
-    case 'sevenDay':
-      /*七日*/
-      thisPlayer = playerData_SevenDay;
-      break;
-    case 'oneMonth':
-      /*一個月*/
-      thisPlayer = playerData_OneMonth;
-      break;
-    case 'sixMonth':
-      /*六個月*/
-      thisPlayer = playerData_SixMonth;
-      break;
-    case 'oneYear':
-      /*一年*/
-      thisPlayer = playerData_OneYear;
-      break;
+  var showjson
+  var nowTime=new Date()
+  var startTime=nowTime.getTime(),endTime=nowTime.getTime()
+  if(timeType=="oneDay"){
+
   }
-  mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  else if(timeType=="sevenDay"){
+    
+  }
+  else if(timeType=="oneMonth"){
+    
+  }
+  else if(timeType=="sixMonth"){
+    
+  }
+  else if(timeType=="oneYear"){
+    
+  }
+  else{
+    console.log("error here");
+  }
+  showjson=UseTimeUpdateFunc(startTime,endTime);
+
+  // mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
+  mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
+
   /*以下為改變標籤內容*/
-  if(document.getElementById("levelSelect").value != "playNumber"){
-    playerData = [7,8,9,10];
-    // playerData = thisPlayer;
-  }
+  // if(document.getElementById("levelSelect").value != "playNumber"){
+  // playerData = [7,8,9,10];
+  playerData = showjson.playerData;
+  // }
   mycanvas.update();
 }
-
 function setTimeFunc() {
   var startTime = document.getElementById("timeStart");//起始日期
   var endTime = document.getElementById("timeEnd");//結束日期
@@ -754,6 +756,22 @@ function setTimeFunc() {
   }
   mycanvas.update();
 }
+
+function UseTimeUpdateFunc(srtart,endTime) {
+  
+
+
+
+
+
+
+
+
+
+  return {data:[7,8,9],playerData:[1,2,3]}
+}
+
+
 
 function clrFunc() {
   switch (document.getElementById("levelSelect").value) {
