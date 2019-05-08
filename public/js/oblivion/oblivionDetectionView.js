@@ -187,7 +187,7 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
 function userData() {
     divID = "userDataView";
     divID2 = "userDataBkView";
-    divTag = document.getElementById("center");
+    divTag = document.getElementById("centerLost");
     b = document.createElement("div");
     b.setAttribute("id", "userDataBkView");
     b.setAttribute("onclick", "closeFunc(divID,divID2)");
@@ -905,7 +905,7 @@ function createEndView(starNum,gameResult,instructionNum,code) {
 
   divID = "createEndView";
   divID2 = "createEndBkView";
-  divTag = document.getElementById("center");
+  divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "createEndBkView");
   divTag.appendChild(b);

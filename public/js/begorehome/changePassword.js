@@ -25,47 +25,47 @@ function changePassword() {
     var strCP = UserCheckPass.value;
 if (UserName.value == "") {
         // alert("動作失敗\n" + "\"使用者帳號\"不能為空");
-        remindValue = "動作失敗\n" + "\"使用者帳號\"不能為空";
+        remindValue = "動作失敗<br>" + "\"使用者帳號\"不能為空";
         remindView(remindValue);
     }
     else if (strN.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "使用者帳號有空白字元");
-        remindValue = "動作失敗\n" + "使用者帳號有空白字元";
+        remindValue = "動作失敗<br>" + "使用者帳號有空白字元";
         remindView(remindValue);
     }
     else if (OldPass.value == "") {
         // alert("動作失敗\n" + "\"舊密碼\"不能為空");
-        remindValue = "動作失敗\n" + "\"舊密碼\"不能為空";
+        remindValue = "動作失敗<br>" + "\"舊密碼\"不能為空";
         remindView(remindValue);
     }
     else if (strOP.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "\"舊密碼\"有空白字元");
-        remindValue = "動作失敗\n" + "\"舊密碼\"有空白字元";
+        remindValue = "動作失敗<br>" + "\"舊密碼\"有空白字元";
         remindView(remindValue);
     }
     else if (UserPass.value == "") {
         // alert("動作失敗\n" + "\"密碼\"不能為空");
-        remindValue = "動作失敗\n" + "\"密碼\"不能為空";
+        remindValue = "動作失敗<br>" + "\"密碼\"不能為空";
         remindView(remindValue);
     }
     else if (strP.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "\"密碼\"有空白字元");
-        remindValue = "動作失敗\n" + "\"密碼\"有空白字元";
+        remindValue = "動作失敗<br>" + "\"密碼\"有空白字元";
         remindView(remindValue);
     }
     else if (UserCheckPass.value == "") {
         // alert("動作失敗\n" + "\"確認密碼\"不能為空");
-        remindValue = "動作失敗\n" + "\"確認密碼\"不能為空";
+        remindValue = "動作失敗<br>" + "\"確認密碼\"不能為空";
         remindView(remindValue);
     }
     else if (strCP.indexOf(" ") != -1) {
         // alert("動作失敗\n" + "\"確認密碼\"有空白字元");
-        remindValue = "動作失敗\n" + "\"確認密碼\"有空白字元";
+        remindValue = "動作失敗<br>" + "\"確認密碼\"有空白字元";
         remindView(remindValue);
     }
     else if (UserCheckPass.value != UserPass.value) {
         // alert("動作失敗\n" + "\"密碼\"與\"確認密碼\"不同");
-        remindValue = "動作失敗\n" + "\"密碼\"與\"確認密碼\"不同";
+        remindValue = "動作失敗<br>" + "\"密碼\"與\"確認密碼\"不同";
         remindView(remindValue);
     }
     else {
@@ -81,7 +81,7 @@ if (UserName.value == "") {
             dataType: 'json',       // 回傳資料會是 json 格式
             data: scriptData,       // 將表單資料用打包起來送出去
             success: function(res){
-                result = "動作失敗\n";
+                result = "動作失敗<br>";
                 // alert(res.responce );
                 if (res.responce == "sucesss") {
                     result = "修改成功";

@@ -1754,7 +1754,7 @@ function remindView(remindValue) {
       break;
     }
   }
-  divTag = document.getElementById("center");
+  divTag = document.getElementById("centerMidMap");
   if (levelDivAlive) {
       divTag = document.getElementById("remindView");
       try {
@@ -1762,7 +1762,7 @@ function remindView(remindValue) {
           parentObj.removeChild(divTag);
       } catch (e) { }
       levelDivAlive = false;
-      divTag = document.getElementById("center");
+      divTag = document.getElementById("centerMidMap");
   }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");

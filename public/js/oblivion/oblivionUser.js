@@ -854,7 +854,7 @@ function remindView(remindValue) {
       break;
     }
   }
-  divTag = document.getElementById("center");
+  divTag = document.getElementById("centerLost");
   if (levelDivAlive) {
       divTag = document.getElementById("remindView");
       try {
@@ -862,7 +862,7 @@ function remindView(remindValue) {
           parentObj.removeChild(divTag);
       } catch (e) { }
       levelDivAlive = false;
-      divTag = document.getElementById("center");
+      divTag = document.getElementById("centerLost");
   }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -1514,21 +1514,21 @@ function enterLevel() {
     // if (obj.check == false) {
     if (obj.mapName.length < 1) {
       // alert("關卡名稱不能為空白，請修改關卡內容");
-    remindView("關卡名稱不能為空白，請修改關卡內容");
+    remindView("關卡名稱不能為空白，<br>請修改關卡內容");
     }
     else if (obj.mapName.length > 10) {
       // alert("關卡名稱不能超過10個字，請修改關卡內容");
-    remindView("關卡名稱不能超過10個字，請修改關卡內容");
+    remindView("關卡名稱不能超過10個字，<br>請修改關卡內容");
     }
     else {
       if (obj.mapIntroduction.length < 1) {
         // alert("關卡簡介不能為空白，請修改關卡內容");
-        remindView("關卡簡介不能為空白，請修改關卡內容");
+        remindView("關卡簡介不能為空白，<br>請修改關卡內容");
       }
       else {
         if (obj.mapDescription.length < 1) {
           // alert("關卡介紹不能為空白，請修改關卡內容");
-          remindView("關卡介紹不能為空白，請修改關卡內容");
+          remindView("關卡介紹不能為空白，<br>請修改關卡內容");
         }
         else {
           var mapID = obj._id;
