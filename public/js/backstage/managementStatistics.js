@@ -6,7 +6,7 @@ function logout() {
   var href = "/logout";
   window.location.replace(href);
 }
-var selectChartVar, jsonData, mycanvas;
+var selectChartVar, jsonData, playNumberCanvas,successRateCanvas,averageFailureRateCanvas;
 window.onload = function () {
   selectChartVar = "playNumber";
   selectChart(selectChartVar);
@@ -34,71 +34,77 @@ function createselectChart(thisSelect) {
         if (jsonData != undefined) {
           for (var i = 0; i < jsonData.playNumber.length; i++) {
             datasetsData[i] = jsonData.playNumber[i].number;
-            playerData_All = datasetsData;
+            playerData = datasetsData;
           }
           if (!playNumberFirst) {
-            playNumberVar = datasetsData;
-          }
-          var ctx = document.getElementById('playNumberChart').getContext('2d');
-          mycanvas = new Chart(ctx, {
-            // The type of chart we want to create
-            type: chartType,
-            // The data for our dataset
-            data: {
-              labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
-              datasets: [{
-                label: '遊玩人數：',
-                backgroundColor: 'rgba(254, 254, 254, 0)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: datasetsData
-              }]
-            },
-            // Configuration options go here
-            options: {
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: '遊玩人數'
-                  },
-                  ticks: {
-                    min: 0,
-                    max: jsonData.playNumber[0].number + 1,
-                    callback: function (value) { if (Number.isInteger(value)) { return value; } }
-                  }
-                }],
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: '關卡'
-                  }
+            playerData_All = datasetsData;
+            playNumberFirst = true;
+            var ctx = document.getElementById('playNumberChart').getContext('2d');
+            playNumberCanvas = new Chart(ctx, {
+              // The type of chart we want to create
+              type: chartType,
+              // The data for our dataset
+              data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
+                datasets: [{
+                  label: '遊玩人數：',
+                  backgroundColor: 'rgba(254, 254, 254, 0)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: datasetsData
                 }]
               },
-              legend: {
-                display: false
-              },
-              pan: {
-                enabled: true,
-                mode: "y",
-                speed: 10,
-                threshold: 10
-              },
-              zoom: {
-                enabled: true,
-                drag: false,
-                mode: "y",
-                limits: {
-                  max: 10,
-                  min: 0.5
+              // Configuration options go here
+              options: {
+                scales: {
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: '遊玩人數'
+                    },
+                    ticks: {
+                      min: 0,
+                      max: jsonData.playNumber[0].number + 1,
+                      callback: function (value) { if (Number.isInteger(value)) { return value; } }
+                    }
+                  }],
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: '關卡'
+                    }
+                  }]
+                },
+                legend: {
+                  display: false
+                },
+                pan: {
+                  enabled: true,
+                  mode: "y",
+                  speed: 10,
+                  threshold: 10
+                },
+                zoom: {
+                  enabled: true,
+                  drag: false,
+                  mode: "y",
+                  limits: {
+                    max: 10,
+                    min: 0.5
+                  }
                 }
               }
-            }
-          });
-          document.getElementById('playNumberChart').style.display = "block";
-          document.getElementById('successRateChart').style.display = "none";
-          document.getElementById('averageFailureRateChart').style.display = "none";
+            });
+            document.getElementById('playNumberChart').style.display = "block";
+            document.getElementById('successRateChart').style.display = "none";
+            document.getElementById('averageFailureRateChart').style.display = "none";
+          }else{
+            playNumberCanvas.update();
+            document.getElementById('playNumberChart').style.display = "block";
+            document.getElementById('successRateChart').style.display = "none";
+            document.getElementById('averageFailureRateChart').style.display = "none";
+          }
         }
       }, 500);
       playerData = playerData_All;
@@ -113,175 +119,181 @@ function createselectChart(thisSelect) {
           }
           if (!successRateFirst) {
             successRateVar = datasetsData;
+            successRateFirst = true;
+            var ctx = document.getElementById('successRateChart');
+            successRateCanvas = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
+                datasets: [{
+                  label: '通關率（%）：',
+                  data: datasetsData,
+                  backgroundColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                  borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+                }
+                ]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: '通關率'
+                    },
+                    ticks: {
+                      min: 0,
+                      max: 1.1
+                    }
+                  }],
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: 'Ｘ：關卡　Ｙ：通關率（已通關人數／已遊玩人數）'
+                    }
+                  }]
+                },
+                legend: {
+                  display: false
+                },
+                pan: {
+                  enabled: true,
+                  mode: "y",
+                  speed: 10,
+                  threshold: 10
+                },
+                zoom: {
+                  enabled: true,
+                  drag: false,
+                  mode: "y",
+                  limits: {
+                    max: 10,
+                    min: 0.5
+                  }
+                },
+                tooltips: {
+                  callbacks: {
+                    label: function (tooltipItem) {
+                      // console.log(tooltipItem)
+                      return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
+                    }
+                  }
+                }
+              }
+            });
+            document.getElementById('playNumberChart').style.display = "none";
+            document.getElementById('successRateChart').style.display = "block";
+            document.getElementById('averageFailureRateChart').style.display = "none";
+          }else{
+            successRateCanvas.update();
+            document.getElementById('playNumberChart').style.display = "none";
+            document.getElementById('successRateChart').style.display = "block";
+            document.getElementById('averageFailureRateChart').style.display = "none";
           }
-          var ctx = document.getElementById('successRateChart');
-          mycanvas = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
-              datasets: [{
-                label: '通關率（%）：',
-                data: datasetsData,
-                backgroundColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                borderColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-              }
-              ]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: '通關率'
-                  },
-                  ticks: {
-                    min: 0,
-                    max: 1.1
-                  }
-                }],
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: 'Ｘ：關卡　Ｙ：通關率（已通關人數／已遊玩人數）'
-                  }
-                }]
-              },
-              legend: {
-                display: false
-              },
-              pan: {
-                enabled: true,
-                mode: "y",
-                speed: 10,
-                threshold: 10
-              },
-              zoom: {
-                enabled: true,
-                drag: false,
-                mode: "y",
-                limits: {
-                  max: 10,
-                  min: 0.5
-                }
-              },
-              tooltips: {
-                callbacks: {
-                  label: function (tooltipItem) {
-                    // console.log(tooltipItem)
-                    return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
-                  }
-                }
-              }
-            }
-          });
-          document.getElementById('playNumberChart').style.display = "none";
-          document.getElementById('successRateChart').style.display = "block";
-          document.getElementById('averageFailureRateChart').style.display = "none";
         }
       }, 500);
       break;
@@ -290,180 +302,185 @@ function createselectChart(thisSelect) {
       // getAverageFailureRateJson();
       setTimeout(function () {
         if (jsonData != undefined) {
-          console.log(jsonData);
           for (var i = 0; i < jsonData.averageFailureRate.length; i++) {
             datasetsData[i] = jsonData.averageFailureRate[i].number;
           }
           if (!averageFailureRateFirst) {
             averageFailureRateVar = datasetsData;
+            averageFailureRateFirst = true;
+            var ctx = document.getElementById('averageFailureRateChart');
+            averageFailureRateCanvas = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
+                datasets: [{
+                  label: '平均失敗次數：',
+                  data: datasetsData,
+                  backgroundColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                  borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+                }
+                ]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: '平均失敗次數'
+                    },
+                    ticks: {
+                      min: 0
+                    }
+                  }],
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      fontSize: 25,
+                      labelString: 'Ｘ：關卡　Ｙ：平均失敗次數（提交失敗次數／遊玩人數）'
+                    }
+                  }]
+                },
+                legend: {
+                  display: false
+                },
+                pan: {
+                  enabled: true,
+                  mode: "y",
+                  speed: 10,
+                  threshold: 10
+                },
+                zoom: {
+                  enabled: true,
+                  drag: false,
+                  mode: "y",
+                  limits: {
+                    max: 10,
+                    min: 0.5
+                  }
+                },
+                tooltips: {
+                  callbacks: {
+                    label: function (tooltipItem) {
+                      // console.log(tooltipItem)
+                      return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
+                    }
+                  }
+                }
+              }
+            });
+            document.getElementById('playNumberChart').style.display = "none";
+            document.getElementById('successRateChart').style.display = "none";
+            document.getElementById('averageFailureRateChart').style.display = "block";
+          }else{
+            averageFailureRateCanvas.update();
+            document.getElementById('playNumberChart').style.display = "none";
+            document.getElementById('successRateChart').style.display = "none";
+            document.getElementById('averageFailureRateChart').style.display = "block";
           }
-          var ctx = document.getElementById('averageFailureRateChart');
-          mycanvas = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
-              datasets: [{
-                label: '平均失敗次數：',
-                data: datasetsData,
-                backgroundColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                borderColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-              }
-              ]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: '平均失敗次數'
-                  },
-                  ticks: {
-                    min: 0
-                  }
-                }],
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    fontSize: 25,
-                    labelString: 'Ｘ：關卡　Ｙ：平均失敗率（提交失敗次數／遊玩人數）'
-                  }
-                }]
-              },
-              legend: {
-                display: false
-              },
-              pan: {
-                enabled: true,
-                mode: "y",
-                speed: 10,
-                threshold: 10
-              },
-              zoom: {
-                enabled: true,
-                drag: false,
-                mode: "y",
-                limits: {
-                  max: 10,
-                  min: 0.5
-                }
-              },
-              tooltips: {
-                callbacks: {
-                  label: function (tooltipItem) {
-                    // console.log(tooltipItem)
-                    return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
-                  }
-                }
-              }
-            }
-          });
-          document.getElementById('playNumberChart').style.display = "none";
-          document.getElementById('successRateChart').style.display = "none";
-          document.getElementById('averageFailureRateChart').style.display = "block";
         }
       }, 500);
       break;
@@ -793,7 +810,7 @@ function prosessUserData() {
             mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
           }
 
-        
+
       }
     }
   }
@@ -858,9 +875,18 @@ function prosessUserData() {
 }
 
 $('#reset_zoom').click(function () {
-  mycanvas.resetZoom();
+  switch (document.getElementById("levelSelect").value) {
+    case "playNumber":
+      playNumberCanvas.resetZoom();
+      break;
+    case "successRate":
+      successRateCanvas.resetZoom();
+      break;
+    case "averageFailureRate":
+      averageFailureRateCanvas.resetZoom();
+      break;
+  }
 })
-
 
 function changeTimeFunc(timeType) {
   var thisPlayer;
@@ -891,14 +917,27 @@ function changeTimeFunc(timeType) {
 
   // mycanvas.data.datasets[0].data = [1,2,3,4];//在此改變資料集
   // console.log(showjson.data);
-  mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
+  //mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
 
   /*以下為改變標籤內容*/
   // if(document.getElementById("levelSelect").value != "playNumber"){
   // playerData = [7,8,9,10];
   playerData = showjson.playerData;
   // }
-  mycanvas.update();
+  switch (document.getElementById("levelSelect").value) {
+    case "playNumber":
+      playNumberCanvas.data.datasets[0].data = showjson.data;
+      playNumberCanvas.update();
+      break;
+    case "successRate":
+      successRateCanvas.data.datasets[0].data = showjson.data;
+      successRateCanvas.update();
+      break;
+    case "averageFailureRate":
+      averageFailureRateCanvas.data.datasets[0].data = showjson.data;
+      averageFailureRateCanvas.update();
+      break;
+  }
 }
 function setTimeFunc() {
   var startTime = document.getElementById("timeStart");//起始日期
@@ -914,22 +953,34 @@ function setTimeFunc() {
     var ST = new Date(startTime.value.toString());
     var ET = new Date(endTime.value.toString());
     showjson = UseTimeUpdateFunc(ST.getTime(), ET.getTime());
-    mycanvas.data.datasets[0].data = [1, 2, 3, 4];//在此改變資料集
-    mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
+    // mycanvas.data.datasets[0].data = showjson.data;//在此改變資料集
 
     /*以下為改變標籤內容*/
     // if(document.getElementById("levelSelect").value != "playNumber"){
     // playerData = [7,8,9,10];
     playerData = showjson.playerData;
     // }
-    mycanvas.update();
+    switch (document.getElementById("levelSelect").value) {
+      case "playNumber":
+        playNumberCanvas.data.datasets[0].data = showjson.data;
+        playNumberCanvas.update();
+        break;
+      case "successRate":
+        successRateCanvas.data.datasets[0].data = showjson.data;
+        successRateCanvas.update();
+        break;
+      case "averageFailureRate":
+        averageFailureRateCanvas.data.datasets[0].data = showjson.data;
+        averageFailureRateCanvas.update();
+        break;
+    }
   }
 }
 
 function UseTimeUpdateFunc(startTime, endTime) {
   console.log(startTime, endTime);
 
-  // AlluserData 
+  // AlluserData
   var mapNumber = new Array(50);
   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
   for (let index = 0; index < AlluserData.length; index++) {
@@ -1095,16 +1146,18 @@ function UseTimeUpdateFunc(startTime, endTime) {
 function clrFunc() {
   switch (document.getElementById("levelSelect").value) {
     case "playNumber":
-      mycanvas.data.datasets[0].data = playNumberVar;
+      playNumberCanvas.data.datasets[0].data = playerData_All;
+      playNumberCanvas.update();
       break;
     case "successRate":
-      mycanvas.data.datasets[0].data = successRateVar;
-      playerData = playNumberVar;
+      successRateCanvas.data.datasets[0].data = successRateVar;
+      playerData = playerData_All;
+      successRateCanvas.update();
       break;
     case "averageFailureRate":
-      mycanvas.data.datasets[0].data = averageFailureRateVar;
-      playerData = playNumberVar;
+      averageFailureRateCanvas.data.datasets[0].data = averageFailureRateVar;
+      playerData = playerData_All;
+      averageFailureRateCanvas.update();
       break;
   }
-  mycanvas.update();
 }
