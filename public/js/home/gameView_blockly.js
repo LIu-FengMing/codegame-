@@ -296,8 +296,8 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
+  console.log(mainDiv);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
-  console.log(selectMod);
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
@@ -387,6 +387,11 @@ function clossFunc(thisDiv, thisDiv2) {
 /*清除畫布動作*/
 function clearButton(thisTextarea) {
   challengeGameAgain();
+}
+/*重新開始*/
+function restartButton(thisTextarea) {
+  challengeGameAgain();
+  myFunction();
 }
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
@@ -905,7 +910,12 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     b.setAttribute("id", "nextLevelBtn");
     b.setAttribute("value", "下一關");
     console.log(thisLevelNum);
-    b.setAttribute("onclick", "location.href='gameView_blockly?level=" + ++thisLevelNum + "'");
+    if(thisLevelNum +1==24){
+      b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum +1)+ "'");
+    }
+    else{
+      b.setAttribute("onclick", "location.href='gameView_blockly?level=" + (thisLevelNum +1)+ "'");
+    }
     divTag.appendChild(b);
   } else {
     b = document.createElement("input");
@@ -1202,14 +1212,6 @@ directiveData = {
             },
             {
               "value": "scanf"
-            }
-          ]
-        },
-        {
-          "name": "函式",
-          "usable": [
-            {
-              "value": "var"
             }
           ]
         }
