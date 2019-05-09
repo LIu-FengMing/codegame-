@@ -331,6 +331,8 @@ function closeFunc(thisDiv,thisDiv2) {
 /*清除指令*/
 function clearButton(thisTextarea) {
   document.getElementById(thisTextarea.id).value = "";
+  clearcodeAndInit();
+  challengeGameAgain();
 }
 
 /*指令大全*/
