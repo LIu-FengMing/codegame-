@@ -789,12 +789,12 @@ function createLevelTable(scriptData) {
           b = document.getElementById("shelfBtn" + i + j);
           b.className = "unShelfBtn";
           // b.setAttribute("onclick", "unShelf(this)");
-          b.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+          b.setAttribute("onclick", "checkView(\"下架地圖\",this)");
         }
         else if (userMap[i].check == true && userMap[i].postStage == 2) {
           b = document.getElementById("shelfBtn" + i + j);
           b.className = "unShelfBtn";
-          b.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+          b.setAttribute("onclick", "checkView(\"下架地圖\",this)");
         }
         else if (userMap[i].check == true) {
           b = document.getElementById("shelfBtn" + i + j);
@@ -838,7 +838,7 @@ function createLevelTable(scriptData) {
           b.className = "deleteBtn";
         }
         b.setAttribute("id", "deleteBtn" + i + j);
-        b.setAttribute("onclick", "checkView(\"刪除關卡\",this)");
+        b.setAttribute("onclick", "checkView(\"刪除地圖\",this)");
         divTag.appendChild(b);
       }
     }
@@ -934,7 +934,7 @@ function checkView(checkFont, checkStatus) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkTrueBtn");
   b.setAttribute("value", "確定");
-  if (checkFont == "上架關卡") {
+  if (checkFont == "上架地圖") {
     if (checkStatus == "now") {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
@@ -944,17 +944,17 @@ function checkView(checkFont, checkStatus) {
       console.log(postVar);
       b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
     }
-  } else if (checkFont == "下架關卡") {
+  } else if (checkFont == "下架地圖") {
     unShelfVar = checkStatus;
     var ele = document.createElement("input");
     b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
-  } else if (checkFont == "刪除關卡") {
+  } else if (checkFont == "刪除地圖") {
       b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
   }
   divTag.appendChild(b);
 }
 
-/*刪除關卡--檢測*/
+/*刪除地圖--檢測*/
 function delMap(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("deleteBtn".length));
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
@@ -976,7 +976,7 @@ function delMap(thisObject) {
   }
 
 }
-/*刪除關卡--功能*/
+/*刪除地圖--功能*/
 function delMapAction(objI) {
   console.log(objI);
   var obj = userMap[objI];
@@ -1003,7 +1003,7 @@ function delMapAction(objI) {
   })
 }
 
-/*簡介關卡--功能*/
+/*簡介地圖--功能*/
 function viewValueMap(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("introductionBtn".length));
   var mapIndex = parseInt(thisObject.substr("lostUserCreateTable".length));
@@ -1042,7 +1042,7 @@ function viewValueMap(thisObject) {
   b.innerHTML = obj.mapName;
   divTag.appendChild(b);
 
-  /*關卡說明*/
+  /*地圖說明*/
   divTag = document.getElementById("levelForm");
   b = document.createElement("textarea");
   b.setAttribute("rows", "20");
@@ -1052,11 +1052,11 @@ function viewValueMap(thisObject) {
   divTag.appendChild(b);
   b = document.createElement("br");
   divTag.appendChild(b);
-  console.log("關卡簡介:", obj.mapIntroduction);
-  console.log("關卡名稱:", obj.mapName);
-  console.log("關卡說明:", obj.mapDescription);
+  console.log("地圖簡介:", obj.mapIntroduction);
+  console.log("地圖名稱:", obj.mapName);
+  console.log("地圖說明:", obj.mapDescription);
 }
-/*更新關卡--功能*/
+/*更新地圖--功能*/
 function updateMap(thisObject) {
   var mapIndex = parseInt(thisObject.id.substr("modifyBtn".length));
   // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
@@ -1074,7 +1074,7 @@ function updateMap(thisObject) {
     document.location.href = 'oblivionCreater?mapID=' + mapID;
   }
 }
-/*上架關卡--觸發事件*/
+/*上架地圖--觸發事件*/
 function shelfMap(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
@@ -1118,13 +1118,13 @@ function shelfBtn() {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "上架關卡";
+  document.getElementById("allTitle").innerHTML = "上架地圖";
 
   b = document.createElement("table");
   b.setAttribute("id", "shelfTable");
   divTag.appendChild(b);
 
-  /*上架關卡_定時*/
+  /*上架地圖_定時*/
   divTag = document.getElementById("shelfTable");
   b = document.createElement("tr");
   b.setAttribute("id", "shelfTr0");
@@ -1214,7 +1214,7 @@ function shelfBtn() {
   b.setAttribute("id", "shelfNow");
   b.setAttribute("class", "shelfNow");
   b.setAttribute("value", "立即上架");
-  b.setAttribute("onclick", "checkView(\"上架關卡\",\"now\")");
+  b.setAttribute("onclick", "checkView(\"上架地圖\",\"now\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -1255,7 +1255,7 @@ function shelfChk(input) {
 function nowShelfNow(checkFont) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-  // if (checkView("上架關卡")) {
+  // if (checkView("上架地圖")) {
   //   nowShelfNowAction(mapIndex);
   // } else {
   //   // Do nothing!
@@ -1328,7 +1328,7 @@ function nowShelfNowAction(mapIndex) {
       divTag = document.getElementById(str);
       divTag.className = "unShelfBtn";
       // divTag.setAttribute("onclick", "unShelf(this)");
-      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+      divTag.setAttribute("onclick", "checkView(\"下架地圖\",this)");
 
       str = "modifyBtn" + objI.toString() + "8";
       divTag = document.getElementById(str);
@@ -1360,7 +1360,7 @@ function shelfLater(thisObject) {
       console.log("run 777");
       postVar = selectDate.toString();
       latePostVar = selectDate.toString();
-      checkView("上架關卡","later");
+      checkView("上架地圖","later");
       // if (confirm('你確定要上架這張地圖嗎?')) {
       //   console.log(latePostVar);
       //   shelfLaterAction(latePostVar);
@@ -1368,7 +1368,7 @@ function shelfLater(thisObject) {
       //   // Do nothing!
       // }
       // postLaterVar = selectDate.toString();
-      // checkView("上架關卡","later");
+      // checkView("上架地圖","later");
     }
   }
   else {
@@ -1404,7 +1404,7 @@ function shelfLaterAction(selectDate) {
       divTag = document.getElementById(str);
       divTag.className = "unShelfBtn";
       // divTag.setAttribute("onclick", "unShelf(this)");
-      divTag.setAttribute("onclick", "checkView(\"下架關卡\",this)");
+      divTag.setAttribute("onclick", "checkView(\"下架地圖\",this)");
 
       str = "modifyBtn" + objI.toString() + "8";
       divTag = document.getElementById(str);
@@ -1437,7 +1437,7 @@ function shelfLaterAction(selectDate) {
   })
 }
 
-/*下架關卡--功能*/
+/*下架地圖--功能*/
 function unShelf(thisObject) {
   // var mapIndex = parseInt(thisObject.id.substr("shelfBtn".length));
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
@@ -1478,7 +1478,7 @@ function unShelf(thisObject) {
       str = "deleteBtn" + objI.toString() + "8";
       divTag = document.getElementById(str);
       divTag.className = "deleteBtn";
-      divTag.setAttribute("onclick", "checkView('刪除關卡',this)");
+      divTag.setAttribute("onclick", "checkView('刪除地圖',this)");
 
     }
   })
@@ -1496,8 +1496,8 @@ function reviseLevel() {
       document.location.href = 'oblivionCreater?mapID=' + mapID;
     }
     else {
-      // alert("關卡已發佈，不可更改");
-      remindView("關卡已發佈，不可更改");
+      // alert("地圖已發佈，不可更改");
+      remindView("地圖已發佈，不可更改");
 
     }
   }
@@ -1513,22 +1513,22 @@ function enterLevel() {
     var obj = userMap[mapIndex];
     // if (obj.check == false) {
     if (obj.mapName.length < 1) {
-      // alert("關卡名稱不能為空白，請修改關卡內容");
-    remindView("關卡名稱不能為空白，<br>請修改關卡內容");
+      // alert("地圖名稱不能為空白，請修改地圖內容");
+    remindView("地圖名稱不能為空白，<br>請修改地圖內容");
     }
     else if (obj.mapName.length > 10) {
-      // alert("關卡名稱不能超過10個字，請修改關卡內容");
-    remindView("關卡名稱不能超過10個字，<br>請修改關卡內容");
+      // alert("地圖名稱不能超過10個字，請修改地圖內容");
+    remindView("地圖名稱不能超過10個字，<br>請修改地圖內容");
     }
     else {
       if (obj.mapIntroduction.length < 1) {
-        // alert("關卡簡介不能為空白，請修改關卡內容");
-        remindView("關卡簡介不能為空白，<br>請修改關卡內容");
+        // alert("地圖簡介不能為空白，請修改地圖內容");
+        remindView("地圖簡介不能為空白，<br>請修改地圖內容");
       }
       else {
         if (obj.mapDescription.length < 1) {
-          // alert("關卡介紹不能為空白，請修改關卡內容");
-          remindView("關卡介紹不能為空白，<br>請修改關卡內容");
+          // alert("地圖介紹不能為空白，請修改地圖內容");
+          remindView("地圖介紹不能為空白，<br>請修改地圖內容");
         }
         else {
           var mapID = obj._id;
@@ -1566,27 +1566,27 @@ mainDescription = {
     {
       "level": 1,
       "mode": 1,
-      "textarea1": "歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的關卡也可以遊玩其他使用者創建的關卡<br>每一個關卡都有遊玩條件，達成遊玩條件後即可遊玩關卡<br>完成關卡後可給予關卡評價，評價高的關卡會更加吸引人喔<br><br>點擊左下角的”自訂關卡”即可看到自己已創建的關卡以及開始創建屬於你的關卡<br><br>選定欲遊玩的關卡後點擊右下角的”進入關卡”即可開始遊玩。<br><br>未遊玩過的關卡為淡藍色<br>已遊玩過的關卡為淡紫色"
+      "textarea1": "歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的地圖也可以遊玩其他使用者創建的地圖<br>每一個地圖都有遊玩條件，達成遊玩條件後即可遊玩地圖<br>完成地圖後可給予地圖評價，評價高的地圖會更加吸引人喔<br><br>點擊左下角的”自訂地圖”即可看到自己已創建的地圖以及開始創建屬於你的地圖<br><br>選定欲遊玩的地圖後點擊右下角的”進入地圖”即可開始遊玩。<br><br>未遊玩過的地圖為淡藍色<br>已遊玩過的地圖為淡紫色"
     },
     {
       "level": 2,
       "mode": 1,
-      "textarea1": "此為\"我的自訂關卡\"介面，可以在這裡查看到目前自訂關卡的狀態以及可透過關卡右方的工具列編輯關卡。<br>工具列按鈕由左至右依序為：上/下架、修改關卡、關卡簡介、刪除關卡。<br>除了查看狀態及編輯關卡，也可以透過左下角的\"創建關卡\"來創建新的關卡。<br><br>創建了關卡後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測關卡就可以馬上開始檢測自己的關卡。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架關卡了。<br><br>上架關卡可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架關卡後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架關卡了，而下架關卡後若修改了關卡則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架關卡。"
+      "textarea1": "此為\"我的自訂地圖\"介面，可以在這裡查看到目前自訂地圖的狀態以及可透過地圖右方的工具列編輯地圖。<br>工具列按鈕由左至右依序為：上/下架、修改地圖、地圖簡介、刪除地圖。<br>除了查看狀態及編輯地圖，也可以透過左下角的\"創建地圖\"來創建新的地圖。<br><br>創建了地圖後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測地圖就可以馬上開始檢測自己的地圖。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架地圖了。<br><br>上架地圖可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架地圖後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架地圖了，而下架地圖後若修改了地圖則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架地圖。"
     },
     {
       "level": 3,
       "mode": 1,
-      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
     },
     {
       "level": 4,
       "mode": 1,
-      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
     },
     {
       "level": 5,
       "mode": 1,
-      "textarea1": "此為創建關卡頁面，可在此頁面創建屬於自己的關卡。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”關卡設定”設定關卡名稱、關卡簡介、關卡說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此關卡中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
+      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此地圖中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
     }
   ]
 };

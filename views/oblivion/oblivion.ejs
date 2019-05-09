@@ -16,7 +16,7 @@
           <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('createrDiv')">
         </div>
         <div class="box centerLost" id="centerLost">
-          <h1 class="titleH1">玩家自訂關卡</h1>
+          <h1 class="titleH1">玩家自訂地圖</h1>
           <input type="button" title="返回鍵" value="" id="goBack3"  onclick="back()">
           <select id="levelSelect" name="">
             <option value="all">&nbsp全&nbsp部</option>
@@ -24,13 +24,13 @@
           </select>
           <div class="search-box">
             <select id="selectType" name="">
-              <option value="all">關卡名稱</option>
+              <option value="all">地圖名稱</option>
               <option value="canPlay">遊玩條件</option>
               <option value="canPlay">製作者</option>
               <option value="canPlay">評價</option>
               <option value="canPlay">發布日期</option>
             </select>
-            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="關卡名稱" onsearch = "searchFunc()">
+            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="地圖名稱" onsearch = "searchFunc()">
             <a class="search-btn"href="#">
               <i class="fas fa-search"></i>
             </a>
@@ -38,17 +38,17 @@
           <div id="createrDiv">
             <table id="lostCreateTable" border=5 RULES=ALL>
               <tr>
-                <td class="td01" onclick="changeTdName(this)">關卡名稱</td>
+                <td class="td01" onclick="changeTdName(this)">地圖名稱</td>
                 <td class="td02" onclick="changeTdName(this)">遊玩條件</td>
                 <td class="td03" onclick="changeTdName(this)">製作者</td>
                 <td class="td04" onclick="changeTdName(this)">評價</td>
                 <td class="td05" onclick="changeTdName(this)">發佈日期</td>
-                <td class="td06" onclick="changeTdName(this)">關卡簡介</td>
+                <td class="td06" onclick="changeTdName(this)">地圖簡介</td>
               </tr>
             </table>
           </div>
-          <input type="button" class="centerButton" id="createLevel" value="自訂關卡" onclick="location.href='oblivionUser';">
-          <input type="button" class="centerButton" id="enterLevel" value="進入關卡" onclick="enterLevel()">
+          <input type="button" class="centerButton" id="createLevel" value="自訂地圖" onclick="location.href='oblivionUser';">
+          <input type="button" class="centerButton" id="enterLevel" value="進入地圖" onclick="enterLevel()">
           <input type="button" title="設定" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
         </div>
         <div class="box sidebarRight"><!--right-->
