@@ -196,7 +196,7 @@ function getMapDescription(thisDescription) {
   helper("blocklyDiv");
 }
 
-//---------紀錄關卡資訊---------//
+//---------紀錄地圖資訊---------//
 function recordLevel(scriptData) {
   var NowDate = new Date();
   scriptData.submitTime = NowDate
@@ -352,7 +352,7 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "關卡說明";
+  document.getElementById("allTitle").innerHTML = "地圖說明";
   divTag = document.getElementById("helperView");
   b = document.createElement("div");
   b.setAttribute("id", "helperTextarea3");
@@ -1031,8 +1031,8 @@ function backToMapBtn() {
   }
   else if (evaluation < 1) {
 
-    remindView("請給關卡評價");
-    // alert("請給關卡評價");
+    remindView("請給地圖評價");
+    // alert("請給地圖評價");
   }
   else {
     let nowurl = new URL(window.location.href);

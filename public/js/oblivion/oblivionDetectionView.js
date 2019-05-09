@@ -68,9 +68,6 @@ $.ajax({
     success: function (res) {
       // console.log(res);
       user = res;
-      if(user.username=="NKUSTCCEA"){
-        forManagement();
-      }
       /*loadmusicData();*/
       // console.log(user);
       var xmlhttp = new XMLHttpRequest();
@@ -153,7 +150,7 @@ function getMapDescription(thisDescription) {
   mapMessage = thisDescription;
   helper("blocklyDiv");
 }
-//---------紀錄關卡資訊---------//
+//---------紀錄地圖資訊---------//
 function recordLevel(scriptData) {
     var NowDate = new Date();
     scriptData.submitTime = NowDate
@@ -308,7 +305,7 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "關卡說明";
+  document.getElementById("allTitle").innerHTML = "地圖說明";
   divTag = document.getElementById("helperView");
   b = document.createElement("div");
   b.setAttribute("id", "helperTextarea3");
