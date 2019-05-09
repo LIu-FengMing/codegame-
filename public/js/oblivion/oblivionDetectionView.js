@@ -905,7 +905,7 @@ function createEndView(starNum,gameResult,instructionNum,code) {
 
   divID = "createEndView";
   divID2 = "createEndBkView";
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "createEndBkView");
   divTag.appendChild(b);
