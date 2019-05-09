@@ -764,6 +764,9 @@ function blocklyUsable(thisClassID, thisValue) {
     case "printf":
       blockType = "block_printf";
       break;
+    case "printf2":
+      blockType = "block_printf2";
+      break;
     case "scanf":
       blockType = "block_scanf";
       break;
@@ -811,6 +814,9 @@ function blocklyUsable(thisClassID, thisValue) {
   }
   if (blockType == "block_loop") {
     blocklyUsable(thisClassID, "var");
+  }
+  if (blockType == "block_printf") {
+    blocklyUsable(thisClassID, "printf2");
   }
 }
 

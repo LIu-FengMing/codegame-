@@ -568,8 +568,8 @@ body {
   background-color: transparent;
   margin-right: 5px;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  top: 2vh;
+  right: 0px;
 }
 #instructionView{
   z-index: 4;

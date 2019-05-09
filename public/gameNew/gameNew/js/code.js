@@ -199,6 +199,7 @@ function changeToC(isDisplay){
           textcode = textcode + '    ';
         }
         var var0,var1,var2;
+				console.log(workspace.getBlockById(nowBlock).inputList[0]);
         var0 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[0].text_;
         var1 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_;
         var2 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_
@@ -212,6 +213,14 @@ function changeToC(isDisplay){
         }
         code = code + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < x; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + ")\n";
         break;
 			case 'block_scanf':
 	       for(var j = 0; j < x; j++){
@@ -324,6 +333,14 @@ function loopChange(repeatTimes,nowPosition){
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
 			case 'block_scanf':
 	       for(var j = 0; j < repeatTimes; j++){
 	         code = code + '&nbsp&nbsp&nbsp&nbsp';
@@ -425,6 +442,14 @@ function judgment(repeatTimes,nowPosition,onlyIf){
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
       case 'block_call':
         for(var j = 0; j < x; j++){
           code = code + '&nbsp&nbsp&nbsp&nbsp';
@@ -492,6 +517,14 @@ function judgment_sw(repeatTimes,nowPosition){
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
       case 'block_call':
         for(var j = 0; j < x; j++){
           code = code + '&nbsp&nbsp&nbsp&nbsp';
@@ -538,8 +571,8 @@ function judgment_case(repeatTimes,nowPosition){
     textcode = textcode + '    ';
   }
   repeatTimes++;
-  code = code + 'case \'' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '\':<br>';
-  textcode = textcode + 'case \'' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '\':\n';
+  code = code + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':<br>';
+  textcode = textcode + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
       case 'block_step':
@@ -564,6 +597,14 @@ function judgment_case(repeatTimes,nowPosition){
         }
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
         break;
       case 'block_call':
         for(var j = 0; j < x; j++){
@@ -650,6 +691,14 @@ function judgment_default(repeatTimes,nowPosition){
         }
         code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          code = code + '&nbsp&nbsp&nbsp&nbsp';
+          textcode = textcode + '    ';
+        }
+        code = code + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textcode = textcode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
         break;
       case 'block_break':
         for(var j = 0; j < repeatTimes; j++){
@@ -778,9 +827,10 @@ function functionChange(repeatTimes,nowPosition){
           textMidFuncode = textMidFuncode + '    ';
         }
         var var0,var1,var2;
-        var0 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[0].text_;
-        var1 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_;
-        var2 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_
+				console.log(workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0]);
+        var0 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[0].text_;
+        var1 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[1].text_;
+        var2 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[3].text_;
         midFuncode = midFuncode + var0 + ' ' + var1 + ' = ' + var2 + ';<br>';
         textMidFuncode = textMidFuncode + var0 + ' ' + var1 + ' = ' + var2 + ';\n';
         break;
@@ -791,6 +841,14 @@ function functionChange(repeatTimes,nowPosition){
         }
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
         break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){
@@ -897,6 +955,14 @@ function funLoopChange(repeatTimes,nowPosition){
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){
           midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
@@ -988,6 +1054,14 @@ function funJudgment(repeatTimes,nowPosition,onlyIf){
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){
           midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
@@ -1055,6 +1129,14 @@ function funJudgment_sw(repeatTimes,nowPosition){
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
         break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
+        break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){
           midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
@@ -1101,8 +1183,8 @@ function funJudgment_case(repeatTimes,nowPosition){
     textMidFuncode = textMidFuncode + '    ';
   }
   repeatTimes++;
-  midFuncode = midFuncode + 'case \'' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '\':<br>';
-  textMidFuncode = textMidFuncode + 'case \'' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '\':\n';
+  midFuncode = midFuncode + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':<br>';
+  textMidFuncode = textMidFuncode + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
       case 'block_step':
@@ -1127,6 +1209,14 @@ function funJudgment_case(repeatTimes,nowPosition){
         }
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
         break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){
@@ -1196,6 +1286,14 @@ function funJudgment_default(repeatTimes,nowPosition){
         }
         midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");<br>';
         textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '");\n';
+        break;
+      case 'block_printf2':
+        for(var j = 0; j < repeatTimes; j++){
+          midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
+          textMidFuncode = textMidFuncode + '    ';
+        }
+        midFuncode = midFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")<br>";
+        textMidFuncode = textMidFuncode + 'printf("' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[2].text_ + ")\n";
         break;
       case 'block_call':
         for(var j = 0; j < repeatTimes; j++){

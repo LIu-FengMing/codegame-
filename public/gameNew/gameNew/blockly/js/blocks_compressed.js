@@ -159,11 +159,27 @@ Blockly.Blocks['block_printf'] = {
   }
 };
 
+Blockly.Blocks['block_printf2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("printf(\"")
+        .appendField(new Blockly.FieldTextInput(" "), "NAME")
+        .appendField("\",")
+        .appendField(new Blockly.FieldTextInput(" "), "NAME")
+        .appendField(");");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['block_scanf'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("scanf(\"")
-        .appendField(new Blockly.FieldDropdown([["%d","UNOPTIONNAME"], ["%c","OPTIONNAME"], ["%f","OPTIONNAME"]]), "NAME")
+        .appendField(new Blockly.FieldDropdown([["%d","%d"], ["%c","%c"], ["%f","%f"]]), "NAME")
         .appendField("\",")
         .appendField(new Blockly.FieldTextInput(" "), "NAME")
         .appendField(");");
