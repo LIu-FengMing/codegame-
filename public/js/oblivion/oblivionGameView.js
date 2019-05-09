@@ -68,6 +68,9 @@ $.ajax({
   success: function (res) {
     // console.log(res);
     user = res;
+    if(user.username=="NKUSTCCEA"){
+      forManagement();
+    }
     /*loadmusicData();*/
     // console.log(user);
     var xmlhttp = new XMLHttpRequest();

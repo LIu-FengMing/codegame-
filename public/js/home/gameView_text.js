@@ -81,6 +81,10 @@ $.ajax({
     myVid.volume = 0;
     // console.log(res);
     user = res;
+    if(user.username=="NKUSTCCEA"){
+      forManagement();
+    }
+
     let nowurl = new URL(window.location.href);
     let params = nowurl.searchParams;
     if (!params.has('level')) {
