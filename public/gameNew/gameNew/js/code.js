@@ -917,6 +917,7 @@ function functionChange(repeatTimes,nowPosition){
 function funLoopChange(repeatTimes,nowPosition){
   var nextPosition = nowPosition + 1;
   var thisPosition = nowPosition;
+	var loop1,loop2,loop3,loop4,loop5,loop6;
   for(var j = 0; j < repeatTimes; j++){
     midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
     textMidFuncode = textMidFuncode + '    ';
