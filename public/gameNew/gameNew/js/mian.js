@@ -103,10 +103,14 @@ function setup() {
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
     // if(windowWidth * 0.4>=560&&windowHeight * 0.565.8)
-    var winW = Math.max($(window).width()* 0.4,windowWidth * 0.4, 506);
-    var winH = Math.max($(window).height()* 0.892,windowHeight * 0.892, 500);
+
+    var divcanvas = document.getElementById('divcanvas');
+    var winW = divcanvas.offsetWidth;
+    var winH = divcanvas.offsetHeight;
+    // var winW = Math.max($(window).width()* 0.4,windowWidth * 0.4, 506);
+    // var winH = Math.max($(window).height()* 0.892,windowHeight * 0.892, 500);
     // var canvas = createCanvas((windowWidth * 0.4)-6, (windowHeight * 0.895)-5);
-    var canvas = createCanvas(winW - 6, winH - 5);
+    var canvas = createCanvas(winW - 6, winH - 6);
     canvas.parent('divcanvas');
     canvas.background(211, 211, 211);
     width = canvas.width;
@@ -254,12 +258,12 @@ function loadData() {
     }
 
     textarea_0.value = linit + stemp;
-    var tA=textarea_0.value.indexOf("main");
-    var tEnd=textarea_0.value.indexOf("{",tA);
-    console.log("tEnd",tEnd);
+    var tA = textarea_0.value.indexOf("main");
+    var tEnd = textarea_0.value.indexOf("{", tA);
+    console.log("tEnd", tEnd);
 
-    textarea_0.selectionStart = tEnd+1;
-    textarea_0.selectionEnd = tEnd+1;
+    textarea_0.selectionStart = tEnd + 1;
+    textarea_0.selectionEnd = tEnd + 1;
 
     var stemp = initCode.substr(initCode.indexOf('#') - 1);
     initCode = linit + stemp;

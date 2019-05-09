@@ -1101,9 +1101,16 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "nextLevelBtn");
-    b.setAttribute("value", "下一關");
+   
     console.log(thisLevelNum);
-    b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum+1) + "'");
+    if((thisLevelNum+1)>=50){
+      b.setAttribute("value", "完成闖關");
+      b.setAttribute("onclick", "location.href='kuruma'");
+    }
+    else{
+      b.setAttribute("value", "下一關");
+      b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum+1) + "'");
+    }
     divTag.appendChild(b);
   }else {
     b = document.createElement("input");

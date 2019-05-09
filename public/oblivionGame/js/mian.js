@@ -100,7 +100,13 @@ function setup() {
     gameEndingCodeDic['5'] = "編譯失敗";
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
-    var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
+    var divcanvas = document.getElementById('divcanvas');
+    var winW = divcanvas.offsetWidth;
+    var winH = divcanvas.offsetHeight;
+    // var winW = Math.max($(window).width()* 0.4,windowWidth * 0.4, 506);
+    // var winH = Math.max($(window).height()* 0.892,windowHeight * 0.892, 500);
+    // var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
+    var canvas = createCanvas(winW - 6, winH - 6);
     canvas.parent('divcanvas');
     canvas.background(211, 211, 211);
     width = canvas.width;
