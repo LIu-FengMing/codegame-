@@ -188,8 +188,8 @@ function init_setup() {
     xmlhttp.send();
 }
 
-window.resize = function () {
-    // console.log("ddd");
+window.onresize = function () {
+    console.log("ddd");
     setup(); //resize
 }
 function loadData() {
