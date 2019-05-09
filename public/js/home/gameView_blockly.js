@@ -296,8 +296,8 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  console.log(mainDiv);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
+  console.log(selectMod);
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
@@ -387,11 +387,6 @@ function clossFunc(thisDiv, thisDiv2) {
 /*清除畫布動作*/
 function clearButton(thisTextarea) {
   challengeGameAgain();
-}
-/*重新開始*/
-function restartButton(thisTextarea) {
-  challengeGameAgain();
-  myFunction();
 }
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
@@ -1207,6 +1202,14 @@ directiveData = {
             },
             {
               "value": "scanf"
+            }
+          ]
+        },
+        {
+          "name": "函式",
+          "usable": [
+            {
+              "value": "var"
             }
           ]
         }
