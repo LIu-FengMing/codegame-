@@ -1747,10 +1747,29 @@ function challengeGameAgain() {
     edgeToHeight = height / mapSize;
     iscreatecanvas = 1;
     action_now = 0;
-    peopleGraph = createGraphics(width, height);
-    objectGraph = createGraphics(width, height);
-    backgroundGraph = createGraphics(width, height);
-    pg = createGraphics(edgeToWidth, edgeToHeight);
+
+    let mapNumber = data;
+    if (mapNumber.foggy) {
+        haveFoggy = true;
+    }
+    else {
+        haveFoggy = false;
+    }
+    map = mapNumber['mapValue'];
+    mapSize = Math.sqrt(mapNumber['mapSize']);
+    people_init = mapNumber['people_init'];
+    end_init = mapNumber['end_init'];
+    mapObject = mapNumber['obj'];
+    mapwinLinit = mapNumber['winLinit'];
+
+    // peopleGraph = createGraphics(width, height);
+    // objectGraph = createGraphics(width, height);
+    // backgroundGraph = createGraphics(width, height);
+    // pg = createGraphics(edgeToWidth, edgeToHeight);
+    peopleGraph.clear();
+    objectGraph.clear();
+    backgroundGraph.clear();
+    pg.clear();
     updateBackgroundGraph();
     updateObjectGraph();
     updatePeopleGraph();
@@ -1762,6 +1781,7 @@ function challengeGameAgain() {
     action_now = 0;
     finishCoin = true;
 }
+
 
 /*btn1.onclick = function () {
     challengeGameAgain();
