@@ -188,10 +188,10 @@ function init_setup() {
     xmlhttp.send();
 }
 
-window.onresize = function () {
-    console.log("ddd");
-    setup(); //resize
-}
+// window.onresize = function () {
+//     console.log("ddd");
+//     setup(); //resize
+// }
 function loadData() {
     let mapNumber = data;
     if (mapNumber.foggy) {

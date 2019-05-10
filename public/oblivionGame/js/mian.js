@@ -119,10 +119,10 @@ function setup() {
 
 }
 
-window.onresize = function () {
-    console.log("ddd");
-    setup();
-}
+// window.onresize = function () {
+//     console.log("ddd");
+//     setup();
+// }
 function init_setup() {
     // changeCollege(10) ;
 
@@ -148,7 +148,7 @@ function init_setup() {
                 console.log(pathname);
                 if (pathname == "/oblivionDetectionView") {
                     console.log(res.check);
-                    
+
                     // if (res.check == true) {
                     //     jumpPage = true;
                     //     alert("已檢測通過");
@@ -161,7 +161,7 @@ function init_setup() {
                     //     href = href.substr(0, index + 1) + "oblivionUser";
                     //     window.location.replace(href);
                     // }
-                    // else 
+                    // else
                     if (user) {
                         if (res.author != user.name) {
                             jumpPage = true;
@@ -208,7 +208,7 @@ function init_setup() {
                     divTag = document.getElementById("titleFont");
                     divTag.innerHTML = "";
                     divTag.innerHTML = res.mapName;
-                    console.log(res.mapDescription);       
+                    console.log(res.mapDescription);
                     getMapDescription(res.mapDescription);
                     data = JSON.parse(res.map);
                     Res_data = JSON.parse(JSON.stringify(data));
@@ -659,7 +659,7 @@ function draw() {
                                         complementStep = true;
                                     }
                                     /*
-                 
+
                                     */
                                 }
                             }
@@ -1451,7 +1451,7 @@ function codeOutputTranstionAction() {
                 inputList = spaceT[2].split(' ');
 
 
-                //  
+                //
 
                 var ansList = mapObject[o].ans.split(' ');
                 console.log("ans:", ansList);
@@ -1791,15 +1791,15 @@ function challengeGameAgain() {
 
 /*btn1.onclick = function () {
     challengeGameAgain();
- 
+
     textarea_1.value = "   .....編譯中~請稍後....."
     codeToCompiler();
- 
+
     //測試用//
     // decodeOutput = textarea_1.value
     // codeOutputTranstionAction();
     ////
- 
+
 }*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',

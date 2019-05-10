@@ -1101,7 +1101,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "nextLevelBtn");
-   
+
     console.log(thisLevelNum);
     if((thisLevelNum+1)>=50){
       b.setAttribute("value", "完成闖關");
@@ -1182,6 +1182,7 @@ window.onresize = function() {
   b.setAttribute("style", "height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;");
   b.innerHTML = nowTexrareaVar;
   divTag.appendChild(b);
+  console.log("aaaaaaaaaa");
   $(function() {
     $(".lined").linedtextarea({
       selectedLine: 1
@@ -1190,6 +1191,7 @@ window.onresize = function() {
   $.each($("textarea"), function(i, n){
     $(n).css("height", n.scrollHeight + "px");
   })
+  setup();
 }
 
 /*鍵盤事件*/
@@ -1240,8 +1242,6 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   fontSize = parseFloat(style);
   //console.log(fontSize);
 }
-
-
 
 
 /*關卡說明*/

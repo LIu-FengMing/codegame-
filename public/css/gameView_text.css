@@ -330,10 +330,11 @@ body {
   background-color: rgb(117, 117, 117);
   position: absolute;
   left: 0px;
+  overflow-y: auto;
 }
 .func,.step,.judgment,.titleDiv{
   margin-top: 5px;
-  font-size: 20px;
+  font-size: calc(6px + 0.5vw);
   padding: 1vh;
   border-style: solid;
   border-color: black;

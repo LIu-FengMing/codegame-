@@ -968,7 +968,9 @@ function closeLoadingView() {
     parentObj.removeChild(divTag);
   } catch (e) { }
 }
-
+window.onresize = function() {
+  setup();
+}
 /*關卡說明*/
 mainDescription = {
   "oblivionObject": [
