@@ -275,8 +275,7 @@ body {
 }
 #titleBar font{
   position: absolute;
-  margin-top: 20px;
-  font-size: 50px;
+  font-size: calc(15px + 4vh);
   top:40%;
   right:0;
   bottom:0;
@@ -284,23 +283,23 @@ body {
   margin:auto;
 }
 #divcanvas{
-  height: 89%;
-  width: 50%;
+  height: 88.9%;
+  width: 49.7%;
   border-style:solid;
   background-color: none;
   position: absolute;
   top: 10.5%;
-  right: 0%;
+  right: 0px;
 }
 #blocklyDiv{
-  height: 89%;
-  width: 50%;
+  height: 88.9%;
+  width: 49.7%;
   border-style:solid;
   z-index: 1;
   background-color: white;
   position: absolute;
   top: 10.5%;
-  left: 0%;
+  left: 0px;
 }
 #defaultCanvas{
   height: 70%;
