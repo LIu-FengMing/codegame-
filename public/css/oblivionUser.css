@@ -586,13 +586,13 @@ body {
 #createrDiv .td02{width: 5%;}
 #createrDiv .td03{width: 23%;}
 #createrDiv .td04{width: 10%;}
-#createrDiv .td05{width: 15%;}
-#createrDiv .td06{width: 11%;}
+#createrDiv .td05{width: 13%;}
+#createrDiv .td06{width: 13%;}
 #createrDiv .td07{
-  width: 11%;
+  width: 13%;
   line-height: 4vh;
 }
-#createrDiv .td08{width: 20%;}
+#createrDiv .td08{width: 18%;}
 
 .lostUserCreateTable .shelfBtn{
   height: 2.5vw;
