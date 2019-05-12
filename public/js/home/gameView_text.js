@@ -1157,8 +1157,6 @@ function closeLoadingView() {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-
-
 }
 
 /*文字區加行數*/
