@@ -1,4 +1,3 @@
-
 var UserName = document.getElementById('UsreName');
 var UserPass = document.getElementById('UsrePass');
 var loginBtn = document.getElementById('loginBtn');

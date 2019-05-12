@@ -573,7 +573,7 @@ body {
 #createrDiv #lostCreateTable{
   width: 100.0%;
   height: 70px;
-  font-size: 25px;
+  font-size: calc(5px + 1.3vw);
   background-color: #A7BBD1;
   border-style: solid;
   border-top: 0px;
@@ -669,7 +669,7 @@ body {
 .lostUserCreateTable{
   width: 100.01%;
   height: 70px;
-  font-size: 25px;
+  font-size: calc(5px + 1.2vw);
   background-color: #99CCFF;
   border-style: solid;
   border-top: 0px;
