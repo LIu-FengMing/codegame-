@@ -232,8 +232,14 @@ $.ajax({
 })
 
 function userData() {
-  divID = "userDataView";
-  divID2 = "userDataBkView";
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
@@ -257,9 +263,7 @@ function userData() {
   b.setAttribute("value", "修改密碼");
   b.setAttribute("onclick", "changePassword(\"userDataView\")");
   divTag.appendChild(b);
-  createUserView(divID);
-
-
+  createUserView("userDataView");
 }
 function closeFunc(thisDiv, thisDiv2) {
   try {

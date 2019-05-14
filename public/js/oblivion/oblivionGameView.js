@@ -57,7 +57,7 @@ function back() {
   href = href.substr(0, index + 1);
   href += "oblivion";
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 
 $.ajax({
@@ -164,7 +164,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  // console.log(myVid.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -207,7 +207,7 @@ function recordLevel(scriptData) {
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       user = res
-      console.log(user);
+      // console.log(user);
     }
   })
 }
@@ -232,8 +232,15 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "上架地圖數：",
   "已獲得星星數："];
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
@@ -330,8 +337,8 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  console.log("mapMessage=", mapMessage);
-  console.log(mapMessage);
+  // console.log("mapMessage=", mapMessage);
+  // console.log(mapMessage);
   divTag = document.getElementById("helperView");
   try {
     var parentObj = divTag.parentNode;
@@ -470,7 +477,7 @@ function instructionView(mainDiv) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
-        //console.log(li[j].limit,li[j].name,passLevel);
+        // console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -739,7 +746,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  // console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -802,7 +809,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  // console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -815,8 +822,8 @@ function forManagement() {
   isSelectFunc = true;
 }
 function selectFunc(levelNumber) {
-  console.log(levelNumber);
-  console.log(directiveData.instruction[levelNumber]);
+  // console.log(levelNumber);
+  // console.log(directiveData.instruction[levelNumber]);
   var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
   var className, usableValue;
   var divString = "";
@@ -852,7 +859,7 @@ function selectFunc(levelNumber) {
 }
 function blocklyUsable(thisClassID, thisValue) {
   var blockType;
-  console.log(thisClassID);
+  // console.log(thisClassID);
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
@@ -1018,7 +1025,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
 }
 
 function backToMapBtn() {
-  console.log(evaluation);
+  // console.log(evaluation);
   if (GamestarNum < 1) {
     var index = 0, href = window.location.href;
     for (var i = 0; i < href.length; ++i) {
@@ -1048,7 +1055,7 @@ function backToMapBtn() {
       dataType: 'json',             // 回傳資料會是 json 格式
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
-        console.log("success", res);
+        // console.log("success", res);
         var index = 0, href = window.location.href;
         for (var i = 0; i < href.length; ++i) {
           if (href[i] == '/' || href[i] == "\\") {
@@ -1065,7 +1072,7 @@ function backToMapBtn() {
 /*評價*/
 function appraiseFunc(btnObject) {
   var btnLenght = 0, appraiseNum = 0;
-  console.log(btnObject.id);
+  // console.log(btnObject.id);
   for (var i = 0; i < 5; i++) {
     document.getElementById("starImg" + i).className = "unStarImg";
   }
@@ -1091,7 +1098,7 @@ function appraiseFunc(btnObject) {
   }
   appraiseNum = btnLenght;
   evaluation = appraiseNum;
-  console.log(appraiseNum + "分");
+  // console.log(appraiseNum + "分");
 }
 
 /*loading*/
@@ -1148,7 +1155,7 @@ window.onresize = function() {
   b.setAttribute("style", "height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;");
   b.innerHTML = nowTexrareaVar;
   divTag.appendChild(b);
-  console.log("aaaaaaaaaa");
+  // console.log("aaaaaaaaaa");
   $(function() {
     $(".lined").linedtextarea({
       selectedLine: 1
@@ -1190,7 +1197,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //console.log(e.keyCode);
+  // console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('\t');
     return false;
@@ -1206,7 +1213,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
     el.style.fontSize = (fontSize - 1) + 'px';
   }
   fontSize = parseFloat(style);
-  //console.log(fontSize);
+  // console.log(fontSize);
 }
 
 

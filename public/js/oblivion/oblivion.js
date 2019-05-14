@@ -248,8 +248,15 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "上架地圖數：",
   "已獲得星星數："];
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");

@@ -210,8 +210,15 @@ $.ajax({
 })
 
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerMidMap");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");

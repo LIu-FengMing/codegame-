@@ -49,7 +49,7 @@ function back() {
   href = href.substr(0, index + 1);
   href+="oblivion";
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionUserOpen;
@@ -105,7 +105,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  // console.log(myVid.volume);
   //sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -251,8 +251,15 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "上架地圖數：",
   "已獲得星星數："];
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
@@ -332,7 +339,7 @@ function selectionLevel(thisObject) {
   thisObject.style.backgroundColor = "#E6E6E6";
   lastObject = thisObject;
   // console.log(document.getElementById(thisSelectionId).rows[1]);
-  console.log(thisSelectionId);
+  // console.log(thisSelectionId);
 }
 
 /*設定*/
@@ -571,7 +578,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  // console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -633,7 +640,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  // console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -654,7 +661,7 @@ function sendLoadUsernameMap() {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       userMap = res;
       var mapData = [];
       res = res.reverse();
@@ -734,7 +741,7 @@ function sendLoadUsernameMap() {
 }
 /*建立表格*/
 function createLevelTable(scriptData) {
-  console.log(scriptData);
+  // console.log(scriptData);
   for (var i = 0; i < scriptData.length; i++) {
     var obj = scriptData[i];
     divTag = document.getElementById("createrDiv");
@@ -802,7 +809,7 @@ function createLevelTable(scriptData) {
           b.setAttribute("onclick", "shelfMap(this)");
         }
         else {
-          console.log("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
+          // console.log("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
           alert("錯誤" + userMap[i].check.toString() + "," + userMap[i].postStage.toString());
         }
         /*修改按鈕*/
@@ -939,9 +946,9 @@ function checkView(checkFont, checkStatus) {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
     } else {
-      console.log(checkStatus);
+      // console.log(checkStatus);
 
-      console.log(postVar);
+      // console.log(postVar);
       b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
     }
   } else if (checkFont == "下架地圖") {
@@ -960,7 +967,7 @@ function delMap(thisObject) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
   // var objI = parseInt((mapIndex - 8) / 10);
   var objI = mapIndex;
-  console.log(objI);
+  // console.log(objI);
   var obj = userMap[objI];
   if (obj.postStage == 2 || obj.postStage == 1) { //預防出錯
     // alert("請先下架該地圖");
@@ -978,11 +985,11 @@ function delMap(thisObject) {
 }
 /*刪除地圖--功能*/
 function delMapAction(objI) {
-  console.log(objI);
+  // console.log(objI);
   var obj = userMap[objI];
   // if (confirm('你確定要刪除這張地圖嗎?')) {
   var mapId = obj._id;
-  console.log(obj, "id:", mapId);
+  // console.log(obj, "id:", mapId);
   var scriptData = {
     type: "DeleteMap",
     mapId: mapId
@@ -993,7 +1000,7 @@ function delMapAction(objI) {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       // userMap.splice(obj,1);
       var str = "lostUserCreateTable" + objI.toString();
       divTag = document.getElementById(str);
@@ -1038,7 +1045,7 @@ function viewValueMap(thisObject) {
   divTag = document.getElementById("levelForm");
   b = document.createElement("h3");
   b.setAttribute("id", "levelDescription");
-  console.log(obj.mapName);
+  // console.log(obj.mapName);
   b.innerHTML = obj.mapName;
   divTag.appendChild(b);
 
@@ -1052,9 +1059,9 @@ function viewValueMap(thisObject) {
   divTag.appendChild(b);
   b = document.createElement("br");
   divTag.appendChild(b);
-  console.log("地圖簡介:", obj.mapIntroduction);
-  console.log("地圖名稱:", obj.mapName);
-  console.log("地圖說明:", obj.mapDescription);
+  // console.log("地圖簡介:", obj.mapIntroduction);
+  // console.log("地圖名稱:", obj.mapName);
+  // console.log("地圖說明:", obj.mapDescription);
 }
 /*更新地圖--功能*/
 function updateMap(thisObject) {
@@ -1063,7 +1070,7 @@ function updateMap(thisObject) {
   var objI = parseInt((mapIndex - 8) / 10);
   // var objI = mapIndex;
   var obj = userMap[objI];
-  console.log(obj);
+  // console.log(obj);
   if (obj.postStage == 2 || obj.postStage == 1) {
     // alert("請先下架該地圖");
     remindView("請先下架該地圖");
@@ -1230,20 +1237,20 @@ function shelfBtn() {
 }
 
 function shelfChk(input) {
-  console.log(input);
+  // console.log(input);
   for (var i = 0; i < document.shelfForm.c1.length; i++) {
     document.shelfForm.c1[i].checked = false;
   }
   input.checked = true;
   if (input.id == "shelfFalse") {
     shelfSwitch = 0;
-    console.log("可立即上架");
+    // console.log("可立即上架");
     document.getElementById("shelfNow").className = "shelfNow";
     document.getElementById("shelfLater").className = "shelfLater " + "disabled";
     document.getElementById("shelfDataTime").className = "shelfDataTime " + "disabled";
   } else {
     shelfSwitch = 1;
-    console.log("不可立即上架");
+    // console.log("不可立即上架");
     document.getElementById("shelfLater").className = "shelfLater";
     document.getElementById("shelfNow").className = "shelfNow " + "disabled";
     document.getElementById("shelfDataTime").className = "shelfDataTime";
@@ -1300,7 +1307,7 @@ function nowShelfNowAction(mapIndex) {
   // var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
   var obj = userMap[mapIndex];
   var mapId = obj._id;
-  console.log(obj, "id:", mapId);
+  // console.log(obj, "id:", mapId);
   var scriptData = {
     type: "shelfMap",
     mapId: mapId
@@ -1353,16 +1360,16 @@ function shelfLater(thisObject) {
     var selectDate = new Date(shelfDataTime.value.toString());
     var nowDate = new Date();
     if (nowDate - selectDate > 1000*30) {
-      console.log("選擇時間錯誤");
+      // console.log("選擇時間錯誤");
       remindView("選擇時間錯誤");
     }
     else {
-      console.log("run 777");
+      // console.log("run 777");
       postVar = selectDate.toString();
       latePostVar = selectDate.toString();
       checkView("上架地圖","later");
       // if (confirm('你確定要上架這張地圖嗎?')) {
-      //   console.log(latePostVar);
+      //   // console.log(latePostVar);
       //   shelfLaterAction(latePostVar);
       // } else {
       //   // Do nothing!
@@ -1372,7 +1379,7 @@ function shelfLater(thisObject) {
     }
   }
   else {
-    console.log("選擇時間錯誤");
+    // console.log("選擇時間錯誤");
     remindView("選擇時間錯誤");
   }
 }
@@ -1381,7 +1388,7 @@ function shelfLaterAction(selectDate) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
   var obj = userMap[mapIndex];
   var mapId = obj._id;
-  console.log(obj, "id:", mapId);
+  // console.log(obj, "id:", mapId);
   var scriptData = {
     type: "shelfLaterMap",
     mapId: mapId,
@@ -1393,7 +1400,7 @@ function shelfLaterAction(selectDate) {
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log("6666666666666");
+      // console.log("6666666666666");
       clossFunc("shelfView","shelfBkView");
       var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
       var str = "td0" + objI.toString() + "1";
@@ -1443,11 +1450,11 @@ function unShelf(thisObject) {
   var mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
   // var objI = parseInt((mapIndex - 8) / 10);
   var objI = mapIndex;
-  console.log(objI);
+  // console.log(objI);
   var obj = userMap[objI];
   // if (confirm('你確定要下架這張地圖嗎?')) {
   var mapId = obj._id;
-  console.log(obj, "id:", mapId);
+  // console.log(obj, "id:", mapId);
   var scriptData = {
     type: "unShelfMap",
     mapId: mapId
@@ -1458,7 +1465,7 @@ function unShelf(thisObject) {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       userMap[objI].postStage = 3;
       userMap[objI].postDate = "";
       var str = "td0" + objI.toString() + "1";
@@ -1532,8 +1539,8 @@ function enterLevel() {
         }
         else {
           var mapID = obj._id;
-          console.log("跳轉");
-          console.log('oblivionDetectionView?mapID=' + mapID);
+          // console.log("跳轉");
+          // console.log('oblivionDetectionView?mapID=' + mapID);
           document.location.href = 'oblivionDetectionView?mapID=' + mapID;
         }
       }
