@@ -461,13 +461,12 @@ function btnClick(number) {
   var divTag = document.getElementById("centerMidMap");
   var b;
   number += 25;
-  if (levelDivAlive) {
+  try {
     divTag = document.getElementById("levelDiv");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("centerMidMap");
+  } catch (e) {
     divTag = document.getElementById("centerMidMap");
   }
   b = document.createElement("div");

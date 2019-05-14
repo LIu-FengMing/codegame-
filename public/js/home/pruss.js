@@ -472,13 +472,12 @@ function btnClick(number) {
   var isCheckClicked;
   isCheckClicked = document.getElementById("myonoffswitch");
   number++;
-  if (levelDivAlive) {
+  try {
     divTag = document.getElementById("levelDiv");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("centerBlockly");
+  } catch (e) {
     divTag = document.getElementById("centerBlockly");
   }
   b = document.createElement("div");
@@ -630,11 +629,7 @@ function viewRecord(number) {
           }
         }
         var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
-        var result2 = result.replace(new RegExp("<", "g"), "&lt");
-        result = result2.replace(new RegExp(">", "g"), "&gt");
-        result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-        result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-        codeText = result.replace(new RegExp("\n", "g"), "<br>");
+        codeText = result;
         codeNum = niceRecord;
       } catch (e) {
         codeText = "查無資料";
