@@ -42,6 +42,7 @@ var haveFoggy = false, complementStep = false;
 var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
+var computeEndCode;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -319,7 +320,7 @@ function endgame() {
     }
 
     /*     actionCode       */
-    var str = textarea_0.value, temp = "";
+    var str = computeEndCode, temp = "";
     var systemCall = ["step", "step(", "step()", "step();", ";step();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
@@ -468,21 +469,21 @@ function endgame() {
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
-            createEndView(3, result, tc, textarea_0.value);
+            createEndView(3, result, tc, computeEndCode);
         }
         else if (mapwinLinit["twoStar"][0] >= tc) {
             result = "恭喜你二星! \n~差一點就有一星了!加油~";
-            createEndView(2, result, tc, textarea_0.value);
+            createEndView(2, result, tc, computeEndCode);
         }
         else {
             result = "好可惜只有一星! \n~在檢查看看有沒有可以縮減的~";
-            createEndView(1, result, tc, textarea_0.value);
+            createEndView(1, result, tc, computeEndCode);
         }
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, textarea_0.value);
+        createEndView(0, result, tc, computeEndCode);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -1164,6 +1165,7 @@ function codeToCompiler(stringCode) {
     challengeGameAgain();
     createLoadingView();
     textarea_0 = document.getElementById('textarea_0');
+    computeEndCode=textarea_0.value;
     // console.log("stringCode:",textarea_0.value);
     // console.log("stringCode:",stringCode);
     if (stringCode) {
