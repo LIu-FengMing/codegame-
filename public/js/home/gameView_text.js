@@ -464,9 +464,9 @@ function instructionView(mainDiv) {
   b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "instructionTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "指令大全";
+  document.getElementById("instructionTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
   b.setAttribute("rules", "rows");
@@ -560,6 +560,14 @@ function instructionView(mainDiv) {
 function settingAllView(mainDiv) {
   divID = "settingAllView";
   divID2 = "equipageBkView";
+  try {
+    divTag = document.getElementById("settingAllView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("equipageBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
@@ -577,9 +585,9 @@ function settingAllView(mainDiv) {
   b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "設定";
+  document.getElementById("settingTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
   divTag.appendChild(b);

@@ -432,9 +432,9 @@ function settingAllView(mainDiv) {
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "設定";
+  document.getElementById("settingTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
   divTag.appendChild(b);

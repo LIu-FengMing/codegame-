@@ -237,7 +237,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle,#userTitle{
+#allTitle,#userTitle,#settingTitle{
   text-align: center;
   margin-top: 20px;
 }

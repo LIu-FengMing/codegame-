@@ -242,7 +242,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle,#userTitle{
+#allTitle,#userTitle,#settingTitle,#instructionTitle{
   margin-top: 20px;
 }
 #userInnerDiv{
