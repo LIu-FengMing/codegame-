@@ -104,7 +104,7 @@ body {
   height: 50%;
   width: 40%;
   font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
+  font-family:Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
   background-color: transparent;
@@ -137,6 +137,49 @@ body {
   bottom: 10%;
   left: 10%;
 }
+#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7,#helperTextarea8{
+  height: 8vh;
+  width: auto;
+  font-size: 1.5vw;
+  font-family:Microsoft JhengHei;
+  line-height: 8vh;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+}
+#helperTextarea4{
+  top: 100%;
+  left: calc(10% + 8vh);
+}
+#helperTextarea5{
+  top: calc(105% + 8vh);
+  left: calc(10% + 8vh);
+}
+#helperTextarea6{
+  top: calc(110% + (8vh * 2));
+  left: calc(10% + 8vh);
+}
+#helperTextarea7{
+  top: calc(115% + (8vh * 3));
+  left: calc(10% + 8vh);
+}
+#helperTextarea8{
+  top: calc(120% + (8vh * 4));
+  left: calc(10% + 8vh);
+}
+#helperTextarea9{
+  height: 25%;
+  width: 90%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  top: calc(125% + (8vh * 5));
+  left: 5%;
+  padding-bottom: 12vh;
+}
 #helperImgDiv1,#helperImgDiv2{
   height: 18vh;
   width: 45%;
@@ -148,6 +191,31 @@ body {
 }
 #helperImgDiv2{
   top: 43%;
+}
+#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7,#helperImgDiv8{
+  height: 8vh;
+  width: 8vh;
+  position: absolute;
+}
+#helperImgDiv4{
+  left: 5%;
+  top: 100%;
+}
+#helperImgDiv5{
+  left: 5%;
+  top: calc(105% + 8vh);
+}
+#helperImgDiv6{
+  left: 5%;
+  top: calc(110% + (8vh * 2));
+}
+#helperImgDiv7{
+  left: 5%;
+  top: calc(115% + (8vh * 3));
+}
+#helperImgDiv8{
+  left: 5%;
+  top: calc(120% + (8vh * 4));
 }
 .helperImg{
   height: 100%;

@@ -343,11 +343,9 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  console.log(mainDescription.oblivionObject[thisLevelNum].mode);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
-  console.log(divTag);
   if (levelDivAlive) {
     divTag = document.getElementById("helperView");
     try {
@@ -414,6 +412,123 @@ function helper(mainDiv) {
     b.setAttribute("id", "helperTextarea3");
     divTag.appendChild(b);
     document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  }else if(selectMod == 3){
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea1");
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea2");
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+
+    /*圖片四*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv4");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv4");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg4");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea4");
+    divTag.appendChild(b);
+    /*設定文字塊四*/
+    document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+
+    /*圖片五*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv5");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv5");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg5");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea5");
+    divTag.appendChild(b);
+    /*設定文字塊五*/
+    document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+
+    /*圖片六*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv6");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv6");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg6");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea6");
+    divTag.appendChild(b);
+    /*設定文字塊六*/
+    document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+
+    /*圖片七*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv7");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv7");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg7");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea7");
+    divTag.appendChild(b);
+    /*設定文字塊七*/
+    document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea8");
+    divTag.appendChild(b);
+    /*設定文字塊八*/
+    document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
   }
 }
 
@@ -835,7 +950,6 @@ function musicLevelDown() {
 }
 
 function chk(input) {
-
   for (var i = 0; i < document.form1.c1.length; i++) {
     document.form1.c1[i].checked = false;
   }
@@ -867,10 +981,6 @@ function chk2(input) {
   return true;
 }
 function sendSession() {
-  //console.log("bkMusicSwitch:" + bkMusicSwitch);
-  //console.log("musicLevel:" + musicLevel);
-  //console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -1267,11 +1377,20 @@ mainDescription = {
   "oblivionObject":[
     {
       "level": 1,
-      "mode": 2,
+      "mode": 3,
       "textarea1": "哈囉！我是小幫手，將會幫助你通過重重難關。<br><br>目標：避開障礙物以正確的方向通過終點。",
-      "textarea2": "請在左方程式區使用 code 編寫你的程式，編寫完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>程式區右上方按鈕名稱及功能依序為<br>開始－執行程式碼<br>重置地圖－將遊戲畫面初始化<br>重置關卡－刷新指令區及遊戲畫面<br>設定－環境設定<br><br>在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea2": "請在左方程式區使用 code 編寫你的程式，編寫完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>程式區右上方按鈕名稱及功能依序為<br>",
+      "textarea4": "開始－執行程式碼",
+      "textarea5": "重置地圖－將遊戲畫面初始化",
+      "textarea6": "重置關卡－刷新指令區及遊戲畫面",
+      "textarea7": "設定－環境設定",
+      "textarea8": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level1img1.png",
-      "img2": "level1img2.png"
+      "img2": "level1img2.png",
+      "img4": "start.png",
+      "img5": "clearButton.png",
+      "img6": "RestartButton.png",
+      "img7": "SettingButton.png"
     },
     {
       "level": 2,
