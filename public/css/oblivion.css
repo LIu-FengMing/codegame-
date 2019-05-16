@@ -315,7 +315,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle{
+#allTitle,#userTitle{
   margin-top: 20px;
 }
 #userInnerDiv{
@@ -588,7 +588,7 @@ body {
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: 15px;
+  width: calc(8px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -596,7 +596,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: 15px;
+  width: calc(8px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

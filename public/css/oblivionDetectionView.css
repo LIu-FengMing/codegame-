@@ -580,13 +580,13 @@ body {
   cursor: pointer;
 }
 #settingAllTable font{
-  font-size: 25px;
+  font-size: calc(5px + 1vw);
   line-height: 0px;　
   margin-top: -5px;
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: 15px;
+  width: calc(5px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -594,7 +594,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: 15px;
+  width: calc(5px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

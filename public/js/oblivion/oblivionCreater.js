@@ -309,9 +309,9 @@ function clossFunc(thisDiv, thisDiv2) {
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "個人資料";
+  document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
@@ -340,7 +340,12 @@ function createUserView(mainDiv) {
           }
         }
       }else if(i == 3){
-        userdataFont = Session.get("getAchievement") + "/9";
+        var getAchievement = Session.get("getAchievement");
+        if(getAchievement == undefined){
+          getAchievement=0;
+          console.log("this is undefine");
+        }
+        userdataFont = getAchievement + "/9";
       }else if(i == 4){
         userdataFont = user.createMap.length;
       }else if(i ==5){

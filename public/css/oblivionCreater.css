@@ -245,7 +245,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle{
+#allTitle,#userTitle{
   margin-top: 20px;
 }
 #userInnerDiv{
@@ -280,9 +280,6 @@ body {
   background-color: #D5E8D4;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
-}
-#allTitle{
-  margin-top: 20px;
 }
 #conditionH3Top{
   text-align: left;

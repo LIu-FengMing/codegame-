@@ -225,7 +225,7 @@ $.ajax({
   data: scriptData,  // 將表單資料用打包起來送出去
   success: function (res) {
     // console.log(res);
-    console.log("res:", res);
+    // console.log("res:", res);
 
     userMap = res.length;
   }
@@ -285,9 +285,9 @@ function closeFunc(thisDiv, thisDiv2) {
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "個人資料";
+  document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
@@ -1530,6 +1530,7 @@ function sendSession() {
   Session.set("musicLevel", musicLevel);
   Session.set("gameSpeed", gameSpeed);
   Session.set("getAchievement", count);
+  Session.set("xtest", count);
   return;
 }
 
