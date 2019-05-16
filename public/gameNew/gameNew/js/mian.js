@@ -535,7 +535,7 @@ function draw() {
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
             stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
-            delayResSpeed = 30;
+            delayResSpeed = 30-(gameSpeed-6)*5;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
@@ -803,6 +803,7 @@ function draw() {
             }
             else if (type == "A") {
                 var value = tempAction.value;
+                var delayFlag=false
                 if (onChanging == false) {
                     for (var i = 0; i < value.length; ++i) {
                         var nowValue = value[i];
@@ -840,10 +841,15 @@ function draw() {
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
                             console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
+                        if(nowValue.type == "boon_hit"){
+                            delayFlag=true;
+                        }
                     }
-                    delayResSpeed * 2;
+                    // delayResSpeed *= 2;
                     updateObjectGraph();
-
+                    if(delayFlag){
+                        onChanging=true;
+                    }
                 }
                 else {
                     mapObjectChange = false;
