@@ -1325,7 +1325,7 @@ window.onresize = function() {
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
-  if (myValue.indexOf('\t') < 0) {
+  if (myValue.indexOf('    ') < 0) {
     myValue += "\n";
   }
   //IE support
@@ -1354,7 +1354,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var fontSize = parseFloat(style);
   //console.log(e.keyCode);
   if (e.keyCode == 9) {
-    insertAtCursor('\t');
+    insertAtCursor('    ');
     return false;
   }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
     fontSize = parseFloat(style);
@@ -1370,9 +1370,8 @@ document.getElementById('textarea_0').onkeydown = function (e) {
     // alert("被按了")
     e.preventDefault();
     insertAtCursor('');
-    alert(indentationTimes)
     for(var i=0;i<indentationTimes;i++){
-      insertAtCursor('\t');
+      insertAtCursor('    ');
     }
   }else if(e.shiftKey && e.keyCode == 219){
     indentationTimes++;

@@ -68,9 +68,9 @@ var initCode = [
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[])
-{\t/*請在此處輸入程式碼(ps:我是註解)*/
-\t
-\treturn 0;
+{    /*請在此處輸入程式碼(ps:我是註解)*/
+    
+    return 0;
  }
 
 
@@ -871,7 +871,7 @@ function draw() {
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
-            
+
         }
     }
 
