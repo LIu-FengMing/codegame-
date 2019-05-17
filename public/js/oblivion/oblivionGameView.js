@@ -42,7 +42,7 @@ var mapMessage;
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
-var musicData, evaluation = 0, GamestarNum = 0;
+var musicData, evaluation = 0, GamestarNum = 0,indentationTimes=1;
 var scriptData = {
   type: "init"
 }
