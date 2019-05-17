@@ -968,7 +968,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code) {
+function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // 儲存關卡//
   var scriptData = {
     type: "blockLevelResult",  //"codeLevelResult" or "blockLevelResult"限"EasyEmpire"
@@ -1077,7 +1077,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
       b.innerHTML = errMessage;
       divTag.appendChild(b);
     }
-    
+
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "successRestartGameBtn");

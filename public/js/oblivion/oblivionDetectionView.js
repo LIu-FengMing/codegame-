@@ -914,7 +914,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum,gameResult,instructionNum,code) {
+function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
   console.log(starNum,gameResult,instructionNum,code);
 
   divID = "createEndView";

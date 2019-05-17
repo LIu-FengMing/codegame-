@@ -968,7 +968,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code) {
+function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // console.log(starNum,gameResult,instructionNum,code);
   GamestarNum = starNum;
   divID = "createEndView";
@@ -1011,7 +1011,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     if(gameResult == "編譯失敗"){
       b = document.createElement("textarea");
       b.setAttribute("id", "errTextarea");
-      b.innerHTML = "dsfdsf";
+      b.innerHTML = errMessage;
       divTag.appendChild(b);
     }
 
