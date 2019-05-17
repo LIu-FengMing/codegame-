@@ -54,7 +54,7 @@ var href = window.location.href;
 var scriptData = {
   type: "init"
 }
-var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = false,achievementStr;
+var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true,achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
 $.ajax({
@@ -116,11 +116,8 @@ function error() {
 function initHome() {
   if (Session.get("isBlockly") != null) {
     isBlockly = Session.get("isBlockly");
-    console.log("get isBlockly", isBlockly);
     document.getElementById("myonoffswitch").checked = isBlockly;
-  } else {
-    console.log("no get");
-  }
+  } else {}
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     //console.log("???");
     bkMusicVolumn = Session.get("bkMusicVolumn");
@@ -1851,16 +1848,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("centerBlockly");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("centerBlockly");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

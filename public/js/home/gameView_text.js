@@ -42,7 +42,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 var href = window.location.href;
 var user, directiveData,dictionaryData,thisLevelNum, mainDescription, levelDivAlive = true,nowTexrareaVar,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
-var musicData;
+var musicData,indentationTimes=1;
 var scriptData = {
   type: "init"
 }
@@ -1366,7 +1366,20 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
     fontSize = parseFloat(style);
     el.style.fontSize = (fontSize - 1) + 'px';
+  }else if(e.keyCode == 13){
+    // alert("被按了")
+    e.preventDefault();
+    insertAtCursor('');
+    alert(indentationTimes)
+    for(var i=0;i<indentationTimes;i++){
+      insertAtCursor('\t');
+    }
+  }else if(e.shiftKey && e.keyCode == 219){
+    indentationTimes++;
+  }else if(e.shiftKey && e.keyCode == 221){
+    indentationTimes--;
   }
+
   fontSize = parseFloat(style);
   //console.log(fontSize);
 }
