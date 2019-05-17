@@ -1166,7 +1166,7 @@ mainDescription = {
     {
       "level": 6,
       "mode": 1,
-      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>如果要使用printf()函式來輸出變數的話，使用方法如下：<br>int i=5;<br>printf(\"%d\",i);<br>在雙引號中間放入以'%'開頭的格式文字來對應到逗點後的變數名稱<br>對應不同資料型態的變數，可以使用不同的格式文字來輸出，如下：<br>'%d'：輸出十進制整數<br>'%f'：輸出浮點數<br>'%c'：輸出字元<br><br>藍色鎖頭精靈的問題為：<br>請問系統給予的值加上地圖上出現的樹木數為多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>如果要使用printf()函式來輸出變數的話，使用方法如下：<br>int i=5;<br>printf(\"%d\",i);<br>在雙引號中間放入以'%'開頭的格式文字來對應到逗點後的變數名稱<br>對應不同資料型態的變數，可以使用不同的格式文字來輸出，如下：<br>'%d'：輸出十進制整數<br>'%f'：輸出浮點數<br>'%c'：輸出字元<br><br>藍色鎖頭精靈的問題為：<br>請以一個變數去接系統給予的值，然後回答鎖頭該變數加上地圖上的樹木數量=多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 7,
@@ -1222,7 +1222,7 @@ mainDescription = {
     {
       "level": 17,
       "mode": 1,
-      "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main(){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>int main( ){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 18,
@@ -1232,7 +1232,7 @@ mainDescription = {
     {
       "level": 19,
       "mode": 1,
-      "textarea1": "應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else(x == 2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1":"應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else(x == 2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>3星:10個動作包含10個動作以內<br>2星:12個動作包含12個動作以內<br>1星:滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 20,
@@ -1242,7 +1242,7 @@ mainDescription = {
     {
       "level": 21,
       "mode": 1,
-      "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>藍色鎖頭精靈問題：<br>請以兩個變數接系統給予的值，第一個為字元，第二個為整數。<br>假設獲得的字元為c，獲得的整數為i，請問字元c(ascii)往後數第i個字元是哪個字元？<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>小提示：<br>int i;<br>char C;宣告一個字元變數C<br>scanf(\"%c\",C);以變數C接取系統給予的字元。<br>scanf(\"%d\",i);以變數i接取系統給予的整數值。<br>printf(\"%c\",C+i);輸出C往後數第i個字元。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 22,
