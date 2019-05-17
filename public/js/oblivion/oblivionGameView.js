@@ -1175,7 +1175,7 @@ window.onresize = function() {
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
-  if (myValue.indexOf('\t') < 0) {
+  if (myValue.indexOf('    ') < 0) {
     myValue += "\n";
   }
   //IE support
@@ -1202,9 +1202,9 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  // console.log(e.keyCode);
+  //console.log(e.keyCode);
   if (e.keyCode == 9) {
-    insertAtCursor('\t');
+    insertAtCursor('    ');
     return false;
   }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
     fontSize = parseFloat(style);
@@ -1216,9 +1216,21 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
     fontSize = parseFloat(style);
     el.style.fontSize = (fontSize - 1) + 'px';
+  }else if(e.keyCode == 13){
+    // alert("被按了")
+    e.preventDefault();
+    insertAtCursor('');
+    for(var i=0;i<indentationTimes;i++){
+      insertAtCursor('    ');
+    }
+  }else if(e.shiftKey && e.keyCode == 219){
+    indentationTimes++;
+  }else if(e.shiftKey && e.keyCode == 221){
+    indentationTimes--;
   }
+
   fontSize = parseFloat(style);
-  // console.log(fontSize);
+  //console.log(fontSize);
 }
 
 
