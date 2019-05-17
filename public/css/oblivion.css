@@ -4,6 +4,9 @@
   padding: 0;
   font-family: Microsoft JhengHei;
 }
+* textarea{
+  resize:none;
+}
 html,body {
   height: 100%;
 }

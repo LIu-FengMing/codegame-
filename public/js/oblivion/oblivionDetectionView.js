@@ -958,6 +958,13 @@ function createEndView(starNum,gameResult,instructionNum,code) {
     })
 
   }else{
+    if(gameResult == "編譯失敗"){
+      b = document.createElement("textarea");
+      b.setAttribute("id", "errTextarea");
+      b.innerHTML = errMessage;
+      divTag.appendChild(b);
+    }
+
     document.getElementById("endViewTitle").innerHTML = "檢測失敗";
     b = document.createElement("input");
     b.setAttribute("type", "button");
