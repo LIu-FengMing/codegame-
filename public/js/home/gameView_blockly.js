@@ -987,6 +987,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "createEndView");
+  b.setAttribute("class", "successView");
   divTag.appendChild(b);
   divTag = document.getElementById("createEndView");
   b = document.createElement("h1");
@@ -1072,6 +1073,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     divTag.appendChild(b);
   } else {
     if(gameResult == "編譯失敗"){
+      document.getElementById("createEndView").className = "errView";
       b = document.createElement("textarea");
       b.setAttribute("id", "errTextarea");
       b.innerHTML = errMessage;

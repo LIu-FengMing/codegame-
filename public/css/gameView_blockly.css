@@ -419,7 +419,6 @@ body {
 }
 #createEndView{
   z-index: 999;
-  height: 55vh;
   width: 20vw;
   text-align: center;
   border-radius: 30px;
@@ -432,6 +431,12 @@ body {
   overflow: auto;
   min-width: 300px;
   min-height: 340px;
+}
+.successView{
+  height: 55vh;
+}
+.errView{
+  height: 65vh;
 }
 #endViewTitle{
   font-size: 7vh;
