@@ -4,6 +4,9 @@
   padding: 0;
   font-family: Microsoft JhengHei;
 }
+* textarea{
+  resize:none;
+}
 html,body {
   height: 100%;
 }
@@ -335,7 +338,7 @@ body {
 }
 #createEndView{
   z-index: 999;
-  height: 35vh;
+  height: 40vh;
   width: 20vw;
   border-radius: 30px;
   position: absolute;
@@ -385,6 +388,17 @@ body {
   left: 3%;
   bottom: 3%;
   cursor: pointer;
+}
+#errTextarea{
+  height: 9vh;
+  width: 80%;
+  font-size: calc(10px + 0.5vw);
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  left: 50%;
+  bottom: 13vh;
+  transform: translate(-50%,0);
 }
 .failBackBtn{
   height: 10vh;

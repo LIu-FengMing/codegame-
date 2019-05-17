@@ -968,7 +968,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code) {
+function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // console.log(starNum,gameResult,instructionNum,code);
   GamestarNum = starNum;
   divID = "createEndView";
@@ -1008,6 +1008,13 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     b.setAttribute("onclick", "backToMapBtn();");
     divTag.appendChild(b);
   } else {
+    if(gameResult == "編譯失敗"){
+      b = document.createElement("textarea");
+      b.setAttribute("id", "errTextarea");
+      b.innerHTML = errMessage;
+      divTag.appendChild(b);
+    }
+
     document.getElementById("endViewTitle").innerHTML = "挑戰失敗";
     b = document.createElement("h3");
     b.setAttribute("id", "instructionH3");
