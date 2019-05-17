@@ -1131,7 +1131,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code) {
+function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // 儲存關卡//
   var empire="EasyEmpire";
   if(thisLevelNum>23){
@@ -1243,6 +1243,13 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     }
     divTag.appendChild(b);
   }else {
+    if(gameResult == "編譯失敗"){
+      b = document.createElement("textarea");
+      b.setAttribute("id", "errTextarea");
+      b.innerHTML = errMessage;
+      divTag.appendChild(b);
+    }
+
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "successRestartGameBtn");

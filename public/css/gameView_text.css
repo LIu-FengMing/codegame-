@@ -4,6 +4,9 @@
   padding: 0;
   font-family: Microsoft JhengHei;
 }
+* textarea{
+  resize:none;
+}
 html,body {
   height: 100%;
 }
@@ -486,6 +489,17 @@ body {
   bottom: 13vh;
   transform: translate(-50%,0);
   cursor: pointer;
+}
+#errTextarea{
+  height: 9vh;
+  width: 60%;
+  font-size: calc(10px + 0.5vw);
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  left: 50%;
+  bottom: 13vh;
+  transform: translate(-50%,0);
 }
 #backToMapBtn{
   height: 10vh;
