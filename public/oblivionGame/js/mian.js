@@ -1748,7 +1748,7 @@ function call_JDOODLE_api(scriptData, inputData) {
                     gameEndingCode = 8;
                 }
                 else{
-                    errMessage="錯誤原因:\n"+obj.body.output
+                    errMessage="錯誤原因:\n"+obj.body.output.substr(1)
                 }
             }
             
