@@ -43,6 +43,7 @@ var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 var computeEndCode;
+var errMessage;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -101,6 +102,7 @@ function setup() {
     gameEndingCodeDic['5'] = "編譯失敗";
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
+    gameEndingCodeDic['8'] = "不必要的指令過多";
     var divcanvas = document.getElementById('divcanvas');
     var winW = divcanvas.offsetWidth;
     var winH = divcanvas.offsetHeight;
@@ -483,7 +485,7 @@ function endgame() {
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, computeEndCode);
+        createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -1741,6 +1743,15 @@ function call_JDOODLE_api(scriptData, inputData) {
         }
         else {
             gameEndingCode = 5;
+            if (obj.body.output != null) {
+                if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
+                    gameEndingCode = 8;
+                }
+                else{
+                    errMessage="錯誤原因:\n"+obj.body.output
+                }
+            }
+            
             closeLoadingView();
             console.log("Error =  compiler error");
             endgame();

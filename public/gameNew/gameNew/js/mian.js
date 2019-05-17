@@ -43,6 +43,7 @@ var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 var computeEndCode;
+var errMessage;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -485,7 +486,7 @@ function endgame() {
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, computeEndCode);
+        createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -1750,8 +1751,11 @@ function call_JDOODLE_api(scriptData, inputData) {
                 if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
                     gameEndingCode = 8;
                 }
+                else{
+                    errMessage="錯誤原因:\n"+obj.body.output
+                }
             }
-
+            
             closeLoadingView();
             console.log("Error =  compiler error");
             endgame();
