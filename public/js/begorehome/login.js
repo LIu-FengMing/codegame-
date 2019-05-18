@@ -1,6 +1,7 @@
 var UserName = document.getElementById('UsreName');
 var UserPass = document.getElementById('UsrePass');
 var loginBtn = document.getElementById('loginBtn');
+var parentObj;
 
 window.onload = function () {
     var href = new URL(window.location.href);
@@ -121,16 +122,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("center");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("center");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
@@ -175,3 +175,15 @@ function clossFunc(thisDiv, thisDiv2) {
     } catch (e) { }
     levelDivAlive = false;
 }
+document.getElementById("UsrePass").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   //event.preventDefault();
+   document.getElementById("loginBtn").click();
+  }
+});
+document.getElementById("UsreName").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   //event.preventDefault();
+   document.getElementById("loginBtn").click();
+  }
+});

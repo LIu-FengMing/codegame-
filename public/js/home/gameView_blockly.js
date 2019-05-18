@@ -201,12 +201,19 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "上架地圖數：",
   "已獲得星星數："];
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -217,7 +224,7 @@ function userData() {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   createUserView(divID);
 }
@@ -255,7 +262,12 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = Session.get("getAchievement") + "/9";
+      var getAchievement = Session.get("getAchievement");
+      if(getAchievement == undefined){
+        getAchievement=0;
+        console.log("this is undefine");
+      }
+      userdataFont = getAchievement + "/9";
     } else if (i == 4) {
       userdataFont = user.createMap.length;
     } else if (i == 5) {
@@ -296,7 +308,6 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  console.log(mainDiv);
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
@@ -366,6 +377,142 @@ function helper(mainDiv) {
     b.setAttribute("id", "helperTextarea3");
     divTag.appendChild(b);
     document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  }else if (selectMod == 3) {
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea1");
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea2");
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+
+    /*圖片四*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv4");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv4");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg4");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea4");
+    divTag.appendChild(b);
+    /*設定文字塊四*/
+    document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+
+    /*圖片五*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv5");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv5");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg5");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea5");
+    divTag.appendChild(b);
+    /*設定文字塊五*/
+    document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+
+    /*圖片六*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv6");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv6");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg6");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea6");
+    divTag.appendChild(b);
+    /*設定文字塊六*/
+    document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+
+    /*圖片七*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv7");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv7");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg7");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea7");
+    divTag.appendChild(b);
+    /*設定文字塊七*/
+    document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+
+    /*圖片八*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv8");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv8");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg8");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img8);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea8");
+    divTag.appendChild(b);
+    /*設定文字塊八*/
+    document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea9");
+    divTag.appendChild(b);
+    /*設定文字塊九*/
+    document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
   }
 }
 
@@ -425,9 +572,9 @@ function settingAllView(mainDiv) {
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "設定";
+  document.getElementById("settingTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
   divTag.appendChild(b);
@@ -821,7 +968,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code) {
+function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // 儲存關卡//
   var scriptData = {
     type: "blockLevelResult",  //"codeLevelResult" or "blockLevelResult"限"EasyEmpire"
@@ -840,6 +987,7 @@ function createEndView(starNum, gameResult, instructionNum, code) {
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "createEndView");
+  b.setAttribute("class", "successView");
   divTag.appendChild(b);
   divTag = document.getElementById("createEndView");
   b = document.createElement("h1");
@@ -924,6 +1072,14 @@ function createEndView(starNum, gameResult, instructionNum, code) {
     }
     divTag.appendChild(b);
   } else {
+    if(gameResult == "編譯失敗"){
+      document.getElementById("createEndView").className = "errView";
+      b = document.createElement("textarea");
+      b.setAttribute("id", "errTextarea");
+      b.innerHTML = errMessage;
+      divTag.appendChild(b);
+    }
+
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "successRestartGameBtn");
@@ -976,11 +1132,22 @@ mainDescription = {
   "oblivionObject": [
     {
       "level": 1,
-      "mode": 2,
+      "mode": 3,
       "textarea1": "哈囉！我是小幫手，將會幫助你通過重重難關。<br><br>目標：避開障礙物以正確的方向通過終點。",
-      "textarea2": "請在左方程式區使用指令積木組裝你的程式，組裝完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>編寫程式區右上方按鈕名稱及功能依序為<br>開始－執行程式碼<br>轉譯－將積木轉成code顯示於視窗<br>重置地圖－將遊戲畫面初始化<br>重置關卡－刷新指令區及遊戲畫面<br>設定－環境設定<br><br>在計算結果的指令個數時，step( )指令將會被列入計算。<br>小提示：前進一步為拉一塊step積木至Main積木中。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea2": "請在左方程式區使用 code 編寫你的程式，編寫完成後，按下右上方的開始按鈕，車子就會照著指令行動。<br><br>程式區右上方按鈕名稱及功能依序為<br>",
+      "textarea4": "開始－執行程式碼",
+      "textarea5": "轉譯－將積木轉成code顯示於視窗",
+      "textarea6": "重置地圖－將遊戲畫面初始化",
+      "textarea7": "重置關卡－刷新指令區及遊戲畫面",
+      "textarea8": "設定－環境設定",
+      "textarea9": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level1img1.png",
-      "img2": "level1img2.png"
+      "img2": "level1img2.png",
+      "img4": "start.png",
+      "img5": "TransformButton.png",
+      "img6": "clearButton.png",
+      "img7": "RestartButton.png",
+      "img8": "SettingButton.png"
     },
     {
       "level": 2,
@@ -1008,7 +1175,7 @@ mainDescription = {
     {
       "level": 6,
       "mode": 1,
-      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>如果要使用printf()函式來輸出變數的話，使用方法如下：<br>int i=5;<br>printf(\"%d\",i);<br>在雙引號中間放入以'%'開頭的格式文字來對應到逗點後的變數名稱<br>對應不同資料型態的變數，可以使用不同的格式文字來輸出，如下：<br>'%d'：輸出十進制整數<br>'%f'：輸出浮點數<br>'%c'：輸出字元<br><br>藍色鎖頭精靈的問題為：<br>請問系統給予的值加上地圖上出現的樹木數為多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！<br>新指令：<br>scanf( )指令，分類於\"動作\"內。<br><br>在這一關想要答對鎖頭精靈的問題就必須獲得系統給予的特定值，並且將特定值加上變化才能找出問題的答案喔！！<br><br>請使用scanf( )指令，可由系統或是主控台輸入取得數值存至變數。<br>使用方法：<br>先宣告變數<br>scanf(\"欲獲取值的指定格式\",欲存值的變數);<br><br>範例：<br>int i=0;<br>scanf(\"%d\",&i);<br>//宣告一個變數 i，型態為 int，然後存取輸入的值於變數 i。<br><br>如果要使用printf()函式來輸出變數的話，使用方法如下：<br>int i=5;<br>printf(\"%d\",i);<br>在雙引號中間放入以'%'開頭的格式文字來對應到逗點後的變數名稱<br>對應不同資料型態的變數，可以使用不同的格式文字來輸出，如下：<br>'%d'：輸出十進制整數<br>'%f'：輸出浮點數<br>'%c'：輸出字元<br><br>藍色鎖頭精靈的問題為：<br>請以一個變數去接系統給予的值，然後回答鎖頭該變數加上地圖上的樹木數量=多少？<br>請到鎖頭精靈面前說出你的答案吧！<br><br>通關條件：<br>3星：9個動作以及9個動作以內<br>2星：10個動作以及10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 7,
@@ -1064,7 +1231,7 @@ mainDescription = {
     {
       "level": 17,
       "mode": 1,
-      "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep;<br>}<br>int main(){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>int main( ){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 18,
@@ -1074,7 +1241,7 @@ mainDescription = {
     {
       "level": 19,
       "mode": 1,
-      "textarea1": "應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else(x == 2){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>過關條件：<br>3星：12個動作包含12個動作以內<br>2星：14個動作包含14個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1":"應該還記得各物件的作用吧！<br>驗收成果的時刻到了！<br>請結合教過的各指令抵達終點。<br><br>注意！！！地圖的大小已變為9 x 9。<br><br>鎖頭精靈的問題是：<br>int i = 0;<br>int sum = 0;<br>int x = 1;<br>for(i=10;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif(x == 1){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 2;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx = 1;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：直走到底再回頭然後左轉再左轉。<br><br>3星:10個動作包含10個動作以內<br>2星:12個動作包含12個動作以內<br>1星:滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 20,
@@ -1084,12 +1251,12 @@ mainDescription = {
     {
       "level": 21,
       "mode": 1,
-      "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>藍色鎖頭精靈問題：<br>請以兩個變數接系統給予的值，第一個為字元，第二個為整數。<br>假設獲得的字元為c，獲得的整數為i，請問字元c(ascii)往後數第i個字元是哪個字元？<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>小提示：<br>int i;<br>char C;宣告一個字元變數C<br>scanf(\"%c\",C);以變數C接取系統給予的字元。<br>scanf(\"%d\",i);以變數i接取系統給予的整數值。<br>printf(\"%c\",C+i);輸出C往後數第i個字元。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 22,
       "mode": 1,
-      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i=3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問最後sum的值為多少？<br><br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i=3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問經過上述程式碼後sum為多少，請至鎖頭前說出你的答案吧！<br><br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 23,

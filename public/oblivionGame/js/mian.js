@@ -42,6 +42,8 @@ var haveFoggy = false, complementStep = false;
 var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
+var computeEndCode;
+var errMessage;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -67,9 +69,9 @@ var initCode = [
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[])
-{\t/*請在此處輸入程式碼(ps:我是註解)*/
-\t
-\treturn 0;
+{    /*請在此處輸入程式碼(ps:我是註解)*/
+    
+    return 0;
  }
 
 
@@ -100,6 +102,7 @@ function setup() {
     gameEndingCodeDic['5'] = "編譯失敗";
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
+    gameEndingCodeDic['8'] = "不必要的指令過多";
     var divcanvas = document.getElementById('divcanvas');
     var winW = divcanvas.offsetWidth;
     var winH = divcanvas.offsetHeight;
@@ -325,7 +328,7 @@ function endgame() {
     }
 
     /*     actionCode       */
-    var str = textarea_0.value, temp = "";
+    var str = computeEndCode, temp = "";
     var systemCall = ["step", "step(", "step()", "step();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
@@ -468,21 +471,21 @@ function endgame() {
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
-            createEndView(3, result, tc, textarea_0.value);
+            createEndView(3, result, tc, computeEndCode);
         }
         else if (mapwinLinit["twoStar"][0] >= tc) {
             result = "恭喜你二星! \n~差一點就有一星了!加油~";
-            createEndView(2, result, tc, textarea_0.value);
+            createEndView(2, result, tc, computeEndCode);
         }
         else {
             result = "好可惜只有一星! \n~在檢查看看有沒有可以縮減的~";
-            createEndView(1, result, tc, textarea_0.value);
+            createEndView(1, result, tc, computeEndCode);
         }
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, textarea_0.value);
+        createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -531,7 +534,7 @@ function draw() {
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
             stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
-            delayResSpeed = 30;
+            delayResSpeed = 30-(gameSpeed-6)*5;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
@@ -685,6 +688,7 @@ function draw() {
                                 onChanging = true;
                             }
                             else if (complementStep) {
+                                complementStep = false;
                                 mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX;
                                 mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
                                 onChanging = false;
@@ -696,6 +700,7 @@ function draw() {
                             //     onChanging = false;
                             // }
                             updateObjectGraph();
+                            break;
                         }
                     }
 
@@ -797,6 +802,7 @@ function draw() {
             }
             else if (type == "A") {
                 var value = tempAction.value;
+                var delayFlag=false
                 if (onChanging == false) {
                     for (var i = 0; i < value.length; ++i) {
                         var nowValue = value[i];
@@ -834,10 +840,15 @@ function draw() {
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
                             console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
+                        if(nowValue.type == "boon_hit"){
+                            delayFlag=true;
+                        }
                     }
-                    delayResSpeed * 2;
+                    // delayResSpeed *= 2;
                     updateObjectGraph();
-
+                    if(delayFlag){
+                        onChanging=true;
+                    }
                 }
                 else {
                     mapObjectChange = false;
@@ -862,6 +873,7 @@ function draw() {
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
+
         }
     }
 
@@ -1162,6 +1174,7 @@ function codeToCompiler(stringCode) {
     challengeGameAgain();
     createLoadingView();
     textarea_0 = document.getElementById('textarea_0');
+    computeEndCode=textarea_0.value;
     // console.log("stringCode:",textarea_0.value);
     // console.log("stringCode:",stringCode);
     if (stringCode) {
@@ -1730,6 +1743,15 @@ function call_JDOODLE_api(scriptData, inputData) {
         }
         else {
             gameEndingCode = 5;
+            if (obj.body.output != null) {
+                if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
+                    gameEndingCode = 8;
+                }
+                else{
+                    errMessage="錯誤原因:\n"+obj.body.output.substr(1)
+                }
+            }
+            
             closeLoadingView();
             console.log("Error =  compiler error");
             endgame();

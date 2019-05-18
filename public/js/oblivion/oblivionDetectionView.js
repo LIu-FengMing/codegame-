@@ -42,7 +42,7 @@ var mapMessage;
 var href = window.location.href;
 var user,equipmentData,achievemenData,dictionaryData,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
-var musicData;
+var musicData,indentationTimes=1;
 var scriptData = {
     type: "init"
 }
@@ -185,100 +185,112 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
     "上架地圖數：",
     "已獲得星星數："];
 function userData() {
-    divID = "userDataView";
-    divID2 = "userDataBkView";
-    divTag = document.getElementById("centerLost");
-    b = document.createElement("div");
-    b.setAttribute("id", "userDataBkView");
-    b.setAttribute("onclick", "closeFunc(divID,divID2)");
-    divTag.appendChild(b);
-    b = document.createElement("div");
-    b.setAttribute("id", "userDataView");
-    divTag.appendChild(b);
+  try {
     divTag = document.getElementById("userDataView");
-    b = document.createElement("input");
-    b.setAttribute("type", "button");
-    b.setAttribute("title", "關閉");
-    b.setAttribute("id", "clossDiv");
-    b.setAttribute("value", "X");
-    b.setAttribute("onclick", "closeFunc(divID,divID2)");
-    divTag.appendChild(b);
-    createUserView(divID);
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
+  divID = "userDataView";
+  divTag = document.getElementById("centerLost");
+  b = document.createElement("div");
+  b.setAttribute("id", "userDataBkView");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "userDataView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userDataView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
+  divTag.appendChild(b);
+  createUserView(divID);
 }
 function closeFunc(thisDiv, thisDiv2) {
-    divTag = document.getElementById(thisDiv);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-    divTag = document.getElementById(thisDiv2);
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-    levelDivAlive = false;
+  divTag = document.getElementById(thisDiv);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  divTag = document.getElementById(thisDiv2);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  levelDivAlive = false;
 }
 function createUserView(mainDiv) {
-    divTag = document.getElementById(mainDiv);
-    b = document.createElement("h1");
-    b.setAttribute("id", "allTitle");
-    divTag.appendChild(b);
-    document.getElementById("allTitle").innerHTML = "個人資料";
-    b = document.createElement("div");
-    b.setAttribute("id", "userInnerDiv");
-    divTag.appendChild(b);
-    divTag = document.getElementById("userInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "userH3Div");
-    divTag.appendChild(b);
-    divTag = document.getElementById("userH3Div");
-    for (var i = 0; i < dataTitle.length; i++) {
-        b = document.createElement("h3");
-        b.setAttribute("id", "titleDatah3" + i);
-        b.setAttribute("align", "left");
-        divTag.appendChild(b);
-        if(i == 0){
-          userdataFont = user.username;
-        }else if(i == 1){
-          userdataFont = user.name;
-        }else if(i == 2){
-          if(user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel){
-            userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
+  divTag = document.getElementById(mainDiv);
+  b = document.createElement("h1");
+  b.setAttribute("id", "userTitle");
+  divTag.appendChild(b);
+  document.getElementById("userTitle").innerHTML = "個人資料";
+  b = document.createElement("div");
+  b.setAttribute("id", "userInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userInnerDiv");
+  b = document.createElement("div");
+  b.setAttribute("id", "userH3Div");
+  divTag.appendChild(b);
+  divTag = document.getElementById("userH3Div");
+  for (var i = 0; i < dataTitle.length; i++) {
+      b = document.createElement("h3");
+      b.setAttribute("id", "titleDatah3" + i);
+      b.setAttribute("align", "left");
+      divTag.appendChild(b);
+      if(i == 0){
+        userdataFont = user.username;
+      }else if(i == 1){
+        userdataFont = user.name;
+      }else if(i == 2){
+        if(user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel){
+          userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
+        }else{
+          if(user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel){
+            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
           }else{
-            if(user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel){
-              userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
-            }else{
-              userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
-            }
+            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
           }
-        }else if(i == 3){
-          userdataFont = Session.get("getAchievement") + "/9";
-        }else if(i == 4){
-          userdataFont = user.createMap.length;
-        }else if(i ==5){
-          userdataFont = user.starNum;
         }
-        document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-        for (var j = 0; j < 3; j++) {
-            b = document.createElement("br");
-            divTag.appendChild(b);
+      }else if(i == 3){
+        var getAchievement = Session.get("getAchievement");
+        if(getAchievement == undefined){
+          getAchievement=0;
+          console.log("this is undefine");
         }
-    }
+        userdataFont = getAchievement + "/9";
+      }else if(i == 4){
+        userdataFont = user.createMap.length;
+      }else if(i ==5){
+        userdataFont = user.starNum;
+      }
+      document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+      for (var j = 0; j < 3; j++) {
+          b = document.createElement("br");
+          divTag.appendChild(b);
+      }
+  }
 }
 
 /*讀取網址資訊*/
 function getArgs() {
-   var args = new Object();
-   var query = location.search.substring(1);
-   var pairs = query.split("&");
-   for(var i=0;i<pairs.length;i++) {
-      var pos = pairs[i].indexOf("=");
-      if (pos == -1) continue;
-      var argname = pairs[i].substring(0,pos);
-      var value = pairs[i].substring(pos+1);
-      args[argname] = decodeURIComponent(value);
-   }
-   if (args.levelName){
-     divTag = document.getElementById("titleFont");
-     divTag.innerHTML = "";
-     divTag.innerHTML = args.levelName;
-   }
+ var args = new Object();
+ var query = location.search.substring(1);
+ var pairs = query.split("&");
+ for(var i=0;i<pairs.length;i++) {
+    var pos = pairs[i].indexOf("=");
+    if (pos == -1) continue;
+    var argname = pairs[i].substring(0,pos);
+    var value = pairs[i].substring(pos+1);
+    args[argname] = decodeURIComponent(value);
+ }
+ if (args.levelName){
+   divTag = document.getElementById("titleFont");
+   divTag.innerHTML = "";
+   divTag.innerHTML = args.levelName;
+ }
 }
 
 /*小幫手*/
@@ -356,9 +368,9 @@ function instructionView(mainDiv) {
   b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "instructionTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "指令大全";
+  document.getElementById("instructionTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
   b.setAttribute("rules", "rows");
@@ -469,9 +481,9 @@ function settingAllView(mainDiv) {
     b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
     divTag.appendChild(b);
     b = document.createElement("h1");
-    b.setAttribute("id", "allTitle");
+    b.setAttribute("id", "settingTitle");
     divTag.appendChild(b);
-    document.getElementById("allTitle").innerHTML = "設定";
+    document.getElementById("settingTitle").innerHTML = "設定";
     b = document.createElement("table");
     b.setAttribute("id", "settingAllTable");
     divTag.appendChild(b);
@@ -902,7 +914,7 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum,gameResult,instructionNum,code) {
+function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
   console.log(starNum,gameResult,instructionNum,code);
 
   divID = "createEndView";
@@ -946,6 +958,13 @@ function createEndView(starNum,gameResult,instructionNum,code) {
     })
 
   }else{
+    if(gameResult == "編譯失敗"){
+      b = document.createElement("textarea");
+      b.setAttribute("id", "errTextarea");
+      b.innerHTML = errMessage;
+      divTag.appendChild(b);
+    }
+
     document.getElementById("endViewTitle").innerHTML = "檢測失敗";
     b = document.createElement("input");
     b.setAttribute("type", "button");
@@ -1037,7 +1056,7 @@ window.onresize = function() {
 /*鍵盤事件*/
 function insertAtCursor(myValue) {
   myField = document.getElementById("textarea_0");
-  if (myValue.indexOf('\t') < 0) {
+  if (myValue.indexOf('    ') < 0) {
     myValue += "\n";
   }
   //IE support
@@ -1066,7 +1085,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var fontSize = parseFloat(style);
   //console.log(e.keyCode);
   if (e.keyCode == 9) {
-    insertAtCursor('\t');
+    insertAtCursor('    ');
     return false;
   }else if(e.ctrlKey && e.keyCode == 38){/*ctrl+上鍵加大字體*/
     fontSize = parseFloat(style);
@@ -1078,7 +1097,19 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }else if(e.ctrlKey && e.keyCode == 40){/*ctrl+下鍵縮小字體*/
     fontSize = parseFloat(style);
     el.style.fontSize = (fontSize - 1) + 'px';
+  }else if(e.keyCode == 13){
+    // alert("被按了")
+    e.preventDefault();
+    insertAtCursor('');
+    for(var i=0;i<indentationTimes;i++){
+      insertAtCursor('    ');
+    }
+  }else if(e.shiftKey && e.keyCode == 219){
+    indentationTimes++;
+  }else if(e.shiftKey && e.keyCode == 221){
+    indentationTimes--;
   }
+
   fontSize = parseFloat(style);
   //console.log(fontSize);
 }

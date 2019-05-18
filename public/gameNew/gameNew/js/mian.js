@@ -29,7 +29,7 @@ var now_PeooleEESW, old_PeooleEESW;
 var now_PeooleX, old_PeooleX;
 var now_PeooleY, old_PeooleY;
 var finishCoin = true, gameEndingCode = 0;   //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗    10
-var gameEndingCodeDic = new Array();  //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗
+var gameEndingCodeDic = new Array();  //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗 8不必要的指令過多
 var iscodesheetTeseLive = false, decodeMod = 1; //0 api 編譯  1 自行編譯     //測試 先佔為1
 var decodeOutput = "";
 var textarea_0 = document.getElementById('textarea_0');
@@ -42,6 +42,8 @@ var haveFoggy = false, complementStep = false;
 var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
+var computeEndCode;
+var errMessage;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -67,9 +69,9 @@ var initCode = [
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[])
-{\t/*請在此處輸入程式碼(ps:我是註解)*/
-\t
-\treturn 0;
+{    /*請在此處輸入程式碼(ps:我是註解)*/
+    
+    return 0;
  }
 
 
@@ -102,6 +104,7 @@ function setup() {
     gameEndingCodeDic['5'] = "編譯失敗";
     gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
+    gameEndingCodeDic['8'] = "不必要的指令過多";
     // if(windowWidth * 0.4>=560&&windowHeight * 0.565.8)
 
     var divcanvas = document.getElementById('divcanvas');
@@ -193,7 +196,7 @@ function init_setup() {
 //     setup(); //resize
 // }
 function loadData() {
-    let mapNumber = data;
+    var mapNumber = data;
     if (mapNumber.foggy) {
         haveFoggy = true;
     }
@@ -260,7 +263,7 @@ function loadData() {
     textarea_0.value = linit + stemp;
     var tA = textarea_0.value.indexOf("main");
     var tEnd = textarea_0.value.indexOf("{", tA);
-    console.log("tEnd", tEnd);
+    // console.log("tEnd", tEnd);
 
     textarea_0.selectionStart = tEnd + 1;
     textarea_0.selectionEnd = tEnd + 1;
@@ -319,7 +322,7 @@ function endgame() {
     }
 
     /*     actionCode       */
-    var str = textarea_0.value, temp = "";
+    var str = computeEndCode, temp = "";
     var systemCall = ["step", "step(", "step()", "step();", ";step();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
@@ -400,7 +403,7 @@ function endgame() {
             tempStr = temp.substr(index + 1);  // '('.len=1
             temp = tempStr;
             var ws = temp.split(' ');
-            if (ws[0] != "niam") {
+            if (ws[0] != "niam" && ws[0] != "rof") {
                 funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
             }
             index = 0;
@@ -433,15 +436,15 @@ function endgame() {
                     var pos = wt[wi].indexOf(systemCall[di]);
                     if (pos > -1) {
                         if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';')) {
-                                // console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
+                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '/')) {
+                                console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
                                 continue;
                             }
                         }
                         if (pos + systemCall[di].length < wt[wi].length - 1) {
                             var del = systemCall[di].length;
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';')) {
-                                // console.log("outAfter :", wt[wi], " ", wt[wi][pos + 1]);
+                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
+                                // console.log("outAfter :", wt[wi], " ", wt[wi][pos + del]);
                                 continue;
                             }
                         }
@@ -462,27 +465,28 @@ function endgame() {
 
 
         console.log("counter:", counter);
-        console.log("funname.length:", funname.length);
+        console.log("funname:", funname);
+        // console.log("funname.length:", funname.length);
         console.log("funcounter:", funcounter);
         console.log("總動作為:", tc);
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
-            createEndView(3, result, tc, textarea_0.value);
+            createEndView(3, result, tc, computeEndCode);
         }
         else if (mapwinLinit["twoStar"][0] >= tc) {
             result = "恭喜你二星! \n~差一點就有一星了!加油~";
-            createEndView(2, result, tc, textarea_0.value);
+            createEndView(2, result, tc, computeEndCode);
         }
         else {
             result = "好可惜只有一星! \n~在檢查看看有沒有可以縮減的~";
-            createEndView(1, result, tc, textarea_0.value);
+            createEndView(1, result, tc, computeEndCode);
         }
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, textarea_0.value);
+        createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -508,9 +512,9 @@ function draw() {
         ++iscreatecanvas;
         if (iscreatecanvas % 50 == 0) {
             // console.log(iscreatecanvas);
+            updateBackgroundGraph();
             updateObjectGraph();
             updatePeopleGraph();
-            updateBackgroundGraph();
             updateCanvas();
         }
     }
@@ -532,7 +536,7 @@ function draw() {
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
             stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
-            delayResSpeed = 30;
+            delayResSpeed = 30-(gameSpeed-6)*5;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
@@ -698,6 +702,7 @@ function draw() {
                             //     onChanging = false;
                             // }
                             updateObjectGraph();
+                            break;
                         }
                     }
 
@@ -799,6 +804,7 @@ function draw() {
             }
             else if (type == "A") {
                 var value = tempAction.value;
+                var delayFlag=false
                 if (onChanging == false) {
                     for (var i = 0; i < value.length; ++i) {
                         var nowValue = value[i];
@@ -836,10 +842,15 @@ function draw() {
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
                             console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
+                        if(nowValue.type == "boon_hit"){
+                            delayFlag=true;
+                        }
                     }
-                    delayResSpeed * 2;
+                    // delayResSpeed *= 2;
                     updateObjectGraph();
-
+                    if(delayFlag){
+                        onChanging=true;
+                    }
                 }
                 else {
                     mapObjectChange = false;
@@ -864,6 +875,7 @@ function draw() {
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
+
         }
     }
 
@@ -916,6 +928,8 @@ function updateObjectGraph() {
     HPObject = [];
     // objectGraph = createGraphics(width, height);
     objectGraph.clear();
+    console.log(mapObject);
+
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];
         var dx = obj["postion"][0] * edgeToWidth, dy = obj["postion"][1] * edgeToHeight;
@@ -1164,6 +1178,7 @@ function codeToCompiler(stringCode) {
     challengeGameAgain();
     createLoadingView();
     textarea_0 = document.getElementById('textarea_0');
+    computeEndCode = textarea_0.value;
     // console.log("stringCode:",textarea_0.value);
     // console.log("stringCode:",stringCode);
     if (stringCode) {
@@ -1246,7 +1261,7 @@ function codeToCompiler(stringCode) {
     }
 
     // console.log(tempBefore);
-    console.log(inputStr);
+    // console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
 
@@ -1270,7 +1285,7 @@ function clearcodeAndInit() {
 
 function codeOutputTranstionAction() {
     var source = decodeOutput;
-    console.log(source);
+    // console.log(source);
 
     // var temp = new Array();
     var temp = [], tempNew = [];
@@ -1289,7 +1304,7 @@ function codeOutputTranstionAction() {
             }
         }
     }
-    console.log(tempNew);
+    // console.log(tempNew);
     // temp = tempNew.slice(0);
     temp.length = 0;
 
@@ -1632,7 +1647,7 @@ function codeOutputTranstionAction() {
         action_code = temp;
         gameEndingCode = 0;
         action_now = 0;
-        console.log(action_code);
+        console.log("指令動作:",action_code);
     }
     else {
         action_code = [];
@@ -1724,7 +1739,7 @@ function call_JDOODLE_api(scriptData, inputData) {
     socket.emit('script', scriptData);
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
-        console.log(obj);
+        console.log("編譯結果",obj);
 
         if (obj.body.cpuTime != null && obj.body.memory != null) {
             //   output.innerHTML = "輸出:\n" + obj.body.output;
@@ -1732,6 +1747,19 @@ function call_JDOODLE_api(scriptData, inputData) {
         }
         else {
             gameEndingCode = 5;
+            if (obj.body.output != null) {
+                if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
+                    gameEndingCode = 8;
+                }
+                else{
+                    // var str=obj.body.output
+                    errMessage="錯誤原因:\n"+obj.body.output.substr(1)
+                    
+
+                    
+                }
+            }
+            
             closeLoadingView();
             console.log("Error =  compiler error");
             endgame();
@@ -1756,7 +1784,7 @@ function challengeGameAgain() {
     iscreatecanvas = 1;
     action_now = 0;
 
-    let mapNumber = data;
+    var mapNumber = data;
     if (mapNumber.foggy) {
         haveFoggy = true;
     }
@@ -1767,8 +1795,10 @@ function challengeGameAgain() {
     mapSize = Math.sqrt(mapNumber['mapSize']);
     people_init = mapNumber['people_init'];
     end_init = mapNumber['end_init'];
+    mapObject=null;
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
+
 
     // peopleGraph = createGraphics(width, height);
     // objectGraph = createGraphics(width, height);
@@ -1790,18 +1820,6 @@ function challengeGameAgain() {
     finishCoin = true;
 }
 
-/*btn1.onclick = function () {
-    challengeGameAgain();
-
-    textarea_1.value = "   .....編譯中~請稍後....."
-    codeToCompiler();
-
-    //測試用//
-    // decodeOutput = textarea_1.value
-    // codeOutputTranstionAction();
-    ////
-
-}*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',
     '11', '12', '13', '14', '15',

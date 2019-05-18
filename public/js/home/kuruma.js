@@ -210,12 +210,19 @@ $.ajax({
 })
 
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerMidMap");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "closeFunc(divID,divID2)");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -461,13 +468,12 @@ function btnClick(number) {
   var divTag = document.getElementById("centerMidMap");
   var b;
   number += 25;
-  if (levelDivAlive) {
+  try {
     divTag = document.getElementById("levelDiv");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("centerMidMap");
+  } catch (e) {
     divTag = document.getElementById("centerMidMap");
   }
   b = document.createElement("div");
@@ -1754,16 +1760,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("centerMidMap");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("centerMidMap");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

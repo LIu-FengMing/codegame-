@@ -54,7 +54,7 @@ var href = window.location.href;
 var scriptData = {
   type: "init"
 }
-var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = false,achievementStr;
+var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true,achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
 $.ajax({
@@ -116,11 +116,8 @@ function error() {
 function initHome() {
   if (Session.get("isBlockly") != null) {
     isBlockly = Session.get("isBlockly");
-    console.log("get isBlockly", isBlockly);
     document.getElementById("myonoffswitch").checked = isBlockly;
-  } else {
-    console.log("no get");
-  }
+  } else {}
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     //console.log("???");
     bkMusicVolumn = Session.get("bkMusicVolumn");
@@ -218,12 +215,19 @@ $.ajax({
   }
 })
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerBlockly");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "closeFunc(divID,divID2)");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -472,13 +476,12 @@ function btnClick(number) {
   var isCheckClicked;
   isCheckClicked = document.getElementById("myonoffswitch");
   number++;
-  if (levelDivAlive) {
+  try {
     divTag = document.getElementById("levelDiv");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("centerBlockly");
+  } catch (e) {
     divTag = document.getElementById("centerBlockly");
   }
   b = document.createElement("div");
@@ -623,19 +626,16 @@ function viewRecord(number) {
         for (var i = 0; i < user.EasyEmpire.codeLevel[number].challengeLog.length; i++) {
           if (user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar) {
             niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
+            lastRecord = i;
             if (user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord) {
-              niceRecord = user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum;
               lastRecord = i;
             }
           }
         }
+        console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
         var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
-        var result2 = result.replace(new RegExp("<", "g"), "&lt");
-        result = result2.replace(new RegExp(">", "g"), "&gt");
-        result2 = result.replace(new RegExp(" ", "g"), "&nbsp");
-        result = result2.replace(new RegExp("\t", "g"), "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
-        codeText = result.replace(new RegExp("\n", "g"), "<br>");
-        codeNum = niceRecord;
+        codeText = result;
+        codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
       } catch (e) {
         codeText = "查無資料";
         codeNum = 0;
@@ -1848,16 +1848,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("centerBlockly");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("centerBlockly");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

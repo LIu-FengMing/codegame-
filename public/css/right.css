@@ -87,7 +87,7 @@
   top: 1%;
   right: 1%;
 }
-#allTitle{
+#allTitle,#userTitle{
   margin-top: 20px;
   font-family: Microsoft JhengHei;
 }

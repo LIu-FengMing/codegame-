@@ -65,7 +65,7 @@ void systBoon(int x, int y)
 		}
 	}
 	dLen = 0;
-	cout << "$W,,";
+	// cout << "$W,,";
 	// cout << "  dis \n";
 	for (int i = 0; i < 5; ++i)
 	{
@@ -81,6 +81,7 @@ void systBoon(int x, int y)
 	}
 	// cout << "\nddd \n";
 	/* 消除石頭跟樹*/
+	bool selfDead=false;
 	for (int i = 0; i < 5; ++i)
 	{
 		int newX = x + stepValue[i][0];
@@ -94,15 +95,23 @@ void systBoon(int x, int y)
 		}
 		else if (newX == peopleAdr[0] && newY == peopleAdr[1])
 		{
-			cout << "$M,,-1,,-1,-1,-1";
-			cout << "$E,,6"; //被炸彈炸死
+			selfDead=true;
+			// cout << "$M,,-1,,-1,-1,-1";
+			// cout << "$E,,6"; //被炸彈炸死
 		}
 	}
 	if (x == peopleAdr[0] && y == peopleAdr[1])
+	{	
+		selfDead=true;
+		// cout << "$M,,-1,,-1,-1,-1";
+		// cout << "$E,,6"; //被炸彈炸死
+	}
+	if (selfDead)
 	{
 		cout << "$M,,-1,,-1,-1,-1";
 		cout << "$E,,6"; //被炸彈炸死
 	}
+	
 }
 void bulletHit()
 {

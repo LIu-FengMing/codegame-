@@ -157,16 +157,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("centerLost");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("centerLost");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

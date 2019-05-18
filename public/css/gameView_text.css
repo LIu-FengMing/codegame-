@@ -4,6 +4,9 @@
   padding: 0;
   font-family: Microsoft JhengHei;
 }
+* textarea{
+  resize:none;
+}
 html,body {
   height: 100%;
 }
@@ -142,6 +145,45 @@ body {
   bottom: 10%;
   left: 10%;
 }
+#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7{
+  height: 8vh;
+  width: auto;
+  font-size: 1.5vw;
+  font-family:Microsoft JhengHei;
+  line-height: 8vh;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+}
+#helperTextarea4{
+  top: 100%;
+  left: calc(10% + 8vh);
+}
+#helperTextarea5{
+  top: calc(105% + 8vh);
+  left: calc(10% + 8vh);
+}
+#helperTextarea6{
+  top: calc(110% + (8vh * 2));
+  left: calc(10% + 8vh);
+}
+#helperTextarea7{
+  top: calc(115% + (8vh * 3));
+  left: calc(10% + 8vh);
+}
+#helperTextarea8{
+  height: 25%;
+  width: 90%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  top: calc(120% + (8vh * 4));
+  left: 5%;
+  padding-bottom: 12vh;
+}
 #helperImgDiv1,#helperImgDiv2{
   height: 18vh;
   width: 45%;
@@ -153,6 +195,27 @@ body {
 }
 #helperImgDiv2{
   top: 43%;
+}
+#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7{
+  height: 8vh;
+  width: 8vh;
+  position: absolute;
+}
+#helperImgDiv4{
+  left: 5%;
+  top: 100%;
+}
+#helperImgDiv5{
+  left: 5%;
+  top: calc(105% + 8vh);
+}
+#helperImgDiv6{
+  left: 5%;
+  top: calc(110% + (8vh * 2));
+}
+#helperImgDiv7{
+  left: 5%;
+  top: calc(115% + (8vh * 3));
 }
 .helperImg{
   height: 100%;
@@ -242,7 +305,7 @@ body {
   right: 1%;
   cursor: pointer;
 }
-#allTitle,#userTitle{
+#allTitle,#userTitle,#settingTitle,#instructionTitle{
   margin-top: 20px;
 }
 #userInnerDiv{
@@ -375,7 +438,6 @@ body {
 }
 #createEndView{
   z-index: 999;
-  height: 55vh;
   width: 20vw;
   text-align: center;
   border-radius: 30px;
@@ -388,6 +450,12 @@ body {
   overflow: auto;
   min-width: 300px;
   min-height: 340px;
+}
+.successView{
+  height: 55vh;
+}
+.errView{
+  height: 65vh;
 }
 #endViewTitle{
   font-size: 7vh;
@@ -426,6 +494,17 @@ body {
   bottom: 13vh;
   transform: translate(-50%,0);
   cursor: pointer;
+}
+#errTextarea{
+  height: 9vh;
+  width: 80%;
+  font-size: calc(10px + 0.5vw);
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  left: 50%;
+  bottom: 18vh;
+  transform: translate(-50%,0);
 }
 #backToMapBtn{
   height: 10vh;
@@ -660,13 +739,13 @@ body {
   cursor: pointer;
 }
 #settingAllTable font{
-  font-size: 25px;
+  font-size: calc(5px + 1vw);
   line-height: 0px;　
   margin-top: -5px;
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: 15px;
+  width: calc(5px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -674,7 +753,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: 15px;
+  width: calc(5px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

@@ -248,12 +248,19 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "上架地圖數：",
   "已獲得星星數："];
 function userData() {
+  try {
+    divTag = document.getElementById("userDataView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("userDataBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divID = "userDataView";
-  divID2 = "userDataBkView";
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -264,7 +271,7 @@ function userData() {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(divID,divID2)");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   createUserView(divID);
 }
@@ -280,9 +287,9 @@ function clossFunc(thisDiv, thisDiv2) {
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "個人資料";
+  document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
@@ -311,7 +318,12 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      userdataFont = Session.get("getAchievement") + "/9";
+      var getAchievement = Session.get("getAchievement");
+      if(getAchievement == undefined){
+        getAchievement=0;
+        console.log("this is undefine");
+      }
+      userdataFont = getAchievement + "/9";
     } else if (i == 4) {
       userdataFont = user.createMap.length;
     } else if (i == 5) {
@@ -388,16 +400,15 @@ function remindView(remindValue) {
       break;
     }
   }
+  try {
+    divTag = document.getElementById("remindView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("remindBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("centerLost");
-  if (levelDivAlive) {
-      divTag = document.getElementById("remindView");
-      try {
-          parentObj = divTag.parentNode;
-          parentObj.removeChild(divTag);
-      } catch (e) { }
-      levelDivAlive = false;
-      divTag = document.getElementById("centerLost");
-  }
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
@@ -748,10 +759,6 @@ function chk2(input) {
   return true;
 }
 function sendSession() {
-  // console.log("bkMusicSwitch:" + bkMusicSwitch);
-  // console.log("musicLevel:" + musicLevel);
-  // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -998,10 +1005,7 @@ mainDescription = {
   ]
 };
 
-
-
 /*選單*/
-
 var levelSelect = document.getElementById("levelSelect");
 levelSelect.onchange = function (index) {
   changeTdNameDisplay();
