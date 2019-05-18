@@ -89,6 +89,7 @@ function setup() {
         "boon_hit", "questionstone", "arrowWite", "enemyTank",
         "unlock", "unlock2", "unlockfail2", "foggy", "peopleFoggy", "treasure",
         "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "desret","lawn","sea",
     ]
     for (var i = 0; i < path.length; ++i) {
         // var imgpath = "gameNew/gameNew/image/" + path[i] + ".png";
@@ -884,11 +885,16 @@ function updateBackgroundGraph() {
     // backgroundGraph = createGraphics(width, height);
     backgroundGraph.clear();
     backgroundGraph.noStroke();
+    var imgDesret = imgObject[parseInt(imgDic["desret"])];
+    var imgLawn = imgObject[parseInt(imgDic["lawn"])];
+    var imgSea = imgObject[parseInt(imgDic["sea"])];
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;
+            
             if (map[i] == '0') {
-                backgroundGraph.fill('#bafba7');
+                // backgroundGraph.fill('#bafba7');
+                backgroundGraph.image(imgLawn,x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else if (map[i] == '1') {
                 backgroundGraph.fill('#FFE599');
@@ -899,14 +905,18 @@ function updateBackgroundGraph() {
             else {
                 console.log(map[i]);
             }
-            backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            if(map[i] != '0'){
+
+                backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            }
+           
         }
     }
-    backgroundGraph.stroke(0);
-    for (var i = 1; i < mapSize; ++i) {
-        backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
-        backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
-    }
+    // backgroundGraph.stroke(0);
+    // for (var i = 1; i < mapSize; ++i) {
+    //     backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
+    //     backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
+    // }
 
     for (var i = 0; i < end_init.length; ++i) {
         // var pg = createGraphics(edgeToWidth, edgeToHeight);
