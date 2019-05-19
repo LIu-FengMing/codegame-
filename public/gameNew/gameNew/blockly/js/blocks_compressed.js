@@ -200,7 +200,7 @@ Blockly.Blocks['block_switch'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(315);
+    this.setColour(260);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -216,7 +216,7 @@ Blockly.Blocks['block_case'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(315);
+    this.setColour(260);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -228,7 +228,7 @@ Blockly.Blocks['block_break'] = {
         .appendField("break");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(315);
+    this.setColour(260);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -242,7 +242,7 @@ Blockly.Blocks['block_default'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(315);
+    this.setColour(260);
  this.setTooltip("");
  this.setHelpUrl("");
   }

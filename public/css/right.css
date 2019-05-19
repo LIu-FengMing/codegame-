@@ -7,7 +7,7 @@
   width: 100%;
   font-weight: bolder;
   font-family: Microsoft JhengHei;
-  color: rgb(89, 70, 137);;
+  color: white;
   text-decoration:underline;
 }
 .btnUser {
@@ -20,6 +20,19 @@
   background: -o-linear-gradient(white,#B1DE85);
   background: -moz-linear-gradient(white,#B1DE85);
   background: linear-gradient(white,#B1DE85);
+  color: black;
+  margin-top: 2vh;
+  font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+}
+.btnUserNew {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/userData.png");
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
@@ -42,6 +55,19 @@
   font-family: Microsoft JhengHei;
   cursor: pointer;
 }
+.btnLogoutNew {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
+  color: black;
+  margin-top: 2vh;
+  font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+}
 .signOut{
   height: 25px;
   width: auto;
@@ -53,6 +79,7 @@
 }
 .starNumber,.goldNumber{
   line-height:5px;
+  color: white;
   font-size: 25px;
   font-family: Microsoft JhengHei;
 }
