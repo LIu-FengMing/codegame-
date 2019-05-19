@@ -1743,9 +1743,23 @@ function changeLevelStage() {
     if (i < totalLevel) {
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/allClrBtn.png";
     } else {
       divTag = document.getElementById("btn" + i);
       divTag.className = "unbtn";
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/unPlayBtn.png";
+    }
+    if(i>0&&i<10){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/oneStarBtn.png";
+    }else if(i>10&&i<20){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/twoStarBtn.png";
+    }else if(i>20){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/unPlayBtn.png";
     }
   }
 }
