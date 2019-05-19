@@ -2,21 +2,28 @@
   font-family: Microsoft JhengHei;
 }
 #clossDiv{
-  width: 35px;
-  height: 35px;
-  background-color: red;
-  color: white;
-  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  font-size: 30px;
   font-weight: bold;
+  line-height: 30px;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
+  margin-top: 0px;
   cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 /*裝備*/
 #equipageBkView{
@@ -29,13 +36,13 @@
 #equipageView{
   z-index: 4;
   height: 45vh;
-  width: 35vw;
+  width: 25vw;
   font-family: Microsoft JhengHei;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -22.5vh;
-  margin-left: -17.5vw;
+  margin-left: -12.5vw;
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
@@ -63,19 +70,19 @@
 }
 #equipageTable{
   width: 100%;
-  font-family: Microsoft JhengHei;
   position: relative;
-  top: 10%;
-  border: 1;
+  border: 0px;
+  margin-top: 0%;
+}
+#equipageTable td{
+  border-width: 0px;
 }
 #swordImg{
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   border-radius:10px;
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-color: rgb(103, 103, 103);
-  margin: 10px auto;
+  background-size: cover;
 }
 #swordLevelUpDivH3{
   margin-top: 20px;
@@ -88,18 +95,16 @@
   color: rgb(157, 22, 143);
 }
 #shieldImg{
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   border-radius:10px;
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-color: rgb(103, 103, 103);
-  margin: 10px auto;
+  background-size: cover;
 }
 #swordLevelUpDiv,#shieldLevelUpDiv{
   height: 50px;
   width: 200px;
-  border-radius:10px;
+  border-radius: 10px;
   background-color: white;
   margin: 5px auto;
 }
@@ -227,7 +232,7 @@
   border-radius: 10px;
   position: absolute;
   right: 0.5vw;
-  margin-top: 8vh;
+  margin-top: 2vh;
   cursor: pointer;
 }
 
@@ -241,15 +246,20 @@
   left: 50%;
   margin-top: -30vh;
   margin-left: -20vw;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #instructionTable{
   width: 100%;
   position: relative;
-  border: 1;
-  margin-top: 5%;
+  border: 0px;
+  margin-top: 0%;
+}
+#instructionTable td{
+  border-width: 0px;
 }
 #actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
   height: 20px;
@@ -286,8 +296,11 @@
 #achievementTable{
   width: 100%;
   position: relative;
-  border: 1;
-  margin-top: 5%;
+  border: 0;
+  margin-top: 0%;
+}
+#achievementTable td{
+  border-width: 0px;
 }
 #crownImgLeft{
   height: 35px;
@@ -312,21 +325,21 @@
   left: 60%;
 }
 .champtionGold{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionGold.png');
   background-size: 100% 100%;
 }
 .champtionSilver{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionSilver.png');
   background-size: 100% 100%;
 }
 .champtionCopper{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionCopper.png');

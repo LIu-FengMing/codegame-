@@ -359,7 +359,7 @@ body {
   width: 49.7%;
   border-style:solid;
   z-index: 1;
-  background-color: white;
+  background-color: #B3B3B3;
   position: absolute;
   top: 10.5%;
   left: 0px;
@@ -372,7 +372,7 @@ body {
   width: 30%;
   height: 50%;
   z-index: 3;
-  background-color: white;
+  background-color: black;
   border-style: solid;
   border-width: 2px;
   position: absolute;
@@ -414,6 +414,8 @@ body {
 #textarea_0{
   width: 100%;
   height: 98%;
+  background-color: #B3B3B3;
+  color: white;
 }
 #textarea_0 {
  width:99.5%;/*自动适应父布局宽度*/
@@ -422,9 +424,13 @@ body {
 /*在ie中解决断行问题(防止自动变为在一行显示，主要解决ie兼容问题，ie8中当设宽度为100%时，文本域类容超过一行时，
 当我们双击文本内容就会自动变为一行显示，所以只能用ie的专有断行属性“word-break或word-wrap”控制其断行)*/
 }
+.linedwrap .codelines .lineno {
+    color: white;
+}
 #textarea_1{
   width: 100%;
   height: 100%;
+  background-color: black;
   display: none;
 }
 
