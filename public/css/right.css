@@ -6,26 +6,10 @@
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   color: white;
   text-decoration:underline;
 }
-/* .btnUser {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#B1DE85);
-  background: -o-linear-gradient(white,#B1DE85);
-  background: -moz-linear-gradient(white,#B1DE85);
-  background: linear-gradient(white,#B1DE85);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnUser {
   height: 8vh;
   width: 15vh;
@@ -36,22 +20,6 @@
   color: black;
   cursor: pointer;
 }
-/* .btnLogout {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#F09090);
-  background: -o-linear-gradient(white,#F09090);
-  background: -moz-linear-gradient(white,#F09090);
-  background: linear-gradient(white,#F09090);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnLogout {
   height: 8vh;
   width: 15vh;
@@ -61,6 +29,7 @@
   background-image: url("../img/layout.png");
   color: black;
   margin-top: -1vh;
+  cursor: pointer;
 }
 .signOut{
   height: 25px;
@@ -79,7 +48,7 @@
   line-height: 10vh;
   color: white;
   font-size: calc(5px + 4vh);
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   vertical-align:middle;
 }
 #userDataBkView{
@@ -93,7 +62,6 @@
   z-index: 4;
   height: 58%;
   width: 30%;
-  font-family: Microsoft JhengHei;
   position: absolute;
   top: 21%;
   left: 35%;
@@ -117,11 +85,13 @@
 }
 #allTitle,#userTitle{
   margin-top: 20px;
-  font-family: Microsoft JhengHei;
 }
 #userTitle{
   height: 5vh;
   color: #7C5A43;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
@@ -129,7 +99,7 @@
 #userInnerDiv{
   width: 80%;
   height: 70%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   position: absolute;
   top: 15%;
   left: 10%;
@@ -140,7 +110,7 @@
 #userH3Div{
   width: 90%;
   height: 90%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   position: absolute;
   top: 5%;
   left: 5%;
@@ -149,7 +119,7 @@
   height: 6vh;
   width: 7vw;
   font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   background-color: rgba(0, 0, 0, 0);
   border-style: solid;
   border-width: 2px;
@@ -163,7 +133,7 @@
 #changePasswordView{
   height: 60%;
   width: 90%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   border-width: 0px;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.74);
@@ -173,12 +143,12 @@
   left: 5%;
 }
 #changePasswordTitle{
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   margin-top: 20px;
 }
 #changePasswordTable{
   width: 90%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   margin-top: 5vh;
   margin-left: 5%;
 }
@@ -190,7 +160,7 @@
   height: 4vh;
   width: 80%;
   font-size: 1.5vh;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -203,7 +173,7 @@
   height: 5vh;
   width: 7vw;
   font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: solid 2px white;
@@ -217,7 +187,7 @@
   height: 5vh;
   width: 7vw;
   font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: solid 2px white;

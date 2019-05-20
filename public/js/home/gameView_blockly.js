@@ -1057,7 +1057,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     divTag = document.getElementById("restartGameBtn");
     b = document.createElement("img");
     b.setAttribute("id", "restartImg");
-    b.setAttribute("src", "img/RestartButton.png");
+    b.setAttribute("src", "img/RestartButton2.png");
     divTag.appendChild(b);
     b = document.createElement("font");
     b.setAttribute("id", "restartFontImg");

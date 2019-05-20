@@ -1,15 +1,20 @@
+* textarea{
+  resize:none;
+}
 #clossDiv{
   width: 30px;
   height: 30px;
-  background-color: red;
-  color: white;
-  font-size: 20px;
+  background-color: white;
+  color: black;
+  font-size: 30px;
   font-weight: bold;
+  line-height: 30px;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
+  margin-top: 0px;
   cursor: pointer;
 }
 #midMapTitle{
@@ -40,7 +45,6 @@
   border: 0px;
   background: transparent;
   background-color: none;
-  /* background-image: url('../img/allClrBtn.png'); */
   background-size: 100% 100%;
   margin: 1px auto;
   position: absolute;
@@ -53,7 +57,6 @@
   border: 0px;
   background: transparent;
   background-color: none;
-  /* background-image: url('../img/unPlayBtn.png'); */
   background-size: 100% 100%;
   margin: 1px auto;
   position: absolute;
