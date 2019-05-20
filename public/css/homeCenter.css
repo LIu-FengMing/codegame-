@@ -1,6 +1,3 @@
-*{
-  font-family: Microsoft JhengHei;
-}
 #clossDiv{
   width: 30px;
   height: 30px;
@@ -21,6 +18,10 @@
   margin-top: 20px;
   height: 5vh;
   color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
@@ -37,7 +38,6 @@
   z-index: 4;
   height: 45vh;
   width: 25vw;
-  font-family: Microsoft JhengHei;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -53,7 +53,7 @@
   z-index: 4;
   height: 20%;
   width: 100%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   position: absolute;
   top: 0px;
   background-color: rgba(112, 159, 222, 1);
@@ -61,7 +61,7 @@
 #equipageFont{
   position: absolute;
   font-size: 70px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   letter-spacing: 100px;
   color: rgb(255, 255, 255);
   top:40%;
@@ -88,13 +88,13 @@
 }
 #swordLevelUpDivH3{
   margin-top: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
 #shieldLevelUpDivH3{
   margin-top: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
@@ -115,14 +115,14 @@
 #swordLevelUpTable,#shieldLevelUpTable{
   height: 50px;
   width: 200px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   border-radius:10px;
   padding: 0;
 }
 .levelUp{
   height: 60px;
   width: 75px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-size: 20px;
   font-weight: 800;
   border-radius:10px;
@@ -135,7 +135,7 @@
   font-size: 20px;
   font-weight: 100;
   border-width: 0px;
-  background-image: url("../img/levelMax.png");
+  background-image: url("../img/levelAllMax.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
@@ -155,7 +155,7 @@
   height: 60px;
   width: 75px;
   font-size: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-weight: 800;
   border-radius:10px;
 }
@@ -170,7 +170,7 @@
 .levelUpFont{
   font-size: 15px;
   font-weight: 400;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
 }
 .levelFont{
   height: 50px;
@@ -259,7 +259,7 @@
   height: 6vh;
   width: 7vw;
   font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   background-color: rgba(0, 0, 0, 0);
   border-style: solid;
   border-color: black;
@@ -392,14 +392,14 @@
 .achievementSummaryInner::-webkit-details-marker { display:none; }
 .achievementSummaryInner{
   font-size: calc(15px + 1vw);
-  font-family:Microsoft JhengHei;
+  /* font-family:Microsoft JhengHei; */
   line-height: 5vh;
   outline:none;
   cursor: pointer;
 }
 .achievementItem{
   line-height: 3vh;
-  font-family:Microsoft JhengHei;
+  /* font-family:Microsoft JhengHei; */
 }
 /*設定*/
 #settingAllView{

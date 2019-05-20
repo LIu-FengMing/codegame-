@@ -60,7 +60,8 @@ function createselectChart(thisSelect) {
                     scaleLabel: {
                       display: true,
                       fontSize: 25,
-                      labelString: '遊玩人數'
+                      labelString: '遊玩人數',
+                      defaultFontFamily: "DFPingJuStd-W7"
                     },
                     ticks: {
                       min: 0,
@@ -72,7 +73,8 @@ function createselectChart(thisSelect) {
                     scaleLabel: {
                       display: true,
                       fontSize: 25,
-                      labelString: '關卡'
+                      labelString: '關卡',
+                      defaultFontFamily: "Microsoft JhengHei"
                     }
                   }]
                 },

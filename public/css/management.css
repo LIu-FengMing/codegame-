@@ -2,7 +2,6 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:Microsoft JhengHei;
 }
 html,body {
   height: 100%;
@@ -88,7 +87,8 @@ body {
   background-size: 100% 100%;
   background-image: url("../img/layout.png");
   color: black;
-  margin-top: -1vh;
+  position: relative;
+  padding: 3vh;
   cursor: pointer;
 }
 
@@ -96,6 +96,9 @@ body {
 .titleH1{
   font-size: calc(10px + 5vh);
   color: #7C5A43;
+  font-family: 'DFPingJuStd-W7';
+  font-weight: 100;
+  letter-spacing: 0.5vw;
   position: relative;
   top: calc(10px + 10vh);
 }

@@ -223,6 +223,8 @@ body {
   height: 8vh;
   width: 100%;
   position: absolute;
+  font-family: Microsoft JhengHei;
+  font-weight: bold;
   top: 0px;
   max-height: 85vh;
 }

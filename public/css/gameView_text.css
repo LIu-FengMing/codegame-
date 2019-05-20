@@ -2,7 +2,6 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: Microsoft JhengHei;
 }
 * textarea{
   resize:none;
@@ -61,6 +60,7 @@ body {
   background: none;
 }
 #goBack{
+  z-index: 3;
   width: 7vh;
   height: 7vh;
   font-size: 40px;
@@ -235,22 +235,6 @@ body {
   color: white;
   text-decoration:underline;
 }
-/* .btnUser {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#B1DE85);
-  background: -o-linear-gradient(white,#B1DE85);
-  background: -moz-linear-gradient(white,#B1DE85);
-  background: linear-gradient(white,#B1DE85);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnUser {
   height: 8vh;
   width: 15vh;
@@ -261,22 +245,6 @@ body {
   color: black;
   cursor: pointer;
 }
-/* .btnLogout {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#F09090);
-  background: -o-linear-gradient(white,#F09090);
-  background: -moz-linear-gradient(white,#F09090);
-  background: linear-gradient(white,#F09090);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnLogout {
   height: 8vh;
   width: 15vh;
@@ -380,6 +348,8 @@ body {
 #titleBar font{
   position: absolute;
   font-size: calc(15px + 4vh);
+  font-weight: 900;
+  font-family: 'DFT_PJ7';
   top:40%;
   right:0;
   bottom:0;
