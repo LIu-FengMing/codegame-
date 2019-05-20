@@ -13,15 +13,21 @@ step();
 turnLeft();
 step();
 }
-
-
-int main(int argc, char *argv[])
-{
-int i;
+    
+   
+void a(){
+    int i;
 for(i=5;i>0;i--){
 clear();
 
 }
+}
+
+
+int main(int argc, char *argv[])
+{
+
+a();
 
 	return 0;
  }

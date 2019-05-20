@@ -29,7 +29,7 @@ var now_PeooleEESW, old_PeooleEESW;
 var now_PeooleX, old_PeooleX;
 var now_PeooleY, old_PeooleY;
 var finishCoin = true, gameEndingCode = 0;   //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗    10
-var gameEndingCodeDic = new Array();  //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗
+var gameEndingCodeDic = new Array();  //0 未完成 1完成 2經過終點線 3駛出地圖_失敗 4撞到障礙物_失敗  5編譯失敗 8不必要的指令過多
 var iscodesheetTeseLive = false, decodeMod = 1; //0 api 編譯  1 自行編譯     //測試 先佔為1
 var decodeOutput = "";
 var textarea_0 = document.getElementById('textarea_0');
@@ -38,10 +38,12 @@ var btn1 = document.getElementById('btn1');
 var backgroundGraph, objectGraph, peopleGraph, HPObject = [];
 var iscreatecanvas = 0;  //0 fase 1 true 2 load success
 var iscreateImg = 0;  //0 fase 1 true 2 load success
-var haveFoggy = false;
+var haveFoggy = false, complementStep = false;
 var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
+var computeEndCode;
+var errMessage;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -67,8 +69,9 @@ var initCode = [
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[])
-{
-\treturn 0;
+{    /*請在此處輸入程式碼(ps:我是註解)*/
+    
+    return 0;
  }
 
 
@@ -77,6 +80,8 @@ int main(int argc, char *argv[])
 textarea_0.value = initCode;
 // console.log(initCode);
 function setup() {
+    // console.log("setup");
+
     var path = ["stone", "tree", "tank", "bot", "start",
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
@@ -84,6 +89,7 @@ function setup() {
         "boon_hit", "questionstone", "arrowWite", "enemyTank",
         "unlock", "unlock2", "unlockfail2", "foggy", "peopleFoggy", "treasure",
         "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "desret","lawn","sea",
     ]
     for (var i = 0; i < path.length; ++i) {
         // var imgpath = "gameNew/gameNew/image/" + path[i] + ".png";
@@ -97,9 +103,18 @@ function setup() {
     gameEndingCodeDic['3'] = "駛出地圖_失敗";
     gameEndingCodeDic['4'] = "撞到障礙物_失敗";
     gameEndingCodeDic['5'] = "編譯失敗";
-    gameEndingCodeDic['6'] = "被炸彈炸死";
+    gameEndingCodeDic['6'] = "被炸彈炸死或撞到敵人爆炸身亡";
     gameEndingCodeDic['7'] = "被打死了";
-    var canvas = createCanvas((windowWidth * 0.4), (windowHeight * 0.89));
+    gameEndingCodeDic['8'] = "不必要的指令過多";
+    // if(windowWidth * 0.4>=560&&windowHeight * 0.565.8)
+
+    var divcanvas = document.getElementById('divcanvas');
+    var winW = divcanvas.offsetWidth;
+    var winH = divcanvas.offsetHeight;
+    // var winW = Math.max($(window).width()* 0.4,windowWidth * 0.4, 506);
+    // var winH = Math.max($(window).height()* 0.892,windowHeight * 0.892, 500);
+    // var canvas = createCanvas((windowWidth * 0.4)-6, (windowHeight * 0.895)-5);
+    var canvas = createCanvas(winW - 6, winH - 6);
     canvas.parent('divcanvas');
     canvas.background(211, 211, 211);
     width = canvas.width;
@@ -131,8 +146,42 @@ function init_setup() {
         if (this.readyState == 4 && this.status == 200) {
             data = JSON.parse(this.responseText);
             Res_data = JSON.parse(JSON.stringify(data));
-            loadData();
-            updateCanvas();
+            if (data.presetCode) {
+                var file = data.presetCode;
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        initCode = this.responseText.toString();
+                        // console.log(initCode);
+
+                        mapwinLinit = data['winLinit'];
+                        var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+                        var linit = "/* 3星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   2星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   1星:滿足過關條件即可*/ \n\n";
+                        var stemp;
+                        if (initCode.indexOf('#') > 0) {
+                            stemp = initCode.substr(initCode.indexOf('#') - 1);
+                        }
+                        else {
+                            stemp = initCode;
+                        }
+                        textarea_0.value = linit + stemp;
+                        // stemp = initCode.substr(initCode.indexOf('#') - 1);
+                        initCode = linit + stemp;
+                        // console.log("linit + stemp=",linit,stemp);
+                        // console.log("initCode=",initCode);
+
+                        loadData();
+                        updateCanvas();
+                    }
+                };
+                var url = "gameNew/gameNew/json/" + file + ".cpp"
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
+            else {
+                loadData();
+                updateCanvas();
+            }
+
             // changeCollege(0);
             // loadData();
         }
@@ -143,8 +192,12 @@ function init_setup() {
     xmlhttp.send();
 }
 
+// window.onresize = function () {
+//     console.log("ddd");
+//     setup(); //resize
+// }
 function loadData() {
-    let mapNumber = data;
+    var mapNumber = data;
     if (mapNumber.foggy) {
         haveFoggy = true;
     }
@@ -158,46 +211,67 @@ function loadData() {
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
-    if (mapNumber.presetCode) {
-        var file = mapNumber.presetCode;
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var initCode = this.responseText.toString();
-                console.log(initCode);
+    // if (mapNumber.presetCode) {
+    //     var file = mapNumber.presetCode;
+    //     xmlhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             var initCode = this.responseText.toString();
+    //             console.log(initCode);
 
-                var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-                var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
-                var stemp;
-                if (initCode.indexOf('#') > 0) {
-                    stemp = initCode.substr(initCode.indexOf('#') - 1);
-                }
-                else {
-                    stemp = initCode;
-                }
-                textarea_0.value = linit + stemp;
-                var stemp = initCode.substr(initCode.indexOf('#') - 1);
-                initCode = linit + stemp;
-            }
-        };
-        var url = "gameNew/gameNew/json/" + file + ".cpp"
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+    //             var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    //             var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    //             var stemp;
+    //             if (initCode.indexOf('#') > 0) {
+    //                 stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //             }
+    //             else {
+    //                 stemp = initCode;
+    //             }
+    //             textarea_0.value = linit + stemp;
+    //             var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //             initCode = linit + stemp;
+    //         }
+    //     };
+    //     var url = "gameNew/gameNew/json/" + file + ".cpp"
+    //     xmlhttp.open("GET", url, true);
+    //     xmlhttp.send();
+    // }
+    // else {
+    //     var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    //     var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
+    //     var stemp;
+    //     if (textarea_0.value.indexOf('#') > 0) {
+    //         stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
+    //     }
+    //     else {
+    //         stemp = textarea_0.value;
+    //     }
+
+    //     textarea_0.value = linit + stemp;
+    //     var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //     initCode = linit + stemp;
+    // }
+    var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    var linit = "/* 3星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   2星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   1星:滿足過關條件即可*/ \n\n";
+    var stemp;
+    if (textarea_0.value.indexOf('#') > 0) {
+        stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
     }
     else {
-        var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
-        var linit = "/* 三星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   二星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   一星限為滿足過關條件即可*/ \n\n";
-        var stemp;
-        if (textarea_0.value.indexOf('#') > 0) {
-            stemp = textarea_0.value.substr(textarea_0.value.indexOf('#') - 1);
-        }
-        else {
-            stemp = textarea_0.value;
-        }
-
-        textarea_0.value = linit + stemp;
-        var stemp = initCode.substr(initCode.indexOf('#') - 1);
-        initCode = linit + stemp;
+        stemp = textarea_0.value;
     }
+
+    textarea_0.value = linit + stemp;
+    var tA = textarea_0.value.indexOf("main");
+    var tEnd = textarea_0.value.indexOf("{", tA);
+    // console.log("tEnd", tEnd);
+
+    textarea_0.selectionStart = tEnd + 1;
+    textarea_0.selectionEnd = tEnd + 1;
+
+    var stemp = initCode.substr(initCode.indexOf('#') - 1);
+    initCode = linit + stemp;
+
 
 
     // console.log(initCode);
@@ -210,7 +284,10 @@ function loadData() {
     edgeToHeight = height / mapSize;
     iscreatecanvas = 1;
     action_now = 0;
-
+    peopleGraph = createGraphics(width, height);
+    objectGraph = createGraphics(width, height);
+    backgroundGraph = createGraphics(width, height);
+    pg = createGraphics(edgeToWidth, edgeToHeight);
     updateBackgroundGraph();
     updateObjectGraph();
     updatePeopleGraph();
@@ -246,42 +323,48 @@ function endgame() {
     }
 
     /*     actionCode       */
-    var str = textarea_0.value, temp = "";
-    var systemCall = ["step", "step(", "step()", "step();",
-        "turnRight", "turnRight(", "turnRight()", "turnRight();",
-        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
-        "fire", "fire(", "fire()", "fire();",
+    var str = computeEndCode, temp = "";
+    var systemCall = ["step", "step(", "step()", "step();", ";step();",
+        "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
+        "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
+        "fire", "fire(", "fire()", "fire();", ";fire();",
         "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
     var words = temp.split('\n');
     for (var i = 1; i < words.length; ++i) {
-        var wt = words[i].split(' ');
-        for (var wi = 0; wi < wt.length; ++wi) {
-            if (wt[wi].length > 1) {
-                for (var di = 0; di < systemCall.length; ++di) {
-                    var pos = wt[wi].indexOf(systemCall[di]);
-                    if (pos > -1) {
-                        if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(')) {
-                                continue;
+        var wwt = words[i].split(';');
+        for (var wwi = 0; wwi < wwt.length; ++wwi) {
+            var wt = wwt[wwi].split(' ');
+            for (var wi = 0; wi < wt.length; ++wi) {
+                if (wt[wi].length > 1) {
+                    for (var di = 0; di < systemCall.length; ++di) {
+                        var pos = wt[wi].indexOf(systemCall[di]);
+                        if (pos > -1) {
+                            if (pos > 0) {
+                                if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '(' || wt[wi][pos - 1] == '{')) {
+                                    continue;
+                                }
                             }
-                        }
-                        if (pos + systemCall[di].length < wt[wi].length - 1) {
-                            var del = systemCall[di].length;
-                            if (!(wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
-                                continue;
+                            if (pos + systemCall[di].length < wt[wi].length - 1) {
+                                var del = systemCall[di].length;
+                                if (!(wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
+                                    continue;
+                                }
                             }
+                            ++counter;
+                            var strTemp = wt[wi].substr(pos + systemCall[di].length);
+                            wt[wi] = strTemp;
+                            --wi;
+                            break;
                         }
-                        ++counter;
-                        var strTemp = wt[wi].substr(pos + systemCall[di].length);
-                        wt[wi] = strTemp;
-                        --wi;
-                        break;
                     }
                 }
             }
+
         }
+
+
     }
     // console.log("指令個數:", counter);
 
@@ -321,7 +404,7 @@ function endgame() {
             tempStr = temp.substr(index + 1);  // '('.len=1
             temp = tempStr;
             var ws = temp.split(' ');
-            if (ws[0] != "niam") {
+            if (ws[0] != "niam" && ws[0] != "rof") {
                 funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
             }
             index = 0;
@@ -354,15 +437,15 @@ function endgame() {
                     var pos = wt[wi].indexOf(systemCall[di]);
                     if (pos > -1) {
                         if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';')) {
-                                // console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
+                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '/')) {
+                                console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
                                 continue;
                             }
                         }
                         if (pos + systemCall[di].length < wt[wi].length - 1) {
                             var del = systemCall[di].length;
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';')) {
-                                // console.log("outAfter :", wt[wi], " ", wt[wi][pos + 1]);
+                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
+                                // console.log("outAfter :", wt[wi], " ", wt[wi][pos + del]);
                                 continue;
                             }
                         }
@@ -383,27 +466,28 @@ function endgame() {
 
 
         console.log("counter:", counter);
-        console.log("funname.length:", funname.length);
+        console.log("funname:", funname);
+        // console.log("funname.length:", funname.length);
         console.log("funcounter:", funcounter);
         console.log("總動作為:", tc);
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
-            createEndView(3, result, tc, textarea_0.value);
+            createEndView(3, result, tc, computeEndCode);
         }
         else if (mapwinLinit["twoStar"][0] >= tc) {
             result = "恭喜你二星! \n~差一點就有一星了!加油~";
-            createEndView(2, result, tc, textarea_0.value);
+            createEndView(2, result, tc, computeEndCode);
         }
         else {
             result = "好可惜只有一星! \n~在檢查看看有沒有可以縮減的~";
-            createEndView(1, result, tc, textarea_0.value);
+            createEndView(1, result, tc, computeEndCode);
         }
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, textarea_0.value);
+        createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -429,9 +513,9 @@ function draw() {
         ++iscreatecanvas;
         if (iscreatecanvas % 50 == 0) {
             // console.log(iscreatecanvas);
+            updateBackgroundGraph();
             updateObjectGraph();
             updatePeopleGraph();
-            updateBackgroundGraph();
             updateCanvas();
         }
     }
@@ -451,8 +535,9 @@ function draw() {
             now_PeooleX = old_PeooleX;
             now_PeooleY = old_PeooleY;
             // stepSpeed = 7; //控制車子速度
-            stepSpeed = gameSpeed; //控制車子速度
-            delayResSpeed = 30;
+            // stepSpeed = gameSpeed; //控制車子速度
+            stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
+            delayResSpeed = 30-(gameSpeed-6)*5;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
@@ -569,9 +654,19 @@ function draw() {
                                     var difY = Math.abs(now_PeooleY - old_PeooleY)
                                     var difE = Math.abs(now_PeooleEESW - old_PeooleEESW)
                                     var dif = difX + difY + difE;
-                                    if (dif <= stepSpeed) {
+                                    if (complementStep) {
+                                        complementStep = false;
+                                        now_PeooleX = old_PeooleX;
+                                        now_PeooleY = old_PeooleY;
+                                        now_PeooleEESW = old_PeooleEESW;
                                         onChanging = false;
                                     }
+                                    else if (dif <= stepSpeed) {
+                                        complementStep = true;
+                                    }
+                                    /*
+
+                                    */
                                 }
                             }
                             updatePeopleGraph();
@@ -595,10 +690,20 @@ function draw() {
                                 }
                                 onChanging = true;
                             }
-                            else {
+                            else if (complementStep) {
+                                complementStep = false;
+                                mapObject[nowValue.obj].postion[0] = mapObject[nowValue.obj].oldX;
+                                mapObject[nowValue.obj].postion[1] = mapObject[nowValue.obj].oldY;
                                 onChanging = false;
                             }
+                            else {
+                                complementStep = true;
+                            }
+                            // else {
+                            //     onChanging = false;
+                            // }
                             updateObjectGraph();
+                            break;
                         }
                     }
 
@@ -632,7 +737,11 @@ function draw() {
                             else {
                                 o = nowValue.obj;
                             }
-                            mapObject[o].type = nowValue.type;
+                            if (nowValue.type && o > -1) {
+                                // console.log(nowValue.type);
+                                // console.log(o,mapObject[o]);
+                                mapObject[o].type = nowValue.type;
+                            }
                         }
                     }
                 }
@@ -696,6 +805,7 @@ function draw() {
             }
             else if (type == "A") {
                 var value = tempAction.value;
+                var delayFlag=false
                 if (onChanging == false) {
                     for (var i = 0; i < value.length; ++i) {
                         var nowValue = value[i];
@@ -733,10 +843,15 @@ function draw() {
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
                             console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
+                        if(nowValue.type == "boon_hit"){
+                            delayFlag=true;
+                        }
                     }
-                    delayResSpeed * 2;
+                    // delayResSpeed *= 2;
                     updateObjectGraph();
-
+                    if(delayFlag){
+                        onChanging=true;
+                    }
                 }
                 else {
                     mapObjectChange = false;
@@ -761,18 +876,25 @@ function draw() {
         ////old///
         if (pipleLineSpeed == 0 && (!onChanged || action_code.length - action_now == 0)) {
             endgame();
+
         }
     }
 
 }
 function updateBackgroundGraph() {
-    backgroundGraph = createGraphics(width, height);
+    // backgroundGraph = createGraphics(width, height);
+    backgroundGraph.clear();
     backgroundGraph.noStroke();
+    var imgDesret = imgObject[parseInt(imgDic["desret"])];
+    var imgLawn = imgObject[parseInt(imgDic["lawn"])];
+    var imgSea = imgObject[parseInt(imgDic["sea"])];
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;
+            
             if (map[i] == '0') {
-                backgroundGraph.fill('#bafba7');
+                // backgroundGraph.fill('#bafba7');
+                backgroundGraph.image(imgLawn,x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else if (map[i] == '1') {
                 backgroundGraph.fill('#FFE599');
@@ -783,23 +905,30 @@ function updateBackgroundGraph() {
             else {
                 console.log(map[i]);
             }
-            backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            if(map[i] != '0'){
+
+                backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            }
+           
         }
     }
-    backgroundGraph.stroke(0);
-    for (var i = 1; i < mapSize; ++i) {
-        backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
-        backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
-    }
+    // backgroundGraph.stroke(0);
+    // for (var i = 1; i < mapSize; ++i) {
+    //     backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
+    //     backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
+    // }
 
     for (var i = 0; i < end_init.length; ++i) {
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = end_init[i]["postion"][0] * edgeToWidth, dy = end_init[i]["postion"][1] * edgeToHeight, drotate = 360 - end_init[i]["postion"][2] * 90;
         var img = imgObject[parseInt(imgDic[end_init[i]["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         backgroundGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+        pg.pop();
     }
     var img = imgObject[parseInt(imgDic["start"])];
     backgroundGraph.image(img, people_init["postion"][0] * edgeToWidth, people_init["postion"][1] * edgeToHeight, edgeToWidth, edgeToHeight);
@@ -807,18 +936,24 @@ function updateBackgroundGraph() {
 
 function updateObjectGraph() {
     HPObject = [];
-    objectGraph = createGraphics(width, height);
+    // objectGraph = createGraphics(width, height);
+    objectGraph.clear();
+    console.log(mapObject);
+
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];
         var dx = obj["postion"][0] * edgeToWidth, dy = obj["postion"][1] * edgeToHeight;
         var img = imgObject[parseInt(imgDic[obj["type"]])];
         if (obj["type"] == "arrow" || obj["type"] == "arrowWite" || obj["type"] == "enemyTank") {
             var drotate = 360 - obj["postion"][2] * 90;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "bullet") {
             dx = obj["postion"][0], dy = obj["postion"][1];
@@ -826,11 +961,14 @@ function updateObjectGraph() {
 
             var drotate = (4 - obj["postion"][2]) * 90 + 90;
             // var drotate = obj["postion"][2] * 90 + 270;
-            var pg = createGraphics(edgeToWidth, edgeToHeight);
+            // var pg = createGraphics(edgeToWidth, edgeToHeight);
+            pg.clear();
+            pg.push();   //   pg.pop();
             pg.translate(pg.width / 2, pg.height / 2);
             pg.rotate(PI / 180 * drotate);
             pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
             objectGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+            pg.pop();
         }
         else if (obj["type"] == "unlock2" || obj["type"] == "unlockfail2") {
             dx = obj["postion"][0] * edgeToWidth;
@@ -851,14 +989,19 @@ function updateObjectGraph() {
 function updatePeopleGraph() {
     // console.log("updatePeopleGraph");
     if (people_init) {
-        peopleGraph = createGraphics(width, height);
-        var pg = createGraphics(edgeToWidth, edgeToHeight);
+        // peopleGraph = createGraphics(width, height);
+        peopleGraph.clear();
+        // var pg = createGraphics(edgeToWidth, edgeToHeight);
+        pg.clear();
+        pg.push();
         var dx = now_PeooleX, dy = now_PeooleY, drotate = now_PeooleEESW;
         var img = imgObject[parseInt(imgDic[people_init["type"]])];
         pg.translate(pg.width / 2, pg.height / 2);
         pg.rotate(PI / 180 * drotate);
         pg.image(img, -edgeToWidth / 2, -edgeToHeight / 2, edgeToWidth, edgeToHeight);
         peopleGraph.image(pg, dx, dy, edgeToWidth, edgeToHeight);
+
+        pg.pop();
     }
 
 }
@@ -867,7 +1010,6 @@ function updateCanvas() {
     // clear();
     if (haveFoggy) {
         // console.log("sucess");
-        var pg = createGraphics(width, height);
         var img = imgObject[parseInt(imgDic["foggy"])];
         var peopleFoggyImg = imgObject[parseInt(imgDic["peopleFoggy"])];
 
@@ -879,13 +1021,7 @@ function updateCanvas() {
         image(backgroundGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
         image(objectGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
         image(peopleGraph, dx, dy, dWidth, dHight, dx, dy, dWidth, dHight);
-        image(peopleFoggyImg, dx, dy, dWidth, dHight);
 
-    }
-    else {
-        image(backgroundGraph, 0, 0, width, height);
-        image(objectGraph, 0, 0, width, height);
-        image(peopleGraph, 0, 0, width, height);
         for (let HPi = 0; HPi < HPObject.length; HPi++) {
             var obj = HPObject[HPi];
             var img = imgObject[parseInt(imgDic[obj["type"]])];
@@ -899,7 +1035,7 @@ function updateCanvas() {
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
-                if (hp > 10) {//30 40
+                if (hp >= 10) {//30 40
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -917,7 +1053,7 @@ function updateCanvas() {
                         image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
-                if (armor > 10) { //60 70
+                if (armor >= 10) { //60 70
                     var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
                     image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -941,7 +1077,90 @@ function updateCanvas() {
                 // fill(0);
                 var ndy = dy + 0.10 * edgeToHeight;
                 // text(hp, dx+0.65*edgeToWidth, dy);
-                if (hp > 10) {//40 50
+                if (hp >= 10) {//40 50
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.55 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {  //45
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
+            }
+        }
+
+        image(peopleFoggyImg, dx, dy, dWidth, dHight);
+
+
+    }
+    else {
+        image(backgroundGraph, 0, 0, width, height);
+        image(objectGraph, 0, 0, width, height);
+        image(peopleGraph, 0, 0, width, height);
+        for (let HPi = 0; HPi < HPObject.length; HPi++) {
+            var obj = HPObject[HPi];
+            var img = imgObject[parseInt(imgDic[obj["type"]])];
+            var dx = obj["postion"][0] * edgeToWidth;
+            var dy = obj["postion"][1] * edgeToHeight + 0.85 * edgeToHeight;
+            hp = obj["hp"];
+            if (obj["type"] == "HPandArmor") {
+                armor = obj["armor"];
+                // console.log(dx, dy, )
+                console.log(" hp:", hp, " armor:", armor);
+                // fill(0);
+                // text(hp, dx+0.35*edgeToWidth, dy);
+                // text(armor, dx+0.85*edgeToWidth, dy);
+                if (hp >= 10) {//30 40
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    image(d10, dx + 0.3 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.4 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {  //35
+                    // var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                    // image(d, dx + 0.30 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    if (hp < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.45 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
+                        image(d, dx + 0.35 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                if (armor >= 10) { //60 70
+                    var d10 = imgObject[parseInt(imgDic[Math.floor(armor / 10).toString()])];
+                    var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
+                    image(d10, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    image(d, dx + 0.75 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                }
+                else {
+                    if (armor < 0) {
+                        var d = imgObject[parseInt(imgDic["0".toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                    else {
+                        var d = imgObject[parseInt(imgDic[Math.floor(armor % 10).toString()])];
+                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                    }
+                }
+                image(img, dx, dy, edgeToWidth, edgeToHeight * 0.15);
+            }
+            else if (obj["type"] == "HP") {
+                /*777777 */
+                // console.log(dx, dy, "hp:", hp);
+                // fill(0);
+                var ndy = dy + 0.10 * edgeToHeight;
+                // text(hp, dx+0.65*edgeToWidth, dy);
+                if (hp >= 10) {//40 50
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
                     var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
                     image(d10, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
@@ -969,6 +1188,7 @@ function codeToCompiler(stringCode) {
     challengeGameAgain();
     createLoadingView();
     textarea_0 = document.getElementById('textarea_0');
+    computeEndCode = textarea_0.value;
     // console.log("stringCode:",textarea_0.value);
     // console.log("stringCode:",stringCode);
     if (stringCode) {
@@ -1051,7 +1271,7 @@ function codeToCompiler(stringCode) {
     }
 
     // console.log(tempBefore);
-    console.log(inputStr);
+    // console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
 
@@ -1075,11 +1295,11 @@ function clearcodeAndInit() {
 
 function codeOutputTranstionAction() {
     var source = decodeOutput;
-    console.log(source);
+    // console.log(source);
 
     // var temp = new Array();
     var temp = [], tempNew = [];
-    temp = source.split("syst");
+    temp = source.split("$");
     // console.log(temp);
     for (var i = 0; i < temp.length; ++i) {
         if (temp[i][0] != ' ') {
@@ -1094,6 +1314,7 @@ function codeOutputTranstionAction() {
             }
         }
     }
+    // console.log(tempNew);
     // temp = tempNew.slice(0);
     temp.length = 0;
 
@@ -1145,6 +1366,10 @@ function codeOutputTranstionAction() {
                 console.log(spaceT);
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
+                    var o = parseInt(spaceT[di]) - forgetDel;
+                    if (loopCount > 0 && parseInt(spaceT[di]) == -1) {
+                        o = -1 - loopCount;
+                    }
                     var listTranstion = {
                         obj: o + loopCount,
                         type: spaceT[di + 1]
@@ -1211,7 +1436,7 @@ function codeOutputTranstionAction() {
                     }
                 }
             }
-            if (o > -1 && spaceT[2].length > 1) {
+            if (o > -1 && spaceT[2].length > 0) {
                 // console.log(mapObject[o - forgetDel].ans ,"  ",spaceT[2]);
                 var conditionAns = true;
                 var inputList = [];
@@ -1236,22 +1461,25 @@ function codeOutputTranstionAction() {
                 //     console.log(indexSpace,spaceT[2],spaceT[2][indexSpace]);
                 //     indexSpace=spaceT[2].indexOf('');
                 // }
-                var ns="";
+                var ns = "";
                 if (indexSpace > -1) {
                     for (let indexS = 0; indexS < spaceT[2].length; indexS++) {
-                        if(spaceT[2][indexS]==''){
-                            ns=ns+" ";
+                        if (spaceT[2][indexS] == '') {
+                            ns = ns + " ";
                         }
-                        else{
-                            ns=ns+spaceT[2][indexS];
+                        else {
+                            ns = ns + spaceT[2][indexS];
                         }
                     }
                 }
-                spaceT[2]=ns;
+                else {
+                    ns = spaceT[2];
+                }
+                spaceT[2] = ns;
                 inputList = spaceT[2].split(' ');
 
 
-                //  
+                //
 
                 var ansList = mapObject[o].ans.split(' ');
                 console.log("ans:", ansList);
@@ -1429,7 +1657,7 @@ function codeOutputTranstionAction() {
         action_code = temp;
         gameEndingCode = 0;
         action_now = 0;
-        console.log(action_code);
+        console.log("指令動作:",action_code);
     }
     else {
         action_code = [];
@@ -1521,9 +1749,31 @@ function call_JDOODLE_api(scriptData, inputData) {
     socket.emit('script', scriptData);
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
-        console.log(obj);
-        //   output.innerHTML = "輸出:\n" + obj.body.output;
-        decode_JDOODLE_api(obj.body.output)
+        console.log("編譯結果",obj);
+
+        if (obj.body.cpuTime != null && obj.body.memory != null) {
+            //   output.innerHTML = "輸出:\n" + obj.body.output;
+            decode_JDOODLE_api(obj.body.output)
+        }
+        else {
+            gameEndingCode = 5;
+            if (obj.body.output != null) {
+                if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
+                    gameEndingCode = 8;
+                }
+                else{
+                    // var str=obj.body.output
+                    errMessage="錯誤原因:\n"+obj.body.output.substr(1)
+                    
+
+                    
+                }
+            }
+            
+            closeLoadingView();
+            console.log("Error =  compiler error");
+            endgame();
+        }
 
     });
 }
@@ -1535,7 +1785,43 @@ function decode_JDOODLE_api(str) {
 
 function challengeGameAgain() {
     data = JSON.parse(JSON.stringify(Res_data));
-    loadData();
+    // loadData();
+    var dx = people_init["postion"][0] * edgeToWidth, dy = people_init["postion"][1] * edgeToHeight, drotate = 360 - people_init["postion"][2] * 90;
+    old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
+    now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
+    edgeToWidth = width / mapSize;
+    edgeToHeight = height / mapSize;
+    iscreatecanvas = 1;
+    action_now = 0;
+
+    var mapNumber = data;
+    if (mapNumber.foggy) {
+        haveFoggy = true;
+    }
+    else {
+        haveFoggy = false;
+    }
+    map = mapNumber['mapValue'];
+    mapSize = Math.sqrt(mapNumber['mapSize']);
+    people_init = mapNumber['people_init'];
+    end_init = mapNumber['end_init'];
+    mapObject=null;
+    mapObject = mapNumber['obj'];
+    mapwinLinit = mapNumber['winLinit'];
+
+
+    // peopleGraph = createGraphics(width, height);
+    // objectGraph = createGraphics(width, height);
+    // backgroundGraph = createGraphics(width, height);
+    // pg = createGraphics(edgeToWidth, edgeToHeight);
+    peopleGraph.clear();
+    objectGraph.clear();
+    backgroundGraph.clear();
+    pg.clear();
+    updateBackgroundGraph();
+    updateObjectGraph();
+    updatePeopleGraph();
+    //
     updateCanvas();
     gameEndingCode = 0;
     decodeOutput = "";
@@ -1544,18 +1830,6 @@ function challengeGameAgain() {
     finishCoin = true;
 }
 
-/*btn1.onclick = function () {
-    challengeGameAgain();
-
-    textarea_1.value = "   .....編譯中~請稍後....."
-    codeToCompiler();
-
-    //測試用//
-    // decodeOutput = textarea_1.value
-    // codeOutputTranstionAction();
-    ////
-
-}*/
 var colleges = ['01', '02', '03', '04', '05',
     '06', '07', '08', '09', '10',
     '11', '12', '13', '14', '15',
