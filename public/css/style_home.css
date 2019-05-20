@@ -86,15 +86,16 @@
   cursor: pointer;
 }
 #buttonDiv{
-  width: 52vh;
-  height: 12vh;
+  z-index: 3;
+  width: 25vw;
+  height: 5vw;
   position: absolute;
   bottom: 5px;
   right: 1%;
 }
 #buttonDiv input[type="button"]{
-  width: 12vh;
-  height: 12vh;
+  width: 5.5vw;
+  height: 5.5vw;
   cursor: pointer;
 }
 .equipageButton{

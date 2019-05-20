@@ -743,11 +743,11 @@ body {
 /*設定*/
 #settingAllView{
   z-index: 4;
-  height: 30%;
-  width: 50%;
+  height: 35%;
+  width: 60%;
   position: absolute;
-  top: 35%;
-  left: 25%;
+  top: 32.5%;
+  left: 20%;
   background-color: #FFC777;
   border-style: solid;
   border-color: white;
