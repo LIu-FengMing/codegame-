@@ -88,8 +88,8 @@ if (UserName.value == "") {
                     // alert(result);
                     remindValue = result;
                     remindView(remindValue);
-                    var href = "/login";
-                    window.location.replace(href);
+                    // var href = "/login";
+                    // window.location.replace(href);
                 }
                 else if (res.responce == "failPassUndifine") {
                     result += "\"密碼\"未被啟用";
