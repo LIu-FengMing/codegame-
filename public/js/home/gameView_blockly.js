@@ -984,6 +984,14 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   }
   recordLevel(scriptData);
   console.log(starNum);
+  try {
+    divTag = document.getElementById("createEndView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("createEndBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "createEndBkView");
