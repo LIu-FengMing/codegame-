@@ -46,7 +46,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -143,18 +143,14 @@ body {
 
 /*right*/
 .btnLogout {
-  height: 5vh;
+  height: 8vh;
   width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#F09090);
-  background: -o-linear-gradient(white,#F09090);
-  background: -moz-linear-gradient(white,#F09090);
-  background: linear-gradient(white,#F09090);
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
   color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
+  margin-top: -1vh;
   cursor: pointer;
 }
 #clossDiv{

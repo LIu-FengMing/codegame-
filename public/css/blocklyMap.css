@@ -240,22 +240,23 @@
   background-size: 100% 100%;
 }
 #buttonDiv{
-  width: 350px;
-  height: 75px;
+  z-index: 3;
+  width: 52vh;
+  height: 12vh;
   position: absolute;
   bottom: 5px;
   right: 1%;
 }
 #buttonDiv input[type="button"]{
-  width: 75px;
-  height: 75px;
+  width: 12vh;
+  height: 12vh;
   cursor: pointer;
 }
 .equipageButton{
   border-width: 0px;
   background-image: url('../img/equipage.png');
   background-repeat: no-repeat;
-  background-size: 90%;
+  background-size: 100%;
   background-color: transparent;
   margin-right: 5px;
 }
@@ -304,6 +305,9 @@
 #viewRecordTable{
   width: 100%;
   margin-top: 20px;
+  font-size: calc(5px + 1vw);
+  text-align: left;
+  padding-left: 10%;
 }
 #viewRecordTable td{
   height: 50px;
@@ -318,5 +322,5 @@
   overflow: auto;
 }
 #instructionFont{
-  font-size: 20px;
+  font-size: calc(5px + 1vw);
 }

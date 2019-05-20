@@ -43,8 +43,10 @@
   left: 50%;
   margin-top: -22.5vh;
   margin-left: -12.5vw;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #equipageInnerDiv{
@@ -87,11 +89,13 @@
 #swordLevelUpDivH3{
   margin-top: 20px;
   font-family: Microsoft JhengHei;
+  font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
 #shieldLevelUpDivH3{
   margin-top: 20px;
   font-family: Microsoft JhengHei;
+  font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
 #shieldImg{
@@ -105,8 +109,8 @@
   height: 50px;
   width: 200px;
   border-radius: 10px;
-  background-color: white;
-  margin: 5px auto;
+  background-color: none;
+  /* margin: 5px auto; */
 }
 #swordLevelUpTable,#shieldLevelUpTable{
   height: 50px;
@@ -126,11 +130,17 @@
   cursor: pointer;
 }
 .levelUpDefault{
-  height: 60px;
-  width: 75px;
+  height: 20vh;
+  width: 20vh;
   font-size: 20px;
   font-weight: 100;
-  border-radius:10px;
+  border-width: 0px;
+  background-image: url("../img/levelMax.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130%;
+  position: relative;
   pointer-events: none;
 }
 #levelUp1{
@@ -164,60 +174,85 @@
 }
 .levelFont{
   height: 50px;
-  width: 15px;
-  border-radius: 10px 0px 0px 10px;
-  background-color: yellow;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 10px 0px 0px 10px; */
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
   padding: 0;
 }
 .levelFontDefault{
   height: 50px;
-  width: 15px;
-  border-radius: 10px 0px 0px 10px;
-  background-color: white;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 10px 0px 0px 10px; */
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
   padding: 0;
 }
 .levelLaterDefault{
   height: 50px;
-  width: 15px;
-  border-radius: 0px 10px 10px 0px;
-  background-color: white;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelLater{
   height: 50px;
-  width: 15px;
-  border-radius: 0px 10px 10px 0px;
-  background-color: yellow;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 0px 10px 10px 0px; */
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelDefault{
   height: 50px;
-  width: 15px;
-  background-color: white;
+  width: 1vw;
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
   border-style:solid;
   border-color: black;
-  border-width: 2px;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelChange{
-  height: 50px;
-  width: 15px;
-  background-color: yellow;
+  height: 100%;
+  width: 1vw;
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
   border-style:solid;
   border-color: black;
-  border-width: 2px;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 #resetEquipageLevel{
@@ -225,14 +260,14 @@
   width: 7vw;
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
-  background-color: #DAE8FC;
+  background-color: rgba(0, 0, 0, 0);
   border-style: solid;
   border-color: black;
   border-width: 1px;
-  border-radius: 10px;
+  border-radius: 15px;
   position: absolute;
   right: 0.5vw;
-  margin-top: 2vh;
+  margin-top: 1%;
   cursor: pointer;
 }
 
@@ -289,8 +324,10 @@
   position: absolute;
   top: 25%;
   left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #achievementTable{
@@ -368,18 +405,20 @@
 #settingAllView{
   z-index: 4;
   height: 30%;
-  width: 40%;
+  width: 30%;
   position: absolute;
   top: 35%;
   left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #settingAllTable{
   width: 100%;
   position: relative;
-  top: 20%;
+  top: 0%;
   border: 1px;
 }
 #settingMusic,#musicVolume,#settingSpeed{
@@ -420,7 +459,7 @@
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -428,7 +467,7 @@
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

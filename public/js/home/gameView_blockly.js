@@ -298,7 +298,10 @@ function getArgs() {
     selectFunc(args.level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
-    divTag.innerHTML = "第&nbsp" + ++args.level + "&nbsp關";
+    var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
+                  "十一","十二","十三","十四","十五","十六","十七","十八",
+                  "十九","二十","二十一","二十二","二十三","二十四"]
+    divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
     //changeCollege(--args.level);
     thisLevelNum = args.level - 1;
     helper("blocklyDiv");
@@ -1046,7 +1049,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     divTag = document.getElementById("restartGameBtn");
     b = document.createElement("img");
     b.setAttribute("id", "restartImg");
-    b.setAttribute("src", "img/restart.png");
+    b.setAttribute("src", "img/RestartButton.png");
     divTag.appendChild(b);
     b = document.createElement("font");
     b.setAttribute("id", "restartFontImg");

@@ -51,7 +51,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -61,17 +61,17 @@ body {
   background: none;
 }
 #goBack{
-  width: 50px;
-  height: 50px;
+  width: 7vh;
+  height: 7vh;
   font-size: 40px;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
   border-width: 0;
-  top: 10%;
+  top: 20%;
   left: 1%;
   cursor: pointer;
 }
@@ -231,10 +231,11 @@ body {
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  color: rgb(255, 255, 255);
+  font-family: Microsoft JhengHei;
+  color: white;
   text-decoration:underline;
 }
-.btnUser {
+/* .btnUser {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -247,9 +248,20 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnUser {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/userData.png");
+  color: black;
   cursor: pointer;
 }
-.btnLogout {
+/* .btnLogout {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -262,16 +274,39 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnLogout {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
+  color: black;
+  margin-top: -1vh;
   cursor: pointer;
 }
-.imgIcon{
-  margin: 5px 0px 0px 0px;
-  width: 25px;
+.signOut{
   height: 25px;
+  width: auto;
 }
-.starNumber,.goldNumber{
-  line-height:5px;
-  font-size: 25px;
+.userStar{
+  margin-top: 4vh;
+}
+.imgIcon{
+  margin: 2vh 0px 0px 0px;
+  width: 6vh;
+  height: 6vh;
+  vertical-align: top;
+}
+.starNumber{
+  line-height: 10vh;
+  color: white;
+  font-size: calc(5px + 4vh);
+  font-family: Microsoft JhengHei;
+  vertical-align:middle;
 }
 #userDataBkView{
   z-index: 3;
@@ -307,6 +342,12 @@ body {
 }
 #allTitle,#userTitle,#settingTitle,#instructionTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  text-align: center;
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #userInnerDiv{
   width: 80%;
@@ -334,7 +375,7 @@ body {
   border-style:none;
   position: absolute;
   top: 0px;
-  background-color: rgba(215, 120, 120, 0.9);
+  background-color: #C99500;
 }
 #titleBar font{
   position: absolute;
@@ -451,14 +492,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background-color: #FFF2CC;
+  background-color: #FFC777;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
   min-width: 300px;
   min-height: 340px;
 }
 .successView{
-  height: 55vh;
+  height: 45vh;
 }
 .errView{
   height: 65vh;
@@ -497,7 +538,7 @@ body {
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
   left: 50%;
-  bottom: 13vh;
+  margin-top: -2vh;
   transform: translate(-50%,0);
   cursor: pointer;
 }
@@ -513,14 +554,15 @@ body {
   transform: translate(-50%,0);
 }
 #backToMapBtn{
-  height: 10vh;
+  height: 6vh;
   width: 40%;
   font-size: 3vh;
   font-weight: bold;
   border-radius: 15px;
   border-style: solid;
+  border-color: black;
   border-width: 2px;
-  background-color: #ff9999;
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
   left: 1vw;
   bottom: 2vh;
@@ -538,42 +580,45 @@ body {
   margin-left: 0.5vw;
 }
 #nextLevelBtn{
-  height: 10vh;
+  height: 6vh;
   width: 40%;
   font-size: 3vh;
   font-weight: bold;
   border-radius: 15px;
   border-style: solid;
+  border-color: black;
   border-width: 2px;
-  background-color: #99ff99;
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
   right: 1vw;
   bottom: 2vh;
   cursor: pointer;
 }
 #successRestartGameBtn{
-  height: 10vh;
+  height: 6vh;
   width: 8vw;
   font-size: 3vh;
   font-weight: bold;
   border-radius: 15px;
   border-style: solid;
+  border-color: black;
   border-width: 2px;
-  background-color: #ff9999;
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
   left: 1vw;
   bottom: 2vh;
   cursor: pointer;
 }
 #successBackToMapBtn{
-  height: 10vh;
+  height: 6vh;
   width: 8vw;
   font-size: 3vh;
   font-weight: bold;
   border-radius: 15px;
   border-style: solid;
+  border-color: black;
   border-width: 2px;
-  background-color: #99ff99;
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
   right: 1vw;
   bottom: 2vh;
@@ -585,58 +630,58 @@ body {
   z-index: 1;
   background-color: none;
   position: absolute;
-  top: 3%;
-  right: 3%;
+  top: 1%;
+  right: 1%;
 }
 #textButtonDiv .runButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/start.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 2%;
+  top: 0%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .clearButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/clearButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 16%;
+  top: 11%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .restartButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/RestartButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 30%;
+  top: 22%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .settingButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/SettingButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 44%;
+  top: 33%;
   right: 0px;
   cursor: pointer;
 }
@@ -697,21 +742,24 @@ body {
 }
 /*設定*/
 #settingAllView{
-  z-index: 999;
-  height: 50%;
-  width: 70%;
+  z-index: 4;
+  height: 30%;
+  width: 50%;
   position: absolute;
-  top: 25%;
-  left: 15%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  top: 35%;
+  left: 25%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #settingAllTable{
   width: 100%;
   position: relative;
-  top: 20%;
+  top: 0%;
   border: 1px;
+  text-align: center;
 }
 #settingMusic,#musicVolume,#settingSpeed{
   margin-top: 5px;
@@ -745,13 +793,13 @@ body {
   cursor: pointer;
 }
 #settingAllTable font{
-  font-size: calc(5px + 1vw);
+  font-size: 25px;
   line-height: 0px;　
   margin-top: -5px;
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: calc(5px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -759,7 +807,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: calc(5px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

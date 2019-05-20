@@ -42,7 +42,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -174,10 +174,11 @@ body {
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  color: rgb(255, 255, 255);
+  font-family: Microsoft JhengHei;
+  color: white;
   text-decoration:underline;
 }
-.btnUser {
+/* .btnUser {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -190,9 +191,20 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnUser {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/userData.png");
+  color: black;
   cursor: pointer;
 }
-.btnLogout {
+/* .btnLogout {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -205,16 +217,39 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnLogout {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
+  color: black;
+  margin-top: -1vh;
   cursor: pointer;
 }
-.imgIcon{
-  margin: 5px 0px 0px 0px;
-  width: 25px;
+.signOut{
   height: 25px;
+  width: auto;
 }
-.starNumber,.goldNumber{
-  line-height:5px;
-  font-size: 25px;
+.userStar{
+  margin-top: 4vh;
+}
+.imgIcon{
+  margin: 2vh 0px 0px 0px;
+  width: 6vh;
+  height: 6vh;
+  vertical-align: top;
+}
+.starNumber{
+  line-height: 10vh;
+  color: white;
+  font-size: calc(5px + 4vh);
+  font-family: Microsoft JhengHei;
+  vertical-align:middle;
 }
 #userDataBkView{
   z-index: 3;

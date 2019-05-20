@@ -971,9 +971,9 @@ function equipageView(mainDiv) {
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     }
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
   }
@@ -1077,9 +1077,9 @@ function swordLevelUp() {
   weaponLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
@@ -1151,9 +1151,9 @@ function shieldLevelUp() {
   armorLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
