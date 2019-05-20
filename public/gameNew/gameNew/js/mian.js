@@ -89,7 +89,7 @@ function setup() {
         "boon_hit", "questionstone", "arrowWite", "enemyTank",
         "unlock", "unlock2", "unlockfail2", "foggy", "peopleFoggy", "treasure",
         "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-        "desret","lawn","sea",
+        "desret", "lawn", "sea",
     ]
     for (var i = 0; i < path.length; ++i) {
         // var imgpath = "gameNew/gameNew/image/" + path[i] + ".png";
@@ -322,13 +322,90 @@ function endgame() {
         gameEndingCode = 0;
     }
 
-    /*     actionCode       */
+
+
+
+
+
     var str = computeEndCode, temp = "";
+    // /*        fun       */
+    var splitstr = str.substr(0, str.indexOf("main"));
+    var numofPostive = 0, wIndex = false;
+    for (var i = str.indexOf("main"); i < str.length; ++i) {
+        if (str[i] == '{') {
+            if (!wIndex) {
+                numofPostive = 1;
+                wIndex = true;
+            } else {
+                ++numofPostive;
+            }
+        } else if (str[i] == '}') {
+            --numofPostive;
+            if (numofPostive == 0) {
+                numofPostive = i;
+                break;
+            }
+        }
+    }
+    splitstr = splitstr + str.substr(numofPostive);
+    // console.log(splitstr);
+    /*    find funName     */
+    temp = splitstr.split('').reverse().join('');//字串反轉 int ad(){ abc } -> }  cba { )(ad tin
+    // console.log(temp);
+    var funname = [];
+    var tempStr;
+    index = 0;
+    var nonFun = ["for", "while", "switch()", "if", ";if(",
+    "else", "else(", "do", "do("]
+    while (index > -1) {
+        index = temp.indexOf('{');
+        if (index > -1) {
+            tempStr = temp.substr(index + 1);  // '{'.len=1
+            temp = tempStr;
+            index = temp.indexOf('(');
+            tempStr = temp.substr(index + 1);  // '('.len=1
+            temp = tempStr;
+            var ws = temp.split(' ');
+            if (ws[0] != "niam" && ws[0] != "rof") {
+                var wss = temp.split('\n');
+                var bk=false
+                for (let indexWss = 0; indexWss < wss.length; indexWss++) {
+                    const element = wss[indexWss];
+                    for (let iNF = 0; iNF < nonFun.length; iNF++) {
+                        const ele = nonFun[iNF].split('').reverse().join('');
+                        if(element==ele){
+                            bk=true
+                            break
+                        }            
+                    }
+                }
+                if(bk==false){
+                    funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
+                }
+                
+            }
+            index = 0;
+        }
+    }
+
+
+    /*     actionCode       */
     var systemCall = ["step", "step(", "step()", "step();", ";step();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
         "fire", "fire(", "fire()", "fire();", ";fire();",
         "printf", "printf(", "scanf", "scanf("];
+    for (var i = 0; i < funname.length; ++i) {
+        var e0 = funname[i];
+        var e1 = e0 + '(';
+        var e2 = e1 + ')';
+        var e3 = e2 + ';';
+        systemCall.push(e0);
+        systemCall.push(e1);
+        systemCall.push(e2);
+        systemCall.push(e3);
+    }
+    
     var counter = 0;
     temp = str;
     var words = temp.split('\n');
@@ -368,107 +445,109 @@ function endgame() {
     }
     // console.log("指令個數:", counter);
 
-    /*        fun       */
-    var splitstr = str.substr(0, str.indexOf("main"));
-    var numofPostive = 0, wIndex = false;
-    for (var i = str.indexOf("main"); i < str.length; ++i) {
-        if (str[i] == '{') {
-            if (!wIndex) {
-                numofPostive = 1;
-                wIndex = true;
-            } else {
-                ++numofPostive;
-            }
-        } else if (str[i] == '}') {
-            --numofPostive;
-            if (numofPostive == 0) {
-                numofPostive = i;
-                break;
-            }
-        }
-    }
-    splitstr = splitstr + str.substr(numofPostive);
-    // console.log(splitstr);
-    /*    find funName     */
-    temp = splitstr.split('').reverse().join('');//字串反轉 int ad(){ abc } -> }  cba { )(ad tin
-    // console.log(temp);
-    var funname = [];
-    var tempStr;
-    index = 0;
-    while (index > -1) {
-        index = temp.indexOf('{');
-        if (index > -1) {
-            tempStr = temp.substr(index + 1);  // '{'.len=1
-            temp = tempStr;
-            index = temp.indexOf('(');
-            tempStr = temp.substr(index + 1);  // '('.len=1
-            temp = tempStr;
-            var ws = temp.split(' ');
-            if (ws[0] != "niam" && ws[0] != "rof") {
-                funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
-            }
-            index = 0;
-        }
-    }
-    index = str.indexOf("main");
-    tempStr = str.substr(index + 4);   // 'main'.len=4
-    index = tempStr.indexOf("}");
-    temp = tempStr.substr(0, index); //取main 函是裡頭的
-    // console.log(funname);
-    // console.log(temp);
-    var funcounter = 0;
-    systemCall = [];
-    for (var i = 0; i < funname.length; ++i) {
-        var e0 = funname[i];
-        var e1 = e0 + '(';
-        var e2 = e1 + ')';
-        var e3 = e2 + ';';
-        systemCall.push(e0);
-        systemCall.push(e1);
-        systemCall.push(e2);
-        systemCall.push(e3);
-    }
-    var words = temp.split('\n');
-    for (var i = 1; i < words.length; ++i) {
-        var wt = words[i].split(' ');
-        for (var wi = 0; wi < wt.length; ++wi) {
-            if (wt[wi].length > 1) {
-                for (var di = 0; di < systemCall.length; ++di) {
-                    var pos = wt[wi].indexOf(systemCall[di]);
-                    if (pos > -1) {
-                        if (pos > 0) {
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '/')) {
-                                console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
-                                continue;
-                            }
-                        }
-                        if (pos + systemCall[di].length < wt[wi].length - 1) {
-                            var del = systemCall[di].length;
-                            if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
-                                // console.log("outAfter :", wt[wi], " ", wt[wi][pos + del]);
-                                continue;
-                            }
-                        }
-                        ++funcounter;
-                        var strTemp = wt[wi].substr(pos + systemCall[di].length);
-                        wt[wi] = strTemp;
-                        --wi;
-                        break;
-                    }
-                }
-            }
-        }
-    }
+    // /*        fun       */
+    // var splitstr = str.substr(0, str.indexOf("main"));
+    // var numofPostive = 0, wIndex = false;
+    // for (var i = str.indexOf("main"); i < str.length; ++i) {
+    //     if (str[i] == '{') {
+    //         if (!wIndex) {
+    //             numofPostive = 1;
+    //             wIndex = true;
+    //         } else {
+    //             ++numofPostive;
+    //         }
+    //     } else if (str[i] == '}') {
+    //         --numofPostive;
+    //         if (numofPostive == 0) {
+    //             numofPostive = i;
+    //             break;
+    //         }
+    //     }
+    // }
+    // splitstr = splitstr + str.substr(numofPostive);
+    // // console.log(splitstr);
+    // /*    find funName     */
+    // temp = splitstr.split('').reverse().join('');//字串反轉 int ad(){ abc } -> }  cba { )(ad tin
+    // // console.log(temp);
+    // var funname = [];
+    // var tempStr;
+    // index = 0;
+    // while (index > -1) {
+    //     index = temp.indexOf('{');
+    //     if (index > -1) {
+    //         tempStr = temp.substr(index + 1);  // '{'.len=1
+    //         temp = tempStr;
+    //         index = temp.indexOf('(');
+    //         tempStr = temp.substr(index + 1);  // '('.len=1
+    //         temp = tempStr;
+    //         var ws = temp.split(' ');
+    //         if (ws[0] != "niam" && ws[0] != "rof") {
+    //             funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
+    //         }
+    //         index = 0;
+    //     }
+    // }
+    // index = str.indexOf("main");
+    // tempStr = str.substr(index + 4);   // 'main'.len=4
+    // index = tempStr.indexOf("}");
+    // temp = tempStr.substr(0, index); //取main 函是裡頭的
+    // // console.log(funname);
+    // // console.log(temp);
+    // var funcounter = 0;
+    // systemCall = [];
+    // for (var i = 0; i < funname.length; ++i) {
+    //     var e0 = funname[i];
+    //     var e1 = e0 + '(';
+    //     var e2 = e1 + ')';
+    //     var e3 = e2 + ';';
+    //     systemCall.push(e0);
+    //     systemCall.push(e1);
+    //     systemCall.push(e2);
+    //     systemCall.push(e3);
+    // }
+    // var words = temp.split('\n');
+    // for (var i = 1; i < words.length; ++i) {
+    //     var wt = words[i].split(' ');
+    //     for (var wi = 0; wi < wt.length; ++wi) {
+    //         if (wt[wi].length > 1) {
+    //             for (var di = 0; di < systemCall.length; ++di) {
+    //                 var pos = wt[wi].indexOf(systemCall[di]);
+    //                 if (pos > -1) {
+    //                     if (pos > 0) {
+    //                         if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '/')) {
+    //                             console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
+    //                             continue;
+    //                         }
+    //                     }
+    //                     if (pos + systemCall[di].length < wt[wi].length - 1) {
+    //                         var del = systemCall[di].length;
+    //                         if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
+    //                             // console.log("outAfter :", wt[wi], " ", wt[wi][pos + del]);
+    //                             continue;
+    //                         }
+    //                     }
+    //                     ++funcounter;
+    //                     var strTemp = wt[wi].substr(pos + systemCall[di].length);
+    //                     wt[wi] = strTemp;
+    //                     --wi;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
     var result = "";
     // var tc = counter + funname.length + funcounter;
-    var tc = counter + funcounter;
+    // var tc = counter + funcounter- funname.length;
+    
+    var tc = counter - funname.length;
     if (gameEndingCode == 1) {
 
 
         console.log("counter:", counter);
         console.log("funname:", funname);
         // console.log("funname.length:", funname.length);
-        console.log("funcounter:", funcounter);
+        // console.log("funcounter:", funcounter);
         console.log("總動作為:", tc);
 
         if (mapwinLinit["threeStar"][0] >= tc) {
@@ -487,7 +566,7 @@ function endgame() {
     else {
         result = gameEndingCodeDic[gameEndingCode];
         console.log(gameEndingCodeDic[gameEndingCode]);
-        createEndView(0, result, tc, computeEndCode,errMessage);
+        createEndView(0, result, tc, computeEndCode, errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
 
@@ -537,7 +616,7 @@ function draw() {
             // stepSpeed = 7; //控制車子速度
             // stepSpeed = gameSpeed; //控制車子速度
             stepSpeed = gameSpeed + 1 + Math.floor(ActionLen / 50); //控制車子速度
-            delayResSpeed = 30-(gameSpeed-6)*5;
+            delayResSpeed = 30 - (gameSpeed - 6) * 5;
             turnSpeed = 2 + Math.floor(stepSpeed / 2);
         }
         while (ActionLen - action_now > 0) {
@@ -805,7 +884,7 @@ function draw() {
             }
             else if (type == "A") {
                 var value = tempAction.value;
-                var delayFlag=false
+                var delayFlag = false
                 if (onChanging == false) {
                     for (var i = 0; i < value.length; ++i) {
                         var nowValue = value[i];
@@ -843,14 +922,14 @@ function draw() {
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
                             console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
-                        if(nowValue.type == "boon_hit"){
-                            delayFlag=true;
+                        if (nowValue.type == "boon_hit") {
+                            delayFlag = true;
                         }
                     }
                     // delayResSpeed *= 2;
                     updateObjectGraph();
-                    if(delayFlag){
-                        onChanging=true;
+                    if (delayFlag) {
+                        onChanging = true;
                     }
                 }
                 else {
@@ -891,10 +970,10 @@ function updateBackgroundGraph() {
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;
-            
+
             if (map[i] == '0') {
                 // backgroundGraph.fill('#bafba7');
-                backgroundGraph.image(imgLawn,x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+                backgroundGraph.image(imgLawn, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else if (map[i] == '1') {
                 backgroundGraph.fill('#FFE599');
@@ -905,11 +984,11 @@ function updateBackgroundGraph() {
             else {
                 console.log(map[i]);
             }
-            if(map[i] != '0'){
+            if (map[i] != '0') {
 
                 backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
-           
+
         }
     }
     // backgroundGraph.stroke(0);
@@ -938,7 +1017,7 @@ function updateObjectGraph() {
     HPObject = [];
     // objectGraph = createGraphics(width, height);
     objectGraph.clear();
-    console.log(mapObject);
+    // console.log(mapObject);
 
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];
@@ -1657,7 +1736,7 @@ function codeOutputTranstionAction() {
         action_code = temp;
         gameEndingCode = 0;
         action_now = 0;
-        console.log("指令動作:",action_code);
+        console.log("指令動作:", action_code);
     }
     else {
         action_code = [];
@@ -1749,7 +1828,7 @@ function call_JDOODLE_api(scriptData, inputData) {
     socket.emit('script', scriptData);
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
-        console.log("編譯結果",obj);
+        console.log("編譯結果", obj);
 
         if (obj.body.cpuTime != null && obj.body.memory != null) {
             //   output.innerHTML = "輸出:\n" + obj.body.output;
@@ -1761,15 +1840,15 @@ function call_JDOODLE_api(scriptData, inputData) {
                 if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
                     gameEndingCode = 8;
                 }
-                else{
+                else {
                     // var str=obj.body.output
-                    errMessage="錯誤原因:\n"+obj.body.output.substr(1)
-                    
+                    errMessage = "錯誤原因:\n" + obj.body.output.substr(1)
 
-                    
+
+
                 }
             }
-            
+
             closeLoadingView();
             console.log("Error =  compiler error");
             endgame();
@@ -1805,7 +1884,7 @@ function challengeGameAgain() {
     mapSize = Math.sqrt(mapNumber['mapSize']);
     people_init = mapNumber['people_init'];
     end_init = mapNumber['end_init'];
-    mapObject=null;
+    mapObject = null;
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
 
