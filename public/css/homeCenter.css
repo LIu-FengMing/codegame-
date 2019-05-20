@@ -135,6 +135,19 @@
   font-size: 20px;
   font-weight: 100;
   border-width: 0px;
+  background-color: rgba(144, 141, 141, 0.85);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130%;
+  position: relative;
+  pointer-events: none;
+}
+.levelUpDefault2{
+  height: 20vh;
+  width: 20vh;
+  font-size: 20px;
+  font-weight: 100;
+  border-width: 0px;
   background-image: url("../img/levelAllMax.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
@@ -259,11 +272,11 @@
   height: 6vh;
   width: 7vw;
   font-size: 1.5vw;
-  /* font-family: Microsoft JhengHei; */
+  font-family: Microsoft JhengHei;
   background-color: rgba(0, 0, 0, 0);
   border-style: solid;
   border-color: black;
-  border-width: 1px;
+  border-width: 3px;
   border-radius: 15px;
   position: absolute;
   right: 0.5vw;
@@ -314,6 +327,7 @@
 }
 .itemP{
   margin-top: 1.5vh;
+  font-family: Microsoft JhengHei;
   line-height: calc(5px + 2vh);
 }
 /*成就*/
@@ -399,7 +413,7 @@
 }
 .achievementItem{
   line-height: 3vh;
-  /* font-family:Microsoft JhengHei; */
+  font-family:Microsoft JhengHei;
 }
 /*設定*/
 #settingAllView{

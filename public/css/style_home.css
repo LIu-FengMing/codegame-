@@ -87,7 +87,7 @@
   width: 25vw;
   height: 5vw;
   position: absolute;
-  bottom: 5px;
+  bottom: 1.5vh;
   right: 1%;
 }
 #buttonDiv input[type="button"]{

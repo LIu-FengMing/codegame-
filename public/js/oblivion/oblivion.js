@@ -939,6 +939,11 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("lostUserCreateTable" + i);
+    if((i%2) == 0){
+      divTag.style.backgroundColor = "#BDD5D5";
+    }else{
+      divTag.style.backgroundColor = "#D6E5E5";
+    }
     if (playMap[i] == 1) {
       divTag.style.backgroundColor = "rgb(152, 140, 186)";
     }

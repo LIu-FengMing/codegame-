@@ -5,7 +5,7 @@
 }
 html,body {
   height: 100%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
 }
 body {
   color: black;
@@ -33,7 +33,7 @@ body {
   z-index: -1;
   height: 100%;
   width: 100%;
-  background: #CEE0CD;
+  background: #D6AE81;
   position: absolute;
   left: 0;
   top: 0;
@@ -56,17 +56,18 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
+  z-index: 3;
+  width: 7vh;
+  height: 7vh;
   font-size: 40px;
-  border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
+  border-width: 0;
+  top: 1.5vh;
   left: 1%;
   cursor: pointer;
 }
@@ -203,7 +204,7 @@ body {
   height: 4vh;
   width: 6vw;
   font-size: calc(10px + 0.5vw);
-  background-color: #DAE8FC;
+  background-color: white;
   border-style: solid;
   border-color: black;
   border-width: 2px;
@@ -304,13 +305,14 @@ body {
   height: 70px;
   font-size: calc(10px + 90%);
   line-height: 3vh;
-  background-color: #DAE8FC;
+  color: white;
+  background-color: #4E4E4E;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   border-width: 2px;
-  border-color: black;
+  border-color: #8F8F8F;
 }
 #createrDiv .td01{
   width: 20%;
@@ -365,7 +367,7 @@ body {
   border-left: 0px;
   border-right: 0px;
   border-width: 2px;
-  border-color: black;
+  border-color: #8F8F8F;
   cursor: pointer;
 }
 .centerButton{

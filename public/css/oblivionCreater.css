@@ -27,7 +27,7 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: #A7BBD1;
+  background-color: rgb(195, 195, 195);
   width: 80%;
   height: 100%;
   line-height: 90%;
@@ -52,18 +52,17 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  width: 7vh;
+  height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
-  left: 1%;
+  top: 2.2vh;
+  left: 2%;
   cursor: pointer;
 }
 #defaultCanvas0{
@@ -451,7 +450,7 @@ body {
   border-style:none;
   position: absolute;
   top: 0px;
-  background-color: none;
+  background-color: #AEC9EF;
 }
 #titleBar select{
   font-size: calc(10px + 1.5vh);
@@ -502,19 +501,27 @@ body {
   font-size: calc(10px + 1.5vw);
   border-radius: 10px;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0px;
   border-color: black;
-  background-color: #CCFFFF;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   min-width: 95px;
 }
 #saveBtn{
+  background-image: url("../img/saveBtn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   left: 2%;
   bottom: 2%;
   cursor: pointer;
 }
 #finishBtn{
+  background-image: url("../img/finishBtn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   right: 2%;
   bottom: 2%;
@@ -523,7 +530,7 @@ body {
 /*選擇地圖大小*/
 #lostTitleTable select{
   height: calc(15px + 2vh);
-  background-color: #CCFFFF;
+  background-color: white;
   margin-left: 0;
 }
 /*物件角度*/
@@ -540,7 +547,7 @@ body {
   border-style: solid;
   border-color: black;
   border-radius: 5px;
-  background-color: #CCFFFF;
+  background-color: rgba(0, 0, 0, 0);
   margin-left: 0px;
   cursor: pointer;
 }
@@ -552,7 +559,7 @@ body {
 	margin:0px;
 	width:100%;
   height: 76%;
-  background-color: #D5E8D4;
+  background-color: #B8B8B8;
   margin-top: 8%;
 	border-left:#000000 2px solid;
 	border-right:#000000 2px solid;
@@ -587,7 +594,7 @@ body {
 }
 #tabsF #current a span{
   background-position:3000% -42px;
-  background-color: #D6D6D6;
+  background-color: #959595;
   color:#000;
 }
 #tabsF #current span span{
@@ -609,7 +616,7 @@ body {
 #tabsF a span{
 	float:left;
 	display:block;
-	background:url("../img/test000.png") no-repeat right top;
+	background:#CFCFCF no-repeat right top;
 	padding:9px 15px 5px 6px;
 	color:#666;
 }
@@ -830,5 +837,5 @@ body {
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(149, 149, 149, 1);
 }

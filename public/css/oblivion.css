@@ -26,7 +26,7 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: #A7BBD1;
+  background-color: #AEC9EF;
   width: 80%;
   height: 100%;
   line-height: 90%;
@@ -51,18 +51,17 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  width: 7vh;
+  height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
-  left: 5%;
+  top: 1.5vh;
+  left: 2%;
   cursor: pointer;
 }
 
@@ -379,7 +378,8 @@ body {
 .titleH1{
   font-size: 6vh;
   letter-spacing: 3px;
-  margin-top: 2vh;
+  position: relative;
+  top: -1.5vh;
 }
 .centerLost font{
   font-size: 6vh;
@@ -390,13 +390,13 @@ body {
   height: 4vh;
   width: 6vw;
   font-size: calc(10px + 0.5vw);
-  background-color: #A9C4EB;
+  background-color: white;
   border-style: solid;
   border-color: black;
   border-width: 2px;
   position: absolute;
   top: 3vh;
-  left: 10%;
+  left: 8%;
 }
 .clear {
   display: none;
@@ -471,22 +471,22 @@ body {
   color: white;
 }
 #createrDiv{
-  width: 90%;
-  height: 81%;
+  width: 100%;
+  height: 78%;
   background-color: #8494A6;
   position: absolute;
-  top: 10%;
-  left: 5%;
+  top: 12%;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0px;
   border-color: black;
   overflow: auto;
 }
 #createrDiv #lostCreateTable{
-  width: 100.01%;
+  width: 100%;
   height: 70px;
   font-size: calc(5px + 2vw);
-  background-color: #A7BBD1;
+  background-color: #4E4E4E;
+  color: white;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
