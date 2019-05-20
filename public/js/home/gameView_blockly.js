@@ -1151,7 +1151,7 @@ mainDescription = {
       "textarea6": "重置地圖－將遊戲畫面初始化",
       "textarea7": "重置關卡－刷新指令區及遊戲畫面",
       "textarea8": "設定－環境設定",
-      "textarea9": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea9": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level1img1.png",
       "img2": "level1img2.png",
       "img4": "start.png",
@@ -1164,24 +1164,24 @@ mainDescription = {
       "level": 2,
       "mode": 2,
       "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight()<br>左轉：turnLeft();<br>皆分類於'動作'內。",
-      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step( );<br>turnRight( );<br>step( );<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+      "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step( );<br>turnRight( );<br>step( );<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
       "img1": "level2img1.gif",
       "img2": "level2img2.gif"
     },
     {
       "level": 3,
       "mode": 1,
-      "textarea1": "結合左轉和右轉來達到終點吧！<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：10個動作包含10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "結合左轉和右轉來達到終點吧！<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：9個動作包含9個動作以內<br>2星：10個動作包含10個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 4,
       "mode": 1,
-      "textarea1": "相信已經熟悉了介面和操作了。<br>在這關新增了新物件<br>金幣：必須將所有金幣都得到才能夠通關。<br><br>小提示：若沒獲得金幣直接抵達終點的話也算是失敗喔！！<br><br>過關條件：<br>3星：9個動作包含9個動作以內且吃到金幣<br>2星：10個動作包含10個動作以內且吃到金幣<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "相信已經熟悉了介面和操作了。<br>在這關新增了新物件<br>金幣：必須將所有金幣都得到才能夠通關。<br><br>小提示：若沒獲得金幣直接抵達終點的話也算是失敗喔！！<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：9個動作包含9個動作以內且吃到金幣<br>2星：10個動作包含10個動作以內且吃到金幣<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 5,
       "mode": 1,
-      "textarea1": "新指令與新物件出現了！！<br>新指令：<br>printf( )指令，分類於\"動作\"內。<br>新物件：<br>藍色的鎖頭精靈。<br><br>還記得之前出現過的黃色的鎖頭精靈嗎？<br>沒錯！一樣要完成特殊條件鎖頭精靈才會讓你通過。<br><br>而想讓藍色的鎖頭精靈讓你通過的話，就必須答對他的問題。<br>那又該如何答題呢？<br><br>請使用新指令printf( )，這個指令的功用就是輸出字元、字串或是特定的參數值<br><br>範例：<br>printf(“Hi”)<br>//執行後，將會顯示字串 Hi <br><br>藍色鎖頭精靈的問題：<br>精靈希望你到他面前跟他說聲Hello。<br><br>小提示：必須到精靈的前一格回答才有效喔。<br><br>通關條件：<br>3星：5個動作含5個動作以內<br>2星：6個動作含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "新指令與新物件出現了！！<br>新指令：<br>printf( )指令，分類於\"動作\"內。<br>新物件：<br>藍色的鎖頭精靈。<br><br>還記得之前出現過的黃色的鎖頭精靈嗎？<br>沒錯！一樣要完成特殊條件鎖頭精靈才會讓你通過。<br><br>而想讓藍色的鎖頭精靈讓你通過的話，就必須答對他的問題。<br>那又該如何答題呢？<br><br>請使用新指令printf( )，這個指令的功用就是輸出字元、字串或是特定的參數值<br><br>範例：<br>printf(“Hi”)<br>//執行後，將會顯示字串 Hi <br><br>藍色鎖頭精靈的問題：<br>精靈希望你到他面前跟他說聲Hello。<br><br>小提示：必須到精靈的前一格回答才有效喔。<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>通關條件：<br>3星：5個動作含5個動作以內<br>2星：6個動作含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 6,
@@ -1267,7 +1267,7 @@ mainDescription = {
     {
       "level": 22,
       "mode": 1,
-      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i=3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問經過上述程式碼後sum為多少，請至鎖頭前說出你的答案吧！<br><br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+      "textarea1": "當你走在充滿選擇的道路上，要做好準備面對每一種可能。<br><br>鎖頭精靈的問題：<br>int i=0;<br>int sum=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspif( i==3 ){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum++;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi--;<br>&nbsp&nbsp&nbsp&nbsp}else{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum+2;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspi = i-1;<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>請問經過上述程式碼後sum為多少，請至鎖頭前說出你的答案吧！<br><br>小提示：如果有多種選擇的話switch是很棒的指令。<br><br>過關條件：<br>3星：19個動作包含19個動作以內<br>2星：22個動作包含22個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
     },
     {
       "level": 23,
