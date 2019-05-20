@@ -4,7 +4,7 @@
 Blockly.Blocks['block_main'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Main                        ");
+        .appendField("main                        ");
     this.appendStatementInput("NAME")
         .setCheck(null);
     this.setColour(15);

@@ -1,12 +1,9 @@
-*{
-  font-family: Microsoft JhengHei;
-}
 .innerBox{
   width: 80%;
   position: absolute;
   left: 10%;
   right: 10%;
-  margin-top: 25vh;
+  margin-top: 20vh;
   border-style: none;
   text-align: center;
 }
@@ -14,9 +11,11 @@
   color: #7C5A43;
   text-transform: uppercase;
   text-align:center;
-  letter-spacing: 10px;
-  font-weight: 900;
-  font-family:fantasy;
+  letter-spacing: 1vw;
+  font-size: calc(15px + 2vw);
+  font-weight: 100;
+  font-family: 'DFPingJuStd-W7';
+  margin-bottom: 6vh;
 }
 #fb{
   width: 125px;
@@ -44,6 +43,7 @@
 .innerBox table{
   margin-left: auto;
   margin-right:auto;
+  font-family: Microsoft JhengHei;
 }
 .box input[type = "text"],.box input[type = "password"]{
   text-align: center;
