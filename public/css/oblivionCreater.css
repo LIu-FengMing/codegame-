@@ -27,7 +27,7 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: rgb(195, 195, 195);
+  background-color: #DEDEDE;
   width: 80%;
   height: 100%;
   line-height: 90%;
@@ -561,9 +561,9 @@ body {
   height: 76%;
   background-color: #B8B8B8;
   margin-top: 8%;
-	border-left:#000000 2px solid;
-	border-right:#000000 2px solid;
-	border-bottom:#000000 2px solid;
+	border-left: white 2px solid;
+	border-right: white 2px solid;
+	border-bottom: white 2px solid;
 }
 #tabsF{
 	float:left;
@@ -572,9 +572,9 @@ body {
 	padding:0;
 	font-size:13px;
 	line-height:normal;
-	border-left:#FFF 0px solid;
-	border-right:#FFF 0px solid;
-	border-bottom:#000000 0px solid ;
+	border-left: white 0px solid;
+	border-right: white 0px solid;
+	border-bottom: white 0px solid ;
   margin-left: -10px;
 }
 #tabsF ul{
@@ -611,7 +611,7 @@ body {
 	background:url("../img/tableftF.gif") no-repeat left top;
 	margin:0;
 	text-decoration:none;
-	border:1px solid #000;
+	border:1px solid white;
 }
 #tabsF a span{
 	float:left;
@@ -671,7 +671,7 @@ body {
 #levelDescriptionTable #S1Td01 input,#levelDescriptionTable #S1Td11 textarea,#levelDescriptionTable #S1Td21 textarea{
   width: 80%;
   font-size: 3vh;
-  background-color: #BBCCBA;
+  background-color: white;
   resize : none;
 }
 #levelDescriptionTable #S1Td11 textarea{

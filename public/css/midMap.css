@@ -92,13 +92,28 @@
   z-index: 3;
   width: 50vh;
   height: 35vh;
+  font-size: 2.5vh;
   font-weight:bold;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -17.5vh;
   margin-left: -25vh;
-  background-color: rgba(232, 136, 23, 0.92);
+  background-color: #FFC777;
+  overflow: auto;
+}
+#levelDiv{
+  z-index: 3;
+  width: 50vh;
+  height: 35vh;
+  font-size: 2.5vh;
+  font-weight:bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -17.5vh;
+  margin-left: -25vh;
+  background-color: #FFC777;
   overflow: auto;
 }
 #mainGrammar{
@@ -111,18 +126,24 @@
   width: auto;
   font-size: 1vw;
   Display:inline-block;
-  background-color: #C47313;
+  background-color: #7C5A43;
+  color: white;
   padding-top: 1vh;
+  padding-left: 0.5vh;
+  padding-right: 0.5vh;
   margin-left: 1vh;
 }
 #levelDescription{
-  color: #000000;
-  margin-top: 10px;
-  text-transform: uppercase;
-  text-align:center;
-  letter-spacing: 10px;
-  font-weight: 0;
-  font-family:fantasy;
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #levelDescriptiontextarea{
   height: 10vh;
@@ -142,12 +163,13 @@
   font-weight:bold;
   position: absolute;
   right: 6vh;
-  bottom: 3vh;
+  bottom: 2vh;
   font-size: 2.5vh;
   border-style: solid;
   border-color: black;
-  border-width: 1px;
-  background-color:#8CEB8C;
+  border-width: 3px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
   color: black;
   cursor: pointer;
 }
@@ -157,12 +179,13 @@
   font-weight:bold;
   position: absolute;
   left: 6vh;
-  bottom: 3vh;
+  bottom: 2vh;
   font-size: 2.5vh;
   border-style: solid;
   border-color: black;
-  border-width: 1px;
-  background-color:#FF9999;
+  border-width: 3px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
   color: black;
   cursor: pointer;
 }
