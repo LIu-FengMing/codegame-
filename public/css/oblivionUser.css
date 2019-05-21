@@ -23,12 +23,21 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: #A7BBD1;
+  background-color: #AEC9EF;
   width: 80%;
   height: 100%;
   line-height: 90%;
   position: relative;
   min-width: 1200px;
+}
+.bottomColor{
+  width: 100%;
+  height: 50%;
+  border: 0;
+  background-color: #DEDEDE;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
 }
 .box {
   display: table-cell;
@@ -38,7 +47,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -48,18 +57,17 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  width: 7vh;
+  height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
-  left: 5%;
+  top: 2.2vh;
+  left: 2%;
   cursor: pointer;
 }
 
@@ -169,7 +177,7 @@ body {
   background-color: transparent;
   position: absolute;
   right: 5%;
-  top: 1.5vh;
+  top: 2.2vh;
   cursor: pointer;
 }
 /*上架關卡*/
@@ -262,14 +270,15 @@ body {
   z-index: 999;
   width: 25vw;
   border-style: solid;
-  border-color: black;
+  border-color: white;
   border-radius: 15px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: #D5E8D4;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   min-width: 300px;
   overflow: auto;
 }
@@ -280,11 +289,12 @@ body {
   height: 5vh;
   width: 8vw;
   font-size: calc(15px + 1vw);
-  border-radius: 10px;
+  border-radius: 15px;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  background-color: #c0ec95;
+  border-width: 3px;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   position: absolute;
   right: calc(50% - 4vw);
   bottom: 3vh;
@@ -354,22 +364,24 @@ body {
   height: 35vh;
   font-size: 2.5vh;
   font-weight:bold;
-  text-align:center;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -17.5vh;
   margin-left: -25vh;
-  background-color: rgba(232, 136, 23);
+  background-color: #FFC777;
   overflow: auto;
 }
 #levelDescription{
-  color: #000000;
-  margin-top: 3vh;
-  /* text-transform: uppercase; */
-  text-align:center;
-  /* letter-spacing: 10px; */
-  font-weight: 0;
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  font-size: calc(10px + 2vw);
+  font-weight: 100;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #levelDescriptiontextarea{
   height: 10vh;
@@ -383,6 +395,7 @@ body {
   justify-content: center;
   align-items: center;
   line-height: 24px;
+  resize: none;
   overflow: auto;
 }
 
@@ -396,10 +409,11 @@ body {
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  color: rgb(255, 255, 255);
+  font-family: Microsoft JhengHei;
+  color: white;
   text-decoration:underline;
 }
-.btnUser {
+/* .btnUser {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -412,9 +426,20 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnUser {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/userData.png");
+  color: black;
   cursor: pointer;
 }
-.btnLogout {
+/* .btnLogout {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -427,16 +452,39 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnLogout {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
+  color: black;
+  margin-top: -1vh;
   cursor: pointer;
 }
-.imgIcon{
-  margin: 5px 0px 0px 0px;
-  width: 25px;
+.signOut{
   height: 25px;
+  width: auto;
 }
-.starNumber,.goldNumber{
-  line-height:5px;
-  font-size: 25px;
+.userStar{
+  margin-top: 4vh;
+}
+.imgIcon{
+  margin: 2vh 0px 0px 0px;
+  width: 6vh;
+  height: 6vh;
+  vertical-align: top;
+}
+.starNumber{
+  line-height: 10vh;
+  color: white;
+  font-size: calc(5px + 4vh);
+  font-family: Microsoft JhengHei;
+  vertical-align:middle;
 }
 #userDataBkView{
   z-index: 3;
@@ -457,22 +505,32 @@ body {
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
 }
 #clossDiv{
-  z-index: 4;
   width: 30px;
   height: 30px;
-  background-color: red;
-  color: white;
-  font-size: 20px;
+  background-color: white;
+  color: black;
+  font-size: 30px;
   font-weight: bold;
+  line-height: 30px;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
+  margin-top: 0px;
   cursor: pointer;
 }
 #allTitle,#userTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #userInnerDiv{
   width: 80%;
@@ -494,8 +552,11 @@ body {
 }
 .titleH1{
   font-size: 6vh;
-  letter-spacing: 3px;
-  margin-top: 2vh;
+  font-family: 'DFPingJuStd-W7';
+  font-weight: 100;
+  letter-spacing: 0.5vw;
+  position: relative;
+  top: -1.5vh;
 }
 .centerLost font{
   font-size: 6vh;
@@ -559,22 +620,22 @@ body {
   color: white;
 }
 #createrDiv{
-  width: 90%;
-  height: 81%;
+  width: 100%;
+  height: 78%;
   background-color: #8494A6;
   position: absolute;
-  top: 10%;
-  left: 5%;
+  top: 12%;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0px;
   border-color: black;
   overflow: auto;
 }
 #createrDiv #lostCreateTable{
-  width: 100.0%;
+  width: 100%;
   height: 70px;
   font-size: calc(5px + 1.3vw);
-  background-color: #A7BBD1;
+  background-color: #4E4E4E;
+  color: white;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
@@ -689,22 +750,28 @@ body {
   width: 20vh;
   height: 6vh;
   font-size: 25px;
-  border-radius: 15px;
-  border-style: solid;
-  border-color: black;
+  border: 0;
 }
 #createLevel{
+  background-image: url("../img/createOwnLevel.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   left: 5%;
   bottom: 1%;
-  background-color: #99FFFF;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 #detectionLevel{
+  background-image: url("../img/detectionLevel.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   right: 5%;
   bottom: 1%;
-  background-color: #CC5D59;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 #modifyLevel{
@@ -720,18 +787,20 @@ body {
 #settingAllView{
   z-index: 4;
   height: 30%;
-  width: 40%;
+  width: 30%;
   position: absolute;
   top: 35%;
   left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #settingAllTable{
   width: 100%;
   position: relative;
-  top: 20%;
+  top: 0%;
   border: 1px;
 }
 #settingMusic,#musicVolume,#settingSpeed{
@@ -772,7 +841,7 @@ body {
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -780,7 +849,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

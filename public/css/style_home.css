@@ -1,6 +1,3 @@
-*{
-  font-family: Microsoft JhengHei;
-}
 .castle_blockly{
   width: 22%;
   height: 50%;
@@ -86,22 +83,23 @@
   cursor: pointer;
 }
 #buttonDiv{
-  width: 350px;
-  height: 75px;
+  z-index: 3;
+  width: 25vw;
+  height: 5vw;
   position: absolute;
-  bottom: 5px;
+  bottom: 1.5vh;
   right: 1%;
 }
 #buttonDiv input[type="button"]{
-  width: 75px;
-  height: 75px;
+  width: 5.5vw;
+  height: 5.5vw;
   cursor: pointer;
 }
 .equipageButton{
   border-width: 0px;
   background-image: url('../img/equipage.png');
   background-repeat: no-repeat;
-  background-size: 90%;
+  background-size: 100%;
   background-color: transparent;
   margin-right: 5px;
 }

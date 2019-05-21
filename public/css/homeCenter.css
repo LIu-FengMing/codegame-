@@ -1,22 +1,30 @@
-*{
-  font-family: Microsoft JhengHei;
-}
 #clossDiv{
-  width: 35px;
-  height: 35px;
-  background-color: red;
-  color: white;
-  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  font-size: 30px;
   font-weight: bold;
+  line-height: 30px;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
+  margin-top: 0px;
   cursor: pointer;
 }
 #allTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 /*裝備*/
 #equipageBkView{
@@ -29,22 +37,23 @@
 #equipageView{
   z-index: 4;
   height: 45vh;
-  width: 35vw;
-  font-family: Microsoft JhengHei;
+  width: 25vw;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -22.5vh;
-  margin-left: -17.5vw;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  margin-left: -12.5vw;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #equipageInnerDiv{
   z-index: 4;
   height: 20%;
   width: 100%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   position: absolute;
   top: 0px;
   background-color: rgba(112, 159, 222, 1);
@@ -52,7 +61,7 @@
 #equipageFont{
   position: absolute;
   font-size: 70px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   letter-spacing: 100px;
   color: rgb(255, 255, 255);
   top:40%;
@@ -63,57 +72,57 @@
 }
 #equipageTable{
   width: 100%;
-  font-family: Microsoft JhengHei;
   position: relative;
-  top: 10%;
-  border: 1;
+  border: 0px;
+  margin-top: 0%;
+}
+#equipageTable td{
+  border-width: 0px;
 }
 #swordImg{
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   border-radius:10px;
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-color: rgb(103, 103, 103);
-  margin: 10px auto;
+  background-size: cover;
 }
 #swordLevelUpDivH3{
   margin-top: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
+  font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
 #shieldLevelUpDivH3{
   margin-top: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
+  font-size: calc(8px + 0.5vw);
   color: rgb(157, 22, 143);
 }
 #shieldImg{
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   border-radius:10px;
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-color: rgb(103, 103, 103);
-  margin: 10px auto;
+  background-size: cover;
 }
 #swordLevelUpDiv,#shieldLevelUpDiv{
   height: 50px;
   width: 200px;
-  border-radius:10px;
-  background-color: white;
-  margin: 5px auto;
+  border-radius: 10px;
+  background-color: none;
+  /* margin: 5px auto; */
 }
 #swordLevelUpTable,#shieldLevelUpTable{
   height: 50px;
   width: 200px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   border-radius:10px;
   padding: 0;
 }
 .levelUp{
   height: 60px;
   width: 75px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-size: 20px;
   font-weight: 800;
   border-radius:10px;
@@ -121,11 +130,30 @@
   cursor: pointer;
 }
 .levelUpDefault{
-  height: 60px;
-  width: 75px;
+  height: 20vh;
+  width: 20vh;
   font-size: 20px;
   font-weight: 100;
-  border-radius:10px;
+  border-width: 0px;
+  background-color: rgba(144, 141, 141, 0.85);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130%;
+  position: relative;
+  pointer-events: none;
+}
+.levelUpDefault2{
+  height: 20vh;
+  width: 20vh;
+  font-size: 20px;
+  font-weight: 100;
+  border-width: 0px;
+  background-image: url("../img/levelAllMax.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130%;
+  position: relative;
   pointer-events: none;
 }
 #levelUp1{
@@ -140,7 +168,7 @@
   height: 60px;
   width: 75px;
   font-size: 20px;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
   font-weight: 800;
   border-radius:10px;
 }
@@ -155,64 +183,89 @@
 .levelUpFont{
   font-size: 15px;
   font-weight: 400;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
 }
 .levelFont{
   height: 50px;
-  width: 15px;
-  border-radius: 10px 0px 0px 10px;
-  background-color: yellow;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 10px 0px 0px 10px; */
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
   padding: 0;
 }
 .levelFontDefault{
   height: 50px;
-  width: 15px;
-  border-radius: 10px 0px 0px 10px;
-  background-color: white;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 10px 0px 0px 10px; */
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
   padding: 0;
 }
 .levelLaterDefault{
   height: 50px;
-  width: 15px;
-  border-radius: 0px 10px 10px 0px;
-  background-color: white;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelLater{
   height: 50px;
-  width: 15px;
-  border-radius: 0px 10px 10px 0px;
-  background-color: yellow;
-  border-style:solid;
-  border-color: black;
-  border-width: 2px;
+  width: 1vw;
+  /* border-radius: 0px 10px 10px 0px; */
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelDefault{
   height: 50px;
-  width: 15px;
-  background-color: white;
+  width: 1vw;
+  background-image: url("../img/levelWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
   border-style:solid;
   border-color: black;
-  border-width: 2px;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 .levelChange{
-  height: 50px;
-  width: 15px;
-  background-color: yellow;
+  height: 100%;
+  width: 1vw;
+  background-image: url("../img/levelYellow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  background-size: 200%;
   border-style:solid;
   border-color: black;
-  border-width: 2px;
+  border-width: 0px;
+  position: relative;
+  margin-left: 0.15vw;
   padding: 0;
 }
 #resetEquipageLevel{
@@ -220,14 +273,14 @@
   width: 7vw;
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
-  background-color: #DAE8FC;
+  background-color: rgba(0, 0, 0, 0);
   border-style: solid;
   border-color: black;
-  border-width: 1px;
-  border-radius: 10px;
+  border-width: 3px;
+  border-radius: 15px;
   position: absolute;
   right: 0.5vw;
-  margin-top: 8vh;
+  margin-top: 1%;
   cursor: pointer;
 }
 
@@ -241,15 +294,20 @@
   left: 50%;
   margin-top: -30vh;
   margin-left: -20vw;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #instructionTable{
   width: 100%;
   position: relative;
-  border: 1;
-  margin-top: 5%;
+  border: 0px;
+  margin-top: 0%;
+}
+#instructionTable td{
+  border-width: 0px;
 }
 #actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
   height: 20px;
@@ -269,6 +327,7 @@
 }
 .itemP{
   margin-top: 1.5vh;
+  font-family: Microsoft JhengHei;
   line-height: calc(5px + 2vh);
 }
 /*成就*/
@@ -279,15 +338,20 @@
   position: absolute;
   top: 25%;
   left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #achievementTable{
   width: 100%;
   position: relative;
-  border: 1;
-  margin-top: 5%;
+  border: 0;
+  margin-top: 0%;
+}
+#achievementTable td{
+  border-width: 0px;
 }
 #crownImgLeft{
   height: 35px;
@@ -312,21 +376,21 @@
   left: 60%;
 }
 .champtionGold{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionGold.png');
   background-size: 100% 100%;
 }
 .champtionSilver{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionSilver.png');
   background-size: 100% 100%;
 }
 .champtionCopper{
-  width: 50px;
+  width: 10vh;
   border: 0px;
   background: transparent;
   content:url('../img/champtionCopper.png');
@@ -342,7 +406,7 @@
 .achievementSummaryInner::-webkit-details-marker { display:none; }
 .achievementSummaryInner{
   font-size: calc(15px + 1vw);
-  font-family:Microsoft JhengHei;
+  /* font-family:Microsoft JhengHei; */
   line-height: 5vh;
   outline:none;
   cursor: pointer;
@@ -355,18 +419,20 @@
 #settingAllView{
   z-index: 4;
   height: 30%;
-  width: 40%;
+  width: 30%;
   position: absolute;
   top: 35%;
-  left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  left: 35%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #settingAllTable{
   width: 100%;
   position: relative;
-  top: 20%;
+  top: 0%;
   border: 1px;
 }
 #settingMusic,#musicVolume,#settingSpeed{
@@ -407,7 +473,7 @@
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -415,7 +481,7 @@
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

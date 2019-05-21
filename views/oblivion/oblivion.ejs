@@ -7,7 +7,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
     integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
+  <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
+  <script src='https://dfo.dynacw.com.tw/DynaJSFont/DynaFont.js'></script>
   <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
   <title>全速衝線</title>
   <!-- <title></title> -->
@@ -23,6 +26,7 @@
         <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('createrDiv')">
       </div>
       <div class="box centerLost" id="centerLost">
+        <img class="bottomColor" alt="">
         <h1 class="titleH1">玩家自訂地圖</h1>
         <input type="button" title="返回鍵" value="" id="goBack3" onclick="back()">
         <select id="levelSelect" name="">
@@ -55,8 +59,8 @@
             </tr>
           </table>
         </div>
-        <input type="button" class="centerButton" id="createLevel" value="自訂地圖" onclick="location.href='oblivionUser';">
-        <input type="button" class="centerButton" id="enterLevel" value="進入地圖" onclick="enterLevel()">
+        <input type="button" class="centerButton" id="createLevel" value="" onclick="location.href='oblivionUser';">
+        <input type="button" class="centerButton" id="enterLevel" value="" onclick="enterLevel()">
         <input type="button" title="設定" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
       </div>
       <div class="box sidebarRight">
@@ -66,8 +70,8 @@
           <img src="img/star.png" class="imgIcon">
           <font class="starNumber" id="starNumber"></font>
         </div>
-        <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-        <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+        <button class="btnUser" title="個人資料" onclick="userData()"></button>
+        <button class="btnLogout" title="登出" onclick="logout()"></button>
       </div>
     </div>
     <div class="footer"></div>

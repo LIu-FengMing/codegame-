@@ -334,12 +334,13 @@ function createUserView(mainDiv) {
 var thisSelectionId;
 var args;
 var divTag, level;
-var lastObject = null;
+var lastObject = null,lastColor;
 
 function selectionLevel(thisObject) {
   if (lastObject != null) {
-    lastObject.style.backgroundColor = "#99CCFF";
+    lastObject.style.backgroundColor = lastColor;
   }
+  lastColor = thisObject.style.backgroundColor;
   thisSelectionId = thisObject.id;
   thisObject.style.backgroundColor = "#E6E6E6";
   lastObject = thisObject;
@@ -759,6 +760,11 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("lostUserCreateTable" + i);
+    if((i%2) == 0){
+      divTag.style.backgroundColor = "#BDD5D5";
+    }else{
+      divTag.style.backgroundColor = "#D6E5E5";
+    }
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);

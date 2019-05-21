@@ -84,7 +84,7 @@ function logout() {
 var thisSelectionId;
 var args;
 var divTag, level, thisIndex;
-var lastObject = null;
+var lastObject = null,lastColor;
 
 function selectionLevel(thisObject) {
   var mapIndex = 0;
@@ -97,8 +97,9 @@ function selectionLevel(thisObject) {
   if (lastObject != null) {
     // console.log(lastObject);
     // console.log(mapIndex);
-    lastObject.style.backgroundColor = "#F5F5F5";
+    lastObject.style.backgroundColor = lastColor;
   }
+  lastColor = thisObject.style.backgroundColor;
   thisObject.style.backgroundColor = "#C2C2C2";
   lastObject = thisObject;
   // console.log(document.getElementById("td0" + mapIndex + "6").innerHTML);
@@ -244,7 +245,7 @@ function sendLoadUsernameMap() {
       // console.log(allUserData);
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
-        var obj = res[index]
+        var obj = res[index];
         var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
         if (hightLevel == 51) {
           hightLevel = 50;
@@ -294,7 +295,9 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("lostUserCreateTable" + i);
-
+    if((i%2) == 0){
+      divTag.style.backgroundColor = "#F0E0CF";
+    }
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
@@ -503,8 +506,10 @@ function updateLevelTable(scriptData) {
       document.getElementById("td0" + i + "5").innerHTML = obj.td05;
 
       divTag = document.getElementById("lostUserCreateTable" + i);
-
-      divTag.style.backgroundColor = "#F5F5F5";;
+      if((i%2) == 0){
+        divTag.style.backgroundColor = "#F0E0CF";
+      }
+      // divTag.style.backgroundColor = "#F5F5F5";
       // divTag.style.backgroundColor = "rgb(153, 204, 255)";
     }
     else {

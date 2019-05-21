@@ -902,9 +902,9 @@ function equipageView(mainDiv) {
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     }
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
   }
@@ -1007,9 +1007,9 @@ function swordLevelUp() {
   weaponLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
@@ -1081,9 +1081,9 @@ function shieldLevelUp() {
   armorLevelup();
   if ((swordLevel + shieldLevel) >= 15) {
     document.getElementById("levelUpDefault0").innerHTML = "";
-    document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
-    document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
+    // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
     document.getElementById("levelUpDefault0").className = "levelUpDefault";
     document.getElementById("levelUpDefault1").className = "levelUpDefault";
@@ -1743,9 +1743,23 @@ function changeLevelStage() {
     if (i < totalLevel) {
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/allClrBtn.png";
     } else {
       divTag = document.getElementById("btn" + i);
       divTag.className = "unbtn";
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/unPlayBtn.png";
+    }
+    if(i>0&&i<10){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/oneStarBtn.png";
+    }else if(i>10&&i<20){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/twoStarBtn.png";
+    }else if(i>20){
+      divTag = document.getElementById("img" + i);
+      divTag.src = "img/unPlayBtn.png";
     }
   }
 }

@@ -27,7 +27,7 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: #A7BBD1;
+  background-color: #DEDEDE;
   width: 80%;
   height: 100%;
   line-height: 90%;
@@ -42,7 +42,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -52,18 +52,17 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  width: 7vh;
+  height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
-  left: 1%;
+  top: 2.2vh;
+  left: 2%;
   cursor: pointer;
 }
 #defaultCanvas0{
@@ -174,10 +173,11 @@ body {
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  color: rgb(255, 255, 255);
+  font-family: Microsoft JhengHei;
+  color: white;
   text-decoration:underline;
 }
-.btnUser {
+/* .btnUser {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -190,9 +190,20 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnUser {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/userData.png");
+  color: black;
   cursor: pointer;
 }
-.btnLogout {
+/* .btnLogout {
   height: 5vh;
   width: 15vh;
   border-style: solid;
@@ -205,16 +216,39 @@ body {
   color: black;
   margin-top: 2vh;
   font-size: 2vh;
+  font-family: Microsoft JhengHei;
+  cursor: pointer;
+} */
+.btnLogout {
+  height: 8vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
+  color: black;
+  margin-top: -1vh;
   cursor: pointer;
 }
-.imgIcon{
-  margin: 5px 0px 0px 0px;
-  width: 25px;
+.signOut{
   height: 25px;
+  width: auto;
 }
-.starNumber,.goldNumber{
-  line-height:5px;
-  font-size: 25px;
+.userStar{
+  margin-top: 4vh;
+}
+.imgIcon{
+  margin: 2vh 0px 0px 0px;
+  width: 6vh;
+  height: 6vh;
+  vertical-align: top;
+}
+.starNumber{
+  line-height: 10vh;
+  color: white;
+  font-size: calc(5px + 4vh);
+  font-family: Microsoft JhengHei;
+  vertical-align:middle;
 }
 #userDataBkView{
   z-index: 3;
@@ -416,7 +450,7 @@ body {
   border-style:none;
   position: absolute;
   top: 0px;
-  background-color: none;
+  background-color: #AEC9EF;
 }
 #titleBar select{
   font-size: calc(10px + 1.5vh);
@@ -467,19 +501,27 @@ body {
   font-size: calc(10px + 1.5vw);
   border-radius: 10px;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0px;
   border-color: black;
-  background-color: #CCFFFF;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   min-width: 95px;
 }
 #saveBtn{
+  background-image: url("../img/saveBtn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   left: 2%;
   bottom: 2%;
   cursor: pointer;
 }
 #finishBtn{
+  background-image: url("../img/finishBtn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   right: 2%;
   bottom: 2%;
@@ -488,7 +530,7 @@ body {
 /*選擇地圖大小*/
 #lostTitleTable select{
   height: calc(15px + 2vh);
-  background-color: #CCFFFF;
+  background-color: white;
   margin-left: 0;
 }
 /*物件角度*/
@@ -505,7 +547,7 @@ body {
   border-style: solid;
   border-color: black;
   border-radius: 5px;
-  background-color: #CCFFFF;
+  background-color: rgba(0, 0, 0, 0);
   margin-left: 0px;
   cursor: pointer;
 }
@@ -517,11 +559,11 @@ body {
 	margin:0px;
 	width:100%;
   height: 76%;
-  background-color: #D5E8D4;
+  background-color: #B8B8B8;
   margin-top: 8%;
-	border-left:#000000 2px solid;
-	border-right:#000000 2px solid;
-	border-bottom:#000000 2px solid;
+	border-left: white 2px solid;
+	border-right: white 2px solid;
+	border-bottom: white 2px solid;
 }
 #tabsF{
 	float:left;
@@ -530,9 +572,9 @@ body {
 	padding:0;
 	font-size:13px;
 	line-height:normal;
-	border-left:#FFF 0px solid;
-	border-right:#FFF 0px solid;
-	border-bottom:#000000 0px solid ;
+	border-left: white 0px solid;
+	border-right: white 0px solid;
+	border-bottom: white 0px solid ;
   margin-left: -10px;
 }
 #tabsF ul{
@@ -552,7 +594,7 @@ body {
 }
 #tabsF #current a span{
   background-position:3000% -42px;
-  background-color: #D6D6D6;
+  background-color: #959595;
   color:#000;
 }
 #tabsF #current span span{
@@ -569,12 +611,12 @@ body {
 	background:url("../img/tableftF.gif") no-repeat left top;
 	margin:0;
 	text-decoration:none;
-	border:1px solid #000;
+	border:1px solid white;
 }
 #tabsF a span{
 	float:left;
 	display:block;
-	background:url("../img/test000.png") no-repeat right top;
+	background:#CFCFCF no-repeat right top;
 	padding:9px 15px 5px 6px;
 	color:#666;
 }
@@ -629,7 +671,7 @@ body {
 #levelDescriptionTable #S1Td01 input,#levelDescriptionTable #S1Td11 textarea,#levelDescriptionTable #S1Td21 textarea{
   width: 80%;
   font-size: 3vh;
-  background-color: #BBCCBA;
+  background-color: white;
   resize : none;
 }
 #levelDescriptionTable #S1Td11 textarea{
@@ -759,14 +801,15 @@ body {
   z-index: 999;
   width: 25vw;
   border-style: solid;
-  border-color: black;
+  border-color: white;
   border-radius: 15px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: #D5E8D4;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   min-width: 300px;
   overflow: auto;
 }
@@ -777,11 +820,12 @@ body {
   height: 5vh;
   width: 8vw;
   font-size: calc(15px + 1vw);
-  border-radius: 10px;
+  border-radius: 15px;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  background-color: #c0ec95;
+  border-width: 3px;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   position: absolute;
   right: calc(50% - 4vw);
   bottom: 3vh;
@@ -793,5 +837,5 @@ body {
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(149, 149, 149, 1);
 }

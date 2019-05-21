@@ -5,7 +5,7 @@
 }
 html,body {
   height: 100%;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
 }
 body {
   color: black;
@@ -33,7 +33,7 @@ body {
   z-index: -1;
   height: 100%;
   width: 100%;
-  background: #CEE0CD;
+  background: #D6AE81;
   position: absolute;
   left: 0;
   top: 0;
@@ -46,7 +46,7 @@ body {
   height: 90%;
   line-height: 90%;
   position: relative;
-  background: rgba(103, 195, 59, 0.44);
+  background: #7C5A43;
   min-width: 134px;
 }
 .footer {
@@ -56,17 +56,18 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
+  z-index: 3;
+  width: 7vh;
+  height: 7vh;
   font-size: 40px;
-  border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
+  border-width: 0;
+  top: 1.5vh;
   left: 1%;
   cursor: pointer;
 }
@@ -101,14 +102,15 @@ body {
   z-index: 999;
   width: 25vw;
   border-style: solid;
-  border-color: black;
+  border-color: white;
   border-radius: 15px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: #D5E8D4;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   min-width: 300px;
   overflow: auto;
 }
@@ -119,11 +121,12 @@ body {
   height: 5vh;
   width: 8vw;
   font-size: calc(15px + 1vw);
-  border-radius: 10px;
+  border-radius: 15px;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  background-color: #c0ec95;
+  border-width: 3px;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   position: absolute;
   right: calc(50% - 4vw);
   bottom: 3vh;
@@ -140,18 +143,14 @@ body {
 
 /*right*/
 .btnLogout {
-  height: 5vh;
+  height: 8vh;
   width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#F09090);
-  background: -o-linear-gradient(white,#F09090);
-  background: -moz-linear-gradient(white,#F09090);
-  background: linear-gradient(white,#F09090);
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../img/layout.png");
   color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
+  margin-top: -1vh;
   cursor: pointer;
 }
 #clossDiv{
@@ -205,7 +204,7 @@ body {
   height: 4vh;
   width: 6vw;
   font-size: calc(10px + 0.5vw);
-  background-color: #DAE8FC;
+  background-color: white;
   border-style: solid;
   border-color: black;
   border-width: 2px;
@@ -306,13 +305,14 @@ body {
   height: 70px;
   font-size: calc(10px + 90%);
   line-height: 3vh;
-  background-color: #DAE8FC;
+  color: white;
+  background-color: #4E4E4E;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   border-width: 2px;
-  border-color: black;
+  border-color: #8F8F8F;
 }
 #createrDiv .td01{
   width: 20%;
@@ -367,7 +367,7 @@ body {
   border-left: 0px;
   border-right: 0px;
   border-width: 2px;
-  border-color: black;
+  border-color: #8F8F8F;
   cursor: pointer;
 }
 .centerButton{

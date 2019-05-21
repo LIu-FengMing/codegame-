@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/oblivionUser.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all/js"></script>
+  <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
+  <script src='https://dfo.dynacw.com.tw/DynaJSFont/DynaFont.js'></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -23,6 +25,7 @@
         <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('createrDiv')">
       </div>
       <div class="box centerLost" id="centerLost">
+        <img class="bottomColor" alt="">
         <h1 class="titleH1">我的自訂地圖</h1>
         <input type="button" title="返回鍵" value="" id="goBack3" onclick="back()">
         <div id="createrDiv">
@@ -39,9 +42,8 @@
             </tr>
           </table>
         </div>
-        <input type="button" class="centerButton" id="createLevel" value="創建地圖"
-          onclick="location.href='oblivionCreater';">
-        <input type="button" class="centerButton" id="detectionLevel" value="檢測地圖" onclick="enterLevel()">
+        <input type="button" class="centerButton" id="createLevel" value="" onclick="location.href='oblivionCreater';">
+        <input type="button" class="centerButton" id="detectionLevel" value="" onclick="enterLevel()">
         <input type="button" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
       </div>
       <div class="box sidebarRight">
@@ -51,8 +53,8 @@
           <img src="img/star.png" class="imgIcon">
           <font class="starNumber" id="starNumber"></font>
         </div>
-        <button class="btnUser" title="個人資料" onclick="userData()"><i class="fas fa-user"></i> 個人資料</button>
-        <button class="btnLogout" title="登出" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 登出</button>
+        <button class="btnUser" title="個人資料" onclick="userData()"></button>
+        <button class="btnLogout" title="登出" onclick="logout()"></button>
       </div>
     </div>
     <div class="footer"></div>
