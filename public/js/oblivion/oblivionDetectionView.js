@@ -194,7 +194,7 @@ function userData() {
     parentObj.removeChild(divTag);
   } catch (e) {}
   divID = "userDataView";
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
   b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");

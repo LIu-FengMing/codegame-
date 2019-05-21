@@ -340,7 +340,7 @@ function createUserView(mainDiv) {
 var thisSelectionId;
 var args;
 var divTag, level;
-var lastObject = null;
+var lastObject = null,lastColor;
 
 function selectionLevel(thisObject) {
   var mapIndex = 0;
@@ -356,9 +356,10 @@ function selectionLevel(thisObject) {
       lastObject.style.backgroundColor = "rgb(152, 140, 186)";
     }
     else {
-      lastObject.style.backgroundColor = "#99CCFF";
+      lastObject.style.backgroundColor = lastColor;
     }
   }
+  lastColor = thisObject.style.backgroundColor;
   thisSelectionId = thisObject.id;
   thisObject.style.backgroundColor = "#E6E6E6";
   lastObject = thisObject;

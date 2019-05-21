@@ -23,12 +23,21 @@ body {
   min-height: 600px;
 }
 .centerLost{
-  background-color: #A7BBD1;
+  background-color: #AEC9EF;
   width: 80%;
   height: 100%;
   line-height: 90%;
   position: relative;
   min-width: 1200px;
+}
+.bottomColor{
+  width: 100%;
+  height: 50%;
+  border: 0;
+  background-color: #DEDEDE;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
 }
 .box {
   display: table-cell;
@@ -48,18 +57,17 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  width: 7vh;
+  height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 2%;
-  left: 5%;
+  top: 2.2vh;
+  left: 2%;
   cursor: pointer;
 }
 
@@ -169,7 +177,7 @@ body {
   background-color: transparent;
   position: absolute;
   right: 5%;
-  top: 1.5vh;
+  top: 2.2vh;
   cursor: pointer;
 }
 /*上架關卡*/
@@ -510,6 +518,15 @@ body {
 }
 #allTitle,#userTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #userInnerDiv{
   width: 80%;
@@ -531,8 +548,11 @@ body {
 }
 .titleH1{
   font-size: 6vh;
-  letter-spacing: 3px;
-  margin-top: 2vh;
+  font-family: 'DFPingJuStd-W7';
+  font-weight: 100;
+  letter-spacing: 0.5vw;
+  position: relative;
+  top: -1.5vh;
 }
 .centerLost font{
   font-size: 6vh;
@@ -596,22 +616,22 @@ body {
   color: white;
 }
 #createrDiv{
-  width: 90%;
-  height: 81%;
+  width: 100%;
+  height: 78%;
   background-color: #8494A6;
   position: absolute;
-  top: 10%;
-  left: 5%;
+  top: 12%;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0px;
   border-color: black;
   overflow: auto;
 }
 #createrDiv #lostCreateTable{
-  width: 100.0%;
+  width: 100%;
   height: 70px;
   font-size: calc(5px + 1.3vw);
-  background-color: #A7BBD1;
+  background-color: #4E4E4E;
+  color: white;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
@@ -726,22 +746,28 @@ body {
   width: 20vh;
   height: 6vh;
   font-size: 25px;
-  border-radius: 15px;
-  border-style: solid;
-  border-color: black;
+  border: 0;
 }
 #createLevel{
+  background-image: url("../img/createOwnLevel.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   left: 5%;
   bottom: 1%;
-  background-color: #99FFFF;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 #detectionLevel{
+  background-image: url("../img/detectionLevel.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   right: 5%;
   bottom: 1%;
-  background-color: #CC5D59;
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 #modifyLevel{
@@ -757,18 +783,20 @@ body {
 #settingAllView{
   z-index: 4;
   height: 30%;
-  width: 40%;
+  width: 30%;
   position: absolute;
   top: 35%;
   left: 30%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #settingAllTable{
   width: 100%;
   position: relative;
-  top: 20%;
+  top: 0%;
   border: 1px;
 }
 #settingMusic,#musicVolume,#settingSpeed{
@@ -809,7 +837,7 @@ body {
 }
 .musicVolumeInnerDivDefault{
   height: 40px;
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;
@@ -817,7 +845,7 @@ body {
   margin-top: 10px;
 }
 .musicVolumeInnerDiv{
-  width: calc(8px + 0.5vw);
+  width: calc(4px + 0.5vw);
   border-style:solid;
   border-width: 1px;
   margin-right: 2px;

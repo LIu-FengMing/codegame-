@@ -2,7 +2,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: Microsoft JhengHei;
+  /* font-family: Microsoft JhengHei; */
 }
 * textarea{
   resize:none;
@@ -53,63 +53,20 @@ body {
   background: none;
 }
 #goBack{
-  width: 50px;
-  height: 50px;
+  z-index: 3;
+  width: 7vh;
+  height: 7vh;
   font-size: 40px;
-  background-image: url('../img/goBack.png');
+  background-image: url('../img/goBack3.png');
   background-size: 50px 50px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
   border-width: 0;
-  top: 10%;
+  top: 20%;
   left: 1%;
   cursor: pointer;
-}
-
-/*提醒介面*/
-#remindView{
-  z-index: 999;
-  height: 30vh;
-  width: 25vw;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -15vh;
-  margin-left: -12.5vw;
-  background-color: #D5E8D4;
-  overflow: auto;
-}
-#remindH2{
-  font-size: calc(20px + 1vw);
-  margin-top: 8vh;
-  line-height: 5vh;
-}
-#remindTrueBtn{
-  height: 5vh;
-  width: 8vw;
-  font-size: calc(15px + 1vw);
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  background-color: #c0ec95;
-  position: absolute;
-  right: calc(50% - 4vw);
-  bottom: 2vh;
-  cursor: pointer;
-}
-.bkView{
-  z-index: 3;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  background-color: rgba(0, 0, 0, 0.74);
 }
 
 /*left*/
@@ -143,23 +100,6 @@ body {
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
-}
-#helperTextarea0{
-  height: 50%;
-  width: 40%;
-  background-color: white;
-  position: absolute;
-  top: 15%;
-  left: 5%;
-}
-#helperTextarea1{
-  height: 25%;
-  width: 90%;
-  font-family:Microsoft JhengHei;
-  background-color: white;
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
 }
 #helperTextarea3{
   height: 80%;
@@ -200,22 +140,6 @@ body {
   color: white;
   text-decoration:underline;
 }
-/* .btnUser {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#B1DE85);
-  background: -o-linear-gradient(white,#B1DE85);
-  background: -moz-linear-gradient(white,#B1DE85);
-  background: linear-gradient(white,#B1DE85);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnUser {
   height: 8vh;
   width: 15vh;
@@ -226,22 +150,6 @@ body {
   color: black;
   cursor: pointer;
 }
-/* .btnLogout {
-  height: 5vh;
-  width: 15vh;
-  border-style: solid;
-  border-color: black;
-  border-radius: 15px;
-  background: -webkit-linear-gradient(white,#F09090);
-  background: -o-linear-gradient(white,#F09090);
-  background: -moz-linear-gradient(white,#F09090);
-  background: linear-gradient(white,#F09090);
-  color: black;
-  margin-top: 2vh;
-  font-size: 2vh;
-  font-family: Microsoft JhengHei;
-  cursor: pointer;
-} */
 .btnLogout {
   height: 8vh;
   width: 15vh;
@@ -283,23 +191,24 @@ body {
 #userDataView{
   z-index: 4;
   height: 58%;
-  width: 40%;
+  width: 30%;
   position: absolute;
   top: 21%;
-  left: 30%;
-  background-color: #FFE599;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  left: 35%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
 }
 #clossDiv{
-  z-index: 4;
   width: 30px;
   height: 30px;
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 20px;
   font-weight: bold;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
@@ -307,21 +216,31 @@ body {
 }
 #allTitle,#userTitle,#settingTitle,#instructionTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #userInnerDiv{
   width: 80%;
   height: 70%;
+  font-family: Microsoft JhengHei;
   position: absolute;
   top: 15%;
   left: 10%;
-  background-color: #FFF2CC;
-  border-style: solid;
-  border-color: #D6B656;
+  background-color: white;
+  border-width: 0px;
   overflow: auto;
 }
 #userH3Div{
   width: 90%;
   height: 90%;
+  font-family: Microsoft JhengHei;
   position: absolute;
   top: 5%;
   left: 5%;
@@ -334,11 +253,14 @@ body {
   border-style:none;
   position: absolute;
   top: 0px;
-  background-color: rgba(215, 120, 120, 0.9);
+  background-color: #AEC9EF;
 }
 #titleBar font{
-  position: absolute;
   font-size: calc(15px + 4vh);
+  font-weight: 900;
+  font-family: 'DFT_PJ7';
+  letter-spacing: 1vw;
+  position: absolute;
   top:40%;
   right:0;
   bottom:0;
@@ -441,11 +363,11 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -17.5vh;
-  margin-left: -10vw;
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
+  margin-top: -17.5vh;
+  margin-left: -10vw;
 }
 #endViewTitle{
   font-size: 7vh;
@@ -453,25 +375,25 @@ body {
   margin-top: 5vh;
 }
 .starImg{
-  margin: 6vh auto;
-  height: 3vw;
-  width: 3vw;
+  margin: 5vh auto;
+  height: 8vh;
+  width: 8vh;
   border: 0px;
   background: transparent;
-  background-image: url('../img/levelStar.png');
+  content:url('../img/levelStar.png');
   background-size: 100% 100%;
 }
 .unStarImg{
-  margin: 6vh auto;
-  height: 3vw;
-  width: 3vw;
+  margin: 5vh auto;
+  height: 8vh;
+  width: 8vh;
   border: 0px;
   background: transparent;
-  background-image: url('../img/levelStarNull.png');
+  content:url('../img/levelStarNull.png');
   background-size: 100% 100%;
 }
 #instructionH3{
-  margin-top: 8vh;
+  margin-top: 10vh;
 }
 #restartGameBtn{
   height: 10vh;
@@ -591,7 +513,7 @@ body {
 .instructionButton{
   width: 1.5vw;
   height: 1.5vw;
-  cursor: pointer;
+  font-family: 'DFT_PJ7';
   border-width: 0px;
   background-image: url('../img/instruction.png');
   background-repeat: no-repeat;
@@ -601,6 +523,7 @@ body {
   position: absolute;
   top: 2vh;
   right: 0px;
+  cursor: pointer;
 }
 #instructionView{
   z-index: 4;
@@ -611,15 +534,20 @@ body {
   left: 50%;
   margin-top: -30vh;
   margin-left: -20vw;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
   overflow: auto;
 }
 #instructionTable{
   width: 100%;
   position: relative;
-  border: 1;
-  margin-top: 5%;
+  border: 0px;
+  margin-top: 0%;
+}
+#instructionTable td{
+  border-width: 0px;
 }
 #actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
   height: 20px;
@@ -639,6 +567,7 @@ body {
 }
 .itemP{
   margin-top: 1.5vh;
+  font-family: Microsoft JhengHei;
   line-height: calc(5px + 2vh);
 }
 /*設定*/
