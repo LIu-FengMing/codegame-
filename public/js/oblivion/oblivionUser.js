@@ -1133,9 +1133,9 @@ function shelfBtn() {
   divTag.appendChild(b);
 
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "shelfTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "上架地圖";
+  document.getElementById("shelfTitle").innerHTML = "上架地圖";
 
   b = document.createElement("table");
   b.setAttribute("id", "shelfTable");

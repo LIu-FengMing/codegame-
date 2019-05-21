@@ -2,7 +2,6 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: Microsoft JhengHei;
 }
 html,body {
   height: 100%;
@@ -528,6 +527,18 @@ body {
   font-size: calc(10px + 2vw);
   font-weight: 900;
   font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
+}
+#shelfTitle{
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family:Microsoft JhengHei;
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
