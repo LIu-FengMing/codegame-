@@ -431,7 +431,10 @@ function setup() {
         "car", "endline", "questionMark", "F",
         "L", "R", "coin", "boon",
         "arrow", "lock", "lock2", "bullet",
-        "boon_hit", "questionstone", "arrowWite", "enemyTank", "treasure"
+        "boon_hit", "questionstone", "arrowWite", "enemyTank",
+        "unlock", "unlock2", "unlockfail2", "foggy", "peopleFoggy", "treasure",
+        "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "desret", "lawn", "sea",
     ]
     for (var i = 0; i < path.length; ++i) {
         var imgpath = "GameImage/" + path[i] + ".png";
@@ -622,30 +625,55 @@ function keyPressed() {
 
 
 function updateCanvas() {
-    noStroke();
+    var imgDesret = imgObject[parseInt(imgDic["desret"])];
+    var imgLawn = imgObject[parseInt(imgDic["lawn"])];
+    var imgSea = imgObject[parseInt(imgDic["sea"])];
+    edgeToHeight=edgeToEdge
+    edgeToWidth=edgeToEdge
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;
+
             if (map[i] == '0') {
-                fill('#bafba7');
+                // backgroundGraph.fill('#bafba7');
+                image(imgLawn, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else if (map[i] == '1') {
-                fill('#FFE599');
+                image(imgDesret, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else if (map[i] == '2') {
-                fill('#CCE5FF');
+                image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else {
                 console.log(map[i]);
             }
-            rect(x * edgeToEdge, y * edgeToEdge, edgeToEdge, edgeToEdge);
         }
     }
-    stroke(0);
-    for (var i = 1; i < mapSize; ++i) {
-        line(i * edgeToEdge, 0, i * edgeToEdge, height);
-        line(0, i * edgeToEdge, width, i * edgeToEdge);
-    }
+    // noStroke();
+    
+    // for (var y = 0; y < mapSize; ++y) {
+    //     for (var x = 0; x < mapSize; ++x) {
+    //         var i = y * mapSize + x;
+    //         if (map[i] == '0') {
+    //             fill('#bafba7');
+    //         }
+    //         else if (map[i] == '1') {
+    //             fill('#FFE599');
+    //         }
+    //         else if (map[i] == '2') {
+    //             fill('#CCE5FF');
+    //         }
+    //         else {
+    //             console.log(map[i]);
+    //         }
+    //         rect(x * edgeToEdge, y * edgeToEdge, edgeToEdge, edgeToEdge);
+    //     }
+    // }
+    // stroke(0);
+    // for (var i = 1; i < mapSize; ++i) {
+    //     line(i * edgeToEdge, 0, i * edgeToEdge, height);
+    //     line(0, i * edgeToEdge, width, i * edgeToEdge);
+    // }
 
     for (var i = 0; i < mapObject.length; ++i) {
         var obj = mapObject[i];

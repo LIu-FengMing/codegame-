@@ -114,7 +114,7 @@ function setup() {
     // var winW = Math.max($(window).width()* 0.4,windowWidth * 0.4, 506);
     // var winH = Math.max($(window).height()* 0.892,windowHeight * 0.892, 500);
     // var canvas = createCanvas((windowWidth * 0.4)-6, (windowHeight * 0.895)-5);
-    var canvas = createCanvas(winW - 6, winH - 6);
+    var canvas = createCanvas(winW+1, winH - 6);
     canvas.parent('divcanvas');
     canvas.background(211, 211, 211);
     width = canvas.width;
