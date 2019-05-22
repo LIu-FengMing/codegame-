@@ -56,19 +56,19 @@ body {
   background: none;
 }
 #goBack3{
-  width: 50px;
-  height: 50px;
+  z-index: 3;
+  width: 7vh;
+  height: 7vh;
   font-size: 40px;
-  border-width: 0;
-  background-image: url('../img/goBack.png');
-  background-size: 50px 50px;
+  background-image: url('../img/goBack3.png');
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
   position: absolute;
-  top: 50%;
+  border-width: 0;
+  top: 1.5vh;
   left: 1%;
-  transform:translateY(-50%);
   cursor: pointer;
 }
 
