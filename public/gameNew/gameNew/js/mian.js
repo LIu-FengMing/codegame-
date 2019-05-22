@@ -967,33 +967,12 @@ function updateBackgroundGraph() {
     var imgDesret = imgObject[parseInt(imgDic["desret"])];
     var imgLawn = imgObject[parseInt(imgDic["lawn"])];
     var imgSea = imgObject[parseInt(imgDic["sea"])];
-    for (var y = 0; y < mapSize; ++y) {
-        for (var x = 0; x < mapSize; ++x) {
-            var i = y * mapSize + x;
-
-            if (map[i] == '0') {
-                backgroundGraph.fill('#bafba7');
-            }
-            else if (map[i] == '1') {
-                backgroundGraph.fill('#FFE599');
-            }
-            else if (map[i] == '2') {
-                backgroundGraph.fill('#CCE5FF');
-            }
-            else {
-                console.log(map[i]);
-            }
-            backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight)    
-
-        }
-    }
     // for (var y = 0; y < mapSize; ++y) {
     //     for (var x = 0; x < mapSize; ++x) {
     //         var i = y * mapSize + x;
 
     //         if (map[i] == '0') {
-    //             // backgroundGraph.fill('#bafba7');
-    //             backgroundGraph.image(imgLawn, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+    //             backgroundGraph.fill('#bafba7');
     //         }
     //         else if (map[i] == '1') {
     //             backgroundGraph.fill('#FFE599');
@@ -1004,18 +983,34 @@ function updateBackgroundGraph() {
     //         else {
     //             console.log(map[i]);
     //         }
-    //         if (map[i] != '0') {
-
-    //             backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
-    //         }
+    //         backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight)    
 
     //     }
     // }
-    backgroundGraph.stroke(0);
-    for (var i = 1; i < mapSize; ++i) {
-        backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
-        backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
+    for (var y = 0; y < mapSize; ++y) {
+        for (var x = 0; x < mapSize; ++x) {
+            var i = y * mapSize + x;
+
+            if (map[i] == '0') {
+                // backgroundGraph.fill('#bafba7');
+                backgroundGraph.image(imgLawn, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            }
+            else if (map[i] == '1') {
+                backgroundGraph.image(imgDesret, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            }
+            else if (map[i] == '2') {
+                backgroundGraph.image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
+            }
+            else {
+                console.log(map[i]);
+            }
+        }
     }
+    // backgroundGraph.stroke(0);
+    // for (var i = 1; i < mapSize; ++i) {
+    //     backgroundGraph.line(0, i * edgeToHeight, width, i * edgeToHeight);
+    //     backgroundGraph.line(i * edgeToWidth, 0, i * edgeToWidth, height);
+    // }
 
     for (var i = 0; i < end_init.length; ++i) {
         // var pg = createGraphics(edgeToWidth, edgeToHeight);
