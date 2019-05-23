@@ -233,6 +233,7 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
+  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -300,7 +301,12 @@ function getArgs() {
     divTag.innerHTML = "";
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
                   "十一","十二","十三","十四","十五","十六","十七","十八",
-                  "十九","二十","二十一","二十二","二十三","二十四"]
+                  "十九","二十","二十一","二十二","二十三","二十四"];
+    var spanStyle = ["DFT_PJ7ZTAKB","DFT_PJ7VENPV","DFT_PJ7EWRAB","DFT_PJ7JYJQB","DFT_PJ7TQOBH","DFT_PJ7CJSLM","DFT_PJ7MOBSM","DFT_PJ7VGGCS","DFT_PJ7RQTIM","DFT_PJ7BIXSS",
+                     "DFT_PJ7QQUBP","DFT_PJ7ZIZMV","DFT_PJ7ELQCV","DFT_PJ7MCAUG","DFT_PJ7INNZA","DFT_PJ7RFRKG","DFT_PJ7WHJAG","DFT_PJ7GZOLM","DFT_PJ7PRSWS","DFT_PJ7UUKMS",
+                     "DFT_PJ7ZOCFN","DFT_PJ7EQUVN","DFT_PJ7OJZGT","DFT_PJ7TLQWT","DFT_PJ7CDVHZ"
+                    ];
+    divTag.style.fontFamily = spanStyle[args.level];
     divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
     //changeCollege(--args.level);
     thisLevelNum = args.level - 1;
@@ -339,6 +345,7 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7EFTWL";
   document.getElementById("allTitle").innerHTML = "關卡說明";
   if (selectMod == 2) {
     b = document.createElement("div");
@@ -577,6 +584,7 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
+  document.getElementById("settingTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("settingTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");

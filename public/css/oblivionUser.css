@@ -144,8 +144,8 @@ body {
   text-align: left;
   background-color: transparent;
   position: absolute;
-  bottom: 10%;
   left: 10%;
+  margin-top: 2vh;
 }
 #helperImgDiv1,#helperImgDiv2{
   height: 18vh;
@@ -197,7 +197,7 @@ body {
   width: 100%;
   position: relative;
   text-align: right;
-  top: 20%;
+  margin-top: 2vh;
   border: 1px;
 }
 #shelfTable td{
@@ -227,13 +227,13 @@ body {
 }
 #shelfNow{
   position: absolute;
-  bottom: 5px;
+  margin-top: 1.5vh;
   left: 10px;
   cursor: pointer;
 }
 #shelfLater{
   position: absolute;
-  bottom: 5px;
+  margin-top: 1.5vh;
   right: 10px;
   cursor: pointer;
 }
@@ -276,7 +276,7 @@ body {
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.74);
   color: white;
   min-width: 300px;
   overflow: auto;
@@ -285,7 +285,7 @@ body {
   font-size: calc(20px + 1vw);
 }
 #remindTrueBtn{
-  height: 5vh;
+  height: 5.5vh;
   width: 8vw;
   font-size: calc(15px + 1vw);
   border-radius: 15px;
@@ -508,15 +508,13 @@ body {
   height: 30px;
   background-color: white;
   color: black;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  line-height: 30px;
   border-color: rgb(0, 0, 0);
   border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
-  margin-top: 0px;
   cursor: pointer;
 }
 #allTitle,#userTitle{
@@ -525,7 +523,7 @@ body {
   color: #7C5A43;
   letter-spacing: 1vw;
   font-size: calc(10px + 2vw);
-  font-weight: 900;
+  font-weight: 100;
   font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;

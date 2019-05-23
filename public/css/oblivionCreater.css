@@ -143,8 +143,8 @@ body {
   text-align: left;
   background-color: transparent;
   position: absolute;
-  bottom: 10%;
   left: 10%;
+  margin-top: 2vh;
 }
 #helperImgDiv1,#helperImgDiv2{
   height: 18vh;
@@ -268,15 +268,14 @@ body {
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
 }
 #clossDiv{
-  z-index: 4;
   width: 30px;
   height: 30px;
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 20px;
   font-weight: bold;
   border-color: rgb(0, 0, 0);
-  border-width: bold;
+  border-width: 0px;
   position: absolute;
   top: 1%;
   right: 1%;
@@ -284,6 +283,15 @@ body {
 }
 #allTitle,#userTitle{
   margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 100;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #userInnerDiv{
   width: 80%;
@@ -808,7 +816,7 @@ body {
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: rgba(0, 0, 0, 0);
+  background-color:  rgba(0, 0, 0, 0.74);
   color: white;
   min-width: 300px;
   overflow: auto;

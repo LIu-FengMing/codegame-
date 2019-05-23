@@ -61,10 +61,10 @@
 #userDataView{
   z-index: 4;
   height: 58%;
-  width: 30%;
+  width: 35%;
   position: absolute;
   top: 21%;
-  left: 35%;
+  left: 30%;
   background-color: #FFC777;
   border-style: solid;
   border-color: white;
@@ -90,7 +90,7 @@
   height: 5vh;
   color: #7C5A43;
   font-size: calc(10px + 2vw);
-  font-weight: 900;
+  font-weight: 100;
   font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;

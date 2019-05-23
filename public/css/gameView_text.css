@@ -314,6 +314,8 @@ body {
   height: 5vh;
   color: #7C5A43;
   text-align: center;
+  font-family: Microsoft JhengHei;
+  font-weight: 100;
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
@@ -343,15 +345,15 @@ body {
   width: 100%;
   height: 10.5%;
   border-style:none;
+  text-align: center;
   position: absolute;
   top: 0px;
-  background-color: #C99500;
+  background-color: #43A7AE;
 }
-#titleBar font{
-  font-size: calc(15px + 4vh);
-  font-weight: 900;
-  font-family: 'DFT_PJ7';
+#titleBar span{
   position: absolute;
+  font-size: calc(15px + 4vh);
+  font-weight: 100;
   top:40%;
   right:0;
   bottom:0;
@@ -400,6 +402,7 @@ body {
   width: 22%;
   height: 100%;
   font-size: 25px;
+  font-family: Microsoft JhengHei;
   color: white;
   line-height: 24px;
   background-color: rgb(117, 117, 117);
@@ -691,6 +694,7 @@ body {
 }
 #instructionTable{
   width: 100%;
+  font-family: Microsoft JhengHei;
   position: relative;
   border: 0px;
   margin-top: 0%;
