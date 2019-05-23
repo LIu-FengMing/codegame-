@@ -190,9 +190,11 @@ body {
 }
 .titleH1{
   z-index: 3;
-  font-size: 6vh;
+  font-size: calc(15px + 3.5vh);
   letter-spacing: 3px;
-  margin-top: 2vh;
+  margin-top: calc(15px + 2vh);
+  font-family: 'DFT_PJ7';
+  font-weight: 100;
 }
 .centerLost font{
   font-size: 6vh;
