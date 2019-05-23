@@ -338,7 +338,7 @@ body {
   height: 70%;
   font-family: Microsoft JhengHei;
   position: absolute;
-  top: 15%;
+  margin-top: 2.5vh;
   left: 10%;
   background-color: white;
   border-width: 0px;
@@ -466,7 +466,10 @@ body {
 }
 #endViewTitle{
   font-size: 7vh;
-  font-weight: bold;
+  color: #7C5A43;
+  text-align: center;
+  font-family: Microsoft JhengHei;
+  font-weight: 100;
   margin-top: 5vh;
 }
 .starImg{

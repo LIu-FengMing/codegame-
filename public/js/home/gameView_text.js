@@ -1193,9 +1193,11 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   b.setAttribute("id", "endViewTitle");
   divTag.appendChild(b);
   if (starNum != 0) {
+    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7CAZGN";
     document.getElementById("endViewTitle").innerHTML = "通關成功";
     updateEasyTextLevel(starNum);
   } else {
+    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7KRIXY";
     document.getElementById("endViewTitle").innerHTML = "通關失敗";
   }
   b = document.createElement("div");

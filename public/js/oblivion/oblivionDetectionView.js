@@ -226,6 +226,7 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
+  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -317,6 +318,7 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7MAZLT";
   document.getElementById("allTitle").innerHTML = "地圖說明";
   divTag = document.getElementById("helperView");
   b = document.createElement("div");
@@ -370,6 +372,7 @@ function instructionView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "instructionTitle");
   divTag.appendChild(b);
+  document.getElementById("instructionTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("instructionTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
@@ -483,6 +486,7 @@ function settingAllView(mainDiv) {
     b = document.createElement("h1");
     b.setAttribute("id", "settingTitle");
     divTag.appendChild(b);
+    document.getElementById("settingTitle").style.fontFamily = "DFT_PJ7ZCCGL";
     document.getElementById("settingTitle").innerHTML = "設定";
     b = document.createElement("table");
     b.setAttribute("id", "settingAllTable");
@@ -934,6 +938,7 @@ function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
   //   document.getElementById("endViewTitle").innerHTML = "檢測成功";
   // }
   if(starNum>0){
+    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7JKHKI";
     document.getElementById("endViewTitle").innerHTML = "檢測成功";
     console.log(mapID);
     b = document.createElement("input");
@@ -964,7 +969,7 @@ function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
       b.innerHTML = errMessage;
       divTag.appendChild(b);
     }
-
+    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7GVPIW";
     document.getElementById("endViewTitle").innerHTML = "檢測失敗";
     b = document.createElement("input");
     b.setAttribute("type", "button");
