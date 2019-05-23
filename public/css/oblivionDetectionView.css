@@ -132,7 +132,7 @@ body {
   position: absolute;
   top: 7px;
   left: 0px;
-  font-size: 20px;
+  font-size: calc(5px + 1vw);
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
@@ -141,7 +141,7 @@ body {
   text-decoration:underline;
 }
 .btnUser {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -151,7 +151,7 @@ body {
   cursor: pointer;
 }
 .btnLogout {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -169,9 +169,9 @@ body {
   margin-top: 4vh;
 }
 .imgIcon{
-  margin: 2vh 0px 0px 0px;
-  width: 6vh;
-  height: 6vh;
+  margin: 2.5vh 0px 0px 0px;
+  width: 5vh;
+  height: 5vh;
   vertical-align: top;
 }
 .starNumber{
