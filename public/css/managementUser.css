@@ -374,14 +374,16 @@ body {
   width: 20vh;
   height: 6vh;
   font-size: 25px;
-  border-radius: 15px;
-  border-style: solid;
-  border-color: black;
+  border: 0;
   cursor: pointer;
 }
 #changeStatus{
   position: absolute;
   right: 2.5%;
   bottom: 1%;
-  background-color: #FFF2CC;
+  background-image: url("../img/blockade.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }

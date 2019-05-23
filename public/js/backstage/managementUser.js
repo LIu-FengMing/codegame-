@@ -104,9 +104,9 @@ function selectionLevel(thisObject) {
   lastObject = thisObject;
   // console.log(document.getElementById("td0" + mapIndex + "6").innerHTML);
   if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
-    document.getElementById("changeStatus").value = "解除封鎖";
+    document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
   } else {
-    document.getElementById("changeStatus").value = "封鎖";
+    document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
   }
 }
 function changeStatus() {
@@ -116,12 +116,12 @@ function changeStatus() {
     var userstatus = 0;
     if (document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖") {
       document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
-      document.getElementById("changeStatus").value = "封鎖";
+      document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
       allUserData[thisIndex].userstatus = 0;
       userstatus = 0
     } else {
       document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
-      document.getElementById("changeStatus").value = "解除封鎖";
+      document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
       allUserData[thisIndex].userstatus = 1;
       userstatus = 1
     }
@@ -145,7 +145,7 @@ function changeStatus() {
 
   }
   else {
-    remindValue = "請點選其中一張地圖";
+    remindValue = "請點選一位使用者";
     remindView(remindValue);
   }
 }
