@@ -73,9 +73,8 @@ body {
 .leftMark{
   width: 100%;
   height: 60px;
-  margin: 0px auto;
   position: relative;
-  top: 0px;
+  top: -30px;
 }
 #helperBtn{
   width: 100px;
@@ -132,7 +131,7 @@ body {
   position: absolute;
   top: 7px;
   left: 0px;
-  font-size: 20px;
+  font-size: calc(5px + 1vw);
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
@@ -141,7 +140,7 @@ body {
   text-decoration:underline;
 }
 .btnUser {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -151,7 +150,7 @@ body {
   cursor: pointer;
 }
 .btnLogout {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -169,9 +168,9 @@ body {
   margin-top: 4vh;
 }
 .imgIcon{
-  margin: 2vh 0px 0px 0px;
-  width: 6vh;
-  height: 6vh;
+  margin: 2.5vh 0px 0px 0px;
+  width: 5vh;
+  height: 5vh;
   vertical-align: top;
 }
 .starNumber{
@@ -220,7 +219,7 @@ body {
   color: #7C5A43;
   letter-spacing: 1vw;
   font-size: calc(10px + 2vw);
-  font-weight: 900;
+  font-weight: 100;
   font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;
@@ -231,7 +230,7 @@ body {
   height: 70%;
   font-family: Microsoft JhengHei;
   position: absolute;
-  top: 15%;
+  margin-top: 2.5vh;
   left: 10%;
   background-color: white;
   border-width: 0px;
@@ -258,7 +257,7 @@ body {
 #titleBar font{
   font-size: calc(15px + 4vh);
   font-weight: 900;
-  font-family: 'DFT_PJ7';
+  font-family: Microsoft JhengHei;
   letter-spacing: 1vw;
   position: absolute;
   top:40%;
@@ -359,20 +358,25 @@ body {
   z-index: 999;
   height: 40vh;
   width: 20vw;
+  font-family: Microsoft JhengHei;
   border-radius: 30px;
+  background-color: #FFC777;
+  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: #FFF2CC;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
-  overflow: auto;
   margin-top: -17.5vh;
   margin-left: -10vw;
+  overflow: auto;
 }
 #endViewTitle{
   font-size: 7vh;
-  font-weight: bold;
+  color: #7C5A43;
+  text-align: center;
+  font-family: Microsoft JhengHei;
+  font-weight: 100;
   margin-top: 5vh;
+  margin-bottom: 4vh;
 }
 .starImg{
   margin: 5vh auto;
@@ -396,13 +400,14 @@ body {
   margin-top: 10vh;
 }
 #restartGameBtn{
-  height: 10vh;
+  height: 6vh;
   width: 8vw;
-  font-size: 3vh;
+  font-size: calc(5px + 1.5vw);
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
-  background-color: #ff9999;
+  border-color: black;
+  background-color: rgba(255, 255, 255, 0);
   position: absolute;
   left: 3%;
   bottom: 3%;
@@ -411,7 +416,7 @@ body {
 #errTextarea{
   height: 9vh;
   width: 80%;
-  font-size: calc(10px + 0.5vw);
+  font-size: calc(6px + 0.5vw);
   border: 0px;
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
@@ -420,26 +425,28 @@ body {
   transform: translate(-50%,0);
 }
 .failBackBtn{
-  height: 10vh;
+  height: 6vh;
   width: 8vw;
-  font-size: 3vh;
+  font-size: calc(5px + 1.5vw);
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
-  background-color: #99ff99;
+  border-color: black;
+  background-color: rgba(255, 255, 255, 0);
   position: absolute;
   right: 3%;
   bottom: 3%;
   cursor: pointer;
 }
 .successBackBtn{
-  height: 10vh;
+  height: 6vh;
   width: 8vw;
-  font-size: 2vw;
+  font-size: calc(5px + 1.5vw);
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
-  background-color: #99ff99;
+  border-color: black;
+  background-color: rgba(255, 255, 255, 0);
   position: absolute;
   left: 50%;
   bottom: 3%;
@@ -452,59 +459,58 @@ body {
   z-index: 1;
   background-color: none;
   position: absolute;
-  top: 3%;
-  right: 3%;
+  top: 1%;
+  right: 1%;
 }
 #textButtonDiv .runButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/start.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 2%;
+  top: 0%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .clearButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/clearButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 16%;
+  top: 11%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .restartButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
-  font-size: 5vh;
   background-image: url('../img/RestartButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 30%;
+  top: 22%;
   right: 0px;
   cursor: pointer;
 }
 #textButtonDiv .settingButton{
-  width: 8vh;
-  height: 8vh;
+  width: 9vh;
+  height: 9vh;
   border: 0px;
   background-image: url('../img/SettingButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 44%;
+  top: 33%;
   right: 0px;
   cursor: pointer;
 }
@@ -542,6 +548,7 @@ body {
 }
 #instructionTable{
   width: 100%;
+  font-family: Microsoft JhengHei;
   position: relative;
   border: 0px;
   margin-top: 0%;

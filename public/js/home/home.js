@@ -287,6 +287,7 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
+  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -502,6 +503,7 @@ function equipageView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7UKRFQ";
   document.getElementById("allTitle").innerHTML = "裝備";
   b = document.createElement("table");
   b.setAttribute("id", "equipageTable");
@@ -969,6 +971,7 @@ function instructionView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("allTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
@@ -1081,6 +1084,7 @@ function achievementView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7LIFGG";
   document.getElementById("allTitle").innerHTML = "成就";
 
   b = document.createElement("table");
@@ -1239,6 +1243,7 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("allTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");

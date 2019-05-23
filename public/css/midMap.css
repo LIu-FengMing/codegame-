@@ -90,15 +90,15 @@
 #btn25,#img25{left: 90%;bottom: 83.7%;}
 #levelDiv{
   z-index: 3;
-  width: 50vh;
-  height: 35vh;
+  width: 52vh;
+  height: 40vh;
   font-size: 2.5vh;
   font-weight:bold;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -17.5vh;
-  margin-left: -25vh;
+  margin-top: -20vh;
+  margin-left: -26vh;
   background-color: #FFC777;
   overflow: auto;
 }
@@ -163,7 +163,7 @@
   font-weight:bold;
   position: absolute;
   right: 6vh;
-  bottom: 2vh;
+  margin-top: 0.5vh;
   font-size: 2.5vh;
   border-style: solid;
   border-color: black;
@@ -179,7 +179,7 @@
   font-weight:bold;
   position: absolute;
   left: 6vh;
-  bottom: 2vh;
+  margin-top: 0.5vh;
   font-size: 2.5vh;
   border-style: solid;
   border-color: black;
@@ -212,7 +212,7 @@
   width: 25vw;
   height: 5vw;
   position: absolute;
-  bottom: 5px;
+  bottom: 1.5vh;
   right: 1%;
 }
 #buttonDiv input[type="button"]{
@@ -261,10 +261,10 @@
 }
 #centerBlocklyView{
   z-index: 4;
-  height: 60%;
+  height: 70%;
   width: 30%;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 35%;
   background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);

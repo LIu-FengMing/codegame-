@@ -80,9 +80,8 @@ body {
 .leftMark{
   width: 100%;
   height: 60px;
-  margin: 0px auto;
   position: relative;
-  top: 0px;
+  top: -30px;
 }
 #helperBtn{
   width: 100px;
@@ -227,7 +226,7 @@ body {
   position: absolute;
   top: 7px;
   left: 0px;
-  font-size: 20px;
+  font-size: calc(5px + 1vw);
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
@@ -236,7 +235,7 @@ body {
   text-decoration:underline;
 }
 .btnUser {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -246,7 +245,7 @@ body {
   cursor: pointer;
 }
 .btnLogout {
-  height: 8vh;
+  height: 6vh;
   width: 15vh;
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
@@ -264,9 +263,9 @@ body {
   margin-top: 4vh;
 }
 .imgIcon{
-  margin: 2vh 0px 0px 0px;
-  width: 6vh;
-  height: 6vh;
+  margin: 2.5vh 0px 0px 0px;
+  width: 5vh;
+  height: 5vh;
   vertical-align: top;
 }
 .starNumber{
@@ -314,6 +313,8 @@ body {
   height: 5vh;
   color: #7C5A43;
   text-align: center;
+  font-family: Microsoft JhengHei;
+  font-weight: 100;
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
@@ -323,7 +324,7 @@ body {
   height: 70%;
   font-family: Microsoft JhengHei;
   position: absolute;
-  top: 15%;
+  margin-top: 2.5vh;
   left: 10%;
   background-color: white;
   border-width: 0px;
@@ -343,15 +344,15 @@ body {
   width: 100%;
   height: 10.5%;
   border-style:none;
+  text-align: center;
   position: absolute;
   top: 0px;
-  background-color: #C99500;
+  background-color: #43A7AE;
 }
-#titleBar font{
-  font-size: calc(15px + 4vh);
-  font-weight: 900;
-  font-family: 'DFT_PJ7';
+#titleBar span{
   position: absolute;
+  font-size: calc(15px + 4vh);
+  font-weight: 100;
   top:40%;
   right:0;
   bottom:0;
@@ -400,6 +401,7 @@ body {
   width: 22%;
   height: 100%;
   font-size: 25px;
+  font-family: Microsoft JhengHei;
   color: white;
   line-height: 24px;
   background-color: rgb(117, 117, 117);
@@ -478,7 +480,10 @@ body {
 }
 #endViewTitle{
   font-size: 7vh;
-  font-weight: bold;
+  color: #7C5A43;
+  text-align: center;
+  font-family: Microsoft JhengHei;
+  font-weight: 100;
   margin-top: 5vh;
 }
 .starImg{
@@ -691,6 +696,7 @@ body {
 }
 #instructionTable{
   width: 100%;
+  font-family: Microsoft JhengHei;
   position: relative;
   border: 0px;
   margin-top: 0%;

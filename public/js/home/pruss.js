@@ -269,9 +269,10 @@ function closeFunc(thisDiv, thisDiv2) {
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
+  b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "個人資料";
+  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
+  document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
@@ -764,6 +765,7 @@ function equipageView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7UKRFQ";
   document.getElementById("allTitle").innerHTML = "裝備";
   b = document.createElement("table");
   b.setAttribute("id", "equipageTable");
@@ -974,12 +976,12 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault0").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault1").innerHTML = "";
     // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    document.getElementById("levelUpDefault0").className = "levelUpDefault2";
+    document.getElementById("levelUpDefault1").className = "levelUpDefault2";
   }
   else if (swordLevel == 10) {
     document.getElementById("levelUpDefault0").innerHTML = "";
-    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
+    var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿";
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
@@ -987,7 +989,7 @@ function equipageView(mainDiv) {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
     document.getElementById("levelUpFont1").innerHTML = text;
-    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
+    // document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
 
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
@@ -1008,7 +1010,7 @@ function equipageView(mainDiv) {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
     var text = "x" + star;
     document.getElementById("levelUpFont0").innerHTML = text;
-    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
+    // document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
@@ -1039,7 +1041,8 @@ function equipageView(mainDiv) {
   }
   console.log(swordLevel, shieldLevel);
 }
-/*武器*/
+
+
 function resetEquipClick() {
   console.log("123123131321");
   var scriptData = {
@@ -1061,7 +1064,7 @@ function resetEquipClick() {
     }
   })
 }
-
+/*武器*/
 function swordLevelUp() {
   b = document.getElementById("swordLevelUpinnerDiv" + swordLevel);
   if (swordLevel == 0) {
@@ -1232,6 +1235,7 @@ function instructionView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("allTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
@@ -1344,6 +1348,7 @@ function achievementView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7LIFGG";
   document.getElementById("allTitle").innerHTML = "成就";
 
   b = document.createElement("table");
@@ -1502,6 +1507,7 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("allTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");

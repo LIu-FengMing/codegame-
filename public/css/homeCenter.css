@@ -20,7 +20,7 @@
   color: #7C5A43;
   letter-spacing: 1vw;
   font-size: calc(10px + 2vw);
-  font-weight: 900;
+  font-weight: 100;
   font-family: 'DFPingJuStd-W7';
   border-style: solid;
   border-color: #7C5A43;
@@ -36,13 +36,13 @@
 }
 #equipageView{
   z-index: 4;
-  height: 45vh;
-  width: 25vw;
+  height: 47vh;
+  width: 27vw;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -22.5vh;
-  margin-left: -12.5vw;
+  margin-top: -23.5vh;
+  margin-left: -13.5vw;
   background-color: #FFC777;
   border-style: solid;
   border-color: white;
@@ -53,7 +53,7 @@
   z-index: 4;
   height: 20%;
   width: 100%;
-  /* font-family: Microsoft JhengHei; */
+  font-family: Microsoft JhengHei;
   position: absolute;
   top: 0px;
   background-color: rgba(112, 159, 222, 1);
@@ -72,6 +72,7 @@
 }
 #equipageTable{
   width: 100%;
+  font-family: Microsoft JhengHei;
   position: relative;
   border: 0px;
   margin-top: 0%;
@@ -289,6 +290,7 @@
   z-index: 4;
   height: 60vh;
   width: 40vw;
+  font-family: Microsoft JhengHei;
   position: absolute;
   top: 50%;
   left: 50%;
