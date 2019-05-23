@@ -1169,7 +1169,8 @@ function updateCanvas() {
                 /*777777 */
                 // console.log(dx, dy, "hp:", hp);
                 // fill(0);
-                var ndy = dy + 0.10 * edgeToHeight;
+                // var ndy = dy + 0.10 * edgeToHeight;
+                var ndy = dy;
                 // text(hp, dx+0.65*edgeToWidth, dy);
                 if (hp >= 10) {//40 50
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
@@ -1180,11 +1181,11 @@ function updateCanvas() {
                 else {  //45
                     if (hp < 0) {
                         var d = imgObject[parseInt(imgDic["0".toString()])];
-                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                        image(d, dx + 0.65 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                     else {
-                        var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
-                        image(d, dx + 0.45 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                        var d = imgObject[parseInt(imgDic[Math.floor(hp).toString()])];
+                        image(d, dx +  0.65 * edgeToWidth, ndy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                 }
                 image(img, dx, ndy, edgeToWidth, edgeToHeight * 0.15);
@@ -1252,7 +1253,8 @@ function updateCanvas() {
                 /*777777 */
                 // console.log(dx, dy, "hp:", hp);
                 // fill(0);
-                var ndy = dy + 0.10 * edgeToHeight;
+                // var ndy = dy + 0.10 * edgeToHeight;
+                var ndy = dy ;
                 // text(hp, dx+0.65*edgeToWidth, dy);
                 if (hp >= 10) {//40 50
                     var d10 = imgObject[parseInt(imgDic[Math.floor(hp / 10).toString()])];
@@ -1263,7 +1265,7 @@ function updateCanvas() {
                 else {  //45
                     if (hp < 0) {
                         var d = imgObject[parseInt(imgDic["0".toString()])];
-                        image(d, dx + 0.65 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
+                        image(d, dx + 0.45 * edgeToWidth, dy, edgeToWidth * 0.1, edgeToHeight * 0.15);
                     }
                     else {
                         var d = imgObject[parseInt(imgDic[Math.floor(hp % 10).toString()])];
