@@ -551,6 +551,7 @@ function btnClick(number) {
   b.setAttribute("rows", "20");
   b.setAttribute("cols", "20");
   b.setAttribute("id", "levelDescriptiontextarea");
+  b.setAttribute("readonly", "readonly");
   divTag.appendChild(b);
   b.innerHTML = levelDescription.Early[number].description;
   b = document.createElement("br");
@@ -625,6 +626,7 @@ function viewRecord(number) {
   divTag.appendChild(b);
   b = document.createElement("textarea");
   b.setAttribute("id", "viewRecordtextarea");
+  b.setAttribute("readonly", "readonly");
   divTag.appendChild(b);
   document.getElementById("viewRecordtextarea").innerHTML = codeText;
   for (var i = 0; i < 3; i++) {

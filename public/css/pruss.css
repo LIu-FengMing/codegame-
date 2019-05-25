@@ -336,6 +336,33 @@
   left: 10%;
   overflow: auto;
 }
+#recordChangeTable{
+  width: 100%;
+  position: absolute;
+  top: 85%;
+  overflow: auto;
+}
+#recordChangeTable input[type="button"]{
+  font-size: calc(5px + 5vh);
+  color: green;
+  background-color: rgb(0,0,0,0);
+  border: 0;
+  position: relative;
+  cursor: pointer;
+}
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+#recordChangeTable font{
+  width: 5vw;
+  height: 80%;
+  font-size: calc(5px + 2vh);
+  font-family:Microsoft JhengHei;
+  background-color: rgb(0,0,0,0);
+  position: relative;
+}
 #instructionFont{
   font-size: calc(5px + 1vw);
 }

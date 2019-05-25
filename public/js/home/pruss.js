@@ -575,6 +575,7 @@ function btnClick(number) {
   b.setAttribute("rows", "20");
   b.setAttribute("cols", "20");
   b.setAttribute("id", "levelDescriptiontextarea");
+  b.setAttribute("readonly", "readonly");
   divTag.appendChild(b);
   b.innerHTML = levelDescription.Early[number].description;
   b = document.createElement("br");
@@ -612,18 +613,19 @@ function btnClick(number) {
   }
   divTag.appendChild(b);
 }
+var lastRecord,allRecord=0;
 function viewRecord(number) {
   var divTag = document.getElementById("centerBlockly");
   var isCheckClicked, codeText, codeNum, niceRecord = 999, niceStar = -1;
   isCheckClicked = document.getElementById("myonoffswitch");
   // console.log(number);
-  var lastRecord;
   if (isCheckClicked.checked) {
     if (user.EasyEmpire.codeLevel.length == 0) {
       codeText = "查無紀錄";
       codeNum = 0;
     } else {
       try {
+        allRecord = user.EasyEmpire.codeLevel[number].challengeLog.length;
         for (var i = 0; i < user.EasyEmpire.codeLevel[number].challengeLog.length; i++) {
           if (user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar) {
             niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
@@ -648,6 +650,7 @@ function viewRecord(number) {
       codeNum = 0;
     } else {
       try {
+        allRecord = user.EasyEmpire.codeLevel[number].challengeLog.length;
         for (var i = 0; i < user.EasyEmpire.codeLevel[number].challengeLog.length; i++) {
           if (user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar) {
             niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
@@ -688,13 +691,66 @@ function viewRecord(number) {
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "最佳紀錄";
+  //歷史紀錄相關訊息table
   b = document.createElement("table");
   b.setAttribute("id", "viewRecordTable");
   divTag.appendChild(b);
+  //歷史紀錄程式碼
   b = document.createElement("textarea");
   b.setAttribute("id", "viewRecordtextarea");
+  b.setAttribute("readonly", "readonly");
   divTag.appendChild(b);
   document.getElementById("viewRecordtextarea").innerHTML = codeText;
+  //變換歷史紀錄的table
+  /*b = document.createElement("table");
+  b.setAttribute("id", "recordChangeTable");
+  divTag.appendChild(b);
+  divTag = document.getElementById("recordChangeTable");
+  b = document.createElement("tr");
+  b.setAttribute("id", "recordChangeTr");
+  divTag.appendChild(b);
+
+  //上一個的按鈕
+  divTag = document.getElementById("recordChangeTr");
+  b = document.createElement("td");
+  b.setAttribute("id", "recordChangeLastTd");
+  divTag.appendChild(b);
+  divTag = document.getElementById("recordChangeLastTd");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("value", "◀");
+  b.setAttribute("id", "recordChangeLastBtn");
+  if(lastRecord == 0){
+    b.setAttribute("class", "disabled");
+  }
+  b.setAttribute("onclick", "changeViewRecord(" + number +",-1)");
+  divTag.appendChild(b);
+  //顯示(第幾個/全部)文字
+  divTag = document.getElementById("recordChangeTr");
+  b = document.createElement("td");
+  b.setAttribute("id", "recordChangeFontTd");
+  divTag.appendChild(b);
+  divTag = document.getElementById("recordChangeFontTd");
+  b = document.createElement("font");
+  b.setAttribute("id", "recordChangeFont");
+  b.innerHTML = "（" + parseInt(lastRecord+1) + "／" + allRecord + "）";
+  divTag.appendChild(b);
+  //下一個的按鈕
+  divTag = document.getElementById("recordChangeTr");
+  b = document.createElement("td");
+  b.setAttribute("id", "recordChangeNextTd");
+  divTag.appendChild(b);
+  divTag = document.getElementById("recordChangeNextTd");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("value", "▶");
+  b.setAttribute("id", "recordChangeNextBtn");
+  if (lastRecord == (parseInt(allRecord)-1)){
+    b.setAttribute("class", "disabled");
+  }
+  b.setAttribute("onclick", "changeViewRecord(" + number +",1)");
+  divTag.appendChild(b);*/
+  //相關訊息實際創出內容的地方
   for (var i = 0; i < 3; i++) {
     divTag = document.getElementById("viewRecordTable");
     b = document.createElement("tr");
@@ -735,7 +791,75 @@ function viewRecord(number) {
 
   }
 }
+function changeViewRecord(number,changeType) {
+  var isCheckClicked, codeText, codeNum, niceRecord = 999, niceStar = -1;
+  isCheckClicked = document.getElementById("myonoffswitch");
 
+  if (isCheckClicked.checked) {
+    if (user.EasyEmpire.codeLevel.length == 0) {
+      codeText = "查無紀錄";
+      codeNum = 0;
+    } else {
+      try {
+        lastRecord = lastRecord + parseInt(changeType);
+        niceStar = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].srarNum;
+        var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
+        codeText = result;
+        codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
+      } catch (e) {
+        codeText = "查無資料";
+        codeNum = 0;
+      }
+    }
+  } else {
+    if (user.EasyEmpire.codeLevel.length == 0) {
+      codeText = "查無紀錄";
+      codeNum = 0;
+    } else {
+      try {
+        lastRecord = lastRecord + parseInt(changeType);
+        niceStar = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].srarNum;
+        var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
+        codeText = result;
+        codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;;
+      } catch (e) {
+        codeText = "查無資料";
+        codeNum = 0;
+      }
+    }
+  }
+  if(lastRecord == 0){
+    document.getElementById("recordChangeLastBtn").className = "disabled";
+  }else if (lastRecord == (parseInt(allRecord)-1)){
+    document.getElementById("recordChangeNextBtn").className = "disabled";
+  }
+  if(lastRecord > 0){
+    document.getElementById("recordChangeLastBtn").className = "";
+  }
+  if(lastRecord < (parseInt(allRecord)-1)){
+    document.getElementById("recordChangeNextBtn").className = "";
+  }
+  document.getElementById("viewRecordtextarea").innerHTML = codeText;
+  document.getElementById("recordChangeFontTd").innerHTML = "（" + parseInt(lastRecord+1) + "／" + allRecord + "）";
+  divTag = document.getElementById("viewRecordTr0viewRecordTd1")
+  divTag.innerHTML = "";
+  for (var k = 0; k < 3; k++) {
+    b = document.createElement("img");
+    b.setAttribute("id", "startImg" + k);
+    if (k < niceStar) {
+      b.setAttribute("class", "startImg");
+      /*document.getElementById("startImg" + k).className = "startImg";
+      console.log(document.getElementById("startImg" + k).className);*/
+    } else {
+      b.setAttribute("class", "unStartImg");
+      /*document.getElementById("startImg" + k).className = "";
+      document.getElementById("startImg" + k).className = "unStartImg";
+      console.log("0:","startImg" + k,document.getElementById("startImg" + k).className);*/
+    }
+    divTag.appendChild(b);
+  }
+  document.getElementById("instructionFont").innerHTML = codeNum;
+}
 //////////////////////////////////////////////////
 //              homeBtn.js                        //
 //////////////////////////////////////////////////
