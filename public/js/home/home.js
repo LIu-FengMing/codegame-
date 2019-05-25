@@ -830,8 +830,8 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault0").innerHTML = "";
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
-    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
+    document.getElementById("levelUpDefault0").innerHTML = "";
+    document.getElementById("levelUpDefault0").className = "highestLevel";
 
     // var star = equipmentData.levelUpLevel[levelUpLevel].star;
     // var text = "x" + star;
@@ -904,8 +904,8 @@ function shieldLevelUp() {
     document.getElementById("levelUpDefault1").innerHTML = "";
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    document.getElementById("levelUpDefault1").innerHTML = "";
+    document.getElementById("levelUpDefault1").className = "highestLevel";
     // var star = equipmentData.levelUpLevel[levelUpLevel].star;
     // var text = "x" + star;
     // document.getElementById("levelUpFont1").innerHTML = text;

@@ -157,6 +157,20 @@
   position: relative;
   pointer-events: none;
 }
+.highestLevel{
+  height: 20vh;
+  width: 20vh;
+  font-size: 20px;
+  font-weight: 100;
+  border-width: 0px;
+  background-image: url("../img/highestLevel.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: relative;
+  pointer-events: none;
+}
 #levelUp1{
   height: 60px;
   width: 75px;
