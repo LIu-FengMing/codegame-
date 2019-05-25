@@ -1797,6 +1797,9 @@ function sendSession() {
 /*變更關卡進度*/
 function changeLevelStage() {
   var isCheckClicked;
+  var levelStarStr = [0,0,0,0,0,0,0,0,0,0,
+                      0,0,0,0,0,0,0,0,0,0,
+                      0,0,0,0];
   isCheckClicked = document.getElementById("myonoffswitch");
   isBlockly = isCheckClicked.checked;
   sendSession();
@@ -1807,12 +1810,18 @@ function changeLevelStage() {
     if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
       codeLevel = parseInt(element.level);
     }
+    if(element.HighestStarNum >= levelStarStr[index]){
+      levelStarStr[index] = element.HighestStarNum;
+    }
   }
   var blockLevel = -1;
   for (let index = 0; index < user.EasyEmpire.blockLevel.length; index++) {
     const element = user.EasyEmpire.blockLevel[index];
     if (parseInt(element.level) > blockLevel && element.HighestStarNum > 0) {
       blockLevel = parseInt(element.level);
+    }
+    if(element.HighestStarNum >= levelStarStr[index]){
+      levelStarStr[index] = element.HighestStarNum;
     }
   }
   // var blockLevel=user.EasyEmpire.blockLevel.length+1;
@@ -1833,24 +1842,27 @@ function changeLevelStage() {
     ++totalLevel;
   }
   for (var i = 0; i < 24; i++) {
+    var elementCode = user.EasyEmpire.codeLevel[i];
+    var elementBlockly = user.EasyEmpire.blockLevel[i];
     if (i < totalLevel) {
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
-      divTag = document.getElementById("img" + i);
-      divTag.src = "img/allClrBtn.png";
+      if(levelStarStr[i] == 3){
+        divTag = document.getElementById("img" + i);
+        divTag.src = "img/allClrBtn.png";
+      }else if(levelStarStr[i] == 2){
+        divTag = document.getElementById("img" + i);
+        divTag.src = "img/twoStarBtn.png";
+      }else if(levelStarStr[i] == 1){
+        divTag = document.getElementById("img" + i);
+        divTag.src = "img/oneStarBtn.png";
+      }else{
+        divTag = document.getElementById("img" + i);
+        divTag.src = "img/unPlayBtn.png";
+      }
     } else {
       divTag = document.getElementById("btn" + i);
       divTag.className = "unbtn";
-      divTag = document.getElementById("img" + i);
-      divTag.src = "img/unPlayBtn.png";
-    }
-    if(i>0&&i<10){
-      divTag = document.getElementById("img" + i);
-      divTag.src = "img/oneStarBtn.png";
-    }else if(i>10&&i<20){
-      divTag = document.getElementById("img" + i);
-      divTag.src = "img/twoStarBtn.png";
-    }else if(i>20){
       divTag = document.getElementById("img" + i);
       divTag.src = "img/unPlayBtn.png";
     }
