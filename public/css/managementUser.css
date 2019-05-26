@@ -378,6 +378,7 @@ body {
   background-color: rgb(0,0,0,0);
   border: 0;
   position: relative;
+  overflow: auto;
 }
 .centerButton{
   width: 20vh;
