@@ -730,7 +730,8 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
 
     if (star <= user.starNum) {
-      document.getElementById("levelUpDefault0").className = "levelUpDefault";
+      console.log("重製失敗");
+      document.getElementById("levelUpDefault0").className = "highestLevel";
       document.getElementById("levelUpDefault1").className = "levelUp";
     }
     else {
@@ -751,7 +752,7 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
-      document.getElementById("levelUpDefault1").className = "levelUpDefault";
+      document.getElementById("levelUpDefault1").className = "highestLevel";
     }
     else {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";

@@ -1116,7 +1116,7 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
 
     if (star <= user.starNum) {
-      document.getElementById("levelUpDefault0").className = "levelUpDefault";
+      document.getElementById("levelUpDefault0").className = "highestLevel";
       document.getElementById("levelUpDefault1").className = "levelUp";
     }
     else {
@@ -1137,7 +1137,7 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
-      document.getElementById("levelUpDefault1").className = "levelUpDefault";
+      document.getElementById("levelUpDefault1").className = "highestLevel";
     }
     else {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
@@ -1166,9 +1166,7 @@ function equipageView(mainDiv) {
   console.log(swordLevel, shieldLevel);
 }
 
-
 function resetEquipClick() {
-  console.log("123123131321");
   var scriptData = {
     type: "resetEquip"
   }
@@ -1184,7 +1182,7 @@ function resetEquipClick() {
       levelUpLevel = 0;
       // closeFunc("equipageView","equipageBkViewv");
       closeFunc("equipageView", "equipageBkView");
-      equipageView({ id: "centerBlockly" });
+      equipageView(centerBlockly);
     }
   })
 }
@@ -1208,8 +1206,8 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault1").innerHTML = "";
     // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    document.getElementById("levelUpDefault0").className = "levelUpDefault2";
+    document.getElementById("levelUpDefault1").className = "levelUpDefault2";
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
 
@@ -1218,8 +1216,8 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault0").innerHTML = "";
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿"
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
-    document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
+    document.getElementById("levelUpDefault0").innerHTML = "";
+    document.getElementById("levelUpDefault0").className = "highestLevel";
 
     // var star = equipmentData.levelUpLevel[levelUpLevel].star;
     // var text = "x" + star;
@@ -1282,8 +1280,8 @@ function shieldLevelUp() {
     document.getElementById("levelUpDefault1").innerHTML = "";
     // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
 
-    document.getElementById("levelUpDefault0").className = "levelUpDefault";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    document.getElementById("levelUpDefault0").className = "levelUpDefault2";
+    document.getElementById("levelUpDefault1").className = "levelUpDefault2";
 
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
@@ -1292,8 +1290,8 @@ function shieldLevelUp() {
     document.getElementById("levelUpDefault1").innerHTML = "";
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-    document.getElementById("levelUpDefault1").innerHTML = "最高<br>等級";
-    document.getElementById("levelUpDefault1").className = "levelUpDefault";
+    document.getElementById("levelUpDefault1").innerHTML = "";
+    document.getElementById("levelUpDefault1").className = "highestLevel";
     // var star = equipmentData.levelUpLevel[levelUpLevel].star;
     // var text = "x" + star;
     // document.getElementById("levelUpFont1").innerHTML = text;
