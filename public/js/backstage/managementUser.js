@@ -307,25 +307,32 @@ function createLevelTable(scriptData) {
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
       divTag.appendChild(b);
+      divTag = document.getElementById("td0" + i + j);
+      b = document.createElement("input");
+      b.setAttribute("type", "text");
+      b.setAttribute("id", "input0" + i + j);
+      b.setAttribute("readonly", "readonly");
+      divTag.appendChild(b);
       if (j == 6) {/*使用者狀態*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td06;
+        document.getElementById("input0" + i + j).value = obj.td06;
         // document.getElementById("td0" + i + j).innerHTML = "封鎖"
       } else if (j == 1) {/*使用者帳號*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td01;
+        document.getElementById("input0" + i + j).value = obj.td01;
         // document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 2) {/*使用者名稱*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td02;
+        document.getElementById("input0" + i + j).value = obj.td02;
         // document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 3) {/*使用者信箱*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td03;
+        document.getElementById("input0" + i + j).value = obj.td03;
         // document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
       } else if (j == 4) {/*星星數*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td04;
+        document.getElementById("input0" + i + j).value = obj.td04;
         // document.getElementById("td0" + i + j).innerHTML = "50";
       } else if (j == 5) {/*最高的關卡*/
-        document.getElementById("td0" + i + j).innerHTML = obj.td05;
+        document.getElementById("input0" + i + j).value = obj.td05;
         // document.getElementById("td0" + i + j).innerHTML = "13";
       }
+      divTag = document.getElementById("tr" + i);
     }
   }
 }
@@ -401,8 +408,7 @@ function changeTdNameDisplay() {
     }
   }
   // console.log(allUserData);
-  updateMapData(allUserData)
-
+  updateMapData(allUserData);
 }
 
 /*選單*/
@@ -415,8 +421,6 @@ var searchType=0;
 var searchTypeTable=["username", "name", "email", "hightLevel", "starNum", "userstatus"];
 selectType.onchange = function (index) {
   searchType= selectType.selectedIndex;
-  // console.log(searchType);
-  // console.log(searchTypeTable[searchType]);
   searchFunc();
 }
 
@@ -496,18 +500,18 @@ function updateMapData(res) {
 }
 function updateLevelTable(scriptData) {
   for (var i = 0; i < scriptData.length; i++) {
+
     var obj = scriptData[i];
     if (i < oldDisMapNum) {
-      document.getElementById("td0" + i + "6").innerHTML = obj.td06;
-      document.getElementById("td0" + i + "1").innerHTML = obj.td01;
-      document.getElementById("td0" + i + "2").innerHTML = obj.td02;
-      document.getElementById("td0" + i + "3").innerHTML = obj.td03;
-      document.getElementById("td0" + i + "4").innerHTML = obj.td04;
-      document.getElementById("td0" + i + "5").innerHTML = obj.td05;
+      document.getElementById("input0" + i + "6").value = obj.td06;
+      document.getElementById("input0" + i + "1").value = obj.td01;
+      document.getElementById("input0" + i + "2").value = obj.td02;
+      document.getElementById("input0" + i + "3").value = obj.td03;
+      document.getElementById("input0" + i + "4").value = obj.td04;
+      document.getElementById("input0" + i + "5").value = obj.td05;
 
-      divTag = document.getElementById("lostUserCreateTable" + i);
       if((i%2) == 0){
-        divTag.style.backgroundColor = "#F0E0CF";
+        document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
       }
       // divTag.style.backgroundColor = "#F5F5F5";
       // divTag.style.backgroundColor = "rgb(153, 204, 255)";
@@ -534,28 +538,36 @@ function updateLevelTable(scriptData) {
         b.setAttribute("id", "td0" + i + j);
         b.setAttribute("class", "td0" + j);
         divTag.appendChild(b);
-        if (j == 6) {
-          divTag = document.getElementById("td0" + i + j);
-          b = document.createElement("textarea");
-          b.setAttribute("id", "textarea" + i + j);
-          b.setAttribute("rows", "1");
-          b.setAttribute("onfocus", "blur()");
-          divTag.appendChild(b);
-          document.getElementById("td0" + i + j).innerHTML = obj.td06;
-          divTag = document.getElementById("tr" + i);
-        } else if (j == 1) {
-          document.getElementById("td0" + i + j).innerHTML = obj.td01;
-        } else if (j == 2) {
-          document.getElementById("td0" + i + j).innerHTML = obj.td02;
-        } else if (j == 3) {
-          document.getElementById("td0" + i + j).innerHTML = obj.td03;
-        } else if (j == 4) {
-          document.getElementById("td0" + i + j).innerHTML = obj.td04;
-        } else if (j == 5) {
-          document.getElementById("td0" + i + j).innerHTML = obj.td05;
+        divTag = document.getElementById("td0" + i + j);
+        b = document.createElement("input");
+        b.setAttribute("type", "text");
+        b.setAttribute("id", "input0" + i + j);
+        b.setAttribute("readonly", "readonly");
+        divTag.appendChild(b);
+        if (j == 6) {/*使用者狀態*/
+          document.getElementById("input0" + i + j).value = obj.td06;
+          // document.getElementById("td0" + i + j).innerHTML = "封鎖"
+        } else if (j == 1) {/*使用者帳號*/
+          document.getElementById("input0" + i + j).value = obj.td01;
+          // document.getElementById("td0" + i + j).innerHTML = "aa";
+        } else if (j == 2) {/*使用者名稱*/
+          document.getElementById("input0" + i + j).value = obj.td02;
+          // document.getElementById("td0" + i + j).innerHTML = "aa";
+        } else if (j == 3) {/*使用者信箱*/
+          document.getElementById("input0" + i + j).value = obj.td03;
+          // document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
+        } else if (j == 4) {/*星星數*/
+          document.getElementById("input0" + i + j).value = obj.td04;
+          // document.getElementById("td0" + i + j).innerHTML = "50";
+        } else if (j == 5) {/*最高的關卡*/
+          document.getElementById("input0" + i + j).value = obj.td05;
+          // document.getElementById("td0" + i + j).innerHTML = "13";
         }
+        divTag = document.getElementById("tr" + i);
       }
-
+      if((i%2) == 0){
+        document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
+      }
     }
   }
   if (scriptData.length < oldDisMapNum) {
@@ -571,9 +583,6 @@ function updateLevelTable(scriptData) {
 }
 
 var searchTextBox = document.getElementById("searchTextBox");
-// searchTextBox.onkeydown = function () {
-  // searchFunc();
-// }
 searchTextBox.onkeyup = function () {
   searchFunc();
 }

@@ -371,6 +371,15 @@ body {
   border-color: #8F8F8F;
   cursor: pointer;
 }
+.lostUserCreateTable input[type="text"]{
+  width: 100%;
+  font-size: calc(10px + 1vw);
+  text-align: center;
+  background-color: rgb(0,0,0,0);
+  border: 0;
+  position: relative;
+  overflow: auto;
+}
 .centerButton{
   width: 20vh;
   height: 6vh;
