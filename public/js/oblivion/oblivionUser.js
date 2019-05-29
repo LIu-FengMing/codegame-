@@ -344,7 +344,7 @@ function selectionLevel(thisObject) {
   }
   lastColor = thisObject.style.backgroundColor;
   thisSelectionId = thisObject.id;
-  thisObject.style.backgroundColor = "#E6E6E6";
+  thisObject.style.backgroundColor = "#7f73bf";
   lastObject = thisObject;
   // console.log(document.getElementById(thisSelectionId).rows[1]);
   // console.log(thisSelectionId);

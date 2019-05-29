@@ -355,7 +355,7 @@ function selectionLevel(thisObject) {
     console.log(mapIndex);
 
     if (playMap[mapIndex] == 1) {
-      lastObject.style.backgroundColor = "rgb(152, 140, 186)";
+      lastObject.style.backgroundColor = "#7f73bf";
     }
     else {
       lastObject.style.backgroundColor = lastColor;
@@ -363,7 +363,7 @@ function selectionLevel(thisObject) {
   }
   lastColor = thisObject.style.backgroundColor;
   thisSelectionId = thisObject.id;
-  thisObject.style.backgroundColor = "#E6E6E6";
+  thisObject.style.backgroundColor = "rgb(133, 81, 29)";
   lastObject = thisObject;
 }
 function enterLevel() {
@@ -949,7 +949,7 @@ function createLevelTable(scriptData) {
       divTag.style.backgroundColor = "#D6E5E5";
     }
     if (playMap[i] == 1) {
-      divTag.style.backgroundColor = "rgb(152, 140, 186)";
+      divTag.style.backgroundColor = "#7f73bf";
     }
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
@@ -1158,10 +1158,14 @@ function updateLevelTable(scriptData) {
 
       divTag = document.getElementById("lostUserCreateTable" + i);
       if (playMap[i] == 1) {
-        divTag.style.backgroundColor = "rgb(152, 140, 186)";
+        divTag.style.backgroundColor = "#7f73bf";
       }
       else {
-        divTag.style.backgroundColor = "rgb(153, 204, 255)";
+        if((i%2) == 0){
+          divTag.style.backgroundColor = "#BDD5D5";
+        }else{
+          divTag.style.backgroundColor = "#D6E5E5";
+        }
       }
 
       // divTag.style.backgroundColor = "rgb(153, 204, 255)";
@@ -1179,7 +1183,7 @@ function updateLevelTable(scriptData) {
 
       divTag = document.getElementById("lostUserCreateTable" + i);
       if (playMap[i] == 1) {
-        divTag.style.backgroundColor = "rgb(152, 140, 186)";
+        divTag.style.backgroundColor = "#7f73bf";
       }
 
       b = document.createElement("tr");
