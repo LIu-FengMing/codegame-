@@ -57,7 +57,6 @@ function back() {
   href = href.substr(0, index + 1);
   href += "pruss";
   window.location.replace(href);
-  console.log(href);
 }
 
 
@@ -133,30 +132,32 @@ $.ajax({
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
-
 }
 function initHome() {
+  //如果每個session都有值得話就將值存到變數內
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
-    //console.log("???");
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
     gameSpeed = Session.get("gameSpeed");
-  } else {
+  } else {//若沒有就設為預設值
     bkMusicVolumn = 0.1;
     bkMusicSwitch = 2;
     musicLevel = 1;
     gameSpeed = 5;
   }
+  //設定音樂的音量
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+  //設定完之後才撥放音樂
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //調用sendSession()將值存到session內
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;
+  //顯示使用者名稱與星星數
   userName.textContent = text;
   starNumber.textContent = user.starNum;
 
@@ -181,8 +182,8 @@ function recordLevel(scriptData) {
     }
   })
 }
+//登出
 function logout() {
-  // console.log("dddddd");
   var href = "/logout";
   window.location.replace(href);
 }
@@ -200,7 +201,9 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbs
   "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
   "已獲得星星數："];
+//創造使用者資訊外框函式
 function userData() {
+  //先試著刪除背後黑布以及顯示視窗，發生錯誤就跳過
   try {
     divTag = document.getElementById("userDataView");
     parentObj = divTag.parentNode;
@@ -226,33 +229,44 @@ function userData() {
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
+  //調用創造使用者資訊內容函式
   createUserView(divID);
 }
+//創造使用者資訊內容函式
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
+  //創造個人資料的title
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
+  b.innerHTML = "個人資料";
   divTag.appendChild(b);
+  //將userTitle的字體改為華康平劇體
   document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
-  document.getElementById("userTitle").innerHTML = "個人資料";
+  //創造內部div，白色那塊
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("userInnerDiv");
+  //在白色那塊內再創一個，方便資料編排
   b = document.createElement("div");
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  //創造裡面的h3標籤，以及填入文字
   for (var i = 0; i < dataTitle.length; i++) {
     b = document.createElement("h3");
     b.setAttribute("id", "titleDatah3" + i);
     b.setAttribute("align", "left");
     divTag.appendChild(b);
+    //根據不同的行數將各自的資料存入userdataFont內
     if (i == 0) {
+      //使用者名稱
       userdataFont = user.username;
     } else if (i == 1) {
+      //使用者帳號
       userdataFont = user.name;
     } else if (i == 2) {
+      //判斷要顯示普魯斯或庫魯瑪的通關進度
       if (user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel) {
         userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
       } else {
@@ -263,17 +277,21 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
+      //成就進度
       var getAchievement = Session.get("getAchievement");
+      //如果進度為0從session取出來會變成undefine，所以要改為0
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
+      //創造地圖數
       userdataFont = user.createMap.length;
     } else if (i == 5) {
+      //獲得星星數
       userdataFont = user.starNum;
     }
+    //改變個個h3標籤的內容
     document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
     for (var j = 0; j < 3; j++) {
       b = document.createElement("br");
@@ -284,10 +302,10 @@ function createUserView(mainDiv) {
 
 /*讀取網址資訊*/
 function getArgs() {
-  console.log("3");
   var args = new Object();
   var query = location.search.substring(1);
   var pairs = query.split("&");
+  //用來判斷網址的，不太需要更改
   for (var i = 0; i < pairs.length; i++) {
     var pos = pairs[i].indexOf("=");
     if (pos == -1) continue;
@@ -295,13 +313,16 @@ function getArgs() {
     var value = pairs[i].substring(pos + 1);
     args[argname] = decodeURIComponent(value);
   }
+  //http://127.0.0.1:3000/gameView_blockly?level=0 -> Level就是標籤 標籤內有東西才執行下面的事情
   if (args.level) {
     selectFunc(args.level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
+    //標籤文字字串
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
                   "十一","十二","十三","十四","十五","十六","十七","十八",
                   "十九","二十","二十一","二十二","二十三","二十四"];
+    //每個標籤文字有對應的華康平劇的字型
     var spanStyle = ["DFT_PJ7ZTAKB","DFT_PJ7VENPV","DFT_PJ7EWRAB","DFT_PJ7JYJQB","DFT_PJ7TQOBH","DFT_PJ7CJSLM","DFT_PJ7MOBSM","DFT_PJ7VGGCS","DFT_PJ7RQTIM","DFT_PJ7BIXSS",
                      "DFT_PJ7QQUBP","DFT_PJ7ZIZMV","DFT_PJ7ELQCV","DFT_PJ7MCAUG","DFT_PJ7INNZA","DFT_PJ7RFRKG","DFT_PJ7WHJAG","DFT_PJ7GZOLM","DFT_PJ7PRSWS","DFT_PJ7UUKMS",
                      "DFT_PJ7ZOCFN","DFT_PJ7EQUVN","DFT_PJ7OJZGT","DFT_PJ7TLQWT","DFT_PJ7CDVHZ"
@@ -317,18 +338,16 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
+  //判斷要顯示資料的模式
   var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
+  divTag = document.getElementById("helperView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  levelDivAlive = false;
   divTag = document.getElementById(mainDiv);
-  if (levelDivAlive) {
-    divTag = document.getElementById("helperView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById(mainDiv);
-  }
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
@@ -553,8 +572,6 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
-  // myFunction();
-  // restartButton();
 }
 
 /*轉換程式碼*/

@@ -1,10 +1,9 @@
-
 var UserName = document.getElementById('userName');
 var OldPass = document.getElementById('oldPass');
 var UserPass = document.getElementById('Pass');
 var UserCheckPass = document.getElementById('checkPass');
 // history.pushState("", "page", "");
-
+//返回上一頁
 function back() {
     var index = 0;
     var href = window.location.href;
@@ -137,6 +136,7 @@ function post_to_url(path, params, method) {
 }
 
 var levelDivAlive = false;
+//創造提醒視窗函式
 function remindView(remindValue) {
   var isTwoLine = false;
   for (var i = 0; i < remindValue.length; i++) {

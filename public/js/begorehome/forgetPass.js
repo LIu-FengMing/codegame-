@@ -1,7 +1,6 @@
-
 var UserName = document.getElementById('userName');
 var eMail = document.getElementById('userEmail');
-// history.pushState("", "page", "");
+
 function back() {
     var index = 0;
     var href = window.location.href;

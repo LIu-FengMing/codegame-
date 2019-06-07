@@ -38,8 +38,7 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
   };
 
 })();
-
-
+//返回上一頁
 function back() {
   var index = 0;
   var href = window.location.href;
@@ -50,7 +49,6 @@ function back() {
   }
   href = href.substr(0, index + 1);
   window.location.replace(href);
-  console.log(href);
 }
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false, isOblivionOpen;
@@ -71,61 +69,63 @@ function error() {
 function initHome() {
   sendLoadUsernameMap();
 }
-
-function logout() {
-  // console.log("dddddd");
-  var href = "/logout";
-  window.location.replace(href);
-}
 //////////////////////////////////////////////////
 //              right.js                        //
 //////////////////////////////////////////////////
+//登出函式
+function logout() {
+  var href = "/logout";
+  window.location.replace(href);
+}
 
 var thisSelectionId;
 var args;
 var divTag, level, thisIndex;
 var lastObject = null,lastColor;
-
+//當那一列資料被選到調用此函式
 function selectionLevel(thisObject) {
   var mapIndex = 0;
   thisSelectionId = thisObject.id;
   if (thisSelectionId) {
+    //將該table後面的數字切割出來並轉為Int
     mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
     thisIndex = mapIndex;
     console.log(thisIndex);
   }
   if (lastObject != null) {
-    // console.log(lastObject);
-    // console.log(mapIndex);
+    //將上一個被選到的table的顏色設為原本的顏色
     lastObject.style.backgroundColor = lastColor;
   }
+  //設定完之後將lastColor設為現在正被選到的這個顏色
   lastColor = thisObject.style.backgroundColor;
+  //將現在被選到的table的顏色設為#C2C2C2
   thisObject.style.backgroundColor = "#C2C2C2";
+  //將thisObjsct存到lastObiect
   lastObject = thisObject;
-  // console.log(document.getElementById("td0" + mapIndex + "6").innerHTML);
+  //如果現在被選到的狀態為"封鎖"，改變底下按鈕的圖片
   if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
     document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
-  } else {
+  } else {//如果是"正常"狀態，就改成"封鎖"圖片
     document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
   }
 }
 function changeStatus() {
-  console.log(thisIndex)
-  // console.log(document.getElementById("td0" + thisIndex + "6").innerHTML);
+  //如果有選擇到table
   if (thisSelectionId) {
     var userstatus = 0;
+    //如果被選為"封鎖"，改變狀態為"正常"，此處是改table內的欄位
     if (document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖") {
       document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
       document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
       allUserData[thisIndex].userstatus = 0;
       userstatus = 0
-    } else {
+    } else {//若為"正常"，則改為"封鎖"
       document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
       document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
       allUserData[thisIndex].userstatus = 1;
       userstatus = 1
     }
-
+    //此為豐銘更改資料庫用
     var scriptData = {
       type: "changeUserStatus",
       userId: allUserData[thisIndex]._id,
@@ -143,21 +143,24 @@ function changeStatus() {
       }
     })
 
-  }
-  else {
+  } else {//若沒選到table則調用提醒視窗顯示錯誤資訊
     remindValue = "請點選一位使用者";
     remindView(remindValue);
   }
 }
 var levelDivAlive = false;
+//創造提醒視窗的函式
 function remindView(remindValue) {
   var isTwoLine = false;
+  //用以判斷顯示資訊是一行還是兩行
   for (var i = 0; i < remindValue.length; i++) {
+    //因為兩行的資訊內會有<br>所以只要有"<"就可以知道為兩行
     if(remindValue[i] == "<"){
       isTwoLine = true;
       break;
     }
   }
+  //為預防重複創立，所以先刪除看看，成功的話會把舊的刪除，失敗就會有錯誤發生，所以才是try的方式
   try {
     divTag = document.getElementById("remindView");
     parentObj = divTag.parentNode;
@@ -173,6 +176,7 @@ function remindView(remindValue) {
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
+  //如果是兩行則將class設為twoLine，反之則設為oneLine
   if(isTwoLine){
     b.setAttribute("class", "twoLine");
   }else{
@@ -186,6 +190,7 @@ function remindView(remindValue) {
   b = document.createElement("h2");
   b.setAttribute("id", "remindH2");
   divTag.appendChild(b);
+  //先將文字清空再把文字設定進去
   document.getElementById("remindH2").innerHTML = "";
   document.getElementById("remindH2").innerHTML = remindValue;
 
@@ -197,25 +202,10 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-function getArgs() {
-  var args = new Object();
-  var query = location.search.substring(1);
-  var pairs = query.split("&");
-  for (var i = 0; i < pairs.length; i++) {
-    var pos = pairs[i].indexOf("=");
-    if (pos == -1) continue;
-    var argname = pairs[i].substring(0, pos);
-    var value = pairs[i].substring(pos + 1);
-    args[argname] = decodeURIComponent(value);
-  }
-  if (args.levelName) {
-    divTag = document.getElementById("titleFont");
-    divTag.innerHTML = "";
-    divTag.innerHTML = args.levelName;
-  }
-}
+//關閉按鈕的函式
 function clossFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
+  //嘗試刪除div
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
@@ -276,16 +266,16 @@ function sendLoadUsernameMap() {
 
 
 /*建立表格*/
-// window.onload = function createLevelTable(scriptData) {
 function createLevelTable(scriptData) {
 
   console.log(scriptData);
   oldDisMapNum = scriptData.length;
+  //根據scriptData的長度創造對應數量的table
   for (var i = 0; i < scriptData.length; i++) {
     // for (var i = 0; i < 20; i++) {
     var obj = scriptData[i];
-    // console.log(td01[i]);
     divTag = document.getElementById("createrDiv");
+    //創造table標籤
     b = document.createElement("table");
     b.setAttribute("id", "lostUserCreateTable" + i);
     b.setAttribute("class", "lostUserCreateTable");
@@ -293,20 +283,23 @@ function createLevelTable(scriptData) {
     b.setAttribute("RULES", "ALL");
     b.setAttribute("onclick", "selectionLevel(this)");
     divTag.appendChild(b);
-
+    //將偶數的table的背景顏色改為#F0E0CF
     divTag = document.getElementById("lostUserCreateTable" + i);
     if((i%2) == 0){
       divTag.style.backgroundColor = "#F0E0CF";
     }
+    //創造tr標籤
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
     divTag = document.getElementById("tr" + i);
+    //創造6個br標籤
     for (var j = 1; j <= 6; j++) {
       b = document.createElement("td");
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
       divTag.appendChild(b);
+      //在每個br標籤內創立input標籤來顯示文字
       divTag = document.getElementById("td0" + i + j);
       b = document.createElement("input");
       b.setAttribute("type", "text");
@@ -340,24 +333,26 @@ function createLevelTable(scriptData) {
 
 var levelNameStatus = 0, conditionStatus = 0, creatorStatus = 0, evaluateStatus = 0, dateStatus = 0, introductionStatus = 0;
 var tdStatus = [0, 0, 0, 0, 0, 0];
+//改變排序時會調用此函式
 function changeTdName(thisObiect) {
   var str = thisObiect.className, s, s2;
   var thisStatus = parseInt(str.substr(str.length - 1, 1)) - 1;
   s = thisObiect.innerHTML;
   // console.log(s2.length);
+  //第一次點會加上"&nbsp▴"
   if (tdStatus[thisStatus] == 0) {
     // s = thisObiect.innerHTML;
     // console.log(s.length);
     thisObiect.innerHTML = s + "&nbsp▴";
     tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 1) {
+  } else if (tdStatus[thisStatus] == 1) {//第二次點會加上"&nbsp▾"
     // s = thisObiect.innerHTML;
     // console.log(s.length);
     s = s.substring(0, s.length - 7);
     // s = s.substring(0,s.length-1);
     thisObiect.innerHTML = s + "&nbsp▾";
     tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 2) {
+  } else if (tdStatus[thisStatus] == 2) {//第三次點會把後面文字清空
     // s = thisObiect.innerHTML;
     // console.log(s.length);
     s = s.substring(0, s.length - 7);
@@ -365,13 +360,14 @@ function changeTdName(thisObiect) {
     thisObiect.innerHTML = s;
     tdStatus[thisStatus] = 0;
   }
+  //調用改變表格內容的函式
   changeTdNameDisplay();
 }
 
-var TdNameTable = ["username", "name", "email", "starNum", "hightLevel", "userstatus"]
+var TdNameTable = ["username", "name", "email", "starNum", "hightLevel", "userstatus"];
+//左上方的下拉式選單狀態改變時會調用此函式，基本上也是豐銘在用
 function changeTdNameDisplay() {
   var index = levelSelect.selectedIndex;
-  // console.log(index);
   if (index == 0) { //全部
     allUserData = completallUserData.slice(0);
   }
@@ -394,8 +390,6 @@ function changeTdNameDisplay() {
 
   for (let index = tdStatus.length - 1; index > -1; index--) {
     var item = TdNameTable[index];
-    // console.log("item:",item);
-    // console.log("tdStatus[index]:",item);
     if (tdStatus[index] == 1) {
       allUserData = allUserData.sort(function (a, b) {
         return a[item] > b[item] ? 1 : -1;
@@ -407,28 +401,29 @@ function changeTdNameDisplay() {
       });
     }
   }
-  // console.log(allUserData);
   updateMapData(allUserData);
 }
 
 /*選單*/
 var levelSelect = document.getElementById("levelSelect");
+//剛下拉式選單改變，呼叫changeTdNameDisplay()
 levelSelect.onchange = function (index) {
   changeTdNameDisplay();
 }
 var selectType = document.getElementById("selectType");
 var searchType=0;
 var searchTypeTable=["username", "name", "email", "hightLevel", "starNum", "userstatus"];
+//當搜尋欄位被輸入時呼叫searchFunc()
 selectType.onchange = function (index) {
   searchType= selectType.selectedIndex;
   searchFunc();
 }
-
+//搜尋函式，也是豐銘的
 function searchFunc() {
   // var a = document.getElementById("searchTextBox");
   // if (a.value == "") {
   //   a.className = "search-text";
-  //   clearSearch();
+  //   changeTdNameDisplay();
   // } else {
   //   a.className = "searchFocus";
   // }
@@ -498,6 +493,7 @@ function updateMapData(res) {
   console.log(mapData);
   updateLevelTable(mapData);
 }
+//表單更動時，需要重新創立表格
 function updateLevelTable(scriptData) {
   for (var i = 0; i < scriptData.length; i++) {
 
@@ -583,31 +579,13 @@ function updateLevelTable(scriptData) {
 }
 
 var searchTextBox = document.getElementById("searchTextBox");
+//只要搜尋列有輸入就調用一次searchFunc()
 searchTextBox.onkeyup = function () {
   searchFunc();
 }
+//當X按鈕被按下，調用changeTdNameDisplay()
 searchTextBox.onchange = function () {
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
-    clearSearch();
+    changeTdNameDisplay();
   }
-}
-
-
-function clearSearch() {
-  changeTdNameDisplay();
-  // var index = levelSelect.selectedIndex;
-  // console.log(index);
-  // if (index == 0) { //全部
-  //   allUserData = completallUserData.slice(0);
-  // }
-  // else { //可遊玩
-  //   allUserData.length = 0;
-  //   for (let indexS = 0; indexS < completallUserData.length; indexS++) {
-  //     const element = completallUserData[indexS];
-  //     if (user.starNum >= element.requireStar) {
-  //       allUserData.push(completallUserData[indexS]);
-  //     }
-  //   }
-  // }
-  // updateMapData(allUserData)
 }

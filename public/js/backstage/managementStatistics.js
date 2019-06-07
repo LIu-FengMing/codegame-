@@ -1,74 +1,98 @@
 var playerData, playerData_All, playerData_OneDay, playerData_SevenDay, playerData_OneMonth, playerData_SixMonth, playerData_OneYear, playerData_Var;
 var playNumberFirst = false, successRateFirst = false, averageFailureRateFirst = false;
 var playNumberVar, successRateVar, averageFailureRateVar;
+//登出函式
 function logout() {
-  // console.log("dddddd");
   var href = "/logout";
   window.location.replace(href);
 }
 var selectChartVar, jsonData, playNumberCanvas,successRateCanvas,averageFailureRateCanvas;
+//頁面載入後會執行的函式
 window.onload = function () {
-  selectChartVar = "playNumber";
-  selectChart(selectChartVar);
+  selectChartVar = "playNumber";//將selechChartVar設為playNumber
+  selectChart(selectChartVar);//將selectChartVar傳到selectChart函式
 }
+//此函式用來決定顯示的圖表
 function selectChart(thisSelect) {
   switch (thisSelect) {
+    //顯示遊玩人數
     case "playNumber":
+      //取得遊玩人數之JSON格式資料
       getPlayNumberJson(thisSelect);
       break;
+    //顯示成功率
     case "successRate":
+      //取得成功率之JSON格式資料
       getSuccessRateJson(thisSelect);
       break;
+    //顯示平均失敗次數
     case "averageFailureRate":
+      //取得失敗率之JSON格式資料
       getAverageFailureRateJson(thisSelect);
       break;
   }
 }
+//根據傳入的值創造Chart圖表
 function createselectChart(thisSelect) {
+  //datasetsData用來存放要顯示的資料；chartType存放圖表樣式"line"為折線圖...剩下的參考chart.js官網
   var datasetsData = [0], chartType;
   switch (thisSelect) {
     case "playNumber":
       chartType = "line";
-      // getPlayNumberJson();
       setTimeout(function () {
         if (jsonData != undefined) {
+          //將json內需要的資料存進datasetsData字串內
           for (var i = 0; i < jsonData.playNumber.length; i++) {
             datasetsData[i] = jsonData.playNumber[i].number;
-            playerData = datasetsData;
+            playerData = datasetsData;//將資料存進playerData內以便之後恢復圖表使用
           }
+          //若第一次，則執行創立圖表的動作
           if (!playNumberFirst) {
             playerData_All = datasetsData;
             playNumberFirst = true;
+            //取得畫布ID並創立2D畫面
             var ctx = document.getElementById('playNumberChart').getContext('2d');
             playNumberCanvas = new Chart(ctx, {
               // The type of chart we want to create
               type: chartType,
               // The data for our dataset
               data: {
+                //將Y軸lables設為1-50
                 labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'],
                 datasets: [{
+                  //設定每一個點上的資訊為「遊玩人數:datasetsData」
                   label: '遊玩人數：',
+                  //設定背景顏色
                   backgroundColor: 'rgba(254, 254, 254, 0)',
+                  //設定線條顏色
                   borderColor: '#8B8E3D',
+                  //顯示數據
                   data: datasetsData
                 }]
               },
               // Configuration options go here
               options: {
                 scales: {
+                  //畫布底下的字
                   yAxes: [{
                     scaleLabel: {
+                      //是否顯示
                       display: true,
+                      //字體大小
                       fontSize: 25,
+                      //要顯示的字
                       labelString: '遊玩人數',
-                      defaultFontFamily: "DFPingJuStd-W7"
+                      //字體
+                      defaultFontFamily: "Microsoft JhengHei"
                     },
                     ticks: {
-                      min: 0,
+                      //顯示範圍[min,max]
+                                          min: 0,
                       max: jsonData.playNumber[0].number + 1,
                       callback: function (value) { if (Number.isInteger(value)) { return value; } }
                     }
                   }],
+                  //同yAxes
                   xAxes: [{
                     scaleLabel: {
                       display: true,
@@ -87,10 +111,13 @@ function createselectChart(thisSelect) {
                   speed: 10,
                   threshold: 10
                 },
+                //圖表縮放設定
                 zoom: {
                   enabled: true,
                   drag: false,
+                  //只縮放Y軸
                   mode: "y",
+                  //顯示範圍[min,max]
                   limits: {
                     max: 10,
                     min: 0.5
@@ -98,10 +125,11 @@ function createselectChart(thisSelect) {
                 }
               }
             });
+            //自己的設為顯示，另外兩個隱藏
             document.getElementById('playNumberChart').style.display = "block";
             document.getElementById('successRateChart').style.display = "none";
             document.getElementById('averageFailureRateChart').style.display = "none";
-          }else{
+          }else{//如果不是第一次則執行updata()來更新圖表，並將另外兩個圖表隱藏
             playNumberCanvas.update();
             document.getElementById('playNumberChart').style.display = "block";
             document.getElementById('successRateChart').style.display = "none";
@@ -130,6 +158,7 @@ function createselectChart(thisSelect) {
                 datasets: [{
                   label: '通關率（%）：',
                   data: datasetsData,
+                  //設定長條圖外框顏色，一個圖表一個顏色
                   backgroundColor: [
                     '#74AFA9',
                     '#009FC7',
@@ -182,6 +211,7 @@ function createselectChart(thisSelect) {
                     '#74AFA9',
                     '#009FC7'
                   ],
+                  //設定長條圖顏色，一個圖表一個顏色
                   borderColor: [
                     '#74AFA9',
                     '#009FC7',
@@ -234,6 +264,7 @@ function createselectChart(thisSelect) {
                     '#74AFA9',
                     '#009FC7'
                   ],
+                  //設定長條圖寬度
                   borderWidth: 1
                 }
                 ]
@@ -277,10 +308,11 @@ function createselectChart(thisSelect) {
                     min: 0.5
                   }
                 },
+                //設定滑鼠移到長條圖上要顯示的資訊
                 tooltips: {
                   callbacks: {
                     label: function (tooltipItem) {
-                      // console.log(tooltipItem)
+                      // 「通關率；Y軸資訊」，「遊玩人數；X資訊-1」
                       return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
                     }
                   }
@@ -493,9 +525,9 @@ var href = window.location.href;
 var readAllPlayFlag = false
 var PlayNumber, SuccessRate, AverageFailureRate, AlluserData
 
+//以下為豐銘在用的
 function getPlayNumberJson(thisSelect) {
   if (readAllPlayFlag) { //有資料了
-    // jsonData = PlayNumber.slice(0);
     jsonData = JSON.parse(JSON.stringify(PlayNumber));
     createselectChart(thisSelect);
   }
@@ -1144,7 +1176,7 @@ function UseTimeUpdateFunc(startTime, endTime) {
 }
 
 
-
+//將各個圖表資料設初使狀態
 function clrFunc() {
   switch (document.getElementById("levelSelect").value) {
     case "playNumber":
