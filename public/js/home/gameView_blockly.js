@@ -346,14 +346,14 @@ function helper(mainDiv) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-  levelDivAlive = false;
   divTag = document.getElementById(mainDiv);
+  //創造小幫手div
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
-  levelDivAlive = true;
   divTag = document.getElementById("helperView");
   divTag.innerHTML = "";
+  //創造X按鈕
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
@@ -361,22 +361,26 @@ function helper(mainDiv) {
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"helperView\")");
   divTag.appendChild(b);
+  //創造關卡說明的title
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7EFTWL";
   document.getElementById("allTitle").innerHTML = "關卡說明";
   if (selectMod == 2) {
+    //創造文字塊一的div
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
     divTag.appendChild(b);
     /*設定文字塊一*/
     document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
+    //創造圖片的div
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv1");
     divTag.appendChild(b);
     divTag = document.getElementById("helperImgDiv1");
+    //創造圖片標籤
     b = document.createElement("img");
     b.setAttribute("id", "helperImg1");
     b.setAttribute("class", "helperImg");
@@ -548,11 +552,13 @@ function helper(mainDiv) {
 /*XX按鈕*/
 function clossFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
+  //刪除thisDiv
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
   divTag = document.getElementById(thisDiv2);
+  //刪除thisDiv2
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
@@ -580,17 +586,18 @@ function transformButton() {
 }
 /*設定*/
 function settingAllView(mainDiv) {
-  divID = "settingAllView";
-  divID2 = "equipageBkView";
   divTag = document.getElementById(mainDiv.id);
+  //創造背景黑布div
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
+  //創造設定視窗div
   b = document.createElement("div");
   b.setAttribute("id", "settingAllView");
   divTag.appendChild(b);
   divTag = document.getElementById("settingAllView");
+  //創造X按鈕
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
@@ -598,21 +605,25 @@ function settingAllView(mainDiv) {
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
+  //創造設定title
   b = document.createElement("h1");
   b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
   document.getElementById("settingTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("settingTitle").innerHTML = "設定";
+  //創造設定表格
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
   divTag.appendChild(b);
 
   /*設定音樂開或關*/
   divTag = document.getElementById("settingAllTable");
+  //創造第一行tr
   b = document.createElement("tr");
   b.setAttribute("id", "tr0");
   divTag.appendChild(b);
   divTag = document.getElementById("tr0");
+  //第一行第一列td即遊戲音樂
   b = document.createElement("td");
   b.setAttribute("id", "row0_0");
   divTag.appendChild(b);
@@ -627,58 +638,70 @@ function settingAllView(mainDiv) {
   b.setAttribute("colspan", "2");
   divTag.appendChild(b);
   divTag = document.getElementById("row0_1");
+  //音樂開關的表單，用form是為了搭配群組做單選動作
   b = document.createElement("form");
   b.setAttribute("id", "musicForm");
   b.setAttribute("name", "form1");
   divTag.appendChild(b);
   divTag = document.getElementById("musicForm");
+  //創造"開"的checkbox
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "musicOpen");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
   b.setAttribute("onclick", "return chk(this);");
+  //如果session中存的是2，代表為開，所以要將checkbox打勾
   if (bkMusicSwitch == 2) {
     b.setAttribute("checked", "true");
   }
   divTag.appendChild(b);
+  //因為checkedbox不能顯示文字，所以要另外創造font來顯示"開"
   b = document.createElement("font");
   b.setAttribute("id", "openText");
   divTag.appendChild(b);
   document.getElementById("openText").innerHTML = "開";
+  //創造"關"的checkbox
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "musicClose");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
   b.setAttribute("onclick", "return chk(this);");
+  //如果session中存的是1，代表為關，所以要將checkbox打勾
   if (bkMusicSwitch == 1) {
     b.setAttribute("checked", "true");
   }
   divTag.appendChild(b);
+  //創造"關"的文字
   b = document.createElement("font");
   b.setAttribute("id", "closeText");
   divTag.appendChild(b);
   document.getElementById("closeText").innerHTML = "關";
   /*設定音量大小*/
   divTag = document.getElementById("settingAllTable");
+  //創造音量大小的tr
   b = document.createElement("tr");
   b.setAttribute("id", "tr1");
   divTag.appendChild(b);
   divTag = document.getElementById("tr1");
+  //創造放"音樂大小"文字的td
   b = document.createElement("td");
   b.setAttribute("id", "row1_0");
   divTag.appendChild(b);
   divTag = document.getElementById("row1_0");
+  //創造音樂大小的h2
   b = document.createElement("h2");
   b.setAttribute("id", "musicVolume");
   divTag.appendChild(b);
   document.getElementById("musicVolume").innerHTML = "音樂大小";
   divTag = document.getElementById("tr1");
+  //創造存放"-"的td
   b = document.createElement("td");
   b.setAttribute("id", "row1_1");
   divTag.appendChild(b);
   divTag = document.getElementById("row1_1");
+  //創造"-"的按鈕
   b = document.createElement("input");
   b.setAttribute('type', 'button');
   b.setAttribute('id', 'volumeButtonSub');
@@ -687,29 +710,35 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
 
   divTag = document.getElementById("tr1");
+  //創造存放中間顯示音量長條的td
   b = document.createElement("td");
   b.setAttribute("id", "row1_2");
   divTag.appendChild(b);
   divTag = document.getElementById("row1_2");
+  //在td內放入一個div
   b = document.createElement("div");
   b.setAttribute('id', 'musicVolumeDiv');
   divTag.appendChild(b);
   divTag = document.getElementById("musicVolumeDiv");
+  //再放入table
   b = document.createElement("table");
   b.setAttribute("id", "musicVolumeTable");
   b.setAttribute("rules", "rows");
   divTag.appendChild(b);
   divTag = document.getElementById("musicVolumeTable");
+  //創造一列tr
   b = document.createElement("tr");
   b.setAttribute("id", "musicVolumeTr");
   divTag.appendChild(b);
   divTag = document.getElementById("musicVolumeTr");
+  //總共有10格音量，所以要創造10個td，td內放入div配合不同的css來達到不同高度的長條
   for (var i = 0; i < 10; i++) {
     b = document.createElement("td");
     b.setAttribute("id", "musicVolumeTd" + i);
     divTag.appendChild(b);
     divTag = document.getElementById("musicVolumeTd" + i);
     b = document.createElement("div");
+    //預設音量為一格，所以當i==0的時候，用到的class會不同
     if (i == 0) {
       b.setAttribute('class', 'musicVolumeInnerDiv');
       b.setAttribute('id', 'musicVolumeInnerDiv' + i);
@@ -722,10 +751,12 @@ function settingAllView(mainDiv) {
   }
 
   divTag = document.getElementById("tr1");
+  //創造存放"+"的td
   b = document.createElement("td");
   b.setAttribute("id", "row1_3");
   divTag.appendChild(b);
   divTag = document.getElementById("row1_3");
+  //創造"+"的按鈕
   b = document.createElement("input");
   b.setAttribute('type', 'button');
   b.setAttribute('id', 'volumeButtonSub');
@@ -735,72 +766,86 @@ function settingAllView(mainDiv) {
 
   /*調整遊戲速度*/
   divTag = document.getElementById("settingAllTable");
+  //創造遊戲速度的tr
   b = document.createElement("tr");
   b.setAttribute("id", "tr2");
   divTag.appendChild(b);
   divTag = document.getElementById("tr2");
+  //創造存放"遊戲速度"的td
   b = document.createElement("td");
   b.setAttribute("id", "row2_0");
   divTag.appendChild(b);
   divTag = document.getElementById("row2_0");
+  //創造"遊戲速度"的h2
   b = document.createElement("h2");
   b.setAttribute("id", "settingSpeed");
   divTag.appendChild(b);
   document.getElementById("settingSpeed").innerHTML = "遊戲速度";
   divTag = document.getElementById("tr2");
+  //創造存放3組checked的td
   b = document.createElement("td");
   b.setAttribute("id", "row2_1");
   b.setAttribute("colspan", "2");
   divTag.appendChild(b);
   divTag = document.getElementById("row2_1");
+  //創造遊戲速度checkbox的form
   b = document.createElement("form");
   b.setAttribute("id", "speedForm");
   b.setAttribute("name", "form2");
   divTag.appendChild(b);
   divTag = document.getElementById("speedForm");
+  //創造"慢"的checkbox
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "speedLow");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
   b.setAttribute("onclick", "return chk2(this);");
+  //如果session內為3則將此打勾，3.5.7分別代表慢中快，跟著豐銘的設定走，如有變更數值，這裡記得改
   if (gameSpeed == 3) {
     b.setAttribute("checked", "true");
   }
   divTag.appendChild(b);
+  //創造慢的文字
   b = document.createElement("font");
   b.setAttribute("id", "speedLowText");
   divTag.appendChild(b);
   document.getElementById("speedLowText").innerHTML = "慢";
+  //創造"中"的checkbox
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "speedMid");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
   b.setAttribute("onclick", "return chk2(this);");
+  //如果session內為5則將此打勾
   if (gameSpeed == 5) {
     b.setAttribute("checked", "true");
   }
   divTag.appendChild(b);
+  //創造中的文字
   b = document.createElement("font");
   b.setAttribute("id", "speedMidText");
   divTag.appendChild(b);
   document.getElementById("speedMidText").innerHTML = "中";
+  //創造"快"的checkbox
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "speedQuick");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "3");
   b.setAttribute("onclick", "return chk2(this);");
+  //如果session內為7則將此打勾
   if (gameSpeed == 7) {
     b.setAttribute("checked", "true");
   }
   divTag.appendChild(b);
+  //創造快的文字
   b = document.createElement("font");
   b.setAttribute("id", "speedQuickText");
   divTag.appendChild(b);
   document.getElementById("speedQuickText").innerHTML = "快";
-
+  //這邊是用來改變音樂大小中間長條的class用的，因為每次開啟必須顯示上次的設定
   for (var i = 0; i < musicLevel; i++) {
     b = document.getElementById("musicVolumeInnerDiv" + i);
     b.className = "musicVolumeInnerDiv";
