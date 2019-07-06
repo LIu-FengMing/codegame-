@@ -1,0 +1,54 @@
+#modifyEquipageView{
+  width: 2.5vw;
+  height: 3vh;
+  font-family: Microsoft JhengHei;
+  font-size: 2vh;
+  position: absolute;
+  top: calc(10px + 1vh);
+  transform: translateX(3vw);
+}
+.modifyEquipmentInput{
+  background: none;
+  text-align: center;
+  border: 0;
+}
+#equipageTable input{
+  width: 20%;
+  font-size: 2vh;
+}
+#equipageTable td{
+  width: 20%;
+  font-size: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+.saveBtn{
+  height: 6vh;
+  width: 3.5vw;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  right: 0.5vw;
+  margin-top: 1%;
+  cursor: pointer;
+}
+.reset{
+  height: 6vh;
+  width: 3.5vw;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  right: 4.5vw;
+  margin-top: 1%;
+  cursor: pointer;
+}

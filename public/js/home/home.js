@@ -480,8 +480,8 @@ var divTag, b, divID, divID2;
 
 /*裝備*/
 function equipageView(mainDiv) {
-  console.log("武器:" + equipmentData.weaponLevel.length, user.weaponLevel);
-  console.log("護具:" + equipmentData.armorLevel.length, user.armorLevel);
+  // console.log("武器:" + equipmentData.weaponLevel.length, user.weaponLevel);
+  // console.log("護具:" + equipmentData.armorLevel.length, user.armorLevel);
   divID = "equipageView";
   divID2 = "equipageBkView";
   divTag = document.getElementById(mainDiv.id);
@@ -505,6 +505,14 @@ function equipageView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7UKRFQ";
   document.getElementById("allTitle").innerHTML = "裝備";
+  if(user.username == "NKUSTCCEA"){
+    b = document.createElement("input");
+    b.setAttribute("type","button");
+    b.setAttribute("id","modifyEquipageView");
+    b.setAttribute("value","編輯");
+    b.setAttribute("onclick","modifyEquipment()");
+    divTag.appendChild(b);
+  }
   b = document.createElement("table");
   b.setAttribute("id", "equipageTable");
   b.setAttribute("rules", "rows");
@@ -636,10 +644,10 @@ function equipageView(mainDiv) {
   }
 
   divTag = document.getElementById("equipageView");
-
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "resetEquipageLevel");
+  b.setAttribute("class", "resetEquipageLevel");
   b.setAttribute("value", "重置升級");
   b.setAttribute("onclick", "resetEquipClick(this)");
   divTag.appendChild(b);
