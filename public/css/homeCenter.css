@@ -342,9 +342,16 @@
   cursor: pointer;
 }
 .itemP{
+  width: 80%;
+  resize: none;
+  background: none;
+  border:none;
+  outline: none;
   margin-top: 1.5vh;
   font-family: Microsoft JhengHei;
+  font-size: calc(5px + 1vw);
   line-height: calc(5px + 2vh);
+  margin-left: 5%;
 }
 /*成就*/
 #achievementView{

@@ -1,3 +1,4 @@
+/*裝備*/
 #modifyEquipageView{
   width: 2.5vw;
   height: 3vh;
@@ -6,6 +7,15 @@
   position: absolute;
   top: calc(10px + 1vh);
   transform: translateX(3vw);
+}
+#gameModifyBtn{
+  width: 2.5vw;
+  height: 3vh;
+  font-family: Microsoft JhengHei;
+  font-size: 2vh;
+  position: absolute;
+  top: calc(30px + 1vh);
+  transform: translateX(5.5vw);
 }
 .modifyEquipmentInput{
   background: none;
@@ -37,7 +47,7 @@
   margin-top: 1%;
   cursor: pointer;
 }
-.reset{
+.resetBtn{
   height: 6vh;
   width: 3.5vw;
   font-size: 1.5vw;
@@ -50,5 +60,57 @@
   position: absolute;
   right: 4.5vw;
   margin-top: 1%;
+  cursor: pointer;
+}
+
+/*指令大全*/
+#modifyInstructionView{
+  width: 2.5vw;
+  height: 3vh;
+  font-family: Microsoft JhengHei;
+  font-size: 2vh;
+  transform: translate(150%,-100%);
+}
+.itemTextarea{
+  width: 80%;
+  height: calc(50px + 5vh);
+  resize: none;
+  background: none;
+  border:none;
+  outline: none;
+  margin-top: 1.5vh;
+  font-family: Microsoft JhengHei;
+  font-size: calc(5px + 1vw);
+  line-height: calc(5px + 2vh);
+  margin-left: 5%;
+}
+.saveBtnToIt{
+  height: 4vh;
+  width: 2.5vw;
+  font-size: 1vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  right: 0.1vw;
+  margin-top: 10%;
+  cursor: pointer;
+}
+.resetBtnToIt{
+  height: 4vh;
+  width: 2.5vw;
+  font-size: 1vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  right: 3vw;
+  margin-top: 10%;
   cursor: pointer;
 }

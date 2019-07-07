@@ -157,6 +157,9 @@ function armorLevelup() {
     }
   })
 }
+function getJson() {
+  return dictionaryData;
+}
 //---------紀錄關卡資訊---------//
 function recordLevel(scriptData) {
   var NowDate = new Date();
@@ -788,7 +791,7 @@ function equipageView(mainDiv) {
   }
   console.log(swordLevel, shieldLevel);
 }
-
+/*重置等級*/
 function resetEquipClick() {
   var scriptData = {
     type: "resetEquip"
@@ -1026,6 +1029,14 @@ function instructionView(mainDiv) {
       b.setAttribute("id", "actionFont" + i);
       divTag.appendChild(b);
       document.getElementById("actionFont" + i).innerHTML = dic[i / 2].type;
+      if(user.username == "NKUSTCCEA"){
+        b = document.createElement("input");
+        b.setAttribute("type","button");
+        b.setAttribute("id","modifyInstructionView");
+        b.setAttribute("value","編輯");
+        b.setAttribute("onclick","modifyInstruction(" + i + ")");
+        divTag.appendChild(b);
+      }
     } else {
       b = document.createElement("tr");
       b.setAttribute("id", "tr" + i);
@@ -1039,6 +1050,7 @@ function instructionView(mainDiv) {
       // if (i == 1) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
+      //console.log(li);
       for (var j = 0; j < li.length; j++) {
         //console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
@@ -1060,6 +1072,7 @@ function instructionView(mainDiv) {
         b = document.createElement("p");
         b.setAttribute("id", "item" + i + j);
         b.setAttribute("class", "itemP");
+        b.setAttribute("readonly", "true");
         divTag.appendChild(b);
         // document.getElementById("item" + j).innerHTML = "&nbsp&nbsp&nbsp&";
         document.getElementById("item" + i + j).innerHTML = "&nbsp&nbsp&nbsp&nbsp" + li[j].value;

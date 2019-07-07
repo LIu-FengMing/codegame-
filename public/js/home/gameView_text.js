@@ -182,6 +182,11 @@ function initHome() {
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
   getArgs();
+  console.log(user.username);
+  if(user.username == "NKUSTCCEA"){
+    console.log(document.getElementById("gameModifyBtn"));
+    document.getElementById("gameModifyBtn").style.display = "";
+  }
 }
 
 //---------紀錄關卡資訊---------//
@@ -1351,7 +1356,6 @@ window.onresize = function() {
   b.setAttribute("style", "height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;");
   b.innerHTML = nowTexrareaVar;
   divTag.appendChild(b);
-  console.log("aaaaaaaaaa");
   $(function() {
     $(".lined").linedtextarea({
       selectedLine: 1
@@ -1424,6 +1428,14 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   //console.log(fontSize);
 }
 
+/*localStrage*/
+function turnToModify() {
+  let gameName = document.getElementById("titleFont").innerHTML;
+  console.log(gameName);
+  localStorage.setItem("gameName", gameName);
+  console.log(localStorage.getItem("gameName"));
+  document.location.href="managementModifyMap";
+}
 
 /*關卡說明*/
 mainDescription = {

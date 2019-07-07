@@ -294,7 +294,7 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
     divTag = document.getElementById("tr" + i);
     //創造6個br標籤
-    for (var j = 1; j <= 6; j++) {
+    for (var j = 1; j <= 7; j++) {
       b = document.createElement("td");
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
@@ -306,10 +306,7 @@ function createLevelTable(scriptData) {
       b.setAttribute("id", "input0" + i + j);
       b.setAttribute("readonly", "readonly");
       divTag.appendChild(b);
-      if (j == 6) {/*使用者狀態*/
-        document.getElementById("input0" + i + j).value = obj.td06;
-        // document.getElementById("td0" + i + j).innerHTML = "封鎖"
-      } else if (j == 1) {/*使用者帳號*/
+      if (j == 1) {/*使用者帳號*/
         document.getElementById("input0" + i + j).value = obj.td01;
         // document.getElementById("td0" + i + j).innerHTML = "aa";
       } else if (j == 2) {/*使用者名稱*/
@@ -324,6 +321,12 @@ function createLevelTable(scriptData) {
       } else if (j == 5) {/*最高的關卡*/
         document.getElementById("input0" + i + j).value = obj.td05;
         // document.getElementById("td0" + i + j).innerHTML = "13";
+      } else if (j == 6) {/*使用者狀態*/
+        b.setAttribute("type", "checkbox");
+        b.setAttribute("class", "mapCheckbox");
+      } else if(j == 7){
+        document.getElementById("input0" + i + j).value = obj.td06;
+        // document.getElementById("td0" + i + j).innerHTML = "封鎖"
       }
       divTag = document.getElementById("tr" + i);
     }

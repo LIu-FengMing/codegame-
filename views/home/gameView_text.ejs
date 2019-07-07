@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/gameView_text.css">
+    <link rel="stylesheet" href="css/modifyBtn.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
     <title>全速衝線</title>
   </head>
@@ -40,6 +41,7 @@
           <div id="titleBar">
             <input type="button" title="返回鍵" value="" id="goBack" onclick="back()">
             <span id="titleFont"></span>
+            <input type="button" id="gameModifyBtn" value="編輯" style="display:none;" onclick="turnToModify()">
           </div>
           <div id="textareaBk" style="display: none;">
             <input type="button" title="關閉" id="clossDiv" value="X">
