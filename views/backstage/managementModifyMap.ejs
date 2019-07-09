@@ -127,6 +127,7 @@
                   <td align="right" id="S1Td30" rowspan="3">
                     <br>
                     <br>
+                    <br>
                     <h3>通關條件</h3>
                   </td>
                   <td align="right" id="S1Td31">
@@ -147,17 +148,6 @@
                     <textarea id="starConditionTextarea"></textarea>
                   </td>
                   <td align="left" id="S1Td42">
-                    <h5>個指令</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right" id="S1Td50">
-                    <h5>一星</h5>
-                  </td>
-                  <td id="S1Td51">
-                    <textarea id="starConditionTextarea"></textarea>
-                  </td>
-                  <td align="left" id="S1Td52">
                     <h5>個指令</h5>
                   </td>
                 </tr>
@@ -265,8 +255,8 @@
               </table>
             </div>
           </div>
-          <input type="button" id="saveBtn" value="">
-          <input type="button" id="finishBtn" value="">
+          <input type="button" id="resetModifyBtn" value="取消">
+          <input type="button" id="saveModifyBtn" value="儲存" onclick="saveModifyMap()">
         </div>
         <div id="settingMapDiv" style="display:none;">
           <input type="button" id="clossDiv" value="X" onclick="unSaveMap()">
@@ -274,7 +264,6 @@
             <font id="settingMaptitleFont">地圖設置</font>
             <div id="settingMapDivCanvas"></div>
             <div id="innerSettingMapDiv">
-
               <input type="button" id="saveMap" value="儲存地圖" onclick="saveMap()">
             </div>
           </div>
@@ -289,7 +278,7 @@
         </div>
         <button class="btnUser" title="個人資料" onclick="userData()"></button>
         <button class="btnLogout" title="登出" onclick="logout()"></button>
-        <div class="versionControl">
+        <div class="versionControl" id="versionControl">
           <span onclick="selectVersion(this)">v5_2019/07/03</span>
         </div>
       </div>

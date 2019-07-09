@@ -140,22 +140,45 @@ body {
   font-family:Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
-  background-color: transparent;
+  background-color: white/*transparent*/;
   position: absolute;
   left: 10%;
   margin-top: 2vh;
 }
 #helperImgDiv1,#helperImgDiv2{
+  background-color: white;
   height: 18vh;
-  width: 45%;
+  width: 18vh;
   position: absolute;
-  right: 5%;
+  right: 20%;
 }
 #helperImgDiv1{
   top: 15%;
 }
 #helperImgDiv2{
   top: 43%;
+}
+#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7{
+  background-color: white;
+  height: 8vh;
+  width: 8vh;
+  position: absolute;
+}
+#helperImgDiv4{
+  left: 5%;
+  top: 100%;
+}
+#helperImgDiv5{
+  left: 5%;
+  top: calc(105% + 8vh);
+}
+#helperImgDiv6{
+  left: 5%;
+  top: calc(110% + (8vh * 2));
+}
+#helperImgDiv7{
+  left: 5%;
+  top: calc(115% + (8vh * 3));
 }
 .helperImg{
   height: 100%;
@@ -234,7 +257,7 @@ body {
   background-color: #FFE599;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
 }
-#clossDiv{
+#helperView input[type="button"]{
   width: 30px;
   height: 30px;
   background-color: white;
@@ -244,9 +267,23 @@ body {
   border-color: rgb(0, 0, 0);
   border-width: 0px;
   position: absolute;
+  cursor: pointer;
+}
+#clossDiv{
   top: 1%;
   right: 1%;
-  cursor: pointer;
+}
+#method1{
+  top: 3%;
+  left: 1%;
+}
+#method2{
+  top: 3%;
+  left: calc(30px + 2%);
+}
+#method3{
+  top: 3%;
+  left: calc(60px + 3%);
 }
 #allTitle,#userTitle{
   margin-top: 20px;
@@ -478,6 +515,7 @@ body {
 #previewBtn{
   width: 5vw;
   height: 5vh;
+  font-size: 2vh;
   background: #DAE8FC;
   position: absolute;
   right: calc(55% + 30vh);
@@ -495,36 +533,45 @@ body {
   margin-top: -32.5vh;
   min-width: 410px;
 }
-#functionSetting input[type="button"]{
+/* #functionSetting input[type="button"]{
   height: 8vh;
   width: 10vw;
   font-size: calc(10px + 1.5vw);
   border-radius: 10px;
   border-style: solid;
-  border-width: 0px;
   border-color: black;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   min-width: 95px;
-}
-#saveBtn{
-  background-image: url("../img/saveBtn.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+} */
+#saveModifyBtn{
+  height: 7vh;
+  width: 6vw;
+  font-size: 2vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
   position: absolute;
-  left: 2%;
-  bottom: 2%;
+  right: 3vw;
+  margin-top: 5%;
   cursor: pointer;
 }
-#finishBtn{
-  background-image: url("../img/finishBtn.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#resetModifyBtn{
+  height: 7vh;
+  width: 6vw;
+  font-size: 2vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
   position: absolute;
-  right: 2%;
-  bottom: 2%;
+  left: 3vw;
+  margin-top: 5%;
   cursor: pointer;
 }
 /*選擇地圖大小*/

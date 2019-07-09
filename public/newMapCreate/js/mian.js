@@ -99,13 +99,13 @@ function loadObjectValue() {
     }
 }
 
-var finishBtn = document.getElementById('finishBtn');
+var finishBtn = document.getElementById('saveBtn');
 finishBtn.onclick = function () {
     // console.log(changeFile);
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            
+
             console.log("scriptData:",scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
@@ -123,7 +123,6 @@ finishBtn.onclick = function () {
                 // alert("")
                 remindView("關卡名稱重複");
             }
-
         }
         else {
             var index = 0, href = window.location.href;
@@ -138,7 +137,7 @@ finishBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
-        
+
         console.log("scriptData:",scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
@@ -191,7 +190,7 @@ saveBtn.onclick = function () {
     }
     else {
         var scriptData = precessSaveData();
-        
+
         console.log("scriptData:",scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
@@ -650,7 +649,7 @@ function updateCanvas() {
         }
     }
     // noStroke();
-    
+
     // for (var y = 0; y < mapSize; ++y) {
     //     for (var x = 0; x < mapSize; ++x) {
     //         var i = y * mapSize + x;

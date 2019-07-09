@@ -92,7 +92,7 @@ xmlhttp.send();
 /*初始化*/
 function modifyInit(){
   let tempStr = localStorage.getItem("gameName");
-  console.log(tempStr);
+  console.log("這裡是關卡數:" + localStorage.getItem("gameNumber"));
   var gameNameStr = tempStr.replace(/&nbsp;/g, " ");
   divTag = document.getElementById("levelNameTextarea");
   divTag.value = gameNameStr;
@@ -159,17 +159,17 @@ function logout() {
 //////////////////////////////////////////////////
 /*小幫手*/
 function helper(mainDiv) {
-  var thisLevelNum;
-  if(user.starNum < 81){
-    thisLevelNum = 2;
-  }else if(user.starNum >= 81 && user.starNum < 120){
-    thisLevelNum = 3;
-  }else if(user.starNum >= 120){
-    thisLevelNum = 4;
-  }
-  isOblivionCreaterOpen = true;
-  Session.set("isOblivionCreaterOpen", isOblivionCreaterOpen);
-  var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
+  // var thisLevelNum;
+  // if(user.starNum < 81){
+  //   thisLevelNum = 2;
+  // }else if(user.starNum >= 81 && user.starNum < 120){
+  //   thisLevelNum = 3;
+  // }else if(user.starNum >= 120){
+  //   thisLevelNum = 4;
+  // }
+  // isOblivionCreaterOpen = true;
+  // Session.set("isOblivionCreaterOpen", isOblivionCreaterOpen);
+  // //var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   if (levelDivAlive) {
@@ -209,7 +209,28 @@ function helper(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
   document.getElementById("allTitle").innerHTML = "說明";
-  if (selectMod == 2) {
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板一");
+  b.setAttribute("id", "method1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "changeMethod(1)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板二");
+  b.setAttribute("id", "method2");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "changeMethod(2)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板三");
+  b.setAttribute("id", "method3");
+  b.setAttribute("value", "3");
+  b.setAttribute("onclick", "changeMethod(3)");
+  divTag.appendChild(b);
+  if (0) {
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
     divTag.appendChild(b);
@@ -243,15 +264,228 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊二*/
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-  } else if (selectMod == 1) {
+  } else if (1) {
     divTag = document.getElementById("helperView");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
+    b.innerHTML = "文字塊"
     divTag.appendChild(b);
-    document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+    //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
   }
 }
+function changeMethod(methodNumber) {
+  divTag = document.getElementById("helperView");
+  divTag.innerHTML = "";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
+  document.getElementById("allTitle").innerHTML = "說明";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板一");
+  b.setAttribute("id", "method1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "changeMethod(1)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板二");
+  b.setAttribute("id", "method2");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "changeMethod(2)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板三");
+  b.setAttribute("id", "method3");
+  b.setAttribute("value", "3");
+  b.setAttribute("onclick", "changeMethod(3)");
+  divTag.appendChild(b);
+  if (methodNumber == 2) {
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea1");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea2");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+  } else if (methodNumber == 1) {
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea3");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  }else if(methodNumber == 3){
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea1");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea2");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+
+    /*圖片四*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv4");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv4");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg4");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea4");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊四*/
+    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+
+    /*圖片五*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv5");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv5");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg5");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea5");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊五*/
+    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+
+    /*圖片六*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv6");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv6");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg6");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea6");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊六*/
+    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+
+    /*圖片七*/
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv7");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv7");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg7");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea7");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊七*/
+    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+
+    divTag = document.getElementById("helperView");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea8");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊八*/
+    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+  }
+}
 /*XX按鈕*/
 function clossFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
@@ -373,7 +607,7 @@ function createUserView(mainDiv) {
 
 var thisSelectionId;
 var args;
-var divTag,level;
+var divTag,level,b;
 var lastObject = null;
 
 /*div分頁*/
@@ -575,11 +809,34 @@ function remindView(remindValue) {
   divTag.appendChild(b);
 }
 
+/*儲存地圖*/
+var versionNumber = 0;
+function saveModifyMap(){
+  divTag = document.getElementById("versionControl");
+  var d = new Date();
+  let year = d.getFullYear();
+  var month = d.getMonth()+1;
+  var day = d.getDate();
+  if(month < 10){
+    month = "0" + month;
+  }
+  if(day < 10){
+    day = "0" + day;
+  }
+  let versionDate = year+ "/" + month + "/" + day;
+  console.log(divTag);
+  b = document.createElement("span");
+  b.setAttribute("onclick", "selectVersion(this)");
+  b.innerHTML = "v" + versionNumber + "_" + versionDate;
+  divTag.appendChild(b);
+  versionNumber++;
+}
+
 /*版本控制*/
 var lastSelect = null;
 function selectVersion(selectValue) {
   selectValue.style.background = "#E6E6E6";
-  console.log(selectValue.value);
+  console.log("選擇版本號"+selectValue.innerHTML);
   if(lastSelect != null){
     lastSelect.style.background = "none";
   }

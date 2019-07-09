@@ -325,7 +325,7 @@ function createUserView(mainDiv) {
 
 /*讀取網址資訊*/
 function getArgs() {
-  var args = new Object();
+   args = new Object();
   var query = location.search.substring(1);
   var pairs = query.split("&");
   for (var i = 0; i < pairs.length; i++) {
@@ -358,7 +358,6 @@ function getArgs() {
     divTag.style.fontFamily = spanStyle[args.level];
     divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
 
-    console.log(args.level);
     //changeCollege(--args.level);
     thisLevelNum = args.level-1;
     helper("blocklyDiv");
@@ -1431,9 +1430,8 @@ document.getElementById('textarea_0').onkeydown = function (e) {
 /*localStrage*/
 function turnToModify() {
   let gameName = document.getElementById("titleFont").innerHTML;
-  console.log(gameName);
   localStorage.setItem("gameName", gameName);
-  console.log(localStorage.getItem("gameName"));
+  localStorage.setItem("gameNumber", args.level);
   document.location.href="managementModifyMap";
 }
 
