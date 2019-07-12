@@ -512,16 +512,6 @@ body {
   margin-top: -30vh;
   min-width: 410px;
 }
-#previewBtn{
-  width: 5vw;
-  height: 5vh;
-  font-size: 2vh;
-  background: #DAE8FC;
-  position: absolute;
-  right: calc(55% + 30vh);
-  bottom: 10%;
-  cursor: pointer;
-}
 #functionSetting{
   height: 75vh;
   width: 60vh;
@@ -557,6 +547,23 @@ body {
   position: absolute;
   right: 3vw;
   margin-top: 5%;
+  cursor: pointer;
+}
+
+#previewBtn{
+  height: 7vh;
+  width: 6vw;
+  font-size: 2vw;
+  font-family: Microsoft JhengHei;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  margin-top: 5%;
+  left: 50%;
+  transform: translateX(-3vw);
   cursor: pointer;
 }
 #resetModifyBtn{

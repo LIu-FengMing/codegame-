@@ -396,7 +396,7 @@ function modifyInstruction(modifyNumber){
     b.setAttribute("id", "item" + trNumber + i);
     b.setAttribute("class", "itemTextarea");
     b.setAttribute("row", "5");
-    b.style.background = "#c3c3c3";
+    b.style.background = "rgba(255, 255, 255, 0.29)";
     b.innerHTML = transformVal;
     divTag.appendChild(b);
 

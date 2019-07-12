@@ -346,8 +346,8 @@ body {
   cursor: pointer;
 }
 .mapCheckbox{
-  width: 2vh;
-  height: 2vh;
+  width: 3vh;
+  height: 3vh;
 }
 #createrDiv textarea{
   height: 4vh;

@@ -1,20 +1,26 @@
 /*裝備*/
 #modifyEquipageView{
-  width: 2.5vw;
-  height: 3vh;
-  font-family: Microsoft JhengHei;
-  font-size: 2vh;
+  height: 2vw;
+  width: 2vw;
+  background-image: url("../img/modify.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  cursor: pointer;
   position: absolute;
-  top: calc(10px + 1vh);
+  top: calc(5px + 0.5vh);
   transform: translateX(3vw);
 }
 #gameModifyBtn{
+  height: 2.5vw;
   width: 2.5vw;
-  height: 3vh;
-  font-family: Microsoft JhengHei;
-  font-size: 2vh;
+  background-image: url("../img/modify.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  cursor: pointer;
   position: absolute;
-  top: calc(30px + 1vh);
+  top: calc(15px + 1vh);
   transform: translateX(5.5vw);
 }
 .modifyEquipmentInput{
@@ -65,11 +71,14 @@
 
 /*指令大全*/
 #modifyInstructionView{
-  width: 2.5vw;
-  height: 3vh;
-  font-family: Microsoft JhengHei;
-  font-size: 2vh;
-  transform: translate(150%,-100%);
+  height: 2vw;
+  width: 2vw;
+  background-image: url("../img/modify.png");
+  background-size: 100% 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-width: 0px;
+  cursor: pointer;
+  transform: translate(150%,-90%);
 }
 .itemTextarea{
   width: 80%;

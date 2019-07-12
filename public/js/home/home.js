@@ -512,7 +512,6 @@ function equipageView(mainDiv) {
     b = document.createElement("input");
     b.setAttribute("type","button");
     b.setAttribute("id","modifyEquipageView");
-    b.setAttribute("value","編輯");
     b.setAttribute("onclick","modifyEquipment()");
     divTag.appendChild(b);
   }
@@ -1033,7 +1032,6 @@ function instructionView(mainDiv) {
         b = document.createElement("input");
         b.setAttribute("type","button");
         b.setAttribute("id","modifyInstructionView");
-        b.setAttribute("value","編輯");
         b.setAttribute("onclick","modifyInstruction(" + i + ")");
         divTag.appendChild(b);
       }
