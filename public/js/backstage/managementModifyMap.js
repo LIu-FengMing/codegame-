@@ -172,20 +172,17 @@ function helper(mainDiv) {
   // //var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
-  if (levelDivAlive) {
-    divTag = document.getElementById("helperView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    divTag = document.getElementById("helperBkView");
-    try {
-      parentObj = divTag.parentNode;
-      parentObj.removeChild(divTag);
-    } catch (e) { }
-    levelDivAlive = false;
-    divTag = document.getElementById(mainDiv);
-  }
+  divTag = document.getElementById("helperView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch { }
+  divTag = document.getElementById("helperBkView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch { }
+  divTag = document.getElementById(mainDiv);
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
@@ -230,6 +227,10 @@ function helper(mainDiv) {
   b.setAttribute("value", "3");
   b.setAttribute("onclick", "changeMethod(3)");
   divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "helperInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("helperInnerDiv");
   if (0) {
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
@@ -247,7 +248,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
@@ -258,14 +259,14 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
     divTag.appendChild(b);
     /*設定文字塊二*/
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (1) {
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
     b.innerHTML = "文字塊"
@@ -309,6 +310,10 @@ function changeMethod(methodNumber) {
   b.setAttribute("value", "3");
   b.setAttribute("onclick", "changeMethod(3)");
   divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "helperInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("helperInnerDiv");
   if (methodNumber == 2) {
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
@@ -328,7 +333,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
@@ -340,7 +345,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
     b.style.background = "white";
@@ -348,7 +353,7 @@ function changeMethod(methodNumber) {
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (methodNumber == 1) {
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
     b.style.background = "white";
@@ -373,7 +378,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
@@ -385,7 +390,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
     b.style.background = "white";
@@ -394,7 +399,7 @@ function changeMethod(methodNumber) {
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
 
     /*圖片四*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv4");
     divTag.appendChild(b);
@@ -406,7 +411,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea4");
     b.style.background = "white";
@@ -415,7 +420,7 @@ function changeMethod(methodNumber) {
     // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
 
     /*圖片五*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv5");
     divTag.appendChild(b);
@@ -427,7 +432,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea5");
     b.style.background = "white";
@@ -436,7 +441,7 @@ function changeMethod(methodNumber) {
     // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
 
     /*圖片六*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv6");
     divTag.appendChild(b);
@@ -448,7 +453,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea6");
     b.style.background = "white";
@@ -457,7 +462,7 @@ function changeMethod(methodNumber) {
     // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
 
     /*圖片七*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv7");
     divTag.appendChild(b);
@@ -469,7 +474,7 @@ function changeMethod(methodNumber) {
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea7");
     b.style.background = "white";
@@ -477,7 +482,7 @@ function changeMethod(methodNumber) {
     /*設定文字塊七*/
     // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea8");
     b.style.background = "white";

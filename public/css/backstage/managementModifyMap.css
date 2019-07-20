@@ -100,13 +100,14 @@ body {
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
-#helperBkView{
-  z-index: 3;
-  height: 100%;
+#helperInnerDiv{
+  height: calc(100% - 5vh - 22px);
   width: 100%;
+  font-family: Microsoft JhengHei;
   position: absolute;
-  top: 0px;
-  background-color: rgba(0, 0, 0, 0.74);
+  top: calc(5vh + 22px);
+  background-color: rgba(0, 0, 0, 0);
+  overflow: auto;
 }
 #helperTextarea1{
   height: 50%;
@@ -117,19 +118,19 @@ body {
   text-align: left;
   background-color: transparent;
   position: absolute;
-  top: 15%;
+  top: 5%;
   left: 5%;
 }
 #helperTextarea2{
   height: 25%;
   width: 90%;
   font-size: 1.5vw;
-  font-family:Microsoft JhengHei;
+  font-family: Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
   background-color: transparent;
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 5%;
   padding-bottom: 12vh;
 }
@@ -137,48 +138,84 @@ body {
   height: 80%;
   width: 80%;
   font-size: 1.5vw;
-  font-family:Microsoft JhengHei;
+  font-family: Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
-  background-color: white/*transparent*/;
+  background-color: transparent;
   position: absolute;
+  bottom: 10%;
   left: 10%;
-  margin-top: 2vh;
+}
+#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7{
+  height: 8vh;
+  width: auto;
+  font-size: 1.5vw;
+  font-family:Microsoft JhengHei;
+  line-height: 8vh;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+}
+#helperTextarea4{
+  top: 90%;
+  left: calc(10% + 8vh);
+}
+#helperTextarea5{
+  top: calc(95% + 8vh);
+  left: calc(10% + 8vh);
+}
+#helperTextarea6{
+  top: calc(100% + (8vh * 2));
+  left: calc(10% + 8vh);
+}
+#helperTextarea7{
+  top: calc(105% + (8vh * 3));
+  left: calc(10% + 8vh);
+}
+#helperTextarea8{
+  height: 25%;
+  width: 90%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  top: calc(110% + (8vh * 4));
+  left: 5%;
 }
 #helperImgDiv1,#helperImgDiv2{
-  background-color: white;
   height: 18vh;
-  width: 18vh;
+  width: 45%;
   position: absolute;
-  right: 20%;
+  right: 5%;
 }
 #helperImgDiv1{
-  top: 15%;
+  top: 5%;
 }
 #helperImgDiv2{
-  top: 43%;
+  top: 33%;
 }
 #helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7{
-  background-color: white;
   height: 8vh;
   width: 8vh;
   position: absolute;
 }
 #helperImgDiv4{
   left: 5%;
-  top: 100%;
+  top: 90%;
 }
 #helperImgDiv5{
   left: 5%;
-  top: calc(105% + 8vh);
+  top: calc(95% + 8vh);
 }
 #helperImgDiv6{
   left: 5%;
-  top: calc(110% + (8vh * 2));
+  top: calc(100% + (8vh * 2));
 }
 #helperImgDiv7{
   left: 5%;
-  top: calc(115% + (8vh * 3));
+  top: calc(105% + (8vh * 3));
 }
 .helperImg{
   height: 100%;
