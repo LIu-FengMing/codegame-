@@ -1,12 +1,9 @@
-*{
-  font-family: Microsoft JhengHei;
-}
 .innerBox{
   width: 80%;
   position: absolute;
   left: 10%;
   right: 10%;
-  margin-top: 10vh;
+  margin-top: 20vh;
   border-style: none;
   text-align: center;
 }
@@ -20,7 +17,25 @@
   font-family: 'DFPingJuStd-W7';
   margin-bottom: 6vh;
 }
-#userImg,#passwordImg,#emailImg{
+#fb{
+  width: 125px;
+  height: 50px;
+  margin: 10px 2.5px 0px 0px;
+  background-image: url('../../img/facebook_login.png');
+  background-size:125px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#gl{
+  width: 125px;
+  height: 50px;
+  margin: 10px 0px 0px 2.5px;
+  background-image: url('../../img/google_login2.png');
+  background-size:125px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#userImg,#passwordImg{
   width: 9vh;
   height: 9vh;
   margin-left: -9vh;
@@ -28,8 +43,9 @@
 .innerBox table{
   margin-left: auto;
   margin-right:auto;
+  font-family: Microsoft JhengHei;
 }
-.box input[type = "text"],.box input[type = "password"],.box input[type = "email"]{
+.box input[type = "text"],.box input[type = "password"]{
   text-align: center;
   background-color: rgba(255, 255, 255, 0);
   border:2px;
@@ -47,18 +63,18 @@
   color: #000000;
   transition: 0.25s;
 }
-.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder,.box input[type = "email"]::placeholder {
+.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder {
   color: #7e7b7b;
   font-size: 3vh;
   text-align: center;
   opacity: 1; /* Firefox */
 }
-.box input[type = "text"]:focus,.box input[type = "password"]:focus,.box input[type = "email"]:focus{
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
   width: 18vw;
   text-align: center;
   border-color: #000000;
 }
-.box #signUp{
+.box input[type = "submit"]{
   height: 12vh;
   width: 12vh;
   margin: 20px auto 0px 0px;
@@ -66,13 +82,33 @@
   border-style: solid;
   border-width: 0px;
   border-color: #000000;
-  background-image: url('../img/car.png');
+  background-image: url('../../img/car.png');
   background-size: 100%;
   /* background-color: rgba(102, 216, 246, 0.64); */
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 }
+#forgetPassword{
+  background: none;
+  border-width: 0px;
+  font-size: 18px;
+  text-decoration:underline;
+  color: #287286;
+  margin: 30px 0px 0px 0px;
+  cursor: pointer;
+}
+
+#signUp{
+  font-size: 18px;
+  margin: 15px 15px 0px 0px;
+  color: #287286;
+  text-decoration:underline;
+  border-style:none;
+  background: none;
+  cursor: pointer;
+}
+
 
 /*提醒介面*/
 .oneLine{

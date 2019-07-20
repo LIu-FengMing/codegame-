@@ -2,7 +2,7 @@
 #modifyEquipageView{
   height: 2vw;
   width: 2vw;
-  background-image: url("../img/modify.png");
+  background-image: url("../../img/modify.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -14,7 +14,7 @@
 #gameModifyBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/modify.png");
+  background-image: url("../../img/modify.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -39,7 +39,7 @@
   padding-bottom: 1vh;
 }
 .saveBtn{
-  height: 6vh;
+  height: 5.5vh;
   width: 3.5vw;
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
@@ -50,11 +50,11 @@
   border-radius: 15px;
   position: absolute;
   right: 0.5vw;
-  margin-top: 1%;
+  bottom: 2%;
   cursor: pointer;
 }
 .resetBtn{
-  height: 6vh;
+  height: 5.5vh;
   width: 3.5vw;
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
@@ -65,7 +65,7 @@
   border-radius: 15px;
   position: absolute;
   right: 4.5vw;
-  margin-top: 1%;
+  bottom: 2%;
   cursor: pointer;
 }
 
@@ -73,7 +73,7 @@
 #modifyInstructionView{
   height: 2vw;
   width: 2vw;
-  background-image: url("../img/modify.png");
+  background-image: url("../../img/modify.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;

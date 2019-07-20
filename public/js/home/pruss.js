@@ -897,10 +897,14 @@ function equipageView(mainDiv) {
     b = document.createElement("input");
     b.setAttribute("type","button");
     b.setAttribute("id","modifyEquipageView");
-    b.setAttribute("value","編輯");
+    b.setAttribute("value","");
     b.setAttribute("onclick","modifyEquipment()");
     divTag.appendChild(b);
   }
+  b = document.createElement("div");
+  b.setAttribute("id", "equipageInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("equipageInnerDiv");
   b = document.createElement("table");
   b.setAttribute("id", "equipageTable");
   b.setAttribute("rules", "rows");
@@ -1369,6 +1373,10 @@ function instructionView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("allTitle").innerHTML = "指令大全";
+  b = document.createElement("div");
+  b.setAttribute("id", "instructionInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("instructionInnerDiv");
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
   b.setAttribute("rules", "rows");
@@ -1417,7 +1425,7 @@ function instructionView(mainDiv) {
         b = document.createElement("input");
         b.setAttribute("type","button");
         b.setAttribute("id","modifyInstructionView");
-        b.setAttribute("value","編輯");
+        b.setAttribute("value","");
         b.setAttribute("onclick","modifyInstruction(" + i + ")");
         divTag.appendChild(b);
       }
@@ -1492,7 +1500,10 @@ function achievementView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7LIFGG";
   document.getElementById("allTitle").innerHTML = "成就";
-
+  b = document.createElement("div");
+  b.setAttribute("id", "achievementInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("achievementInnerDiv");
   b = document.createElement("table");
   b.setAttribute("id", "achievementTable");
   b.setAttribute("rules", "rows");

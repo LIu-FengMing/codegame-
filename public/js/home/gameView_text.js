@@ -396,6 +396,10 @@ function helper(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("allTitle").style.fontFamily = "DFT_PJ7EFTWL";
   document.getElementById("allTitle").innerHTML = "關卡說明";
+  b = document.createElement("div");
+  b.setAttribute("id", "helperInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("helperInnerDiv");
   if (selectMod == 2) {
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
@@ -413,7 +417,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
@@ -424,14 +428,14 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
     divTag.appendChild(b);
     /*設定文字塊二*/
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (selectMod == 1) {
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
     divTag.appendChild(b);
@@ -453,7 +457,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
@@ -464,7 +468,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
     divTag.appendChild(b);
@@ -472,7 +476,7 @@ function helper(mainDiv) {
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
 
     /*圖片四*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv4");
     divTag.appendChild(b);
@@ -483,7 +487,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea4");
     divTag.appendChild(b);
@@ -491,7 +495,7 @@ function helper(mainDiv) {
     document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
 
     /*圖片五*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv5");
     divTag.appendChild(b);
@@ -502,7 +506,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea5");
     divTag.appendChild(b);
@@ -510,7 +514,7 @@ function helper(mainDiv) {
     document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
 
     /*圖片六*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv6");
     divTag.appendChild(b);
@@ -521,7 +525,7 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea6");
     divTag.appendChild(b);
@@ -529,7 +533,7 @@ function helper(mainDiv) {
     document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
 
     /*圖片七*/
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv7");
     divTag.appendChild(b);
@@ -540,14 +544,14 @@ function helper(mainDiv) {
     b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
     divTag.appendChild(b);
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea7");
     divTag.appendChild(b);
     /*設定文字塊七*/
     document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
 
-    divTag = document.getElementById("helperView");
+    divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea8");
     divTag.appendChild(b);

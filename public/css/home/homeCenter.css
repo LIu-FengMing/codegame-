@@ -36,27 +36,26 @@
 }
 #equipageView{
   z-index: 4;
-  height: 47vh;
+  height: 50vh;
   width: 27vw;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -23.5vh;
+  margin-top: -25vh;
   margin-left: -13.5vw;
   background-color: #FFC777;
   border-style: solid;
   border-color: white;
   border-width: 3px;
-  overflow: auto;
 }
 #equipageInnerDiv{
-  z-index: 4;
-  height: 20%;
+  height: 70%;
   width: 100%;
   font-family: Microsoft JhengHei;
   position: absolute;
-  top: 0px;
-  background-color: rgba(112, 159, 222, 1);
+  top: calc(5vh + 22px);
+  background-color: rgba(0, 0, 0, 0);
+  overflow: auto;
 }
 #equipageFont{
   position: absolute;
@@ -149,7 +148,7 @@
   font-size: 20px;
   font-weight: 100;
   border-width: 0px;
-  background-image: url("../img/levelAllMax.png");
+  background-image: url("../../img/levelAllMax.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
@@ -163,7 +162,7 @@
   font-size: 20px;
   font-weight: 100;
   border-width: 0px;
-  background-image: url("../img/highestLevel.png");
+  background-image: url("../../img/highestLevel.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
@@ -192,7 +191,7 @@
   width: 20px;
   border: 0px;
   background: transparent;
-  content:url('../img/levelStar.png');
+  content:url('../../img/levelStar.png');
   background-size: 100% 100%;
 }
 .levelUpFont{
@@ -204,7 +203,7 @@
   height: 50px;
   width: 1vw;
   /* border-radius: 10px 0px 0px 10px; */
-  background-image: url("../img/levelYellow.png");
+  background-image: url("../../img/levelYellow.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -217,7 +216,7 @@
   height: 50px;
   width: 1vw;
   /* border-radius: 10px 0px 0px 10px; */
-  background-image: url("../img/levelWhite.png");
+  background-image: url("../../img/levelWhite.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -229,7 +228,7 @@
 .levelLaterDefault{
   height: 50px;
   width: 1vw;
-  background-image: url("../img/levelWhite.png");
+  background-image: url("../../img/levelWhite.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -243,7 +242,7 @@
   height: 50px;
   width: 1vw;
   /* border-radius: 0px 10px 10px 0px; */
-  background-image: url("../img/levelYellow.png");
+  background-image: url("../../img/levelYellow.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -256,7 +255,7 @@
 .levelDefault{
   height: 50px;
   width: 1vw;
-  background-image: url("../img/levelWhite.png");
+  background-image: url("../../img/levelWhite.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -271,7 +270,7 @@
 .levelChange{
   height: 100%;
   width: 1vw;
-  background-image: url("../img/levelYellow.png");
+  background-image: url("../../img/levelYellow.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -295,7 +294,7 @@
   border-radius: 15px;
   position: absolute;
   right: 0.5vw;
-  margin-top: 1%;
+  bottom: 2%;
   cursor: pointer;
 }
 
@@ -314,6 +313,15 @@
   border-style: solid;
   border-color: white;
   border-width: 3px;
+  overflow: auto;
+}
+#instructionInnerDiv{
+  height: calc(100% - 5vh - 22px);
+  width: 100%;
+  font-family: Microsoft JhengHei;
+  position: absolute;
+  top: calc(5vh + 22px);
+  background-color: rgba(0, 0, 0, 0);
   overflow: auto;
 }
 #instructionTable{
@@ -367,6 +375,15 @@
   border-width: 3px;
   overflow: auto;
 }
+#achievementInnerDiv{
+  height: calc(100% - 5vh - 22px);
+  width: 100%;
+  font-family: Microsoft JhengHei;
+  position: absolute;
+  top: calc(5vh + 22px);
+  background-color: rgba(0, 0, 0, 0);
+  overflow: auto;
+}
 #achievementTable{
   width: 100%;
   position: relative;
@@ -381,7 +398,7 @@
   width: 35px;
   border: 0px;
   background: transparent;
-  content:url('../img/crown.png');
+  content:url('../../img/crown.png');
   background-size: 100% 100%;
   position: absolute;
   top: 10px;
@@ -391,7 +408,7 @@
   width: 35px;
   border: 0px;
   background: transparent;
-  content:url('../img/crown.png');
+  content:url('../../img/crown.png');
   background-size: 100% 100%;
   position: absolute;
   top: 1
@@ -402,21 +419,21 @@
   width: 10vh;
   border: 0px;
   background: transparent;
-  content:url('../img/champtionGold.png');
+  content:url('../../img/champtionGold.png');
   background-size: 100% 100%;
 }
 .champtionSilver{
   width: 10vh;
   border: 0px;
   background: transparent;
-  content:url('../img/champtionSilver.png');
+  content:url('../../img/champtionSilver.png');
   background-size: 100% 100%;
 }
 .champtionCopper{
   width: 10vh;
   border: 0px;
   background: transparent;
-  content:url('../img/champtionCopper.png');
+  content:url('../../img/champtionCopper.png');
   background-size: 100% 100%;
 }
 .achievementFont{

@@ -16,7 +16,7 @@
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/userData.png");
+  background-image: url("../../img/userData.png");
   color: black;
   cursor: pointer;
 }
@@ -26,7 +26,7 @@
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/layout.png");
+  background-image: url("../../img/layout.png");
   color: black;
   margin-top: -1vh;
   cursor: pointer;

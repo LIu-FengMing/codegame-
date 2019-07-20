@@ -60,7 +60,7 @@ body {
   width: 7vh;
   height: 7vh;
   font-size: 40px;
-  background-image: url('../img/goBack3.png');
+  background-image: url('../../img/goBack3.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -148,7 +148,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/layout.png");
+  background-image: url("../../img/layout.png");
   color: black;
   margin-top: -1vh;
   cursor: pointer;
@@ -181,7 +181,7 @@ body {
   width: 16px;
   height: 16px;
   margin: 4px 0 0 -22px;
-  background:url("../img/close.png") no-repeat;outline: none;
+  background:url("../../img/close.png") no-repeat;outline: none;
 }
 
 /*center*/

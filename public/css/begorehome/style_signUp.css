@@ -6,7 +6,7 @@
   position: absolute;
   left: 10%;
   right: 10%;
-  margin-top: 25vh;
+  margin-top: 10vh;
   border-style: none;
   text-align: center;
 }
@@ -20,7 +20,7 @@
   font-family: 'DFPingJuStd-W7';
   margin-bottom: 6vh;
 }
-#userImg,#passwordImg{
+#userImg,#passwordImg,#emailImg{
   width: 9vh;
   height: 9vh;
   margin-left: -9vh;
@@ -29,7 +29,7 @@
   margin-left: auto;
   margin-right:auto;
 }
-.box input[type = "text"],.box input[type = "password"]{
+.box input[type = "text"],.box input[type = "password"],.box input[type = "email"]{
   text-align: center;
   background-color: rgba(255, 255, 255, 0);
   border:2px;
@@ -47,18 +47,18 @@
   color: #000000;
   transition: 0.25s;
 }
-.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder {
+.box input[type = "password"]::placeholder,.box input[type = "text"]::placeholder,.box input[type = "email"]::placeholder {
   color: #7e7b7b;
   font-size: 3vh;
   text-align: center;
   opacity: 1; /* Firefox */
 }
-.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+.box input[type = "text"]:focus,.box input[type = "password"]:focus,.box input[type = "email"]:focus{
   width: 18vw;
   text-align: center;
   border-color: #000000;
 }
-.box input[type = "submit"]{
+.box #signUp{
   height: 12vh;
   width: 12vh;
   margin: 20px auto 0px 0px;
@@ -66,37 +66,13 @@
   border-style: solid;
   border-width: 0px;
   border-color: #000000;
-  background-image: url('../img/car.png');
+  background-image: url('../../img/car.png');
   background-size: 100%;
   /* background-color: rgba(102, 216, 246, 0.64); */
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 }
-.box #signUp{
-  height: 74px;
-  width: 74px;
-  margin: 10px auto 0px 0px;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 5px;
-  border-color: #000000;
-  background-image: url('../img/Car.png');
-  background-size:50px 40px;
-  background-color: rgba(102, 216, 246, 0.64);
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-#forgetPassword{
-  background: none;
-  border-width: 0px;
-  font-size: 18px;
-  text-decoration:underline;
-  color: #287286;
-  margin: 30px 0px 0px 0px;
-}
-
 
 /*提醒介面*/
 .oneLine{
