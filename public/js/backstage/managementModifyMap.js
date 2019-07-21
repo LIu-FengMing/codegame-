@@ -317,6 +317,7 @@ function changeMethod(methodNumber) {
   if (methodNumber == 2) {
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊一*/
@@ -348,6 +349,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊二*/
@@ -356,12 +358,14 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
   }else if(methodNumber == 3){
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea1");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊一*/
@@ -393,6 +397,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea2");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊二*/
@@ -414,6 +419,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea4");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊四*/
@@ -435,6 +441,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea5");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊五*/
@@ -456,6 +463,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea6");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊六*/
@@ -477,6 +485,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea7");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊七*/
@@ -485,6 +494,7 @@ function changeMethod(methodNumber) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea8");
+    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊八*/
