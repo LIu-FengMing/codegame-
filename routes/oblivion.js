@@ -3,7 +3,7 @@ var router = express.Router();
 // var passport = require('passport')
 // var LocalStrategy = require('passport-local').Strategy
 
-var Equipment = require('../models/equipment')
+// var Equipment = require('../models/equipment')
 var User = require('../models/user')
 var MapRecord = require('../models/map')
 router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
@@ -91,7 +91,18 @@ router.post('/oblivion', function (req, res, next) {
     }
     //-----暫時的 ------
     //-----關卡紀錄 ------
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
     //-------------------
     else {
 
@@ -207,6 +218,18 @@ router.post('/oblivionUser', function (req, res, next) {
             // console.log(map); 
             res.json(map);
         })
+    }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
     }
     //------------------- 
     else {
@@ -377,6 +400,18 @@ router.post('/oblivionGameView', function (req, res, next) {
 
 
     }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
     //-------------------
     else {
 
@@ -450,7 +485,18 @@ router.post('/oblivionDetectionView', function (req, res, next) {
         })
 
     }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
     //-------------------
     else {
 
@@ -589,6 +635,18 @@ router.post('/oblivionCreater', function (req, res, next) {
             // console.log(map);
             return res.json(map);
         })
+    }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
     }
     else {
         console.log("ERROR:", type);

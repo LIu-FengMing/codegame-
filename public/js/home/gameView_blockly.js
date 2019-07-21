@@ -94,15 +94,19 @@ $.ajax({
 
     /*loadmusicData();*/
     // console.log(user);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
-        initHome();
+    var scriptData = {
+      type: "loadEquip"
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        // console.log(res);
+        equipmentData = res;
       }
-    };
-    xmlhttp.open("GET", "json/equipment.json", true);
-    xmlhttp.send();
+    })
   }
 })
 // var xmlhttp = new XMLHttpRequest();

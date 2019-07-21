@@ -1,186 +1,33 @@
-module.exports = {
-    levelUpLevel: [
-        {
-            "level": 0,
-            "star": 70
-        },
-        {
-            "level": 1,
-            "star": 75
-        },
-        {
-            "level": 2,
-            "star": 80
-        },
-        {
-            "level": 3,
-            "star": 85
-        },
-        {
-            "level": 4,
-            "star": 90
-        },
-        {
-            "level": 5,
-            "star": 95
-        },
-        {
-            "level": 6,
-            "star": 100
-        },
-        {
-            "level": 7,
-            "star": 105
-        },
-        {
-            "level": 8,
-            "star": 110
-        },
-        {
-            "level": 9,
-            "star": 115
-        },{
-            "level": 10,
-            "star": 120
-        },{
-            "level": 11,
-            "star": 125
-        },{
-            "level": 12,
-            "star": 130
-        },{
-            "level": 13,
-            "star": 135
-        },{
-            "level": 14,
-            "star": 140
-        }
-    ],
-    "armorLevel": [
-        {
-            "level": 0,
-            "attack": 5
-        },
-        {
-            "level": 1,
-            "attack": 10
-        },
-        {
-            "level": 2,
-            "attack": 15
-        },
-        {
-            "level": 3,
-            "attack": 20
-        },
-        {
-            "level": 4,
-            "attack": 25
-        },
-        {
-            "level": 5,
-            "attack": 30
-        },
-        {
-            "level": 6,
-            "attack": 35
-        },
-        {
-            "level": 7,
-            "attack": 40
-        },
-        {
-            "level": 8,
-            "attack": 45
-        },
-        {
-            "level": 9,
-            "attack": 50
-        }
-    ],
-    "weaponLevel": [
-        {
-            "level": 0,
-            "attack": 5
-        },
-        {
-            "level": 1,
-            "attack": 7
-        },
-        {
-            "level": 2,
-            "attack": 9
-        },
-        {
-            "level": 3,
-            "attack": 12
-        },
-        {
-            "level": 4,
-            "attack": 15
-        },
-        {
-            "level": 5,
-            "attack": 20
-        },
-        {
-            "level": 6,
-            "attack": 25
-        },
-        {
-            "level": 7,
-            "attack": 32
-        },
-        {
-            "level": 8,
-            "attack": 40
-        },
-        {
-            "level": 9,
-            "attack": 50
-        }
-    ],
-    "armorLevel": [
-        {
-            "level": 0,
-            "attack": 5
-        },
-        {
-            "level": 1,
-            "attack": 10
-        },
-        {
-            "level": 2,
-            "attack": 15
-        },
-        {
-            "level": 3,
-            "attack": 20
-        },
-        {
-            "level": 4,
-            "attack": 25
-        },
-        {
-            "level": 5,
-            "attack": 30
-        },
-        {
-            "level": 6,
-            "attack": 35
-        },
-        {
-            "level": 7,
-            "attack": 40
-        },
-        {
-            "level": 8,
-            "attack": 45
-        },
-        {
-            "level": 9,
-            "attack": 50
-        }
-    ]
+// model/users.js
+//先載入我們要的library
+var mongoose = require('mongoose')
+
+//創造資料庫需要的欄位(schema)
+var EquipmentSchema = mongoose.Schema({
+    type: { type: String ,default:"equipment"},
+    levelUpLevel: { type: Array ,default:[]},
+    weaponLevel: { type: Array ,default:[]},
+    armorLevel: { type: Array ,default:[]}
     
-};
+})
+
+var EquipmentRecord = module.exports = mongoose.model('Equipment', EquipmentSchema)
+
+module.exports.createEquipment = function (newEquipment, callback) {
+    newEquipment.save(callback)
+}
+// getEquipment
+module.exports.getEquipment = function (callback) {
+    EquipmentRecord.find({ }, callback)
+}
+
+// updateMap, 透過type更新地圖
+module.exports.updateEquipment = function (armorLevel,weaponLevel,levelUpLevel, callback) {
+    var query = { type: "equipment"}
+    var setquery = {
+        levelUpLevel: levelUpLevel,
+        weaponLevel: weaponLevel,
+        armorLevel:armorLevel
+    }
+    EquipmentRecord.updateOne(query, setquery, callback);
+}
