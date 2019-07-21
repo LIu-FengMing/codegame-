@@ -111,7 +111,9 @@ $.ajax({
 })
 
 
-
+function getEquipmentData() {
+  return equipmentData;
+}
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);

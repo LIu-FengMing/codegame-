@@ -5,12 +5,13 @@ var divTag,dictionaryData,firstIntoThis=true;
 
 //創建更改裝備Table
 function modifyEquipment() {
+  var equipmentData = getEquipmentData();
   document.getElementById("allTitle").innerHTML = "裝備等級表";
   divTag = document.getElementById("equipageTable");
   divTag.innerHTML = "";
   document.getElementById("modifyEquipageView").style.display = "none";
   //i是代表16行，j是代表4個欄位
-  for (var i = 0; i < 16; i++) {
+  for (var i = 0; i < 17; i++) {
     b = document.createElement("tr");
     b.setAttribute("id", "tr" + i);
     divTag.appendChild(b);
@@ -49,7 +50,7 @@ function modifyEquipment() {
           divTag.style.background = "#EBB76F";
           b = document.createElement("span");
           b.setAttribute("id","levelTitle");
-          b.innerHTML = "lv" + i;
+          b.innerHTML = "lv" + (i-1);
           divTag.appendChild(b);
         }else{
           divTag.style.background = "#FFDEB8";
@@ -67,13 +68,25 @@ function modifyEquipment() {
                 b.setAttribute("id","conditionValue" + i);
               break;
           }
-          if(i < 11){
-            b.value = 0;
-            if(i == 1 && j==3){
-              b.value = "X";
+          if(i < 12){
+            switch (j) {
+              case 1:
+                b.value = equipmentData.armorLevel[i-1].attack;
+                break;
+              case 2:
+                b.value = equipmentData.weaponLevel[i-1].attack;
+                break;
+              case 3:
+                b.value = equipmentData.levelUpLevel[i-1].star;
+                break;
             }
           }else{
-            b.value = "X";
+            if(j == 3){
+              b.value = equipmentData.levelUpLevel[i-1].star;
+            }else{
+              b.value = "X";
+              b.setAttribute("readonly","true");
+            }
           }
           divTag.appendChild(b);
         }
