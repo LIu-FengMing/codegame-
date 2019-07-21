@@ -358,7 +358,7 @@ function changeMethod(methodNumber) {
     b = document.createElement("br");
     divTag.appendChild(b);
     b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("id", "helperImg2Input");
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
@@ -397,7 +397,16 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg1");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -409,7 +418,15 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg2");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg2Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -431,7 +448,14 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg4");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg4Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -453,7 +477,14 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg5");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg5Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -475,7 +506,14 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg6");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg6Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -497,7 +535,14 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg7");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg7Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -532,6 +577,20 @@ function clossFunc(thisDiv, thisDiv2) {
     parentObj.removeChild(divTag);
   } catch (e) { }
   levelDivAlive = false;
+}
+/*讀取圖片*/
+function readImgUrl(input){
+  console.log(input.value);
+  if(input.files && input.files[0]){
+    var imageTagID = input.getAttribute("helperImg1");
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = document.getElementById("helperImg1");
+      console.log(img);
+      img.setAttribute("src", e.target.result)
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
 }
 
 //////////////////////////////////////////////////
