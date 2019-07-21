@@ -62,7 +62,7 @@ body {
   width: 7vh;
   height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack3.png');
+  background-image: url('../../img/goBack3.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -83,7 +83,7 @@ body {
 #helperBtn{
   width: 100px;
   height: 100px;
-  background-image: url("../img/helper.png");
+  background-image: url("../../img/helper.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -172,7 +172,7 @@ body {
   width: 6vh;
   height: 6vh;
   border-width: 0px;
-  background-image: url('../img/setting_all.png');
+  background-image: url('../../img/setting_all.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -261,7 +261,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/userData.png");
+  background-image: url("../../img/userData.png");
   color: black;
   cursor: pointer;
 }
@@ -271,7 +271,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/layout.png");
+  background-image: url("../../img/layout.png");
   color: black;
   margin-top: -1vh;
   cursor: pointer;
@@ -389,7 +389,7 @@ body {
   width: 16px;
   height: 16px;
   margin: 4px 0 0 -22px;
-  background:url("../img/close.png") no-repeat;outline: none;
+  background:url("../../img/close.png") no-repeat;outline: none;
 }
 /*搜尋*/
 .search-box{
@@ -543,7 +543,7 @@ body {
   cursor: pointer;
 }
 #createLevel{
-  background-image: url("../img/createLevel.png");
+  background-image: url("../../img/createLevel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -553,7 +553,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
 }
 #enterLevel{
-  background-image: url("../img/enterLevel.png");
+  background-image: url("../../img/enterLevel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -238,6 +238,7 @@ function helper(mainDiv) {
     /*設定文字塊一*/
     document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
+    /*設置圖片一*/
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv1");
     divTag.appendChild(b);
@@ -332,7 +333,15 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg1");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -344,7 +353,15 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg2");
     b.setAttribute("class", "helperImg");
     b.style.background = "white";
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");

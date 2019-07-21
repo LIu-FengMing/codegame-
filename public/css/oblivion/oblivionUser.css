@@ -59,7 +59,7 @@ body {
   width: 7vh;
   height: 7vh;
   border-width: 0;
-  background-image: url('../img/goBack3.png');
+  background-image: url('../../img/goBack3.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -80,7 +80,7 @@ body {
 #helperBtn{
   width: 100px;
   height: 100px;
-  background-image: url("../img/helper.png");
+  background-image: url("../../img/helper.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -169,7 +169,7 @@ body {
   width: 6vh;
   height: 6vh;
   border-width: 0px;
-  background-image: url('../img/setting_all.png');
+  background-image: url('../../img/setting_all.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -417,7 +417,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/userData.png");
+  background-image: url("../../img/userData.png");
   color: black;
   cursor: pointer;
 }
@@ -427,7 +427,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/layout.png");
+  background-image: url("../../img/layout.png");
   color: black;
   margin-top: -1vh;
   cursor: pointer;
@@ -634,7 +634,7 @@ body {
 .lostUserCreateTable .shelfBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/shelf.png");
+  background-image: url("../../img/shelf.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -644,7 +644,7 @@ body {
 .lostUserCreateTable .unShelfBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/obtained.png");
+  background-image: url("../../img/obtained.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -654,7 +654,7 @@ body {
 .lostUserCreateTable .modifyBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/modify.png");
+  background-image: url("../../img/modify.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -664,7 +664,7 @@ body {
 .lostUserCreateTable .introductionBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/introduction.png");
+  background-image: url("../../img/introduction.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -674,7 +674,7 @@ body {
 .lostUserCreateTable .deleteBtn{
   height: 2.5vw;
   width: 2.5vw;
-  background-image: url("../img/delete.png");
+  background-image: url("../../img/delete.png");
   background-size: 100% 100%;
   background-color: rgba(255, 255, 255, 0);
   border-width: 0px;
@@ -729,7 +729,7 @@ body {
   border: 0;
 }
 #createLevel{
-  background-image: url("../img/createOwnLevel.png");
+  background-image: url("../../img/createOwnLevel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -740,7 +740,7 @@ body {
   cursor: pointer;
 }
 #detectionLevel{
-  background-image: url("../img/detectionLevel.png");
+  background-image: url("../../img/detectionLevel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

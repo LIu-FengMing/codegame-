@@ -25,7 +25,7 @@ body {
   width: 100%;
 }
 .center{
-  background-image: url('../img/bk.PNG');
+  background-image: url('../../img/bk.PNG');
   background-repeat: no-repeat;
   background-position:center;
   background-attachment:fixed;
@@ -57,7 +57,7 @@ body {
   width: 7vh;
   height: 7vh;
   font-size: 40px;
-  background-image: url('../img/goBack3.png');
+  background-image: url('../../img/goBack3.png');
   background-size: 50px 50px;
   background-repeat: no-repeat;
   background-position: center;
@@ -79,7 +79,7 @@ body {
 #helperBtn{
   width: 100px;
   height: 100px;
-  background-image: url("../img/helper.png");
+  background-image: url("../../img/helper.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -145,7 +145,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/userData.png");
+  background-image: url("../../img/userData.png");
   color: black;
   cursor: pointer;
 }
@@ -155,7 +155,7 @@ body {
   border-width: 0px;
   background-color: rgba(53, 4, 179, 0);
   background-size: 100% 100%;
-  background-image: url("../img/layout.png");
+  background-image: url("../../img/layout.png");
   color: black;
   margin-top: -1vh;
   cursor: pointer;
@@ -385,7 +385,7 @@ body {
   width: 8vh;
   border: 0px;
   background: transparent;
-  background-image: url('../img/levelStar.png');
+  background-image: url('../../img/levelStar.png');
   background-size: 100% 100%;
   cursor: pointer;
 }
@@ -395,7 +395,7 @@ body {
   width: 8vh;
   border: 0px;
   background: transparent;
-  background-image: url('../img/levelStarNull.png');
+  background-image: url('../../img/levelStarNull.png');
   background-size: 100% 100%;
   cursor: pointer;
 }
@@ -469,7 +469,7 @@ body {
   width: 9vh;
   height: 9vh;
   border: 0px;
-  background-image: url('../img/start.png');
+  background-image: url('../../img/start.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -482,7 +482,7 @@ body {
   width: 9vh;
   height: 9vh;
   border: 0px;
-  background-image: url('../img/clearButton.png');
+  background-image: url('../../img/clearButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -495,7 +495,7 @@ body {
   width: 9vh;
   height: 9vh;
   border: 0px;
-  background-image: url('../img/RestartButton.png');
+  background-image: url('../../img/RestartButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -508,7 +508,7 @@ body {
   width: 9vh;
   height: 9vh;
   border: 0px;
-  background-image: url('../img/SettingButton.png');
+  background-image: url('../../img/SettingButton.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: transparent;
@@ -524,7 +524,7 @@ body {
   height: 1.5vw;
   font-family: 'DFT_PJ7';
   border-width: 0px;
-  background-image: url('../img/instruction.png');
+  background-image: url('../../img/instruction.png');
   background-repeat: no-repeat;
   background-size: 100%;
   background-color: transparent;
