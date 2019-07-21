@@ -1,5 +1,8 @@
 var divTag,dictionaryData,firstIntoThis=true;
 
+
+
+
 //創建更改裝備Table
 function modifyEquipment() {
   document.getElementById("allTitle").innerHTML = "裝備等級表";
@@ -390,7 +393,8 @@ function modifyInstruction(modifyNumber){
     divTag.appendChild(b);
     document.getElementById("summaryInner" + trNumber + i).innerHTML = li[i].name;
 
-    var transformVal = "    " + li[i].value.replace(/&nbsp/g, " "),temp;
+    // var transformVal = "    " + li[i].value.replace(/&nbsp/g, " "),temp;
+    var transformVal = li[i].value.replace(/&nbsp/g, " "),temp;
     transformVal = transformVal.replace(/<br>/g, "\n");
     b = document.createElement("textarea");
     b.setAttribute("id", "item" + trNumber + i);
@@ -421,6 +425,24 @@ function modifyInstruction(modifyNumber){
 function saveInstruction(trNumber,tdNumber){
   var transformVal = document.getElementById("item" + trNumber + tdNumber).value.replace(/ /g, "&nbsp");
   transformVal = transformVal.replace(/\n/g, "<br>");//處理完成的字串，可直接存起來
+  // console.log(trNumber,tdNumber);
+  var data=dictionaryData.code[parseInt((trNumber-1)/2)];
+  data.element[tdNumber].value=transformVal;
+  var scriptData = {
+    type: "updateDict",
+    dictType:data.type,
+    dictNum: tdNumber,
+    dictValue: transformVal
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      alert("儲存成功");
+    }
+  })
   // console.log(transformVal);
   //將表格清0並重建，請在這之前做儲存資料之動作
   //resetInstruction(trNumber,tdNumber);

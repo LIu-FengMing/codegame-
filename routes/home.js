@@ -6,6 +6,10 @@ var router = express.Router();
 var Equipment = require('../models/equipment')
 var User = require('../models/user')
 var MapRecord = require('../models/map')
+var DictionaryRecord = require('../models/dictionary')
+
+var testDict = require('../models/dictionaryJson')
+
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
     res.render('home//kuruma', {
@@ -41,10 +45,10 @@ router.post('/kuruma', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
-            var dataMap=[];
+            var dataMap = [];
             for (let indexM = 0; indexM < map.length; indexM++) {
                 const element = map[indexM];
-                if(element.check==true&&element.postStage==2){
+                if (element.check == true && element.postStage == 2) {
                     dataMap.push(element);
                 }
 
@@ -124,11 +128,41 @@ router.post('/kuruma', function (req, res, next) {
                         return res.json({ responce: 'failPassUndifine' });
                     }
                 })
-            }else{
+            } else {
                 return res.json({ responce: 'error' });
             }
         })
         // res.redirect('/login')
+    }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "updateDict") {
+        var dictType = req.body.dictType
+        var dictNum = req.body.dictNum
+        var dictValue = req.body.dictValue
+        console.log(dictType,dictNum,dictValue);
+        DictionaryRecord.getDictionary(function (err, dict) {
+            if (err) throw err;
+            var typeIndex=0;
+            for (let index = 0; index < dict.length; index++) {
+                var element = dict[index];
+                if(element.type==dictType){
+                    element.element[dictNum].value=dictValue;
+                    typeIndex=index;
+                    break;
+                    // console.log(element);
+                    
+                }
+            }
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+                if (err) throw err;
+                res.json({res:true});
+            });
+        });
     }
     else {
 
@@ -198,10 +232,10 @@ router.post('/pruss', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
-            var dataMap=[];
+            var dataMap = [];
             for (let indexM = 0; indexM < map.length; indexM++) {
                 const element = map[indexM];
-                if(element.check==true&&element.postStage==2){
+                if (element.check == true && element.postStage == 2) {
                     dataMap.push(element);
                 }
 
@@ -283,11 +317,41 @@ router.post('/pruss', function (req, res, next) {
                         return res.json({ responce: 'failPassUndifine' });
                     }
                 })
-            }else{
+            } else {
                 return res.json({ responce: 'error' });
             }
         })
         // res.redirect('/login')
+    }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "updateDict") {
+        var dictType = req.body.dictType
+        var dictNum = req.body.dictNum
+        var dictValue = req.body.dictValue
+        console.log(dictType,dictNum,dictValue);
+        DictionaryRecord.getDictionary(function (err, dict) {
+            if (err) throw err;
+            var typeIndex=0;
+            for (let index = 0; index < dict.length; index++) {
+                var element = dict[index];
+                if(element.type==dictType){
+                    element.element[dictNum].value=dictValue;
+                    typeIndex=index;
+                    break;
+                    // console.log(element);
+                    
+                }
+            }
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+                if (err) throw err;
+                res.json({res:true});
+            });
+        });
     }
     else {
 
@@ -508,6 +572,36 @@ router.post('/gameView_text', function (req, res, next) {
 
             }
         })
+    }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "updateDict") {
+        var dictType = req.body.dictType
+        var dictNum = req.body.dictNum
+        var dictValue = req.body.dictValue
+        console.log(dictType,dictNum,dictValue);
+        DictionaryRecord.getDictionary(function (err, dict) {
+            if (err) throw err;
+            var typeIndex=0;
+            for (let index = 0; index < dict.length; index++) {
+                var element = dict[index];
+                if(element.type==dictType){
+                    element.element[dictNum].value=dictValue;
+                    typeIndex=index;
+                    break;
+                    // console.log(element);
+                    
+                }
+            }
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+                if (err) throw err;
+                res.json({res:true});
+            });
+        });
     }
     else {
 
@@ -958,7 +1052,7 @@ router.post('/managementModifyMap', function (req, res, next) {
 
 router.get('/managementUser', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/managementUser', {
@@ -986,9 +1080,9 @@ router.post('/managementUser', function (req, res, next) {
         })
     }
     else if (type == "changeUserStatus") {
-        var userstatus=req.body.userstatus;
-        var userId=req.body.userId;
-        User.updateUserStatus(userId,userstatus, function (err, users) {
+        var userstatus = req.body.userstatus;
+        var userId = req.body.userId;
+        User.updateUserStatus(userId, userstatus, function (err, users) {
             if (err) throw err;
             res.json(users);
         })
@@ -998,7 +1092,7 @@ router.post('/managementUser', function (req, res, next) {
 
 router.get('/management', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/management', {
@@ -1052,7 +1146,7 @@ router.post('/management', function (req, res, next) {
 
 router.get('/managementStatistics', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if(req.user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/managementStatistics', {
@@ -1117,9 +1211,24 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
     User.getUserById(req.user.id, function (err, user) {
         if (err) throw err;
-        if(user.username!="NKUSTCCEA"){ //如有其他管理者 在這加
+        if (user.username != "NKUSTCCEA") { //如有其他管理者 在這加
             res.redirect('/home')
         }
+
+        /*初次一定要做 預設檔案進db*/
+        // var dictJson = testDict.dict.code;
+        // for (let index = 0; index < dictJson.length; index++) {
+        //     console.log(dictJson[index].type, dictJson[index].element);
+        //     var newDictionary = new DictionaryRecord({
+        //         type:dictJson[index].type,
+        //         element:dictJson[index].element
+        //     })
+        //     DictionaryRecord.createDictionary(newDictionary, function (err, dict) {
+                
+        //         console.log(dict);
+        //     })
+        // }
+
         var openLokCastle = false;
         var codeLevel = -1;
         for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
@@ -1220,10 +1329,10 @@ router.post('/', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
-            var dataMap=[];
+            var dataMap = [];
             for (let indexM = 0; indexM < map.length; indexM++) {
                 const element = map[indexM];
-                if(element.check==true&&element.postStage==2){
+                if (element.check == true && element.postStage == 2) {
                     dataMap.push(element);
                 }
 
@@ -1305,13 +1414,42 @@ router.post('/', function (req, res, next) {
                         return res.json({ responce: 'failPassUndifine' });
                     }
                 })
-            }else{
+            } else {
                 return res.json({ responce: 'error' });
             }
         })
         // res.redirect('/login')
     }
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
 
+        });
+    }
+    else if (type == "updateDict") {
+        var dictType = req.body.dictType
+        var dictNum = req.body.dictNum
+        var dictValue = req.body.dictValue
+        console.log(dictType,dictNum,dictValue);
+        DictionaryRecord.getDictionary(function (err, dict) {
+            if (err) throw err;
+            var typeIndex=0;
+            for (let index = 0; index < dict.length; index++) {
+                var element = dict[index];
+                if(element.type==dictType){
+                    element.element[dictNum].value=dictValue;
+                    typeIndex=index;
+                    break;
+                    // console.log(element);
+                    
+                }
+            }
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+                if (err) throw err;
+                res.json({res:true});
+            });
+        });
+    }
     //-------------------
     else {
 
@@ -1324,7 +1462,7 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
 
     User.getUserById(req.user.id, function (err, user) {
         if (err) throw err;
-         if(user.username=="NKUSTCCEA"){ //如有其他管理者 在這加
+        if (user.username == "NKUSTCCEA") { //如有其他管理者 在這加
             res.redirect('/management')
         }
         var openLokCastle = false;
@@ -1427,10 +1565,10 @@ router.post('/home', function (req, res, next) {
     else if (type == "userMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
-            var dataMap=[];
+            var dataMap = [];
             for (let indexM = 0; indexM < map.length; indexM++) {
                 const element = map[indexM];
-                if(element.check==true&&element.postStage==2){
+                if (element.check == true && element.postStage == 2) {
                     dataMap.push(element);
                 }
 
@@ -1487,7 +1625,12 @@ router.post('/home', function (req, res, next) {
         })
     }
     //-----暫時的 ------
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
 
+        });
+    }
     else if (type == "changePassword") {
         var id = req.user.id
         var password = req.body.password
@@ -1512,7 +1655,7 @@ router.post('/home', function (req, res, next) {
                         return res.json({ responce: 'failPassUndifine' });
                     }
                 })
-            }else{
+            } else {
                 return res.json({ responce: 'error' });
             }
         })
