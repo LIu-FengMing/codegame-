@@ -269,7 +269,8 @@ function helper(mainDiv) {
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea3");
-    b.innerHTML = "文字塊"
+    b.setAttribute("contenteditable", "true");
+    b.style.background = "white";
     divTag.appendChild(b);
     //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
   }
