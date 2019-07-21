@@ -110,7 +110,28 @@ function modifyEquipment() {
 
 //儲存更改後的資料
 function saveEquipment(){
-
+  var levelUpLevel = [], weaponLevel = [],armorLevel = [];
+  for(var i = 1;i < 17;i++){
+    for(var j = 1;j < 4;j++){
+      switch (j) {
+        case 1:
+          divTag = document.getElementById("swordValue" + i);
+          armorLevel.push(divTag.value);
+          break;
+        case 2:
+          divTag = document.getElementById("shieldValue" + i);
+          weaponLevel.push(divTag.value);
+          break;
+        case 3:
+          divTag = document.getElementById("conditionValue" + i);
+          levelUpLevel.push(divTag.value);
+          break;
+      }
+    }
+  }
+  console.log(armorLevel);
+  console.log(weaponLevel);
+  console.log(levelUpLevel);
   //將表格清0並重建，請在這之前做儲存資料之動作
   resetTableToOriginal();
 }
