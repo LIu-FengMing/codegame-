@@ -157,19 +157,19 @@ body {
   position: absolute;
 }
 #helperTextarea4{
-  top: 90%;
+  top: 105%;
   left: calc(10% + 8vh);
 }
 #helperTextarea5{
-  top: calc(95% + 8vh);
+  top: calc(110% + 8vh);
   left: calc(10% + 8vh);
 }
 #helperTextarea6{
-  top: calc(100% + (8vh * 2));
+  top: calc(115% + (8vh * 2));
   left: calc(10% + 8vh);
 }
 #helperTextarea7{
-  top: calc(105% + (8vh * 3));
+  top: calc(120% + (8vh * 3));
   left: calc(10% + 8vh);
 }
 #helperTextarea8{

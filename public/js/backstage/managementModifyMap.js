@@ -232,14 +232,14 @@ function helper(mainDiv) {
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
   if (0) {
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     divTag.appendChild(b);
     /*設定文字塊一*/
     document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
     /*設置圖片一*/
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperImgDiv1");
     divTag.appendChild(b);
     divTag = document.getElementById("helperImgDiv1");
@@ -250,7 +250,7 @@ function helper(mainDiv) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperImgDiv2");
     divTag.appendChild(b);
     divTag = document.getElementById("helperImgDiv2");
@@ -268,9 +268,8 @@ function helper(mainDiv) {
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (1) {
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea3");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
@@ -317,9 +316,8 @@ function changeMethod(methodNumber) {
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
   if (methodNumber == 2) {
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊一*/
@@ -342,6 +340,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,1)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -362,28 +361,26 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,2)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea2");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (methodNumber == 1) {
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea3");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
   }else if(methodNumber == 3){
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊一*/
@@ -406,7 +403,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this)");
+    b.setAttribute("onchange","readImgUrl(this,1)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -427,12 +424,12 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,2)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea2");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊二*/
@@ -456,12 +453,12 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg4Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,4)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea4");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊四*/
@@ -485,12 +482,12 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg5Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,5)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea5");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊五*/
@@ -514,12 +511,12 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg6Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,6)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea6");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊六*/
@@ -543,21 +540,20 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg7Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange","readImgUrl(this,7)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea7");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊七*/
     // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
 
     divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
+    b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea8");
-    b.setAttribute("contenteditable", "true");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊八*/
@@ -579,14 +575,13 @@ function clossFunc(thisDiv, thisDiv2) {
   levelDivAlive = false;
 }
 /*讀取圖片*/
-function readImgUrl(input){
+function readImgUrl(input,imgId){
   console.log(input.value);
   if(input.files && input.files[0]){
-    var imageTagID = input.getAttribute("helperImg1");
+    var imageTagID = input.getAttribute("helperImg" + imgId);
     var reader = new FileReader();
     reader.onload = function (e) {
-      var img = document.getElementById("helperImg1");
-      console.log(img);
+      var img = document.getElementById("helperImg" + imgId);
       img.setAttribute("src", e.target.result)
     }
     reader.readAsDataURL(input.files[0]);
