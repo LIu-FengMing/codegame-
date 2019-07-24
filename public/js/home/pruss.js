@@ -57,40 +57,42 @@ var scriptData = {
 var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true,achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
+
 $.ajax({
   url: href,              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
   success: function (res) {
-    scriptData = {
-      bkMusicVolumn: res.bkMusicVolumn
-      , bkMusicSwitch: res.bkMusicSwitch
-      , musicLevel: res.musicLevel
-    }
-    user = res
-    // console.log(user);
+    // console.log(res);
+    user = res;
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
-      myVid = document.getElementById("bkMusic");
-      myVid.volume = 0;
       if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
+        achievemenData = JSON.parse(this.responseText);
         initHome();
       }
     };
-    xmlhttp.open("GET", "json/equipment.json", true);
+    xmlhttp.open("GET", "json/achievement.json", true);
     xmlhttp.send();
+
+    /*loadmusicData();*/
+    // console.log(user);
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function () {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     equipmentData = JSON.parse(this.responseText);
+    //     // console.log(equipmentData);
+    //   
+    //   }
+    // };
+    // xmlhttp.open("GET", "json/equipment.json", true);
+    // xmlhttp.send();
+
   }
 })
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    achievemenData = JSON.parse(this.responseText);
-  }
-};
-xmlhttp.open("GET", "json/achievement.json", true);
-xmlhttp.send();
+
 // var xmlhttp = new XMLHttpRequest();
 // xmlhttp.onreadystatechange = function () {
 //   if (this.readyState == 4 && this.status == 200) {
@@ -100,7 +102,7 @@ xmlhttp.send();
 // xmlhttp.open("GET", "json/dictionary.json", true);
 // xmlhttp.send();
 
-dictionaryData={
+dictionaryData = {
   code: []
 }
 var scriptData = {
@@ -116,6 +118,24 @@ $.ajax({
     dictionaryData = {
       code: res
     }
+  }
+})
+equipmentData = {
+  levelUpLevel: [],
+  weaponLevel: [],
+  armorLevel: []
+}
+var scriptData = {
+  type: "loadEquip"
+}
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  success: function (res) {
+    // console.log(res);
+    equipmentData = res;
   }
 })
 var xmlhttp = new XMLHttpRequest();

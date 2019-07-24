@@ -3,12 +3,13 @@ var router = express.Router();
 // var passport = require('passport')
 // var LocalStrategy = require('passport-local').Strategy
 
-var Equipment = require('../models/equipment')
+// var Equipment = require('../models/equipment')
 var User = require('../models/user')
 var MapRecord = require('../models/map')
 var DictionaryRecord = require('../models/dictionary')
-
+var EquipmentRecord = require('../models/equipment')
 var testDict = require('../models/dictionaryJson')
+var testEquip = require('../models/equipmentJson')
 
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
@@ -66,20 +67,20 @@ router.post('/kuruma', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     else if (type == "armorLevelup") {
@@ -88,10 +89,10 @@ router.post('/kuruma', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -101,7 +102,7 @@ router.post('/kuruma', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     else if (type == "changePassword") {
@@ -138,6 +139,24 @@ router.post('/kuruma', function (req, res, next) {
         DictionaryRecord.getDictionary(function (err, dict) {
             res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
         });
     }
     else if (type == "updateDict") {
@@ -253,20 +272,20 @@ router.post('/pruss', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
 
 
         })
@@ -277,10 +296,10 @@ router.post('/pruss', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -290,7 +309,7 @@ router.post('/pruss', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     else if (type == "changePassword") {
@@ -327,6 +346,24 @@ router.post('/pruss', function (req, res, next) {
         DictionaryRecord.getDictionary(function (err, dict) {
             res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
         });
     }
     else if (type == "updateDict") {
@@ -397,20 +434,20 @@ router.post('/gameView_text', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
 
 
         })
@@ -421,10 +458,10 @@ router.post('/gameView_text', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -434,7 +471,7 @@ router.post('/gameView_text', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     //-----關卡紀錄 ------
@@ -579,6 +616,24 @@ router.post('/gameView_text', function (req, res, next) {
 
         });
     }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
+        });
+    }
     else if (type == "updateDict") {
         var dictType = req.body.dictType
         var dictNum = req.body.dictNum
@@ -648,20 +703,20 @@ router.post('/gameView_blockly', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
 
 
         })
@@ -672,10 +727,10 @@ router.post('/gameView_blockly', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -685,7 +740,7 @@ router.post('/gameView_blockly', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     //-----暫時的 ------
@@ -868,20 +923,20 @@ router.post('/managementModifyMap', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
 
 
         })
@@ -892,10 +947,10 @@ router.post('/managementModifyMap', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -905,7 +960,7 @@ router.post('/managementModifyMap', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     //-----暫時的 ------
@@ -1228,6 +1283,16 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         //         console.log(dict);
         //     })
         // }
+        // var equipJson = testEquip;
+        // var newEquipment = new EquipmentRecord({
+        //     levelUpLevel: equipJson.levelUpLevel,
+        //     weaponLevel:equipJson.weaponLevel,
+        //     armorLevel: equipJson.armorLevel
+        // })
+        // EquipmentRecord.createEquipment(newEquipment, function (err, dict) {       
+        //     console.log(dict);
+        // })
+
 
         var openLokCastle = false;
         var codeLevel = -1;
@@ -1240,7 +1305,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                     break;
                 }
                 else {
-                    console.log(codeLevel, parseInt(element.level));
+                    // console.log(codeLevel, parseInt(element.level));
                 }
             }
         }
@@ -1254,7 +1319,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                     break;
                 }
                 else {
-                    console.log(blockLevel, parseInt(element.level));
+                    // console.log(blockLevel, parseInt(element.level));
                 }
             }
         }
@@ -1350,20 +1415,20 @@ router.post('/', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     else if (type == "armorLevelup") {
@@ -1372,10 +1437,10 @@ router.post('/', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -1385,7 +1450,7 @@ router.post('/', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     //-----暫時的 ------
@@ -1424,6 +1489,24 @@ router.post('/', function (req, res, next) {
         DictionaryRecord.getDictionary(function (err, dict) {
             res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
         });
     }
     else if (type == "updateDict") {
@@ -1586,20 +1669,20 @@ router.post('/home', function (req, res, next) {
             if (err) throw err;
             var weaponLevel = parseInt(user.weaponLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                     if (err) throw err;
-                    console.log("up   :", user);
+                    // console.log("up   :", user);
                     User.getUserById(id, function (err, user) {
                         if (err) throw err;
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     else if (type == "armorLevelup") {
@@ -1608,10 +1691,10 @@ router.post('/home', function (req, res, next) {
             if (err) throw err;
             var armorLevelup = parseInt(user.armorLevel) + 1
             var levelUpLevel = parseInt(user.levelUpLevel)
-            if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-                res.json({ err: "error" });
-            }
-            else {
+            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
+            //     res.json({ err: "error" });
+            // }
+            // else {
                 levelUpLevel += 1;
                 User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
                     if (err) throw err;
@@ -1621,7 +1704,7 @@ router.post('/home', function (req, res, next) {
                         res.json(user);
                     })
                 })
-            }
+            // }
         })
     }
     //-----暫時的 ------
@@ -1629,6 +1712,24 @@ router.post('/home', function (req, res, next) {
         DictionaryRecord.getDictionary(function (err, dict) {
             res.json(dict);
 
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
         });
     }
     else if (type == "changePassword") {

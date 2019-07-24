@@ -73,25 +73,45 @@ $.ajax({
     }
     /*loadmusicData();*/
     // console.log(user);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
+    var scriptData = {
+      type: "loadEquip"
+    }
+    $.ajax({
+      url: href,              // 要傳送的頁面
+      method: 'POST',               // 使用 POST 方法傳送請求
+      dataType: 'json',             // 回傳資料會是 json 格式
+      data: scriptData,  // 將表單資料用打包起來送出去
+      success: function (res) {
+        // console.log(res);
         initHome();
+        equipmentData = res;
       }
-    };
-    xmlhttp.open("GET", "json/equipment.json", true);
-    xmlhttp.send();
+    })
   }
 })
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    dictionaryData = JSON.parse(this.responseText);
+// var xmlhttp = new XMLHttpRequest();
+// xmlhttp.onreadystatechange = function () {
+//   if (this.readyState == 4 && this.status == 200) {
+//     dictionaryData = JSON.parse(this.responseText);
+//   }
+// };
+// xmlhttp.open("GET", "json/dictionary.json", true);
+// xmlhttp.send();
+var scriptData = {
+  type: "loadDict"
+}
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  success: function (res) {
+    // console.log(res);
+    dictionaryData = {
+      code: res
+    }
   }
-};
-xmlhttp.open("GET", "json/dictionary.json", true);
-xmlhttp.send();
+})
 
 function error() {
   // alert("有不當的操作發生");

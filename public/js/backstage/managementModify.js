@@ -1,4 +1,4 @@
-var divTag,dictionaryData,firstIntoThis=true;
+var divTag, dictionaryData, firstIntoThis = true;
 
 
 
@@ -19,73 +19,73 @@ function modifyEquipment() {
       divTag = document.getElementById("tr" + i);
       b = document.createElement("td");
       b.setAttribute("id", "row" + i + "col" + j);
-      b.setAttribute("class","modifyEquipmentTd" + j);
+      b.setAttribute("class", "modifyEquipmentTd" + j);
       divTag.appendChild(b);
-      if(i == 0){
+      if (i == 0) {
         divTag = document.getElementById("row" + i + "col" + j);
         divTag.style.background = "#EBB76F";
         b = document.createElement("span");
         switch (j) {
           case 0:
-              b.setAttribute("id","levelTitle");
-              b.innerHTML = "等級";
+            b.setAttribute("id", "levelTitle");
+            b.innerHTML = "等級";
             break;
           case 1:
-              b.setAttribute("id","swordTitle");
-              b.innerHTML = "武器數值";
+            b.setAttribute("id", "swordTitle");
+            b.innerHTML = "武器數值";
             break;
           case 2:
-              b.setAttribute("id","shieldTitle");
-              b.innerHTML = "護甲數值";
+            b.setAttribute("id", "shieldTitle");
+            b.innerHTML = "護甲數值";
             break;
           case 3:
-              b.setAttribute("id","conditionTitle");
-              b.innerHTML = "升級條件";
+            b.setAttribute("id", "conditionTitle");
+            b.innerHTML = "升級條件";
             break;
         }
         divTag.appendChild(b);
-      }else{
+      } else {
         divTag = document.getElementById("row" + i + "col" + j);
-        if(j == 0){
+        if (j == 0) {
           divTag.style.background = "#EBB76F";
           b = document.createElement("span");
-          b.setAttribute("id","levelTitle");
-          b.innerHTML = "lv" + (i-1);
+          b.setAttribute("id", "levelTitle");
+          b.innerHTML = "lv" + (i - 1);
           divTag.appendChild(b);
-        }else{
+        } else {
           divTag.style.background = "#FFDEB8";
           b = document.createElement("input");
-          b.setAttribute("type","text")
-          b.setAttribute("class","modifyEquipmentInput");
+          b.setAttribute("type", "text")
+          b.setAttribute("class", "modifyEquipmentInput");
           switch (j) {
             case 1:
-                b.setAttribute("id","swordValue" + i);
+              b.setAttribute("id", "swordValue" + i);
               break;
             case 2:
-                b.setAttribute("id","shieldValue" + i);
+              b.setAttribute("id", "shieldValue" + i);
               break;
             case 3:
-                b.setAttribute("id","conditionValue" + i);
+              b.setAttribute("id", "conditionValue" + i);
               break;
           }
-          if(i < 12){
+          if (i < 12) {
             switch (j) {
               case 1:
-                b.value = equipmentData.armorLevel[i-1].attack;
+                b.value = equipmentData.armorLevel[i - 1].attack;
                 break;
               case 2:
-                b.value = equipmentData.weaponLevel[i-1].attack;
+                b.value = equipmentData.weaponLevel[i - 1].attack;
                 break;
               case 3:
-                b.value = equipmentData.levelUpLevel[i-1].star;
+                b.value = equipmentData.levelUpLevel[i - 1].star;
                 break;
             }
-          }else{
-            if(j == 3){
-              b.value = equipmentData.levelUpLevel[i-1].star;
-            }else{
+          } else {
+            if (j == 3) {
+              b.value = equipmentData.levelUpLevel[i - 1].star;
+            } else {
               b.value = "X";
-              b.setAttribute("readonly","true");
+              b.setAttribute("readonly", "true");
             }
           }
           divTag.appendChild(b);
@@ -95,9 +95,9 @@ function modifyEquipment() {
     divTag = document.getElementById("equipageTable");
   }
   var resetEquipageLevel = document.getElementById("resetEquipageLevel")
-  resetEquipageLevel.setAttribute("value","取消");
-  resetEquipageLevel.setAttribute("class","resetBtn");
-  resetEquipageLevel.setAttribute("onclick","resetTableToOriginal()");
+  resetEquipageLevel.setAttribute("value", "取消");
+  resetEquipageLevel.setAttribute("class", "resetBtn");
+  resetEquipageLevel.setAttribute("onclick", "resetTableToOriginal()");
   divTag = document.getElementById("equipageView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
@@ -109,29 +109,68 @@ function modifyEquipment() {
 }
 
 //儲存更改後的資料
-function saveEquipment(){
-  var levelUpLevel = [], weaponLevel = [],armorLevel = [];
-  for(var i = 1;i < 17;i++){
-    for(var j = 1;j < 4;j++){
+function saveEquipment() {
+  var levelUpLevel = [], weaponLevel = [], armorLevel = [];
+  for (var i = 1; i < 17; i++) {
+    for (var j = 1; j < 4; j++) {
       switch (j) {
         case 1:
           divTag = document.getElementById("swordValue" + i);
-          armorLevel.push(divTag.value);
+          // armorLevel.push(divTag.value);
+          if (i < 12) {
+            armorLevel.push({
+              level: i - 1,
+              attack: parseInt(divTag.value)
+            });
+          }
+
           break;
         case 2:
           divTag = document.getElementById("shieldValue" + i);
-          weaponLevel.push(divTag.value);
+          // weaponLevel.push(divTag.value);
+          if (i < 12) {
+            weaponLevel.push({
+              level: i - 1,
+              attack: parseInt(divTag.value)
+            });
+          }
           break;
         case 3:
           divTag = document.getElementById("conditionValue" + i);
-          levelUpLevel.push(divTag.value);
+          // levelUpLevel.push(divTag.value);
+          levelUpLevel.push({
+            level: i - 1,
+            star: parseInt(divTag.value)
+          });
           break;
       }
     }
   }
-  console.log(armorLevel);
-  console.log(weaponLevel);
-  console.log(levelUpLevel);
+  equipmentData.armorLevel=armorLevel;
+  equipmentData.weaponLevel=weaponLevel;
+  equipmentData.levelUpLevel=levelUpLevel;
+  var seri={
+    armorLevel: armorLevel,
+    weaponLevel: weaponLevel,
+    levelUpLevel: levelUpLevel
+  }
+
+  var scriptData = {
+    type: "updateEquip",
+    seriJson:JSON.stringify(seri)
+  }
+  $.ajax({
+    url: href,              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: scriptData,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      alert("儲存成功");
+    }
+  })
+  // console.log(armorLevel);
+  // console.log(weaponLevel);
+  // console.log(levelUpLevel);
   //將表格清0並重建，請在這之前做儲存資料之動作
   resetTableToOriginal();
 }
@@ -408,8 +447,8 @@ function resetTableToOriginal() {
 }
 
 //修改指令大全
-function modifyInstruction(modifyNumber){
-  if(firstIntoThis){
+function modifyInstruction(modifyNumber) {
+  if (firstIntoThis) {
     dictionaryData = getJson();
     firstIntoThis = false;
   }
@@ -417,7 +456,7 @@ function modifyInstruction(modifyNumber){
   let trNumber = parseInt(modifyNumber) + 1;
   let subLength = parseInt(document.getElementById("actionDiv" + trNumber).getElementsByTagName("details").length);
   var li = dic[parseInt(trNumber / 2)].element;
-  for(var i=0;i<subLength;i++){
+  for (var i = 0; i < subLength; i++) {
     divTag = document.getElementById("detailsInner" + trNumber + i);
     divTag.innerHTML = "";
 
@@ -428,7 +467,7 @@ function modifyInstruction(modifyNumber){
     document.getElementById("summaryInner" + trNumber + i).innerHTML = li[i].name;
 
     // var transformVal = "    " + li[i].value.replace(/&nbsp/g, " "),temp;
-    var transformVal = li[i].value.replace(/&nbsp/g, " "),temp;
+    var transformVal = li[i].value.replace(/&nbsp/g, " "), temp;
     transformVal = transformVal.replace(/<br>/g, "\n");
     b = document.createElement("textarea");
     b.setAttribute("id", "item" + trNumber + i);
@@ -443,28 +482,28 @@ function modifyInstruction(modifyNumber){
     b.setAttribute("id", "resetBtn");
     b.setAttribute("class", "resetBtnToIt");
     b.setAttribute("value", "取消");
-    b.setAttribute("onclick", "resetInstruction(" + trNumber + "," + i +")");
+    b.setAttribute("onclick", "resetInstruction(" + trNumber + "," + i + ")");
     divTag.appendChild(b);
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "saveBtn");
     b.setAttribute("class", "saveBtnToIt");
     b.setAttribute("value", "儲存");
-    b.setAttribute("onclick", "saveInstruction(" + trNumber + "," + i +")");
+    b.setAttribute("onclick", "saveInstruction(" + trNumber + "," + i + ")");
     divTag.appendChild(b);
   }
 }
 
 //儲存更改後的資料函式
-function saveInstruction(trNumber,tdNumber){
+function saveInstruction(trNumber, tdNumber) {
   var transformVal = document.getElementById("item" + trNumber + tdNumber).value.replace(/ /g, "&nbsp");
   transformVal = transformVal.replace(/\n/g, "<br>");//處理完成的字串，可直接存起來
   // console.log(trNumber,tdNumber);
-  var data=dictionaryData.code[parseInt((trNumber-1)/2)];
-  data.element[tdNumber].value=transformVal;
+  var data = dictionaryData.code[parseInt((trNumber - 1) / 2)];
+  data.element[tdNumber].value = transformVal;
   var scriptData = {
     type: "updateDict",
-    dictType:data.type,
+    dictType: data.type,
     dictNum: tdNumber,
     dictValue: transformVal
   }
@@ -482,7 +521,7 @@ function saveInstruction(trNumber,tdNumber){
   //resetInstruction(trNumber,tdNumber);
 }
 
-function resetInstruction(trNumber,tdNumber){
+function resetInstruction(trNumber, tdNumber) {
   var dic = dictionaryData.code;
   var li = dic[parseInt(trNumber / 2)].element;
   divTag = document.getElementById("item" + trNumber + tdNumber);
