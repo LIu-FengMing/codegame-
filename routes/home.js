@@ -879,6 +879,30 @@ router.post('/gameView_blockly', function (req, res, next) {
         })
     }
     //-------------------
+    else if (type == "loadDict") {
+        DictionaryRecord.getDictionary(function (err, dict) {
+            res.json(dict);
+
+        });
+    }
+    else if (type == "loadEquip") {
+        EquipmentRecord.getEquipment(function (err, equip) {
+            res.json(equip[0]);
+
+        });
+    }
+    else if (type == "updateEquip") {
+        var seriJson=JSON.parse(req.body.seriJson)
+        var armorLevel = seriJson.armorLevel;
+        var weaponLevel = seriJson.weaponLevel;
+        var levelUpLevel = seriJson.levelUpLevel;
+        // console.log(seriJson);
+        // console.log(armorLevel,weaponLevel,levelUpLevel);
+        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+            if (err) throw err;
+            res.json({res:true});
+        });
+    }
     else {
 
     }

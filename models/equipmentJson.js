@@ -1,5 +1,5 @@
 module.exports = {
-    levelUpLevel: [
+    "levelUpLevel": [
         {
             "level": 0,
             "star": 70
@@ -54,6 +54,10 @@ module.exports = {
         },{
             "level": 14,
             "star": 140
+        },
+        {
+            "level": 15,
+            "star": 140
         }
     ],
     "armorLevel": [
@@ -95,6 +99,10 @@ module.exports = {
         },
         {
             "level": 9,
+            "attack": 50
+        },
+        {
+            "level": 10,
             "attack": 50
         }
     ],
@@ -138,49 +146,10 @@ module.exports = {
         {
             "level": 9,
             "attack": 50
-        }
-    ],
-    "armorLevel": [
-        {
-            "level": 0,
-            "attack": 5
         },
         {
-            "level": 1,
-            "attack": 10
-        },
-        {
-            "level": 2,
-            "attack": 15
-        },
-        {
-            "level": 3,
-            "attack": 20
-        },
-        {
-            "level": 4,
-            "attack": 25
-        },
-        {
-            "level": 5,
-            "attack": 30
-        },
-        {
-            "level": 6,
-            "attack": 35
-        },
-        {
-            "level": 7,
-            "attack": 40
-        },
-        {
-            "level": 8,
-            "attack": 45
-        },
-        {
-            "level": 9,
+            "level": 10,
             "attack": 50
         }
     ]
-    
 };

@@ -105,6 +105,7 @@ $.ajax({
       success: function (res) {
         // console.log(res);
         equipmentData = res;
+        initHome();
       }
     })
   }
