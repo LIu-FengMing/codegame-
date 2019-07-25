@@ -169,6 +169,10 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
+  if(user.username == "NKUSTCCEA"){
+    console.log(document.getElementById("gameModifyBtn"));
+    document.getElementById("gameModifyBtn").style.display = "";
+  }
   getArgs();
 }
 
@@ -307,7 +311,7 @@ function createUserView(mainDiv) {
 
 /*讀取網址資訊*/
 function getArgs() {
-  var args = new Object();
+  args = new Object();
   var query = location.search.substring(1);
   var pairs = query.split("&");
   //用來判斷網址的，不太需要更改
@@ -323,6 +327,10 @@ function getArgs() {
     selectFunc(args.level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
+
+    if(args.level > 19){
+      document.getElementById("gameModifyBtn").style.transform = "translateX(7.5vw)";
+    }
     //標籤文字字串
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
                   "十一","十二","十三","十四","十五","十六","十七","十八",
@@ -1196,6 +1204,14 @@ function closeLoadingView() {
 }
 window.onresize = function() {
   setup();
+}
+
+/*localStrage*/
+function turnToModify() {
+  let gameName = document.getElementById("titleFont").innerHTML;
+  localStorage.setItem("gameName", gameName);
+  localStorage.setItem("gameNumber", args.level);
+  document.location.href="managementModifyMap";
 }
 /*關卡說明*/
 mainDescription = {

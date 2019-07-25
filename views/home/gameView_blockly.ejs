@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/home/gameView_blockly.css">
+    <link rel="stylesheet" href="css/backstage/modifyBtn.css">
     <!--華康字體-->
     <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
     <script src='https://dfo.dynacw.com.tw/DynaJSFont/DynaFont.js'></script>
@@ -33,6 +34,7 @@
           <div id="titleBar">
             <input type="button" title="返回鍵" value="" id="goBack"  onclick="back()">
             <font id="titleFont"></font>
+            <input type="button" id="gameModifyBtn" value="" style="display:none;" onclick="turnToModify()">
           </div>
           <div id="textareaBk" style="display: none;">
             <h1 class="codingTitle">程式碼</h1>
