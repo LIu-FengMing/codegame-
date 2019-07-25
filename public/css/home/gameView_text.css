@@ -25,7 +25,6 @@ body {
   min-height: 600px;
 }
 .center{
-  background-image: url('../../img/bk.PNG');
   background-repeat: no-repeat;
   background-position:center;
   background-attachment:fixed;
