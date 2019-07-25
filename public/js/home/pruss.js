@@ -84,7 +84,7 @@ $.ajax({
     //   if (this.readyState == 4 && this.status == 200) {
     //     equipmentData = JSON.parse(this.responseText);
     //     // console.log(equipmentData);
-    //   
+    //
     //   }
     // };
     // xmlhttp.open("GET", "json/equipment.json", true);
@@ -1079,6 +1079,7 @@ function equipageView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "resetEquipageLevel");
+  b.setAttribute("class", "resetEquipageLevel");
   b.setAttribute("value", "重置升級");
   b.setAttribute("onclick", "resetEquipClick(this)");
   divTag.appendChild(b);
