@@ -1317,7 +1317,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         //     console.log(dict);
         // })
 
-
         var openLokCastle = false;
         var codeLevel = -1;
         for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
