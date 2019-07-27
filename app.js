@@ -17,6 +17,8 @@ var mongoose = require('mongoose')
 var beforeHomePageRoutes=require('./routes/beforeHomePage')
 var homeRoutes=require('./routes/home')
 var oblivionRoutes=require('./routes/oblivion')
+
+var developerRoutes=require('./routes/developer.js')
 // var homRoutes=require('./routes/home')
 
 
@@ -75,6 +77,7 @@ app.use('/',beforeHomePageRoutes);
 app.use('/',homeRoutes);
 app.use('/',oblivionRoutes);
 
+app.use('/',developerRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

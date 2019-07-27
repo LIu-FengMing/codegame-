@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body>
+    hi
+</body>
+
+</html>
+
+<script>
+    var scriptData = {
+        type: "loadGameMap",
+        gameLevel:0
+    }
+    $.ajax({
+        url: location.href,              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        data: scriptData,  // 將表單資料用打包起來送出去
+        success: function (res) {
+            console.log(res);
+            
+        }
+    })
+
+</script>

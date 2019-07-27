@@ -8,8 +8,8 @@ var User = require('../models/user')
 var MapRecord = require('../models/map')
 var DictionaryRecord = require('../models/dictionary')
 var EquipmentRecord = require('../models/equipment')
-var testDict = require('../models/dictionaryJson')
-var testEquip = require('../models/equipmentJson')
+var testDict = require('../models/dataJson/dictionaryJson')
+var testEquip = require('../models/dataJson/equipmentJson')
 
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
