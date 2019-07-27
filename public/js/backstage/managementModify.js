@@ -165,7 +165,7 @@ function saveEquipment() {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      alert("儲存成功");
+      remindView("儲存成功");
     }
   })
   // console.log(armorLevel);
@@ -513,7 +513,7 @@ function saveInstruction(trNumber, tdNumber) {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      alert("儲存成功");
+      remindView("儲存成功");
     }
   })
   // console.log(transformVal);
