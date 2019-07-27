@@ -84,4 +84,16 @@ module.exports.getMapByLevel = function (levelID, callback) {
     var query = { level: levelID }
     GameMapRecord.findOne(query, callback)
 }
-// getMap
+
+// updateMap, 透過mapId更新地圖
+module.exports.updateMapByLevel = function (levelID, scriptData, callback) {
+    var query = { level: levelID  }
+    var setquery = {
+        versionID:scriptData.versionID,
+        data:scriptData.data
+    }
+    // console.log("setquery",setquery);
+    
+    // MapRecord.updateOne(query, setquery, callback);
+    GameMapRecord.updateOne(query, setquery, callback);
+}

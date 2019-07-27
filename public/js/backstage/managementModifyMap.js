@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,138 +20,217 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   return {
 
     // 設定一個 session 變數
-    set: function(name, value) {
+    set: function (name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function(name) {
+    get: function (name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function() { store = {}; },
+    clear: function () { store = {}; },
 
     // 列出所有存入的資料
-    dump: function() { return JSON.stringify(store); }
+    dump: function () { return JSON.stringify(store); }
 
   };
 
- })();
+})();
+var levelNum = localStorage.getItem("gameNumber") - 1;
 function back() {
- var index = 0;
- var href = window.location.href;
- for (var i = 0; i < href.length; ++i) {
-   if (href[i] == '/' || href[i] == "\\") {
-       index = i;
-   }
- }
- href = href.substr(0, index + 1);
- href+="oblivionUser";
- window.location.replace(href);
- console.log(href);
+  // var index = 0;
+  // var href = window.location.href;
+  // for (var i = 0; i < href.length; ++i) {
+  //   if (href[i] == '/' || href[i] == "\\") {
+  //     index = i;
+  //   }
+  // }
+  // href = href.substr(0, index + 1);
+  href = "gameView_text?level=" + (localStorage.getItem("gameNumber") - 1).toString();
+  window.location.replace(href);
+  console.log(href);
 }
 var href = window.location.href;
-var user,objectData,levelDivAlive=false,isOblivionCreaterOpen;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
+var user, objectData, levelDivAlive = false, isOblivionCreaterOpen;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var scriptData = {
-     type: "init"
+  type: "init"
 }
-
-$.ajax({
-    url: href,              // 要傳送的頁面
+var nowMapData,allMapData;
+var mapInformation;
+function loadGameMap() {
+  $.ajax({
+    url: 'loadGameMap',              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
+    data: {
+      gameLevel: levelNum
+    },  // 將表單資料用打包起來送出去
     success: function (res) {
-      // console.log(res);
-      user = res;
-      /*loadmusicData();*/
-      // console.log(user);
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-              equipmentData = JSON.parse(this.responseText);
-              initHome();
-          }
-      };
-      xmlhttp.open("GET", "json/equipment.json", true);
-      xmlhttp.send();
+      console.log(res);
+      allMapData=res;
+      initMapData(res);
+    }
+  })
+}
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  success: function (res) {
+    // console.log(res);
+    user = res;
+    /*loadmusicData();*/
+    // console.log(user);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        equipmentData = JSON.parse(this.responseText);
+        initHome();
+      }
+    };
+    xmlhttp.open("GET", "json/equipment.json", true);
+    xmlhttp.send();
   }
 })
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        objectData = JSON.parse(this.responseText);
-    }
+  if (this.readyState == 4 && this.status == 200) {
+    objectData = JSON.parse(this.responseText);
+  }
 };
 xmlhttp.open("GET", "json/oblivionObject.json", true);
 xmlhttp.send();
 
+
+function initMapData(res) {
+  var mapData = res.data;
+  /*設置版本*/
+  divTag = document.getElementById("versionControl");
+  for (let index = mapData.length - 1; index > -1; index--) {
+    const element = mapData[index];
+    var b = document.createElement("span");
+    b.setAttribute("onclick", "selectVersion(this)");
+    b.innerHTML = element.versionID;
+    divTag.appendChild(b);
+    if (element.versionID == res.versionID) {
+      nowMapData = JSON.parse(JSON.stringify(element));
+      mapInformation = JSON.parse(element.map);
+      b.style.background = "#E6E6E6";
+      lastSelect = b;
+      // console.log("nowMapData",nowMapData);
+    }
+  }
+  var innerStr = "";
+  for (let index = 0; index < nowMapData.description.mainGrammar.length; index++) {
+    const element = nowMapData.description.mainGrammar[index];
+    innerStr += element.innerGrammar;
+    innerStr += '\n';
+  }
+  console.log(innerStr);
+
+  $('#levelIntroductionTextarea').val(innerStr);
+  $('#levelDescriptionTextarea').val(nowMapData.description.description);
+  $('#starConditionTextareaThree').val(mapInformation.winLinit.threeStar[0]);
+  $('#starConditionTextareaTwo').val(mapInformation.winLinit.twoStar[0]);
+  init_GameMapSetup(mapInformation);
+}
+function changeMapData(mapVersion){
+  var mapData = allMapData.data;
+  for (let index = mapData.length - 1; index > -1; index--) {
+    const element = mapData[index];
+    if (element.versionID == mapVersion) {
+      nowMapData = JSON.parse(JSON.stringify(element));
+      mapInformation = JSON.parse(element.map);
+    }
+  }
+  var innerStr = "";
+  for (let index = 0; index < nowMapData.description.mainGrammar.length; index++) {
+    const element = nowMapData.description.mainGrammar[index];
+    innerStr += element.innerGrammar;
+    innerStr += '\n';
+  }
+  console.log(innerStr);
+
+  $('#levelIntroductionTextarea').val(innerStr);
+  $('#levelDescriptionTextarea').val(nowMapData.description.description);
+  $('#starConditionTextareaThree').val(mapInformation.winLinit.threeStar[0]);
+  $('#starConditionTextareaTwo').val(mapInformation.winLinit.twoStar[0]);
+  init_GameMapSetup(mapInformation);
+}
+
 /*初始化*/
-function modifyInit(){
+function modifyInit() {
   let tempStr = localStorage.getItem("gameName");
   console.log("這裡是關卡數:" + localStorage.getItem("gameNumber"));
   var gameNameStr = tempStr.replace(/&nbsp;/g, " ");
   divTag = document.getElementById("levelNameTextarea");
   divTag.value = gameNameStr;
-  divTag.setAttribute("readonly","");
+  divTag.setAttribute("readonly", "");
   divTag.style = "background: #CCCCCC; text-align: center;";
 }
 function error() {
-    alert("有不當的操作發生");
-    window.location.replace(href);
+  alert("有不當的操作發生");
+  window.location.replace(href);
 
 }
 function initHome() {
-  if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
+  if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
     gameSpeed = Session.get("gameSpeed");
-  }else{
+  } else {
     bkMusicVolumn = 0.1;
     bkMusicSwitch = 2;
     musicLevel = 1;
     gameSpeed = 5;
   }
-  myVid=document.getElementById("bkMusic");
-  myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
-  myVid.play();
+  try {
+    myVid = document.getElementById("bkMusic");
+    myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
+    // myVid.play();
+  }
+  catch{
+
+  }
   bkMusicSwitch++;
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
-  var text = user.name;
-  userName.textContent = text;
+  // var text = user.name;
+  userName.textContent = user.name;
   starNumber.textContent = user.starNum;
 
-  for(var i=1;i<document.getElementById("objectSelect").length;i++){
+  for (var i = 1; i < document.getElementById("objectSelect").length; i++) {
     var objectName = document.getElementById("op" + i).value;
-    for(var j=0;j<objectData.oblivionObject.length;j++){
+    for (var j = 0; j < objectData.oblivionObject.length; j++) {
       // console.log(objectName,objectData.oblivionObject[j].value);
-      if(objectName == objectData.oblivionObject[j].value){
-        if(objectData.oblivionObject[j].requirementStar > user.starNum){
+      if (objectName == objectData.oblivionObject[j].value) {
+        if (objectData.oblivionObject[j].requirementStar > user.starNum) {
           document.getElementById("op" + i).className = "unUse";
           break;
         }
       }
     }
   }
-  try{
+  try {
     isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
-  }catch(e){
+  } catch (e) {
     isOblivionCreaterOpen = false;
   }
-  if(!isOblivionCreaterOpen){
+  if (!isOblivionCreaterOpen) {
     helper('centerLost');
   }
   modifyInit();
 }
 function logout() {
-    // console.log("dddddd");
-    var href = "/logout";
-    window.location.replace(href);
+  // console.log("dddddd");
+  var href = "/logout";
+  window.location.replace(href);
 }
 
 //////////////////////////////////////////////////
@@ -340,7 +419,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,1)");
+    b.setAttribute("onchange", "readImgUrl(this,1)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -361,7 +440,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,2)");
+    b.setAttribute("onchange", "readImgUrl(this,2)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -378,7 +457,7 @@ function changeMethod(methodNumber) {
     b.style.background = "white";
     divTag.appendChild(b);
     // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-  }else if(methodNumber == 3){
+  } else if (methodNumber == 3) {
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     b.style.background = "white";
@@ -403,7 +482,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,1)");
+    b.setAttribute("onchange", "readImgUrl(this,1)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -424,7 +503,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("type", "file");
     b.setAttribute("style", "margin-left:15%;");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,2)");
+    b.setAttribute("onchange", "readImgUrl(this,2)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -453,7 +532,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg4Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,4)");
+    b.setAttribute("onchange", "readImgUrl(this,4)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -482,7 +561,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg5Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,5)");
+    b.setAttribute("onchange", "readImgUrl(this,5)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -511,7 +590,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg6Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,6)");
+    b.setAttribute("onchange", "readImgUrl(this,6)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -540,7 +619,7 @@ function changeMethod(methodNumber) {
     b.setAttribute("id", "helperImg7Input");
     b.setAttribute("type", "file");
     b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange","readImgUrl(this,7)");
+    b.setAttribute("onchange", "readImgUrl(this,7)");
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -575,9 +654,9 @@ function clossFunc(thisDiv, thisDiv2) {
   levelDivAlive = false;
 }
 /*讀取圖片*/
-function readImgUrl(input,imgId){
+function readImgUrl(input, imgId) {
   console.log(input.value);
-  if(input.files && input.files[0]){
+  if (input.files && input.files[0]) {
     var imageTagID = input.getAttribute("helperImg" + imgId);
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -596,11 +675,11 @@ var myVid;
 var divID, divID2, divTag, b;
 var userdataFont;
 var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
-    "使用者名稱：",
-    "主&nbsp要&nbsp進&nbsp&nbsp度：",
-    "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
-    "上架地圖數：",
-    "已獲得星星數："];
+  "使用者名稱：",
+  "主&nbsp要&nbsp進&nbsp&nbsp度：",
+  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
+  "上架地圖數：",
+  "已獲得星星數："];
 function userData() {
   try {
     divTag = document.getElementById("userDataView");
@@ -609,7 +688,7 @@ function userData() {
     divTag = document.getElementById("userDataBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divID = "userDataView";
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
@@ -654,90 +733,90 @@ function createUserView(mainDiv) {
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
   for (var i = 0; i < dataTitle.length; i++) {
-      b = document.createElement("h3");
-      b.setAttribute("id", "titleDatah3" + i);
-      b.setAttribute("align", "left");
+    b = document.createElement("h3");
+    b.setAttribute("id", "titleDatah3" + i);
+    b.setAttribute("align", "left");
+    divTag.appendChild(b);
+    if (i == 0) {
+      userdataFont = user.username;
+    } else if (i == 1) {
+      userdataFont = user.name;
+    } else if (i == 2) {
+      if (user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel) {
+        userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
+      } else {
+        if (user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel) {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
+        } else {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
+        }
+      }
+    } else if (i == 3) {
+      var getAchievement = Session.get("getAchievement");
+      if (getAchievement == undefined) {
+        getAchievement = 0;
+        console.log("this is undefine");
+      }
+      userdataFont = getAchievement + "/9";
+    } else if (i == 4) {
+      userdataFont = user.createMap.length;
+    } else if (i == 5) {
+      userdataFont = user.starNum;
+    }
+    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 3; j++) {
+      b = document.createElement("br");
       divTag.appendChild(b);
-      if(i == 0){
-        userdataFont = user.username;
-      }else if(i == 1){
-        userdataFont = user.name;
-      }else if(i == 2){
-        if(user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel){
-          userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
-        }else{
-          if(user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel){
-            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
-          }else{
-            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
-          }
-        }
-      }else if(i == 3){
-        var getAchievement = Session.get("getAchievement");
-        if(getAchievement == undefined){
-          getAchievement=0;
-          console.log("this is undefine");
-        }
-        userdataFont = getAchievement + "/9";
-      }else if(i == 4){
-        userdataFont = user.createMap.length;
-      }else if(i ==5){
-        userdataFont = user.starNum;
-      }
-      document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-      for (var j = 0; j < 3; j++) {
-          b = document.createElement("br");
-          divTag.appendChild(b);
-      }
+    }
   }
 }
 
 var thisSelectionId;
 var args;
-var divTag,level,b;
+var divTag, level, b;
 var lastObject = null;
 
 /*div分頁*/
 function clearLinkDot() {
   var i, a, main;
-  for(i=0; (a = document.getElementsByTagName("a")[i]); i++) {
-    if(a.getAttribute("onFocus")==null) {
-      a.setAttribute("onFocus","this.blur();");
-    }else{
-      a.setAttribute("onFocus",a.getAttribute("onFocus")+";this.blur();");
+  for (i = 0; (a = document.getElementsByTagName("a")[i]); i++) {
+    if (a.getAttribute("onFocus") == null) {
+      a.setAttribute("onFocus", "this.blur();");
+    } else {
+      a.setAttribute("onFocus", a.getAttribute("onFocus") + ";this.blur();");
     }
-    a.setAttribute("hideFocus","hidefocus");
+    a.setAttribute("hideFocus", "hidefocus");
   }
 }
-function loadTab(obj,n){
+function loadTab(obj, n) {
   var layer;
-  eval('layer=\'S'+n+'\'');
+  eval('layer=\'S' + n + '\'');
   //將 Tab 標籤樣式設成 Blur 型態
-  var tabsF=document.getElementById('tabsF').getElementsByTagName('li');
-  for (var i=0;i<tabsF.length;i++){
-    tabsF[i].setAttribute('id',null);
-    eval('document.getElementById(\'S'+(i+1)+'\').style.display=\'none\'')
+  var tabsF = document.getElementById('tabsF').getElementsByTagName('li');
+  for (var i = 0; i < tabsF.length; i++) {
+    tabsF[i].setAttribute('id', null);
+    eval('document.getElementById(\'S' + (i + 1) + '\').style.display=\'none\'')
   }
-  editMapterrain
+  // editMapterrain
   //變更分頁標題樣式
-  obj.parentNode.setAttribute('id','current');
-  editMapterrain=false;
-  if(n==3){
-    editMapterrain=true;
+  obj.parentNode.setAttribute('id', 'current');
+  editMapterrain = false;
+  if (n == 3) {
+    editMapterrain = true;
     console.log(editMapterrain);
   }
-  if(n == 4 && user.starNum <objectData.oblivionObject[13].requirementStar){
-    document.getElementById(layer).style.display='none';
+  if (n == 4 && user.starNum < objectData.oblivionObject[13].requirementStar) {
+    document.getElementById(layer).style.display = 'none';
     console.log("aaa");
     lessRequirement(objectData.oblivionObject[13].requirementStar);
   }
-  else if(n == 3 && user.starNum <objectData.oblivionObject[11].requirementStar){
-    document.getElementById(layer).style.display='none';
+  else if (n == 3 && user.starNum < objectData.oblivionObject[11].requirementStar) {
+    document.getElementById(layer).style.display = 'none';
     console.log("bbb");
     lessRequirement(objectData.oblivionObject[11].requirementStar);
   }
-  else{
-    document.getElementById(layer).style.display='inline';
+  else {
+    document.getElementById(layer).style.display = 'inline';
   }
 
 
@@ -754,49 +833,49 @@ function chk(input) {
 function changeObjectAttributes() {
   console.log("123");
   var objectName = document.getElementById("objectSelect").value;
-  var tableId = ["enemyTable","lockAnswerTable","boxTable"];
-  var tableValue = ["enemy","blueLock","box"];
-  for(var i=0;i<objectData.oblivionObject.length;i++){
-    if(objectName == objectData.oblivionObject[i].value){
-      if(objectData.oblivionObject[i].requirementStar > user.starNum){
+  var tableId = ["enemyTable", "lockAnswerTable", "boxTable"];
+  var tableValue = ["enemy", "blueLock", "box"];
+  for (var i = 0; i < objectData.oblivionObject.length; i++) {
+    if (objectName == objectData.oblivionObject[i].value) {
+      if (objectData.oblivionObject[i].requirementStar > user.starNum) {
         document.getElementById("objectSelect").selectedIndex = 0;
         console.log("ccc");
         lessRequirement(objectData.oblivionObject[i].requirementStar);
       }
     }
   }
-  for(var i=0;i<3;i++){
+  for (var i = 0; i < 3; i++) {
     divTag = document.getElementById(tableId[i]);
     console.log(tableValue[i]);
-    if(objectName == tableValue[i]){
-      document.getElementById(tableId[i]).style.display='';
-    }else if(objectName == tableId[i]){
-      document.getElementById(tableId[i]).style.display='';
-    }else if(objectName == tableId[i]){
-      document.getElementById(tableId[i]).style.display='';
-    }else{
-      document.getElementById(tableId[i]).style.display='none';
+    if (objectName == tableValue[i]) {
+      document.getElementById(tableId[i]).style.display = '';
+    } else if (objectName == tableId[i]) {
+      document.getElementById(tableId[i]).style.display = '';
+    } else if (objectName == tableId[i]) {
+      document.getElementById(tableId[i]).style.display = '';
+    } else {
+      document.getElementById(tableId[i]).style.display = 'none';
     }
   }
 }
 
 /*設置地圖*/
 function settingMap() {
-  if(objectData.oblivionObject[11].requirementStar > user.starNum){
+  if (objectData.oblivionObject[11].requirementStar > user.starNum) {
     lessRequirement(objectData.oblivionObject[11].requirementStar);
-  }else{
-    document.getElementById("settingMapDiv").style.display='';
+  } else {
+    document.getElementById("settingMapDiv").style.display = '';
   }
 }
 function unSaveMap() {
-  document.getElementById("settingMapDiv").style.display='none';
+  document.getElementById("settingMapDiv").style.display = 'none';
 }
 function saveMap() {
-  document.getElementById("settingMapDiv").style.display='none';
+  document.getElementById("settingMapDiv").style.display = 'none';
 }
 
 /*未達成條件*/
-function lessRequirement(starNum){
+function lessRequirement(starNum) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "lessRequirementView");
@@ -848,11 +927,11 @@ function lessRequirement(starNum){
   divTag.appendChild(b);
 }
 
-var levelDivAlive=false;
+var levelDivAlive = false;
 function remindView(remindValue) {
   var isTwoLine = false;
   for (var i = 0; i < remindValue.length; i++) {
-    if(remindValue[i] == "<"){
+    if (remindValue[i] == "<") {
       isTwoLine = true;
       break;
     }
@@ -864,7 +943,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -872,9 +951,9 @@ function remindView(remindValue) {
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
-  if(isTwoLine){
+  if (isTwoLine) {
     b.setAttribute("class", "twoLine");
-  }else{
+  } else {
     b.setAttribute("class", "oneLine");
   }
   b.setAttribute("id", "remindView");
@@ -897,35 +976,38 @@ function remindView(remindValue) {
 }
 
 /*儲存地圖*/
-var versionNumber = 0;
-function saveModifyMap(){
+function saveModifyMap() {
   divTag = document.getElementById("versionControl");
-  var d = new Date();
-  let year = d.getFullYear();
-  var month = d.getMonth()+1;
-  var day = d.getDate();
-  if(month < 10){
-    month = "0" + month;
-  }
-  if(day < 10){
-    day = "0" + day;
-  }
-  let versionDate = year+ "/" + month + "/" + day;
-  console.log(divTag);
+
+  let versionNum = allMapData.versionID;
   b = document.createElement("span");
   b.setAttribute("onclick", "selectVersion(this)");
-  b.innerHTML = "v" + versionNumber + "_" + versionDate;
-  divTag.appendChild(b);
-  versionNumber++;
+  b.innerHTML = versionNum;
+
+  b.style.background = "#E6E6E6";
+  if (lastSelect != null) {
+    lastSelect.style.background = "none";
+  }
+  lastSelect = b;
+
+
+  divTag.insertBefore(b, divTag.firstChild);
+
+
+  // divTag.appendChild(b);
 }
 
 /*版本控制*/
 var lastSelect = null;
 function selectVersion(selectValue) {
-  selectValue.style.background = "#E6E6E6";
-  console.log("選擇版本號"+selectValue.innerHTML);
-  if(lastSelect != null){
+  if (lastSelect != null && selectValue!=lastSelect) {
+    
+    console.log("選擇版本號" + selectValue.innerHTML);
+    selectValue.style.background = "#E6E6E6";
     lastSelect.style.background = "none";
+    lastSelect = selectValue;
+    changeMapData(selectValue.innerHTML.toString());
+
   }
-  lastSelect = selectValue;
+
 }

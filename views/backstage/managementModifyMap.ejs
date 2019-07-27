@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/backstage/managementModifyMap.css">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!--華康字體-->
   <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
@@ -24,11 +25,8 @@
       }
     }
   </script>
-  <script src="js/backstage/managementModifyMap.js"></script>
-  <script src="newMapCreate/js/p5.min.js"></script>
-  <script src="newMapCreate/js/p5.dom.js"></script>
+ 
 
-  <!-- <script src="newMapCreate/js/mian.js"></script> -->
   
   <script src="js/closeEvent.js"></script>
   <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
@@ -146,7 +144,7 @@
                     <h5>三星</h5>
                   </td>
                   <td id="S1Td32">
-                    <textarea id="starConditionTextarea"></textarea>
+                    <textarea id="starConditionTextareaThree"></textarea>
                   </td>
                   <td align="left" id="S1Td32">
                     <h5>個指令</h5>
@@ -157,7 +155,7 @@
                     <h5>二星</h5>
                   </td>
                   <td id="S1Td41">
-                    <textarea id="starConditionTextarea"></textarea>
+                    <textarea id="starConditionTextareaTwo"></textarea>
                   </td>
                   <td align="left" id="S1Td42">
                     <h5>個指令</h5>
@@ -267,9 +265,9 @@
               </table>
             </div>
           </div>
-          <input type="button" id="resetModifyBtn" value="取消">
+          <input type="button" id="resetModifyBtn" value="取消"  onclick="back()">
           <input type="button" id="previewBtn" value="預覽">
-          <input type="button" id="saveModifyBtn" value="儲存" onclick="saveModifyMap()">
+          <input type="button" id="saveModifyBtn" value="儲存" >
         </div>
         <div id="settingMapDiv" style="display:none;">
           <input type="button" id="clossDiv" value="X" onclick="unSaveMap()">
@@ -292,11 +290,15 @@
         <button class="btnUser" title="個人資料" onclick="userData()"></button>
         <button class="btnLogout" title="登出" onclick="logout()"></button>
         <div class="versionControl" id="versionControl">
-          <span onclick="selectVersion(this)">v5_2019/07/03</span>
         </div>
       </div>
     </div>
   </div>
 </body>
 
+<script src="js/backstage/managementModifyMap.js"></script>
+
+<script src="modifyGameMap/js/mian.js"></script>
+<script src="modifyGameMap/js/p5.min.js"></script>
+<script src="modifyGameMap/js/p5.dom.js"></script>
 </html>

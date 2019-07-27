@@ -8,6 +8,7 @@ var User = require('../models/user')
 var MapRecord = require('../models/map')
 var DictionaryRecord = require('../models/dictionary')
 var EquipmentRecord = require('../models/equipment')
+var GameMapRecord = require('../models/gameMap')
 var testDict = require('../models/dataJson/dictionaryJson')
 var testEquip = require('../models/dataJson/equipmentJson')
 
@@ -71,15 +72,15 @@ router.post('/kuruma', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -93,15 +94,15 @@ router.post('/kuruma', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -148,38 +149,38 @@ router.post('/kuruma', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else if (type == "updateDict") {
         var dictType = req.body.dictType
         var dictNum = req.body.dictNum
         var dictValue = req.body.dictValue
-        console.log(dictType,dictNum,dictValue);
+        console.log(dictType, dictNum, dictValue);
         DictionaryRecord.getDictionary(function (err, dict) {
             if (err) throw err;
-            var typeIndex=0;
+            var typeIndex = 0;
             for (let index = 0; index < dict.length; index++) {
                 var element = dict[index];
-                if(element.type==dictType){
-                    element.element[dictNum].value=dictValue;
-                    typeIndex=index;
+                if (element.type == dictType) {
+                    element.element[dictNum].value = dictValue;
+                    typeIndex = index;
                     break;
                     // console.log(element);
-                    
+
                 }
             }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
                 if (err) throw err;
-                res.json({res:true});
+                res.json({ res: true });
             });
         });
     }
@@ -276,15 +277,15 @@ router.post('/pruss', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
 
 
@@ -300,15 +301,15 @@ router.post('/pruss', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -355,38 +356,38 @@ router.post('/pruss', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else if (type == "updateDict") {
         var dictType = req.body.dictType
         var dictNum = req.body.dictNum
         var dictValue = req.body.dictValue
-        console.log(dictType,dictNum,dictValue);
+        console.log(dictType, dictNum, dictValue);
         DictionaryRecord.getDictionary(function (err, dict) {
             if (err) throw err;
-            var typeIndex=0;
+            var typeIndex = 0;
             for (let index = 0; index < dict.length; index++) {
                 var element = dict[index];
-                if(element.type==dictType){
-                    element.element[dictNum].value=dictValue;
-                    typeIndex=index;
+                if (element.type == dictType) {
+                    element.element[dictNum].value = dictValue;
+                    typeIndex = index;
                     break;
                     // console.log(element);
-                    
+
                 }
             }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
                 if (err) throw err;
-                res.json({res:true});
+                res.json({ res: true });
             });
         });
     }
@@ -438,15 +439,15 @@ router.post('/gameView_text', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
 
 
@@ -462,15 +463,15 @@ router.post('/gameView_text', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -623,38 +624,38 @@ router.post('/gameView_text', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else if (type == "updateDict") {
         var dictType = req.body.dictType
         var dictNum = req.body.dictNum
         var dictValue = req.body.dictValue
-        console.log(dictType,dictNum,dictValue);
+        console.log(dictType, dictNum, dictValue);
         DictionaryRecord.getDictionary(function (err, dict) {
             if (err) throw err;
-            var typeIndex=0;
+            var typeIndex = 0;
             for (let index = 0; index < dict.length; index++) {
                 var element = dict[index];
-                if(element.type==dictType){
-                    element.element[dictNum].value=dictValue;
-                    typeIndex=index;
+                if (element.type == dictType) {
+                    element.element[dictNum].value = dictValue;
+                    typeIndex = index;
                     break;
                     // console.log(element);
-                    
+
                 }
             }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
                 if (err) throw err;
-                res.json({res:true});
+                res.json({ res: true });
             });
         });
     }
@@ -707,15 +708,15 @@ router.post('/gameView_blockly', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
 
 
@@ -731,15 +732,15 @@ router.post('/gameView_blockly', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -892,15 +893,15 @@ router.post('/gameView_blockly', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else {
@@ -951,15 +952,15 @@ router.post('/managementModifyMap', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
 
 
@@ -975,15 +976,15 @@ router.post('/managementModifyMap', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -1303,7 +1304,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         //         element:dictJson[index].element
         //     })
         //     DictionaryRecord.createDictionary(newDictionary, function (err, dict) {
-                
+
         //         console.log(dict);
         //     })
         // }
@@ -1442,15 +1443,15 @@ router.post('/', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -1464,15 +1465,15 @@ router.post('/', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -1521,38 +1522,38 @@ router.post('/', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else if (type == "updateDict") {
         var dictType = req.body.dictType
         var dictNum = req.body.dictNum
         var dictValue = req.body.dictValue
-        console.log(dictType,dictNum,dictValue);
+        console.log(dictType, dictNum, dictValue);
         DictionaryRecord.getDictionary(function (err, dict) {
             if (err) throw err;
-            var typeIndex=0;
+            var typeIndex = 0;
             for (let index = 0; index < dict.length; index++) {
                 var element = dict[index];
-                if(element.type==dictType){
-                    element.element[dictNum].value=dictValue;
-                    typeIndex=index;
+                if (element.type == dictType) {
+                    element.element[dictNum].value = dictValue;
+                    typeIndex = index;
                     break;
                     // console.log(element);
-                    
+
                 }
             }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type,dict[typeIndex].element,function (err, dictResult) {
+            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
                 if (err) throw err;
-                res.json({res:true});
+                res.json({ res: true });
             });
         });
     }
@@ -1696,15 +1697,15 @@ router.post('/home', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -1718,15 +1719,15 @@ router.post('/home', function (req, res, next) {
             //     res.json({ err: "error" });
             // }
             // else {
-                levelUpLevel += 1;
-                User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+            levelUpLevel += 1;
+            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
+                if (err) throw err;
+                // console.log("up   :", user);
+                User.getUserById(id, function (err, user) {
                     if (err) throw err;
-                    // console.log("up   :", user);
-                    User.getUserById(id, function (err, user) {
-                        if (err) throw err;
-                        res.json(user);
-                    })
+                    res.json(user);
                 })
+            })
             // }
         })
     }
@@ -1744,15 +1745,15 @@ router.post('/home', function (req, res, next) {
         });
     }
     else if (type == "updateEquip") {
-        var seriJson=JSON.parse(req.body.seriJson)
+        var seriJson = JSON.parse(req.body.seriJson)
         var armorLevel = seriJson.armorLevel;
         var weaponLevel = seriJson.weaponLevel;
         var levelUpLevel = seriJson.levelUpLevel;
         // console.log(seriJson);
         // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel,weaponLevel,levelUpLevel,function (err, dictResult) {
+        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
             if (err) throw err;
-            res.json({res:true});
+            res.json({ res: true });
         });
     }
     else if (type == "changePassword") {
@@ -1799,6 +1800,31 @@ router.get('/logout', function (req, res, next) {
     req.flash('success_msg', 'You are logged out')
     res.redirect('/login')
 })
+
+router.post('/loadGameMap', function (req, res, next) {
+    console.log(req.body);
+    console.log("loadGameMap post--------");
+
+    var levelId = req.body.gameLevel;
+    console.log(req.body.gameLevel);
+    GameMapRecord.getMapByLevel(levelId, function (err, mapData) {
+        res.json(mapData);
+    });
+
+});
+router.post('/updateGameMap', function (req, res, next) {
+    console.log(req.body);
+    console.log("loadGameMap post--------");
+
+    var levelId = req.body.gameLevel;
+    var scriptData=JSON.parse(req.body.data);
+    // console.log(scriptData);
+    GameMapRecord.updateMapByLevel(levelId,scriptData, function (err, mapData) {
+        return res.json(mapData);
+    });
+
+});
+
 
 module.exports = router;
 
