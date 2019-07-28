@@ -98,8 +98,59 @@ function loadObjectValue() {
         lockAnswerTextarea.value = "";
     }
 }
+var saveBtn = document.getElementById('saveBtn');
+saveBtn.onclick = function () {
+    // console.log(changeFile);
+    if (mapID) {
+        if (changeFile) {
+            var scriptData = precessSaveData();
+            console.log("scriptData:",scriptData);
+            var notrep = true;
+            for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+                const element = mapAll[indexMap];
+                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+                    notrep = false;
+                    break;
+                }
+            }
+            if (notrep) {
+                console.log(scriptData);
+                sendSaveMap(scriptData);
+            }
+            else {
+                // alert("")
+                remindView("關卡名稱重複");
+            }
+        }
+        else {
+            console.log("123");
+            // alert("儲存成功")
+            remindView("儲存成功");
+        }
+    }
+    else {
+        var scriptData = precessSaveData();
 
-var finishBtn = document.getElementById('saveBtn');
+        console.log("scriptData:",scriptData);
+        var notrep = true;
+        for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
+            const element = mapAll[indexMap];
+            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+                notrep = false;
+                break;
+            }
+        }
+        if (notrep) {
+            console.log(scriptData);
+            sendSaveMap(scriptData);
+        }
+        else {
+            // alert("")
+            remindView("關卡名稱重複");
+        }
+    }
+}
+var finishBtn = document.getElementById('finishBtn');
 finishBtn.onclick = function () {
     // console.log(changeFile);
     if (mapID) {
