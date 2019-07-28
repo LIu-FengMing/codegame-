@@ -764,12 +764,14 @@ body {
 #settingMusic,#musicVolume,#settingSpeed{
   margin-top: 5px;
   margin-bottom: 5px;
+  font-family:Microsoft JhengHei;
 }
 #musicOpen,#musicClose,#speedLow,#speedMid,#speedQuick{
   margin-right: 5px;
 }
 #openText,#speedLowText,#speedMidText{
   margin-right: 10px;
+  font-family:Microsoft JhengHei;
 }
 #volumeButtonSub{
   height: 20px;

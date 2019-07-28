@@ -172,8 +172,8 @@ body {
   font-size: calc(15px + 3.5vh);
   letter-spacing: 3px;
   margin-top: calc(15px + 2vh);
-  font-family: 'DFT_PJ7';
-  font-weight: 100;
+  font-family:Microsoft JhengHei;
+  font-weight: bold;
 }
 .clear {
   display: none;

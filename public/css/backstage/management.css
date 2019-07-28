@@ -2,6 +2,7 @@
 *{
   margin: 0;
   padding: 0;
+  outline: none;
 }
 html,body {
   height: 100%;
@@ -105,8 +106,8 @@ body {
 .titleH1{
   font-size: calc(10px + 5vh);
   color: #7C5A43;
-  font-family: 'DFPingJuStd-W7';
-  font-weight: 100;
+  font-family:Microsoft JhengHei;
+  font-weight: bold;
   letter-spacing: 0.5vw;
   position: relative;
   top: calc(10px + 10vh);

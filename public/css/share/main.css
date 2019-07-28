@@ -45,7 +45,7 @@ body {
   height: 100%;
   width: 110%;
   position: absolute;
-  left: -8%;
+  left: -8.1%;
 }
 .centerMidMap{
   width: 80%;
@@ -57,7 +57,7 @@ body {
   height: 100%;
   width: 110%;
   position: absolute;
-  left: -8%;
+  left: -8.1%;
 }
 .centerMidMap #fogBkImg{
   z-index: 3;
