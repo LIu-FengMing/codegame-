@@ -54,7 +54,7 @@ function back() {
 }
 var href = window.location.href;
 var user, objectData, levelDivAlive = false, isOblivionCreaterOpen;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed,gameNumber;
 var musicData;
 var scriptData = {
   type: "init"
@@ -166,7 +166,9 @@ function changeMapData(mapVersion){
 /*初始化*/
 function modifyInit() {
   let tempStr = localStorage.getItem("gameName");
-  console.log("這裡是關卡數:" + localStorage.getItem("gameNumber"));
+  gameNumber = localStorage.getItem("gameNumber");
+  document.getElementById("previewBtn").setAttribute("onclick","btnClick(" + gameNumber + ")")
+  console.log("這裡是關卡數:" + gameNumber);
   var gameNameStr = tempStr.replace(/&nbsp;/g, " ");
   divTag = document.getElementById("levelNameTextarea");
   divTag.value = gameNameStr;
@@ -278,12 +280,25 @@ function helper(mainDiv) {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "儲存");
+  b.setAttribute("id", "saveHelper");
+  b.setAttribute("value", "儲存");
+  b.setAttribute("onclick", "");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "取消");
+  b.setAttribute("id", "cancelSaveHelper");
+  b.setAttribute("value", "取消");
+  b.setAttribute("onclick", "");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
   document.getElementById("allTitle").innerHTML = "說明";
   b = document.createElement("input");
   b.setAttribute("type", "button");
@@ -362,12 +377,11 @@ function changeMethod(methodNumber) {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
   document.getElementById("allTitle").innerHTML = "說明";
   b = document.createElement("input");
   b.setAttribute("type", "button");
@@ -640,7 +654,7 @@ function changeMethod(methodNumber) {
   }
 }
 /*XX按鈕*/
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   try {
     parentObj = divTag.parentNode;
@@ -693,7 +707,7 @@ function userData() {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -704,11 +718,11 @@ function userData() {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   createUserView(divID);
 }
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   divTag = document.getElementById(thisDiv);
   parentObj = divTag.parentNode;
   parentObj.removeChild(divTag);
@@ -722,7 +736,6 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -923,7 +936,7 @@ function lessRequirement(starNum) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "conditionButton");
   b.setAttribute("value", "返回");
-  b.setAttribute("onclick", "clossFunc(\"lessRequirementView\")");
+  b.setAttribute("onclick", "closeFunc(\"lessRequirementView\")");
   divTag.appendChild(b);
 }
 
@@ -947,7 +960,7 @@ function remindView(remindValue) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -1001,7 +1014,7 @@ function saveModifyMap() {
 var lastSelect = null;
 function selectVersion(selectValue) {
   if (lastSelect != null && selectValue!=lastSelect) {
-    
+
     console.log("選擇版本號" + selectValue.innerHTML);
     selectValue.style.background = "#E6E6E6";
     lastSelect.style.background = "none";
@@ -1010,4 +1023,103 @@ function selectVersion(selectValue) {
 
   }
 
+}
+
+/*預覽*/
+function btnClick(number) {
+  /*主要語法*/
+  var mainGrammarTempStr = document.getElementById("levelIntroductionTextarea").value;
+  var mainGrammarStr = [];
+  mainGrammarStr = mainGrammarTempStr.split("\n");
+
+  /*關卡說明*/
+  var levelDescriptionStr = document.getElementById("levelDescriptionTextarea").value;
+
+  var divTag = document.getElementById("centerLost");
+  var b;
+  var isCheckClicked;
+  number++;
+  try {
+    divTag = document.getElementById("levelDiv");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("centerLost");
+  } catch (e) {
+    divTag = document.getElementById("centerLost");
+  }
+  b = document.createElement("div");
+  b.setAttribute("id", "levelDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("levelDiv");
+  b = document.createElement("form");
+  b.setAttribute("id", "levelForm");
+  levelDivAlive = true;
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
+  divTag.appendChild(b);
+  divTag = document.getElementById("levelForm");
+  b = document.createElement("h3");
+  b.setAttribute("id", "levelDescription");
+  b.innerHTML = localStorage.getItem("gameName");
+  divTag.appendChild(b);
+  /*星星圖*/
+  b = document.createElement("div");
+  b.setAttribute("id", "startDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("startDiv");
+  for (var i = 0; i < 3; i++) {
+    b = document.createElement("img");
+    b.setAttribute("id", "startImg" + i);
+    b.setAttribute("class", "unStartImg");
+    divTag.appendChild(b);
+  }
+  /*將星星預設為三顆滿星*/
+  for (var i = 0; i < 3; i++) {
+    document.getElementById("startImg" + i).className = "startImg";
+  }
+  /*主要函式*/
+  b = document.createElement("div");
+  b.setAttribute("id", "mainGrammar");
+  divTag.appendChild(b);
+  divTag = document.getElementById("mainGrammar");
+  for (var i = 0; i < mainGrammarStr.length; i++) {
+    b = document.createElement("div");
+    b.setAttribute("class", "innerGrammar");
+    b.setAttribute("id", "innerGrammar" + i);
+    divTag.appendChild(b);
+    b.innerHTML = mainGrammarStr[i];
+  }
+  b = document.createElement("br");
+  divTag.appendChild(b);
+
+  b = document.createElement("br");
+  divTag.appendChild(b);
+
+  /*關卡說明*/
+  b = document.createElement("textarea");
+  b.setAttribute("rows", "20");
+  b.setAttribute("cols", "20");
+  b.setAttribute("id", "levelDescriptiontextarea");
+  b.setAttribute("readonly", "readonly");
+  divTag.appendChild(b);
+  b.innerHTML = levelDescriptionStr;
+  b = document.createElement("br");
+  divTag.appendChild(b);
+
+  //number--;
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "historyCode");
+  b.setAttribute("value", "查看紀錄");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "levelBtn");
+  b.setAttribute("value", "進入關卡");
+  divTag.appendChild(b);
 }

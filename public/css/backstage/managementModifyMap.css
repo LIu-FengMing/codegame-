@@ -220,7 +220,6 @@ body {
   width: auto;
 }
 
-
 /*right*/
 .userName{
   position: absolute;
@@ -292,7 +291,7 @@ body {
   background-color: #FFE599;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
 }
-#helperView input[type="button"]{
+#method1,#method2,#method3,#clossDiv{
   width: 30px;
   height: 30px;
   background-color: white;
@@ -307,6 +306,36 @@ body {
 #clossDiv{
   top: 1%;
   right: 1%;
+}
+#cancelSaveHelper{
+  height: 5vh;
+  width: 4vw;
+  font-size: 1.5vw;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  cursor: pointer;
+}
+#saveHelper{
+  height: 5vh;
+  width: 4vw;
+  font-size: 1.5vw;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  top: 1%;
+  right: calc(6% + 4vw);
+  cursor: pointer;
 }
 #method1{
   top: 3%;
@@ -641,6 +670,112 @@ body {
   cursor: pointer;
 }
 
+/*關卡簡介*/
+#levelDiv{
+  z-index: 3;
+  width: 52vh;
+  height: 40vh;
+  font-size: 2.5vh;
+  font-weight:bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20vh;
+  margin-left: -26vh;
+  background-color: #FFC777;
+  overflow: auto;
+}
+#mainGrammar{
+  width: 80%;
+  height: 5vh;
+  margin-left: 10%;
+}
+.innerGrammar{
+  height: 3vh;
+  width: auto;
+  font-size: 1vw;
+  Display:inline-block;
+  background-color: #7C5A43;
+  color: white;
+  padding-top: 1vh;
+  padding-left: 0.5vh;
+  padding-right: 0.5vh;
+  margin-left: 1vh;
+}
+#levelDescription{
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  letter-spacing: 1vw;
+  font-size: calc(10px + 2vw);
+  font-weight: 900;
+  font-family: 'DFPingJuStd-W7';
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
+}
+#levelDescriptiontextarea{
+  height: 10vh;
+  width: 20vw;
+  font-size: 1.2vw;
+  font-family:Microsoft JhengHei;
+  text-align: center;
+  background: none;
+  border: none;
+  margin-top: -1vh;
+  line-height: 24px;
+  overflow: auto;
+}
+#levelBtn{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  right: 6vh;
+  margin-top: 0.5vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: black;
+  cursor: pointer;
+}
+#historyCode{
+  width: 15vh;
+  height: 3.5vh;
+  font-weight:bold;
+  position: absolute;
+  left: 6vh;
+  margin-top: 0.5vh;
+  font-size: 2.5vh;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: black;
+  cursor: pointer;
+}
+.startImg{
+  margin: 10px auto;
+  height: 6vh;
+  width: 6vh;
+  border: 0px;
+  background: transparent;
+  content:url('../../img/levelStar.png');
+  background-size: 100% 100%;
+}
+.unStartImg{
+  margin: 5px auto;
+  height: 6vh;
+  width: 6vh;
+  border: 0px;
+  background: transparent;
+  content:url('../../img/levelStarNull.png');
+  background-size: 100% 100%;
+}
 
 /*- Menu Tabs F--------------------------- */
 #tabsC{
