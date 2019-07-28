@@ -72,7 +72,7 @@ router.get('/buildDatabase', function (req, res, next) {
     var mainDescriptionBlocky = testMapData.mainDescriptionBlocky.oblivionObject;
     var directiveData = testMapData.directiveData.instruction;
 
-    for (let index = 1; index < 50; index++) {
+    for (let index = 0; index < 50; index++) {
         var path = "../models/mapData/map/map";
         if (index < 9) {
             path += '0'
