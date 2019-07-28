@@ -298,7 +298,6 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -308,10 +307,13 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-    b = document.createElement("h3");
-    b.setAttribute("id", "titleDatah3" + i);
-    b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
     divTag.appendChild(b);
     if (i == 0) {
       userdataFont = user.username;
@@ -339,9 +341,15 @@ function createUserView(mainDiv) {
     } else if (i == 5) {
       userdataFont = user.starNum;
     }
-    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-    for (var j = 0; j < 3; j++) {
-      b = document.createElement("br");
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
     }
   }
@@ -376,13 +384,6 @@ function getArgs() {
                   "三十三","三十四","三十五","三十六","三十七","三十八","三十九",
                   "四十","四十一","四十二","四十三","四十四","四十五","四十六",
                   "四十七","四十八","四十九","五十"];
-    var spanStyle = ["DFT_PJ7ZTAKB","DFT_PJ7VENPV","DFT_PJ7EWRAB","DFT_PJ7JYJQB","DFT_PJ7TQOBH","DFT_PJ7CJSLM","DFT_PJ7MOBSM","DFT_PJ7VGGCS","DFT_PJ7RQTIM","DFT_PJ7BIXSS",
-                     "DFT_PJ7QQUBP","DFT_PJ7ZIZMV","DFT_PJ7ELQCV","DFT_PJ7MCAUG","DFT_PJ7INNZA","DFT_PJ7RFRKG","DFT_PJ7WHJAG","DFT_PJ7GZOLM","DFT_PJ7PRSWS","DFT_PJ7UUKMS",
-                     "DFT_PJ7ZOCFN","DFT_PJ7EQUVN","DFT_PJ7OJZGT","DFT_PJ7TLQWT","DFT_PJ7CDVHZ","DFT_PJ7YOHMT","DFT_PJ7QYRIF","DFT_PJ7MIENZ","DFT_PJ7RLVDZ","DFT_PJ7BDAOE",
-                     "DFT_PJ7NXADQ","DFT_PJ7SASTQ","DFT_PJ7CSXEW","DFT_PJ7LKBOC","DFT_PJ7HUOUW","DFT_PJ7ZFYPH","DFT_PJ7ZFYPH","DFT_PJ7FHPFH","DFT_PJ7FHPFH","DFT_PJ7KKGVH",
-                     "DFT_PJ7YQCXA","DFT_PJ7IIHIG","DFT_PJ7RALSM","DFT_PJ7NKYYG","DFT_PJ7FUITS","DFT_PJ7BFUYM","DFT_PJ7LXZJR","DFT_PJ7GHLOM","DFT_PJ7ZRVKX","DFT_PJ7VCIPR"
-                    ];
-    divTag.style.fontFamily = spanStyle[args.level];
     divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
 
     //changeCollege(--args.level);
@@ -421,7 +422,6 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7EFTWL";
   document.getElementById("allTitle").innerHTML = "關卡說明";
   b = document.createElement("div");
   b.setAttribute("id", "helperInnerDiv");
@@ -641,7 +641,6 @@ function instructionView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "instructionTitle");
   divTag.appendChild(b);
-  document.getElementById("instructionTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("instructionTitle").innerHTML = "指令大全";
   b = document.createElement("table");
   b.setAttribute("id", "instructionTable");
@@ -763,7 +762,6 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
-  document.getElementById("settingTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("settingTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");
@@ -1228,11 +1226,9 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   b.setAttribute("id", "endViewTitle");
   divTag.appendChild(b);
   if (starNum != 0) {
-    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7CAZGN";
     document.getElementById("endViewTitle").innerHTML = "通關成功";
     updateEasyTextLevel(starNum);
   } else {
-    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7KRIXY";
     document.getElementById("endViewTitle").innerHTML = "通關失敗";
   }
   b = document.createElement("div");

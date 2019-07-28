@@ -125,30 +125,30 @@
   position: absolute;
   pointer-events: none;
 }
-#btn0,#img0{left: 18%;bottom: 6%;}
-#btn1,#img1{left: 10%;bottom: 10%;}
-#btn2,#img2{left: 14%;bottom: 20%;}
-#btn3,#img3{left: 25%;bottom: 25%;}
-#btn4,#img4{left: 26%;bottom: 38.5%;}
-#btn5,#img5{left: 18.5%;bottom: 43%;}
-#btn6,#img6{left: 26%;bottom: 56%;}
-#btn7,#img7{left: 16%;bottom: 58.5%;}
-#btn8,#img8{left: 14%;bottom: 70%;}/*33 fog*/
-#btn9,#img9{left: 24%;bottom: 73%;}/*34 fog*/
-#btn10,#img10{left: 34%;bottom: 68%;}/*35 fog*/
-#btn11,#img11{left: 40%;bottom: 57%;}/*36 fog*/
-#btn12,#img12{left: 44%;bottom: 42%;}
-#btn13,#img13{left: 41%;bottom: 29%;}
-#btn14,#img14{left: 47%;bottom: 16%;}/*39 fog*/
-#btn15,#img15{left: 53%;bottom: 4%;}/*40 fog*/
-#btn16,#img16{left: 58%;bottom: 16%;}/*41 fog*/
-#btn17,#img17{left: 55%;bottom: 30%;}/*42 fog*/
-#btn18,#img18{left: 59.5%;bottom: 43%;}/*43 fog*/
-#btn19,#img19{left: 65%;bottom: 52%;}/*44 fog*/
+#btn0,#img0{left: 11%;bottom: 6%;}
+#btn1,#img1{left: 3%;bottom: 10%;}
+#btn2,#img2{left: 7%;bottom: 20%;}
+#btn3,#img3{left: 20%;bottom: 25%;}
+#btn4,#img4{left: 21%;bottom: 38.5%;}
+#btn5,#img5{left: 12.5%;bottom: 43%;}
+#btn6,#img6{left: 21%;bottom: 56%;}
+#btn7,#img7{left: 11%;bottom: 58.5%;}
+#btn8,#img8{left: 8%;bottom: 70%;}/*33 fog*/
+#btn9,#img9{left: 18%;bottom: 73%;}/*34 fog*/
+#btn10,#img10{left: 29%;bottom: 68%;}/*35 fog*/
+#btn11,#img11{left: 34%;bottom: 57%;}/*36 fog*/
+#btn12,#img12{left: 40%;bottom: 42%;}
+#btn13,#img13{left: 37%;bottom: 29%;}
+#btn14,#img14{left: 44%;bottom: 16%;}/*39 fog*/
+#btn15,#img15{left: 49%;bottom: 4%;}/*40 fog*/
+#btn16,#img16{left: 56%;bottom: 16%;}/*41 fog*/
+#btn17,#img17{left: 53%;bottom: 30%;}/*42 fog*/
+#btn18,#img18{left: 57.5%;bottom: 43%;}/*43 fog*/
+#btn19,#img19{left: 64%;bottom: 52%;}/*44 fog*/
 #btn20,#img20{left: 73%;bottom: 43.5%;}/*45 fog*/
 #btn21,#img21{left: 83%;bottom: 44%;}
-#btn22,#img22{left: 82%;bottom: 65%;}
-#btn23,#img23{left: 90%;bottom: 83.7%;}
+#btn22,#img22{left: 83%;bottom: 65%;}
+#btn23,#img23{left: 91%;bottom: 83.7%;}
 #levelDiv{
   z-index: 3;
   width: 52vh;

@@ -74,7 +74,7 @@ $.ajax({
     //   if (this.readyState == 4 && this.status == 200) {
     //     equipmentData = JSON.parse(this.responseText);
     //     // console.log(equipmentData);
-    //   
+    //
     //   }
     // };
     // xmlhttp.open("GET", "json/equipment.json", true);
@@ -132,6 +132,7 @@ $.ajax({
 function getEquipmentData() {
   return equipmentData;
 }
+
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
@@ -335,7 +336,6 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -345,10 +345,13 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-    b = document.createElement("h3");
-    b.setAttribute("id", "titleDatah3" + i);
-    b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
     divTag.appendChild(b);
     if (i == 0) {
       userdataFont = user.username;
@@ -377,9 +380,15 @@ function createUserView(mainDiv) {
     } else if (i == 5) {
       userdataFont = user.starNum;
     }
-    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-    for (var j = 0; j < 3; j++) {
-      b = document.createElement("br");
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
     }
   }
@@ -525,7 +534,6 @@ function changePass() {
 //////////////////////////////////////////////////
 var divTag, b, divID, divID2;
 
-
 /*裝備*/
 function equipageView(mainDiv) {
   // console.log("武器:" + equipmentData.weaponLevel.length, user.weaponLevel);
@@ -551,7 +559,6 @@ function equipageView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7UKRFQ";
   document.getElementById("allTitle").innerHTML = "裝備";
   if (user.username == "NKUSTCCEA") {
     b = document.createElement("input");
@@ -1031,7 +1038,6 @@ function instructionView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7CPBVA";
   document.getElementById("allTitle").innerHTML = "指令大全";
   b = document.createElement("div");
   b.setAttribute("id", "instructionInnerDiv");
@@ -1157,7 +1163,6 @@ function achievementView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7LIFGG";
   document.getElementById("allTitle").innerHTML = "成就";
   b = document.createElement("div");
   b.setAttribute("id", "achievementInnerDiv");
@@ -1261,8 +1266,8 @@ function achievementJudge() {
       }
     }
   }
-  console.log("最高過關數:", maxLevel);
-  console.log("獲得三星數:", getThreeStar);
+  // console.log("最高過關數:", maxLevel);
+  // console.log("獲得三星數:", getThreeStar);
   for (var typeVar = 0; typeVar < 3; typeVar++) {
     for (var valueVar = 0; valueVar < 3; valueVar++) {
       // console.log(typeVar + valueVar);
@@ -1319,7 +1324,6 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("allTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");

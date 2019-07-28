@@ -249,8 +249,6 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userTitle");
   b.innerHTML = "個人資料";
   divTag.appendChild(b);
-  //將userTitle的字體改為華康平劇體
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   //創造內部div，白色那塊
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -261,21 +259,19 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
-  //創造裡面的h3標籤，以及填入文字
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-    b = document.createElement("h3");
-    b.setAttribute("id", "titleDatah3" + i);
-    b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
     divTag.appendChild(b);
-    //根據不同的行數將各自的資料存入userdataFont內
     if (i == 0) {
-      //使用者名稱
       userdataFont = user.username;
     } else if (i == 1) {
-      //使用者帳號
       userdataFont = user.name;
     } else if (i == 2) {
-      //判斷要顯示普魯斯或庫魯瑪的通關進度
       if (user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel) {
         userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
       } else {
@@ -286,24 +282,26 @@ function createUserView(mainDiv) {
         }
       }
     } else if (i == 3) {
-      //成就進度
       var getAchievement = Session.get("getAchievement");
-      //如果進度為0從session取出來會變成undefine，所以要改為0
       if(getAchievement == undefined){
         getAchievement=0;
+        console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
-      //創造地圖數
       userdataFont = user.createMap.length;
     } else if (i == 5) {
-      //獲得星星數
       userdataFont = user.starNum;
     }
-    //改變個個h3標籤的內容
-    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-    for (var j = 0; j < 3; j++) {
-      b = document.createElement("br");
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
     }
   }
@@ -335,12 +333,6 @@ function getArgs() {
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
                   "十一","十二","十三","十四","十五","十六","十七","十八",
                   "十九","二十","二十一","二十二","二十三","二十四"];
-    //每個標籤文字有對應的華康平劇的字型
-    var spanStyle = ["DFT_PJ7ZTAKB","DFT_PJ7VENPV","DFT_PJ7EWRAB","DFT_PJ7JYJQB","DFT_PJ7TQOBH","DFT_PJ7CJSLM","DFT_PJ7MOBSM","DFT_PJ7VGGCS","DFT_PJ7RQTIM","DFT_PJ7BIXSS",
-                     "DFT_PJ7QQUBP","DFT_PJ7ZIZMV","DFT_PJ7ELQCV","DFT_PJ7MCAUG","DFT_PJ7INNZA","DFT_PJ7RFRKG","DFT_PJ7WHJAG","DFT_PJ7GZOLM","DFT_PJ7PRSWS","DFT_PJ7UUKMS",
-                     "DFT_PJ7ZOCFN","DFT_PJ7EQUVN","DFT_PJ7OJZGT","DFT_PJ7TLQWT","DFT_PJ7CDVHZ"
-                    ];
-    divTag.style.fontFamily = spanStyle[args.level];
     divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
     //changeCollege(--args.level);
     thisLevelNum = args.level - 1;
@@ -378,7 +370,6 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7EFTWL";
   document.getElementById("allTitle").innerHTML = "關卡說明";
   b = document.createElement("div");
   b.setAttribute("id", "helperInnerDiv");
@@ -604,7 +595,6 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "settingTitle");
   divTag.appendChild(b);
-  document.getElementById("settingTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("settingTitle").innerHTML = "設定";
   //創造設定表格
   b = document.createElement("table");
@@ -1070,10 +1060,8 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   b.setAttribute("id", "endViewTitle");
   divTag.appendChild(b);
   if (starNum != 0) {
-    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7CAZGN";
     document.getElementById("endViewTitle").innerHTML = "通關成功";
   } else {
-    document.getElementById("endViewTitle").style.fontFamily = "DFT_PJ7KRIXY";
     document.getElementById("endViewTitle").innerHTML = "通關失敗";
   }
   b = document.createElement("div");

@@ -178,7 +178,6 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
   document.getElementById("allTitle").innerHTML = "說明";
   if (selectMod == 2) {
     b = document.createElement("div");
@@ -284,7 +283,6 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -294,10 +292,13 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-    b = document.createElement("h3");
-    b.setAttribute("id", "titleDatah3" + i);
-    b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
     divTag.appendChild(b);
     if (i == 0) {
       userdataFont = user.username;
@@ -325,9 +326,15 @@ function createUserView(mainDiv) {
     } else if (i == 5) {
       userdataFont = user.starNum;
     }
-    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-    for (var j = 0; j < 3; j++) {
-      b = document.createElement("br");
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
     }
   }
@@ -371,7 +378,6 @@ function settingAllView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7ZCCGL";
   document.getElementById("allTitle").innerHTML = "設定";
   b = document.createElement("table");
   b.setAttribute("id", "settingAllTable");

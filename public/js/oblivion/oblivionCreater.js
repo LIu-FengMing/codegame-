@@ -197,7 +197,6 @@ function helper(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
-  document.getElementById("allTitle").style.fontFamily = "DFT_PJ7APGCF";
   document.getElementById("allTitle").innerHTML = "說明";
   if (selectMod == 2) {
     b = document.createElement("div");
@@ -312,7 +311,6 @@ function createUserView(mainDiv) {
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
   divTag.appendChild(b);
-  document.getElementById("userTitle").style.fontFamily = "DFT_PJ7VNOMF";
   document.getElementById("userTitle").innerHTML = "個人資料";
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
@@ -322,42 +320,51 @@ function createUserView(mainDiv) {
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-      b = document.createElement("h3");
-      b.setAttribute("id", "titleDatah3" + i);
-      b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
+    divTag.appendChild(b);
+    if (i == 0) {
+      userdataFont = user.username;
+    } else if (i == 1) {
+      userdataFont = user.name;
+    } else if (i == 2) {
+      if (user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel) {
+        userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
+      } else {
+        if (user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel) {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
+        } else {
+          userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
+        }
+      }
+    } else if (i == 3) {
+      var getAchievement = Session.get("getAchievement");
+      if(getAchievement == undefined){
+        getAchievement=0;
+        console.log("this is undefine");
+      }
+      userdataFont = getAchievement + "/9";
+    } else if (i == 4) {
+      userdataFont = user.createMap.length;
+    } else if (i == 5) {
+      userdataFont = user.starNum;
+    }
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
-      if(i == 0){
-        userdataFont = user.username;
-      }else if(i == 1){
-        userdataFont = user.name;
-      }else if(i == 2){
-        if(user.MediumEmpire.HighestLevel > user.EasyEmpire.codeHighestLevel || user.MediumEmpire.HighestLevel > user.EasyEmpire.blockHighestLevel){
-          userdataFont = "庫魯瑪帝國-第" + user.MediumEmpire.HighestLevel + "關";
-        }else{
-          if(user.EasyEmpire.codeHighestLevel > user.EasyEmpire.blockHighestLevel){
-            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.codeHighestLevel + "關";
-          }else{
-            userdataFont = "普魯斯帝國-第" + user.EasyEmpire.blockHighestLevel + "關";
-          }
-        }
-      }else if(i == 3){
-        var getAchievement = Session.get("getAchievement");
-        if(getAchievement == undefined){
-          getAchievement=0;
-          console.log("this is undefine");
-        }
-        userdataFont = getAchievement + "/9";
-      }else if(i == 4){
-        userdataFont = user.createMap.length;
-      }else if(i ==5){
-        userdataFont = user.starNum;
-      }
-      document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-      for (var j = 0; j < 3; j++) {
-          b = document.createElement("br");
-          divTag.appendChild(b);
-      }
+    }
   }
 }
 

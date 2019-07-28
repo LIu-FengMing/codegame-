@@ -319,8 +319,8 @@ body {
   height: 5vh;
   color: #7C5A43;
   text-align: center;
-  font-family: Microsoft JhengHei;
-  font-weight: 100;
+  font-family: "Microsoft JhengHei";
+  font-weight: bold;
   border-style: solid;
   border-color: #7C5A43;
   border-width: 0px 0px 2px 0px;
@@ -344,6 +344,14 @@ body {
   top: 5%;
   left: 5%;
 }
+#userTable td{
+  font-family: "Microsoft JhengHei";
+  line-height: 6vh;
+  text-align:center;
+  text-align:justify;
+  text-justify:distribute-all-lines;
+  text-align-last:justify
+}
 
 /*center*/
 #titleBar{
@@ -358,7 +366,8 @@ body {
 #titleBar span{
   position: absolute;
   font-size: calc(15px + 4vh);
-  font-weight: 100;
+  font-family: "Microsoft JhengHei";
+  font-weight: bold;
   top:40%;
   right:0;
   bottom:0;

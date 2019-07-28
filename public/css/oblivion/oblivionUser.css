@@ -526,6 +526,14 @@ body {
   top: 5%;
   left: 5%;
 }
+#userTable td{
+  font-family: "Microsoft JhengHei";
+  line-height: 6vh;
+  text-align:center;
+  text-align:justify;
+  text-justify:distribute-all-lines;
+  text-align-last:justify
+}
 .titleH1{
   font-size: 6vh;
   font-family: 'DFPingJuStd-W7';

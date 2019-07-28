@@ -43,9 +43,9 @@ body {
 }
 .centerBlockly #bkImg{
   height: 100%;
-  width: 100%;
+  width: 110%;
   position: absolute;
-  left: 0;
+  left: -8%;
 }
 .centerMidMap{
   width: 80%;
@@ -55,17 +55,17 @@ body {
 }
 .centerMidMap #bkImg{
   height: 100%;
-  width: 100%;
+  width: 110%;
   position: absolute;
-  left: 0;
+  left: -8%;
 }
 .centerMidMap #fogBkImg{
   z-index: 3;
   height: 100%;
-  width: 100%;
+  width: 110%;
   opacity: 0.9;
   position: absolute;
-  left: 0;
+  left: -8%;
 }
 .centerLost{
   background-color: #A7BBD1;
@@ -80,6 +80,7 @@ body {
 .sidebarLeft,.sidebarRight {
   width: 10%;
   height: 90%;
+  z-index: 3;
   line-height: 90%;
   position: relative;
   background: #7C5A43;
