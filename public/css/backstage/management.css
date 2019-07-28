@@ -36,6 +36,15 @@ body {
   left: 0;
   top: 0;
 }
+#bkScreen{
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .box {
   display: table-cell;
 }
