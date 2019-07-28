@@ -137,7 +137,11 @@ function initMapData(res) {
   $('#levelDescriptionTextarea').val(nowMapData.description.description);
   $('#starConditionTextareaThree').val(mapInformation.winLinit.threeStar[0]);
   $('#starConditionTextareaTwo').val(mapInformation.winLinit.twoStar[0]);
+
+
   init_GameMapSetup(mapInformation);
+
+ 
 }
 function changeMapData(mapVersion){
   var mapData = allMapData.data;
@@ -161,6 +165,7 @@ function changeMapData(mapVersion){
   $('#starConditionTextareaThree').val(mapInformation.winLinit.threeStar[0]);
   $('#starConditionTextareaTwo').val(mapInformation.winLinit.twoStar[0]);
   init_GameMapSetup(mapInformation);
+
 }
 
 /*初始化*/
@@ -241,7 +246,7 @@ function logout() {
 /*小幫手*/
 function helper(mainDiv) {
   divID = "equipageView";
-  divTag = document.getElementById(mainDiv);
+  // divTag = document.getElementById(mainDiv);
   divTag = document.getElementById("helperView");
   try {
     parentObj = divTag.parentNode;
@@ -313,14 +318,22 @@ function helper(mainDiv) {
   b.setAttribute("id", "helperInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
-  if (0) {
+
+  var helpMod=nowMapData.mainCodeDescription.mode;
+  console.log(helpMod);
+  if (helpMod==2) {
     document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     divTag.appendChild(b);
     /*設定文字塊一*/
-    document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-
+    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+    var strText = nowMapData.mainCodeDescription.textarea1;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea1").innerHTML = strText;
+    }
+    
     /*設置圖片一*/
     b = document.createElement("textarea");
     b.setAttribute("id", "helperImgDiv1");
@@ -329,7 +342,12 @@ function helper(mainDiv) {
     b = document.createElement("img");
     b.setAttribute("id", "helperImg1");
     b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+    var strText = nowMapData.mainCodeDescription.img1;
+    console.log(strText);
+    if(strText != null ){
+      b.setAttribute("src", "img/" + strText);
+    }
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -340,7 +358,12 @@ function helper(mainDiv) {
     b = document.createElement("img");
     b.setAttribute("id", "helperImg2");
     b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+    var strText = nowMapData.mainCodeDescription.img2;
+    console.log(strText);
+    if(strText != null ){
+      b.setAttribute("src", "img/" + strText);
+    }
     divTag.appendChild(b);
 
     divTag = document.getElementById("helperInnerDiv");
@@ -348,8 +371,13 @@ function helper(mainDiv) {
     b.setAttribute("id", "helperTextarea2");
     divTag.appendChild(b);
     /*設定文字塊二*/
-    document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-  } else if (1) {
+    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+    var strText = nowMapData.mainCodeDescription.textarea2;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea2").innerHTML = strText;
+    }
+  } else if (helpMod==1) {
     document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("textarea");
@@ -357,14 +385,23 @@ function helper(mainDiv) {
     b.style.background = "white";
     divTag.appendChild(b);
     //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-  } else if (2) {
+    var strText = nowMapData.mainCodeDescription.textarea1;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea3").innerHTML = strText;
+    }
+  } else if (helpMod==3) {
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     b.style.background = "white";
     divTag.appendChild(b);
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-
+    var strText = nowMapData.mainCodeDescription.textarea1;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea1").innerHTML = strText;
+    }
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv1");
     divTag.appendChild(b);
@@ -413,7 +450,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-
+    var strText = nowMapData.mainCodeDescription.textarea2;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea2").innerHTML = strText;
+    }
     /*圖片四*/
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
@@ -442,7 +483,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊四*/
     // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
-
+    var strText = nowMapData.mainCodeDescription.textarea4;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea4").innerHTML = strText;
+    }
     /*圖片五*/
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
@@ -471,7 +516,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊五*/
     // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
-
+    var strText = nowMapData.mainCodeDescription.textarea5;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea5").innerHTML = strText;
+    }
     /*圖片六*/
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
@@ -500,7 +549,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊六*/
     // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
-
+    var strText = nowMapData.mainCodeDescription.textarea6;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea6").innerHTML = strText;
+    }
     /*圖片七*/
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
@@ -529,7 +582,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊七*/
     // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-
+    var strText = nowMapData.mainCodeDescription.textarea7;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea7").innerHTML = strText;
+    }
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea8");
@@ -537,6 +594,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     /*設定文字塊八*/
     // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+    var strText = nowMapData.mainCodeDescription.textarea8;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea8").innerHTML = strText;
+    }
   }
 }
 function changeMethod(methodNumber) {
@@ -599,6 +661,11 @@ function changeMethod(methodNumber) {
     divTag.appendChild(b);
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+    var strText = nowMapData.mainCodeDescription.textarea1;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea1").innerHTML = strText;
+    }
 
     b = document.createElement("div");
     b.setAttribute("id", "helperImgDiv1");
@@ -648,6 +715,11 @@ function changeMethod(methodNumber) {
     divTag.appendChild(b);
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+    var strText = nowMapData.mainCodeDescription.textarea1;
+    console.log(strText);
+    if(strText != null ){
+      document.getElementById("helperTextarea1").innerHTML = strText;
+    }
   } else if (methodNumber == 1) {
     document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
     divTag = document.getElementById("helperInnerDiv");
@@ -1261,7 +1333,6 @@ function selectVersion(selectValue) {
     changeMapData(selectValue.innerHTML.toString());
 
   }
-
 }
 
 /*預覽*/
@@ -1327,11 +1398,12 @@ function btnClick(number) {
   divTag.appendChild(b);
   divTag = document.getElementById("mainGrammar");
   for (var i = 0; i < mainGrammarStr.length; i++) {
+    if(mainGrammarStr[i].length>0){
     b = document.createElement("div");
     b.setAttribute("class", "innerGrammar");
     b.setAttribute("id", "innerGrammar" + i);
     divTag.appendChild(b);
-    b.innerHTML = mainGrammarStr[i];
+    b.innerHTML = mainGrammarStr[i];}
   }
   b = document.createElement("br");
   divTag.appendChild(b);

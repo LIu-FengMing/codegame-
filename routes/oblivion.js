@@ -6,6 +6,11 @@ var router = express.Router();
 // var Equipment = require('../models/equipment')
 var User = require('../models/user')
 var MapRecord = require('../models/map')
+var DictionaryRecord = require('../models/dictionary')
+var EquipmentRecord = require('../models/equipment')
+var GameMapRecord = require('../models/gameMap')
+var testDict = require('../models/dataJson/dictionaryJson')
+var testEquip = require('../models/dataJson/equipmentJson')
 router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
     res.render('oblivion/oblivion', {
