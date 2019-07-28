@@ -45,18 +45,7 @@ router.post("/uploadImg", upload.single('file'),(req, res) => {
 
 })
 router.post('/onload/img', function (req, res, next) {
-    // var form = new formidable.IncomingForm();
-    // form.parse(req, function(err, fields, files) {
-    //     if(err) {
-    //         return res.redirect(303, '/error');
-    //     }
-    //     console.log('received fields: ');
-    //     console.log(fields);
-    //     console.log('received files: ');
-    //     console.log(files);
-    //     // return res.send('./testImg/' + req.file.filename)
-    //     return res.send("111");
-    // });
+    
     var now = Date.now();
     jqupload.fileHandler({
         uploadDir: function() {
@@ -69,17 +58,33 @@ router.post('/onload/img', function (req, res, next) {
 })
 router.post('/onload/upload', function(req, res){
     //接收前臺POST過來的base64
+    // var form = new formidable.IncomingForm();
+    // form.parse(req, function(err, fields, files) {
+    //     if(err) {
+    //         return res.redirect(303, '/error');
+    //     }
+    //     console.log('received fields: ');
+    //     console.log(fields);
+    //     console.log('received files: ');
+    //     console.log(files);
+    //     // return res.send('./testImg/' + req.file.filename)
+    //     return res.send("111");
+    // });
+    
+    console.log( req.body);
     var imgData = req.body.imgData;
-    //過濾data:URL
-    var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
-    var dataBuffer = new Buffer(base64Data, 'base64');
-    fs.writeFile("/public/testImg/image.png", dataBuffer, function(err) {
-    if(err){
-    res.send(err);
-    }else{
-    res.send("儲存成功！");
-    }
-    });
+    console.log(imgData);
+    
+    // //過濾data:URL
+    // var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+    // var dataBuffer = new Buffer(base64Data, 'base64');
+    // fs.writeFile("/public/testImg/image.png", dataBuffer, function(err) {
+    // if(err){
+    // res.send(err);
+    // }else{
+    // res.send("儲存成功！");
+    // }
+    // });
 });
 
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {

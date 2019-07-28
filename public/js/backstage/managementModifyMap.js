@@ -244,7 +244,7 @@ function logout() {
 //              left.js                        //
 //////////////////////////////////////////////////
 /*小幫手*/
-var helperMod="code"; //code or blocky
+var helperMod = "code"; //code or blocky
 function helper(mainDiv) {
   divID = "equipageView";
   // divTag = document.getElementById(mainDiv);
@@ -331,11 +331,11 @@ function helper(mainDiv) {
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -353,18 +353,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     // var strText = nowMapData.mainCodeDescription.img1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img1;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -390,18 +390,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     // var strText = nowMapData.mainCodeDescription.img2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img2;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -424,11 +424,11 @@ function helper(mainDiv) {
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
     // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea2;
     }
     console.log(strText);
@@ -444,11 +444,11 @@ function helper(mainDiv) {
     divTag.appendChild(b);
     //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -463,11 +463,11 @@ function helper(mainDiv) {
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -485,18 +485,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     // var strText = nowMapData.mainCodeDescription.img2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img1;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -521,18 +521,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     // var strText = nowMapData.mainCodeDescription.img2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img2;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -555,11 +555,11 @@ function helper(mainDiv) {
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
     // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea2;
     }
     console.log(strText);
@@ -577,18 +577,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
     // var strText = nowMapData.mainCodeDescription.img4;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img4;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img4;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -611,11 +611,11 @@ function helper(mainDiv) {
     /*設定文字塊四*/
     // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
     // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea4;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea4;
     }
     console.log(strText);
@@ -633,18 +633,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
     // var strText = nowMapData.mainCodeDescription.img5;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img5;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img5;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -667,11 +667,11 @@ function helper(mainDiv) {
     /*設定文字塊五*/
     // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
     // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea5;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea5;
     }
     console.log(strText);
@@ -689,18 +689,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
     // var strText = nowMapData.mainCodeDescription.img6;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img6;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img6;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -723,11 +723,11 @@ function helper(mainDiv) {
     /*設定文字塊六*/
     // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
     // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea6;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea6;
     }
     console.log(strText);
@@ -745,18 +745,18 @@ function helper(mainDiv) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
     // var strText = nowMapData.mainCodeDescription.img7;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img7;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img7;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -779,11 +779,11 @@ function helper(mainDiv) {
     /*設定文字塊七*/
     // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
     // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea7;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea7;
     }
     console.log(strText);
@@ -798,11 +798,11 @@ function helper(mainDiv) {
     /*設定文字塊八*/
     // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
     // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea8;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea8;
     }
     console.log(strText);
@@ -872,11 +872,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -894,18 +894,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     // var strText = nowMapData.mainCodeDescription.img1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img1;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -930,18 +930,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     // var strText = nowMapData.mainCodeDescription.img2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img2;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -964,11 +964,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
     // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea2;
     }
     console.log(strText);
@@ -984,11 +984,11 @@ function changeMethod(methodNumber) {
     divTag.appendChild(b);
     // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -1004,11 +1004,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊一*/
     // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
     // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea1;
     }
     console.log(strText);
@@ -1025,18 +1025,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
     // var strText = nowMapData.mainCodeDescription.img1;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img1;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img1;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1061,18 +1061,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
     // var strText = nowMapData.mainCodeDescription.img2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img2;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1095,11 +1095,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊二*/
     // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
     // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea2;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea2;
     }
     console.log(strText);
@@ -1117,18 +1117,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
     // var strText = nowMapData.mainCodeDescription.img4;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img4;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img4;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1151,11 +1151,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊四*/
     // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
     // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea4;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea4;
     }
     console.log(strText);
@@ -1173,18 +1173,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
     // var strText = nowMapData.mainCodeDescription.img5;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img5;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img5;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1207,11 +1207,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊五*/
     // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
     // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea5;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea5;
     }
     console.log(strText);
@@ -1229,18 +1229,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
     // var strText = nowMapData.mainCodeDescription.img6;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img6;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img6;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1263,11 +1263,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊六*/
     // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
     // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea6;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea6;
     }
     console.log(strText);
@@ -1285,18 +1285,18 @@ function changeMethod(methodNumber) {
     b.setAttribute("class", "helperImg");
     // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
     // var strText = nowMapData.mainCodeDescription.img7;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.img7;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.img7;
     }
     console.log(strText);
     if (strText != null) {
       b.setAttribute("src", "img/" + strText);
     }
-    else{
+    else {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
     }
@@ -1319,11 +1319,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊七*/
     // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
     // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea7;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea7;
     }
     console.log(strText);
@@ -1338,11 +1338,11 @@ function changeMethod(methodNumber) {
     /*設定文字塊八*/
     // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
     // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText="";
-    if(helperMod!="blocky"){
+    var strText = "";
+    if (helperMod != "blocky") {
       strText = nowMapData.mainCodeDescription.textarea8;
     }
-    else{
+    else {
       strText = nowMapData.mainBlockyDescription.textarea8;
     }
     console.log(strText);
@@ -1353,49 +1353,50 @@ function changeMethod(methodNumber) {
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
-  switch (modelNumber) {
-    case 1:
-      var level = localStorage.getItem("gameNumber");
-      var model = modelNumber;
-      var textarea1 = document.getElementById("helperTextarea3").value;
-      textarea1 = strChange(textarea1);
-      break;
-    case 2:
-      var level = localStorage.getItem("gameNumber");
-      var model = modelNumber;
-      var textarea1 = document.getElementById("helperTextarea1").value;
-      textarea1 = strChange(textarea1);
-      var textarea2 = document.getElementById("helperTextarea2").value;
-      textarea2 = strChange(textarea2);
-      var img1 = document.getElementById("helperImg1Input").files[0];
-      var img2 = document.getElementById("helperImg2Input").files[0];
-      break;
-    case 3:
-      var level = localStorage.getItem("gameNumber");
-      var model = modelNumber;
-      var textarea1 = document.getElementById("helperTextarea1").value;
-      textarea1 = strChange(textarea1);
-      var textarea2 = document.getElementById("helperTextarea2").value;
-      textarea2 = strChange(textarea2);
-      var textarea4 = document.getElementById("helperTextarea4").value;
-      textarea4 = strChange(textarea4);
-      var textarea5 = document.getElementById("helperTextarea5").value;
-      textarea5 = strChange(textarea5);
-      var textarea6 = document.getElementById("helperTextarea6").value;
-      textarea6 = strChange(textarea6);
-      var textarea7 = document.getElementById("helperTextarea7").value;
-      textarea7 = strChange(textarea7);
-      var textarea8 = document.getElementById("helperTextarea8").value;
-      textarea8 = strChange(textarea8);
-      var img1 = document.getElementById("helperImg1Input").files[0];
-      var img2 = document.getElementById("helperImg2Input").files[0];
-      var img4 = document.getElementById("helperImg4Input").files[0];
-      var img5 = document.getElementById("helperImg5Input").files[0];
-      var img6 = document.getElementById("helperImg6Input").files[0];
-      var img7 = document.getElementById("helperImg7Input").files[0];
-      break;
+  remindView("儲存成功");
+  // switch (modelNumber) {
+  //   case 1:
+  //     var level = localStorage.getItem("gameNumber");
+  //     var model = modelNumber;
+  //     var textarea1 = document.getElementById("helperTextarea3").value;
+  //     textarea1 = strChange(textarea1);
+  //     break;
+  //   case 2:
+  //     var level = localStorage.getItem("gameNumber");
+  //     var model = modelNumber;
+  //     var textarea1 = document.getElementById("helperTextarea1").value;
+  //     textarea1 = strChange(textarea1);
+  //     var textarea2 = document.getElementById("helperTextarea2").value;
+  //     textarea2 = strChange(textarea2);
+  //     var img1 = document.getElementById("helperImg1Input").files[0];
+  //     var img2 = document.getElementById("helperImg2Input").files[0];
+  //     break;
+  //   case 3:
+  //     var level = localStorage.getItem("gameNumber");
+  //     var model = modelNumber;
+  //     var textarea1 = document.getElementById("helperTextarea1").value;
+  //     textarea1 = strChange(textarea1);
+  //     var textarea2 = document.getElementById("helperTextarea2").value;
+  //     textarea2 = strChange(textarea2);
+  //     var textarea4 = document.getElementById("helperTextarea4").value;
+  //     textarea4 = strChange(textarea4);
+  //     var textarea5 = document.getElementById("helperTextarea5").value;
+  //     textarea5 = strChange(textarea5);
+  //     var textarea6 = document.getElementById("helperTextarea6").value;
+  //     textarea6 = strChange(textarea6);
+  //     var textarea7 = document.getElementById("helperTextarea7").value;
+  //     textarea7 = strChange(textarea7);
+  //     var textarea8 = document.getElementById("helperTextarea8").value;
+  //     textarea8 = strChange(textarea8);
+  //     var img1 = document.getElementById("helperImg1Input").files[0];
+  //     var img2 = document.getElementById("helperImg2Input").files[0];
+  //     var img4 = document.getElementById("helperImg4Input").files[0];
+  //     var img5 = document.getElementById("helperImg5Input").files[0];
+  //     var img6 = document.getElementById("helperImg6Input").files[0];
+  //     var img7 = document.getElementById("helperImg7Input").files[0];
+  //     break;
 
-  }
+  // }
 }
 /*將字串轉為HTML格式*/
 function strChange(textareaStr) {
@@ -1405,8 +1406,8 @@ function strChange(textareaStr) {
 }
 /*將HTML轉為字串格式*/
 function htmlStrChange(textareaStr) {
-  textareaStr = textareaStr.replace(/&nbsp/g," ");
-  textareaStr = textareaStr.replace(/<br>/g,"\n");
+  textareaStr = textareaStr.replace(/&nbsp/g, " ");
+  textareaStr = textareaStr.replace(/<br>/g, "\n");
   return textareaStr;
 }
 /*XX按鈕*/
@@ -1427,27 +1428,27 @@ function closeFunc(thisDiv, thisDiv2) {
 function readImgUrl(input, imgId) {
   if (input.files && input.files[0]) {
 
-    var formData = new FormData(); 
-    formData.append('file', input.files[0]);  //添加图片信息的参数
-    formData.append('sizeid',123);  //添加其他参数
-    $.ajax({
-        url: "/onload/img",
-        type: 'POST',
-        cache: false, //上传文件不需要缓存
-        data: formData,
-        processData: false, // 告诉jQuery不要去处理发送的数据
-        contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (data) {
-            tipTopShow("上传失败");
-        }
-    })  
+    // var formData = new FormData(); 
+    // formData.append('file', input.files[0]);  //添加图片信息的参数
+    // formData.append('sizeid',123);  //添加其他参数
+    // $.ajax({
+    //     url: "/onload/upload",
+    //     type: 'POST',
+    //     cache: false, //上传文件不需要缓存
+    //     data: formData,
+    //     processData: false, // 告诉jQuery不要去处理发送的数据
+    //     contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+    //     success: function (data) {
+    //         console.log(data);
+    //     },
+    //     error: function (data) {
+    //         tipTopShow("上传失败");
+    //     }
+    // })  
     // var upload_file = input.files[0],
     //     formdata = new FormData(),
     //     xhr = new XMLHttpRequest();
-    
+
     // formdata.append('date',new Date().toLocaleString());  
     // // 将文件添加到formdata对象中，（注：下面的file字段名在node中有用）
     // formdata.append('file', upload_file);
@@ -1468,13 +1469,29 @@ function readImgUrl(input, imgId) {
     // xhr.send(formdata);
 
     // var imageTagID = input.getAttribute("helperImg" + imgId);
-    // var reader = new FileReader();
-    // reader.onload = function (e) {
-    //   var img = document.getElementById("helperImg" + imgId);
-    //   img.setAttribute("src", e.target.result)
-    //   console.log(e.target.result);
-    // }
-    // reader.readAsDataURL(input.files[0]);
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = document.getElementById("helperImg" + imgId);
+      img.setAttribute("src", e.target.result)
+      console.log(e.target.result);
+      data={
+        imgData:e.target.result
+      }
+      console.log(data);
+        $.ajax({
+        url: "/onload/upload",
+        type: 'POST',
+        cache: false, //上传文件不需要缓存
+        data: data,
+        success: function (res) {
+          console.log(res);
+        },
+        error: function (data) {
+          console.log("上传失败");
+        }
+      })
+    }
+    reader.readAsDataURL(input.files[0]);
   }
 }
 
@@ -1785,7 +1802,15 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-
+function clossFunc(thisDiv, thisDiv2) {
+  divTag = document.getElementById(thisDiv);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  divTag = document.getElementById(thisDiv2);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  levelDivAlive = false;
+}
 /*儲存地圖*/
 function saveModifyMap() {
   divTag = document.getElementById("versionControl");
