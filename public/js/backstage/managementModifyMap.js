@@ -240,17 +240,6 @@ function logout() {
 //////////////////////////////////////////////////
 /*小幫手*/
 function helper(mainDiv) {
-  // var thisLevelNum;
-  // if(user.starNum < 81){
-  //   thisLevelNum = 2;
-  // }else if(user.starNum >= 81 && user.starNum < 120){
-  //   thisLevelNum = 3;
-  // }else if(user.starNum >= 120){
-  //   thisLevelNum = 4;
-  // }
-  // isOblivionCreaterOpen = true;
-  // Session.set("isOblivionCreaterOpen", isOblivionCreaterOpen);
-  // //var selectMod = mainDescription.oblivionObject[thisLevelNum].mode;
   divID = "equipageView";
   divTag = document.getElementById(mainDiv);
   divTag = document.getElementById("helperView");
@@ -287,14 +276,13 @@ function helper(mainDiv) {
   b.setAttribute("title", "儲存");
   b.setAttribute("id", "saveHelper");
   b.setAttribute("value", "儲存");
-  b.setAttribute("onclick", "");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "取消");
   b.setAttribute("id", "cancelSaveHelper");
   b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -326,6 +314,7 @@ function helper(mainDiv) {
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
   if (0) {
+    document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     divTag.appendChild(b);
@@ -361,117 +350,14 @@ function helper(mainDiv) {
     /*設定文字塊二*/
     document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
   } else if (1) {
+    document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea3");
     b.style.background = "white";
     divTag.appendChild(b);
     //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-  }
-}
-function changeMethod(methodNumber) {
-  divTag = document.getElementById("helperView");
-  divTag.innerHTML = "";
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
-  b.setAttribute("value", "X");
-  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
-  divTag.appendChild(b);
-  b = document.createElement("h1");
-  b.setAttribute("id", "allTitle");
-  divTag.appendChild(b);
-  document.getElementById("allTitle").innerHTML = "說明";
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("title", "模板一");
-  b.setAttribute("id", "method1");
-  b.setAttribute("value", "1");
-  b.setAttribute("onclick", "changeMethod(1)");
-  divTag.appendChild(b);
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("title", "模板二");
-  b.setAttribute("id", "method2");
-  b.setAttribute("value", "2");
-  b.setAttribute("onclick", "changeMethod(2)");
-  divTag.appendChild(b);
-  b = document.createElement("input");
-  b.setAttribute("type", "button");
-  b.setAttribute("title", "模板三");
-  b.setAttribute("id", "method3");
-  b.setAttribute("value", "3");
-  b.setAttribute("onclick", "changeMethod(3)");
-  divTag.appendChild(b);
-  b = document.createElement("div");
-  b.setAttribute("id", "helperInnerDiv");
-  divTag.appendChild(b);
-  divTag = document.getElementById("helperInnerDiv");
-  if (methodNumber == 2) {
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    b.style.background = "white";
-    b.setAttribute("src", "img/noImage.png");
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    b.style.background = "white";
-    b.setAttribute("src", "img/noImage.png");
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-  } else if (methodNumber == 1) {
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea3");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-  } else if (methodNumber == 3) {
+  } else if (2) {
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     b.style.background = "white";
@@ -653,6 +539,358 @@ function changeMethod(methodNumber) {
     // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
   }
 }
+function changeMethod(methodNumber) {
+  divTag = document.getElementById("helperView");
+  divTag.innerHTML = "";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "clossDiv");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "儲存");
+  b.setAttribute("id", "saveHelper");
+  b.setAttribute("value", "儲存");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "取消");
+  b.setAttribute("id", "cancelSaveHelper");
+  b.setAttribute("value", "取消");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
+  divTag.appendChild(b);
+  b = document.createElement("h1");
+  b.setAttribute("id", "allTitle");
+  divTag.appendChild(b);
+  document.getElementById("allTitle").innerHTML = "說明";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板一");
+  b.setAttribute("id", "method1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "changeMethod(1)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板二");
+  b.setAttribute("id", "method2");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "changeMethod(2)");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板三");
+  b.setAttribute("id", "method3");
+  b.setAttribute("value", "3");
+  b.setAttribute("onclick", "changeMethod(3)");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "helperInnerDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("helperInnerDiv");
+  if (methodNumber == 2) {
+    document.getElementById("saveHelper").setAttribute("onclick","saveHelper(2)");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea1");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,1)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg2Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,2)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea2");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+  } else if (methodNumber == 1) {
+    document.getElementById("saveHelper").setAttribute("onclick","saveHelper(1)");
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea3");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  } else if (methodNumber == 3) {
+    document.getElementById("saveHelper").setAttribute("onclick","saveHelper(3)");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea1");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊一*/
+    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv1");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv1");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg1");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg1Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,1)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv2");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv2");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg2");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg2Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("style", "margin-left:15%;");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,2)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea2");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊二*/
+    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+
+    /*圖片四*/
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv4");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv4");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg4");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg4Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,4)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea4");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊四*/
+    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+
+    /*圖片五*/
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv5");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv5");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg5");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg5Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,5)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea5");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊五*/
+    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+
+    /*圖片六*/
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv6");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv6");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg6");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg6Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,6)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea6");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊六*/
+    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+
+    /*圖片七*/
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv7");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv7");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg7");
+    b.setAttribute("class", "helperImg");
+    b.style.background = "white";
+    b.setAttribute("src", "img/noImage.png");
+    divTag.appendChild(b);
+    b = document.createElement("br");
+    divTag.appendChild(b);
+    b = document.createElement("input");
+    b.setAttribute("id", "helperImg7Input");
+    b.setAttribute("type", "file");
+    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+    b.setAttribute("onchange", "readImgUrl(this,7)");
+    divTag.appendChild(b);
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea7");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊七*/
+    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("textarea");
+    b.setAttribute("id", "helperTextarea8");
+    b.style.background = "white";
+    divTag.appendChild(b);
+    /*設定文字塊八*/
+    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+  }
+}
+/*儲存小幫手*/
+function saveHelper(modelNumber) {
+  switch (modelNumber) {
+    case 1:
+      var level = localStorage.getItem("gameNumber");
+      var model = modelNumber;
+      var textarea1 = document.getElementById("helperTextarea3").value;
+      textarea1 = strChange(textarea1);
+      break;
+    case 2:
+      var level = localStorage.getItem("gameNumber");
+      var model = modelNumber;
+      var textarea1 = document.getElementById("helperTextarea1").value;
+      textarea1 = strChange(textarea1);
+      var textarea2 = document.getElementById("helperTextarea2").value;
+      textarea2 = strChange(textarea2);
+      var img1 = document.getElementById("helperImg1Input").files[0];
+      var img2 = document.getElementById("helperImg2Input").files[0];
+      break;
+    case 3:
+      var level = localStorage.getItem("gameNumber");
+      var model = modelNumber;
+      var textarea1 = document.getElementById("helperTextarea1").value;
+      textarea1 = strChange(textarea1);
+      var textarea2 = document.getElementById("helperTextarea2").value;
+      textarea2 = strChange(textarea2);
+      var textarea4 = document.getElementById("helperTextarea4").value;
+      textarea4 = strChange(textarea4);
+      var textarea5 = document.getElementById("helperTextarea5").value;
+      textarea5 = strChange(textarea5);
+      var textarea6 = document.getElementById("helperTextarea6").value;
+      textarea6 = strChange(textarea6);
+      var textarea7 = document.getElementById("helperTextarea7").value;
+      textarea7 = strChange(textarea7);
+      var textarea8 = document.getElementById("helperTextarea8").value;
+      textarea8 = strChange(textarea8);
+      var img1 = document.getElementById("helperImg1Input").files[0];
+      var img2 = document.getElementById("helperImg2Input").files[0];
+      var img4 = document.getElementById("helperImg4Input").files[0];
+      var img5 = document.getElementById("helperImg5Input").files[0];
+      var img6 = document.getElementById("helperImg6Input").files[0];
+      var img7 = document.getElementById("helperImg7Input").files[0];
+      break;
+
+  }
+}
+/*將字串轉為HTML格式*/
+function strChange(textareaStr) {
+  textareaStr = textareaStr.replace(/ /g, "&nbsp;");
+  textareaStr = textareaStr.replace(/\n/g, "<br>");
+  return textareaStr;
+}
 /*XX按鈕*/
 function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
@@ -669,17 +907,18 @@ function closeFunc(thisDiv, thisDiv2) {
 }
 /*讀取圖片*/
 function readImgUrl(input, imgId) {
-  console.log(input.value);
   if (input.files && input.files[0]) {
     var imageTagID = input.getAttribute("helperImg" + imgId);
     var reader = new FileReader();
     reader.onload = function (e) {
       var img = document.getElementById("helperImg" + imgId);
       img.setAttribute("src", e.target.result)
+      console.log(e.target.result);
     }
     reader.readAsDataURL(input.files[0]);
   }
 }
+
 
 //////////////////////////////////////////////////
 //              right.js                        //
