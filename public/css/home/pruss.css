@@ -1,5 +1,6 @@
 * textarea{
   resize:none;
+  font-family: Microsoft JhengHei;
 }
 #clossDiv{
   width: 30px;
@@ -20,7 +21,7 @@
 #blocklyMapTitle{
   z-index: 1;
   font-size: 55px;
-  font-family: "DFKai-SB",arial,helvetica,sans-serif;
+  font-family: "Microsoft JhengHei",arial,helvetica,sans-serif;
   font-weight: 900;
   margin-top: 20px;
 }

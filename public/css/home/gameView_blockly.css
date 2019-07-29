@@ -65,6 +65,9 @@ body {
   left: 1%;
   cursor: pointer;
 }
+textarea{
+  font-family: Microsoft JhengHei;
+}
 
 /*left*/
 .leftMark{
