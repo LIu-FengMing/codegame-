@@ -345,7 +345,7 @@ textarea{
   width: 90%;
   height: 90%;
   font-family: "Microsoft JhengHei";
-  font-size: calc(2vh + 5px);
+  font-size: calc(1.6vh + 5px);
   position: absolute;
   top: 5%;
   left: 5%;
