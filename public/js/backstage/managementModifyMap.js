@@ -224,14 +224,14 @@ function initHome() {
       }
     }
   }
-  try {
-    isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
-  } catch (e) {
-    isOblivionCreaterOpen = false;
-  }
-  if (!isOblivionCreaterOpen) {
-    helper('centerLost');
-  }
+  // try {
+  //   isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
+  // } catch (e) {
+  //   isOblivionCreaterOpen = false;
+  // }
+  // if (!isOblivionCreaterOpen) {
+  //   helper('centerLost');
+  // }
   modifyInit();
 }
 function logout() {
@@ -1428,7 +1428,7 @@ function closeFunc(thisDiv, thisDiv2) {
 function readImgUrl(input, imgId) {
   if (input.files && input.files[0]) {
 
-    // var formData = new FormData(); 
+    // var formData = new FormData();
     // formData.append('file', input.files[0]);  //添加图片信息的参数
     // formData.append('sizeid',123);  //添加其他参数
     // $.ajax({
@@ -1444,12 +1444,12 @@ function readImgUrl(input, imgId) {
     //     error: function (data) {
     //         tipTopShow("上传失败");
     //     }
-    // })  
+    // })
     // var upload_file = input.files[0],
     //     formdata = new FormData(),
     //     xhr = new XMLHttpRequest();
 
-    // formdata.append('date',new Date().toLocaleString());  
+    // formdata.append('date',new Date().toLocaleString());
     // // 将文件添加到formdata对象中，（注：下面的file字段名在node中有用）
     // formdata.append('file', upload_file);
     // xhr.open("POST", "/uploadImg", true);
