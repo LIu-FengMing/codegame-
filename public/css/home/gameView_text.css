@@ -328,18 +328,20 @@ body {
 #userInnerDiv{
   width: 80%;
   height: 70%;
-  font-family: Microsoft JhengHei;
+  font-family: "Microsoft JhengHei";
   position: absolute;
-  margin-top: 2.5vh;
+  top: 15%;
   left: 10%;
-  background-color: white;
-  border-width: 0px;
+  background-color: #FFF2CC;
+  border-style: solid;
+  border-color:#D6B656;
   overflow: auto;
 }
 #userH3Div{
   width: 90%;
   height: 90%;
-  font-family: Microsoft JhengHei;
+  font-family: "Microsoft JhengHei";
+  font-size: calc(2vh + 5px);
   position: absolute;
   top: 5%;
   left: 5%;
