@@ -28,6 +28,9 @@ var db = mongoose.connection;
 
 var app = express();
 app.use(express.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+// app.use(express.bodyParser({limit: '50mb'}));
 
 app.use(express.static('./public'));
 app.set('views', path.join(__dirname, 'views'));
@@ -97,6 +100,9 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log("Have error:");
+  console.log(err.message);
+  
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   // render the error page
   res.status(err.status || 500);

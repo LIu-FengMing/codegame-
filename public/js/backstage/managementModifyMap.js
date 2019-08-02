@@ -747,6 +747,7 @@ function helper(mainDiv) {
     // var strText = nowMapData.mainCodeDescription.img7;
     var strText = "";
     if (helperMod != "blocky") {
+
       strText = nowMapData.mainCodeDescription.img7;
     }
     else {
@@ -1354,39 +1355,41 @@ function changeMethod(methodNumber) {
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
   remindView("儲存成功");
-  // switch (modelNumber) {
-  //   case 1:
-  //     var level = localStorage.getItem("gameNumber");
-  //     var model = modelNumber;
-  //     var textarea1 = document.getElementById("helperTextarea3").value;
-  //     textarea1 = strChange(textarea1);
-  //     break;
-  //   case 2:
-  //     var level = localStorage.getItem("gameNumber");
-  //     var model = modelNumber;
-  //     var textarea1 = document.getElementById("helperTextarea1").value;
-  //     textarea1 = strChange(textarea1);
-  //     var textarea2 = document.getElementById("helperTextarea2").value;
-  //     textarea2 = strChange(textarea2);
-  //     var img1 = document.getElementById("helperImg1Input").files[0];
-  //     var img2 = document.getElementById("helperImg2Input").files[0];
-  //     break;
-  //   case 3:
-  //     var level = localStorage.getItem("gameNumber");
-  //     var model = modelNumber;
-  //     var textarea1 = document.getElementById("helperTextarea1").value;
-  //     textarea1 = strChange(textarea1);
-  //     var textarea2 = document.getElementById("helperTextarea2").value;
-  //     textarea2 = strChange(textarea2);
-  //     var textarea4 = document.getElementById("helperTextarea4").value;
-  //     textarea4 = strChange(textarea4);
-  //     var textarea5 = document.getElementById("helperTextarea5").value;
-  //     textarea5 = strChange(textarea5);
-  //     var textarea6 = document.getElementById("helperTextarea6").value;
-  //     textarea6 = strChange(textarea6);
-  //     var textarea7 = document.getElementById("helperTextarea7").value;
-  //     textarea7 = strChange(textarea7);
-  //     var textarea8 = document.getElementById("helperTextarea8").value;
+  
+  var level = localStorage.getItem("gameNumber");
+  if (modelNumber == 1) {
+    var textarea1 = strChange(document.getElementById("helperTextarea3").value);
+  }
+  else if (modelNumber == 2) {
+    var textarea1 = strChange(document.getElementById("helperTextarea1").value);
+    var textarea2 = strChange(document.getElementById("helperTextarea2").value);
+    var imageObj=$("#helperImg1")[0];
+    var img1 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg2")[0];
+    var img2 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+  }
+  else if (modelNumber == 3) {
+    var textarea1 = strChange(document.getElementById("helperTextarea1").value);
+    var textarea2 = strChange(document.getElementById("helperTextarea2").value);
+    var textarea4 = strChange(document.getElementById("helperTextarea4").value);
+    var textarea5 = strChange(document.getElementById("helperTextarea5").value);
+    var textarea6 = strChange(document.getElementById("helperTextarea6").value);
+    var textarea7 = strChange(document.getElementById("helperTextarea7").value);
+    var textarea8 = strChange(document.getElementById("helperTextarea8").value);
+    var imageObj=$("#helperImg1")[0];
+    var img1 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg2")[0];
+    var img2 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg4")[0];
+    var img4 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg5")[0];
+    var img5 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg6")[0];
+    var img6 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+    var imageObj=$("#helperImg7")[0];
+    var img7 =  imageObj.value?imageObj.value:new URL(imageObj.src).pathname.substr(5);
+  }
+
   //     textarea8 = strChange(textarea8);
   //     var img1 = document.getElementById("helperImg1Input").files[0];
   //     var img2 = document.getElementById("helperImg2Input").files[0];
@@ -1427,64 +1430,26 @@ function closeFunc(thisDiv, thisDiv2) {
 /*讀取圖片*/
 function readImgUrl(input, imgId) {
   if (input.files && input.files[0]) {
-
-    // var formData = new FormData(); 
-    // formData.append('file', input.files[0]);  //添加图片信息的参数
-    // formData.append('sizeid',123);  //添加其他参数
-    // $.ajax({
-    //     url: "/onload/upload",
-    //     type: 'POST',
-    //     cache: false, //上传文件不需要缓存
-    //     data: formData,
-    //     processData: false, // 告诉jQuery不要去处理发送的数据
-    //     contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-    //     success: function (data) {
-    //         console.log(data);
-    //     },
-    //     error: function (data) {
-    //         tipTopShow("上传失败");
-    //     }
-    // })  
-    // var upload_file = input.files[0],
-    //     formdata = new FormData(),
-    //     xhr = new XMLHttpRequest();
-
-    // formdata.append('date',new Date().toLocaleString());  
-    // // 将文件添加到formdata对象中，（注：下面的file字段名在node中有用）
-    // formdata.append('file', upload_file);
-    // xhr.open("POST", "/uploadImg", true);
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState == 4 && xhr.status == 200) {
-    //         // img.src = xhr.responseText;
-    //         var imageTagID = input.getAttribute("helperImg" + imgId);
-    //         var reader = new FileReader();
-    //         reader.onload = function (e) {
-    //           var img = document.getElementById("helperImg" + imgId);
-    //           img.setAttribute("src", xhr.responseText)
-    //           console.log(xhr.responseText);
-    //         }
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
-    // }
-    // xhr.send(formdata);
-
     // var imageTagID = input.getAttribute("helperImg" + imgId);
     var reader = new FileReader();
     reader.onload = function (e) {
-      var img = document.getElementById("helperImg" + imgId);
-      img.setAttribute("src", e.target.result)
-      console.log(e.target.result);
-      data={
-        imgData:e.target.result
+      console.log(input.files[0].name);
+      data = {
+        imgName: input.files[0].name,
+        imgData: e.target.result.toString()
       }
       console.log(data);
-        $.ajax({
-        url: "/onload/upload",
+      $.ajax({
+        url: "onloadImg",
         type: 'POST',
         cache: false, //上传文件不需要缓存
+        dataType: 'json',
         data: data,
         success: function (res) {
           console.log(res);
+          var img = document.getElementById("helperImg" + imgId);
+          img.setAttribute("src", e.target.result)
+          $("#helperImg" + imgId)[0].value = res.path;
         },
         error: function (data) {
           console.log("上传失败");

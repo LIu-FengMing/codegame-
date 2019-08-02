@@ -14,18 +14,18 @@ var testEquip = require('../models/dataJson/equipmentJson')
 
 var multer = require("multer");
 // 这里dest对应的值是你要将上传的文件存的文件夹
-var upload = multer({dest:'../public/testImg'});
+var upload = multer({ dest: '../public/testImg' });
 
 var formidable = require('formidable');
 var jqupload = require('jquery-file-upload-middleware');
 var fs = require('fs');
-router.post("/uploadImg", upload.single('file'),(req, res) => {
+router.post("/uploadImg", upload.single('file'), (req, res) => {
     // req.file 是 'file' 文件的信息 （前端传递的文件类型在req.file中获取）
     // req.body 将具有文本域数据，如果存在的话  。（上面前端代码中传递的date字段在req.body中获取）
     console.log(req.body) //{ date: '2018/1/20 下午5:25:56' }
 
     // // ---------- 因为保存的文件为二进制，取消下面代码块注释可让保存的图片文件在本地文件夹中预览 ------
-    
+
     // var file_type;
     // if (req.file.mimetype.split('/')[0] == 'image') file_type = '.' + req.file.mimetype.split('/')[1];
     // if (file_type) {
@@ -40,51 +40,39 @@ router.post("/uploadImg", upload.single('file'),(req, res) => {
     //     return;
     // }
     // ---------------------
-    
+
     // res.send('./testImg/' + req.file.filename)
 
 })
 router.post('/onload/img', function (req, res, next) {
-    
+
     var now = Date.now();
     jqupload.fileHandler({
-        uploadDir: function() {
-        return __dirname + '/public/testImg/' + now;
+        uploadDir: function () {
+            return __dirname + '/public/testImg/' + now;
         },
-        uploadUrl: function(){
-        return '/testImg/' + now;
+        uploadUrl: function () {
+            return '/testImg/' + now;
         }
     })(req, res, next);
 })
-router.post('/onload/upload', function(req, res){
-    //接收前臺POST過來的base64
-    // var form = new formidable.IncomingForm();
-    // form.parse(req, function(err, fields, files) {
-    //     if(err) {
-    //         return res.redirect(303, '/error');
-    //     }
-    //     console.log('received fields: ');
-    //     console.log(fields);
-    //     console.log('received files: ');
-    //     console.log(files);
-    //     // return res.send('./testImg/' + req.file.filename)
-    //     return res.send("111");
-    // });
-    
-    console.log( req.body);
+router.post('/onloadImg', function (req, res, next) {
+
+    console.log(req.body.imgName);
+    var imgName = req.body.imgName;
     var imgData = req.body.imgData;
-    console.log(imgData);
-    
+    // console.log(imgData);
+    // res.json({user:123});
     // //過濾data:URL
-    // var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
-    // var dataBuffer = new Buffer(base64Data, 'base64');
-    // fs.writeFile("/public/testImg/image.png", dataBuffer, function(err) {
-    // if(err){
-    // res.send(err);
-    // }else{
-    // res.send("儲存成功！");
-    // }
-    // });
+    var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+    var dataBuffer = new Buffer.from(base64Data, 'base64');
+    fs.writeFile("../codegame-/public/img/GameLevel/" + imgName, dataBuffer, function (err) {
+        if (err) {
+            return res.json({ state: true, err: err });
+        } else {
+            return res.json({ state: true ,path:"GameLevel/" + imgName});
+        }
+    });
 });
 
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
@@ -1892,9 +1880,9 @@ router.post('/updateGameMap', function (req, res, next) {
     console.log("loadGameMap post--------");
 
     var levelId = req.body.gameLevel;
-    var scriptData=JSON.parse(req.body.data);
+    var scriptData = JSON.parse(req.body.data);
     // console.log(scriptData);
-    GameMapRecord.updateMapByLevel(levelId,scriptData, function (err, mapData) {
+    GameMapRecord.updateMapByLevel(levelId, scriptData, function (err, mapData) {
         return res.json(mapData);
     });
 
