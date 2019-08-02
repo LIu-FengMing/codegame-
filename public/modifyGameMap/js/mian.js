@@ -82,7 +82,7 @@ $().ready(function () {
 
     var saveBtn = document.getElementById('saveModifyBtn');
     saveBtn.onclick = function () {
-        changeFile=true;
+        changeFile = true;
         if (changeFile) {
             var scriptData = precessSaveData();
             sendSaveMap(scriptData);
@@ -212,56 +212,56 @@ function precessSaveData() {
     }
 
 
-    data.winLinit.threeStar[0]=parseInt($('#starConditionTextareaThree').val());
-    data.winLinit.twoStar[0]=parseInt($('#starConditionTextareaTwo').val());
+    data.winLinit.threeStar[0] = parseInt($('#starConditionTextareaThree').val());
+    data.winLinit.twoStar[0] = parseInt($('#starConditionTextareaTwo').val());
     var str = JSON.stringify(data, undefined, 4);
 
-    var levelDescription={
-        description:$('#levelDescriptionTextarea').val(),
-        mainGrammar:[]
+    var levelDescription = {
+        description: $('#levelDescriptionTextarea').val(),
+        mainGrammar: []
     }
-    var innerStrList= $('#levelIntroductionTextarea').val().split('\n');
-    for (let index = 0; index <innerStrList.length; index++) {
+    var innerStrList = $('#levelIntroductionTextarea').val().split('\n');
+    for (let index = 0; index < innerStrList.length; index++) {
         const element = innerStrList[index];
-        if(element.length>0){
-            levelDescription.mainGrammar.push({ innerGrammar:element});
+        if (element.length > 0) {
+            levelDescription.mainGrammar.push({ innerGrammar: element });
         }
     }
-    var versionCount=1;
+    var versionCount = 1;
     var d = new Date();
     let year = d.getFullYear();
     var month = d.getMonth() + 1;
     var day = d.getDate();
     if (month < 10) {
-    month = "0" + month;
+        month = "0" + month;
     }
     if (day < 10) {
-    day = "0" + day;
+        day = "0" + day;
     }
     let versionDate = year + "/" + month + "/" + day;
     for (let index = 0; index < allMapData.data.length; index++) {
         const element = allMapData.data[index].versionID;
         console.log(element);
-        
-        if(element.indexOf(versionDate)>-1){
+
+        if (element.indexOf(versionDate) > -1) {
             ++versionCount;
         }
     }
-    var versionID="V"+versionCount.toString()+'_'+versionDate;
+    var versionID = "V" + versionCount.toString() + '_' + versionDate;
 
-    var mainCodeDescription=nowMapData.mainCodeDescription;
-    var mainBlockyDescription=nowMapData.mainBlockyDescription;
+    var mainCodeDescription = nowMapData.mainCodeDescription;
+    var mainBlockyDescription = nowMapData.mainBlockyDescription;
     var scriptData = {
-        versionID:versionID,
+        versionID: versionID,
         description: levelDescription,
-        canUseInstruction:nowMapData.canUseInstruction,
-        mainCodeDescription:mainCodeDescription,
-        mainBlockyDescription:mainBlockyDescription,
+        canUseInstruction: nowMapData.canUseInstruction,
+        mainCodeDescription: mainCodeDescription,
+        mainBlockyDescription: mainBlockyDescription,
         map: str,
     }
     console.log(scriptData);
 
-    allMapData.versionID=scriptData.versionID;
+    allMapData.versionID = scriptData.versionID;
     allMapData.data.push(scriptData);
 
 
@@ -315,11 +315,11 @@ function sendFinishMap(scriptData) {
 }
 
 function sendSaveMap(scriptData) {
-    
-    var objData=JSON.stringify(scriptData);
-    var scriptObjData={
-        gameLevel:levelNum,
-        data:objData
+
+    var objData = JSON.stringify(scriptData);
+    var scriptObjData = {
+        gameLevel: levelNum,
+        data: objData
     }
     $.ajax({
         url: 'updateGameMap',              // 要傳送的頁面
@@ -328,7 +328,7 @@ function sendSaveMap(scriptData) {
         data: scriptObjData,  // 將表單資料用打包起來送出去
         success: function (res) {
             console.log(res);
-            
+
             remindView("儲存成功");
             saveModifyMap();
         }
@@ -460,7 +460,7 @@ function loadData() {
         width = wd - 5;
         height = hd - 5;
         real = false;
-        iscreatecanvas=1;
+        iscreatecanvas = 1;
     }
     var wd = document.getElementById('divcanvas').offsetWidth;
     var hd = document.getElementById('divcanvas').offsetWidth;
@@ -471,7 +471,7 @@ function loadData() {
     // var pretty = JSON.stringify(obj, undefined, 4);
     var str = JSON.stringify(data, undefined, 4);
     // textarea_0.value = str;
-    
+
     // console.log(str);
 }
 
@@ -712,27 +712,29 @@ function del() {
     changeFile = true;
 
     var delF = false;
-    for (var i = 0; i < data['end_init'].length; ++i) {
-        if (data['end_init'][i]['postion'][0] == MouseX && data['end_init'][i]['postion'][1] == MouseY) {
-            data['end_init'].splice(i, 1);
-            loadData();
-            updateCanvas();
-            changeObjectAttributes("");
-            delF = true;
-            break;
-            // var temp=data['end_init'];
-            // temp.splice(i, 1)
-        }
-    }
-    if (delF == false) {
-        for (var i = 0; i < data['obj'].length; ++i) {
-            if (data['obj'][i]['postion'][0] == MouseX && data['obj'][i]['postion'][1] == MouseY) {
-                data['obj'].splice(i, 1);
+    if (data['end_init']) {
+        for (var i = 0; i < data['end_init'].length; ++i) {
+            if (data['end_init'][i]['postion'][0] == MouseX && data['end_init'][i]['postion'][1] == MouseY) {
+                data['end_init'].splice(i, 1);
                 loadData();
                 updateCanvas();
+                changeObjectAttributes("");
+                delF = true;
                 break;
                 // var temp=data['end_init'];
                 // temp.splice(i, 1)
+            }
+        }
+        if (delF == false) {
+            for (var i = 0; i < data['obj'].length; ++i) {
+                if (data['obj'][i]['postion'][0] == MouseX && data['obj'][i]['postion'][1] == MouseY) {
+                    data['obj'].splice(i, 1);
+                    loadData();
+                    updateCanvas();
+                    break;
+                    // var temp=data['end_init'];
+                    // temp.splice(i, 1)
+                }
             }
         }
     }
