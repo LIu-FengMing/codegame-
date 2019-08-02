@@ -224,14 +224,14 @@ function initHome() {
       }
     }
   }
-  try {
-    isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
-  } catch (e) {
-    isOblivionCreaterOpen = false;
-  }
-  if (!isOblivionCreaterOpen) {
-    helper('centerLost');
-  }
+  // try {
+  //   isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
+  // } catch (e) {
+  //   isOblivionCreaterOpen = false;
+  // }
+  // if (!isOblivionCreaterOpen) {
+  //   helper('centerLost');
+  // }
   modifyInit();
 }
 function logout() {
@@ -1430,6 +1430,50 @@ function closeFunc(thisDiv, thisDiv2) {
 /*讀取圖片*/
 function readImgUrl(input, imgId) {
   if (input.files && input.files[0]) {
+<<<<<<< HEAD
+=======
+
+    // var formData = new FormData();
+    // formData.append('file', input.files[0]);  //添加图片信息的参数
+    // formData.append('sizeid',123);  //添加其他参数
+    // $.ajax({
+    //     url: "/onload/upload",
+    //     type: 'POST',
+    //     cache: false, //上传文件不需要缓存
+    //     data: formData,
+    //     processData: false, // 告诉jQuery不要去处理发送的数据
+    //     contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+    //     success: function (data) {
+    //         console.log(data);
+    //     },
+    //     error: function (data) {
+    //         tipTopShow("上传失败");
+    //     }
+    // })
+    // var upload_file = input.files[0],
+    //     formdata = new FormData(),
+    //     xhr = new XMLHttpRequest();
+
+    // formdata.append('date',new Date().toLocaleString());
+    // // 将文件添加到formdata对象中，（注：下面的file字段名在node中有用）
+    // formdata.append('file', upload_file);
+    // xhr.open("POST", "/uploadImg", true);
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //         // img.src = xhr.responseText;
+    //         var imageTagID = input.getAttribute("helperImg" + imgId);
+    //         var reader = new FileReader();
+    //         reader.onload = function (e) {
+    //           var img = document.getElementById("helperImg" + imgId);
+    //           img.setAttribute("src", xhr.responseText)
+    //           console.log(xhr.responseText);
+    //         }
+    //         reader.readAsDataURL(input.files[0]);
+    //     }
+    // }
+    // xhr.send(formdata);
+
+>>>>>>> 068a99d960aef0425026ad81da73f306f6781f08
     // var imageTagID = input.getAttribute("helperImg" + imgId);
     var reader = new FileReader();
     reader.onload = function (e) {
