@@ -104,14 +104,16 @@
   position: absolute;
   top: 15%;
   left: 10%;
-  background-color: white;
-  border-width: 0px;
+  background-color: #FFF2CC;
+  border-style: solid;
+  border-color:#D6B656;
   overflow: auto;
 }
 #userH3Div{
   width: 90%;
   height: 90%;
   font-family: "Microsoft JhengHei";
+  font-size: calc(1.6vh + 5px);
   position: absolute;
   top: 5%;
   left: 5%;
@@ -152,7 +154,7 @@
   left: 5%;
 }
 #changePasswordTitle{
-  font-family: 'DFT_PJ7';
+  font-family: "Microsoft JhengHei";
   margin-top: 20px;
 }
 #changePasswordTable{
@@ -169,7 +171,7 @@
   height: 4vh;
   width: 80%;
   font-size: 1.5vh;
-  /* font-family: "Microsoft JhengHei"; */
+  font-family: "Microsoft JhengHei";
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -182,7 +184,7 @@
   height: 5vh;
   width: 7vw;
   font-size: 1.5vw;
-  /* font-family: "Microsoft JhengHei"; */
+  font-family: "Microsoft JhengHei";
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: solid 2px white;
@@ -196,7 +198,7 @@
   height: 5vh;
   width: 7vw;
   font-size: 1.5vw;
-  /* font-family: Microsoft JhengHei; */
+  font-family: Microsoft JhengHei;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: solid 2px white;
