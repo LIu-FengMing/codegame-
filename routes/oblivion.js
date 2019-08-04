@@ -13,8 +13,14 @@ var testDict = require('../models/dataJson/dictionaryJson')
 var testEquip = require('../models/dataJson/equipmentJson')
 router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+    var canCreateMapPermission = false;
+    if (req.user.canCreateMapPermission) {
+        canCreateMapPermission = true;
+    }
+
     res.render('oblivion/oblivion', {
-        user: req.user.username
+        user: req.user.username,
+        canCreateMapPermission: canCreateMapPermission
     });
 });
 router.post('/oblivion', function (req, res, next) {
@@ -117,6 +123,9 @@ router.post('/oblivion', function (req, res, next) {
 
 router.get('/oblivionUser', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
+    if (!(req.user.canCreateMapPermission)) {
+        res.redirect('/oblivion');
+    }
     res.render('oblivion/oblivionUser', {
         user: req.user.username
     });

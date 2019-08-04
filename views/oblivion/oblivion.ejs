@@ -64,7 +64,9 @@
             </tr>
           </table>
         </div>
-        <input type="button" class="centerButton" id="createLevel" value="" onclick="location.href='oblivionUser';">
+        <% if (canCreateMapPermission) { %>
+          <input type="button" class="centerButton" id="createLevel" value="" onclick="location.href='oblivionUser';">
+        <% } %>
         <input type="button" class="centerButton" id="enterLevel" value="" onclick="enterLevel()">
         <input type="button" title="設定" class="settingAllButton" value="" onclick="settingAllView(centerLost)">
       </div>
