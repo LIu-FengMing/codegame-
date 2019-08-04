@@ -80,6 +80,12 @@ module.exports.createMap = function (newGameMap, callback) {
 }
 
 // getMap
+module.exports.getMap = function (callback) {
+    var query = { };
+    GameMapRecord.find(query, callback)
+}
+
+// getMap
 module.exports.getMapByLevel = function (levelID, callback) {
     var query = { level: levelID }
     GameMapRecord.findOne(query, callback)

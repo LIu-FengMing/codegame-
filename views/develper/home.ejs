@@ -12,19 +12,40 @@
 </html>
 
 <script>
-    var scriptData = {
-        type: "loadGameMap",
-        gameLevel:0
-    }
+    // var scriptData = {
+    //     type: "loadGameMap",
+    //     gameLevel:0
+    // }
+    // $.ajax({
+    //     url: location.href,              // 要傳送的頁面
+    //     method: 'POST',               // 使用 POST 方法傳送請求
+    //     dataType: 'json',             // 回傳資料會是 json 格式
+    //     data: scriptData,  // 將表單資料用打包起來送出去
+    //     success: function (res) {
+    //         console.log(res);
+            
+    //     }
+    // })
+    // $.ajax({
+    //     url: "loadGameMapData",              // 要傳送的頁面
+    //     method: 'POST',               // 使用 POST 方法傳送請求
+    //     dataType: 'json',             // 回傳資料會是 json 格式
+    //     success: function (res) {
+    //         console.log(res);
+            
+    //     }
+    // })
     $.ajax({
-        url: location.href,              // 要傳送的頁面
+        url: "loadThisLevelGameMapData",              // 要傳送的頁面
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
-        data: scriptData,  // 將表單資料用打包起來送出去
+        data: {
+            level:0,
+            gameMode:"code"   //blocky
+        },  // 
         success: function (res) {
             console.log(res);
             
         }
     })
-
 </script>

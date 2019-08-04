@@ -217,6 +217,7 @@ function precessSaveData() {
     var str = JSON.stringify(data, undefined, 4);
 
     var levelDescription = {
+        level:levelNum+1,
         description: $('#levelDescriptionTextarea').val(),
         mainGrammar: []
     }

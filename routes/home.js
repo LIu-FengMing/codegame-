@@ -1851,7 +1851,37 @@ router.post('/updateGameMap', function (req, res, next) {
     });
 });
 
+router.post('/loadGameMapData', function (req, res, next) {
+    var start = 0, end = 50;
+    GameMapRecord.getMap(function (err, mapData) {
+        // res.json(mapData);
+        if(err)
+            console.log(err);
+            
+        var returnData = [];
+        for (let index = start; index < end; index++) {
+            var element = mapData[index];
+            // console.log(element.level);
+            
+            for (let entry = 0; entry < element.data.length; entry++) {
+                var entryItem = element.data[entry];
+                // console.log(entryItem);
+                if(entryItem.versionID==element.versionID){
+                    returnData.push(
+                        entryItem.description
+                    );
+                    break;
+                }
+            }
+        }
+        returnData = returnData.sort(function (a, b) {
+            return a.level > b.level ? 1 : -1;
+           });
+        res.json(returnData);
+    })
 
+});
+    
 module.exports = router;
 
 function ensureAuthenticated(req, res, next) {

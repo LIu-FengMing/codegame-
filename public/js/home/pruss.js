@@ -143,14 +143,16 @@ function getEquipmentData() {
   return equipmentData;
 }
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    levelDescription = JSON.parse(this.responseText);
+$.ajax({
+  url: "loadGameMapData",              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  success: function (res) {
+    levelDescription={
+      Early:res
+    }
   }
-};
-xmlhttp.open("GET", "json/levelDescription.json", true);
-xmlhttp.send();
+})
 
 function error() {
   alert("有不當的操作發生");
