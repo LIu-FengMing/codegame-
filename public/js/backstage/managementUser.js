@@ -81,7 +81,7 @@ function logout() {
 var thisSelectionId;
 var args;
 var divTag, level, thisIndex;
-var lastObject = null,lastColor;
+var lastObject = null, lastColor;
 //當那一列資料被選到調用此函式
 function selectionLevel(thisObject) {
   var mapIndex = 0;
@@ -104,11 +104,36 @@ function selectionLevel(thisObject) {
   lastObject = thisObject;
   //如果現在被選到的狀態為"封鎖"，改變底下按鈕的圖片
   if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
-    document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
+    document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
   } else {//如果是"正常"狀態，就改成"封鎖"圖片
-    document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
+    document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
   }
 }
+function createMapPermission(index) {
+  console.log(allUserData[index]._id);
+  var checkName="#input0"+index+"6";
+  if ( $(checkName).is(":checked")) {
+    var canCreateMapPermission = true;
+
+  } else {
+    var canCreateMapPermission = false;
+  }
+  
+  $.ajax({
+    url: "changeUserCreateMapPermission",           // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: {
+      userId: allUserData[index]._id,
+      canCreateMapPermission:canCreateMapPermission
+    },  // 將表單資料用打包起來送出去
+    success: function (res) {
+      console.log(res);
+
+    }
+  })
+}
+
 function changeStatus() {
   //如果有選擇到table
   if (thisSelectionId) {
@@ -116,12 +141,12 @@ function changeStatus() {
     //如果被選為"封鎖"，改變狀態為"正常"，此處是改table內的欄位
     if (document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖") {
       document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
-      document.getElementById("changeStatus").style.backgroundImage= "url(../img/blockade.png)";
+      document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
       allUserData[thisIndex].userstatus = 0;
       userstatus = 0
     } else {//若為"正常"，則改為"封鎖"
       document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
-      document.getElementById("changeStatus").style.backgroundImage= "url(../img/unBlockade.png)";
+      document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
       allUserData[thisIndex].userstatus = 1;
       userstatus = 1
     }
@@ -155,7 +180,7 @@ function remindView(remindValue) {
   //用以判斷顯示資訊是一行還是兩行
   for (var i = 0; i < remindValue.length; i++) {
     //因為兩行的資訊內會有<br>所以只要有"<"就可以知道為兩行
-    if(remindValue[i] == "<"){
+    if (remindValue[i] == "<") {
       isTwoLine = true;
       break;
     }
@@ -168,7 +193,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -177,9 +202,9 @@ function remindView(remindValue) {
   divTag.appendChild(b);
   b = document.createElement("div");
   //如果是兩行則將class設為twoLine，反之則設為oneLine
-  if(isTwoLine){
+  if (isTwoLine) {
     b.setAttribute("class", "twoLine");
-  }else{
+  } else {
     b.setAttribute("class", "oneLine");
   }
   b.setAttribute("id", "remindView");
@@ -254,8 +279,12 @@ function sendLoadUsernameMap() {
           td03: obj.email,
           td04: obj.starNum,
           td05: allUserData[index].hightLevel,
-          td06: userstatusStr
+          td06: userstatusStr,
         }
+        if(obj.canCreateMapPermission){
+          script.canCreateMapPermission=obj.canCreateMapPermission
+        }
+
         mapData.push(script);
       }
       completallUserData = allUserData.slice(0);
@@ -285,7 +314,7 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
     //將偶數的table的背景顏色改為#F0E0CF
     divTag = document.getElementById("lostUserCreateTable" + i);
-    if((i%2) == 0){
+    if ((i % 2) == 0) {
       divTag.style.backgroundColor = "#F0E0CF";
     }
     //創造tr標籤
@@ -305,6 +334,7 @@ function createLevelTable(scriptData) {
       b.setAttribute("type", "text");
       b.setAttribute("id", "input0" + i + j);
       b.setAttribute("readonly", "readonly");
+      b.setAttribute("onclick", "createMapPermission(" + i + ")");
       divTag.appendChild(b);
       if (j == 1) {/*使用者帳號*/
         document.getElementById("input0" + i + j).value = obj.td01;
@@ -324,7 +354,10 @@ function createLevelTable(scriptData) {
       } else if (j == 6) {/*使用者狀態*/
         b.setAttribute("type", "checkbox");
         b.setAttribute("class", "mapCheckbox");
-      } else if(j == 7){
+        if(obj.canCreateMapPermission){
+          b.setAttribute("checked",true);
+        }
+      } else if (j == 7) {
         document.getElementById("input0" + i + j).value = obj.td06;
         // document.getElementById("td0" + i + j).innerHTML = "封鎖"
       }
@@ -414,11 +447,11 @@ levelSelect.onchange = function (index) {
   changeTdNameDisplay();
 }
 var selectType = document.getElementById("selectType");
-var searchType=0;
-var searchTypeTable=["username", "name", "email", "hightLevel", "starNum", "userstatus"];
+var searchType = 0;
+var searchTypeTable = ["username", "name", "email", "hightLevel", "starNum", "userstatus"];
 //當搜尋欄位被輸入時呼叫searchFunc()
 selectType.onchange = function (index) {
-  searchType= selectType.selectedIndex;
+  searchType = selectType.selectedIndex;
   searchFunc();
 }
 //搜尋函式，也是豐銘的
@@ -430,13 +463,13 @@ function searchFunc() {
   // } else {
   //   a.className = "searchFocus";
   // }
- // console.log("search:up");
+  // console.log("search:up");
   // console.log(searchTextBox.value);
   if (searchTextBox.value.length > 0) {
     allUserData.length = 0;
     for (let indexS = 0; indexS < completallUserData.length; indexS++) {
       // const element = completallUserData[indexS];
-      var compareStr=completallUserData[indexS][searchTypeTable[searchType]].toString()
+      var compareStr = completallUserData[indexS][searchTypeTable[searchType]].toString()
       if (compareStr.indexOf(searchTextBox.value) > -1) {
         allUserData.push(completallUserData[indexS]);
       }
@@ -509,7 +542,7 @@ function updateLevelTable(scriptData) {
       document.getElementById("input0" + i + "4").value = obj.td04;
       document.getElementById("input0" + i + "5").value = obj.td05;
 
-      if((i%2) == 0){
+      if ((i % 2) == 0) {
         document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
       }
       // divTag.style.backgroundColor = "#F5F5F5";
@@ -564,7 +597,7 @@ function updateLevelTable(scriptData) {
         }
         divTag = document.getElementById("tr" + i);
       }
-      if((i%2) == 0){
+      if ((i % 2) == 0) {
         document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
       }
     }

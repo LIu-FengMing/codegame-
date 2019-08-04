@@ -25,7 +25,8 @@ var UserSchema = mongoose.Schema({
     },
     createMap: { type: Array, "default": [] },
     finishMapNum: { type: Array, "default": []  },
-    userstatus:{ type: Number, "default": 0 }
+    userstatus:{ type: Number, "default": 0 },
+    canCreateMapPermission:{ type: Boolean, "default": false }
 })
 
 var User = module.exports = mongoose.model('User', UserSchema)
@@ -44,8 +45,6 @@ module.exports.getUser = function (userID, callback) {
     var query = { _id: { $ne: userID }}
     User.find(query, callback)
 }
-
-
 // getUserByUsername, 用username來找使用者
 module.exports.getUserByUsername = function (username, callback) {
     var query = { username: username }
@@ -60,10 +59,6 @@ module.exports.getUserByEmail = function (email, callback) {
 module.exports.getUserById = function (id, callback) {
     User.findById(id, { __v: 0 }, callback)
 }
-
-
-
-
 
 // comparePassword, 當使用者登入的時候我們要比對登入密碼跟我們資料庫密碼相同
 module.exports.comparePassword = function (candidatePassword, hash, callback) {
@@ -90,6 +85,14 @@ module.exports.updateUserStatus = function (id,userstatus, callback) {
     User.updateOne(query, setquery, callback);
 }
 
+// updateUserStatus, 更新使用者狀態
+module.exports.updateUserCreateMapPermission = function (id,canCreateMapPermission, callback) {
+    var query = { _id: id}
+    var setquery = {
+        canCreateMapPermission:canCreateMapPermission
+    }
+    User.updateOne(query, setquery, callback);
+}
 
 // updatePassword, 更新密碼
 module.exports.updatePassword = function (username, candidatePassword, callback) {

@@ -145,7 +145,7 @@ function init_setup() {
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
         data: {
-            level:0
+            level:mapNum
         },  // 
         success: function (res) {
             data = JSON.parse(res);

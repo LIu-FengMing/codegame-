@@ -1950,6 +1950,17 @@ router.post('/loadThisLevelGameMapMap', function (req, res, next) {
     })
 
 });
+router.post('/changeUserCreateMapPermission', function (req, res, next) {
+    var userId = req.body.userId
+    var canCreateMapPermission=req.body.canCreateMapPermission
+    User.updateUserCreateMapPermission(userId, canCreateMapPermission, function (err, users) {
+        if (err) throw err;
+        res.json(users);
+    })
+    
+});
+
+
 module.exports = router;
 
 function ensureAuthenticated(req, res, next) {
