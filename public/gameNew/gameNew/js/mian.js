@@ -53,15 +53,15 @@ xmlhttp.open("GET", "gameNew/gameNew/json/code.cpp", true);
 xmlhttp.send();
 
 
-var equipmentData;
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
-    }
-};
-xmlhttp.open("GET", "json/equipment.json", true);
-xmlhttp.send();
+// var equipmentData;
+// var xmlhttp = new XMLHttpRequest();
+// xmlhttp.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//         equipmentData = JSON.parse(this.responseText);
+//     }
+// };
+// xmlhttp.open("GET", "json/equipment.json", true);
+// xmlhttp.send();
 
 var initCode = [
     `
@@ -140,11 +140,15 @@ function init_setup() {
         args[argname] = decodeURIComponent(value);
     }
     mapNum = args.level;
-    var url = "gameNew/gameNew/json/map/map" + colleges[args.level] + ".json";
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            data = JSON.parse(this.responseText);
+    $.ajax({
+        url: "loadThisLevelGameMapMap",              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        data: {
+            level:0
+        },  // 
+        success: function (res) {
+            data = JSON.parse(res);
             Res_data = JSON.parse(JSON.stringify(data));
             if (data.presetCode) {
                 var file = data.presetCode;
@@ -181,15 +185,60 @@ function init_setup() {
                 loadData();
                 updateCanvas();
             }
-
-            // changeCollege(0);
-            // loadData();
         }
-    };
-    // xmlhttp.open("GET", "../json/map/maptest.json", true);
+    })
 
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+
+    // var url = "gameNew/gameNew/json/map/map" + colleges[args.level] + ".json";
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         data = JSON.parse(this.responseText);
+    //         Res_data = JSON.parse(JSON.stringify(data));
+    //         if (data.presetCode) {
+    //             var file = data.presetCode;
+    //             xmlhttp.onreadystatechange = function () {
+    //                 if (this.readyState == 4 && this.status == 200) {
+    //                     initCode = this.responseText.toString();
+    //                     // console.log(initCode);
+
+    //                     mapwinLinit = data['winLinit'];
+    //                     var s1 = mapwinLinit["threeStar"], s2 = mapwinLinit["twoStar"];
+    //                     var linit = "/* 3星:" + s1 + "個動作包含" + s1 + "個動作以內  \n   2星:" + s2 + "個動作包含" + s2 + "個動作以內" + s1 + "個動作以上  \n   1星:滿足過關條件即可*/ \n\n";
+    //                     var stemp;
+    //                     if (initCode.indexOf('#') > 0) {
+    //                         stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //                     }
+    //                     else {
+    //                         stemp = initCode;
+    //                     }
+    //                     textarea_0.value = linit + stemp;
+    //                     // stemp = initCode.substr(initCode.indexOf('#') - 1);
+    //                     initCode = linit + stemp;
+    //                     // console.log("linit + stemp=",linit,stemp);
+    //                     // console.log("initCode=",initCode);
+
+    //                     loadData();
+    //                     updateCanvas();
+    //                 }
+    //             };
+    //             var url = "gameNew/gameNew/json/" + file + ".cpp"
+    //             xmlhttp.open("GET", url, true);
+    //             xmlhttp.send();
+    //         }
+    //         else {
+    //             loadData();
+    //             updateCanvas();
+    //         }
+
+    //         // changeCollege(0);
+    //         // loadData();
+    //     }
+    // };
+    // // xmlhttp.open("GET", "../json/map/maptest.json", true);
+
+    // xmlhttp.open("GET", url, true);
+    // xmlhttp.send();
 }
 
 // window.onresize = function () {
