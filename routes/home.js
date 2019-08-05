@@ -1383,7 +1383,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         }
         res.render('home/homeByManage', {
             user: req.user.username,
-            castlelock: lock
+            castlelock: lock,
         });
     })
 });
@@ -1635,10 +1635,21 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
         if (openLokCastle) {
             lock = "castle_code";
         }
-        return res.render('home/home', {
-            user: req.user.username,
-            castlelock: lock
+        console.log(JSON.stringify(req.user).toString());
+        DictionaryRecord.getDictionary(function (err, dict) {
+            EquipmentRecord.getEquipment(function (err, equip) {
+                // res.json(dict);
+                // res.json(equip[0]);
+                return res.render('home/home', {
+                    user: req.user.username,
+                    castlelock: lock,
+                    player:JSON.stringify(req.user).toString(),
+                    gameDict:JSON.stringify(dict).toString(),
+                    gameEquip:JSON.stringify(equip[0]).toString()
+                });
+            });
         });
+       
     })
 });
 router.post('/home', function (req, res, next) {
@@ -1768,7 +1779,6 @@ router.post('/home', function (req, res, next) {
     else if (type == "loadEquip") {
         EquipmentRecord.getEquipment(function (err, equip) {
             res.json(equip[0]);
-
         });
     }
     else if (type == "updateEquip") {
