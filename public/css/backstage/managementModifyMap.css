@@ -144,7 +144,7 @@ body {
   bottom: 10%;
   left: 10%;
 }
-#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7{
+#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7,#helperTextarea8{
   height: 8vh;
   width: auto;
   font-size: 1.5vw;
@@ -171,6 +171,10 @@ body {
   left: calc(10% + 8vh);
 }
 #helperTextarea8{
+  top: calc(125% + (8vh * 4));
+  left: calc(10% + 8vh);
+}
+#helperTextarea9{
   height: 25%;
   width: 90%;
   font-size: 1.5vw;
@@ -179,7 +183,7 @@ body {
   text-align: left;
   background-color: transparent;
   position: absolute;
-  top: calc(125% + (8vh * 4));
+  top: calc(130% + (8vh * 5));
   left: 5%;
 }
 #helperImgDiv1,#helperImgDiv2{
@@ -194,7 +198,7 @@ body {
 #helperImgDiv2{
   top: 33%;
 }
-#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7{
+#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7,#helperImgDiv8{
   height: 8vh;
   width: 8vh;
   position: absolute;
@@ -214,6 +218,10 @@ body {
 #helperImgDiv7{
   left: 5%;
   top: calc(120% + (8vh * 3));
+}
+#helperImgDiv8{
+  left: 5%;
+  top: calc(125% + (8vh * 4));
 }
 .helperImg{
   height: 100%;
@@ -293,7 +301,7 @@ body {
   border-color: white;
   border-width: 3px;
 }
-#method1,#method2,#method3,#clossDiv{
+#method1,#method2,#method3,#method4,#clossDiv{
   width: 30px;
   height: 30px;
   background-color: white;
@@ -350,6 +358,10 @@ body {
 #method3{
   top: 3%;
   left: calc(60px + 3%);
+}
+#method4{
+  top: 3%;
+  left: calc(90px + 4%);
 }
 #allTitle,#userTitle{
   margin-top: 20px;

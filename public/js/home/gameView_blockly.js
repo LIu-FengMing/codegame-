@@ -71,7 +71,7 @@ $.ajax({
   data: {
       level:maplevelId,
       gameMode:"blocky"   //blocky
-  },  // 
+  },  //
   success: function (res) {
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
@@ -521,12 +521,31 @@ function helper(mainDiv) {
     /*設定文字塊七*/
     document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
 
+    /*圖片八*/
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperImgDiv8");
+    divTag.appendChild(b);
+    divTag = document.getElementById("helperImgDiv8");
+    b = document.createElement("img");
+    b.setAttribute("id", "helperImg8");
+    b.setAttribute("class", "helperImg");
+    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img8);
+    divTag.appendChild(b);
+
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("div");
     b.setAttribute("id", "helperTextarea8");
     divTag.appendChild(b);
     /*設定文字塊八*/
     document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+
+    divTag = document.getElementById("helperInnerDiv");
+    b = document.createElement("div");
+    b.setAttribute("id", "helperTextarea9");
+    divTag.appendChild(b);
+    /*設定文字塊九*/
+    document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
   }
 }
 
