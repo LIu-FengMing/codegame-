@@ -63,43 +63,43 @@ module.exports = {
     "armorLevel": [
         {
             "level": 0,
-            "attack": 5
+            "attack": 1
         },
         {
             "level": 1,
-            "attack": 10
+            "attack": 5
         },
         {
             "level": 2,
-            "attack": 15
+            "attack": 10
         },
         {
             "level": 3,
-            "attack": 20
+            "attack": 15
         },
         {
             "level": 4,
-            "attack": 25
+            "attack": 20
         },
         {
             "level": 5,
-            "attack": 30
+            "attack": 25
         },
         {
             "level": 6,
-            "attack": 35
+            "attack": 30
         },
         {
             "level": 7,
-            "attack": 40
+            "attack": 35
         },
         {
             "level": 8,
-            "attack": 45
+            "attack": 40
         },
         {
             "level": 9,
-            "attack": 50
+            "attack": 45
         },
         {
             "level": 10,
@@ -109,43 +109,43 @@ module.exports = {
     "weaponLevel": [
         {
             "level": 0,
-            "attack": 5
+            "attack": 1
         },
         {
             "level": 1,
-            "attack": 7
+            "attack": 5
         },
         {
             "level": 2,
-            "attack": 9
+            "attack": 7
         },
         {
             "level": 3,
-            "attack": 12
+            "attack": 9
         },
         {
             "level": 4,
-            "attack": 15
+            "attack": 12
         },
         {
             "level": 5,
-            "attack": 20
+            "attack": 15
         },
         {
             "level": 6,
-            "attack": 25
+            "attack": 20
         },
         {
             "level": 7,
-            "attack": 32
+            "attack": 25
         },
         {
             "level": 8,
-            "attack": 40
+            "attack": 32
         },
         {
             "level": 9,
-            "attack": 50
+            "attack": 40
         },
         {
             "level": 10,

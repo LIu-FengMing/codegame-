@@ -68,10 +68,10 @@ function modifyEquipment() {
           if (i < 12) {
             switch (j) {
               case 1:
-                b.value = equipmentData.armorLevel[i - 1].attack;
+                b.value = equipmentData.weaponLevel[i - 1].attack;
                 break;
               case 2:
-                b.value = equipmentData.weaponLevel[i - 1].attack;
+                b.value = equipmentData.armorLevel[i - 1].attack;
                 break;
               case 3:
                 b.value = equipmentData.levelUpLevel[i - 1].star;
@@ -115,7 +115,7 @@ function saveEquipment() {
           divTag = document.getElementById("swordValue" + i);
           // armorLevel.push(divTag.value);
           if (i < 12) {
-            armorLevel.push({
+            weaponLevel.push({
               level: i - 1,
               attack: parseInt(divTag.value)
             });
@@ -126,7 +126,7 @@ function saveEquipment() {
           divTag = document.getElementById("shieldValue" + i);
           // weaponLevel.push(divTag.value);
           if (i < 12) {
-            weaponLevel.push({
+            armorLevel.push({
               level: i - 1,
               attack: parseInt(divTag.value)
             });
@@ -143,10 +143,10 @@ function saveEquipment() {
       }
     }
   }
-  equipmentData.armorLevel=armorLevel;
-  equipmentData.weaponLevel=weaponLevel;
-  equipmentData.levelUpLevel=levelUpLevel;
-  var seri={
+  equipmentData.armorLevel = armorLevel;
+  equipmentData.weaponLevel = weaponLevel;
+  equipmentData.levelUpLevel = levelUpLevel;
+  var seri = {
     armorLevel: armorLevel,
     weaponLevel: weaponLevel,
     levelUpLevel: levelUpLevel
@@ -154,7 +154,7 @@ function saveEquipment() {
 
   var scriptData = {
     type: "updateEquip",
-    seriJson:JSON.stringify(seri)
+    seriJson: JSON.stringify(seri)
   }
   $.ajax({
     url: href,              // 要傳送的頁面
