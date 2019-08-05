@@ -284,12 +284,14 @@ body {
 #userDataView{
   z-index: 4;
   height: 58%;
-  width: 40%;
+  width: 35%;
   position: absolute;
   top: 21%;
-  left: 30%;
-  background-color: #FFE599;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  left: 32.5%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
 }
 #method1,#method2,#method3,#clossDiv{
   width: 30px;
@@ -1081,8 +1083,9 @@ body {
 }
 #blocklyBtn{
   height: 5vh;
-  width: 8vw;
+  width: 6vw;
   font-size: calc(15px + 1vw);
+  line-height: 2vh;
   border-radius: 15px;
   border-style: solid;
   border-width: 3px;
@@ -1090,15 +1093,16 @@ body {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: absolute;
-  left: calc(10% - 1vw);
+  left: calc(10% + 1vw);
   bottom: 5vh;
   cursor: pointer;
 }
 
 #codeBtn{
   height: 5vh;
-  width: 8vw;
+  width: 6vw;
   font-size: calc(15px + 1vw);
+  line-height: 2vh;
   border-radius: 15px;
   border-style: solid;
   border-width: 3px;
@@ -1106,7 +1110,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: absolute;
-  right: calc(10% - 1vw);
+  right: calc(10% + 1vw);
   bottom: 5vh;
   cursor: pointer;
 }

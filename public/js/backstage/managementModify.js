@@ -523,7 +523,7 @@ function resetInstruction(trNumber, tdNumber) {
   var li = dic[parseInt(trNumber / 2)].element;
   divTag = document.getElementById("item" + trNumber + tdNumber);
   divTag.value = "";
-  var transformVal = "    " + li[tdNumber].value.replace(/&nbsp/g, " ");
+  var transformVal = li[tdNumber].value.replace(/&nbsp/g, " ");
   transformVal = transformVal.replace(/<br>/g, "\n");
   divTag.value = transformVal;
 }

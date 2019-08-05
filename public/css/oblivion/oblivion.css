@@ -223,6 +223,7 @@ body {
   height: 5vh;
   width: 8vw;
   font-size: calc(15px + 1vw);
+  line-height: 2.5vh;
   border-radius: 15px;
   border-style: solid;
   border-width: 3px;
@@ -308,12 +309,14 @@ body {
 #userDataView{
   z-index: 4;
   height: 58%;
-  width: 40%;
+  width: 35%;
   position: absolute;
   top: 21%;
-  left: 30%;
-  background-color: #FFE599;
-  box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+  left: 32.5%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
 }
 #clossDiv{
   width: 30px;
@@ -582,7 +585,7 @@ body {
   width: 30%;
   position: absolute;
   top: 35%;
-  left: 30%;
+  left: 35%;
   background-color: #FFC777;
   border-style: solid;
   border-color: white;
