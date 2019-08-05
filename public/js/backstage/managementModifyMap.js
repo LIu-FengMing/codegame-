@@ -245,9 +245,46 @@ function logout() {
 //////////////////////////////////////////////////
 /*小幫手*/
 var helperMod = "code"; //code or blocky
-function helper(mainDiv) {
-  divID = "equipageView";
-  // divTag = document.getElementById(mainDiv);
+function changeHelperMod(mainDiv){
+  try {
+    divTag = document.getElementById("changeHelperModView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("changeHelperModBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  divTag = document.getElementById("centerLost");
+  b = document.createElement("div");
+  b.setAttribute("id", "changeHelperModBkView");
+  b.setAttribute("onclick", "closeFunc(\"changeHelperModView\",\"changeHelperModBkView\")");
+  b.setAttribute("class", "bkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "changeHelperModView");
+  divTag.appendChild(b);
+
+  divTag = document.getElementById("changeHelperModView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "blocklyBtn");
+  b.setAttribute("value", "積木");
+  b.setAttribute("onclick", "changeMod(\"blockly\")");
+  divTag.appendChild(b);
+
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "codeBtn");
+  b.setAttribute("value", "程式");
+  b.setAttribute("onclick", "changeMod(\"code\")");
+  divTag.appendChild(b);
+}
+function changeMod(modStr) {
+  helperMod = modStr;
+  clossFunc("changeHelperModView","changeHelperModBkView");
+  helper();
+}
+function helper() {
   divTag = document.getElementById("helperView");
   try {
     parentObj = divTag.parentNode;
@@ -258,12 +295,11 @@ function helper(mainDiv) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch { }
-  divTag = document.getElementById(mainDiv);
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
   divTag.appendChild(b);
-  divTag = document.getElementById(mainDiv);
+  divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
@@ -1504,7 +1540,6 @@ function readImgUrl(input, imgId) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 
 //////////////////////////////////////////////////
 //              right.js                        //

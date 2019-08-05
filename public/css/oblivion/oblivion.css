@@ -95,7 +95,7 @@ body {
   cursor: pointer;
 }
 #helperView{
-  z-index: 999;
+  z-index: 5;
   height: 85%;
   width: 90%;
   position: absolute;
@@ -235,7 +235,7 @@ body {
   cursor: pointer;
 }
 .bkView{
-  z-index: 3;
+  z-index: 996;
   height: 100%;
   width: 100%;
   position: absolute;

@@ -88,7 +88,7 @@ body {
   cursor: pointer;
 }
 #helperView{
-  z-index: 999;
+  z-index: 995;
   height: 85%;
   width: 90%;
   position: absolute;
@@ -1001,7 +1001,6 @@ body {
   resize : none;
 }
 
-
 /*提醒介面*/
 .oneLine{
   height: 20vh;
@@ -1054,10 +1053,60 @@ body {
   cursor: pointer;
 }
 .bkView{
-  z-index: 3;
+  z-index: 996;
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(149, 149, 149, 1);
+  background-color: rgba(0, 0, 0, 0.74);
+}
+
+/*變換小幫手模式視窗*/
+#changeHelperModView{
+  z-index: 999;
+  width: 20vw;
+  height: 15vh;
+  border-style: solid;
+  border-color: white;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15vh;
+  margin-left: -10vw;
+  background-color:  rgba(0, 0, 0, 0.74);
+  color: white;
+  min-width: 300px;
+  overflow: auto;
+}
+#blocklyBtn{
+  height: 5vh;
+  width: 8vw;
+  font-size: calc(15px + 1vw);
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: absolute;
+  left: calc(10% - 1vw);
+  bottom: 5vh;
+  cursor: pointer;
+}
+
+#codeBtn{
+  height: 5vh;
+  width: 8vw;
+  font-size: calc(15px + 1vw);
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: absolute;
+  right: calc(10% - 1vw);
+  bottom: 5vh;
+  cursor: pointer;
 }

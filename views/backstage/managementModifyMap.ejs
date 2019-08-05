@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/backstage/managementModifyMap.css">
-  <link rel="stylesheet" href="css/share\mainFontFamily.css">
-
+  <link rel="stylesheet" href="css/share/mainFontFamily.css">
+  <link rel="stylesheet" href="css/share/share.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!--華康字體-->
   <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
@@ -26,9 +26,7 @@
       }
     }
   </script>
-
-
-
+  <script src="js/share.js"></script>
   <script src="js/closeEvent.js"></script>
   <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
   <title>全速衝線</title>
@@ -42,7 +40,7 @@
       <div class="box sidebarLeft">
         <!--left-->
         <img src="img/MARK.png" class="leftMark">
-        <input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('centerLost')">
+        <input type="button" title="小幫手" id="helperBtn" value="" onclick="changeHelperMod('centerLost')">
       </div>
       <div class="box centerLost" id="centerLost">
         <div id="titleBar">

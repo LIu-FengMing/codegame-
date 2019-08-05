@@ -3,15 +3,17 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/backstage/managementStatistics.css">
-    <link rel="stylesheet" href="css/share\mainFontFamily.css">
+    <link rel="stylesheet" href="css/share/mainFontFamily.css">
+    <link rel="stylesheet" href="css/share/share.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.0"></script>
     <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
-    <script>FontJSON={User:"9337" ,DomainID:"freeNOQGHRWKDBUEG", Font:["DFT_PJ7","DFPingJuStd-W7"]}</script>
-    <script src='https://dfo.dynacw.com.tw/DynaJSFont/DynaFont.js'></script>
     <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <script src="js/backstage/managementStatistics.js"></script>
+    <script src="js/closeEvent.js"></script>
+    <script src="js/share.js"></script>
     <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
     <title>全速衝線</title>
   </head>
@@ -21,8 +23,6 @@
       <div class="main">
         <div class="box sidebarLeft"><!--left-->
           <img src="img/MARK.png" class = "leftMark">
-          <!-- <input type="button" name="" value="主頁" onclick="location.href='management';"> -->
-          <!-- <input type="button" id="helperBtn" value="" onclick="helper('createrDiv')"> -->
         </div>
         <div class="box centerLost" id="centerLost">
           <img  id="bkImg">
@@ -77,7 +77,5 @@
       </div>
       <div class="footer"></div>
     </div>
-    <script src="js/backstage/managementStatistics.js"></script>
-    <script src="js/closeEvent.js"></script>
   </body>
 </html>

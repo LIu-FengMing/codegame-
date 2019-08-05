@@ -1,8 +1,5 @@
 var divTag, dictionaryData, firstIntoThis = true;
 
-
-
-
 //創建更改裝備Table
 function modifyEquipment() {
   var equipmentData = getEquipmentData();
