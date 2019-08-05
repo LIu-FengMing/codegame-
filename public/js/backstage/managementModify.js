@@ -94,7 +94,7 @@ function modifyEquipment() {
   var resetEquipageLevel = document.getElementById("resetEquipageLevel")
   resetEquipageLevel.setAttribute("value", "取消");
   resetEquipageLevel.setAttribute("class", "resetBtn");
-  resetEquipageLevel.setAttribute("onclick", "resetTableToOriginal()");
+  resetEquipageLevel.setAttribute("onclick", "resetTableToOriginal(this)");
   divTag = document.getElementById("equipageView");
   b = document.createElement("input");
   b.setAttribute("type", "button");
