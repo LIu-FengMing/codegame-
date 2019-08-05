@@ -42,7 +42,7 @@ router.post('/developer', function (req, res, next) {
 
 router.get('/buildDatabase', function (req, res, next) {
     /*初次一定要做 預設檔案進db*/
-    
+    /*
     var dictJson = testDict.dict.code;
     for (let index = 0; index < dictJson.length; index++) {
         console.log(dictJson[index].type, dictJson[index].element);
@@ -63,8 +63,8 @@ router.get('/buildDatabase', function (req, res, next) {
     })
     EquipmentRecord.createEquipment(newEquipment, function (err, dict) {
         // console.log(dict);
-    })
-    
+    })*/
+    /*
     //建立地圖資料庫
     var levelDescription = testMapData.levelDescription.Early;
     var mainDescription = testMapData.mainDescription.oblivionObject;
@@ -101,6 +101,7 @@ router.get('/buildDatabase', function (req, res, next) {
             console.log(dict);
         })
     }
+    */
     res.render('develper/success');
 })
 
