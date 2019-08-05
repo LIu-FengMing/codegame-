@@ -436,6 +436,7 @@ function resetTableToOriginal() {
   }
   document.getElementById("resetEquipageLevel").value = "重置升級";
   document.getElementById("resetEquipageLevel").className = "resetEquipageLevel";
+  resetEquipageLevel.setAttribute("onclick", "resetEquipClick(this)");
   var divTag = document.getElementById("saveBtn");
   try {
     parentObj = divTag.parentNode;

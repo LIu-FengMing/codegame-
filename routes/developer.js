@@ -42,6 +42,7 @@ router.post('/developer', function (req, res, next) {
 
 router.get('/buildDatabase', function (req, res, next) {
     /*初次一定要做 預設檔案進db*/
+    //建立字典資料庫
     /*
     var dictJson = testDict.dict.code;
     for (let index = 0; index < dictJson.length; index++) {
@@ -54,7 +55,10 @@ router.get('/buildDatabase', function (req, res, next) {
 
             console.log(dict);
         })
-    }
+    }*/
+    
+    //建立裝備資料庫
+    /*
     var equipJson = testEquip;
     var newEquipment = new EquipmentRecord({
         levelUpLevel: equipJson.levelUpLevel,
