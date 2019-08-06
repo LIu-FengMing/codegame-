@@ -27,3 +27,15 @@ function closeLoadingView() {
     parentObj.removeChild(divTag);
   } catch (e) { }
 }
+function closeMainLoadingView() {
+  var divTag = document.getElementById("loadingMainView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  var divTag = document.getElementById("loadingMainBkView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+}
