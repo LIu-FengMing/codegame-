@@ -114,9 +114,11 @@ function createMapPermission(index) {
   var checkName="#input0"+index+"6";
   if ( $(checkName).is(":checked")) {
     var canCreateMapPermission = true;
-
+    allUserData[index].canCreateMapPermission=true;
   } else {
     var canCreateMapPermission = false;
+    
+    allUserData[index].canCreateMapPermission=false;
   }
   
   $.ajax({
