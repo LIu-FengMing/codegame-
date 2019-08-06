@@ -910,9 +910,9 @@ function swordLevelUp() {
     document.getElementById("levelUpDefault0").innerHTML = "";
     document.getElementById("levelUpDefault0").className = "highestLevel";
 
-    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    // var text = "x" + star;
-    // document.getElementById("levelUpFont1").innerHTML = text;
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont1").innerHTML = text;
   }
   else {
     var star = equipmentData.levelUpLevel[levelUpLevel].star;
@@ -983,9 +983,9 @@ function shieldLevelUp() {
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
     document.getElementById("levelUpDefault1").innerHTML = "";
     document.getElementById("levelUpDefault1").className = "highestLevel";
-    // var star = equipmentData.levelUpLevel[levelUpLevel].star;
-    // var text = "x" + star;
-    // document.getElementById("levelUpFont1").innerHTML = text;
+    var star = equipmentData.levelUpLevel[levelUpLevel].star;
+    var text = "x" + star;
+    document.getElementById("levelUpFont0").innerHTML = text;
 
   }
   else {
