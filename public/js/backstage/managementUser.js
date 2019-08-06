@@ -524,6 +524,9 @@ function updateMapData(res) {
       td05: allUserData[index].hightLevel,
       td06: userstatusStr
     }
+    if(obj.canCreateMapPermission){
+      script.canCreateMapPermission=obj.canCreateMapPermission
+    }
     mapData.push(script);
   }
   console.log(mapData);
@@ -531,16 +534,26 @@ function updateMapData(res) {
 }
 //表單更動時，需要重新創立表格
 function updateLevelTable(scriptData) {
+  console.log(scriptData);
+  
   for (var i = 0; i < scriptData.length; i++) {
 
     var obj = scriptData[i];
     if (i < oldDisMapNum) {
-      document.getElementById("input0" + i + "6").value = obj.td06;
       document.getElementById("input0" + i + "1").value = obj.td01;
       document.getElementById("input0" + i + "2").value = obj.td02;
       document.getElementById("input0" + i + "3").value = obj.td03;
       document.getElementById("input0" + i + "4").value = obj.td04;
       document.getElementById("input0" + i + "5").value = obj.td05;
+      if(obj.canCreateMapPermission){
+        $("#input0" + i + "6").prop("checked",true);
+        // document.getElementById("input0" + i + "6").setAttribute("checked",true);
+      }
+      else{
+        // document.getElementById("input0" + i + "6").setAttribute("checked",false);
+        $("#input0" + i + "6").prop("checked",false);
+      }
+      document.getElementById("input0" + i + "7").value = obj.td06;
 
       if ((i % 2) == 0) {
         document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
@@ -565,7 +578,7 @@ function updateLevelTable(scriptData) {
       b.setAttribute("id", "tr" + i);
       divTag.appendChild(b);
       divTag = document.getElementById("tr" + i);
-      for (var j = 1; j <= 6; j++) {
+      for (var j = 1; j <= 7; j++) {
         b = document.createElement("td");
         b.setAttribute("id", "td0" + i + j);
         b.setAttribute("class", "td0" + j);
@@ -576,7 +589,20 @@ function updateLevelTable(scriptData) {
         b.setAttribute("id", "input0" + i + j);
         b.setAttribute("readonly", "readonly");
         divTag.appendChild(b);
-        if (j == 6) {/*使用者狀態*/
+
+        /**
+        
+         */
+        if (j == 6) {
+          b=document.getElementById("input0" + i + "6");
+          b.setAttribute("type", "checkbox");
+          b.setAttribute("class", "mapCheckbox");
+          if(obj.canCreateMapPermission){
+            // b.setAttribute("checked",true);
+            $("#input0" + i + "6").prop("checked",true);
+          }
+        }
+        else if (j == 7) {/*使用者狀態*/
           document.getElementById("input0" + i + j).value = obj.td06;
           // document.getElementById("td0" + i + j).innerHTML = "封鎖"
         } else if (j == 1) {/*使用者帳號*/
