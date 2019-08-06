@@ -121,10 +121,12 @@ function createMapPermission(index) {
     allUserData[index].canCreateMapPermission=false;
   }
   
+  createLoadingMainView("centerLost");
   $.ajax({
     url: "changeUserCreateMapPermission",           // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
+    async:false,
     data: {
       userId: allUserData[index]._id,
       canCreateMapPermission:canCreateMapPermission
@@ -134,6 +136,7 @@ function createMapPermission(index) {
 
     }
   })
+  closeMainLoadingView();
 }
 
 function changeStatus() {
@@ -336,7 +339,7 @@ function createLevelTable(scriptData) {
       b.setAttribute("type", "text");
       b.setAttribute("id", "input0" + i + j);
       b.setAttribute("readonly", "readonly");
-      b.setAttribute("onclick", "createMapPermission(" + i + ")");
+      // b.setAttribute("onclick", "createMapPermission(" + i + ")");
       divTag.appendChild(b);
       if (j == 1) {/*使用者帳號*/
         document.getElementById("input0" + i + j).value = obj.td01;
@@ -359,6 +362,7 @@ function createLevelTable(scriptData) {
         if(obj.canCreateMapPermission){
           b.setAttribute("checked",true);
         }
+        b.setAttribute("onclick", "createMapPermission(" + i + ")");
       } else if (j == 7) {
         document.getElementById("input0" + i + j).value = obj.td06;
         // document.getElementById("td0" + i + j).innerHTML = "封鎖"
@@ -599,6 +603,7 @@ function updateLevelTable(scriptData) {
           b=document.getElementById("input0" + i + "6");
           b.setAttribute("type", "checkbox");
           b.setAttribute("class", "mapCheckbox");
+          b.setAttribute("onclick", "createMapPermission(" + i + ")");
           if(obj.canCreateMapPermission){
             // b.setAttribute("checked",true);
             $("#input0" + i + "6").prop("checked",true);
