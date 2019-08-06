@@ -75,6 +75,11 @@ var GameMapSchema = mongoose.Schema({
 
 var GameMapRecord = module.exports = mongoose.model('GameMap', GameMapSchema)
 
+
+module.exports.dropDB = function (callback) {
+    GameMapRecord.remove({}, callback);
+}
+
 module.exports.createMap = function (newGameMap, callback) {
     newGameMap.save(callback)
 }

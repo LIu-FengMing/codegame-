@@ -56,7 +56,7 @@ router.get('/buildDatabase', function (req, res, next) {
             console.log(dict);
         })
     }*/
-    
+
     //建立裝備資料庫
     /*
     var equipJson = testEquip;
@@ -106,8 +106,99 @@ router.get('/buildDatabase', function (req, res, next) {
         })
     }
     */
-    res.render('develper/success');
+    res.render('develper/home');
 })
+router.post('/buildDatabase', function (req, res, next) {
+    var type = req.body.type
+    if (type == "createMapDB") {
+
+        //建立地圖資料庫
+        var levelDescription = testMapData.levelDescription.Early;
+        var mainDescription = testMapData.mainDescription.oblivionObject;
+        var mainDescriptionBlocky = testMapData.mainDescriptionBlocky.oblivionObject;
+        var directiveData = testMapData.directiveData.instruction;
+
+        for (let index = 0; index < 50; index++) {
+            var path = "../models/mapData/map/map";
+            if (index < 9) {
+                path += '0'
+            }
+            path += (index + 1).toString();
+            // console.log(path);
+            var map = require(path)
+            var mapStr = JSON.stringify(map);
+            var blockyDescription = {};
+            if (index < 25) {
+                blockyDescription = mainDescriptionBlocky[index];
+            }
+            var newMapRecord = new GameMapRecord({
+                level: index,
+                versionID: "V1_2019/07/27",
+                data: {
+                    versionID: "V1_2019/07/27",
+                    description: levelDescription[index],
+                    canUseInstruction: directiveData[index],
+                    mainCodeDescription: mainDescription[index],
+                    mainBlockyDescription: blockyDescription,
+                    map: mapStr
+                }
+            })
+            // console.log(newMapRecord);
+            GameMapRecord.createMap(newMapRecord, function (err, dict) {
+                console.log(dict);
+            })
+        }
 
 
+    }
+    else if (type == "createEquip") {
+
+
+        //建立裝備資料庫
+
+        var equipJson = testEquip;
+        var newEquipment = new EquipmentRecord({
+            levelUpLevel: equipJson.levelUpLevel,
+            weaponLevel: equipJson.weaponLevel,
+            armorLevel: equipJson.armorLevel
+        })
+        EquipmentRecord.createEquipment(newEquipment, function (err, dict) {
+            // console.log(dict);
+        })
+    }
+    else if (type == "createDict") {
+        //建立字典資料庫
+        var dictJson = testDict.dict.code;
+        for (let index = 0; index < dictJson.length; index++) {
+            console.log(dictJson[index].type, dictJson[index].element);
+            var newDictionary = new DictionaryRecord({
+                type: dictJson[index].type,
+                element: dictJson[index].element
+            })
+            DictionaryRecord.createDictionary(newDictionary, function (err, dict) {
+
+                console.log(dict);
+            })
+        }
+
+    }
+    else if (type == "delMapDb") {
+        GameMapRecord.dropDB(function (err, dict) {
+
+            console.log(dict);
+        })
+    }
+    else if (type == "delEquipDb") {
+        EquipmentRecord.dropDB(function (err, dict) {
+
+            console.log(dict);
+        })
+    }
+    else if (type == "delDictDb") {
+        DictionaryRecord.dropDB(function (err, dict) {
+
+            console.log(dict);
+        })
+    };
+});
 module.exports = router;

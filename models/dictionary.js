@@ -16,6 +16,9 @@ var DictionarySchema = mongoose.Schema({
 
 var DictionaryRecord = module.exports = mongoose.model('Dictionary', DictionarySchema)
 
+module.exports.dropDB = function (callback) {
+    DictionaryRecord.remove({}, callback);
+}
 module.exports.createDictionary = function (newDictionary, callback) {
     newDictionary.save(callback)
 }

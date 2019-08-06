@@ -269,7 +269,7 @@ function changeHelperMod(mainDiv){
   b.setAttribute("type", "button");
   b.setAttribute("id", "blocklyBtn");
   b.setAttribute("value", "積木");
-  b.setAttribute("onclick", "changeMod(\"blockly\")");
+  b.setAttribute("onclick", "changeMod(\"blocky\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -364,6 +364,9 @@ function helper() {
   divTag = document.getElementById("helperInnerDiv");
 
   var methodNumber = nowMapData.mainCodeDescription.mode;
+  if (helperMod == "blocky") {
+    methodNumber = nowMapData.mainBlockyDescription.mode;
+  }
   console.log(methodNumber);
   if (methodNumber == 2) {
     document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
@@ -1192,12 +1195,6 @@ function helper() {
     if (strText != null) {
       document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
     }
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea8");
-    b.style.background = "white";
-    divTag.appendChild(b);
-
 
     /*圖片八*/
     divTag = document.getElementById("helperInnerDiv");
@@ -1256,6 +1253,7 @@ function helper() {
     if (strText != null) {
       document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
     }
+
 
     divTag = document.getElementById("helperInnerDiv");
     b = document.createElement("textarea");
@@ -1825,7 +1823,7 @@ function changeMethod(methodNumber) {
       document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
     }
   }else if (methodNumber == 4) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
+    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(4)");
     b = document.createElement("textarea");
     b.setAttribute("id", "helperTextarea1");
     b.style.background = "white";
@@ -2242,6 +2240,8 @@ function changeMethod(methodNumber) {
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
   // remindView("儲存成功");
+  console.log(modelNumber);
+  
   if (helperMod != "blocky") {
     var postData = nowMapData.mainCodeDescription;
   }
@@ -2301,7 +2301,46 @@ function saveHelper(modelNumber) {
     postData.img7 = img7;
 
   }
+  else if (modelNumber == 4) {
+    var textarea1 = strChange(document.getElementById("helperTextarea1").value);
+    var textarea2 = strChange(document.getElementById("helperTextarea2").value);
+    var textarea4 = strChange(document.getElementById("helperTextarea4").value);
+    var textarea5 = strChange(document.getElementById("helperTextarea5").value);
+    var textarea6 = strChange(document.getElementById("helperTextarea6").value);
+    var textarea7 = strChange(document.getElementById("helperTextarea7").value);
+    var textarea8 = strChange(document.getElementById("helperTextarea8").value);
+    var textarea9 = strChange(document.getElementById("helperTextarea9").value);
+    var imageObj = $("#helperImg1")[0];
+    var img1 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg2")[0];
+    var img2 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg4")[0];
+    var img4 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg5")[0];
+    var img5 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg6")[0];
+    var img6 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg7")[0];
+    var img7 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    var imageObj = $("#helperImg8")[0];
+    var img8 = imageObj.value ? imageObj.value : new URL(imageObj.src).pathname.substr(5);
+    postData.textarea1 = textarea1;
+    postData.textarea2 = textarea2;
+    postData.textarea4 = textarea4;
+    postData.textarea5 = textarea5;
+    postData.textarea6 = textarea6;
+    postData.textarea7 = textarea7;
+    postData.textarea8 = textarea8;
+    postData.textarea9 = textarea9;
+    postData.img1 = img1;
+    postData.img2 = img2;
+    postData.img4 = img4;
+    postData.img5 = img5;
+    postData.img6 = img6;
+    postData.img7 = img7;
+    postData.img8 = img8;
 
+  }
   // console.log(postData);
   var mapData = allMapData.data;
   for (let index = mapData.length - 1; index > -1; index--) {

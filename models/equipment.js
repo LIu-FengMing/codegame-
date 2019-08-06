@@ -13,6 +13,10 @@ var EquipmentSchema = mongoose.Schema({
 
 var EquipmentRecord = module.exports = mongoose.model('Equipment', EquipmentSchema)
 
+
+module.exports.dropDB = function (callback) {
+    EquipmentRecord.remove({}, callback);
+}
 module.exports.createEquipment = function (newEquipment, callback) {
     newEquipment.save(callback)
 }
