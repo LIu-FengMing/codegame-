@@ -60,11 +60,15 @@ window.location.replace(href);
 console.log(href);
 }
 
+
+createLoadingMainView("center");
+loadDict();
 $.ajax({
     url: href,              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
+    async:false,
     success: function (res) {
       // console.log(res);
       user = res;
@@ -79,6 +83,7 @@ $.ajax({
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
         data: scriptData,  // 將表單資料用打包起來送出去
+        async:false,
         success: function (res) {
           // console.log(res);
           equipmentData = res;
@@ -87,6 +92,7 @@ $.ajax({
       })
   }
 })
+
 // var xmlhttp = new XMLHttpRequest();
 // xmlhttp.onreadystatechange = function () {
 //   if (this.readyState == 4 && this.status == 200) {
@@ -103,6 +109,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
+  async:false,
   success: function (res) {
     // console.log(res);
     dictionaryData = {
@@ -111,6 +118,7 @@ $.ajax({
   }
 })
 
+closeMainLoadingView();
 function error() {
     alert("有不當的操作發生");
     window.location.replace(href);
@@ -1142,7 +1150,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   fontSize = parseFloat(style);
   //console.log(fontSize);
 }
-
+function loadDict() {
 directiveData = {
   "instruction":[
     {
@@ -3988,3 +3996,4 @@ directiveData = {
     }
   ]
 };
+}

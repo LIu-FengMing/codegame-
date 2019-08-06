@@ -137,7 +137,7 @@ $.ajax({
 })
 // console.log(123);
 // console.log(equipmentData,dictionaryData,user);
-closeLoadingView();
+closeMainLoadingView();
 
 function getEquipmentData() {
   return equipmentData;

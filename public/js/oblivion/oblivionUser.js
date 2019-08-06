@@ -57,6 +57,7 @@ var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSw
 var musicData;
 var userMap;
 
+createLoadingMainView("centerLost");
 var scriptData = {
   type: "init"
 }
@@ -66,23 +67,16 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
+  async:false,
   success: function (res) {
     // console.log(res);
     user = res;
     /*loadmusicData();*/
     // console.log(user);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
-        initHome();
-      }
-    };
-    xmlhttp.open("GET", "json/equipment.json", true);
-    xmlhttp.send();
+    initHome();
   }
 })
-
+closeMainLoadingView();
 function error() {
   // alert("有不當的操作發生");
   remindView("有不當的操作發生");
@@ -675,6 +669,7 @@ function sendLoadUsernameMap() {
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
+    async:false,
     success: function (res) {
       // console.log(res);
       userMap = res;

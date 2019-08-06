@@ -159,7 +159,7 @@ $.ajax({
     }
   }
 })
-closeLoadingView();
+closeMainLoadingView();
 
 function error() {
   alert("有不當的操作發生");

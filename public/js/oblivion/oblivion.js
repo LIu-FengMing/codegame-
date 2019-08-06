@@ -55,6 +55,9 @@ var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,i
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 var userMap, completUserMap, oldDisMapNum = 0, playMap = [];
+
+
+createLoadingMainView("centerLost");
 var scriptData = {
   type: "init"
 }
@@ -64,6 +67,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
+  async:false,
   success: function (res) {
     // console.log(res);
     user = res;
@@ -86,7 +90,7 @@ $.ajax({
 
   }
 })
-
+closeMainLoadingView();
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
@@ -794,6 +798,7 @@ function sendLoadUsernameMap() {
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
+    async:false,
     success: function (res) {
       console.log(res);
       userMap = res;
