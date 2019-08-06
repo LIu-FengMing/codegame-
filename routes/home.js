@@ -34,7 +34,7 @@ router.post('/onloadImg', function (req, res, next) {
         if (err) {
             return res.json({ state: true, err: err });
         } else {
-            return res.json({ state: true ,path:"GameLevel/" + imgName});
+            return res.json({ state: true, path: "GameLevel/" + imgName });
         }
     });
 });
@@ -1382,7 +1382,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             lock = "castle_code";
         }
 
-    
+
         res.render('home/homeByManage', {
             user: req.user.username,
             castlelock: lock,
@@ -1650,9 +1650,9 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
         //     });
         // });
         return res.render('home/home', {
-                        user: req.user.username,
-                        castlelock: lock
-                    });
+            user: req.user.username,
+            castlelock: lock
+        });
     })
 });
 router.post('/home', function (req, res, next) {
@@ -1868,18 +1868,18 @@ router.post('/loadGameMapData', function (req, res, next) {
     var start = 0, end = 50;
     GameMapRecord.getMap(function (err, mapData) {
         // res.json(mapData);
-        if(err)
+        if (err)
             console.log(err);
-            
+
         var returnData = [];
         for (let index = start; index < end; index++) {
             var element = mapData[index];
             // console.log(element.level);
-            
+
             for (let entry = 0; entry < element.data.length; entry++) {
                 var entryItem = element.data[entry];
                 // console.log(entryItem);
-                if(entryItem.versionID==element.versionID){
+                if (entryItem.versionID == element.versionID) {
                     returnData.push(
                         entryItem.description
                     );
@@ -1887,9 +1887,10 @@ router.post('/loadGameMapData', function (req, res, next) {
                 }
             }
         }
+
         returnData = returnData.sort(function (a, b) {
             return a.level > b.level ? 1 : -1;
-           });
+        });
         res.json(returnData);
     })
 
@@ -1897,33 +1898,36 @@ router.post('/loadGameMapData', function (req, res, next) {
 
 router.post('/loadThisLevelGameMapData', function (req, res, next) {
     var level = req.body.level
-    var  gameMode = req.body.gameMode   // code  blocky
-    console.log(req.body,level,gameMode);
+    var gameMode = req.body.gameMode   // code  blocky
+    console.log(req.body, level, gameMode);
     var start = 0, end = 50;
     if(gameMode=="code"){
         var mainDescription="mainCodeDescription";
     }
     else{
         var mainDescription="mainBlockyDescription";
-        end=24;
+        // end=24;
     }
     GameMapRecord.getMap(function (err, mapData) {
         // res.json(mapData);
-        if(err)
+        if (err)
             console.log(err);
         var returnData = [];
         for (let index = start; index < end; index++) {
             var element = mapData[index];
-            if(element.level!=level){
+            if (gameMode == "blocky" && element.level>=24) {
+                continue;
+            }
+            if (element.level != level) {
                 returnData.push({
-                    level:element.level+1
+                    level: element.level + 1
                 })
                 continue;
             }
             for (let entry = 0; entry < element.data.length; entry++) {
                 var entryItem = element.data[entry];
                 // console.log(entryItem);
-                if(entryItem.versionID==element.versionID){
+                if (entryItem.versionID == element.versionID) {
                     returnData.push(
                         entryItem[mainDescription]
                     );
@@ -1931,9 +1935,11 @@ router.post('/loadThisLevelGameMapData', function (req, res, next) {
                 }
             }
         }
+
+        console.log(returnData);
         returnData = returnData.sort(function (a, b) {
             return a.level > b.level ? 1 : -1;
-           });
+        });
         res.json(returnData);
     })
 
@@ -1965,12 +1971,12 @@ router.post('/loadThisLevelGameMapMap', function (req, res, next) {
 });
 router.post('/changeUserCreateMapPermission', function (req, res, next) {
     var userId = req.body.userId
-    var canCreateMapPermission=req.body.canCreateMapPermission
+    var canCreateMapPermission = req.body.canCreateMapPermission
     User.updateUserCreateMapPermission(userId, canCreateMapPermission, function (err, users) {
         if (err) throw err;
         res.json(users);
     })
-    
+
 });
 
 
