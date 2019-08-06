@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW" dir="ltr">
 
-<script>
-  var spliceText = "<%=player%>".replace(/&#34;/g, "\"");
-  var playerUser = JSON.parse(spliceText);
-  var spliceText = "<%=gameDict%>".replace(/&#34;/g, "\"");
-  var razorGameDict = JSON.parse(spliceText);
-  var spliceText = "<%=gameEquip%>".replace(/&#34;/g, "\"");
-  var razorGameEquip = JSON.parse(spliceText);
-</script>
 
 <head>
   <meta charset="big5">
@@ -23,7 +15,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- js -->
   <script src="js/share.js"></script>
-  <script src="js/home/home.js"></script>
   <script src="js/closeEvent.js"></script>
   <title>全速衝線</title>
 </head>
@@ -80,4 +71,5 @@
   </div>
 </body>
 
+<script src="js/home/home.js"></script>
 </html>

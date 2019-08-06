@@ -43,9 +43,7 @@ var href = window.location.href;
 var user, directiveData,dictionaryData,thisLevelNum, mainDescription, levelDivAlive = true,nowTexrareaVar,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData,indentationTimes=1;
-var scriptData = {
-  type: "init"
-}
+
 function back() {
   var index = 0;
   var href = window.location.href;
@@ -76,11 +74,37 @@ if (!params.has('level')) {
     href = "";
     window.location.replace(href);
 }
+
+createLoadingMainView("center");
+loadDict();
+dictionaryData={
+  code: []
+}
+var scriptData = {
+  type: "loadDict"
+}
+$.ajax({
+  url: href,              // 要傳送的頁面
+  method: 'POST',               // 使用 POST 方法傳送請求
+  dataType: 'json',             // 回傳資料會是 json 格式
+  data: scriptData,  // 將表單資料用打包起來送出去
+  async:false,
+  success: function (res) {
+    // console.log(res);
+    dictionaryData = {
+      code: res
+    }
+  }
+})
+var scriptData = {
+  type: "init"
+}
 var maplevelId =  params.get('level');
 $.ajax({
   url: "loadThisLevelGameMapData",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
+  async:false,
   data: {
       level:maplevelId,
       gameMode:"code"   //blocky
@@ -97,6 +121,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
+  async:false,
   success: function (res) {
     myVid = document.getElementById("bkMusic");
     myVid.volume = 0;
@@ -147,52 +172,29 @@ $.ajax({
       method: 'POST',               // 使用 POST 方法傳送請求
       dataType: 'json',             // 回傳資料會是 json 格式
       data: scriptData,  // 將表單資料用打包起來送出去
+      async:false,
       success: function (res) {
         // console.log(res);
         equipmentData = res;
-        initHome();
+        
       }
     })
   }
 })
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function () {
-//   if (this.readyState == 4 && this.status == 200) {
-//     dictionaryData = JSON.parse(this.responseText);
-//   }
-// };
-// xmlhttp.open("GET", "json/dictionary.json", true);
-// xmlhttp.send();
 
-dictionaryData={
-  code: []
-}
-var scriptData = {
-  type: "loadDict"
-}
-$.ajax({
-  url: href,              // 要傳送的頁面
-  method: 'POST',               // 使用 POST 方法傳送請求
-  dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
-  success: function (res) {
-    // console.log(res);
-    dictionaryData = {
-      code: res
-    }
-  }
-})
-function getJson() {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-          directiveData = JSON.parse(this.responseText);
-          console.log("2");
-      }
-  };
-  xmlhttp.open("GET", "json/directive.json", true);
-  xmlhttp.send();
-}
+
+var divTag = document.getElementById("loadingMainView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+  var divTag = document.getElementById("loadingMainBkView");
+  try {
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) { }
+
+initHome();
 
 function error() {
   alert("有不當的操作發生");
@@ -1756,6 +1758,7 @@ function turnToModify() {
 // }
 
 /*可用函式*/
+function loadDict() {
 directiveData = {
   "instruction":[
     {
@@ -4710,4 +4713,4 @@ directiveData = {
     }
   ]
 }
-;
+;}
