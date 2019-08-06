@@ -1820,7 +1820,7 @@ function changeMethod(methodNumber) {
     }
     console.log(strText);
     if (strText != null) {
-      document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
+      document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
     }
   }else if (methodNumber == 4) {
     document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(4)");

@@ -183,17 +183,7 @@ $.ajax({
 })
 
 
-var divTag = document.getElementById("loadingMainView");
-  try {
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-  } catch (e) { }
-  var divTag = document.getElementById("loadingMainBkView");
-  try {
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
-  } catch (e) { }
-
+closeMainLoadingView();
 initHome();
 
 function error() {
