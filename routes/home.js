@@ -165,7 +165,10 @@ router.post('/kuruma', function (req, res, next) {
     }
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }
@@ -372,7 +375,10 @@ router.post('/pruss', function (req, res, next) {
     }
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }
@@ -640,7 +646,10 @@ router.post('/gameView_text', function (req, res, next) {
     }
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }
@@ -909,7 +918,10 @@ router.post('/gameView_blockly', function (req, res, next) {
     //-------------------
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }
@@ -1540,7 +1552,10 @@ router.post('/', function (req, res, next) {
     }
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }
@@ -1775,7 +1790,10 @@ router.post('/home', function (req, res, next) {
     //-----暫時的 ------
     else if (type == "loadDict") {
         DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
+            returnData = dict.sort(function (a, b) {
+                return a.level > b.level ? 1 : -1;
+            });
+            res.json(returnData);
 
         });
     }

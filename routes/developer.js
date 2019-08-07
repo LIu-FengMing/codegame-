@@ -172,6 +172,7 @@ router.post('/buildDatabase', function (req, res, next) {
         for (let index = 0; index < dictJson.length; index++) {
             console.log(dictJson[index].type, dictJson[index].element);
             var newDictionary = new DictionaryRecord({
+                level:dictJson[index].level,
                 type: dictJson[index].type,
                 element: dictJson[index].element
             })

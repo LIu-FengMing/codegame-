@@ -2,7 +2,7 @@ module.exports = {
     dict:
     {
         "code": [
-            {
+            {   "level":1,
                 "type": "動作",
                 "element": [
                     {
@@ -38,6 +38,7 @@ module.exports = {
                 ]
             },
             {
+                "level":2,
                 "type": "變數",
                 "element": [
                     {
@@ -53,6 +54,7 @@ module.exports = {
                 ]
             },
             {
+                "level":3,
                 "type": "函式",
                 "element": [
                     {
@@ -131,6 +133,7 @@ module.exports = {
                 ]
             },
             {
+                "level":4,
                 "type": "判斷式",
                 "element": [
                     {

@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 
 //創造資料庫需要的欄位(schema)
 var DictionarySchema = mongoose.Schema({
+    level:{ type: String },
     type: { type: String },
     element: { type: Array , "default": [
         {
