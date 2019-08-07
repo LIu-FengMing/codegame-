@@ -1481,15 +1481,15 @@ function instructionView(mainDiv) {
       divTag.appendChild(b);
       document.getElementById("actionFont" + i).innerHTML = dic[i / 2].type;
       if(user.username == "NKUSTCCEA"){
+        var fistChildLength = document.getElementById("td" + i).childNodes[0].innerHTML.length;
         b = document.createElement("input");
-        b.setAttribute("type","button");
-        b.setAttribute("id","modifyInstructionView");
-        b.setAttribute("value","");
-        b.setAttribute("onclick","modifyInstruction(" + i + ")");
-        divTag.appendChild(b);
-        if(i == 0){
-          document.getElementById("td" + i).childNodes[1].style.transform = "translate(200%,-90%)";
+        b.setAttribute("type", "button");
+        b.setAttribute("id", "modifyInstructionView");
+        if(fistChildLength == 3){
+          b.setAttribute("style","transform:translate(200%,-90%)");
         }
+        b.setAttribute("onclick", "modifyInstruction(" + i + ")");
+        divTag.appendChild(b);
       }
     } else {
       b = document.createElement("tr");
