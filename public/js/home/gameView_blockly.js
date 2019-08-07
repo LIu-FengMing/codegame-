@@ -44,7 +44,6 @@ var user, directiveData, levelDivAlive = true;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
 var musicData;
 
-
 createLoadingMainView("center");
 loadDict();
 var scriptData = {
@@ -324,21 +323,24 @@ function getArgs() {
     args[argname] = decodeURIComponent(value);
   }
   //http://127.0.0.1:3000/gameView_blockly?level=0 -> Level就是標籤 標籤內有東西才執行下面的事情
-  if (args.level) {
-    selectFunc(args.level);
+  var level = args.level
+  if (level) {
+    selectFunc(level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
-
-    if(args.level > 19){
+    if(level > 10){
+      document.getElementById("gameModifyBtn").style.transform = "translateX(6.5vw)";
+    }
+    if(level > 19){
       document.getElementById("gameModifyBtn").style.transform = "translateX(7.5vw)";
     }
     //標籤文字字串
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
                   "十一","十二","十三","十四","十五","十六","十七","十八",
                   "十九","二十","二十一","二十二","二十三","二十四"];
-    divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
+    divTag.innerHTML = "第&nbsp" + numStr[++level] + "&nbsp關";
     //changeCollege(--args.level);
-    thisLevelNum = args.level - 1;
+    thisLevelNum = level - 1;
   }
   return;
 }
@@ -586,7 +588,6 @@ function restartButton(thisTextarea) {
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
 }
-
 /*轉換程式碼*/
 function transformButton() {
   changeToC(1);

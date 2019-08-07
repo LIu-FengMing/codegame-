@@ -80,7 +80,7 @@ body {
 .sidebarLeft,.sidebarRight {
   width: 10%;
   height: 90%;
-  z-index: 3;
+  z-index: 4;
   line-height: 90%;
   position: relative;
   background: #7C5A43;

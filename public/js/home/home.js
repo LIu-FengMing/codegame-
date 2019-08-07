@@ -1103,6 +1103,9 @@ function instructionView(mainDiv) {
         b.setAttribute("id", "modifyInstructionView");
         b.setAttribute("onclick", "modifyInstruction(" + i + ")");
         divTag.appendChild(b);
+        if(i == 0){
+          document.getElementById("td" + i).childNodes[1].style.transform = "translate(200%,-90%)";
+        }
       }
     } else {
       b = document.createElement("tr");

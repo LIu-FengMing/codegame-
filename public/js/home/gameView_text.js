@@ -108,7 +108,7 @@ $.ajax({
   data: {
       level:maplevelId,
       gameMode:"code"   //blocky
-  },  // 
+  },  //
   success: function (res) {
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
@@ -176,7 +176,7 @@ $.ajax({
       success: function (res) {
         // console.log(res);
         equipmentData = res;
-        
+
       }
     })
   }
@@ -380,14 +380,18 @@ function getArgs() {
     var value = pairs[i].substring(pos + 1);
     args[argname] = decodeURIComponent(value);
   }
-  if (args.level) {
-    selectFunc(args.level);
+  var level = args.level;
+  if (level) {
+    selectFunc(level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
-    if(args.level <25){
+    if(level <25){
       document.getElementById("titleBar").style.background = "#43A7AE";
     }
-    if(args.level > 19){
+    if(level > 10){
+      document.getElementById("gameModifyBtn").style.transform = "translateX(6.5vw)";
+    }
+    if(level > 19){
       document.getElementById("gameModifyBtn").style.transform = "translateX(7.5vw)";
     }
     var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
@@ -397,10 +401,10 @@ function getArgs() {
                   "三十三","三十四","三十五","三十六","三十七","三十八","三十九",
                   "四十","四十一","四十二","四十三","四十四","四十五","四十六",
                   "四十七","四十八","四十九","五十"];
-    divTag.innerHTML = "第&nbsp" + numStr[++args.level] + "&nbsp關";
+    divTag.innerHTML = "第&nbsp" + numStr[++level] + "&nbsp關";
 
     //changeCollege(--args.level);
-    thisLevelNum = args.level-1;
+    thisLevelNum = level-1;
     // helper("blocklyDiv");
   }
 }
