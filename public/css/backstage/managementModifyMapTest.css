@@ -218,7 +218,7 @@ body {
   position: absolute;
   top: 50%;
   left: 10%;
-  transform: translateY(-60%);
+  transform: translateY(-50%);
 }
 #setElementTable tr{
   height: 30px;

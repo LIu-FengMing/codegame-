@@ -456,7 +456,7 @@ function selectCreateNode(mode) {
       break;
     case "imgAndText":
       document.getElementById("confirmBtn").onclick = "createElement('imgAndText')";
-      divTag.style.height = "40%";
+      divTag.style.height = "35%";
       b = document.createElement("table");
       b.setAttribute("id", "setElementTable");
       divTag.appendChild(b);
@@ -529,8 +529,6 @@ function selectCreateNode(mode) {
   }
 }
 function changeCheckBoxStatus(input) {
-  console.log(input);
-  console.log(document.getElementById("setElementTd4").childNodes.length);
   for (var i = 0; i < document.getElementById("setElementTd4").childNodes.length; i++) {
     document.getElementById("setElementTd4").childNodes[i].checked = false;
   }
@@ -540,7 +538,7 @@ function changeCheckBoxStatus(input) {
 function createElement(mode) {
   switch (mode) {
     case "img":
-      
+
       break;
     case "text":
       break;
