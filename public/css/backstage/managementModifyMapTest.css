@@ -107,125 +107,160 @@ body {
   background-color: rgba(0, 0, 0, 0);
   overflow: auto;
 }
-#helperTextarea1{
-  height: 50%;
-  width: 40%;
-  font-size: 1.5vw;
-  font-family:Microsoft JhengHei;
-  line-height: 2vw;
-  text-align: left;
-  background-color: transparent;
-  position: absolute;
-  top: 5%;
-  left: 5%;
-}
-#helperTextarea2{
-  height: 25%;
-  width: 90%;
+#helperInnerDiv textarea{
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
-  background-color: transparent;
+  position: absolute;
+}
+#cancelSaveHelper{
+  height: 5vh;
+  width: 4vw;
+  font-size: 1.5vw;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  top: 1%;
+  right: 8%;
+  cursor: pointer;
+}
+#saveHelper{
+  height: 5vh;
+  width: 4vw;
+  font-size: 1.5vw;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  position: absolute;
+  top: 1%;
+  right: calc(9% + 4vw);
+  cursor: pointer;
+}
+#createNewElement{
+  width: 5vh;
+  height: 5vh;
+  text-align: center;
+  font-size: 2.5vh;
+  line-height: 2.5vh;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-2.5vh);
+  background: rgb(0, 0, 0, 0);
+  border: black solid;
+  border-radius: 5vh;
+  cursor: pointer;
+}
+#createElementBkView{
+  z-index: 996;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0px;
+}
+#createElementView{
+  z-index: 997;
+  height: 20%;
+  width: 70%;
+  position: absolute;
+  background-color: #FFDEB8;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+#createImgBtn,#createTextBtn,#createImgAndTextBtn{
+  width: 25%;
+  height: 60%;
+  font-size: calc(15px + 10%);
+  background: #FFF2CC;
+  border: black solid;
   position: absolute;
   top: 60%;
+  cursor: pointer;
+}
+#createElementClose{
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 10px;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  cursor: pointer;
+  top: 1%;
+  right: 1%;
+}
+#createImgBtn{
   left: 5%;
-  padding-bottom: 12vh;
+  transform: translate(0,-50%);
 }
-#helperTextarea3{
-  height: 80%;
-  width: 80%;
-  font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
-  line-height: 2vw;
-  text-align: left;
-  background-color: transparent;
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
+#createTextBtn{
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
-#helperTextarea4,#helperTextarea5,#helperTextarea6,#helperTextarea7,#helperTextarea8{
-  height: 8vh;
-  width: auto;
-  font-size: 1.5vw;
-  font-family:Microsoft JhengHei;
-  line-height: 8vh;
-  text-align: left;
-  background-color: transparent;
-  position: absolute;
-}
-#helperTextarea4{
-  top: 105%;
-  left: calc(10% + 8vh);
-}
-#helperTextarea5{
-  top: calc(110% + 8vh);
-  left: calc(10% + 8vh);
-}
-#helperTextarea6{
-  top: calc(115% + (8vh * 2));
-  left: calc(10% + 8vh);
-}
-#helperTextarea7{
-  top: calc(120% + (8vh * 3));
-  left: calc(10% + 8vh);
-}
-#helperTextarea8{
-  top: calc(125% + (8vh * 4));
-  left: calc(10% + 8vh);
-}
-#helperTextarea9{
-  height: 25%;
-  width: 90%;
-  font-size: 1.5vw;
-  font-family: Microsoft JhengHei;
-  line-height: 2vw;
-  text-align: left;
-  background-color: transparent;
-  position: absolute;
-  top: calc(130% + (8vh * 5));
-  left: 5%;
-}
-#helperImgDiv1,#helperImgDiv2{
-  height: 18vh;
-  width: 45%;
-  position: absolute;
+#createImgAndTextBtn{
   right: 5%;
+  transform: translate(0,-50%);
 }
-#helperImgDiv1{
-  top: 5%;
-}
-#helperImgDiv2{
-  top: 33%;
-}
-#helperImgDiv4,#helperImgDiv5,#helperImgDiv6,#helperImgDiv7,#helperImgDiv8{
-  height: 8vh;
-  width: 8vh;
+#setElementTable{
+  width: 80%;
   position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-60%);
 }
-#helperImgDiv4{
-  left: 5%;
-  top: 105%;
+#setElementTable tr{
+  height: 30px;
+  padding-top: 10%;
 }
-#helperImgDiv5{
-  left: 5%;
-  top: calc(110% + 8vh);
+#setElementTable p{
+  margin: 5px auto;
 }
-#helperImgDiv6{
-  left: 5%;
-  top: calc(115% + (8vh * 2));
+#setElementTable input[type = "number"]{
+  background: #FFF2CC;
 }
-#helperImgDiv7{
-  left: 5%;
-  top: calc(120% + (8vh * 3));
+#confirmBtn{
+  height: 3vh;
+  width: 3vw;
+  font-size: 1vw;
+  line-height: 1.5vh;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 2%;
+  right: calc(5% + 3vw);
+  cursor: pointer;
 }
-#helperImgDiv8{
-  left: 5%;
-  top: calc(125% + (8vh * 4));
-}
-.helperImg{
-  height: 100%;
-  width: auto;
+#cancelBtn{
+  height: 3vh;
+  width: 3vw;
+  font-size: 1vw;
+  line-height: 1.5vh;
+  font-family: "Microsoft JhengHei";
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 2%;
+  right: 4%;
+  cursor: pointer;
 }
 
 /*right*/
@@ -301,7 +336,7 @@ body {
   border-color: white;
   border-width: 3px;
 }
-#method1,#method2,#method3,#method4,#clossDiv{
+#clossDiv{
   width: 30px;
   height: 30px;
   background-color: white;
@@ -312,56 +347,8 @@ body {
   border-width: 0px;
   position: absolute;
   cursor: pointer;
-}
-#clossDiv{
   top: 1%;
   right: 1%;
-}
-#cancelSaveHelper{
-  height: 5vh;
-  width: 4vw;
-  font-size: 1.5vw;
-  font-family: "Microsoft JhengHei";
-  background-color: rgba(0, 0, 0, 0);
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
-  border-radius: 15px;
-  position: absolute;
-  top: 1%;
-  right: 5%;
-  cursor: pointer;
-}
-#saveHelper{
-  height: 5vh;
-  width: 4vw;
-  font-size: 1.5vw;
-  font-family: "Microsoft JhengHei";
-  background-color: rgba(0, 0, 0, 0);
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
-  border-radius: 15px;
-  position: absolute;
-  top: 1%;
-  right: calc(6% + 4vw);
-  cursor: pointer;
-}
-#method1{
-  top: 3%;
-  left: 1%;
-}
-#method2{
-  top: 3%;
-  left: calc(30px + 2%);
-}
-#method3{
-  top: 3%;
-  left: calc(60px + 3%);
-}
-#method4{
-  top: 3%;
-  left: calc(90px + 4%);
 }
 #allTitle,#userTitle{
   margin-top: 20px;

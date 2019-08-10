@@ -1476,7 +1476,8 @@ function turnToModify() {
   let gameName = document.getElementById("titleFont").innerHTML;
   localStorage.setItem("gameName", gameName);
   localStorage.setItem("gameNumber", args.level);
-  document.location.href="managementModifyMap";
+  // document.location.href="managementModifyMap";
+  document.location.href="managementModifyMapTest";
 }
 
 /*關卡說明*/
