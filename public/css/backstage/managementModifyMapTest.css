@@ -114,6 +114,21 @@ body {
   text-align: left;
   position: absolute;
 }
+.imgDiv,.textDiv{
+  position: absolute;
+}
+.imgDivInner{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.helperImg{
+  width: 100%;
+  height: auto;
+}
+.helperTextarea{
+  transform: translateX(-50%);
+}
 #cancelSaveHelper{
   height: 5vh;
   width: 4vw;

@@ -60,7 +60,7 @@ var scriptData = {
   type: "init"
 }
 var nowMapData, allMapData;
-var mapInformation;
+var mapInformation,elementNumber = 0,createNewElementTop = 0,lastHeight = 0;
 function loadGameMap() {
   $.ajax({
     url: 'loadGameMap',              // 要傳送的頁面
@@ -403,7 +403,7 @@ function selectCreateNode(mode) {
   divTag.appendChild(b);
   switch (mode) {
     case "img":
-      document.getElementById("confirmBtn").onclick = "createElement('img')";
+      document.getElementById("confirmBtn").setAttribute("onclick","createElementView(\"img\")");
       divTag.style.height = "20%";
       b = document.createElement("table");
       b.setAttribute("id", "setElementTable");
@@ -415,7 +415,7 @@ function selectCreateNode(mode) {
         divTag.appendChild(b);
         divTag = document.getElementById("setElementTr" + i);
         b = document.createElement("p");
-        if(i == 0) b.innerHTML = "欄位長度（％）";
+        if(i == 0) b.innerHTML = "欄位高度（％）";
         else b.innerHTML = "欄位寬度（％）";
         divTag.appendChild(b);
         b = document.createElement("td");
@@ -429,7 +429,7 @@ function selectCreateNode(mode) {
       }
       break;
     case "text":
-      document.getElementById("confirmBtn").onclick = "createElement('text')";
+      document.getElementById("confirmBtn").setAttribute("onclick","createElementView(\"text\")");
       divTag.style.height = "20%";
       b = document.createElement("table");
       b.setAttribute("id", "setElementTable");
@@ -441,7 +441,7 @@ function selectCreateNode(mode) {
         divTag.appendChild(b);
         divTag = document.getElementById("setElementTr" + i);
         b = document.createElement("p");
-        if(i == 0) b.innerHTML = "欄位長度（％）";
+        if(i == 0) b.innerHTML = "欄位高度（％）";
         else b.innerHTML = "欄位寬度（％）";
         divTag.appendChild(b);
         b = document.createElement("td");
@@ -455,7 +455,7 @@ function selectCreateNode(mode) {
       }
       break;
     case "imgAndText":
-      document.getElementById("confirmBtn").onclick = "createElement('imgAndText')";
+      document.getElementById("confirmBtn").setAttribute("onclick","createElementView(\"imgAndText\")");
       divTag.style.height = "35%";
       b = document.createElement("table");
       b.setAttribute("id", "setElementTable");
@@ -469,13 +469,13 @@ function selectCreateNode(mode) {
         b = document.createElement("p");
         switch (i) {
           case 0:
-            b.innerHTML = "文字欄位長度（％）";
+            b.innerHTML = "文字欄位高度（％）";
             break;
           case 1:
             b.innerHTML = "文字欄位寬度（％）";
             break;
           case 2:
-            b.innerHTML = "圖片欄位長度（％）";
+            b.innerHTML = "圖片欄位高度（％）";
             break;
           case 3:
             b.innerHTML = "圖片欄位寬度（％）";
@@ -535,16 +535,126 @@ function changeCheckBoxStatus(input) {
   input.checked = true;
 }
 /*新增欄位*/
-function createElement(mode) {
+function createElementView(mode) {
+  let imgHeight,imgWidth,textHeight,textWidth,isImgLeft;
+  divTag = document.getElementById("helperInnerDiv");
   switch (mode) {
     case "img":
+      imgHeight =  document.getElementById("setElementInput0").value;
+      imgWidth =  document.getElementById("setElementInput1").value;
+      b = document.createElement("div");
+      b.setAttribute("id", "imgDiv" + elementNumber);
+      b.setAttribute("class", "imgDiv");
+      b.setAttribute("style", "width:100%;height:" + imgHeight + "%;top:" + lastHeight + "%;");
+      divTag.appendChild(b);
 
+      divTag = document.getElementById("imgDiv" + elementNumber);
+      b = document.createElement("div");
+      b.setAttribute("id", "imgDivInner" + elementNumber);
+      b.setAttribute("class", "imgDivInner");
+      b.setAttribute("style", "width:" + imgWidth + "%;height:100%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("imgDivInner" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg" + elementNumber);
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this," + elementNumber + ")");
+      divTag.appendChild(b);
+      lastHeight = (parseInt(lastHeight) + 10 + parseInt(imgHeight));
+      createNewElementTop = (parseInt(createNewElementTop) + 10 + parseInt(imgHeight));
+      elementNumber++;
       break;
     case "text":
+      textHeight =  document.getElementById("setElementInput0").value;
+      textWidth =  document.getElementById("setElementInput1").value;
+      b = document.createElement("div");
+      b.setAttribute("id", "textDiv" + elementNumber);
+      b.setAttribute("class", "textDiv");
+      b.setAttribute("style", "width:100%;height:" + textHeight + "%;top:" + lastHeight + "%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("textDiv" + elementNumber);
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea" + elementNumber);
+      b.setAttribute("class", "helperTextarea");
+      b.setAttribute("style", "width:" + textWidth + "%;height:100%;background:white;");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 5 + parseInt(textHeight));
+      createNewElementTop = (parseInt(createNewElementTop) + 5 + parseInt(textHeight));
+      elementNumber++;
       break;
     case "imgAndText":
+      textHeight =  document.getElementById("setElementInput0").value;
+      textWidth =  document.getElementById("setElementInput1").value;
+      imgHeight =  document.getElementById("setElementInput2").value;
+      imgWidth =  document.getElementById("setElementInput3").value;
+      isImgLeft = document.getElementById("imgLeft").checked;
+      let maxHeight = Math.max(textHeight,imgHeight);
+
+      b = document.createElement("div");
+      b.setAttribute("id", "imgAndTextDiv" + elementNumber);
+      b.setAttribute("class", "textDiv");
+      b.setAttribute("style", "width:100%;height:" + maxHeight + "%;top:" + lastHeight + "%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("imgAndTextDiv" + elementNumber);
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "width:" + textWidth + "%;height:100%;background:white;right:5%;");
+      }else{
+        b.setAttribute("style", "width:" + textWidth + "%;height:100%;background:white;left:5%;");
+      }
+      divTag.appendChild(b);
+
+      b = document.createElement("div");
+      b.setAttribute("id", "imgDivInner" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "width:" + imgWidth + "%;height:auto;position: absolute;left:5%;");
+      }else{
+        b.setAttribute("style", "width:" + imgWidth + "%;height:auto;position: absolute;right:5%;");
+      }
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("imgDivInner" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg" + elementNumber);
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 5 + parseInt(maxHeight));
+      createNewElementTop = (parseInt(createNewElementTop) + 5 + parseInt(maxHeight));
+      elementNumber++;
       break;
   }
+  var obj = document.getElementById("createNewElement");
+  obj.style.top = createNewElementTop + "%";
+  closeFunc("createElementBkView","createElementView");
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
