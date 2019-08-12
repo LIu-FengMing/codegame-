@@ -67,7 +67,7 @@ function loadGameMap() {
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: {
-      gameLevel: levelNum
+      gameLevel: levelNum+1
     },  // 將表單資料用打包起來送出去
     success: function (res) {
       console.log(res);

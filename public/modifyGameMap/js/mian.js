@@ -319,7 +319,7 @@ function sendSaveMap(scriptData) {
 
     var objData = JSON.stringify(scriptData);
     var scriptObjData = {
-        gameLevel: levelNum,
+        gameLevel: levelNum+1,
         data: objData
     }
     $.ajax({
