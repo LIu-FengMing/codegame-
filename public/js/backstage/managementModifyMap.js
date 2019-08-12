@@ -48,7 +48,7 @@ function back() {
   //   }
   // }
   // href = href.substr(0, index + 1);
-  href = "gameView_text?level=" + (localStorage.getItem("gameNumber") - 1).toString();
+  href = "gameView_text?level=" + (localStorage.getItem("gameNumber")).toString();
   window.location.replace(href);
   console.log(href);
 }
