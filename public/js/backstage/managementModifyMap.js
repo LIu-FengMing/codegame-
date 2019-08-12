@@ -48,7 +48,7 @@ function back() {
   //   }
   // }
   // href = href.substr(0, index + 1);
-  href = "gameView_text?level=" + (localStorage.getItem("gameNumber")).toString();
+  href = "gameView_text?level=" + (localStorage.getItem("gameNumber") - 1).toString();
   window.location.replace(href);
   console.log(href);
 }
@@ -67,7 +67,7 @@ function loadGameMap() {
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: {
-      gameLevel: levelNum-1
+      gameLevel: levelNum
     },  // 將表單資料用打包起來送出去
     success: function (res) {
       console.log(res);
