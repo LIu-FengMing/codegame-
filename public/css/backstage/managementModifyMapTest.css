@@ -248,6 +248,7 @@ body {
 #confirmBtn{
   height: 3vh;
   width: 3vw;
+  z-index: 998;
   font-size: 1vw;
   line-height: 1.5vh;
   font-family: "Microsoft JhengHei";
@@ -264,6 +265,7 @@ body {
 #cancelBtn{
   height: 3vh;
   width: 3vw;
+  z-index: 998;
   font-size: 1vw;
   line-height: 1.5vh;
   font-family: "Microsoft JhengHei";

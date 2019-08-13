@@ -60,7 +60,7 @@ var scriptData = {
   type: "init"
 }
 var nowMapData, allMapData;
-var mapInformation;
+var mapInformation,elementNumber = 0,createNewElementTop = 0,lastHeight = 0;
 function loadGameMap() {
   $.ajax({
     url: 'loadGameMap',              // 要傳送的頁面
@@ -295,11 +295,11 @@ function helper() {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch { }
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
   divTag.appendChild(b);
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "helperView");
   divTag.appendChild(b);
@@ -359,6 +359,14 @@ function helper() {
   b.setAttribute("onclick", "changeMethod(4)");
   divTag.appendChild(b);
   b = document.createElement("div");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板五");
+  b.setAttribute("id", "method5");
+  b.setAttribute("value", "5");
+  b.setAttribute("onclick", "changeMethod(5)");
+  divTag.appendChild(b);
+  b = document.createElement("div");
   b.setAttribute("id", "helperInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
@@ -367,914 +375,934 @@ function helper() {
   if (helperMod == "blocky") {
     methodNumber = nowMapData.mainBlockyDescription.mode;
   }
-  console.log(methodNumber);
-  if (methodNumber == 2) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
-    b = document.createElement("textarea");
-    b.style.background = "white";
-    b.setAttribute("id", "helperTextarea1");
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
-
-    /*設置圖片一*/
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    // var strText = nowMapData.mainCodeDescription.img1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+  switch (methodNumber) {
+    case 1:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea3");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea3").innerHTML = htmlStrChange(strText);;
+      }
+      break;
+    case 2:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
+      b = document.createElement("textarea");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
+      b.setAttribute("id", "helperTextarea1");
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-  } else if (methodNumber == 1) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea3");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    //document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea3").innerHTML = htmlStrChange(strText);;
-    }
-  } else if (methodNumber == 3) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
+      /*設置圖片一*/
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      // var strText = nowMapData.mainCodeDescription.img1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 3:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片四*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv4");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv4");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg4");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
-    // var strText = nowMapData.mainCodeDescription.img4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg4Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,4)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      // var strText = nowMapData.mainCodeDescription.img4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg4Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,4)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea4");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊四*/
-    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
-    // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片五*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv5");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv5");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg5");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
-    // var strText = nowMapData.mainCodeDescription.img5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea4");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg5Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,5)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+      // var strText = nowMapData.mainCodeDescription.textarea4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      // var strText = nowMapData.mainCodeDescription.img5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg5Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,5)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea5");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊五*/
-    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
-    // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片六*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv6");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv6");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg6");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
-    // var strText = nowMapData.mainCodeDescription.img6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea5");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg6Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,6)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+      // var strText = nowMapData.mainCodeDescription.textarea5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      // var strText = nowMapData.mainCodeDescription.img6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg6Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,6)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea6");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊六*/
-    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
-    // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片七*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv7");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv7");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg7");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-
-      strText = nowMapData.mainCodeDescription.img7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea6");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg7Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,7)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+      // var strText = nowMapData.mainCodeDescription.textarea6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea7");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
-    }
+        strText = nowMapData.mainCodeDescription.img7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg7Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,7)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea9");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊九*/
-    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
-    // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
-    }
-  } else if (methodNumber == 4) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea7");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
+      }
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea9");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片四*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv4");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv4");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg4");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
-    // var strText = nowMapData.mainCodeDescription.img4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      /*設定文字塊九*/
+      // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      // var strText = nowMapData.mainCodeDescription.textarea8;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 4:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg4Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,4)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea4");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊四*/
-    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
-    // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片五*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv5");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv5");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg5");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
-    // var strText = nowMapData.mainCodeDescription.img5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg5Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,5)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      // var strText = nowMapData.mainCodeDescription.img4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg4Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,4)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea5");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊五*/
-    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
-    // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片六*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv6");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv6");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg6");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
-    // var strText = nowMapData.mainCodeDescription.img6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea4");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg6Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,6)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+      // var strText = nowMapData.mainCodeDescription.textarea4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      // var strText = nowMapData.mainCodeDescription.img5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg5Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,5)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea6");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊六*/
-    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
-    // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片七*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv7");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv7");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg7");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-
-      strText = nowMapData.mainCodeDescription.img7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea5");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg7Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,7)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+      // var strText = nowMapData.mainCodeDescription.textarea5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      // var strText = nowMapData.mainCodeDescription.img6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg6Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,6)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea7");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
-    }
-
-    /*圖片八*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv8");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv8");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg8");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-
-      strText = nowMapData.mainCodeDescription.img8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea6");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg8Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,8)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+      // var strText = nowMapData.mainCodeDescription.textarea6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea8");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊八*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
-    }
+        strText = nowMapData.mainCodeDescription.img7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg7Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,7)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea7");
+      b.style.background = "white";
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
+      }
+
+      /*圖片八*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv8");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv8");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg8");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
+
+        strText = nowMapData.mainCodeDescription.img8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg8Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,8)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea8");
+      b.style.background = "white";
+      divTag.appendChild(b);
+      /*設定文字塊八*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
+      }
 
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea9");
-    b.style.background = "white";
-    divTag.appendChild(b);
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea9");
+      b.style.background = "white";
+      divTag.appendChild(b);
 
-    /*設定文字塊八*/
-    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
-    // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea9;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea9;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
-    }
+      /*設定文字塊八*/
+      // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      // var strText = nowMapData.mainCodeDescription.textarea8;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea9;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea9;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 5:
+      /*新增按鈕*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "createNewElement");
+      b.setAttribute("value", "新增");
+      b.setAttribute("onclick", "setCreateElementFunc()");
+      divTag.appendChild(b);
+      /*刪除按鈕*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "deleteNewElement");
+      b.setAttribute("value", "刪除");
+      b.setAttribute("onclick", "deleteElementFunc()");
+      divTag.appendChild(b);
+      break;
   }
 }
 function changeMethod(methodNumber) {
@@ -1332,916 +1360,1082 @@ function changeMethod(methodNumber) {
   b.setAttribute("value", "4");
   b.setAttribute("onclick", "changeMethod(4)");
   divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "模板五");
+  b.setAttribute("id", "method5");
+  b.setAttribute("value", "5");
+  b.setAttribute("onclick", "changeMethod(5)");
+  divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "helperInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
-  if (methodNumber == 2) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(2)");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    // var strText = nowMapData.mainCodeDescription.img1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+  switch (methodNumber) {
+    case 1:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea3");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea3").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 2:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(2)");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-  } else if (methodNumber == 1) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(1)");
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea3");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    // document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea3;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea3").innerHTML = htmlStrChange(strText);
-    }
-  } else if (methodNumber == 3) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    // var strText = nowMapData.mainCodeDescription.img1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      // var strText = nowMapData.mainCodeDescription.img1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 3:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      // var strText = nowMapData.mainCodeDescription.img1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片四*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv4");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv4");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg4");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
-    // var strText = nowMapData.mainCodeDescription.img4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg4Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,4)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      // var strText = nowMapData.mainCodeDescription.img4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg4Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,4)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea4");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊四*/
-    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
-    // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片五*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv5");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv5");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg5");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
-    // var strText = nowMapData.mainCodeDescription.img5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea4");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg5Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,5)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+      // var strText = nowMapData.mainCodeDescription.textarea4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      // var strText = nowMapData.mainCodeDescription.img5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg5Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,5)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea5");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊五*/
-    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
-    // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片六*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv6");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv6");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg6");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
-    // var strText = nowMapData.mainCodeDescription.img6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea5");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg6Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,6)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+      // var strText = nowMapData.mainCodeDescription.textarea5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      // var strText = nowMapData.mainCodeDescription.img6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg6Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,6)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea6");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊六*/
-    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
-    // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片七*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv7");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv7");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg7");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea6");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg7Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,7)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+      // var strText = nowMapData.mainCodeDescription.textarea6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg7Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,7)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea7");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
-    }
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea9");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊九*/
-    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
-    // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
-    }
-  }else if (methodNumber == 4) {
-    document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(4)");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea1");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-    // var strText = nowMapData.mainCodeDescription.textarea1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
-    }
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    // var strText = nowMapData.mainCodeDescription.img1;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img1;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img1;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea7");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg1Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,1)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    // var strText = nowMapData.mainCodeDescription.img2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
+      }
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea9");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg2Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,2)");
-    divTag.appendChild(b);
-
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea2");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-    // var strText = nowMapData.mainCodeDescription.textarea2;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea2;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea2;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片四*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv4");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv4");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg4");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
-    // var strText = nowMapData.mainCodeDescription.img4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag.appendChild(b);
+      /*設定文字塊九*/
+      // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      // var strText = nowMapData.mainCodeDescription.textarea8;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 4:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(4)");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg4Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,4)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      // document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      // var strText = nowMapData.mainCodeDescription.textarea1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea1").innerHTML = htmlStrChange(strText);
+      }
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      // var strText = nowMapData.mainCodeDescription.img1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg1Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,1)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea4");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊四*/
-    // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
-    // var strText = nowMapData.mainCodeDescription.textarea4;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea4;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea4;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片五*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv5");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv5");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg5");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
-    // var strText = nowMapData.mainCodeDescription.img5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      // var strText = nowMapData.mainCodeDescription.img2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg2Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,2)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea2");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg5Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,5)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      // document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      // var strText = nowMapData.mainCodeDescription.textarea2;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea2;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea2;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea2").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      // var strText = nowMapData.mainCodeDescription.img4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg4Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,4)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea5");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊五*/
-    // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
-    // var strText = nowMapData.mainCodeDescription.textarea5;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea5;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea5;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片六*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv6");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv6");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg6");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
-    // var strText = nowMapData.mainCodeDescription.img6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea4");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg6Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,6)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      // document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+      // var strText = nowMapData.mainCodeDescription.textarea4;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea4;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea4;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea4").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      // var strText = nowMapData.mainCodeDescription.img5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg5Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,5)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea6");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊六*/
-    // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
-    // var strText = nowMapData.mainCodeDescription.textarea6;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea6;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea6;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
-    }
-    /*圖片七*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv7");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv7");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg7");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea5");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg7Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,7)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      // document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+      // var strText = nowMapData.mainCodeDescription.textarea5;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea5;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea5;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea5").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      // var strText = nowMapData.mainCodeDescription.img6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg6Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,6)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea7");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea7;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea7;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
-    }
-
-    /*圖片八*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv8");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv8");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg8");
-    b.setAttribute("class", "helperImg");
-    // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    // var strText = nowMapData.mainCodeDescription.img7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.img8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.img8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      b.setAttribute("src", "img/" + strText);
-    }
-    else {
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea6");
       b.style.background = "white";
-      b.setAttribute("src", "img/noImage.png");
-    }
-    divTag.appendChild(b);
-    b = document.createElement("br");
-    divTag.appendChild(b);
-    b = document.createElement("input");
-    b.setAttribute("id", "helperImg8Input");
-    b.setAttribute("type", "file");
-    b.setAttribute("style", "margin-left:15%;");
-    b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-    b.setAttribute("onchange", "readImgUrl(this,8)");
-    divTag.appendChild(b);
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      // document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+      // var strText = nowMapData.mainCodeDescription.textarea6;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea6;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea6;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea6").innerHTML = htmlStrChange(strText);
+      }
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg7Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,7)");
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea8");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
-    // var strText = nowMapData.mainCodeDescription.textarea7;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea8;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea8;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
-    }
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea7");
+      b.style.background = "white";
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea7;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea7;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea7").innerHTML = htmlStrChange(strText);
+      }
+
+      /*圖片八*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv8");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv8");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg8");
+      b.setAttribute("class", "helperImg");
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      // var strText = nowMapData.mainCodeDescription.img7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg8Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,8)");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea8");
+      b.style.background = "white";
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      // document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      // var strText = nowMapData.mainCodeDescription.textarea7;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea8;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea8;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea8").innerHTML = htmlStrChange(strText);
+      }
 
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("textarea");
-    b.setAttribute("id", "helperTextarea9");
-    b.style.background = "white";
-    divTag.appendChild(b);
-    /*設定文字塊九*/
-    // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
-    // var strText = nowMapData.mainCodeDescription.textarea8;
-    var strText = "";
-    if (helperMod != "blocky") {
-      strText = nowMapData.mainCodeDescription.textarea9;
-    }
-    else {
-      strText = nowMapData.mainBlockyDescription.textarea9;
-    }
-    console.log(strText);
-    if (strText != null) {
-      document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
-    }
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea9");
+      b.style.background = "white";
+      divTag.appendChild(b);
+      /*設定文字塊九*/
+      // document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      // var strText = nowMapData.mainCodeDescription.textarea8;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.textarea9;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.textarea9;
+      }
+      console.log(strText);
+      if (strText != null) {
+        document.getElementById("helperTextarea9").innerHTML = htmlStrChange(strText);
+      }
+      break;
+    case 5:
+      /*新增按鈕*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "createNewElement");
+      b.setAttribute("value", "新增");
+      b.setAttribute("onclick", "setCreateElementFunc()");
+      divTag.appendChild(b);
+      /*刪除按鈕*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "deleteNewElement");
+      b.setAttribute("value", "刪除");
+      b.setAttribute("onclick", "deleteElementFunc()");
+      divTag.appendChild(b);
+      break;
   }
+}
+/*創建新欄位函式*/
+function setCreateElementFunc(){
+  divTag = document.getElementById("helperView");
+  b = document.createElement("div");
+  b.setAttribute("id", "createElementBkView");
+  divTag.appendChild(b);
+  b = document.createElement("div");
+  b.setAttribute("id", "createElementView");
+  divTag.appendChild(b);
+  divTag = document.getElementById("createElementView");
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "createElementClose");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"createElementBkView\",\"createElementView\")");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "createImgBtn");
+  b.setAttribute("value", "大圖");
+  b.setAttribute("onclick", "selectCreateNode('img')");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "createTextBtn");
+  b.setAttribute("value", "大文");
+  b.setAttribute("onclick", "selectCreateNode('text')");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "createImgAndTextBtn");
+  b.setAttribute("value", "圖片+文字");
+  b.setAttribute("onclick", "selectCreateNode('imgAndText')");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "createTwoImgAndTextBtn");
+  b.setAttribute("value", "大文+二圖");
+  b.setAttribute("onclick", "selectCreateNode('twoImgAndText')");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "createSmallImgAndTextBtn");
+  b.setAttribute("value", "小文+小圖");
+  b.setAttribute("onclick", "selectCreateNode('smallImgAndText')");
+  divTag.appendChild(b);
+  /*圖片左右的checkBox*/
+  b = document.createElement("div");
+  b.setAttribute("id", "imgPositionDiv");
+  divTag.appendChild(b);
+  divTag = document.getElementById("imgPositionDiv");
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "imgLeft");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "1");
+  b.setAttribute("onclick", "changeCheckBoxStatus(this)");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "leftText");
+  b.innerHTML = "圖片在左";
+  divTag.appendChild(b);
+  b = document.createElement("br");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "checkbox");
+  b.setAttribute("id", "imgRight");
+  b.setAttribute("name", "c1");
+  b.setAttribute("value", "2");
+  b.setAttribute("onclick", "changeCheckBoxStatus(this)");
+  b.setAttribute("checked", "true");
+  divTag.appendChild(b);
+  b = document.createElement("font");
+  b.setAttribute("id", "rightText");
+  b.innerHTML = "圖片在右";
+  divTag.appendChild(b);
+}
+function changeCheckBoxStatus(input) {
+  for (var i = 0; i < document.getElementById("imgPositionDiv").childNodes.length; i++) {
+    document.getElementById("imgPositionDiv").childNodes[i].checked = false;
+  }
+  input.checked = true;
+}
+/*選擇添加樣式*/
+function selectCreateNode(mode) {
+  divTag = document.getElementById("createElementView");
+  divTag.innerHTML = "";
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("title", "關閉");
+  b.setAttribute("id", "createElementClose");
+  b.setAttribute("value", "X");
+  b.setAttribute("onclick", "closeFunc(\"createElementBkView\",\"createElementView\")");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "confirmBtn");
+  b.setAttribute("value", "確認");
+  divTag.appendChild(b);
+  b = document.createElement("input");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "cancelBtn");
+  b.setAttribute("value", "取消");
+  b.setAttribute("onclick", "closeFunc(\"createElementBkView\",\"createElementView\")");
+  divTag.appendChild(b);
+  switch (mode) {
+    case "img":
+
+      break;
+    case "text":
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "textareaDiv" + elementNumber);
+      b.setAttribute("class", "bigTextareaDiv");
+      b.setAttribute("style", "top:" + lastHeight + "%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("textareaDiv" + elementNumber);
+      b = document.createElement("textarea");
+      b.setAttribute("id", "bigHelperTextarea" + elementNumber);
+      b.style.background = "white";
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 65);
+      elementNumber++;
+      createNewElementTop = (parseInt(createNewElementTop) + 65);
+      break;
+    case "imgAndText":
+
+      break;
+  }
+  var obj = document.getElementById("createNewElement");
+  obj.style.top = createNewElementTop + "%";
+  var obj = document.getElementById("deleteNewElement");
+  obj.style.top = createNewElementTop + "%";
+  clossFunc("createElementBkView","createElementView");
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
   // remindView("儲存成功");
   console.log(modelNumber);
-  
+
   if (helperMod != "blocky") {
     var postData = nowMapData.mainCodeDescription;
   }

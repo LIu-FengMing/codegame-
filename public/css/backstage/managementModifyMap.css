@@ -98,6 +98,38 @@ body {
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
+#method1,#method2,#method3,#method4,#method5,#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  cursor: pointer;
+}
+#method1{
+  top: 3%;
+  left: 1%;
+}
+#method2{
+  top: 3%;
+  left: calc(30px + 2%);
+}
+#method3{
+  top: 3%;
+  left: calc(60px + 3%);
+}
+#method4{
+  top: 3%;
+  left: calc(90px + 4%);
+}
+#method5{
+  top: 3%;
+  left: calc(120px + 5%);
+}
 #helperInnerDiv{
   height: calc(100% - 5vh - 22px);
   width: 100%;
@@ -106,6 +138,120 @@ body {
   top: calc(5vh + 22px);
   background-color: rgba(0, 0, 0, 0);
   overflow: auto;
+}
+#deleteNewElement{
+  width: 8vh;
+  height: 5vh;
+  text-align: center;
+  font-size: 2.5vh;
+  line-height: 2.5vh;
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  background: rgb(0, 0, 0, 0);
+  border: black solid;
+  border-radius: 0.5vh;
+  cursor: pointer;
+}
+#createNewElement{
+  width: 8vh;
+  height: 5vh;
+  text-align: center;
+  font-size: 2.5vh;
+  line-height: 2.5vh;
+  position: absolute;
+  top: 2%;
+  right: calc(2% + 8vh);
+  background: rgb(0, 0, 0, 0);
+  border: black solid;
+  border-radius: 0.5vh;
+  cursor: pointer;
+}
+#createElementBkView{
+  z-index: 996;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0px;
+}
+#createElementView{
+  z-index: 997;
+  height: 40%;
+  width: 70%;
+  position: absolute;
+  background-color: #FFDEB8;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+#createImgBtn,#createTextBtn,#createImgAndTextBtn,#createTwoImgAndTextBtn,#createSmallImgAndTextBtn,#imgPositionDiv{
+  width: 25%;
+  height: 30%;
+  font-size: calc(15px + 10%);
+  background: #FFF2CC;
+  border: black solid;
+  position: absolute;
+  top: 60%;
+  cursor: pointer;
+}
+#createElementClose{
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 10px;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  cursor: pointer;
+  top: 1%;
+  right: 1%;
+}
+#createImgBtn{
+  left: 5%;
+  top: 11%;
+}
+#createTextBtn{
+  left: 50%;
+  top: 11%;
+  transform: translate(-50%,0);
+}
+#createImgAndTextBtn{
+  right: 5%;
+  top: 11%;
+}
+#createTwoImgAndTextBtn{
+  left: 5%;
+  bottom: 5%;
+}
+#createSmallImgAndTextBtn{
+  left: 50%;
+  bottom: 5%;
+  transform: translate(-50%,0);
+}
+#imgPositionDiv{
+  right: 5%;
+  bottom: 5%;
+}
+.bigTextareaDiv{
+  height: 60%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.bigTextareaDiv textarea{
+  height: 100%;
+  width: 80%;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  left: 10%;
 }
 #helperTextarea1{
   height: 50%;
@@ -301,18 +447,6 @@ body {
   border-color: white;
   border-width: 3px;
 }
-#method1,#method2,#method3,#method4,#clossDiv{
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  border-color: rgb(0, 0, 0);
-  border-width: 0px;
-  position: absolute;
-  cursor: pointer;
-}
 #clossDiv{
   top: 1%;
   right: 1%;
@@ -346,22 +480,6 @@ body {
   top: 1%;
   right: calc(6% + 4vw);
   cursor: pointer;
-}
-#method1{
-  top: 3%;
-  left: 1%;
-}
-#method2{
-  top: 3%;
-  left: calc(30px + 2%);
-}
-#method3{
-  top: 3%;
-  left: calc(60px + 3%);
-}
-#method4{
-  top: 3%;
-  left: calc(90px + 4%);
 }
 #allTitle,#userTitle{
   margin-top: 20px;
@@ -601,6 +719,16 @@ body {
   top: 10.5%;
   left: 0px;
 }
+#blocklyDiv{
+  height: 88.9%;
+  width: 49.7%;
+  border-style:none;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 10.5%;
+  left: 0px;
+}
 #functionSetting{
   height: 75vh;
   width: 60vh;
@@ -802,7 +930,7 @@ body {
   background-size: 100% 100%;
 }
 
-/*- Menu Tabs F--------------------------- */
+/*Menu Tabs F */
 #tabsC{
 	padding:0px;
 	margin:0px;
@@ -888,16 +1016,6 @@ body {
 /* End IE5-Mac hack */
 #tabsF a:hover span {
   color:#000;
-}
-#tabsF a:hover{
-	/*
-	background-position:0% -42px;
-	*/
-}
-#tabsF a:hover span{
-	/*
-	background-position:100% -42px;
-	*/
 }
 
 /*tabsC S1內容*/
@@ -990,40 +1108,40 @@ body {
     background-color: #BBCCBA;
   }
 
-/*進階*/
-#foggyTable{
-  font-size: 3vh;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-#foggyTable #S1Td00{
-  width: 30%;
-  margin-left: 5vw;
-}
-#foggyTable #S1Td01,#foggyTable #S1Td02{
-  width: 35%;
-  font-size: 3vh;
-}
-#foggyTable input[type=checkbox] {
-    zoom: 2;
-}
-#foggyTable input{
-  vertical-align:middle;
-  margin-bottom:2px;
-  *margin-bottom:2px;
-}
-#codingFont{
-  text-align:left;
-  font-weight: bold;
-  margin-right: 20vw;
-}
-#codingTextarea{
-  height: 35vh;
-  width: 25vw;
-  font-size: 3vh;
-  resize : none;
-}
+  /*進階*/
+  #foggyTable{
+    font-size: 3vh;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  #foggyTable #S1Td00{
+    width: 30%;
+    margin-left: 5vw;
+  }
+  #foggyTable #S1Td01,#foggyTable #S1Td02{
+    width: 35%;
+    font-size: 3vh;
+  }
+  #foggyTable input[type=checkbox] {
+      zoom: 2;
+  }
+  #foggyTable input{
+    vertical-align:middle;
+    margin-bottom:2px;
+    *margin-bottom:2px;
+  }
+  #codingFont{
+    text-align:left;
+    font-weight: bold;
+    margin-right: 20vw;
+  }
+  #codingTextarea{
+    height: 35vh;
+    width: 25vw;
+    font-size: 3vh;
+    resize : none;
+  }
 
 /*提醒介面*/
 .oneLine{
@@ -1119,7 +1237,6 @@ body {
   bottom: 5vh;
   cursor: pointer;
 }
-
 #codeBtn{
   height: 5vh;
   width: 6vw;

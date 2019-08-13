@@ -106,7 +106,6 @@ xmlhttp.onreadystatechange = function () {
 xmlhttp.open("GET", "json/oblivionObject.json", true);
 xmlhttp.send();
 
-
 function initMapData(res) {
   var mapData = res.data;
   /*設置版本*/
