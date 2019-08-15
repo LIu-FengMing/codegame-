@@ -452,7 +452,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -488,7 +488,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -565,7 +565,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -601,7 +601,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -657,7 +657,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,4)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",4)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -713,7 +713,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,5)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",5)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -769,7 +769,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,6)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",6)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -826,7 +826,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,7)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",7)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -923,7 +923,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -959,7 +959,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1015,7 +1015,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,4)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",4)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1071,7 +1071,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,5)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",5)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1127,7 +1127,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,6)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",6)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1184,7 +1184,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,7)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",7)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1242,7 +1242,7 @@ function helper() {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,8)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",8)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1447,7 +1447,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1483,7 +1483,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1559,7 +1559,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1595,7 +1595,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1651,7 +1651,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,4)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",4)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1707,7 +1707,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,5)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",5)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1763,7 +1763,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,6)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",6)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1819,7 +1819,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,7)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",7)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1914,7 +1914,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,1)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",1)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -1950,7 +1950,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,2)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",2)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2006,7 +2006,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,4)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",4)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2062,7 +2062,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,5)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",5)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2118,7 +2118,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,6)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",6)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2174,7 +2174,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,7)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",7)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2231,7 +2231,7 @@ function changeMethod(methodNumber) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,8)");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"" + ",8)");
       divTag.appendChild(b);
 
       divTag = document.getElementById("helperInnerDiv");
@@ -2379,6 +2379,7 @@ function changeCheckBoxStatus(input) {
 }
 /*選擇添加樣式*/
 function selectCreateNode(mode) {
+  var isImgLeft = document.getElementById("imgLeft").checked;
   divTag = document.getElementById("createElementView");
   divTag.innerHTML = "";
   b = document.createElement("input");
@@ -2399,12 +2400,52 @@ function selectCreateNode(mode) {
   b.setAttribute("value", "取消");
   b.setAttribute("onclick", "closeFunc(\"createElementBkView\",\"createElementView\")");
   divTag.appendChild(b);
+  divTag = document.getElementById("helperInnerDiv");
   switch (mode) {
     case "img":
+      b = document.createElement("div");
+      b.setAttribute("id", "imgDiv" + elementNumber);
+      b.setAttribute("class", "bigImgDiv");
+      b.setAttribute("style", "top:" + lastHeight + "%;");
+      divTag.appendChild(b);
 
+      divTag = document.getElementById("imgDiv" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "bigImg" + elementNumber);
+      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      // var strText = nowMapData.mainCodeDescription.img1;
+      var strText = "";
+      if (helperMod != "blocky") {
+        strText = nowMapData.mainCodeDescription.img1;
+      }
+      else {
+        strText = nowMapData.mainBlockyDescription.img1;
+      }
+      console.log(strText);
+      if (strText != null) {
+        b.setAttribute("src", "img/" + strText);
+      }
+      else {
+        b.style.background = "white";
+        b.setAttribute("src", "img/noImage.png");
+      }
+      divTag.appendChild(b);
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "bigImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,\"bigImg\"," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 65);
+      elementNumber++;
+      createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
     case "text":
-      divTag = document.getElementById("helperInnerDiv");
       b = document.createElement("div");
       b.setAttribute("id", "textareaDiv" + elementNumber);
       b.setAttribute("class", "bigTextareaDiv");
@@ -2422,7 +2463,52 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
     case "imgAndText":
+      b = document.createElement("div");
+      b.setAttribute("id", "imgAndTextDiv" + elementNumber);
+      b.setAttribute("class", "imgAndTextDiv");
+      b.setAttribute("style", "top:" + lastHeight + "%;");
+      divTag.appendChild(b);
 
+      divTag = document.getElementById("imgAndTextDiv" + elementNumber);
+      b = document.createElement("textarea");
+      b.setAttribute("id", "helperTextarea" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "width:40%;height:100%;background:white;right:5%;");
+      }else{
+        b.setAttribute("style", "width:40%;height:100%;background:white;left:5%;");
+      }
+      divTag.appendChild(b);
+
+      b = document.createElement("div");
+      b.setAttribute("id", "imgDivInner" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "width:40%;height:auto;position: absolute;left:5%;");
+      }else{
+        b.setAttribute("style", "width:40%;height:auto;position: absolute;right:5%;");
+      }
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("imgDivInner" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg" + elementNumber);
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "helperImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("style", "margin-left:15%;");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,helperImg," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 65);
+      elementNumber++;
+      createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
   }
   var obj = document.getElementById("createNewElement");
@@ -2593,7 +2679,7 @@ function closeFunc(thisDiv, thisDiv2) {
   levelDivAlive = false;
 }
 /*讀取圖片*/
-function readImgUrl(input, imgId) {
+function readImgUrl(input, imgStr, imgId) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -2611,7 +2697,7 @@ function readImgUrl(input, imgId) {
         data: data,
         success: function (res) {
           console.log(res);
-          var img = document.getElementById("helperImg" + imgId);
+          var img = document.getElementById(imgStr + imgId);
           img.setAttribute("src", e.target.result)
           $("#helperImg" + imgId)[0].value = res.path;
         },
