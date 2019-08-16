@@ -189,8 +189,9 @@ body {
   width: 25%;
   height: 30%;
   font-size: calc(15px + 10%);
-  background: #FFF2CC;
-  border: black solid;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  border: 0px;
   position: absolute;
   top: 60%;
   cursor: pointer;
@@ -213,24 +214,29 @@ body {
 #createImgBtn{
   left: 5%;
   top: 11%;
+  background-image: url("../../img/img.png");
 }
 #createTextBtn{
   left: 50%;
   top: 11%;
   transform: translate(-50%,0);
+  background-image: url("../../img/text.png");
 }
 #createImgAndTextBtn{
   right: 5%;
   top: 11%;
+  background-image: url("../../img/imgAndText.png");
 }
 #createTwoImgAndTextBtn{
   left: 5%;
   bottom: 5%;
+  background-image: url("../../img/twoImgAndText.png");
 }
 #createSmallImgAndTextBtn{
   left: 50%;
   bottom: 5%;
   transform: translate(-50%,0);
+  background-image: url("../../img/smallImgAndText.png");
 }
 #imgPositionDiv{
   right: 5%;

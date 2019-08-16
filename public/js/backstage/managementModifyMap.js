@@ -2313,31 +2313,26 @@ function setCreateElementFunc(){
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "createImgBtn");
-  b.setAttribute("value", "大圖");
   b.setAttribute("onclick", "selectCreateNode('img')");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "createTextBtn");
-  b.setAttribute("value", "大文");
   b.setAttribute("onclick", "selectCreateNode('text')");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "createImgAndTextBtn");
-  b.setAttribute("value", "圖片+文字");
   b.setAttribute("onclick", "selectCreateNode('imgAndText')");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "createTwoImgAndTextBtn");
-  b.setAttribute("value", "大文+二圖");
   b.setAttribute("onclick", "selectCreateNode('twoImgAndText')");
   divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "createSmallImgAndTextBtn");
-  b.setAttribute("value", "小文+小圖");
   b.setAttribute("onclick", "selectCreateNode('smallImgAndText')");
   divTag.appendChild(b);
   /*圖片左右的checkBox*/
@@ -2414,8 +2409,10 @@ function selectCreateNode(mode) {
       /*刪除用checkbox*/
       b = document.createElement("input");
       b.setAttribute("type", "checkbox");
+      b.setAttribute("id", "deleteCheckBox" + elementNumber);
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
+      b.setAttribute("name", "imgDiv");
       divTag.appendChild(b);
 
       b = document.createElement("img");
@@ -2465,8 +2462,10 @@ function selectCreateNode(mode) {
       /*刪除用checkbox*/
       b = document.createElement("input");
       b.setAttribute("type", "checkbox");
+      b.setAttribute("id", "deleteCheckBox" + elementNumber);
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
+      b.setAttribute("name", "textareaDiv");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2490,8 +2489,10 @@ function selectCreateNode(mode) {
       /*刪除用checkbox*/
       b = document.createElement("input");
       b.setAttribute("type", "checkbox");
+      b.setAttribute("id", "deleteCheckBox" + elementNumber);
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
+      b.setAttribute("name", "imgAndTextDiv");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2547,8 +2548,10 @@ function selectCreateNode(mode) {
       /*刪除用checkbox*/
       b = document.createElement("input");
       b.setAttribute("type", "checkbox");
+      b.setAttribute("id", "deleteCheckBox" + elementNumber);
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
+      b.setAttribute("name", "twoImgAndTextDiv");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2618,8 +2621,10 @@ function selectCreateNode(mode) {
       /*刪除用checkbox*/
       b = document.createElement("input");
       b.setAttribute("type", "checkbox");
+      b.setAttribute("id", "deleteCheckBox" + elementNumber);
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
+      b.setAttribute("name", "smallImgAndTextDiv");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2668,6 +2673,32 @@ function selectCreateNode(mode) {
   var obj = document.getElementById("deleteNewElement");
   obj.style.top = createNewElementTop + "%";
   clossFunc("createElementBkView","createElementView");
+}
+/*刪除欄位函式*/
+function deleteElementFunc() {
+  var elements = document.getElementById("helperInnerDiv").getElementsByTagName("input");
+  var checkboxLength = 0;
+  for(items in elements){
+    if(elements[items].type == "checkbox") checkboxLength++
+  }
+  var checkboxDom,idObject,thisCssText,nestCssText;
+  for(var i=0;i<checkboxLength;i++){
+    checkboxDom = document.getElementById("deleteCheckBox" + i);
+    if(checkboxDom.checked){
+      idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
+      thisCssText = idObject.style.cssText;
+      idObject.parentNode.removeChild(idObject);
+      for(var j=i+1;j<checkboxLength;j++){
+        checkboxDom = document.getElementById("deleteCheckBox" + j);
+        idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
+        nestCssText = idObject.style.cssText;
+        console.log(idObject.style.cssText);
+        idObject.style.cssText = thisCssText;
+        thisCssText = nestCssText;
+        console.log(idObject.style.cssText);
+      }
+    }
+  }
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
