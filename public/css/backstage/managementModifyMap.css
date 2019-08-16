@@ -253,7 +253,7 @@ body {
   position: absolute;
   left: 10%;
 }
-.bigImgDiv,.imgAndTextDiv{
+.bigImgDiv,{
   height: 60%;
   width: 100%;
   background-color: transparent;
@@ -264,6 +264,50 @@ body {
   height: auto;
   max-width: 100%;
   max-height: 100%;
+}
+.imgAndTextDiv{
+  height: 40%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.imgAndTextDiv textarea{
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background:white;
+}
+.imgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 40%;
+  max-height: 80%;
+}
+.smallImgAndTextDiv{
+  height: 25%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.smallImgAndTextDiv>.smallImgAndTextInneDiv{
+  width:20%;
+  height:100%;
+  position: absolute;
+}
+.smallImgAndTextDiv textarea{
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  background:white;
+}
+.smallImgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 30%;
+}
+.smallImgAndTextDiv input[type = "file"]{
+  margin-left: -25%;
 }
 #helperTextarea1{
   height: 50%;

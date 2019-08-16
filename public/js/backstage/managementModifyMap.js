@@ -2471,26 +2471,27 @@ function selectCreateNode(mode) {
 
       divTag = document.getElementById("imgAndTextDiv" + elementNumber);
       b = document.createElement("textarea");
-      b.setAttribute("id", "helperTextarea" + elementNumber);
+      b.setAttribute("id", "imgAndTextTextarea" + elementNumber);
+      b.setAttribute("class", "" + elementNumber);
       if(isImgLeft){
-        b.setAttribute("style", "width:40%;height:100%;background:white;right:5%;");
+        b.setAttribute("style", "right:5%;");
       }else{
-        b.setAttribute("style", "width:40%;height:100%;background:white;left:5%;");
+        b.setAttribute("style", "left:5%;");
       }
       divTag.appendChild(b);
 
       b = document.createElement("div");
       b.setAttribute("id", "imgDivInner" + elementNumber);
       if(isImgLeft){
-        b.setAttribute("style", "width:40%;height:auto;position: absolute;left:5%;");
+        b.setAttribute("style", "width:40%;height:100%;position: absolute;left:5%;");
       }else{
-        b.setAttribute("style", "width:40%;height:auto;position: absolute;right:5%;");
+        b.setAttribute("style", "width:40%;height:100%;position: absolute;right:5%;");
       }
       divTag.appendChild(b);
 
       divTag = document.getElementById("imgDivInner" + elementNumber);
       b = document.createElement("img");
-      b.setAttribute("id", "helperImg" + elementNumber);
+      b.setAttribute("id", "imgAndTextImg" + elementNumber);
       b.setAttribute("class", "helperImg");
       b.setAttribute("src", "img/noImage.png");
       divTag.appendChild(b);
@@ -2499,16 +2500,66 @@ function selectCreateNode(mode) {
       divTag.appendChild(b);
 
       b = document.createElement("input");
-      b.setAttribute("id", "helperImg" + elementNumber + "Input");
+      b.setAttribute("id", "imgAndTextImg" + elementNumber + "Input");
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,helperImg," + elementNumber + ")");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"," + elementNumber + ")");
       divTag.appendChild(b);
 
-      lastHeight = (parseInt(lastHeight) + 65);
+      lastHeight = (parseInt(lastHeight) + 45);
       elementNumber++;
-      createNewElementTop = (parseInt(createNewElementTop) + 65);
+      createNewElementTop = (parseInt(createNewElementTop) + 45);
+      break;
+    case "twoImgAndText":
+      break;
+    case "smallImgAndText":
+      b = document.createElement("div");
+      b.setAttribute("id", "smallImgAndTextDiv" + elementNumber);
+      b.setAttribute("class", "smallImgAndTextDiv");
+      b.setAttribute("style", "top:" + lastHeight + "%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("smallImgAndTextDiv" + elementNumber);
+      b = document.createElement("textarea");
+      b.setAttribute("id", "smallImgAndTextTextarea" + elementNumber);
+      b.setAttribute("class", "" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "right:5%;");
+      }else{
+        b.setAttribute("style", "left:5%;");
+      }
+      divTag.appendChild(b);
+
+      b = document.createElement("div");
+      b.setAttribute("id", "smallImgAndTextInnerDiv" + elementNumber);
+      b.setAttribute("class", "smallImgAndTextInneDiv");
+      if(isImgLeft){
+        b.setAttribute("style", "left:5%;");
+      }else{
+        b.setAttribute("style", "right:5%;");
+      }
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("smallImgAndTextInnerDiv" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "smallImgAndTextImg" + elementNumber);
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "smallImgAndTextImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 30);
+      elementNumber++;
+      createNewElementTop = (parseInt(createNewElementTop) + 30);
       break;
   }
   var obj = document.getElementById("createNewElement");
