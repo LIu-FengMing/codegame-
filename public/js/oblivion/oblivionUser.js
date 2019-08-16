@@ -43,21 +43,22 @@ function back() {
   var href = window.location.href;
   for (var i = 0; i < href.length; ++i) {
     if (href[i] == '/' || href[i] == "\\") {
-        index = i;
+      index = i;
     }
   }
   href = href.substr(0, index + 1);
-  href+="oblivion";
+  href += "oblivion";
   window.location.replace(href);
   // console.log(href);
 }
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionUserOpen;
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false, isOblivionUserOpen;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed, shelfSwitch = 0;
 var musicData;
 var userMap;
 
 createLoadingMainView("centerLost");
+createMainDescription() ;
 var scriptData = {
   type: "init"
 }
@@ -67,7 +68,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     user = res;
@@ -110,12 +111,12 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
-  try{
+  try {
     isOblivionUserOpen = Session.get("isOblivionUserOpen");
-  }catch(e){
+  } catch (e) {
     isOblivionUserOpen = false;
   }
-  if(!isOblivionUserOpen){
+  if (!isOblivionUserOpen) {
     helper('createrDiv');
   }
   sendLoadUsernameMap();
@@ -252,7 +253,7 @@ function userData() {
     divTag = document.getElementById("userDataBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divID = "userDataView";
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
@@ -310,8 +311,8 @@ function createUserView(mainDiv) {
       }
     } else if (i == 3) {
       var getAchievement = Session.get("getAchievement");
-      if(getAchievement == undefined){
-        getAchievement=0;
+      if (getAchievement == undefined) {
+        getAchievement = 0;
         console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
@@ -324,9 +325,9 @@ function createUserView(mainDiv) {
     for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("userTr" + i);
       b = document.createElement("td");
-      if(j%2 == 0){
+      if (j % 2 == 0) {
         b.innerHTML = dataTitle[i];
-      }else{
+      } else {
         b.innerHTML = userdataFont;
       }
       divTag.appendChild(b);
@@ -337,7 +338,7 @@ function createUserView(mainDiv) {
 var thisSelectionId;
 var args;
 var divTag, level;
-var lastObject = null,lastColor;
+var lastObject = null, lastColor;
 
 function selectionLevel(thisObject) {
   if (lastObject != null) {
@@ -669,7 +670,7 @@ function sendLoadUsernameMap() {
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
-    async:false,
+    async: false,
     success: function (res) {
       // console.log(res);
       userMap = res;
@@ -764,9 +765,9 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
 
     divTag = document.getElementById("lostUserCreateTable" + i);
-    if((i%2) == 0){
+    if ((i % 2) == 0) {
       divTag.style.backgroundColor = "#BDD5D5";
-    }else{
+    } else {
       divTag.style.backgroundColor = "#D6E5E5";
     }
     b = document.createElement("tr");
@@ -871,7 +872,7 @@ function createLevelTable(scriptData) {
 function remindView(remindValue) {
   var isTwoLine = false;
   for (var i = 0; i < remindValue.length; i++) {
-    if(remindValue[i] == "<"){
+    if (remindValue[i] == "<") {
       isTwoLine = true;
       break;
     }
@@ -883,7 +884,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -891,9 +892,9 @@ function remindView(remindValue) {
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
-  if(isTwoLine){
+  if (isTwoLine) {
     b.setAttribute("class", "twoLine");
-  }else{
+  } else {
     b.setAttribute("class", "oneLine");
   }
   b.setAttribute("id", "remindView");
@@ -916,7 +917,7 @@ function remindView(remindValue) {
 }
 
 /*確定視窗*/
-var postVar,postLaterVar,unShelfVar,delVar,latePostVar;
+var postVar, postLaterVar, unShelfVar, delVar, latePostVar;
 function checkView(checkFont, checkStatus) {
   divTag = document.getElementById("centerLost");
   if (levelDivAlive) {
@@ -970,7 +971,7 @@ function checkView(checkFont, checkStatus) {
     var ele = document.createElement("input");
     b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
   } else if (checkFont == "刪除地圖") {
-      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
+    b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
   }
   divTag.appendChild(b);
 }
@@ -1332,7 +1333,7 @@ function nowShelfNowAction(mapIndex) {
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
-      clossFunc("shelfView","shelfBkView");
+      clossFunc("shelfView", "shelfBkView");
       // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       var objI = mapIndex;
       userMap[mapIndex].postStage = 2;
@@ -1373,7 +1374,7 @@ function shelfLater(thisObject) {
   if (shelfDataTime.value.length > 0) {
     var selectDate = new Date(shelfDataTime.value.toString());
     var nowDate = new Date();
-    if (nowDate - selectDate > 1000*30) {
+    if (nowDate - selectDate > 1000 * 30) {
       // console.log("選擇時間錯誤");
       remindView("選擇時間錯誤");
     }
@@ -1381,7 +1382,7 @@ function shelfLater(thisObject) {
       // console.log("run 777");
       postVar = selectDate.toString();
       latePostVar = selectDate.toString();
-      checkView("上架地圖","later");
+      checkView("上架地圖", "later");
       // if (confirm('你確定要上架這張地圖嗎?')) {
       //   // console.log(latePostVar);
       //   shelfLaterAction(latePostVar);
@@ -1415,7 +1416,7 @@ function shelfLaterAction(selectDate) {
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
       // console.log("6666666666666");
-      clossFunc("shelfView","shelfBkView");
+      clossFunc("shelfView", "shelfBkView");
       var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
       var str = "td0" + objI.toString() + "1";
       divTag = document.getElementById(str);
@@ -1535,11 +1536,11 @@ function enterLevel() {
     // if (obj.check == false) {
     if (obj.mapName.length < 1) {
       // alert("地圖名稱不能為空白，請修改地圖內容");
-    remindView("地圖名稱不能為空白，<br>請修改地圖內容");
+      remindView("地圖名稱不能為空白，<br>請修改地圖內容");
     }
     else if (obj.mapName.length > 10) {
       // alert("地圖名稱不能超過10個字，請修改地圖內容");
-    remindView("地圖名稱不能超過10個字，<br>請修改地圖內容");
+      remindView("地圖名稱不能超過10個字，<br>請修改地圖內容");
     }
     else {
       if (obj.mapIntroduction.length < 1) {
@@ -1582,36 +1583,37 @@ function getArgs() {
     divTag.innerHTML = args.levelName;
   }
 }
-mainDescription = {
-  "oblivionObject": [
-    {
-      "level": 1,
-      "mode": 1,
-      "textarea1": "歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的地圖也可以遊玩其他使用者創建的地圖<br>每一個地圖都有遊玩條件，達成遊玩條件後即可遊玩地圖<br>完成地圖後可給予地圖評價，評價高的地圖會更加吸引人喔<br><br>點擊左下角的”自訂地圖”即可看到自己已創建的地圖以及開始創建屬於你的地圖<br><br>選定欲遊玩的地圖後點擊右下角的”進入地圖”即可開始遊玩。<br><br>未遊玩過的地圖為淡藍色<br>已遊玩過的地圖為淡紫色"
-    },
-    {
-      "level": 2,
-      "mode": 1,
-      "textarea1": "此為\"我的自訂地圖\"介面，可以在這裡查看到目前自訂地圖的狀態以及可透過地圖右方的工具列編輯地圖。<br>工具列按鈕由左至右依序為：上/下架、修改地圖、地圖簡介、刪除地圖。<br>除了查看狀態及編輯地圖，也可以透過左下角的\"創建地圖\"來創建新的地圖。<br><br>創建了地圖後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測地圖就可以馬上開始檢測自己的地圖。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架地圖了。<br><br>上架地圖可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架地圖後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架地圖了，而下架地圖後若修改了地圖則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架地圖。"
-    },
-    {
-      "level": 3,
-      "mode": 1,
-      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
-    },
-    {
-      "level": 4,
-      "mode": 1,
-      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
-    },
-    {
-      "level": 5,
-      "mode": 1,
-      "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此地圖中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
-    }
-  ]
-};
-
+function createMainDescription() {
+  mainDescription = {
+    "oblivionObject": [
+      {
+        "level": 1,
+        "mode": 1,
+        "textarea1": "歡迎來到失落帝國！<br>在這裡你可以發揮你的無限想像力創造出獨一無二的地圖也可以遊玩其他使用者創建的地圖<br>每一個地圖都有遊玩條件，達成遊玩條件後即可遊玩地圖<br>完成地圖後可給予地圖評價，評價高的地圖會更加吸引人喔<br><br>點擊左下角的”自訂地圖”即可看到自己已創建的地圖以及開始創建屬於你的地圖<br><br>選定欲遊玩的地圖後點擊右下角的”進入地圖”即可開始遊玩。<br><br>未遊玩過的地圖為淡藍色<br>已遊玩過的地圖為淡紫色"
+      },
+      {
+        "level": 2,
+        "mode": 1,
+        "textarea1": "此為\"我的自訂地圖\"介面，可以在這裡查看到目前自訂地圖的狀態以及可透過地圖右方的工具列編輯地圖。<br>工具列按鈕由左至右依序為：上/下架、修改地圖、地圖簡介、刪除地圖。<br>除了查看狀態及編輯地圖，也可以透過左下角的\"創建地圖\"來創建新的地圖。<br><br>創建了地圖後，此時上架狀態及檢測狀態皆為'X'，接下來點選檢測地圖就可以馬上開始檢測自己的地圖。<br>檢測通關後，檢測狀態將變為'✔'，接下來就是要上架地圖了。<br><br>上架地圖可以選擇馬上上架或是定時上架，若選擇馬上上架則上架狀態將變為'✔'，上架日期將變為當天日期。若選擇定時上架則上架狀態將變為'⌛'，上架日期將變為距離上架的剩餘時間。<br><br>上架地圖後，上架按鈕即會變成下架按鈕，點擊即可下架，而上架狀態將會變為'△'，若要上架的話再次按下上架按鈕就可以再次上架地圖了，而下架地圖後若修改了地圖則上架狀態將變為'X'，檢測狀態變為'X'，需再次檢測通關後才能上架地圖。"
+      },
+      {
+        "level": 3,
+        "mode": 1,
+        "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>當星星集至81顆後，即會解鎖地圖設置，將可進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      },
+      {
+        "level": 4,
+        "mode": 1,
+        "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br><br>當星星集至120顆後，即會解鎖進階，將可設定是否開啟迷霧以及使用擴充程式區。"
+      },
+      {
+        "level": 5,
+        "mode": 1,
+        "textarea1": "此為創建地圖頁面，可在此頁面創建屬於自己的地圖。<br><br>可透過上方”物件選擇選單”選擇欲新增至地圖的物件，並且可調整物件角度，然後按下”新增物件”至地圖指定位置上，也可點擊指定物件後點擊”刪除物件”來移除物件。<br><br>接著可於右方的”地圖設定”設定地圖名稱、地圖簡介、地圖說明。<br><br>然而有些物件(藍色鎖頭、寶箱、敵人)有屬性需進行設定，即可透過點擊地圖上的物件後點擊右方的”物件屬性”來進行設定，鎖頭需設定鎖頭解答，敵人需設定血量及攻擊力，而寶箱則需要設定寶箱字串。<br><br>可透過右方的”地圖設置”，進行調整地圖大小以及地形的配置。<br>可透過右方的”進階”，設定是否開啟迷霧以及使用擴充程式區，而擴充程式區則是讓創作者可自訂函式於此地圖中，自訂函式可以經由創作者發揮想像力，只要符合程式邏輯以及編碼正確，就可以有無限的可能，以下範例提供給創作者參考，皆為創作者設定一個自訂函式讓使用者必須創陣列、字串來使用函式並且經由函式內容取得創作者給的陣列及字串內容<br>void&nbsp&nbspgetKeyArray(int*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspkey[6]={1,5,9,-1,3,10};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetDirection(char*&nbsp&nbsparr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個一維字元陣列內容<br>&nbsp&nbsp&nbsp&nbspint&nbsp&nbspi;<br>&nbsp&nbsp&nbsp&nbspchar&nbspkey[6]={'L','R','R','L','L','R'};<br>&nbsp&nbsp&nbsp&nbspfor(i=0;i<6;i++){<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsparr[i]=key[i];<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br>void&nbsp&nbspgetKey(int*&nbsp&nbspx,int*&nbsp&nbspy){&nbsp&nbsp&nbsp&nbsp使使用者取得兩個數字<br>&nbsp&nbsp&nbsp&nbspint&nbspi=5,j=10;<br>&nbsp&nbsp&nbsp&nbspx=&i;&nbspy=&j;<br>}<br>void&nbsp&nbspgetString(char*&nbsp&nbspstr){&nbsp&nbsp&nbsp&nbsp使使用者取得一個字串<br>&nbsp&nbsp&nbsp&nbspchar*&nbsp&nbsptmp=\"ABCCCDEDDf\";<br>&nbsp&nbsp&nbsp&nbspstrcpy(str,tmp);&nbsp&nbsp&nbsp&nbspstrcpy複製字串(目標，複製來源);<br>}<br>void&nbsp&nbsp函式名稱(需要的參數型態及在此函式內的名稱){<br>&nbsp&nbsp&nbsp&nbsp函式內容<br>}"
+      }
+    ]
+  };
+}
 var reciprocalInterval = window.setInterval(reciprocal, 1000);
 function reciprocal() {
 
