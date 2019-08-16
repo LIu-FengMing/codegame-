@@ -236,6 +236,13 @@ body {
   right: 5%;
   bottom: 5%;
 }
+.deleteCheckBox{
+  height: 2.5vh;
+  width: 2.5vh;
+  position: absolute;
+  left: 1%;
+  cursor: pointer;
+}
 .bigTextareaDiv{
   height: 60%;
   width: 100%;
@@ -253,8 +260,8 @@ body {
   position: absolute;
   left: 10%;
 }
-.bigImgDiv,{
-  height: 60%;
+.bigImgDiv{
+  height: 40%;
   width: 100%;
   background-color: transparent;
   position: absolute;
@@ -307,6 +314,32 @@ body {
   max-height: 30%;
 }
 .smallImgAndTextDiv input[type = "file"]{
+  margin-left: -25%;
+}
+.twoImgAndTextDiv{
+  height: 60%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.twoImgAndTextDiv>.twoImgAndTextInneDiv{
+  width:20%;
+  height:100%;
+  position: absolute;
+}
+.twoImgAndTextDiv textarea{
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  background:white;
+}
+.twoImgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 30%;
+}
+.twoImgAndTextDiv input[type = "file"]{
   margin-left: -25%;
 }
 #helperTextarea1{

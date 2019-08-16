@@ -78,7 +78,7 @@ $.ajax({
   },  //
   success: function (res) {
     console.log(res);
-    
+
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
     helper("blocklyDiv");
@@ -381,182 +381,307 @@ function helper(mainDiv) {
   b.setAttribute("id", "helperInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("helperInnerDiv");
-  if (selectMod == 2) {
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea1");
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+  switch (selectMod) {
+    case 1:
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea3");
+      divTag.appendChild(b);
+      document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      break;
+    case 2:
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea1");
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    divTag.appendChild(b);
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    divTag.appendChild(b);
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea2");
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
-  } else if (selectMod == 1) {
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea3");
-    divTag.appendChild(b);
-    document.getElementById("helperTextarea3").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
-  }else if(selectMod == 3){
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea1");
-    divTag.appendChild(b);
-    /*設定文字塊一*/
-    document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea2");
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      break;
+    case 3:
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea1");
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv1");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv1");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg1");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-    divTag.appendChild(b);
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv2");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv2");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg2");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
-    divTag.appendChild(b);
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea2");
-    divTag.appendChild(b);
-    /*設定文字塊二*/
-    document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea2");
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
 
-    /*圖片四*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv4");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv4");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg4");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
-    divTag.appendChild(b);
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea4");
-    divTag.appendChild(b);
-    /*設定文字塊四*/
-    document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea4");
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
 
-    /*圖片五*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv5");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv5");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg5");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
-    divTag.appendChild(b);
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea5");
-    divTag.appendChild(b);
-    /*設定文字塊五*/
-    document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea5");
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
 
-    /*圖片六*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv6");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv6");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg6");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
-    divTag.appendChild(b);
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea6");
-    divTag.appendChild(b);
-    /*設定文字塊六*/
-    document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea6");
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
 
-    /*圖片七*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv7");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv7");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg7");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
-    divTag.appendChild(b);
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea7");
-    divTag.appendChild(b);
-    /*設定文字塊七*/
-    document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea7");
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
 
-    /*圖片八*/
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperImgDiv8");
-    divTag.appendChild(b);
-    divTag = document.getElementById("helperImgDiv8");
-    b = document.createElement("img");
-    b.setAttribute("id", "helperImg8");
-    b.setAttribute("class", "helperImg");
-    b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img8);
-    divTag.appendChild(b);
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea8");
+      divTag.appendChild(b);
+      /*設定文字塊八*/
+      document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      break;
+    case 4:
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea1");
+      divTag.appendChild(b);
+      /*設定文字塊一*/
+      document.getElementById("helperTextarea1").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea1;
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea8");
-    divTag.appendChild(b);
-    /*設定文字塊八*/
-    document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv1");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv1");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg1");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
+      divTag.appendChild(b);
 
-    divTag = document.getElementById("helperInnerDiv");
-    b = document.createElement("div");
-    b.setAttribute("id", "helperTextarea9");
-    divTag.appendChild(b);
-    /*設定文字塊九*/
-    document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv2");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv2");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg2");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img2);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea2");
+      divTag.appendChild(b);
+      /*設定文字塊二*/
+      document.getElementById("helperTextarea2").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea2;
+
+      /*圖片四*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv4");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv4");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg4");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img4);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea4");
+      divTag.appendChild(b);
+      /*設定文字塊四*/
+      document.getElementById("helperTextarea4").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea4;
+
+      /*圖片五*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv5");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv5");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg5");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img5);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea5");
+      divTag.appendChild(b);
+      /*設定文字塊五*/
+      document.getElementById("helperTextarea5").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea5;
+
+      /*圖片六*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv6");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv6");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg6");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img6);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea6");
+      divTag.appendChild(b);
+      /*設定文字塊六*/
+      document.getElementById("helperTextarea6").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea6;
+
+      /*圖片七*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv7");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv7");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg7");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img7);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea7");
+      divTag.appendChild(b);
+      /*設定文字塊七*/
+      document.getElementById("helperTextarea7").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea7;
+
+      /*圖片八*/
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperImgDiv8");
+      divTag.appendChild(b);
+      divTag = document.getElementById("helperImgDiv8");
+      b = document.createElement("img");
+      b.setAttribute("id", "helperImg8");
+      b.setAttribute("class", "helperImg");
+      b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img8);
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea8");
+      divTag.appendChild(b);
+      /*設定文字塊八*/
+      document.getElementById("helperTextarea8").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea8;
+
+      divTag = document.getElementById("helperInnerDiv");
+      b = document.createElement("div");
+      b.setAttribute("id", "helperTextarea9");
+      divTag.appendChild(b);
+      /*設定文字塊九*/
+      document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
+      break;
+    case 5:
+
+      break;
   }
 }
 

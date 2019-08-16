@@ -2410,6 +2410,14 @@ function selectCreateNode(mode) {
       divTag.appendChild(b);
 
       divTag = document.getElementById("imgDiv" + elementNumber);
+
+      /*刪除用checkbox*/
+      b = document.createElement("input");
+      b.setAttribute("type", "checkbox");
+      b.setAttribute("class", "deleteCheckBox");
+      b.setAttribute("value", elementNumber);
+      divTag.appendChild(b);
+
       b = document.createElement("img");
       b.setAttribute("id", "bigImg" + elementNumber);
       // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
@@ -2441,9 +2449,9 @@ function selectCreateNode(mode) {
       b.setAttribute("onchange", "readImgUrl(this,\"bigImg\"," + elementNumber + ")");
       divTag.appendChild(b);
 
-      lastHeight = (parseInt(lastHeight) + 65);
+      lastHeight = (parseInt(lastHeight) + 45);
       elementNumber++;
-      createNewElementTop = (parseInt(createNewElementTop) + 65);
+      createNewElementTop = (parseInt(createNewElementTop) + 45);
       break;
     case "text":
       b = document.createElement("div");
@@ -2453,6 +2461,14 @@ function selectCreateNode(mode) {
       divTag.appendChild(b);
 
       divTag = document.getElementById("textareaDiv" + elementNumber);
+
+      /*刪除用checkbox*/
+      b = document.createElement("input");
+      b.setAttribute("type", "checkbox");
+      b.setAttribute("class", "deleteCheckBox");
+      b.setAttribute("value", elementNumber);
+      divTag.appendChild(b);
+
       b = document.createElement("textarea");
       b.setAttribute("id", "bigHelperTextarea" + elementNumber);
       b.style.background = "white";
@@ -2470,6 +2486,14 @@ function selectCreateNode(mode) {
       divTag.appendChild(b);
 
       divTag = document.getElementById("imgAndTextDiv" + elementNumber);
+
+      /*刪除用checkbox*/
+      b = document.createElement("input");
+      b.setAttribute("type", "checkbox");
+      b.setAttribute("class", "deleteCheckBox");
+      b.setAttribute("value", elementNumber);
+      divTag.appendChild(b);
+
       b = document.createElement("textarea");
       b.setAttribute("id", "imgAndTextTextarea" + elementNumber);
       b.setAttribute("class", "" + elementNumber);
@@ -2512,6 +2536,75 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 45);
       break;
     case "twoImgAndText":
+      b = document.createElement("div");
+      b.setAttribute("id", "twoImgAndTextDiv" + elementNumber);
+      b.setAttribute("class", "twoImgAndTextDiv");
+      b.setAttribute("style", "top:" + lastHeight + "%;");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("twoImgAndTextDiv" + elementNumber);
+
+      /*刪除用checkbox*/
+      b = document.createElement("input");
+      b.setAttribute("type", "checkbox");
+      b.setAttribute("class", "deleteCheckBox");
+      b.setAttribute("value", elementNumber);
+      divTag.appendChild(b);
+
+      b = document.createElement("textarea");
+      b.setAttribute("id", "twoImgAndTextTextarea" + elementNumber);
+      if(isImgLeft){
+        b.setAttribute("style", "right:5%;");
+      }else{
+        b.setAttribute("style", "left:5%;");
+      }
+      divTag.appendChild(b);
+
+      b = document.createElement("div");
+      b.setAttribute("id", "twoImgAndTextInnerDiv" + elementNumber);
+      b.setAttribute("class", "twoImgAndTextInneDiv");
+      if(isImgLeft){
+        b.setAttribute("style", "left:5%;");
+      }else{
+        b.setAttribute("style", "right:5%;");
+      }
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("twoImgAndTextInnerDiv" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "twoImgAndTextTopImg" + elementNumber);
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "twoImgAndTextTopImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextTopImg\"," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      divTag = document.getElementById("twoImgAndTextInnerDiv" + elementNumber);
+      b = document.createElement("img");
+      b.setAttribute("id", "twoImgAndTextBottomImg" + elementNumber);
+      b.setAttribute("src", "img/noImage.png");
+      divTag.appendChild(b);
+
+      b = document.createElement("br");
+      divTag.appendChild(b);
+
+      b = document.createElement("input");
+      b.setAttribute("id", "twoImgAndTextBottomImg" + elementNumber + "Input");
+      b.setAttribute("type", "file");
+      b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+      b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextBottomImg\"," + elementNumber + ")");
+      divTag.appendChild(b);
+
+      lastHeight = (parseInt(lastHeight) + 65);
+      elementNumber++;
+      createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
     case "smallImgAndText":
       b = document.createElement("div");
@@ -2521,6 +2614,14 @@ function selectCreateNode(mode) {
       divTag.appendChild(b);
 
       divTag = document.getElementById("smallImgAndTextDiv" + elementNumber);
+
+      /*刪除用checkbox*/
+      b = document.createElement("input");
+      b.setAttribute("type", "checkbox");
+      b.setAttribute("class", "deleteCheckBox");
+      b.setAttribute("value", elementNumber);
+      divTag.appendChild(b);
+
       b = document.createElement("textarea");
       b.setAttribute("id", "smallImgAndTextTextarea" + elementNumber);
       b.setAttribute("class", "" + elementNumber);
