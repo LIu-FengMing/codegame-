@@ -110,6 +110,8 @@ $.ajax({
       gameMode:"code"   //blocky
   },  //
   success: function (res) {
+    
+    console.log(res);
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
     helper("blocklyDiv");
