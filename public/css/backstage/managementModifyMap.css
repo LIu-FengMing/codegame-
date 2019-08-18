@@ -257,14 +257,14 @@ body {
 }
 .bigTextareaDiv textarea{
   height: 100%;
-  width: 80%;
+  width: 88%;
   font-size: 1.5vw;
   font-family: Microsoft JhengHei;
   line-height: 2vw;
   text-align: left;
   background-color: transparent;
   position: absolute;
-  left: 10%;
+  left: 6%;
 }
 .bigImgDiv{
   height: 40%;
@@ -287,14 +287,14 @@ body {
 .imgAndTextDiv textarea{
   position: absolute;
   height: 100%;
-  width: 40%;
+  width: 45%;
   background:white;
 }
 .imgAndTextDiv img{
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 40%;
-  max-height: 80%;
+  max-width: 90%;
+  max-height: 60%;
 }
 .smallImgAndTextDiv{
   height: 25%;
@@ -310,7 +310,7 @@ body {
 .smallImgAndTextDiv textarea{
   position: absolute;
   height: 100%;
-  width: 60%;
+  width: 58%;
   background:white;
 }
 .smallImgAndTextDiv img{
@@ -336,7 +336,7 @@ body {
 .twoImgAndTextDiv textarea{
   position: absolute;
   height: 100%;
-  width: 60%;
+  width: 58%;
   background:white;
 }
 .twoImgAndTextDiv img{

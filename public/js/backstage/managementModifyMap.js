@@ -2499,9 +2499,9 @@ function selectCreateNode(mode) {
       b.setAttribute("id", "imgAndTextTextarea" + elementNumber);
       b.setAttribute("class", "" + elementNumber);
       if(isImgLeft){
-        b.setAttribute("style", "right:5%;");
+        b.setAttribute("style", "right:6%;");
       }else{
-        b.setAttribute("style", "left:5%;");
+        b.setAttribute("style", "left:6%;");
       }
       divTag.appendChild(b);
 
@@ -2529,7 +2529,7 @@ function selectCreateNode(mode) {
       b.setAttribute("type", "file");
       b.setAttribute("style", "margin-left:15%;");
       b.setAttribute("accept", "image/gif, image/jpeg, image/png");
-      b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"," + elementNumber + ")");
+      b.setAttribute("onchange", "readImgUrl(this,\"imgAndTextImg\"," + elementNumber + ")");
       divTag.appendChild(b);
 
       lastHeight = (parseInt(lastHeight) + 45);
@@ -2557,9 +2557,9 @@ function selectCreateNode(mode) {
       b = document.createElement("textarea");
       b.setAttribute("id", "twoImgAndTextTextarea" + elementNumber);
       if(isImgLeft){
-        b.setAttribute("style", "right:5%;");
+        b.setAttribute("style", "right:6%;");
       }else{
-        b.setAttribute("style", "left:5%;");
+        b.setAttribute("style", "left:6%;");
       }
       divTag.appendChild(b);
 
@@ -2631,9 +2631,9 @@ function selectCreateNode(mode) {
       b.setAttribute("id", "smallImgAndTextTextarea" + elementNumber);
       b.setAttribute("class", "" + elementNumber);
       if(isImgLeft){
-        b.setAttribute("style", "right:5%;");
+        b.setAttribute("style", "right:6%;");
       }else{
-        b.setAttribute("style", "left:5%;");
+        b.setAttribute("style", "left:6%;");
       }
       divTag.appendChild(b);
 

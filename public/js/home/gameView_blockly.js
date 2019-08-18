@@ -1611,6 +1611,9 @@ directiveData = {
             },
             {
               "value": "scanf"
+            },
+            {
+              "value": "var"
             }
           ]
         }
