@@ -716,15 +716,16 @@ function viewRecord(number) {
         for (var i = 0; i < user.EasyEmpire.codeLevel[number].challengeLog.length; i++) {
           if (user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum >= niceStar) {
             niceStar = user.EasyEmpire.codeLevel[number].challengeLog[i].srarNum;
+            lastRecord = i;
             if (user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum <= niceRecord) {
-              niceRecord = user.EasyEmpire.codeLevel[number].challengeLog[i].instructionNum;
               lastRecord = i;
             }
           }
         }
+        console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
         var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
         codeText = result;
-        codeNum = niceRecord;
+        codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
       } catch (e) {
         codeText = "查無資料";
         codeNum = 0;
