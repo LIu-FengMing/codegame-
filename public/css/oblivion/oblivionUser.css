@@ -8,6 +8,7 @@ html,body {
 }
 body {
   color: black;
+  overflow: auto;
 }
 .wrap {
   height: 100%;

@@ -12,6 +12,7 @@ html,body {
 }
 body {
   color: black;
+  overflow: auto;
 }
 .wrap {
   height: 100%;
@@ -31,7 +32,7 @@ body {
   height: 100%;
   line-height: 90%;
   position: relative;
-  min-width: 1000px;
+  min-width: 1200px;
 }
 .bottomColor{
   width: 100%;
