@@ -15,7 +15,8 @@ var options = {
 	rtl : false,
 	scrollbars : true,
 	sounds : true,
-	oneBasedIndex : true
+	oneBasedIndex : true,
+	enable: false
 };
 var workspace = Blockly.inject('blocklyDiv', options);
 var workspaceBlocks = document.getElementById("workspaceBlocks");
