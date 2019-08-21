@@ -2353,6 +2353,8 @@ function setCreateElementFunc(){
   divTag.appendChild(b);
   b = document.createElement("br");
   divTag.appendChild(b);
+  b = document.createElement("br");
+  divTag.appendChild(b);
   b = document.createElement("input");
   b.setAttribute("type", "checkbox");
   b.setAttribute("id", "imgRight");
@@ -2373,6 +2375,7 @@ function changeCheckBoxStatus(input) {
   input.checked = true;
 }
 /*選擇添加樣式*/
+var helperJson = [];
 function selectCreateNode(mode) {
   var isImgLeft = document.getElementById("imgLeft").checked;
   divTag = document.getElementById("createElementView");
@@ -2398,6 +2401,13 @@ function selectCreateNode(mode) {
   divTag = document.getElementById("helperInnerDiv");
   switch (mode) {
     case "img":
+      helperJson.push({
+        "mode":"img",
+        "id":elementNumber,
+        "height":45,
+        "lastHeight":lastHeight,
+        "imgUrl":"img/noImage.png"
+      });
       b = document.createElement("div");
       b.setAttribute("id", "imgDiv" + elementNumber);
       b.setAttribute("class", "bigImgDiv");
@@ -2417,8 +2427,6 @@ function selectCreateNode(mode) {
 
       b = document.createElement("img");
       b.setAttribute("id", "bigImg" + elementNumber);
-      // b.setAttribute("src", "img/" + mainDescription.oblivionObject[thisLevelNum].img1);
-      // var strText = nowMapData.mainCodeDescription.img1;
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
@@ -2426,14 +2434,8 @@ function selectCreateNode(mode) {
       else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
-      console.log(strText);
-      if (strText != null) {
-        b.setAttribute("src", "img/" + strText);
-      }
-      else {
-        b.style.background = "white";
-        b.setAttribute("src", "img/noImage.png");
-      }
+      b.style.background = "white";
+      b.setAttribute("src", "img/noImage.png");
       divTag.appendChild(b);
       b = document.createElement("br");
       divTag.appendChild(b);
@@ -2451,6 +2453,13 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 45);
       break;
     case "text":
+      helperJson.push({
+        "mode":"text",
+        "id":elementNumber,
+        "height":65,
+        "lastHeight":lastHeight,
+        "textareaValue":""
+      });
       b = document.createElement("div");
       b.setAttribute("id", "textareaDiv" + elementNumber);
       b.setAttribute("class", "bigTextareaDiv");
@@ -2478,6 +2487,15 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
     case "imgAndText":
+      helperJson.push({
+        "mode":"imgAndText",
+        "id":elementNumber,
+        "height":45,
+        "lastHeight":lastHeight,
+        "isImgLeft":isImgLeft,
+        "textareaValue":"",
+        "imgUrl":"img/noImage.png"
+      });
       b = document.createElement("div");
       b.setAttribute("id", "imgAndTextDiv" + elementNumber);
       b.setAttribute("class", "imgAndTextDiv");
@@ -2537,6 +2555,16 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 45);
       break;
     case "twoImgAndText":
+      helperJson.push({
+        "mode":"twoImgAndText",
+        "id":elementNumber,
+        "height":65,
+        "lastHeight":lastHeight,
+        "isImgLeft":isImgLeft,
+        "textareaValue":"",
+        "imgUrl1":"img/noImage.png",
+        "imgUrl2":"img/noImage.png"
+      });
       b = document.createElement("div");
       b.setAttribute("id", "twoImgAndTextDiv" + elementNumber);
       b.setAttribute("class", "twoImgAndTextDiv");
@@ -2610,6 +2638,15 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 65);
       break;
     case "smallImgAndText":
+      helperJson.push({
+        "mode":"smallImgAndText",
+        "id":elementNumber,
+        "height":30,
+        "lastHeight":lastHeight,
+        "isImgLeft":isImgLeft,
+        "textareaValue":"",
+        "imgUrl":"img/noImage.png"
+      });
       b = document.createElement("div");
       b.setAttribute("id", "smallImgAndTextDiv" + elementNumber);
       b.setAttribute("class", "smallImgAndTextDiv");
@@ -2668,10 +2705,9 @@ function selectCreateNode(mode) {
       createNewElementTop = (parseInt(createNewElementTop) + 30);
       break;
   }
-  var obj = document.getElementById("createNewElement");
-  obj.style.top = createNewElementTop + "%";
-  var obj = document.getElementById("deleteNewElement");
-  obj.style.top = createNewElementTop + "%";
+  document.getElementById("createNewElement").style.top = createNewElementTop + "%";
+  document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
+  // console.log(helperJson);
   clossFunc("createElementBkView","createElementView");
 }
 /*刪除欄位函式*/
@@ -2802,7 +2838,8 @@ function saveHelper(modelNumber) {
     postData.img6 = img6;
     postData.img7 = img7;
     postData.img8 = img8;
-
+  }else if(modelNumber == 5){
+    console.log(helperJson);
   }
   // console.log(postData);
   var mapData = allMapData.data;
