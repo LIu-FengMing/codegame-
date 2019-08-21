@@ -2839,7 +2839,22 @@ function saveHelper(modelNumber) {
     postData.img7 = img7;
     postData.img8 = img8;
   }else if(modelNumber == 5){
-    console.log(helperJson);
+    for(var i=0;i<helperJson.length;i++){
+      switch (helperJson[i].mode){
+        case "img":
+          helperJson[i].imgUrl = document.getElementById("bigImg" + helperJson[i].id).src;
+          break;
+        case "text":
+          helperJson[i].textareaValue = strChange(document.getElementById("bigHelperTextarea" + helperJson[i].id).value);
+          break;
+        case "imgAndText":
+          break;
+        case "twoImgAndText":
+          break;
+        case "smallImgAndText":
+          break;
+      }
+    }
   }
   // console.log(postData);
   var mapData = allMapData.data;
