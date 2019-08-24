@@ -2849,13 +2849,48 @@ function deleteElementFunc() {
 }
 /*上移欄位*/
 function elementUp(thisId) {
-  console.log(helperJson);
   for(var i=0;i<helperJson.length;i++){
     if(helperJson[i].id == thisId){
       helperJson[i].lastHeight = parseInt(helperJson[i].lastHeight) - parseInt(helperJson[i-1].height);
-      var heightDifference = Math.abs(parseInt(helperJson[i].height) - parseInt(helperJson[i-1].height));
-      // helperJson[i-1].lastHeight = 
-      console.log(heightDifference);
+      var heightDifference = parseInt(helperJson[i-1].height) - parseInt(helperJson[i].height);
+      helperJson[i-1].lastHeight = parseInt(helperJson[i-1].lastHeight) + parseInt(helperJson[i].height);
+      var elementId;
+      switch (helperJson[i].mode) {
+        case "img":
+          elementId = "imgDiv" + helperJson[i].id;
+          break;
+        case "text":
+          elementId = "textareaDiv" + helperJson[i].id;
+          break;
+        case "imgAndText":
+          elementId = "imgAndTextDiv" + helperJson[i].id;
+          break;
+        case "twoImgAndText":
+          elementId = "twoImgAndTextDiv" + helperJson[i].id;
+          break;
+        case "smallImgAndText":
+          elementId = "smallImgAndTextDiv" + helperJson[i].id;
+          break;
+      }
+      document.getElementById(elementId).style.cssText = "top:" + helperJson[i].lastHeight + "%;";
+      switch (helperJson[i-1].mode) {
+        case "img":
+          elementId = "imgDiv" + helperJson[i-1].id;
+          break;
+        case "text":
+          elementId = "textareaDiv" + helperJson[i-1].id;
+          break;
+        case "imgAndText":
+          elementId = "imgAndTextDiv" + helperJson[i-1].id;
+          break;
+        case "twoImgAndText":
+          elementId = "twoImgAndTextDiv" + helperJson[i-1].id;
+          break;
+        case "smallImgAndText":
+          elementId = "smallImgAndTextDiv" + helperJson[i-1].id;
+          break;
+      }
+      document.getElementById(elementId).style.cssText = "top:" + helperJson[i-1].lastHeight + "%;";;
       tempJson = helperJson[i-1];
       helperJson[i-1] = helperJson[i];
       helperJson[i] = tempJson;
@@ -2864,8 +2899,55 @@ function elementUp(thisId) {
   }
 }
 /*下移欄位*/
-function elementDown() {
-
+function elementDown(thisId) {
+  for(var i=0;i<helperJson.length;i++){
+    if(helperJson[i].id == thisId){
+      helperJson[i+1].lastHeight = parseInt(helperJson[i+1].lastHeight) - parseInt(helperJson[i].height);
+      var heightDifference = parseInt(helperJson[i].height) - parseInt(helperJson[i+1].height);
+      helperJson[i].lastHeight = parseInt(helperJson[i].lastHeight) + parseInt(helperJson[i+1].height);
+      var elementId;
+      switch (helperJson[i+1].mode) {
+        case "img":
+          elementId = "imgDiv" + helperJson[i+1].id;
+          break;
+        case "text":
+          elementId = "textareaDiv" + helperJson[i+1].id;
+          break;
+        case "imgAndText":
+          elementId = "imgAndTextDiv" + helperJson[i+1].id;
+          break;
+        case "twoImgAndText":
+          elementId = "twoImgAndTextDiv" + helperJson[i+1].id;
+          break;
+        case "smallImgAndText":
+          elementId = "smallImgAndTextDiv" + helperJson[i+1].id;
+          break;
+      }
+      document.getElementById(elementId).style.cssText = "top:" + helperJson[i+1].lastHeight + "%;";
+      switch (helperJson[i].mode) {
+        case "img":
+          elementId = "imgDiv" + helperJson[i].id;
+          break;
+        case "text":
+          elementId = "textareaDiv" + helperJson[i].id;
+          break;
+        case "imgAndText":
+          elementId = "imgAndTextDiv" + helperJson[i].id;
+          break;
+        case "twoImgAndText":
+          elementId = "twoImgAndTextDiv" + helperJson[i].id;
+          break;
+        case "smallImgAndText":
+          elementId = "smallImgAndTextDiv" + helperJson[i].id;
+          break;
+      }
+      document.getElementById(elementId).style.cssText = "top:" + helperJson[i].lastHeight + "%;";;
+      tempJson = helperJson[i];
+      helperJson[i] = helperJson[i+1];
+      helperJson[i+1] = tempJson;
+      break;
+    }
+  }
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
