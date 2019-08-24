@@ -694,3 +694,26 @@ body {
   height: 40px;
   margin-top: 0px;
 }
+@media(max-aspect-ratio:17/10){
+  #settingAllView{
+    z-index: 4;
+    height: 27%;
+    width: 38%;
+    position: absolute;
+    top: 35%;
+    left: 31%;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    overflow: auto;
+  }
+  .centerLost{
+    background-color: #AEC9EF;
+    width: 80%;
+    height: 100%;
+    line-height: 90%;
+    position: relative;
+    min-width: 1000px;
+  }
+}

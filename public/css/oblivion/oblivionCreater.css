@@ -32,7 +32,7 @@ body {
   height: 100%;
   line-height: 90%;
   position: relative;
-  min-width: 1200px;
+  min-width: 1000px;
 }
 .box {
   display: table-cell;
@@ -827,4 +827,79 @@ body {
   position: absolute;
   top: 0px;
   background-color: rgba(149, 149, 149, 1);
+}
+@media(max-aspect-ratio:17/10){
+  #settingAllView{
+    z-index: 4;
+    height: 27%;
+    width: 38%;
+    position: absolute;
+    top: 35%;
+    left: 31%;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    overflow: auto;
+  }
+  .centerLost{
+    background-color: #AEC9EF;
+    width: 80%;
+    height: 100%;
+    line-height: 90%;
+    position: relative;
+    min-width: 1000px;
+  }
+  #td01{width: 15%; font-size: 20px}
+  #td02{width: 5%; font-size: 20px}
+  #td03{width: 15%; font-size: 20px}
+  #lostTitleTable input[type="button"]{
+    height: calc(15px + 2vh);
+    width: 110px;
+    font-size: calc(7px + 1.5vh);
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  #titleBar select{
+    font-size: calc(8px + 1.5vh);
+    width: 12vw;
+  }
+  #divcanvas{
+    height: 55vh;
+    width: 55vh;
+    border-style:solid;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: -30vh;
+    min-width: 410px;
+  }
+  #tabsC{
+    padding:0px;
+    margin:0px;
+    width:84%;
+    height: 72%;
+    background-color: #B8B8B8;
+    margin-top: 8%;
+    border-left: white 2px solid;
+    border-right: white 2px solid;
+    border-bottom: white 2px solid;
+  }
+  #tabsF{
+    float:left;
+    width:89%;
+    margin:0;
+    padding:0;
+    font-size:13px;
+    line-height:normal;
+    border-left: white 0px solid;
+    border-right: white 0px solid;
+    border-bottom: white 0px solid ;
+    margin-left: -10px;
+  }
 }

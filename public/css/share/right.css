@@ -124,7 +124,7 @@
   text-align:center;
   text-align:justify;
   text-justify:distribute-all-lines;
-  text-align-last:justify
+  text-align-last:left
 }
 #changePasswordBtn{
   height: 6vh;
@@ -207,4 +207,18 @@
   bottom: 3%;
   right: 10%;
   cursor: pointer;
+}
+@media (max-aspect-ratio:17/10){
+  #userDataView{
+    z-index: 4;
+    height: 58%;
+    width: 43%;
+    position: absolute;
+    top: 21%;
+    left: 28%;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+  }
 }

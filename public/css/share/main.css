@@ -21,11 +21,7 @@ body {
   min-height: 600px;
   overflow: auto;
 }
-@@media screen and (max-width:1279px) {
-  .main {
-    height: 80%;
-  }
-}
+
 .center{
   width: 80%;
   height: 90%;

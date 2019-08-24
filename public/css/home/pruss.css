@@ -152,7 +152,7 @@
 #btn23,#img23{left: 91%;bottom: 83.7%;}
 #levelDiv{
   z-index: 3;
-  width: 52vh;
+  width: 51vh;
   height: 40vh;
   font-size: 2.5vh;
   font-weight:bold;
@@ -369,4 +369,42 @@
 }
 #instructionFont{
   font-size: calc(5px + 1vw);
+}
+@media (max-aspect-ratio:17/10){
+  #centerBlocklyView{
+    z-index: 4;
+    height: 65%;
+    width: 40%;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    background-color: #FFF2CC;
+    box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
+    overflow: auto;
+  }
+  #levelDescription{   /*關卡簡介視窗的關卡名稱 */
+    margin-top: 20px;
+    padding-left: 5%;
+    height: 5vh;
+    color: #7C5A43;
+    letter-spacing: 1vw;
+    font-size: calc(10px + 2vw);
+    font-weight: 900;
+    font-family: 'DFPingJuStd-W7';
+    border-style: solid;
+    border-color: #7C5A43;
+    border-width: 0px 0px 2px 0px;
+  }
+  #levelDescriptiontextarea{  /*關卡簡介視窗的關卡簡介區*/
+    height: 10vh;
+    width: 25vw;
+    font-size: 1.4vw;
+    font-family:Microsoft JhengHei;
+    text-align: center;
+    background: none;
+    border: none;
+    margin-top: -1vh;
+    line-height: 24px;
+    overflow: auto;
+  }
 }

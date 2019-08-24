@@ -127,3 +127,29 @@
   background-color: transparent;
   margin-right: 5px;
 }
+@media (max-aspect-ratio:17/10){
+  .castle_blockly{
+    width: 25%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 33%;
+    left: 10%;
+  }
+  .castle_code{
+    width: 25%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 5%;
+    left: 38%;
+  }
+  .castle_link{
+    width: 25%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 33%;
+    right: 10%;
+  }
+}

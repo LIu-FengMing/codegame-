@@ -208,10 +208,10 @@ function logout() {
 var myVid;
 var divID, divID2, divTag, b;
 var userdataFont, thisLevelNum;
-var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
+var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
   "使用者名稱：",
-  "主&nbsp要&nbsp進&nbsp&nbsp度：",
-  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
+  "主&nbsp要&nbsp進&nbsp度：",
+  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
   "已獲得星星數："];
 //創造使用者資訊外框函式

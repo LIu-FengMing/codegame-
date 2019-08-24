@@ -511,7 +511,7 @@
 }
 #settingAllTable font{
   font-size: 25px;
-  line-height: 0px;　
+  line-height: 0px;
   margin-top: -5px;
 }
 .musicVolumeInnerDivDefault{
@@ -570,4 +570,95 @@
 #musicVolumeInnerDiv9{
   height: 40px;
   margin-top: 0px;
+}
+@media (max-aspect-ratio:17/10){
+  #equipageView{
+    z-index: 4;
+    height: 46vh;
+    width: 35vw;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-top: -25vh;
+    margin-left: -13.5vw;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+  }
+  #equipageInnerDiv{
+    height: 74%;
+    width: 100%;
+    font-family: Microsoft JhengHei;
+    position: absolute;
+    top: calc(5vh + 22px);
+    background-color: rgba(0, 0, 0, 0);
+    overflow: auto;
+  }
+  #instructionView{
+    z-index: 4;
+    height: 55vh;
+    width: 44vw;
+    font-family: Microsoft JhengHei;
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    margin-top: -30vh;
+    margin-left: -20vw;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    overflow: auto;
+  }
+  .summaryInner{
+    font-size: calc(10px + 1vw);
+    line-height: 5vh;
+    outline:none;
+    cursor: pointer;
+  }
+  .itemP{
+    width: 90%;
+    resize: none;
+    background: none;
+    border:none;
+    outline: none;
+    margin-top: 0vh;
+    font-family: Microsoft JhengHei;
+    font-size: calc(4px + 1vw);
+    line-height: calc(6px + 2vh);
+    margin-left: 5%;
+  }
+  #achievementView{
+    z-index: 4;
+    height: 50%;
+    width: 46%;
+    position: absolute;
+    top: 25%;
+    left: 27%;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    overflow: auto;
+  }
+  #actionFont0,#actionFont2,#actionFont4,#actionFont6,#actionFont8{
+    font-size: 26px;
+    height: 20px;
+    margin-top: 1.5vh;
+    margin-bottom: 5px;
+  }
+  #settingAllView{
+    z-index: 4;
+    height: 27%;
+    width: 38%;
+    position: absolute;
+    top: 35%;
+    left: 31%;
+    background-color: #FFC777;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    overflow: auto;
+  }
 }
