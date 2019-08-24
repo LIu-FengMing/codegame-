@@ -249,6 +249,23 @@ body {
   left: 1%;
   cursor: pointer;
 }
+.elementUp{
+  height: 2.5vh;
+  width: 2.5vh;
+  font-size: 2vh;
+  position: absolute;
+  right: 1%;
+  cursor: pointer;
+}
+.elementDown{
+  height: 2.5vh;
+  width: 2.5vh;
+  font-size: 2vh;
+  position: absolute;
+  right: 1%;
+  top: 2.7vh;
+  cursor: pointer;
+}
 .bigTextareaDiv{
   height: 60%;
   width: 100%;
@@ -276,7 +293,7 @@ body {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 55%;
 }
 .imgAndTextDiv{
   height: 40%;

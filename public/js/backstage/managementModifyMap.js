@@ -2406,7 +2406,10 @@ function selectCreateNode(mode) {
         "id":elementNumber,
         "height":45,
         "lastHeight":lastHeight,
-        "imgUrl":"img/noImage.png"
+        "isImgLeft":"",
+        "textareaValue":"",
+        "imgUrl1":"img/noImage.png",
+        "imgUrl2":""
       });
       b = document.createElement("div");
       b.setAttribute("id", "imgDiv" + elementNumber);
@@ -2423,6 +2426,22 @@ function selectCreateNode(mode) {
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
       b.setAttribute("name", "imgDiv");
+      divTag.appendChild(b);
+
+      /*上移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementUp" + elementNumber);
+      b.setAttribute("class", "elementUp");
+      b.setAttribute("value", "△");
+      divTag.appendChild(b);
+
+      /*下移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementDown" + elementNumber);
+      b.setAttribute("class", "elementDown");
+      b.setAttribute("value", "▽");
       divTag.appendChild(b);
 
       b = document.createElement("img");
@@ -2458,7 +2477,10 @@ function selectCreateNode(mode) {
         "id":elementNumber,
         "height":65,
         "lastHeight":lastHeight,
-        "textareaValue":""
+        "isImgLeft":"",
+        "textareaValue":"",
+        "imgUrl1":"",
+        "imgUrl2":""
       });
       b = document.createElement("div");
       b.setAttribute("id", "textareaDiv" + elementNumber);
@@ -2494,7 +2516,8 @@ function selectCreateNode(mode) {
         "lastHeight":lastHeight,
         "isImgLeft":isImgLeft,
         "textareaValue":"",
-        "imgUrl":"img/noImage.png"
+        "imgUrl1":"img/noImage.png",
+        "imgUrl2":""
       });
       b = document.createElement("div");
       b.setAttribute("id", "imgAndTextDiv" + elementNumber);
@@ -2645,7 +2668,8 @@ function selectCreateNode(mode) {
         "lastHeight":lastHeight,
         "isImgLeft":isImgLeft,
         "textareaValue":"",
-        "imgUrl":"img/noImage.png"
+        "imgUrl1":"img/noImage.png",
+        "imgUrl2":""
       });
       b = document.createElement("div");
       b.setAttribute("id", "smallImgAndTextDiv" + elementNumber);
@@ -2724,14 +2748,17 @@ function deleteElementFunc() {
       idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
       thisCssText = idObject.style.cssText;
       idObject.parentNode.removeChild(idObject);
+      for(var j=0;j<helperJson.length;j++){
+        if(helperJson[j].id == i){
+          helperJson.splice(j,1);
+        }
+      }
       for(var j=i+1;j<checkboxLength;j++){
         checkboxDom = document.getElementById("deleteCheckBox" + j);
         idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
         nestCssText = idObject.style.cssText;
-        console.log(idObject.style.cssText);
         idObject.style.cssText = thisCssText;
         thisCssText = nestCssText;
-        console.log(idObject.style.cssText);
       }
     }
   }
