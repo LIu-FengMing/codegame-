@@ -2376,6 +2376,16 @@ function changeCheckBoxStatus(input) {
 }
 /*選擇添加樣式*/
 var helperJson = [];
+var tempJson = {
+  "mode":"",
+  "id":"",
+  "height":"",
+  "lastHeight":"",
+  "isImgLeft":"",
+  "textareaValue":"",
+  "imgUrl1":"",
+  "imgUrl2":""
+};
 function selectCreateNode(mode) {
   var isImgLeft = document.getElementById("imgLeft").checked;
   divTag = document.getElementById("createElementView");
@@ -2434,6 +2444,7 @@ function selectCreateNode(mode) {
       b.setAttribute("id", "elementUp" + elementNumber);
       b.setAttribute("class", "elementUp");
       b.setAttribute("value", "△");
+      b.setAttribute("onclick", "elementUp(" + elementNumber + ")");
       divTag.appendChild(b);
 
       /*下移*/
@@ -2442,6 +2453,7 @@ function selectCreateNode(mode) {
       b.setAttribute("id", "elementDown" + elementNumber);
       b.setAttribute("class", "elementDown");
       b.setAttribute("value", "▽");
+      b.setAttribute("onclick", "elementDown(" + elementNumber + ")");
       divTag.appendChild(b);
 
       b = document.createElement("img");
@@ -2499,6 +2511,24 @@ function selectCreateNode(mode) {
       b.setAttribute("name", "textareaDiv");
       divTag.appendChild(b);
 
+      /*上移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementUp" + elementNumber);
+      b.setAttribute("class", "elementUp");
+      b.setAttribute("value", "△");
+      b.setAttribute("onclick", "elementUp(" + elementNumber + ")");
+      divTag.appendChild(b);
+
+      /*下移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementDown" + elementNumber);
+      b.setAttribute("class", "elementDown");
+      b.setAttribute("value", "▽");
+      b.setAttribute("onclick", "elementDown(" + elementNumber + ")");
+      divTag.appendChild(b);
+
       b = document.createElement("textarea");
       b.setAttribute("id", "bigHelperTextarea" + elementNumber);
       b.style.background = "white";
@@ -2534,6 +2564,24 @@ function selectCreateNode(mode) {
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
       b.setAttribute("name", "imgAndTextDiv");
+      divTag.appendChild(b);
+
+      /*上移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementUp" + elementNumber);
+      b.setAttribute("class", "elementUp");
+      b.setAttribute("value", "△");
+      b.setAttribute("onclick", "elementUp(" + elementNumber + ")");
+      divTag.appendChild(b);
+
+      /*下移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementDown" + elementNumber);
+      b.setAttribute("class", "elementDown");
+      b.setAttribute("value", "▽");
+      b.setAttribute("onclick", "elementDown(" + elementNumber + ")");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2603,6 +2651,24 @@ function selectCreateNode(mode) {
       b.setAttribute("class", "deleteCheckBox");
       b.setAttribute("value", elementNumber);
       b.setAttribute("name", "twoImgAndTextDiv");
+      divTag.appendChild(b);
+
+      /*上移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementUp" + elementNumber);
+      b.setAttribute("class", "elementUp");
+      b.setAttribute("value", "△");
+      b.setAttribute("onclick", "elementUp(" + elementNumber + ")");
+      divTag.appendChild(b);
+
+      /*下移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementDown" + elementNumber);
+      b.setAttribute("class", "elementDown");
+      b.setAttribute("value", "▽");
+      b.setAttribute("onclick", "elementDown(" + elementNumber + ")");
       divTag.appendChild(b);
 
       b = document.createElement("textarea");
@@ -2688,6 +2754,24 @@ function selectCreateNode(mode) {
       b.setAttribute("name", "smallImgAndTextDiv");
       divTag.appendChild(b);
 
+      /*上移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementUp" + elementNumber);
+      b.setAttribute("class", "elementUp");
+      b.setAttribute("value", "△");
+      b.setAttribute("onclick", "elementUp(" + elementNumber + ")");
+      divTag.appendChild(b);
+
+      /*下移*/
+      b = document.createElement("input");
+      b.setAttribute("type", "button");
+      b.setAttribute("id", "elementDown" + elementNumber);
+      b.setAttribute("class", "elementDown");
+      b.setAttribute("value", "▽");
+      b.setAttribute("onclick", "elementDown(" + elementNumber + ")");
+      divTag.appendChild(b);
+
       b = document.createElement("textarea");
       b.setAttribute("id", "smallImgAndTextTextarea" + elementNumber);
       b.setAttribute("class", "" + elementNumber);
@@ -2762,6 +2846,26 @@ function deleteElementFunc() {
       }
     }
   }
+}
+/*上移欄位*/
+function elementUp(thisId) {
+  console.log(helperJson);
+  for(var i=0;i<helperJson.length;i++){
+    if(helperJson[i].id == thisId){
+      helperJson[i].lastHeight = parseInt(helperJson[i].lastHeight) - parseInt(helperJson[i-1].height);
+      var heightDifference = Math.abs(parseInt(helperJson[i].height) - parseInt(helperJson[i-1].height));
+      // helperJson[i-1].lastHeight = 
+      console.log(heightDifference);
+      tempJson = helperJson[i-1];
+      helperJson[i-1] = helperJson[i];
+      helperJson[i] = tempJson;
+      break;
+    }
+  }
+}
+/*下移欄位*/
+function elementDown() {
+
 }
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
