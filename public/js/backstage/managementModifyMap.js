@@ -870,7 +870,7 @@ function helper() {
       }
       break;
     case 4:
-      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(3)");
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(4)");
       b = document.createElement("textarea");
       b.setAttribute("id", "helperTextarea1");
       b.style.background = "white";
@@ -1288,6 +1288,7 @@ function helper() {
       }
       break;
     case 5:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(5)");
       /*新增按鈕*/
       b = document.createElement("input");
       b.setAttribute("type", "button");
@@ -1302,6 +1303,359 @@ function helper() {
       b.setAttribute("value", "刪除");
       b.setAttribute("onclick", "deleteElementFunc()");
       divTag.appendChild(b);
+
+      for(var i=0;i<helperJson.length;i++){
+        divTag = document.getElementById("helperInnerDiv");
+        var helperId = helperJson[i].id;
+        lastHeight = helperJson[i].lastHeight;
+        switch (helperJson[i].mode) {
+          case "img":
+            b = document.createElement("div");
+            b.setAttribute("id", "imgDiv" + helperId);
+            b.setAttribute("class", "bigImgDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "imgDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("img");
+            b.setAttribute("id", "bigImg" + helperId);
+            var strText = "";
+            if (helperMod != "blocky") {
+              strText = nowMapData.mainCodeDescription.img1;
+            }
+            else {
+              strText = nowMapData.mainBlockyDescription.img1;
+            }
+            b.style.background = "white";
+            b.setAttribute("src", helperJson[i].imgUrl1);
+            divTag.appendChild(b);
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "bigImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("style", "margin-left:15%;");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"bigImg\"," + helperId + ")");
+            divTag.appendChild(b);
+            createNewElementTop = (parseInt(createNewElementTop) + 45);
+            break;
+          case "text":
+            b = document.createElement("div");
+            b.setAttribute("id", "textareaDiv" + helperId);
+            b.setAttribute("class", "bigTextareaDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("textareaDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "textareaDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "bigHelperTextarea" + helperId);
+            b.innerHTML = helperJson[i].textareaValue;
+            b.style.background = "white";
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 65);
+            break;
+          case "imgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "imgAndTextDiv" + helperId);
+            b.setAttribute("class", "imgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "imgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "imgAndTextTextarea" + helperId);
+            b.innerHTML = helperJson[i].textareaValue;
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "imgDivInner" + helperId);
+            if(isImgLeft){
+              b.setAttribute("style", "width:40%;height:100%;position: absolute;left:5%;");
+            }else{
+              b.setAttribute("style", "width:40%;height:100%;position: absolute;right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgDivInner" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "imgAndTextImg" + helperId);
+            b.setAttribute("class", "helperImg");
+            b.setAttribute("src", helperJson[i].imgUrl1);
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "imgAndTextImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("style", "margin-left:15%;");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"imgAndTextImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 45);
+            break;
+          case "twoImgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "twoImgAndTextDiv" + helperId);
+            b.setAttribute("class", "twoImgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "twoImgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
+            b.innerHTML = helperJson[i].textareaValue;
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "twoImgAndTextInnerDiv" + helperId);
+            b.setAttribute("class", "twoImgAndTextInneDiv");
+            if(isImgLeft){
+              b.setAttribute("style", "left:5%;");
+            }else{
+              b.setAttribute("style", "right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "twoImgAndTextTopImg" + helperId);
+            b.setAttribute("src", helperJson[i].imgUrl1);
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "twoImgAndTextTopImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextTopImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "twoImgAndTextBottomImg" + helperId);
+            b.setAttribute("src", helperJson[i].imgUrl2);
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "twoImgAndTextBottomImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextBottomImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 65);
+            break;
+          case "smallImgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "smallImgAndTextDiv" + helperId);
+            b.setAttribute("class", "smallImgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("smallImgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "smallImgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
+            b.innerHTML = helperJson[i].textareaValue;
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "smallImgAndTextInnerDiv" + helperId);
+            b.setAttribute("class", "smallImgAndTextInneDiv");
+            if(isImgLeft){
+              b.setAttribute("style", "left:5%;");
+            }else{
+              b.setAttribute("style", "right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("smallImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "smallImgAndTextImg" + helperId);
+            b.setAttribute("src", helperJson[i].imgUrl1);
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "smallImgAndTextImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 30);
+            break;
+        }
+        document.getElementById("createNewElement").style.top = createNewElementTop + "%";
+        document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
+      }
       break;
   }
 }
@@ -2276,6 +2630,7 @@ function changeMethod(methodNumber) {
       }
       break;
     case 5:
+      document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(5)");
       /*新增按鈕*/
       b = document.createElement("input");
       b.setAttribute("type", "button");
@@ -2290,6 +2645,357 @@ function changeMethod(methodNumber) {
       b.setAttribute("value", "刪除");
       b.setAttribute("onclick", "deleteElementFunc()");
       divTag.appendChild(b);
+
+      for(var i=0;i<helperJson.length;i++){
+        divTag = document.getElementById("helperInnerDiv");
+        var helperId = helperJson[i].id;
+        lastHeight = helperJson[i].lastHeight;
+        switch (helperJson[i].mode) {
+          case "img":
+            b = document.createElement("div");
+            b.setAttribute("id", "imgDiv" + helperId);
+            b.setAttribute("class", "bigImgDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "imgDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("img");
+            b.setAttribute("id", "bigImg" + helperId);
+            var strText = "";
+            if (helperMod != "blocky") {
+              strText = nowMapData.mainCodeDescription.img1;
+            }
+            else {
+              strText = nowMapData.mainBlockyDescription.img1;
+            }
+            b.style.background = "white";
+            b.setAttribute("src", "img/noImage.png");
+            divTag.appendChild(b);
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "bigImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("style", "margin-left:15%;");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"bigImg\"," + helperId + ")");
+            divTag.appendChild(b);
+            createNewElementTop = (parseInt(createNewElementTop) + 45);
+            break;
+          case "text":
+            b = document.createElement("div");
+            b.setAttribute("id", "textareaDiv" + helperId);
+            b.setAttribute("class", "bigTextareaDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("textareaDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "textareaDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "bigHelperTextarea" + helperId);
+            b.style.background = "white";
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 65);
+            break;
+          case "imgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "imgAndTextDiv" + helperId);
+            b.setAttribute("class", "imgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "imgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "imgAndTextTextarea" + helperId);
+            b.setAttribute("class", "" + helperId);
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "imgDivInner" + helperId);
+            if(isImgLeft){
+              b.setAttribute("style", "width:40%;height:100%;position: absolute;left:5%;");
+            }else{
+              b.setAttribute("style", "width:40%;height:100%;position: absolute;right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("imgDivInner" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "imgAndTextImg" + helperId);
+            b.setAttribute("class", "helperImg");
+            b.setAttribute("src", "img/noImage.png");
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "imgAndTextImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("style", "margin-left:15%;");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"imgAndTextImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 45);
+            break;
+          case "twoImgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "twoImgAndTextDiv" + helperId);
+            b.setAttribute("class", "twoImgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "twoImgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "twoImgAndTextInnerDiv" + helperId);
+            b.setAttribute("class", "twoImgAndTextInneDiv");
+            if(isImgLeft){
+              b.setAttribute("style", "left:5%;");
+            }else{
+              b.setAttribute("style", "right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "twoImgAndTextTopImg" + helperId);
+            b.setAttribute("src", "img/noImage.png");
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "twoImgAndTextTopImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextTopImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "twoImgAndTextBottomImg" + helperId);
+            b.setAttribute("src", "img/noImage.png");
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "twoImgAndTextBottomImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"twoImgAndTextBottomImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 65);
+            break;
+          case "smallImgAndText":
+            b = document.createElement("div");
+            b.setAttribute("id", "smallImgAndTextDiv" + helperId);
+            b.setAttribute("class", "smallImgAndTextDiv");
+            b.setAttribute("style", "top:" + lastHeight + "%;");
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("smallImgAndTextDiv" + helperId);
+
+            /*刪除用checkbox*/
+            b = document.createElement("input");
+            b.setAttribute("type", "checkbox");
+            b.setAttribute("id", "deleteCheckBox" + helperId);
+            b.setAttribute("class", "deleteCheckBox");
+            b.setAttribute("value", helperId);
+            b.setAttribute("name", "smallImgAndTextDiv");
+            divTag.appendChild(b);
+
+            /*上移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementUp" + helperId);
+            b.setAttribute("class", "elementUp");
+            b.setAttribute("value", "△");
+            b.setAttribute("onclick", "elementUp(" + helperId + ")");
+            divTag.appendChild(b);
+
+            /*下移*/
+            b = document.createElement("input");
+            b.setAttribute("type", "button");
+            b.setAttribute("id", "elementDown" + helperId);
+            b.setAttribute("class", "elementDown");
+            b.setAttribute("value", "▽");
+            b.setAttribute("onclick", "elementDown(" + helperId + ")");
+            divTag.appendChild(b);
+
+            b = document.createElement("textarea");
+            b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
+            b.setAttribute("class", "" + helperId);
+            if(isImgLeft){
+              b.setAttribute("style", "right:6%;");
+            }else{
+              b.setAttribute("style", "left:6%;");
+            }
+            divTag.appendChild(b);
+
+            b = document.createElement("div");
+            b.setAttribute("id", "smallImgAndTextInnerDiv" + helperId);
+            b.setAttribute("class", "smallImgAndTextInneDiv");
+            if(isImgLeft){
+              b.setAttribute("style", "left:5%;");
+            }else{
+              b.setAttribute("style", "right:5%;");
+            }
+            divTag.appendChild(b);
+
+            divTag = document.getElementById("smallImgAndTextInnerDiv" + helperId);
+            b = document.createElement("img");
+            b.setAttribute("id", "smallImgAndTextImg" + helperId);
+            b.setAttribute("src", "img/noImage.png");
+            divTag.appendChild(b);
+
+            b = document.createElement("br");
+            divTag.appendChild(b);
+
+            b = document.createElement("input");
+            b.setAttribute("id", "smallImgAndTextImg" + helperId + "Input");
+            b.setAttribute("type", "file");
+            b.setAttribute("accept", "image/gif, image/jpeg, image/png");
+            b.setAttribute("onchange", "readImgUrl(this,\"helperImg\"," + helperId + ")");
+            divTag.appendChild(b);
+
+            createNewElementTop = (parseInt(createNewElementTop) + 30);
+            break;
+        }
+        document.getElementById("createNewElement").style.top = createNewElementTop + "%";
+        document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
+      }
       break;
   }
 }
@@ -2826,9 +3532,13 @@ function deleteElementFunc() {
     if(elements[items].type == "checkbox") checkboxLength++
   }
   var checkboxDom,idObject,thisCssText,nestCssText;
+  console.log(createNewElementTop);
   for(var i=0;i<checkboxLength;i++){
     checkboxDom = document.getElementById("deleteCheckBox" + i);
     if(checkboxDom.checked){
+      createNewElementTop -= helperJson[i].height;
+      lastHeight -= helperJson[i].height;
+      console.log(createNewElementTop);
       idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
       thisCssText = idObject.style.cssText;
       idObject.parentNode.removeChild(idObject);
@@ -2846,6 +3556,8 @@ function deleteElementFunc() {
       }
     }
   }
+  document.getElementById("createNewElement").style.top = createNewElementTop + "%";
+  document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
 }
 /*上移欄位*/
 function elementUp(thisId) {
@@ -3055,20 +3767,28 @@ function saveHelper(modelNumber) {
     for(var i=0;i<helperJson.length;i++){
       switch (helperJson[i].mode){
         case "img":
-          helperJson[i].imgUrl = document.getElementById("bigImg" + helperJson[i].id).src;
+          helperJson[i].imgUrl1 = document.getElementById("bigImg" + helperJson[i].id).src;
           break;
         case "text":
           helperJson[i].textareaValue = strChange(document.getElementById("bigHelperTextarea" + helperJson[i].id).value);
           break;
         case "imgAndText":
+          helperJson[i].imgUrl1 = document.getElementById("imgAndTextImg" + helperJson[i].id).src;
+          helperJson[i].textareaValue = strChange(document.getElementById("imgAndTextTextarea" + helperJson[i].id).value);
           break;
         case "twoImgAndText":
+          helperJson[i].imgUrl1 = document.getElementById("twoImgAndTextTopImg" + helperJson[i].id).src;
+          helperJson[i].imgUrl2 = document.getElementById("twoImgAndTextBottomImg" + helperJson[i].id).src;
+          helperJson[i].textareaValue = strChange(document.getElementById("twoImgAndTextTextarea" + helperJson[i].id).value);
           break;
         case "smallImgAndText":
+          helperJson[i].imgUrl1 = document.getElementById("smallImgAndTextImg" + helperJson[i].id).src;
+          helperJson[i].textareaValue = strChange(document.getElementById("smallImgAndTextTextarea" + helperJson[i].id).value);
           break;
       }
     }
   }
+  console.log(helperJson);
   // console.log(postData);
   var mapData = allMapData.data;
   for (let index = mapData.length - 1; index > -1; index--) {
