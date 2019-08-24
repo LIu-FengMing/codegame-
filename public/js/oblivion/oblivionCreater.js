@@ -69,9 +69,10 @@ $.ajax({
     success: function (res) {
       // console.log(res);
       user = res;
+      initHome();
       /*loadmusicData();*/
       // console.log(user);
-      
+
   }
 })
 
