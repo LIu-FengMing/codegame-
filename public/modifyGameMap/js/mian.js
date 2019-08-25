@@ -657,13 +657,13 @@ function updateCanvas() {
 function mouseClicked() {
     var MouseXX = Math.floor(mouseX / edgeToEdge);
     var MouseYY = Math.floor(mouseY / edgeToEdge);
-    if(MouseXX>=0&& MouseYY>=0){
-        if(MouseXX<mapSize&& MouseYY<mapSize){
+    if (MouseXX >= 0 && MouseYY >= 0) {
+        if (MouseXX < mapSize && MouseYY < mapSize) {
             // console.log("地圖內");
             mycanvasMouseClicked();
         }
     }
-  }
+}
 
 function mycanvasMouseClicked() {
     MouseX = Math.floor(mouseX / edgeToEdge);
@@ -754,97 +754,108 @@ function del() {
 
 }
 function input() {
-    changeFile = true;
+    if (nowEditOId < 0) {
 
-    // console.log("ok");
-    size = document.getElementById('mapSize');
-    selobj = document.getElementById('objectSelect');
-    pos = document.getElementById('college-pos');
 
-    var index = selobj.selectedIndex;
-    // console.log(index);
-    nowEditOId = -1;
-    var obj = collegeObj[index];
-    // console.log(obj);
-    changeObjectAttributes(obj);
-    if (obj == "people") {
-        var rotate = pos.selectedIndex;
-        var obj = {
-            "type": "car", "postion": [MouseX, MouseY, rotate],
-            "hp": 5,
-            "armor": 20,
-            "atk": 2
-        };
-        data['people_init'] = obj;
 
-    }
-    else if (obj == "enemyTank") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "enemyTank", "postion": [MouseX, MouseY, rotate], "hp": 5, "atk": 5 };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
+        changeFile = true;
 
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "endline") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate % 2] };
-        data['end_init'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        // console.log("ok");
+        size = document.getElementById('mapSize');
+        selobj = document.getElementById('objectSelect');
+        pos = document.getElementById('college-pos');
 
-    }
-    else if (obj == "arrow") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "arrow", "postion": [MouseX, MouseY, rotate] };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        var index = selobj.selectedIndex;
+        // console.log(index);
+        nowEditOId = -1;
+        var obj = collegeObj[index];
+        // console.log(obj);
+        changeObjectAttributes(obj);
+        if (obj == "people") {
+            var rotate = pos.selectedIndex;
+            var obj = {
+                "type": "car", "postion": [MouseX, MouseY, rotate],
+                "hp": 5,
+                "armor": 20,
+                "atk": 2
+            };
+            data['people_init'] = obj;
 
-    }
-    else if (obj == "lock") {
-        var obj = { "type": "lock", "unlock": "lock_arrow", "postion": [MouseX, MouseY] };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
+        }
+        else if (obj == "enemyTank") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "enemyTank", "postion": [MouseX, MouseY, rotate], "hp": 5, "atk": 5 };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
 
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "lock2") {
-        var obj = { "type": "lock2", "unlock": "lock_output", "postion": [MouseX, MouseY], "ans": "Hello", "response": "Hello" };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "endline") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate % 2] };
+            data['end_init'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
 
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "questionMark") {
-        var obj = { "type": obj, "postion": [MouseX, MouseY], "chooseNum": [] };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
+        }
+        else if (obj == "arrow") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "arrow", "postion": [MouseX, MouseY, rotate] };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
 
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "treasure") {
-        var obj = { "type": obj, "postion": [MouseX, MouseY], "string": "str" };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "lock") {
+            var obj = { "type": "lock", "unlock": "lock_arrow", "postion": [MouseX, MouseY] };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
 
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "lock2") {
+            var obj = { "type": "lock2", "unlock": "lock_output", "postion": [MouseX, MouseY], "ans": "Hello", "response": "Hello" };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "questionMark") {
+            var obj = { "type": obj, "postion": [MouseX, MouseY], "chooseNum": [] };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "treasure") {
+            var obj = { "type": obj, "postion": [MouseX, MouseY], "string": "str" };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+
+        }
+        else {
+            var obj = { "type": obj, "postion": [MouseX, MouseY] };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+        }
+        loadData();
+        updateCanvas();
+        loadObjectValue()
+
+        // console.log("dddd");
+        // var bullet = { "type": "boon_hit", "postion": [dx, dy] };
+        // mapObject.push(bullet);
     }
     else {
-        var obj = { "type": obj, "postion": [MouseX, MouseY] };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
+        remindValue = "不能重疊元件";
+        remindView(remindValue);
     }
-    loadData();
-    updateCanvas();
-    loadObjectValue()
-    // console.log("dddd");
-    // var bullet = { "type": "boon_hit", "postion": [dx, dy] };
-    // mapObject.push(bullet);
+
 }
 
 function changeObjectAttributes(object) {

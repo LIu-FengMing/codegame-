@@ -655,7 +655,10 @@ function draw() {
     }
 }
 
+
+
 function keyPressed() {
+    isKeyPressed = true;
     var cx = Math.floor(mouseX / edgeToEdge);
     var cy = Math.floor(mouseY / edgeToEdge);
     if (cx >= 0 && cy >= 0 && cx < mapSize && cy < mapSize) {
@@ -663,7 +666,7 @@ function keyPressed() {
             del();
         }
         else if (key == ' ') {
-            input();
+            input("keyPressed");
             if (mapObject.length > 2) {
                 var ma = mapObject[mapObject.length - 1];
                 var mb = mapObject[mapObject.length - 2];
@@ -911,113 +914,126 @@ function del() {
             }
         }
     }
-
-
 }
-function input() {
-    changeFile = true;
 
-    // console.log("ok");
-    size = document.getElementById('mapSize');
-    selobj = document.getElementById('objectSelect');
-    pos = document.getElementById('college-pos');
+var keyPressedCount = 0;
+function input(eventFrom = "button") {
+    if (eventFrom != "button") {
+        ++keyPressedCount;
+    }
+    if (nowEditOId < 0) {
+        changeFile = true;
+        // console.log("ok");
+        size = document.getElementById('mapSize');
+        selobj = document.getElementById('objectSelect');
+        pos = document.getElementById('college-pos');
 
-    var index = selobj.selectedIndex;
-    // console.log(index);
-    nowEditOId = -1;
-    var obj = collegeObj[index];
-    // console.log(obj);
-    changeObjectAttributes(obj);
-    if (obj == "people") {
-        var rotate = pos.selectedIndex;
-        var obj = {
-            "type": "car", "postion": [MouseX, MouseY, rotate],
-            "hp": 5,
-            "armor": 20,
-            "atk": 2
-        };
-        data['people_init'] = obj;
+        var index = selobj.selectedIndex;
+        // console.log(index);
+        nowEditOId = -1;
+        var obj = collegeObj[index];
+        // console.log(obj);
+        changeObjectAttributes(obj);
+        if (obj == "people") {
+            var rotate = pos.selectedIndex;
+            var obj = {
+                "type": "car", "postion": [MouseX, MouseY, rotate],
+                "hp": 5,
+                "armor": 20,
+                "atk": 2
+            };
+            data['people_init'] = obj;
 
-    }
-    else if (obj == "enemyTank") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "enemyTank", "postion": [MouseX, MouseY, rotate], "hp": 5, "atk": 5 };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 75) {
-            heightestLevelStar = 75;
         }
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "endline") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate % 2] };
-        data['end_init'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-        if (heightestLevelStar < 3) {
-            heightestLevelStar = 3;
+        else if (obj == "enemyTank") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "enemyTank", "postion": [MouseX, MouseY, rotate], "hp": 5, "atk": 5 };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            if (heightestLevelStar < 75) {
+                heightestLevelStar = 75;
+            }
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
         }
-    }
-    else if (obj == "arrow") {
-        var rotate = pos.selectedIndex;
-        var obj = { "type": "arrow", "postion": [MouseX, MouseY, rotate] };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-        if (heightestLevelStar < 39) {
-            heightestLevelStar = 39;
+        else if (obj == "endline") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate % 2] };
+            data['end_init'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+            if (heightestLevelStar < 3) {
+                heightestLevelStar = 3;
+            }
         }
-    }
-    else if (obj == "lock") {
-        var obj = { "type": "lock", "unlock": "lock_arrow", "postion": [MouseX, MouseY] };
-        data['obj'].push(obj);
-        nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 39) {
-            heightestLevelStar = 39;
+        else if (obj == "arrow") {
+            var rotate = pos.selectedIndex;
+            var obj = { "type": "arrow", "postion": [MouseX, MouseY, rotate] };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+            if (heightestLevelStar < 39) {
+                heightestLevelStar = 39;
+            }
         }
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "lock2") {
-        var obj = { "type": "lock2", "unlock": "lock_output", "postion": [MouseX, MouseY], "ans": "Hello", "response": "Hello" };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 15) {
-            heightestLevelStar = 15;
+        else if (obj == "lock") {
+            var obj = { "type": "lock", "unlock": "lock_arrow", "postion": [MouseX, MouseY] };
+            data['obj'].push(obj);
+            nowEditOId = data['obj'].length - 1;
+            if (heightestLevelStar < 39) {
+                heightestLevelStar = 39;
+            }
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
         }
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "questionMark") {
-        var obj = { "type": obj, "postion": [MouseX, MouseY], "chooseNum": [] };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
-        if (heightestLevelStar < 21) {
-            heightestLevelStar = 21;
+        else if (obj == "lock2") {
+            var obj = { "type": "lock2", "unlock": "lock_output", "postion": [MouseX, MouseY], "ans": "Hello", "response": "Hello" };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+            if (heightestLevelStar < 15) {
+                heightestLevelStar = 15;
+            }
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
         }
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-    }
-    else if (obj == "treasure") {
-        var obj = { "type": obj, "postion": [MouseX, MouseY], "string": "str" };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
-        //"end_init":[{"type":"endline","postion":[5,2,1]}],
-        heightestLevelStar = 120;
+        else if (obj == "questionMark") {
+            var obj = { "type": obj, "postion": [MouseX, MouseY], "chooseNum": [] };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+            if (heightestLevelStar < 21) {
+                heightestLevelStar = 21;
+            }
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "treasure") {
+            var obj = { "type": obj, "postion": [MouseX, MouseY], "string": "str" };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+            heightestLevelStar = 120;
+        }
+        else {
+            var obj = { "type": obj, "postion": [MouseX, MouseY] };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
+        }
+        loadData();
+        updateCanvas();
+        loadObjectValue()
+        // console.log("dddd");
+        // var bullet = { "type": "boon_hit", "postion": [dx, dy] };
+        // mapObject.push(bullet);
+
     }
     else {
-        var obj = { "type": obj, "postion": [MouseX, MouseY] };
-        data['obj'].push(obj);
-        // console.log(data['obj']);
-        nowEditOId = data['obj'].length - 1;
+        if (eventFrom == "button"||keyPressedCount % 2 == 1) {
+
+            remindValue = "不能重疊元件";
+            remindView(remindValue);
+
+        }
     }
-    loadData();
-    updateCanvas();
-    loadObjectValue()
-    // console.log("dddd");
-    // var bullet = { "type": "boon_hit", "postion": [dx, dy] };
-    // mapObject.push(bullet);
 }
 
 function changeObjectAttributes(object) {
