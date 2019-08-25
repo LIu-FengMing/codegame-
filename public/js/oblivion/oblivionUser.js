@@ -725,7 +725,13 @@ function sendLoadUsernameMap() {
             else {
               postDate = "大於一天上架";
             }
-            reciprocalDate.push(index);
+            if(reciprocalDate){
+              reciprocalDate.push(index);
+            }
+            else{
+              reciprocalDate=[];
+              reciprocalDate.push(index);
+            }
           }
           else {
             var year = data.getFullYear(), month = data.getMonth() + 1, day = data.getDate();
