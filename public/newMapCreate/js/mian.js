@@ -799,7 +799,11 @@ function updateCanvas() {
 function mycanvasMouseClicked() {
     MouseX = Math.floor(mouseX / edgeToEdge);
     MouseY = Math.floor(mouseY / edgeToEdge);
+    realDoMycanvasMouseClicked();
+}
 
+function realDoMycanvasMouseClicked(){
+    
     var objF = false;
     nowEditOId = -1;
     for (let index = 0; index < mapObject.length; index++) {
@@ -826,24 +830,24 @@ function mycanvasMouseClicked() {
         // console.log("MouseY*mapSize+MouseX:", MouseY * mapSize + MouseX);
         var temp = MouseY * mapSize + MouseX;
         if (temp > 0) {
-            var str = map.substr(0, temp);
+            var str = mapTerrain.substr(0, temp);
             str = str + size;
-            str = str + map.substr(temp + 1);
-            map = str
+            str = str + mapTerrain.substr(temp + 1);
+            mapTerrain = str
         }
         else {
             var str = size;
-            str = str + map.substr(1);
-            map = str
+            str = str + mapTerrain.substr(1);
+            mapTerrain = str
         }
-        data['mapValue'] = map;
+        data['mapValue'] = mapTerrain;
     }
 
-    // map = mapNumber['mapValue'];
+    // mapTerrain = mapNumber['mapValue'];
     loadData();
-    // map[MouseY*mapSize+MouseX]=size
+    // mapTerrain[MouseY*mapSize+MouseX]=size
 
-    // console.log(map);
+    // console.log(mapTerrain);
     // console.log(MouseX, MouseY);
     updateCanvas();
 }
@@ -914,6 +918,7 @@ function del() {
             }
         }
     }
+    realDoMycanvasMouseClicked();
 }
 
 var keyPressedCount = 0;

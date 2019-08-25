@@ -762,8 +762,7 @@ function del() {
             }
         }
     }
-
-
+    realDoMycanvasMouseClicked();
 }
 function input() {
     if (nowEditOId < 0) {
