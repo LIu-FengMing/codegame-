@@ -1,2 +1,5 @@
 
 public/createNewMap/
+*.bin
+*.ipch
+*.ipch

@@ -439,7 +439,7 @@ function endgame() {
 
 
     /*     actionCode       */
-    var systemCall = ["step", "step(", "step()", "step();", ";step();",
+    var systemCall = ["moveForward", "moveForward(", "moveForward()", "moveForward();", ";moveForward();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
         "fire", "fire(", "fire()", "fire();", ";fire();",

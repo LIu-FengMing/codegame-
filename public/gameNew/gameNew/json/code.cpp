@@ -485,7 +485,7 @@ void actionJudgeNextAdr(int x, int y)
 		}
 	}
 }
-void step()
+void moveForward()
 {
 	int dx = peopleAdr[0], dy = peopleAdr[1];
 	int mapEvloution = (system_map[dy][dx][0] / 100) - 1;

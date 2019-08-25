@@ -54,14 +54,14 @@ xmlhttp.send();
 
 
 var equipmentData;
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        equipmentData = JSON.parse(this.responseText);
-    }
-};
-xmlhttp.open("GET", "json/equipment.json", true);
-xmlhttp.send();
+// var xmlhttp = new XMLHttpRequest();
+// xmlhttp.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//         equipmentData = JSON.parse(this.responseText);
+//     }
+// };
+// xmlhttp.open("GET", "json/equipment.json", true);
+// xmlhttp.send();
 
 var initCode = [
     `
@@ -330,7 +330,7 @@ function endgame() {
 
     /*     actionCode       */
     var str = computeEndCode, temp = "";
-    var systemCall = ["step", "step(", "step()", "step();",
+    var systemCall = ["moveForward", "moveForward(", "moveForward()", "moveForward();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
         "fire", "fire(", "fire()", "fire();",
