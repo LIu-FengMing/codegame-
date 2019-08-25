@@ -1,6 +1,6 @@
-/* 三星:48個動作包含48個動作以內  
-   二星:50個動作包含50個動作以內48個動作以上  
-   一星限為滿足過關條件即可*/ 
+/* 嚙確嚙瞑:48嚙諉動作嚙稽嚙緣48嚙諉動作嚙瘡嚙踝蕭  
+   嚙瘦嚙瞑:50嚙諉動作嚙稽嚙緣50嚙諉動作嚙瘡嚙踝蕭48嚙諉動作嚙瘡嚙磕  
+   嚙瑾嚙瞑嚙踝蕭嚙踝蕭嚙踝蕭嚙踝蕭嚙盤嚙踝蕭嚙踝蕭嚙踝蕭Y嚙箠*/ 
 
 
 #include <stdio.h>
@@ -13,88 +13,88 @@ char str1[SIZE];
 char str2[SIZE];
 char str3[SIZE];
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameTank();
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameCar();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameShip();
 turnRight();
-step();
+moveForward();
 becameTank();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 getBox(str1);
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameCar();
-step();
+moveForward();
 becameShip();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameTank();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameCar();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
 getBox(str2);
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 turnRight();
 fire();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
 getBox (str3);
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnLeft();
 fire();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 strcat(str1,str2);
 strcat(str1,str3);
 printf("%s",str1);
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 
 	return 0;
  }

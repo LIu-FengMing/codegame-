@@ -14,61 +14,61 @@ int main(int argc, char *argv[]){
  printf("d= %d",d);
  printf("c= %c",c);
 for(i=4;i>0;i--){
- step();
+ moveForward();
 }
 if(hint=='L'){
  turnLeft();
  for(i=4;i>0;i--){
- step();
+ moveForward();
  }
  turnRight();
- step();
- step();
+ moveForward();
+ moveForward();
  if(hint=='F'){
-  step();
+  moveForward();
   turnRight();
   for(i=4;i>0;i--){
-   step();
+   moveForward();
       printf("%c",c+d);
    }
   turnLeft();
-  step();
+  moveForward();
  }else{
   turnRight();
   for(i=4;i>0;i--){
-   step();
+   moveForward();
    }
  printf("%c",c+d);
   turnLeft();
-  step();
-  step();
+  moveForward();
+  moveForward();
   }
 }else{
  turnRight();
  for(i=4;i>0;i--){
-  step();
+  moveForward();
   }
  turnLeft();
- step();
- step();
+ moveForward();
+ moveForward();
  if(hint=='F'){
-  step();
+  moveForward();
   turnLeft();
   for(i=4;i>0;i--){
-   step();
+   moveForward();
    printf("%c",c+d);
    }
   turnRight();
-  step();
+  moveForward();
  }else{
   turnLeft();
   for(i=4;i>0;i--){
-  step();
+  moveForward();
   }
  printf("%c",c+d);
   turnRight();
-  step();
-  step();
+  moveForward();
+  moveForward();
  }
 }
  return 0;

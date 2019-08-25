@@ -9,48 +9,48 @@
 int main(int argc, char *argv[])
 {
 int i=0;
-step();
+moveForward();
 switch(hint){
 case 'L':
 turnLeft();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 printf("5");
-step();
+moveForward();
 turnRight();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 fire();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 break;
 case 'F':
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 fire();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 break;
 case 'R':
 turnRight();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 fire();
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 }
-step();
+moveForward();
 
 	return 0;
  }

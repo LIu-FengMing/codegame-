@@ -14,7 +14,7 @@ int dArray[6];
 getDistance(dArray,size);
 for(i=0;i<size;i++){
  for(j=0;j<dArray[i];j++){
- step();
+ moveForward();
 }
  if(i<size-1){
   turnRight();

@@ -9,12 +9,12 @@
 int main(int argc, char *argv[])
 {
 int i=0;
-step();
+moveForward();
 printf("Hello");
 
-step();
-step();
-step();
+moveForward();
+moveForward();
+moveForward();
 	return 0;
  }
 

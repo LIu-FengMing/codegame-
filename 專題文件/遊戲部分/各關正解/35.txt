@@ -21,7 +21,7 @@ for(i=0;i<size+1;i++){
  turnRight();
 }
  for(j=0;j<distArray[i];j++){
-  step();
+  moveForward();
 }
 }
 	return 0;

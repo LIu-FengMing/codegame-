@@ -11,12 +11,12 @@ int main(int argc, char *argv[])
 int i;
 fire();
 for(i=5;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
 fire();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 
 

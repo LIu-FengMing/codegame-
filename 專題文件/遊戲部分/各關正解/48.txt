@@ -1,6 +1,6 @@
-/* 3星:73個動作包含73個動作以內  
-   2星:76個動作包含76個動作以內73個動作以上  
-   1星:滿足過關條件即可*/ 
+/* 3嚙瞑:73嚙諉動作嚙稽嚙緣73嚙諉動作嚙瘡嚙踝蕭  
+   2嚙瞑:76嚙諉動作嚙稽嚙緣76嚙諉動作嚙瘡嚙踝蕭73嚙諉動作嚙瘡嚙磕  
+   1嚙瞑:嚙踝蕭嚙踝蕭嚙盤嚙踝蕭嚙踝蕭嚙踝蕭Y嚙箠*/ 
 
 
 #include <stdio.h>
@@ -19,124 +19,124 @@ for(i=0;i<length;i++){
 }
 x=atoi(str);
 y=atoi(str+tmp);
-step();
+moveForward();
 becameTank();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 fire();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 fire();
-step();
+moveForward();
 becameShip();
-step();
+moveForward();
 becameCar();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameShip();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameTank();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameShip();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 becameCar();
 turnRight();
 fire();
 turnLeft();
-step();
+moveForward();
 becameTank();
 turnRight();
 turnRight();
-step();
+moveForward();
 becameCar();
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameTank();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameCar();
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
 fire();
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameTank();
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 turnRight();
-step();
+moveForward();
 turnLeft();
 printf("%d",x+y);
-step();
+moveForward();
 becameCar();
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 
 	return 0;
  }

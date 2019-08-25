@@ -10,19 +10,19 @@ int main(int argc, char *argv[])
 {
 int i;
 scanf("%d",&i);
-step();
+moveForward();
 printf("%d",i+4);
 
 
-step();
-step();
+moveForward();
+moveForward();
 turnRight();
 
-step();
-step();
+moveForward();
+moveForward();
 turnRight();
 
-step();
+moveForward();
 
 	return 0;
  }

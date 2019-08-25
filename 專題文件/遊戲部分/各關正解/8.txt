@@ -8,14 +8,14 @@
 #include <string.h>
 int main(int argc, char *argv[])
 {
-step();
+moveForward();
 if (hint=='L'){
 turnLeft();
 }else{
 turnRight();
 }
-step();
-step();
+moveForward();
+moveForward();
 
 	return 0;
  }

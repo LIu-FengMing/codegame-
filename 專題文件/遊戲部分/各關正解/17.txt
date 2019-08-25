@@ -9,9 +9,9 @@
 
 void clear(){
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 }
 
 

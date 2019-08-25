@@ -1,6 +1,6 @@
-/* 3星:68個動作包含68個動作以內  
-   2星:71個動作包含71個動作以內68個動作以上  
-   1星:滿足過關條件即可*/ 
+/* 3嚙瞑:68嚙諉動作嚙稽嚙緣68嚙諉動作嚙瘡嚙踝蕭  
+   2嚙瞑:71嚙諉動作嚙稽嚙緣71嚙諉動作嚙瘡嚙踝蕭68嚙諉動作嚙瘡嚙磕  
+   1嚙瞑:嚙踝蕭嚙踝蕭嚙盤嚙踝蕭嚙踝蕭嚙踝蕭Y嚙箠*/ 
 
 
 #include <stdio.h>
@@ -26,111 +26,111 @@ for(i=0;i<length;i++){
 };
 y/=10;
 }
-step();
+moveForward();
 becameShip();
 turnLeft();
-step();
+moveForward();
 turnRight();
 fire();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameTank();
 turnLeft();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 becameCar();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameTank();
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameShip();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 becameCar();
 turnRight();
 fire();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 becameTank();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 turnLeft();
-step();
+moveForward();
 becameCar();
 turnRight();
 fire();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameShip();
-step();
+moveForward();
 becameTank();
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
 turnRight();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameCar();
 turnRight();
-step();
+moveForward();
 turnLeft();
 fire();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 fire();
-step();
+moveForward();
 turnRight();
 for(i=SIZE-1;i>=0;i--){
  if(bit[i]!=0&&j==1){
@@ -143,7 +143,7 @@ for(i=SIZE-1;i>=0;i--){
 }
 }
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 
 	return 0;

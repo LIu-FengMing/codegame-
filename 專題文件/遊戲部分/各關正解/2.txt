@@ -8,13 +8,13 @@
 #include <string.h>
 int main(int argc, char *argv[])
 {
-step();
-step();
-step();
-step();
+moveForward();
+moveForward();
+moveForward();
+moveForward();
 turnLeft();
-step();
-step();
+moveForward();
+moveForward();
 
 	return 0;
  }

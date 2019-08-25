@@ -11,46 +11,46 @@ int main(int argc, char *argv[])
 int x,y;
 int i;
 getKey(&x,&y);
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
- step();
+ moveForward();
+ moveForward();
  turnRight();
 }
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 for(i=0;i<2;i++){
 turnRight();
- step();
- step();
+ moveForward();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 turnLeft();
 printf("%d",x+y);
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 
 	return 0;
  }

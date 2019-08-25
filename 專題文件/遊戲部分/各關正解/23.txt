@@ -9,9 +9,9 @@
 
 void A(){
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 }
 
 int main(int argc, char *argv[])
@@ -23,8 +23,8 @@ for(j=3;j>0;j--){
 A();
 }
 turnLeft();
-step();
-step();
+moveForward();
+moveForward();
 }
 for(i=3;i>0;i--){
 A();

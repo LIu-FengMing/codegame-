@@ -11,100 +11,100 @@ int main(int argc, char *argv[])
   int i;
   int x, y;
   getKey(&x,&y);
-  step();
+  moveForward();
   turnLeft();
   for (i = 0; i < 4; i++){
-    step();
+    moveForward();
   }
   turnLeft();
-  step();
+  moveForward();
   turnRight();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   turnRight();
-  step();
+  moveForward();
   turnLeft();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   turnLeft();
-  step();
+  moveForward();
   turnRight();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   turnRight();
   fire();
   for (i = 0; i < 3; i++){
-    step();
+    moveForward();
   }
   becameTank();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   fire();
   becameShip();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   becameCar();
-  step();
+  moveForward();
   becameShip();
   turnRight();
-  step();
+  moveForward();
   turnLeft();
-  step();
+  moveForward();
   becameTank();
-  step();
+  moveForward();
   turnLeft();
-  step();
+  moveForward();
   becameCar();
-  step();
+  moveForward();
   turnLeft();
-  step();
+  moveForward();
   becameShip();
-  step();
+  moveForward();
   turnLeft();
   for (i = 0; i < 3; i++){
-    step();
+    moveForward();
   }
   turnRight();
-  step();
+  moveForward();
   becameCar();
   turnLeft();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
 becameTank();
   turnRight();
-  step();
+  moveForward();
 becameCar();
   turnLeft();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   becameShip();
-  step();
+  moveForward();
   becameTank();
   turnLeft();
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   turnRight();
   fire();
-  step();
+  moveForward();
 becameShip();
   printf("%d",x+y);
   for (i = 0; i < 2; i++){
-    step();
+    moveForward();
   }
   turnLeft();
-  step();
+  moveForward();
   becameCar();
   for (i = 0; i < 2; i++)
   {
-    step();
+    moveForward();
   }
 
   return 0;

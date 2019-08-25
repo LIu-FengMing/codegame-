@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
 int i;
 for(i=5;i>0;i--){
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 }
 
 	return 0;

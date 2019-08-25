@@ -13,28 +13,28 @@ int key[6];
 int size=6;
 int i,max;
 getKeyArray(key,size);
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
-  step();
-step();
+  moveForward();
+moveForward();
   turnLeft();
 }
-step();
+moveForward();
 max=key[0];
 for(i=0;i<size;i++){
  if(max<key[i]){
@@ -42,10 +42,10 @@ max=key[i];
 }
 }
 printf("%d",max);
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 
 	return 0;

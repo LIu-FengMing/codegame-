@@ -12,31 +12,31 @@ int size=6;
 int key[6];
 int i,j,tmp;
 getKeyArray(key,size);
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<3;i++){
-  step();
+  moveForward();
 }
 turnLeft();
 for(i=0;i<2;i++){
-  step();
+  moveForward();
 }
 turnLeft();
-step();
+moveForward();
 for(i=0;i<size-1;i++){
  for(j=0;j<size-1-i;j++){
     if(key[j]>key[j+1]){
@@ -49,10 +49,10 @@ for(i=0;i<size-1;i++){
 for(i=0;i<size;i++){
  printf("%d ",key[i]);
 }
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 
 	return 0;

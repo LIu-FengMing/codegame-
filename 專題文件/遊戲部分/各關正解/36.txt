@@ -23,7 +23,7 @@ for(i=0;i<size;i++){
  fire();
 }
  for(j=0;j<distArray[i];j++){
-  step();
+  moveForward();
 }
 }
 

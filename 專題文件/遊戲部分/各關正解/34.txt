@@ -21,7 +21,7 @@ for(i=0;i<size+1;i++){
 }
 }
 for(j=0;j<2;j++){
- step();
+ moveForward();
 }
 }
 

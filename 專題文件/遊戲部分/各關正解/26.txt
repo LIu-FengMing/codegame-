@@ -10,26 +10,26 @@ int main(int argc, char *argv[])
 {
 int i;
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 turnRight();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 turnRight();
-step();
+moveForward();
 for(i=3;i>0;i--){
 fire();
 }
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
-step();
+moveForward();
 
 	return 0;
  }

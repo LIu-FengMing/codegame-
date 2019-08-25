@@ -10,11 +10,11 @@ int main(int argc, char *argv[])
 {
 int i;
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 becameShip();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 
 

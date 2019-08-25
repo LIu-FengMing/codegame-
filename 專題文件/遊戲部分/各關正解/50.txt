@@ -1,6 +1,6 @@
-/* 3星:97個動作包含97個動作以內  
-   2星:100個動作包含100個動作以內97個動作以上  
-   1星:滿足過關條件即可*/ 
+/* 3嚙瞑:97嚙諉動作嚙稽嚙緣97嚙諉動作嚙瘡嚙踝蕭  
+   2嚙瞑:100嚙諉動作嚙稽嚙緣100嚙諉動作嚙瘡嚙踝蕭97嚙諉動作嚙瘡嚙磕  
+   1嚙瞑:嚙踝蕭嚙踝蕭嚙盤嚙踝蕭嚙踝蕭嚙踝蕭Y嚙箠*/ 
 
 
 #include <stdio.h>
@@ -16,153 +16,153 @@ int bit[SIZE]={0};
 char str[SIZE];
 getString(str);
 length=strlen(str);
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameShip();
 turnRight();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
 turnLeft();
 fire();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 turnRight();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnLeft();
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 turnLeft();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
 fire();
-step();
+moveForward();
 turnRight();
 for(i=0;i<3;i++){
-step();
+moveForward();
 }
 turnRight();
 for(i=0;i<4;i++){
- step();
+ moveForward();
 }
 becameTank();
 turnRight();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 turnLeft();
-step();
+moveForward();
 becameCar();
 turnRight();
 fire();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameShip();
-step();
+moveForward();
 becameTank();
 turnLeft();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
 turnLeft();
-step();
+moveForward();
 becameShip();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 turnLeft();
 fire();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 turnRight();
-step();
+moveForward();
 becameTank();
 turnLeft();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
-step();
+moveForward();
 turnLeft();
 fire();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 turnRight();
-step();
+moveForward();
 becameCar();
 for(i=0;i<2;i++){
- step();
+ moveForward();
 }
 becameTank();
 turnLeft();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameTank();
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 becameShip();
 turnRight();
 for(i=0;i<3;i++){
- step();
+ moveForward();
 }
 becameCar();
 turnRight();
@@ -199,9 +199,9 @@ for(i=SIZE-1;i>=0;i--){
  printf("%d",bit[i]);
 }
 }
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 
 	return 0;
  }

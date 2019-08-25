@@ -9,19 +9,19 @@
 int main(int argc, char *argv[])
 {
 int i;
-step();
+moveForward();
 becameTank();
 turnRight();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
 for(i=5;i>0;i--){
-step();
+moveForward();
 }
 becameShip();
 for(i=2;i>0;i--){
-step();
+moveForward();
 }
 
 

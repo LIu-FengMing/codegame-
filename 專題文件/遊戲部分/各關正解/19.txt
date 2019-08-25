@@ -11,21 +11,21 @@ int main(int argc, char *argv[])
 int i=0;
 fire();
 for(i=8;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
 turnLeft();
 for(i=5;i>0;i--){
-step();
+moveForward();
 } 
 turnLeft();
 for(i=5;i>0;i--){
-step();
+moveForward();
 } 
 turnLeft();
 printf("5");
 for(i=5;i>0;i--){
-step();
+moveForward();
 }
 
 	return 0;

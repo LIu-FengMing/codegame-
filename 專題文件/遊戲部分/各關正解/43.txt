@@ -28,7 +28,7 @@ for(i=0;i<size-1;i++){
 for(i=0;i<length;i++){
  if(str[i]>='0'&&str[i]<='9'){
   for(j=0;j<str[i]-'0';j++){
-   step();
+   moveForward();
 }
 }else if(str[i]=='L'){
  turnLeft();

@@ -10,33 +10,33 @@ int main(int argc, char *argv[])
 {
 int i;
 for(i=3;i>0;i--){
-step();
+moveForward();
 turnLeft();
-step();
+moveForward();
 turnRight();
 }
 for(i=3;i>0;i--){
-step();
+moveForward();
 }
 turnRight();
-step();
+moveForward();
 becameCar();
-step();
+moveForward();
 for(i=3;i>0;i--){
 fire();
 }
 for(i=2;i>0;i--){
-step();
+moveForward();
 }
 turnRight();
 for(i=2;i>0;i--){
-step();
+moveForward();
 }
 turnLeft();
-step();
+moveForward();
 turnRight();
 for(i=4;i>0;i--){
-step();
+moveForward();
 }
 
 	return 0;
