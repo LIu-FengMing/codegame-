@@ -110,6 +110,8 @@ xmlhttp.send();
 function initMapData(res) {
   var mapData = res.data;
   /*設置版本*/
+  console.log("mapData",mapData);
+  
   divTag = document.getElementById("versionControl");
   for (let index = mapData.length - 1; index > -1; index--) {
     const element = mapData[index];

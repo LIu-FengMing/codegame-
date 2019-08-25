@@ -82,20 +82,22 @@ enemyAttackTextarea.onchange = function () {
     mapObject[nowEditOId].atk = enemyAttackTextarea.value;
 }
 function loadObjectValue() {
-    if (mapObject[nowEditOId].type == "enemyTank") {
-        enemyAttackTextarea.value = mapObject[nowEditOId].atk;
-        enemyBlodTextarea.value = mapObject[nowEditOId].hp;
-    }
-    else if (mapObject[nowEditOId].type == "treasure") {
-        boxTextarea.value = mapObject[nowEditOId].string;
-    }
-    else if (mapObject[nowEditOId].type == "lock2") {
-        lockAnswerTextarea.value = mapObject[nowEditOId].ans;
-    } else {
-        enemyAttackTextarea.value = "";
-        enemyBlodTextarea.value = "";
-        boxTextarea.value = "";
-        lockAnswerTextarea.value = "";
+    if (nowEditOId > -1) {
+        if (mapObject[nowEditOId].type == "enemyTank") {
+            enemyAttackTextarea.value = mapObject[nowEditOId].atk;
+            enemyBlodTextarea.value = mapObject[nowEditOId].hp;
+        }
+        else if (mapObject[nowEditOId].type == "treasure") {
+            boxTextarea.value = mapObject[nowEditOId].string;
+        }
+        else if (mapObject[nowEditOId].type == "lock2") {
+            lockAnswerTextarea.value = mapObject[nowEditOId].ans;
+        } else {
+            enemyAttackTextarea.value = "";
+            enemyBlodTextarea.value = "";
+            boxTextarea.value = "";
+            lockAnswerTextarea.value = "";
+        }
     }
 }
 var saveBtn = document.getElementById('saveBtn');
@@ -104,11 +106,11 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log("scriptData:",scriptData);
+            console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
-                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+                if (element.mapName == scriptData.mapName && element._id != mapID) {
                     notrep = false;
                     break;
                 }
@@ -131,11 +133,11 @@ saveBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:",scriptData);
+        console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
-            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+            if (element.mapName == scriptData.mapName && element._id != mapID) {
                 notrep = false;
                 break;
             }
@@ -157,11 +159,11 @@ finishBtn.onclick = function () {
         if (changeFile) {
             var scriptData = precessSaveData();
 
-            console.log("scriptData:",scriptData);
+            console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
-                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+                if (element.mapName == scriptData.mapName && element._id != mapID) {
                     notrep = false;
                     break;
                 }
@@ -189,11 +191,11 @@ finishBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:",scriptData);
+        console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
-            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+            if (element.mapName == scriptData.mapName && element._id != mapID) {
                 notrep = false;
                 break;
             }
@@ -215,11 +217,11 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log("scriptData:",scriptData);
+            console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
-                if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+                if (element.mapName == scriptData.mapName && element._id != mapID) {
                     notrep = false;
                     break;
                 }
@@ -242,11 +244,11 @@ saveBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:",scriptData);
+        console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
-            if (element.mapName == scriptData.mapName&&element._id!=mapID) {
+            if (element.mapName == scriptData.mapName && element._id != mapID) {
                 notrep = false;
                 break;
             }
@@ -424,12 +426,12 @@ function sendSaveMap(scriptData) {
                 console.log(res);
                 for (let indexS = 0; indexS < mapAll.length; indexS++) {
                     // const element = mapAll[indexS];
-                    if(mapAll[indexS]._id==mapID){
-                        mapAll.splice(indexS,1);
+                    if (mapAll[indexS]._id == mapID) {
+                        mapAll.splice(indexS, 1);
                         break;
                     }
                 }
-                mapID=res._id;
+                mapID = res._id;
                 // alert("儲存成功");
                 remindView("儲存成功");
             }
@@ -678,8 +680,8 @@ function updateCanvas() {
     var imgDesret = imgObject[parseInt(imgDic["desret"])];
     var imgLawn = imgObject[parseInt(imgDic["lawn"])];
     var imgSea = imgObject[parseInt(imgDic["sea"])];
-    edgeToHeight=edgeToEdge
-    edgeToWidth=edgeToEdge
+    edgeToHeight = edgeToEdge
+    edgeToWidth = edgeToEdge
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;

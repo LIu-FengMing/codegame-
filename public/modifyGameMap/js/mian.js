@@ -128,20 +128,24 @@ $().ready(function () {
     }
 });
 function loadObjectValue() {
-    if (mapObject[nowEditOId].type == "enemyTank") {
-        enemyAttackTextarea.value = mapObject[nowEditOId].atk;
-        enemyBlodTextarea.value = mapObject[nowEditOId].hp;
-    }
-    else if (mapObject[nowEditOId].type == "treasure") {
-        boxTextarea.value = mapObject[nowEditOId].string;
-    }
-    else if (mapObject[nowEditOId].type == "lock2") {
-        lockAnswerTextarea.value = mapObject[nowEditOId].ans;
-    } else {
-        enemyAttackTextarea.value = "";
-        enemyBlodTextarea.value = "";
-        boxTextarea.value = "";
-        lockAnswerTextarea.value = "";
+    if (nowEditOId > -1) {
+
+        if (mapObject[nowEditOId].type == "enemyTank") {
+            enemyAttackTextarea.value = mapObject[nowEditOId].atk;
+            enemyBlodTextarea.value = mapObject[nowEditOId].hp;
+        }
+        else if (mapObject[nowEditOId].type == "treasure") {
+            boxTextarea.value = mapObject[nowEditOId].string;
+        }
+        else if (mapObject[nowEditOId].type == "lock2") {
+            lockAnswerTextarea.value = mapObject[nowEditOId].ans;
+        } else {
+            enemyAttackTextarea.value = "";
+            enemyBlodTextarea.value = "";
+            boxTextarea.value = "";
+            lockAnswerTextarea.value = "";
+        }
+
     }
 }
 
@@ -217,7 +221,7 @@ function precessSaveData() {
     var str = JSON.stringify(data, undefined, 4);
 
     var levelDescription = {
-        level:levelNum+1,
+        level: levelNum + 1,
         description: $('#levelDescriptionTextarea').val(),
         mainGrammar: []
     }
@@ -319,7 +323,7 @@ function sendSaveMap(scriptData) {
 
     var objData = JSON.stringify(scriptData);
     var scriptObjData = {
-        gameLevel: levelNum+1,
+        gameLevel: levelNum + 1,
         data: objData
     }
     $.ajax({
@@ -478,8 +482,6 @@ function loadData() {
 
 function draw() {
     // //
-
-
     if (iscreatecanvas == 1 && iscreateImg == 1) {
         var dx = people_init["postion"][0] * edgeToEdge, dy = people_init["postion"][1] * edgeToEdge, drotate = 360 - people_init["postion"][2] * 90;
         old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
@@ -652,7 +654,16 @@ function updateCanvas() {
 
     return true;
 }
-
+function mouseClicked() {
+    var MouseXX = Math.floor(mouseX / edgeToEdge);
+    var MouseYY = Math.floor(mouseY / edgeToEdge);
+    if(MouseXX>=0&& MouseYY>=0){
+        if(MouseXX<mapSize&& MouseYY<mapSize){
+            // console.log("地圖內");
+            mycanvasMouseClicked();
+        }
+    }
+  }
 
 function mycanvasMouseClicked() {
     MouseX = Math.floor(mouseX / edgeToEdge);
