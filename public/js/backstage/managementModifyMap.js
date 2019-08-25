@@ -861,10 +861,10 @@ function helper() {
       // var strText = nowMapData.mainCodeDescription.textarea8;
       var strText = "";
       if (helperMod != "blocky") {
-        strText = nowMapData.mainCodeDescription.textarea8;
+        strText = nowMapData.mainCodeDescription.textarea9;
       }
       else {
-        strText = nowMapData.mainBlockyDescription.textarea8;
+        strText = nowMapData.mainBlockyDescription.textarea9;
       }
       console.log(strText);
       if (strText != null) {
