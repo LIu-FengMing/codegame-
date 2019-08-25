@@ -4265,7 +4265,10 @@ function selectVersion(selectValue) {
     lastSelect.style.background = "none";
     lastSelect = selectValue;
     changeMapData(selectValue.innerHTML.toString());
-
+    $("#loadTabID1")[0].click();
+    MouseX=0;
+    MouseY=0;
+    realDoMycanvasMouseClicked();
   }
 }
 

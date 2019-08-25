@@ -422,11 +422,20 @@ function init_GameMapSetup(mapInformation) {
     if (data.extendCode) {
         codingTextarea.value = data.extendCode;
     }
+    else{
+        codingTextarea.value = "";
+    }
     if (data.foggy) {
         var foggy = document.getElementById('openFoggy');
         foggy.checked = true;
         var foggy = document.getElementById('closeFoggy');
         foggy.checked = false;
+    }
+    else{
+        var foggy = document.getElementById('openFoggy');
+        foggy.checked = false;
+        var foggy = document.getElementById('closeFoggy');
+        foggy.checked = true;
     }
 }
 
@@ -444,12 +453,13 @@ function loadData() {
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
+    
+    edgeToEdge = width / mapSize;
     var dx = people_init["postion"][0] * edgeToEdge, dy = people_init["postion"][1] * edgeToEdge, drotate = 360 - people_init["postion"][2] * 90;
     old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
     now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
 
 
-    edgeToEdge = width / mapSize;
     // console.log(edgeToEdge);
     if (real) {
         var wd = document.getElementById('divcanvas').offsetWidth;
@@ -668,7 +678,11 @@ function mouseClicked() {
 function mycanvasMouseClicked() {
     MouseX = Math.floor(mouseX / edgeToEdge);
     MouseY = Math.floor(mouseY / edgeToEdge);
+    realDoMycanvasMouseClicked();
+}
 
+function realDoMycanvasMouseClicked(){
+    
     var objF = false;
     nowEditOId = -1;
     for (let index = 0; index < mapObject.length; index++) {
@@ -716,8 +730,6 @@ function mycanvasMouseClicked() {
     // console.log(MouseX, MouseY);
     updateCanvas();
 }
-
-
 
 
 function del() {
