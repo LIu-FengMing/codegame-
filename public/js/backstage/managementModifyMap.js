@@ -111,7 +111,7 @@ function initMapData(res) {
   var mapData = res.data;
   /*設置版本*/
   console.log("mapData",mapData);
-  
+
   divTag = document.getElementById("versionControl");
   for (let index = mapData.length - 1; index > -1; index--) {
     const element = mapData[index];
@@ -2644,7 +2644,6 @@ function changeMethod(methodNumber) {
       }
       break;
     case 5:
-      //TODO CHECK
       document.getElementById("saveHelper").setAttribute("onclick", "saveHelper(5)");
       /*新增按鈕*/
       b = document.createElement("input");
@@ -2661,6 +2660,9 @@ function changeMethod(methodNumber) {
       b.setAttribute("onclick", "deleteElementFunc()");
       divTag.appendChild(b);
 
+      createNewElementTop = 0;
+      document.getElementById("createNewElement").style.top = createNewElementTop + "%";
+      document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
       if (helperMod != "blocky") {
         helperJson = nowMapData.mainCodeDescription.selfSettintPatten;
       }
@@ -2774,7 +2776,6 @@ function changeMethod(methodNumber) {
 
               createNewElementTop = (parseInt(createNewElementTop) + 65);
               break;
-
             case "imgAndText":
               b = document.createElement("div");
               b.setAttribute("id", "imgAndTextDiv" + helperId);
@@ -3795,7 +3796,7 @@ function saveHelper(modelNumber) {
   } else if (modelNumber == 5) {
     //TODO CHECK
     for (var i = 0; i < helperJson.length; i++) {
-      
+
       switch (helperJson[i].mode) {
         case "img":
           var imageObj = $("#" + "bigImg" + helperJson[i].id)[0];
@@ -3844,7 +3845,7 @@ function saveHelper(modelNumber) {
   }
   var objData = JSON.stringify(allMapData);
   console.log("level - 1:",level - 1);
-  
+
   var scriptObjData = {
     gameLevel: level,
     data: objData

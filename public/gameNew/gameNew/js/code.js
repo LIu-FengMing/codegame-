@@ -179,8 +179,8 @@ function changeToC(isDisplay){
     }
     //console.log(nowBlock);
     switch (workspace.getBlockById(nowBlock).type) {
-      case 'block_step':
-        selectionType('block_step',x);
+      case 'block_moveForward':
+        selectionType('block_moveForward',x);
         break;
       case 'block_turn_right':
         selectionType('block_turn_right',x);
@@ -311,8 +311,8 @@ function loopChange(repeatTimes,nowPosition){
   textcode = textcode + 'for(' + loop1 + '=' + loop2 + ';' + loop3 + loop4 + loop5 + ';' + loop6 + '){\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        selectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        selectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         selectionType('block_turn_right',repeatTimes);
@@ -420,8 +420,8 @@ function judgment(repeatTimes,nowPosition,onlyIf){
     }
     //console.log(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type);
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        selectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        selectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         selectionType('block_turn_right',repeatTimes);
@@ -495,8 +495,8 @@ function judgment_sw(repeatTimes,nowPosition){
   textcode = textcode + 'switch(' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '){\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        selectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        selectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         selectionType('block_turn_right',repeatTimes);
@@ -576,8 +576,8 @@ function judgment_case(repeatTimes,nowPosition){
   textcode = textcode + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        selectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        selectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         selectionType('block_turn_right',repeatTimes);
@@ -653,13 +653,13 @@ function judgment_default(repeatTimes,nowPosition){
   textcode = textcode + 'default:\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
+      case 'block_moveForward':
         for(var j = 0; j < repeatTimes; j++){
           code = code + '&nbsp&nbsp&nbsp&nbsp';
           textcode = textcode + '    ';
         }
-        code = code + 'step();<br>';
-        textcode = textcode + 'step();\n';
+        code = code + 'moveForward();<br>';
+        textcode = textcode + 'moveForward();\n';
         break;
       case 'block_turn_right':
         for(var j = 0; j < repeatTimes; j++){
@@ -745,13 +745,13 @@ function judgment_default(repeatTimes,nowPosition){
 
 function selectionType(type,x){
   switch (type){
-    case 'block_step':
+    case 'block_moveForward':
       for(var j = 0; j < x; j++){
         code = code + '&nbsp&nbsp&nbsp&nbsp';
         textcode = textcode + '    ';
       }
-      code = code + 'step();<br>';
-      textcode = textcode + 'step();\n';
+      code = code + 'moveForward();<br>';
+      textcode = textcode + 'moveForward();\n';
       break;
     case 'block_turn_right':
       for(var j = 0; j < x; j++){
@@ -807,8 +807,8 @@ function functionChange(repeatTimes,nowPosition){
       break;
     }
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type){
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -934,8 +934,8 @@ function funLoopChange(repeatTimes,nowPosition){
   textMidFuncode = textMidFuncode + 'for(' + loop1 + '=' + loop2 + ';' + loop3 + loop4 + loop5 + ';' + loop6 + '){\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -1033,8 +1033,8 @@ function funJudgment(repeatTimes,nowPosition,onlyIf){
       }
     }
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -1108,8 +1108,8 @@ function funJudgment_sw(repeatTimes,nowPosition){
   textMidFuncode = textMidFuncode + 'switch(' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '){\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -1189,8 +1189,8 @@ function funJudgment_case(repeatTimes,nowPosition){
   textMidFuncode = textMidFuncode + 'case ' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nowPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + ':\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -1266,8 +1266,8 @@ function funJudgment_default(repeatTimes,nowPosition){
   textMidFuncode = textMidFuncode + 'default:\n';
   while(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[thisPosition].sourceBlock_.id != workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.id){
     switch (workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type) {
-      case 'block_step':
-        funSelectionType('block_step',repeatTimes);
+      case 'block_moveForward':
+        funSelectionType('block_moveForward',repeatTimes);
         break;
       case 'block_turn_right':
         funSelectionType('block_turn_right',repeatTimes);
@@ -1333,13 +1333,13 @@ function funJudgment_default(repeatTimes,nowPosition){
 
 function funSelectionType(type,x){
   switch (type){
-    case 'block_step':
+    case 'block_moveForward':
       for(var j = 0; j < x; j++){
         midFuncode = midFuncode + '&nbsp&nbsp&nbsp&nbsp';
         textMidFuncode = textMidFuncode + '    ';
       }
-      midFuncode = midFuncode + 'step();<br>';
-      textMidFuncode = textMidFuncode + 'step();\n';
+      midFuncode = midFuncode + 'moveForward();<br>';
+      textMidFuncode = textMidFuncode + 'moveForward();\n';
       break;
     case 'block_turn_right':
       for(var j = 0; j < x; j++){

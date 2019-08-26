@@ -7,7 +7,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             }
           ]
         }
@@ -20,7 +20,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -39,7 +39,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -58,7 +58,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -77,7 +77,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -99,7 +99,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -124,7 +124,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -157,7 +157,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -193,7 +193,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -226,7 +226,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -273,7 +273,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -320,7 +320,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -367,7 +367,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -414,7 +414,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -461,7 +461,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -511,7 +511,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -561,7 +561,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -617,7 +617,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -673,7 +673,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -729,7 +729,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -785,7 +785,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -841,7 +841,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -897,7 +897,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -953,7 +953,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1009,7 +1009,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1065,7 +1065,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1121,7 +1121,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1186,7 +1186,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1251,7 +1251,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1316,7 +1316,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1381,7 +1381,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1446,7 +1446,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1514,7 +1514,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1585,7 +1585,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1656,7 +1656,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1727,7 +1727,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1798,7 +1798,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1872,7 +1872,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1949,7 +1949,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2029,7 +2029,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2109,7 +2109,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2189,7 +2189,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2272,7 +2272,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2355,7 +2355,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2441,7 +2441,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2527,7 +2527,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2613,7 +2613,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2699,7 +2699,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2785,7 +2785,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2871,7 +2871,7 @@
           "name":"動作",
           "usable":[
             {
-              "value":"step"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"

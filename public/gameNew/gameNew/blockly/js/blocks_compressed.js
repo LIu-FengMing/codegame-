@@ -13,10 +13,10 @@ Blockly.Blocks['block_main'] = {
   }
 };
 
-Blockly.Blocks['block_step'] = {
+Blockly.Blocks['block_moveForward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("step");
+        .appendField("moveForward");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(330);
