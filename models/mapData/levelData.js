@@ -750,7 +750,7 @@ module.exports = {
         "textarea5": "重置地圖－將遊戲畫面初始化",
         "textarea6": "重置關卡－刷新指令區及遊戲畫面",
         "textarea7": "設定－環境設定",
-        "textarea8": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+        "textarea8": "在計算結果的指令個數時，moveForward( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmoveForward( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
         "img1": "level1img1.png",
         "img2": "level1img2.png",
         "img4": "start.png",
@@ -762,7 +762,7 @@ module.exports = {
         "level": 2,
         "mode": 2,
         "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight( );<br>左轉：turnLeft( );<br>皆分類於\"動作\"內。",
-        "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step( );<br>turnRight( );<br>step( );<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+        "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>moveForward( );<br>turnRight( );<br>moveForward( );<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
         "img1": "level2img1.gif",
         "img2": "level2img2.gif"
       },
@@ -789,22 +789,22 @@ module.exports = {
       {
         "level": 7,
         "mode": 1,
-        "textarea1": "新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於\"判斷式\"內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於\"判斷式\"內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 8,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於\"判斷式\"內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於\"判斷式\"內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 9,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於\"判斷式\"內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於\"判斷式\"內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmoveForward();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 10,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>是不是覺得走好幾步的時候，要打好幾個step( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"lol\"、\"HA\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>moveForward( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"lol\"、\"HA\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
   
       },
       {
@@ -840,7 +840,7 @@ module.exports = {
       {
         "level": 17,
         "mode": 1,
-        "textarea1": "新指令出現了！！！<br>新指令：<br>void 函式名稱( ){...}指令，分類於\"函式\"內。<br><br>void 函式名稱( ){...}是用來自訂函式的指令，可自訂函式名稱和函式內容。<br><br>使用方法：<br>void 函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何使用它呢？<br>只要在main函式內直接打出函式名稱(函式需要的參數);就可以呼叫該函式<br><br>在自訂函式時，函式內的指令將被計算進結果指令個數，還有呼叫自訂函式也會被計算進結果指令個數<br><br>使用範例：<br>void gogogo( ){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>int main(int argc, char *argv[ ]){<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspgogogo( );<br>&nbsp&nbsp}<br>return 0;<br>}&nbsp&nbsp&nbsp&nbsp//自訂一個函式gogogo，內容為前進一格，並且在main中使用迴圈呼叫了gogogo三次，最終結果將為車子前進三格。<br><br>以上這段程式碼於遊戲結果計算指令個數為2，1個是自訂函式時的step( )，1個是在迴圈中呼叫gogogo( )。<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！！<br>新指令：<br>void 函式名稱( ){...}指令，分類於\"函式\"內。<br><br>void 函式名稱( ){...}是用來自訂函式的指令，可自訂函式名稱和函式內容。<br><br>使用方法：<br>void 函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何使用它呢？<br>只要在main函式內直接打出函式名稱(函式需要的參數);就可以呼叫該函式<br><br>在自訂函式時，函式內的指令將被計算進結果指令個數，還有呼叫自訂函式也會被計算進結果指令個數<br><br>使用範例：<br>void gogogo( ){<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}<br>int main(int argc, char *argv[ ]){<br>int i=0;<br>for(i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspgogogo( );<br>&nbsp&nbsp}<br>return 0;<br>}&nbsp&nbsp&nbsp&nbsp//自訂一個函式gogogo，內容為前進一格，並且在main中使用迴圈呼叫了gogogo三次，最終結果將為車子前進三格。<br><br>以上這段程式碼於遊戲結果計算指令個數為2，1個是自訂函式時的moveForward( )，1個是在迴圈中呼叫gogogo( )。<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear( );&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 18,
@@ -950,27 +950,27 @@ module.exports = {
       {
         "level": 39,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>getString( )指令，分類於\"函式\"內。<br><br>剛從迷霧森林逃出不久居然又闖進了另一個迷霧區。<br>在此玩家須透過getString( );來獲得路徑字串，並對路徑字串操作來找到終點。<br><br>小提示：字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧區裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令step( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br><br>只要照路徑字串裡的字元做相對應的動作就能找到終點<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>getString( )指令，分類於\"函式\"內。<br><br>剛從迷霧森林逃出不久居然又闖進了另一個迷霧區。<br>在此玩家須透過getString( );來獲得路徑字串，並對路徑字串操作來找到終點。<br><br>小提示：字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧區裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br><br>只要照路徑字串裡的字元做相對應的動作就能找到終點<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 40,
         "mode": 1,
-        "textarea1": "在迷霧區出現了神祕載具！！！<br><br>在此玩家須透過getString( );來獲得動作字串，並對動作字串操作來擊斃敵人並找到終點。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令step( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧區出現了神祕載具！！！<br><br>在此玩家須透過getString( );來獲得動作字串，並對動作字串操作來擊斃敵人並找到終點。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 41,
         "mode": 1,
-        "textarea1": "在迷霧區中出現了沙漠與河流！！！<br><br>在不知道地形的情況下看來只能依靠動作字串判斷地形了。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令step( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：22<br>神祕載具的攻擊力：7<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧區中出現了沙漠與河流！！！<br><br>在不知道地形的情況下看來只能依靠動作字串判斷地形了。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：22<br>神祕載具的攻擊力：7<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 42,
         "mode": 1,
-        "textarea1": "在迷霧森林的終點前出現了鎖頭，需要透過getKeyArray( );來獲得密碼陣列。<br><br>在路徑字串中'A'則表示要回答通關密碼。<br><br>藍色鎖頭精靈問題：<br>請問密碼陣列從小到大排列的結果長怎麼樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br><br>排序可以參考氣泡排序法或選擇排序法。<br><br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令step( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧森林的終點前出現了鎖頭，需要透過getKeyArray( );來獲得密碼陣列。<br><br>在路徑字串中'A'則表示要回答通關密碼。<br><br>藍色鎖頭精靈問題：<br>請問密碼陣列從小到大排列的結果長怎麼樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br><br>排序可以參考氣泡排序法或選擇排序法。<br><br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 43,
         "mode": 1,
-        "textarea1": "這一關與四十二關相似，但是藍色鎖頭精靈的問題好像不一樣了，記得看仔細鎖頭精靈的題目喔！！<br><br>鎖頭精靈問題：<br>請問密碼陣列中所有奇數值從小到大排序的結果長怎樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br>排序可以參考氣泡排序法或選擇排序法。<br><br>所有奇數值從小到大排列可以看成先排列再針對奇數值做輸出。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);，來獲得字串的長度，如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令step( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：30<br>神祕載具的攻擊力：4<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "這一關與四十二關相似，但是藍色鎖頭精靈的問題好像不一樣了，記得看仔細鎖頭精靈的題目喔！！<br><br>鎖頭精靈問題：<br>請問密碼陣列中所有奇數值從小到大排序的結果長怎樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br>排序可以參考氣泡排序法或選擇排序法。<br><br>所有奇數值從小到大排列可以看成先排列再針對奇數值做輸出。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);，來獲得字串的長度，如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：30<br>神祕載具的攻擊力：4<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 44,
@@ -1023,7 +1023,7 @@ module.exports = {
         "textarea6": "重置地圖－將遊戲畫面初始化",
         "textarea7": "重置關卡－刷新指令區及遊戲畫面",
         "textarea8": "設定－環境設定",
-        "textarea9": "在計算結果的指令個數時，step( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+        "textarea9": "在計算結果的指令個數時，moveForward( )指令將會被列入計算。<br><br>範例：前進一步<br>int main(int argc, char *argv[ ])<br>{<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmoveForward( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn 0;<br>}<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足通關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
         "img1": "level1img1.png",
         "img2": "level1img2.png",
         "img4": "start.png",
@@ -1036,7 +1036,7 @@ module.exports = {
         "level": 2,
         "mode": 2,
         "textarea1": "歡迎來到第二關！！<br>既然會前進了那該如何轉彎呢？<br>在這關出現了新指令：<br>右轉：turnRight()<br>左轉：turnLeft();<br>皆分類於'動作'內。",
-        "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>step( );<br>turnRight( );<br>step( );<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
+        "textarea2": "請注意！轉向只有車子自轉唷。<br><br>小提示：直走一格右轉的動作指令為<br>moveForward( );<br>turnRight( );<br>moveForward( );<br><br>點擊左下角小幫手即可再次觀看關卡說明。<br><br>過關條件：<br>3星：7個動作包含7個動作以內<br>2星：8個動作包含8個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！",
         "img1": "level2img1.gif",
         "img2": "level2img2.gif"
       },
@@ -1063,22 +1063,22 @@ module.exports = {
       {
         "level": 7,
         "mode": 1,
-        "textarea1": "新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於\"判斷式\"內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新物件與新指令出現了！！<br>新指令：<br>if( ){...} 指令，分類於\"判斷式\"內。<br>新物件：<br>問號標誌、問號石頭。<br><br>若在問號標誌十字範圍內有兩個有著紅色問號的石頭則：<br>問號標誌將在遊戲開始後隨機顯示：'L' or 'R'。<br>並且取得問號標誌值的參數預設為hint，在踩到問號標誌時 hint 參數的值才會變為'L' or 'R'。<br><br>if( ){...}為判斷式指令。<br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp//若條件達成則執行指定動作。<br><br>範例：若問號標誌顯示為 R 則向右轉並且向前走一步。<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 8,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於\"判斷式\"內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>if( ){…}else{…} 指令，分類於\"判斷式\"內。<br><br>在上一關學過了基本的判斷式if( )，<br>在這關新增了更進階的判斷式指令。<br><br>使用方法：<br>if(此處加入條件){<br>指定動作<br>}else{ <br>指定動作<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//若達成條件則執行if( ){...}內指令，其他情況則執行else{...}內指令。<br><br>範例：<br>if(hint == 'R'){<br>&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}else{<br>&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}&nbsp&nbsp&nbsp&nbsp//若hint值等於 R，則向右轉並前進一格，其他情況則向左轉並前進一格。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 9,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於\"判斷式\"內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstep();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>switch( ){...}指令，分類於\"判斷式\"內。<br><br>學過了if( ){...}和if(){...}else{...}，如果條件超過2種的話，該怎麼辦呢？<br>那就使用switch( ){...}吧！！<br><br>switch( ){...}是用來判斷多種條件的指令。<br>使用方法：<br>switch(條件參數){<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 條件參數的值:<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp指定動作<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//由條件參數的值來判斷進入哪一個 case 做出指定動作，接著break跳出這個switch。<br><br>範例：<br>switch(hint){<br>&nbsp&nbsp&nbsp&nbspcase 'L':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnLeft( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'F':<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmoveForward();<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbspcase 'R':&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturnRight( );<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>}&nbsp&nbsp&nbsp&nbsp//若hint值為 L 則左轉然後跳出switch，若hint值為 F 則前進一步然後跳出switch，若hint值為 R 則右轉然後跳出switch。<br><br>請注意case 條件參數的值: ←此處為冒號':'。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 10,
         "mode": 1,
-        "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>是不是覺得走好幾步的時候，要打好幾個step( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"hello\"、\"HAHA@_@\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！<br>新指令：<br>int 指令，分類於\"變數宣告\"內。<br>for( ){...}指令，分類於\"函式\"內。<br><br>是不是覺得走好幾步的時候，要打好幾個moveForward( )很麻煩呢？<br>現在！我們可以使用for( ){...}指令來編寫重複的動作。<br><br>for( ){...}為迴圈指令，主要是將重複的動作寫在迴圈內，然後設定迴圈次數來簡化程式碼，並且要先宣告一個變數用來設定迴圈次數。<br><br>變數可宣告為多種形態：<br>型態&nbsp&nbsp&nbsp&nbsp&nbsp意思&nbsp&nbsp&nbsp&nbsp&nbsp範例<br>int&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp整數&nbsp&nbsp&nbsp&nbsp&nbsp100、-5、1246….<br>float&nbsp&nbsp&nbsp&nbsp&nbsp浮點數&nbsp&nbsp3.14159、4.6….<br>char&nbsp&nbsp&nbsp&nbsp&nbsp字元&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'a'、'B'、'@'…<br>string&nbsp&nbsp&nbsp字串&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\"hello\"、\"HAHA@_@\"…<br>bool&nbsp&nbsp&nbsp&nbsp&nbsp布林&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrue、false<br><br>使用方法：<br>先宣告變數<br>for(設變數值;設迴圈條件;迴圈結束後變數增減){<br>&nbsp&nbsp&nbsp&nbsp指定動作<br>}&nbsp&nbsp&nbsp&nbsp//宣告一個變數後，根據進入迴圈條件以及變數的變化來設定執行指定動作的次數。<br><br>範例：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}<br>turnLeft( );&nbsp&nbsp&nbsp&nbsp//宣告一個型態為 int 的變數 i 初始值為 0，迴圈開始前將 i 的值設為 5，且若 i>0 則進入迴圈，當單一次迴圈結束時 i 的值 -1 ，接著再次判斷是否符合 i>0的條件，若符合則再次進入迴圈，若不符合則跳過迴圈去執行左轉的動作。。<br><br>該段程式碼運行後將會使車子前進5步後向左轉。<br><br>迴圈是程式語言中非常重要的一個環節，大家要跟他打好關係唷！<br><br>過關條件：<br>3星：1個動作包含1個動作以內<br>2星：2個動作包含2個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
   
       },
       {
@@ -1114,7 +1114,7 @@ module.exports = {
       {
         "level": 17,
         "mode": 1,
-        "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspstep( );<br>}<br>int main( ){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！！<br>新指令：<br>function 函式名稱( )指令{...}，分類於\"函式\"內<br><br>function 函式名稱( ){...} 是用來自訂函式的指令，在程式碼中代表的即為void 自訂函式名稱(){...}，而在此處用function指令自訂函式名稱和函式內容。<br><br>使用方法：<br>function 自訂函式名稱( ){<br>&nbsp&nbsp&nbsp&nbsp自訂指令<br>}<br><br>自訂了一個函式後，又該如何呼叫它呢？<br>只需要在main積木中想呼叫自訂函式的地方放入一個call function積木就可以了。<br>在自訂函式時，函式內的指令將被計算進結果指令個數<br>還有call function也會被計算進結果指令個數<br><br>使用範例：<br>function gogogo(){<br>&nbsp&nbsp&nbsp&nbspmoveForward( );<br>}<br>int main( ){<br>for(int i=3;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspcall function gogogo();<br>&nbsp&nbsp}<br>}<br>這段程式碼執行後，結果為兩個指令，並且前行三步<br>請使用function 自訂一個函式通過關卡吧！<br><br>請使用下列程式碼完成此關卡：<br>int i=0;<br>for(i=5;i>0;i--){<br>&nbsp&nbsp&nbsp&nbspclear();&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp請自訂clear函式<br>}<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 18,
@@ -1164,7 +1164,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               }
             ]
           }
@@ -1177,7 +1177,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1196,7 +1196,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1215,7 +1215,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1234,7 +1234,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1256,7 +1256,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1281,7 +1281,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1314,7 +1314,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1350,7 +1350,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1383,7 +1383,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1430,7 +1430,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1477,7 +1477,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1524,7 +1524,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1571,7 +1571,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1618,7 +1618,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1668,7 +1668,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1718,7 +1718,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1774,7 +1774,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1830,7 +1830,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1886,7 +1886,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1942,7 +1942,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -1998,7 +1998,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2054,7 +2054,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2110,7 +2110,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2166,7 +2166,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2222,7 +2222,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2278,7 +2278,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2343,7 +2343,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2408,7 +2408,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2473,7 +2473,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2538,7 +2538,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2603,7 +2603,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2671,7 +2671,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2742,7 +2742,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2813,7 +2813,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2884,7 +2884,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -2955,7 +2955,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3029,7 +3029,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3106,7 +3106,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3186,7 +3186,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3266,7 +3266,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3346,7 +3346,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3429,7 +3429,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3512,7 +3512,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3598,7 +3598,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3684,7 +3684,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3770,7 +3770,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3856,7 +3856,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -3942,7 +3942,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"
@@ -4028,7 +4028,7 @@ directiveData : {
             "name":"動作",
             "usable":[
               {
-                "value":"step"
+                "value":"moveForward"
               },
               {
                 "value":"turnRight"

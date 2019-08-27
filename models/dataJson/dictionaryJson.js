@@ -6,7 +6,7 @@ module.exports = {
                 "type": "動作",
                 "element": [
                     {
-                        "name": "step(&nbsp)",
+                        "name": "moveForward(&nbsp)",
                         "value": "&nbsp&nbsp&nbsp&nbsp玩家載具(車、坦克、船)向前移動一格。",
                         "limit": 1
                     },
@@ -73,7 +73,7 @@ module.exports = {
                         "limit": 17
                     }, {
                         "name": "void&nbsp函式名稱(&nbsp)",
-                        "value": "&nbsp&nbsp&nbsp&nbsp建立一個自訂函式也稱作副程式，能夠自訂函式型態、函式名稱、函式內容。<br>自訂函式後，想呼叫自訂函式時，只需要直接打出函式名稱即可。<br>使用方法：<br>傳回值型態  函數名稱(參數一的型態  參數一的名稱, 參數二的型態  參數二的名稱, ....)<br>{<br>  變數宣告<br>  程式碼<br>  return  傳回值;<br>}<br>傳回值型態若為void則代表不會回傳任何數值。<br><br>範例1：<br>void ABC( ){<br> step( );<br> step( );<br>}<br>void main( ){<br> turnRight( );<br> turnRight( );<br> ABC( );<br>}<br>宣告一個自訂函式ABC，當呼叫ABC時會執行2次step。<br>而整個程式執行後會是右轉兩次後前進兩格。<br><br>範例2：<br>int C(int a){<br> int b=5;<br> a=a+b;<br> return a;<br>}<br>void main( ){<br> int sum=2;<br> sum=C(sum);<br>}<br>宣告一個自訂函式C，當呼叫C時，需給C一個型態為int的變數，而C會將這個變數加上b的數值後傳回來。<br>整個程式執行後，sum的值將變為7。",
+                        "value": "&nbsp&nbsp&nbsp&nbsp建立一個自訂函式也稱作副程式，能夠自訂函式型態、函式名稱、函式內容。<br>自訂函式後，想呼叫自訂函式時，只需要直接打出函式名稱即可。<br>使用方法：<br>傳回值型態  函數名稱(參數一的型態  參數一的名稱, 參數二的型態  參數二的名稱, ....)<br>{<br>  變數宣告<br>  程式碼<br>  return  傳回值;<br>}<br>傳回值型態若為void則代表不會回傳任何數值。<br><br>範例1：<br>void ABC( ){<br> moveForward( );<br> moveForward( );<br>}<br>void main( ){<br> turnRight( );<br> turnRight( );<br> ABC( );<br>}<br>宣告一個自訂函式ABC，當呼叫ABC時會執行2次moveForward。<br>而整個程式執行後會是右轉兩次後前進兩格。<br><br>範例2：<br>int C(int a){<br> int b=5;<br> a=a+b;<br> return a;<br>}<br>void main( ){<br> int sum=2;<br> sum=C(sum);<br>}<br>宣告一個自訂函式C，當呼叫C時，需給C一個型態為int的變數，而C會將這個變數加上b的數值後傳回來。<br>整個程式執行後，sum的值將變為7。",
                         "limit": 17
                     }, {
                         "name": "call&nbspfunction&nbsp函式名稱(&nbsp)",
