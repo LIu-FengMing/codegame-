@@ -680,7 +680,162 @@ function helper(mainDiv) {
       document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
       break;
     case 5:
+      if (helperJson) {
+        for (var i = 0; i < helperJson.length; i++) {
+          divTag = document.getElementById("helperInnerDiv");
+          var helperId = helperJson[i].id;
+          lastHeight = helperJson[i].lastHeight;
+          var isImgLeft=false;
+          if(helperJson[i].isImgLeft!="" && helperJson[i].isImgLeft==true){
+            isImgLeft=true;
+          }
+          switch (helperJson[i].mode) {
+            case "img":
+              b = document.createElement("div");
+              b.setAttribute("id", "imgDiv" + helperId);
+              b.setAttribute("class", "bigImgDiv");
+              b.setAttribute("style", "top:" + lastHeight + "%;");
+              divTag.appendChild(b);
 
+              divTag = document.getElementById("imgDiv" + helperId);
+              b = document.createElement("img");
+              b.setAttribute("id", "bigImg" + helperId);
+              var strText = helperJson[i].imgUrl1;
+              b.setAttribute("src", "img/" + strText);
+              divTag.appendChild(b);
+              break;
+            case "text":
+              b = document.createElement("div");
+              b.setAttribute("id", "textareaDiv" + helperId);
+              b.setAttribute("class", "bigTextareaDiv");
+              b.setAttribute("style", "top:" + lastHeight + "%;");
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("textareaDiv" + helperId);
+              b = document.createElement("textarea");
+              b.setAttribute("id", "bigHelperTextarea" + helperId);
+              b.innerHTML = helperJson[i].textareaValue;
+              divTag.appendChild(b);
+              break;
+            case "imgAndText":
+              b = document.createElement("div");
+              b.setAttribute("id", "imgAndTextDiv" + helperId);
+              b.setAttribute("class", "imgAndTextDiv");
+              b.setAttribute("style", "top:" + lastHeight + "%;");
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("imgAndTextDiv" + helperId);
+
+              b = document.createElement("textarea");
+              b.setAttribute("id", "imgAndTextTextarea" + helperId);
+              b.setAttribute("class", "" + helperId);
+              if (isImgLeft) {
+                b.setAttribute("style", "right:6%;");
+              } else {
+                b.setAttribute("style", "left:6%;");
+              }
+              b.innerHTML = helperJson[i].textareaValue;
+              divTag.appendChild(b);
+
+              b = document.createElement("div");
+              b.setAttribute("id", "imgDivInner" + helperId);
+              if (isImgLeft) {
+                b.setAttribute("style", "width:40%;height:100%;position: absolute;left:5%;");
+              } else {
+                b.setAttribute("style", "width:40%;height:100%;position: absolute;right:5%;");
+              }
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("imgDivInner" + helperId);
+              b = document.createElement("img");
+              b.setAttribute("id", "imgAndTextImg" + helperId);
+              b.setAttribute("class", "helperImg");
+              var strText = helperJson[i].imgUrl1;
+              b.setAttribute("src", "img/" + strText);
+              divTag.appendChild(b);
+              break;
+            case "twoImgAndText":
+              b = document.createElement("div");
+              b.setAttribute("id", "twoImgAndTextDiv" + helperId);
+              b.setAttribute("class", "twoImgAndTextDiv");
+              b.setAttribute("style", "top:" + lastHeight + "%;");
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("twoImgAndTextDiv" + helperId);
+
+              b = document.createElement("textarea");
+              b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
+              if (isImgLeft) {
+                b.setAttribute("style", "right:6%;");
+              } else {
+                b.setAttribute("style", "left:6%;");
+              }
+              b.innerHTML = helperJson[i].textareaValue;
+              divTag.appendChild(b);
+
+              b = document.createElement("div");
+              b.setAttribute("id", "twoImgAndTextInnerDiv" + helperId);
+              b.setAttribute("class", "twoImgAndTextInneDiv");
+              if (isImgLeft) {
+                b.setAttribute("style", "left:5%;");
+              } else {
+                b.setAttribute("style", "right:5%;");
+              }
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+              b = document.createElement("img");
+              b.setAttribute("id", "twoImgAndTextTopImg" + helperId);
+              var strText = helperJson[i].imgUrl1;
+              b.setAttribute("src", "img/" + strText);
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("twoImgAndTextInnerDiv" + helperId);
+              b = document.createElement("img");
+              b.setAttribute("id", "twoImgAndTextBottomImg" + helperId);
+              var strText = helperJson[i].imgUrl2;
+              b.setAttribute("src", "img/" + strText);
+              divTag.appendChild(b);
+              break;
+            case "smallImgAndText":
+              b = document.createElement("div");
+              b.setAttribute("id", "smallImgAndTextDiv" + helperId);
+              b.setAttribute("class", "smallImgAndTextDiv");
+              b.setAttribute("style", "top:" + lastHeight + "%;");
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("smallImgAndTextDiv" + helperId);
+              b = document.createElement("textarea");
+              b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
+              b.setAttribute("class", "" + helperId);
+              if (isImgLeft) {
+                b.setAttribute("style", "right:6%;");
+              } else {
+                b.setAttribute("style", "left:6%;");
+              }
+              b.innerHTML = helperJson[i].textareaValue;
+              divTag.appendChild(b);
+
+              b = document.createElement("div");
+              b.setAttribute("id", "smallImgAndTextInnerDiv" + helperId);
+              b.setAttribute("class", "smallImgAndTextInneDiv");
+              if (isImgLeft) {
+                b.setAttribute("style", "left:5%;");
+              } else {
+                b.setAttribute("style", "right:5%;");
+              }
+              divTag.appendChild(b);
+
+              divTag = document.getElementById("smallImgAndTextInnerDiv" + helperId);
+              b = document.createElement("img");
+              b.setAttribute("id", "smallImgAndTextImg" + helperId);
+              var strText = helperJson[i].imgUrl1;
+              b.setAttribute("src", "img/" + strText);
+              divTag.appendChild(b);
+              break;
+          }
+        }
+      }
       break;
   }
 }

@@ -3204,6 +3204,7 @@ function selectCreateNode(mode) {
       b.style.background = "white";
       b.setAttribute("src", "img/noImage.png");
       divTag.appendChild(b);
+
       b = document.createElement("br");
       divTag.appendChild(b);
 
