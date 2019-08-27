@@ -8,8 +8,8 @@ window.onload = function () {
     let params = href.searchParams;
     if (params.has('token')) {
         // console.log("0.0");
-        console.log(UserName.value);
-        console.log(UserPass.value);
+        // console.log(UserName.value);
+        // console.log(UserPass.value);
         if (UserName.value && UserPass.value) {
             if (params.get('token') == "IncorrectUsername") {
                 // alert("'使用者帳號'輸入錯誤");
@@ -63,7 +63,7 @@ function call_Login_api() {
             username: UserName.value,
             password: UserPass.value,
         }
-        console.log(scriptData);
+        // console.log(scriptData);
         var href = window.location.href;
         post_to_url(href, scriptData);
 
@@ -80,7 +80,7 @@ function forgest() {
     }
     href = href.substr(0, index + 1) + "forgetPass";
     window.location.replace(href);
-    console.log(href);
+    // console.log(href);
 }
 function registered() {
     var index = 0;
@@ -92,7 +92,7 @@ function registered() {
     }
     href = href.substr(0, index + 1) + "register";
     window.location.replace(href);
-    console.log(href);
+    // console.log(href);
 }
 function post_to_url(path, params, method) {
     method = method || "post"; // Set method to post by default, if not specified.

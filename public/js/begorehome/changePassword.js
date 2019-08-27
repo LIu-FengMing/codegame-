@@ -14,7 +14,7 @@ function back() {
     }
     href = href.substr(0, index + 1);
     window.location.replace(href);
-    console.log(href);
+    // console.log(href);
 }
 
 function changePassword() {

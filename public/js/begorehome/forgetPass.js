@@ -11,7 +11,7 @@ function back() {
     }
     href = href.substr(0, index + 1);
     window.location.replace(href);
-    console.log(href);
+    // console.log(href);
 }
 
 function forgetPass() {
@@ -61,7 +61,7 @@ function call_forgetPass_api() {
             email: eMail.value,
             homeUrl: href
         }
-        console.log(scriptData);
+        // console.log(scriptData);
         var href = window.location.href;
         $.ajax({
             url: href,              // 要傳送的頁面

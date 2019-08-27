@@ -48,7 +48,7 @@ function back() {
   }
   href = href.substr(0, index + 1);
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 var href = window.location.href;
 var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,isOblivionOpen;
@@ -142,7 +142,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //// console.log(myVid.volume);
   //sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -364,7 +364,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -399,7 +399,7 @@ function selectionLevel(thisObject) {
 
   if (lastObject != null) {
     // console.log(lastObject);
-    console.log(mapIndex);
+    // console.log(mapIndex);
 
     if (playMap[mapIndex] == 1) {
       lastObject.style.backgroundColor = "#7f73bf";
@@ -424,8 +424,8 @@ function enterLevel() {
       remindView(remindValue);
     }
     else {
-      console.log(user.starNum);
-      console.log(obj.requireStar);
+      // console.log(user.starNum);
+      // console.log(obj.requireStar);
       var mapID = obj._id;
       document.location.href = 'oblivionGameView?mapID=' + mapID;
     }
@@ -749,7 +749,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -830,7 +830,7 @@ function sendLoadUsernameMap() {
     data: scriptData,  // 將表單資料用打包起來送出去
     async:false,
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       userMap = res;
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
@@ -932,7 +932,7 @@ function changeTdNameDisplay() {
   // console.log(tdStatus);
   // console.log(userMap);
   var index = levelSelect.selectedIndex;
-  console.log(index);
+  // console.log(index);
   if (index == 0) { //全部
     userMap = completUserMap.slice(0);
   }
@@ -949,8 +949,8 @@ function changeTdNameDisplay() {
   // for (let index = 0; index < tdStatus.length; index++) {
   for (let index = tdStatus.length-1; index >-1; index--){
     var item=TdNameTable[index];
-    console.log("item:",item);
-    console.log("tdStatus[index]:",item);
+    // console.log("item:",item);
+    // console.log("tdStatus[index]:",item);
     if(tdStatus[index]==1){
       userMap = userMap.sort(function (a, b) {
         return a[item] > b[item] ? 1 : -1;
@@ -963,7 +963,7 @@ function changeTdNameDisplay() {
     }
   }
 
-  console.log(userMap);
+  // console.log(userMap);
 
   updateMapData(userMap)
 
@@ -972,9 +972,9 @@ function changeTdNameDisplay() {
 
 /*建立表格*/
 function createLevelTable(scriptData) {
-  console.log("--playMap---");
-  console.log(playMap);
-  console.log(scriptData);
+  // console.log("--playMap---");
+  // console.log(playMap);
+  // console.log(scriptData);
   oldDisMapNum = scriptData.length;
   for (var i = 0; i < scriptData.length; i++) {
 
@@ -1155,7 +1155,7 @@ function updateMapData(res) {
     }
     mapData.push(script);
   }
-  console.log(mapData);
+  // console.log(mapData);
 
   updateLevelTable(mapData);
 }
@@ -1251,8 +1251,8 @@ function updateLevelTable(scriptData) {
 
 var searchTextBox = document.getElementById("searchTextBox");
 // searchTextBox.onkeydown = function () {
-//   console.log("search:");
-//   console.log(searchTextBox.value);
+//   // console.log("search:");
+//   // console.log(searchTextBox.value);
 //   searchTextBox.className = "searchFocus";
 //   if (searchTextBox.value.length > 0) {
 //     userMap.length = 0;
@@ -1265,7 +1265,7 @@ var searchTextBox = document.getElementById("searchTextBox");
 //   }
 //   else {
 //     var index = levelSelect.selectedIndex;
-//     console.log(index);
+//     // console.log(index);
 //     if (index == 0) { //全部
 //       userMap = completUserMap.slice(0);
 //     }
@@ -1296,7 +1296,7 @@ searchTextBox.onkeyup = function () {
   // }
   // else {
   //   var index = levelSelect.selectedIndex;
-  //   console.log(index);
+  //   // console.log(index);
   //   if (index == 0) { //全部
   //     userMap = completUserMap.slice(0);
   //   }
@@ -1313,7 +1313,7 @@ searchTextBox.onkeyup = function () {
   // updateMapData(userMap)
 }
 searchTextBox.onchange = function () {
-  console.log("happy");
+  // console.log("happy");
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
     clearSearch();
   }

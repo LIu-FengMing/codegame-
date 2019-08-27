@@ -313,7 +313,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if (getAchievement == undefined) {
         getAchievement = 0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {

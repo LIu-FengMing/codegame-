@@ -50,7 +50,7 @@ function back() {
   // href = href.substr(0, index + 1);
   href = "gameView_text?level=" + (localStorage.getItem("gameNumber")).toString();
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 var href = window.location.href;
 var user, objectData, levelDivAlive = false, isOblivionCreaterOpen;
@@ -70,7 +70,7 @@ function loadGameMap() {
       gameLevel: levelNum+1
     },  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       allMapData = res;
       initMapData(res);
     }
@@ -130,7 +130,7 @@ function initMapData(res) {
     innerStr += element.innerGrammar;
     innerStr += '\n';
   }
-  console.log(innerStr);
+  // console.log(innerStr);
 
   $('#levelIntroductionTextarea').val(innerStr);
   $('#levelDescriptionTextarea').val(nowMapData.description.description);
@@ -157,7 +157,7 @@ function changeMapData(mapVersion) {
     innerStr += element.innerGrammar;
     innerStr += '\n';
   }
-  console.log(innerStr);
+  // console.log(innerStr);
 
   $('#levelIntroductionTextarea').val(innerStr);
   $('#levelDescriptionTextarea').val(nowMapData.description.description);
@@ -172,7 +172,7 @@ function modifyInit() {
   let tempStr = localStorage.getItem("gameName");
   gameNumber = localStorage.getItem("gameNumber");
   document.getElementById("previewBtn").setAttribute("onclick", "btnClick(" + gameNumber + ")")
-  console.log("這裡是關卡數:" + gameNumber);
+  // console.log("這裡是關卡數:" + gameNumber);
   var gameNameStr = tempStr.replace(/&nbsp;/g, " ");
   divTag = document.getElementById("levelNameTextarea");
   divTag.value = gameNameStr;
@@ -658,7 +658,7 @@ function createElementView(mode) {
 /*儲存小幫手*/
 function saveHelper(modelNumber) {
   // remindView("儲存成功");
-  console.log(modelNumber);
+  // console.log(modelNumber);
 
   if (helperMod != "blocky") {
     var postData = nowMapData.mainCodeDescription;
@@ -785,7 +785,7 @@ function saveHelper(modelNumber) {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptObjData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       remindView("儲存成功");
     }
   })
@@ -821,12 +821,12 @@ function readImgUrl(input, imgId) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-      console.log(input.files[0].name);
+      // console.log(input.files[0].name);
       data = {
         imgName: input.files[0].name,
         imgData: e.target.result.toString()
       }
-      console.log(data);
+      // console.log(data);
       $.ajax({
         url: "onloadImg",
         type: 'POST',
@@ -834,13 +834,13 @@ function readImgUrl(input, imgId) {
         dataType: 'json',
         data: data,
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           var img = document.getElementById("helperImg" + imgId);
           img.setAttribute("src", e.target.result)
           $("#helperImg" + imgId)[0].value = res.path;
         },
         error: function (data) {
-          console.log("上传失败");
+          // console.log("上传失败");
         }
       })
     }
@@ -935,7 +935,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if (getAchievement == undefined) {
         getAchievement = 0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -983,16 +983,16 @@ function loadTab(obj, n) {
   editMapterrain = false;
   if (n == 3) {
     editMapterrain = true;
-    console.log(editMapterrain);
+    // console.log(editMapterrain);
   }
   if (n == 4 && user.starNum < objectData.oblivionObject[13].requirementStar) {
     document.getElementById(layer).style.display = 'none';
-    console.log("aaa");
+    // console.log("aaa");
     lessRequirement(objectData.oblivionObject[13].requirementStar);
   }
   else if (n == 3 && user.starNum < objectData.oblivionObject[11].requirementStar) {
     document.getElementById(layer).style.display = 'none';
-    console.log("bbb");
+    // console.log("bbb");
     lessRequirement(objectData.oblivionObject[11].requirementStar);
   }
   else {
@@ -1011,7 +1011,7 @@ function chk(input) {
 
 /*select選擇->改變分頁內容*/
 function changeObjectAttributes() {
-  console.log("123");
+  // console.log("123");
   var objectName = document.getElementById("objectSelect").value;
   var tableId = ["enemyTable", "lockAnswerTable", "boxTable"];
   var tableValue = ["enemy", "blueLock", "box"];
@@ -1019,14 +1019,14 @@ function changeObjectAttributes() {
     if (objectName == objectData.oblivionObject[i].value) {
       if (objectData.oblivionObject[i].requirementStar > user.starNum) {
         document.getElementById("objectSelect").selectedIndex = 0;
-        console.log("ccc");
+        // console.log("ccc");
         lessRequirement(objectData.oblivionObject[i].requirementStar);
       }
     }
   }
   for (var i = 0; i < 3; i++) {
     divTag = document.getElementById(tableId[i]);
-    console.log(tableValue[i]);
+    // console.log(tableValue[i]);
     if (objectName == tableValue[i]) {
       document.getElementById(tableId[i]).style.display = '';
     } else if (objectName == tableId[i]) {
@@ -1190,7 +1190,7 @@ var lastSelect = null;
 function selectVersion(selectValue) {
   if (lastSelect != null && selectValue != lastSelect) {
 
-    console.log("選擇版本號" + selectValue.innerHTML);
+    // console.log("選擇版本號" + selectValue.innerHTML);
     selectValue.style.background = "#E6E6E6";
     lastSelect.style.background = "none";
     lastSelect = selectValue;
