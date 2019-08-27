@@ -49,7 +49,7 @@ function back() {
   href = href.substr(0, index + 1);
   href += "oblivionUser";
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 var href = window.location.href;
 var user, objectData, levelDivAlive = false, isOblivionCreaterOpen;
@@ -346,7 +346,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if (getAchievement == undefined) {
         getAchievement = 0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -400,16 +400,16 @@ function loadTab(obj, n) {
   editMapterrain = false;
   if (n == 3) {
     editMapterrain = true;
-    console.log(editMapterrain);
+    // console.log(editMapterrain);
   }
   if (n == 4 && user.starNum < objectData.oblivionObject[13].requirementStar) {
     document.getElementById(layer).style.display = 'none';
-    console.log("aaa");
+    // console.log("aaa");
     lessRequirement(objectData.oblivionObject[13].requirementStar);
   }
   else if (n == 3 && user.starNum < objectData.oblivionObject[11].requirementStar) {
     document.getElementById(layer).style.display = 'none';
-    console.log("bbb");
+    // console.log("bbb");
     lessRequirement(objectData.oblivionObject[11].requirementStar);
   }
   else {
@@ -428,7 +428,7 @@ function chk(input) {
 
 /*select選擇->改變分頁內容*/
 function changeObjectAttributes() {
-  console.log("123");
+  // console.log("123");
   var objectName = document.getElementById("objectSelect").value;
   var tableId = ["enemyTable", "lockAnswerTable", "boxTable"];
   var tableValue = ["enemy", "blueLock", "box"];
@@ -436,14 +436,14 @@ function changeObjectAttributes() {
     if (objectName == objectData.oblivionObject[i].value) {
       if (objectData.oblivionObject[i].requirementStar > user.starNum) {
         document.getElementById("objectSelect").selectedIndex = 0;
-        console.log("ccc");
+        // console.log("ccc");
         lessRequirement(objectData.oblivionObject[i].requirementStar);
       }
     }
   }
   for (var i = 0; i < 3; i++) {
     divTag = document.getElementById(tableId[i]);
-    console.log(tableValue[i]);
+    // console.log(tableValue[i]);
     if (objectName == tableValue[i]) {
       document.getElementById(tableId[i]).style.display = '';
     } else if (objectName == tableId[i]) {

@@ -58,7 +58,7 @@ function back() {
 
   if (params.has('level')) {
     var thisLevelNum = params.get('level').toString();    // "react"
-    console.log(thisLevelNum);
+    // console.log(thisLevelNum);
     if(parseInt(thisLevelNum)>23){
       href +="kuruma";
     }
@@ -67,7 +67,7 @@ function back() {
     }
   }
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 let params = new URL(window.location.href).searchParams;
 if (!params.has('level')) {
@@ -111,7 +111,7 @@ $.ajax({
   },  //
   success: function (res) {
 
-    console.log(res);
+    // console.log(res);
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
     helper("blocklyDiv");
@@ -140,11 +140,11 @@ $.ajax({
         window.location.replace(href);
     }
     var maplevelId =  params.get('level');
-    console.log(maplevelId);
-    console.log(user.EasyEmpire.codeLevel.length);
+    // console.log(maplevelId);
+    // console.log(user.EasyEmpire.codeLevel.length);
     if (maplevelId < 24) {
       if (user.EasyEmpire.codeLevel.length < maplevelId) {
-        console.log("Bye 實力不夠");
+        // console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "pruss";
         window.location.replace(href);
@@ -152,13 +152,13 @@ $.ajax({
     }
     else {
       if (user.MediumEmpire.codeLevel.length < maplevelId-24) {
-        console.log("Bye 實力不夠");
+        // console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "kuruma";
         window.location.replace(href);
       }
       else if (user.EasyEmpire.codeLevel.length < 24||(user.EasyEmpire.codeLevel.length>=23&&user.EasyEmpire.codeLevel[23].HighestStarNum < 1)) {
-        console.log("Bye 實力不夠");
+        // console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "pruss";
         window.location.replace(href);
@@ -209,7 +209,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //// console.log(myVid.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -221,9 +221,9 @@ function initHome() {
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
   getArgs();
-  console.log(user.username);
+  // console.log(user.username);
   if(user.username == "NKUSTCCEA"){
-    console.log(document.getElementById("gameModifyBtn"));
+    // console.log(document.getElementById("gameModifyBtn"));
     document.getElementById("gameModifyBtn").style.display = "";
   }
 }
@@ -239,7 +239,7 @@ function recordLevel(scriptData) {
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       user = res
-      console.log(user);
+      // console.log(user);
     }
   })
 }
@@ -259,7 +259,7 @@ function updateEasyTextLevel(starNum) {
     dataType: 'json',             // 回傳資料會是 json 格式
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
       if (res.err) {
         error();
       }
@@ -348,7 +348,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -863,7 +863,7 @@ function instructionView(mainDiv) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
-        //console.log(li[j].limit,li[j].name,passLevel);
+        //// console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -1140,7 +1140,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -1459,7 +1459,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     b.setAttribute("type", "button");
     b.setAttribute("id", "nextLevelBtn");
 
-    console.log(thisLevelNum);
+    // console.log(thisLevelNum);
     if((thisLevelNum+1)>=50){
       b.setAttribute("value", "完成闖關");
       b.setAttribute("onclick", "location.href='kuruma'");
@@ -1586,7 +1586,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //console.log(e.keyCode);
+  //// console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('    ');
     return false;
@@ -1614,7 +1614,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 
   fontSize = parseFloat(style);
-  //console.log(fontSize);
+  //// console.log(fontSize);
 }
 
 /*localStrage*/

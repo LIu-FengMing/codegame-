@@ -48,7 +48,7 @@ function back() {
   }
   href = href.substr(0, index + 1);
   window.location.replace(href);
-  console.log(href);
+  // console.log(href);
 }
 var href = window.location.href;
 var scriptData = {
@@ -171,7 +171,7 @@ function initHome() {
     document.getElementById("myonoffswitch").checked = isBlockly;
   } else {}
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
-    //console.log("???");
+    //// console.log("???");
     bkMusicVolumn = Session.get("bkMusicVolumn");
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
@@ -186,7 +186,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //// console.log(myVid.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -264,7 +264,7 @@ $.ajax({
   data: scriptData,  // 將表單資料用打包起來送出去
   success: function (res) {
     // console.log(res);
-    console.log("res:", res);
+    // console.log("res:", res);
 
     userMap = res.length;
   }
@@ -618,7 +618,7 @@ function btnClick(number) {
   b.setAttribute("id", "mainGrammar");
   divTag.appendChild(b);
   divTag = document.getElementById("mainGrammar");
-  console.log(levelDescription.Early[number].mainGrammar.length);
+  // console.log(levelDescription.Early[number].mainGrammar.length);
   for (var i = 0; i < levelDescription.Early[number].mainGrammar.length; i++) {
     b = document.createElement("div");
     b.setAttribute("class", "innerGrammar");
@@ -657,14 +657,14 @@ function btnClick(number) {
   try {
     if (isCheckClicked.checked) {
       if (number < 10) {
-        console.log(number);
+        // console.log(number);
         b.setAttribute("onclick", "location.href='gameView_blockly?level=" + number + "'");
       } else {
         b.setAttribute("onclick", "location.href='gameView_blockly?level=" + number + "'");
       }
     } else {
       if (number < 10) {
-        console.log(number);
+        // console.log(number);
         b.setAttribute("onclick", "location.href='gameView_text?level=" + number + "'");
       } else {
         b.setAttribute("onclick", "location.href='gameView_text?level=" + number + "'");
@@ -697,7 +697,7 @@ function viewRecord(number) {
             }
           }
         }
-        console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
+        // console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
         var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
         codeText = result;
         codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
@@ -722,7 +722,7 @@ function viewRecord(number) {
             }
           }
         }
-        console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
+        // console.log(user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code);
         var result = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].code;
         codeText = result;
         codeNum = user.EasyEmpire.codeLevel[number].challengeLog[lastRecord].instructionNum;
@@ -912,12 +912,12 @@ function changeViewRecord(number,changeType) {
     if (k < niceStar) {
       b.setAttribute("class", "startImg");
       /*document.getElementById("startImg" + k).className = "startImg";
-      console.log(document.getElementById("startImg" + k).className);*/
+      // console.log(document.getElementById("startImg" + k).className);*/
     } else {
       b.setAttribute("class", "unStartImg");
       /*document.getElementById("startImg" + k).className = "";
       document.getElementById("startImg" + k).className = "unStartImg";
-      console.log("0:","startImg" + k,document.getElementById("startImg" + k).className);*/
+      // console.log("0:","startImg" + k,document.getElementById("startImg" + k).className);*/
     }
     divTag.appendChild(b);
   }
@@ -929,8 +929,8 @@ function changeViewRecord(number,changeType) {
 var divTag, b, divID, divID2;
 /*裝備*/
 function equipageView(mainDiv) {
-  console.log("武器:" + equipmentData.weaponLevel.length, user.weaponLevel);
-  console.log("護具:" + equipmentData.armorLevel.length, user.armorLevel);
+  // console.log("武器:" + equipmentData.weaponLevel.length, user.weaponLevel);
+  // console.log("護具:" + equipmentData.armorLevel.length, user.armorLevel);
   divID = "equipageView";
   divID2 = "equipageBkView";
   divTag = document.getElementById(mainDiv.id);
@@ -1238,7 +1238,7 @@ function equipageView(mainDiv) {
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
   }
-  console.log(swordLevel, shieldLevel);
+  // console.log(swordLevel, shieldLevel);
 }
 
 function resetEquipClick() {
@@ -1505,9 +1505,9 @@ function instructionView(mainDiv) {
       // if (i == 1) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
-      //console.log(li);
+      //// console.log(li);
       for (var j = 0; j < li.length; j++) {
-        //console.log(li[j].limit,li[j].name,passLevel);
+        //// console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -1664,15 +1664,15 @@ function achievementJudge() {
       }
     }
   }
-  console.log("最高過關數:",maxLevel);
-  console.log("獲得三星數:",getThreeStar);
+  // console.log("最高過關數:",maxLevel);
+  // console.log("獲得三星數:",getThreeStar);
   for(var typeVar=0;typeVar<3;typeVar++){
     for(var valueVar=0;valueVar<3;valueVar++){
       // console.log(typeVar + valueVar);
       switch (typeVar) {
         /*通關數*/
         case 0:
-          console.log(maxLevel,achievemenData.record[typeVar + valueVar].limit[0].value);
+          // console.log(maxLevel,achievemenData.record[typeVar + valueVar].limit[0].value);
           if(maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value){
             isGet[typeVar + valueVar] = 1;
           }
@@ -1695,7 +1695,7 @@ function achievementJudge() {
   }
   // console.log("長度:",isGet.length);
   // for (var i = 0; i < isGet.length; i++) {
-  //   console.log(isGet[i],i);
+  //   // console.log(isGet[i],i);
   // }
   return isGet;
 }
@@ -1937,7 +1937,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -2000,7 +2000,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  //// console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -2017,7 +2017,7 @@ function changeLevelStage() {
   isCheckClicked = document.getElementById("myonoffswitch");
   isBlockly = isCheckClicked.checked;
   sendSession();
-  //console.log(isCheckClicked.checked);
+  //// console.log(isCheckClicked.checked);
   var codeLevel = -1;
   for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
     const element = user.EasyEmpire.codeLevel[index];

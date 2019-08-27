@@ -67,7 +67,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  
+
   async:false,
   success: function (res) {
     // console.log(res);
@@ -333,7 +333,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -1242,7 +1242,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //console.log(e.keyCode);
+  //// console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('    ');
     return false;
@@ -1270,7 +1270,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 
   fontSize = parseFloat(style);
-  //console.log(fontSize);
+  //// console.log(fontSize);
 }
 
 function loadDict(){

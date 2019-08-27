@@ -57,7 +57,7 @@ for (var i = 0; i < href.length; ++i) {
 href = href.substr(0, index + 1);
 href+="oblivionUser";
 window.location.replace(href);
-console.log(href);
+// console.log(href);
 }
 
 
@@ -125,12 +125,12 @@ function error() {
 
 }
 function initHome() {
-  console.log("???");
+  // console.log("???");
   let nowurl = new URL(window.location.href);
   let params = nowurl.searchParams;
   if (params.has('mapID')) {
     var thisLevelNum = params.get('mapID').toString();    // "react"
-    console.log(thisLevelNum);
+    // console.log(thisLevelNum);
   }
   if(Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null){
     //
@@ -148,7 +148,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //console.log(myVid.volume);
+  //// console.log(myVid.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -190,7 +190,7 @@ function recordLevel(scriptData) {
         data: scriptData,  // 將表單資料用打包起來送出去
         success: function (res) {
             user = res
-            console.log(user);
+            // console.log(user);
         }
     })
 }
@@ -290,7 +290,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -333,8 +333,8 @@ function getArgs() {
 
 /*小幫手*/
 function helper(mainDiv) {
-  console.log("mapMessage=", mapMessage);
-  console.log(mapMessage);
+  // console.log("mapMessage=", mapMessage);
+  // console.log(mapMessage);
   divTag = document.getElementById("helperView");
   try {
     var parentObj = divTag.parentNode;
@@ -467,7 +467,7 @@ function instructionView(mainDiv) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
-        //console.log(li[j].limit,li[j].name,passLevel);
+        //// console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -736,7 +736,7 @@ function musicLevelUp() {
     }
     myVid=document.getElementById("bkMusic");
     myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-    //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+    //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
     bkMusicSwitch++;
     sendSession();
 }
@@ -799,7 +799,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  //// console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -812,7 +812,7 @@ function forManagement() {
   isSelectFunc = true;
 }
 function selectFunc(levelNumber) {
-  console.log(directiveData.instruction[levelNumber]);
+  // console.log(directiveData.instruction[levelNumber]);
   var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
   var className, usableValue;
   var divString = "";
@@ -848,7 +848,7 @@ function selectFunc(levelNumber) {
 }
 function blocklyUsable(thisClassID, thisValue) {
   var blockType;
-  console.log(thisClassID);
+  // console.log(thisClassID);
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
@@ -953,7 +953,7 @@ function blocklyUsable(thisClassID, thisValue) {
 
 /*遊戲結果*/
 function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
-  console.log(starNum,gameResult,instructionNum,code);
+  // console.log(starNum,gameResult,instructionNum,code);
 
   divID = "createEndView";
   divID2 = "createEndBkView";
@@ -973,7 +973,7 @@ function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
   // }
   if(starNum>0){
     document.getElementById("endViewTitle").innerHTML = "檢測成功";
-    console.log(mapID);
+    // console.log(mapID);
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "backToMapBtn");
@@ -991,7 +991,7 @@ function createEndView(starNum,gameResult,instructionNum,code ,errMessage) {
       dataType: 'json',             // 回傳資料會是 json 格式
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
-        console.log(res);
+        // console.log(res);
       }
     })
 
@@ -1078,7 +1078,7 @@ window.onresize = function() {
   b.setAttribute("style", "height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;");
   b.innerHTML = nowTexrareaVar;
   divTag.appendChild(b);
-  console.log("aaaaaaaaaa");
+  // console.log("aaaaaaaaaa");
   $(function() {
     $(".lined").linedtextarea({
       selectedLine: 1
@@ -1120,7 +1120,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //console.log(e.keyCode);
+  //// console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('    ');
     return false;
@@ -1148,7 +1148,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 
   fontSize = parseFloat(style);
-  //console.log(fontSize);
+  //// console.log(fontSize);
 }
 function loadDict() {
 directiveData = {

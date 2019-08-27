@@ -71,7 +71,7 @@ $.ajax({
       loadmusicData();
     }
     catch{
-      console.log("no music");
+      // console.log("no music");
     }
     // console.log(user);
     // var xmlhttp = new XMLHttpRequest();
@@ -164,7 +164,7 @@ function initHome() {
   myAudio.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myAudio.play();
   bkMusicSwitch++;
-  //console.log(myAudio.volume);
+  //// console.log(myAudio.volume);
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;
@@ -227,13 +227,13 @@ function recordLevel(scriptData) {
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       user = res
-      console.log(user);
+      // console.log(user);
     }
   })
 }
 //////-------------/////////
 function test() {
-  console.log("testbtn ---  onclick");
+  // console.log("testbtn ---  onclick");
   // 武器升級
   // weaponLevelup();
   // 護甲升級
@@ -806,7 +806,7 @@ function equipageView(mainDiv) {
     // document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
 
     if (star <= user.starNum) {
-      console.log("重製失敗");
+      // console.log("重製失敗");
       document.getElementById("levelUpDefault0").className = "highestLevel";
       document.getElementById("levelUpDefault1").className = "levelUp";
     }
@@ -854,7 +854,7 @@ function equipageView(mainDiv) {
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
   }
-  console.log(swordLevel, shieldLevel);
+  // console.log(swordLevel, shieldLevel);
 }
 /*重置等級*/
 function resetEquipClick() {
@@ -1121,9 +1121,9 @@ function instructionView(mainDiv) {
       // if (i == 1) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
-      //console.log(li);
+      //// console.log(li);
       for (var j = 0; j < li.length; j++) {
-        //console.log(li[j].limit,li[j].name,passLevel);
+        //// console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -1288,7 +1288,7 @@ function achievementJudge() {
       switch (typeVar) {
         /*通關數*/
         case 0:
-          console.log(maxLevel, achievemenData.record[typeVar + valueVar].limit[0].value);
+          // console.log(maxLevel, achievemenData.record[typeVar + valueVar].limit[0].value);
           if (maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value) {
             isGet[typeVar + valueVar] = 1;
           }
@@ -1311,7 +1311,7 @@ function achievementJudge() {
   }
   // console.log("長度:",isGet.length);
   // for (var i = 0; i < isGet.length; i++) {
-  //   console.log(isGet[i],i);
+  //   // console.log(isGet[i],i);
   // }
   return isGet;
 }
@@ -1553,7 +1553,7 @@ function musicLevelUp() {
   }
   myAudio = document.getElementById("bkMusic");
   myAudio.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -1622,7 +1622,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  //// console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);

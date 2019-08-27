@@ -77,7 +77,7 @@ $.ajax({
       gameMode:"blocky"   //blocky
   },  //
   success: function (res) {
-    console.log(res);
+    // console.log(res);
 
     thisLevelNum=maplevelId;
     mainDescription={oblivionObject:res};
@@ -102,11 +102,11 @@ $.ajax({
         window.location.replace(href);
     }
     var maplevelId =  params.get('level');
-    console.log(maplevelId);
-    console.log(user.EasyEmpire.codeLevel.length);
+    // console.log(maplevelId);
+    // console.log(user.EasyEmpire.codeLevel.length);
     if (maplevelId < 24) {
       if (user.EasyEmpire.codeLevel.length < maplevelId) {
-        console.log("Bye 實力不夠");
+        // console.log("Bye 實力不夠");
         alert("不能越級過關喔");
         href = "pruss";
         window.location.replace(href);
@@ -174,7 +174,7 @@ function initHome() {
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
   if(user.username == "NKUSTCCEA"){
-    console.log(document.getElementById("gameModifyBtn"));
+    // console.log(document.getElementById("gameModifyBtn"));
     document.getElementById("gameModifyBtn").style.display = "";
   }
   getArgs();
@@ -191,7 +191,7 @@ function recordLevel(scriptData) {
     data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       user = res
-      console.log(user);
+      // console.log(user);
     }
   })
 }
@@ -289,7 +289,7 @@ function createUserView(mainDiv) {
       var getAchievement = Session.get("getAchievement");
       if(getAchievement == undefined){
         getAchievement=0;
-        console.log("this is undefine");
+        // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
     } else if (i == 4) {
@@ -996,7 +996,7 @@ function musicLevelUp() {
   }
   myVid = document.getElementById("bkMusic");
   myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -1058,7 +1058,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //console.log("gameSpeed:" + gameSpeed);
+  //// console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -1187,7 +1187,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     instructionNum: instructionNum
   }
   recordLevel(scriptData);
-  console.log(starNum);
+  // console.log(starNum);
   try {
     divTag = document.getElementById("createEndView");
     parentObj = divTag.parentNode;
@@ -1278,7 +1278,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     b.setAttribute("type", "button");
     b.setAttribute("id", "nextLevelBtn");
     b.setAttribute("value", "下一關");
-    console.log(thisLevelNum);
+    // console.log(thisLevelNum);
     if(thisLevelNum +1==24){
       b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum +1)+ "'");
     }

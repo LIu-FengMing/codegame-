@@ -90,7 +90,7 @@ function selectionLevel(thisObject) {
     //將該table後面的數字切割出來並轉為Int
     mapIndex = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
     thisIndex = mapIndex;
-    console.log(thisIndex);
+    // console.log(thisIndex);
   }
   if (lastObject != null) {
     //將上一個被選到的table的顏色設為原本的顏色
@@ -110,17 +110,17 @@ function selectionLevel(thisObject) {
   }
 }
 function createMapPermission(index) {
-  console.log(allUserData[index]._id);
+  // console.log(allUserData[index]._id);
   var checkName="#input0"+index+"6";
   if ( $(checkName).is(":checked")) {
     var canCreateMapPermission = true;
     allUserData[index].canCreateMapPermission=true;
   } else {
     var canCreateMapPermission = false;
-    
+
     allUserData[index].canCreateMapPermission=false;
   }
-  
+
   createLoadingMainView("centerLost");
   $.ajax({
     url: "changeUserCreateMapPermission",           // 要傳送的頁面
@@ -132,7 +132,7 @@ function createMapPermission(index) {
       canCreateMapPermission:canCreateMapPermission
     },  // 將表單資料用打包起來送出去
     success: function (res) {
-      console.log(res);
+      // console.log(res);
 
     }
   })
@@ -161,14 +161,14 @@ function changeStatus() {
       userId: allUserData[thisIndex]._id,
       userstatus: userstatus
     }
-    console.log(scriptData)
+    // console.log(scriptData)
     $.ajax({
       url: href,              // 要傳送的頁面
       method: 'POST',               // 使用 POST 方法傳送請求
       dataType: 'json',             // 回傳資料會是 json 格式
       data: scriptData,  // 將表單資料用打包起來送出去
       success: function (res) {
-        console.log(res);
+        // console.log(res);
 
       }
     })
@@ -302,7 +302,7 @@ function sendLoadUsernameMap() {
 /*建立表格*/
 function createLevelTable(scriptData) {
 
-  console.log(scriptData);
+  // console.log(scriptData);
   oldDisMapNum = scriptData.length;
   //根據scriptData的長度創造對應數量的table
   for (var i = 0; i < scriptData.length; i++) {
@@ -535,13 +535,13 @@ function updateMapData(res) {
     }
     mapData.push(script);
   }
-  console.log(mapData);
+  // console.log(mapData);
   updateLevelTable(mapData);
 }
 //表單更動時，需要重新創立表格
 function updateLevelTable(scriptData) {
-  console.log(scriptData);
-  
+  // console.log(scriptData);
+
   for (var i = 0; i < scriptData.length; i++) {
 
     var obj = scriptData[i];
@@ -597,7 +597,7 @@ function updateLevelTable(scriptData) {
         divTag.appendChild(b);
 
         /**
-        
+
          */
         if (j == 6) {
           b=document.getElementById("input0" + i + "6");

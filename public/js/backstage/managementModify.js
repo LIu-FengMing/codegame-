@@ -386,7 +386,7 @@ function resetTableToOriginal() {
     // document.getElementById("levelUpDefault0").innerHTML = "最高<br>等級";
 
     if (star <= user.starNum) {
-      console.log("重製失敗");
+      // console.log("重製失敗");
       document.getElementById("levelUpDefault0").className = "highestLevel";
       document.getElementById("levelUpDefault1").className = "levelUp";
     }

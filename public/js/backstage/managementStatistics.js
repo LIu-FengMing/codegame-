@@ -609,7 +609,7 @@ function getAverageFailureRateJson(thisSelect) {
 }
 
 // function prosessUserData() {
-//   console.log(AlluserData);
+//   // console.log(AlluserData);
 //   var mapNumber = new Array(50);
 //   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
 //   for (let index = 0; index < AlluserData.length; index++) {
@@ -756,7 +756,7 @@ function getAverageFailureRateJson(thisSelect) {
 // }
 
 function prosessUserData() {
-  console.log(AlluserData);
+  // console.log(AlluserData);
   var mapNumber = new Array(50);
   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
   for (let index = 0; index < AlluserData.length; index++) {
@@ -945,7 +945,7 @@ function changeTimeFunc(timeType) {
     startTime = startTime - oneMinute * 60 * 24 * 365;
   }
   else {
-    console.log("error here");
+    // console.log("error here");
   }
   showjson = UseTimeUpdateFunc(startTime, endTime);
 
@@ -1012,7 +1012,7 @@ function setTimeFunc() {
 }
 
 function UseTimeUpdateFunc(startTime, endTime) {
-  console.log(startTime, endTime);
+  // console.log(startTime, endTime);
 
   // AlluserData
   var mapNumber = new Array(50);
@@ -1113,12 +1113,12 @@ function UseTimeUpdateFunc(startTime, endTime) {
       }
     }
   }
-  console.log("mapNumber:", mapNumber);
+  // console.log("mapNumber:", mapNumber);
   var dataPlayNumber = new Array(50)
   var playerData = new Array(50)
 
   levelSelectValue = document.getElementById("levelSelect").value
-  console.log(levelSelectValue);
+  // console.log(levelSelectValue);
   if (levelSelectValue == "playNumber") {
     for (let index = 49; index > -1; index--) {
       if (mapNumber[index]) {
@@ -1166,11 +1166,11 @@ function UseTimeUpdateFunc(startTime, endTime) {
     }
   }
   else {
-    console.log("error here");
+    // console.log("error here");
 
   }
-  console.log(dataPlayNumber);
-  console.log(playerData);
+  // console.log(dataPlayNumber);
+  // console.log(playerData);
   return { data: dataPlayNumber, playerData: playerData }
   // return { data: [7, 8, 9], playerData: [1, 2, 3] }
 }
