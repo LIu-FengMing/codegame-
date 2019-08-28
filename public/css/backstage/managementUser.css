@@ -407,3 +407,30 @@ body {
   background-position: center;
   background-color: transparent;
 }
+@media(max-aspect-ratio:17/10){
+  #levelSelect{
+    height: 4vh;
+    width: 6vw;
+    font-size: calc(10px + 0.5vw);
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    position: absolute;
+    top: 3vh;
+    left: 10%;
+  }
+  #createrDiv .td03{
+    width: 25%;
+    cursor: pointer;
+  }
+  #createrDiv .td04{
+    width: 9%;
+    overflow: auto;
+    cursor: pointer;
+  }
+  #createrDiv .td05{
+    width: 12%;
+    cursor: pointer;
+  }
+}

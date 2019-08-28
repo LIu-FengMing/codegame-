@@ -176,3 +176,30 @@ body {
  top: 0px;
  left: 0px;
 }
+@media(max-aspect-ratio:17/10){
+  .mUser{
+    width: 26%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+  }
+  .mGame{
+    width: 26%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .mStatistics{
+    width: 26%;
+    height: 45%;
+    color: none;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+  }
+}

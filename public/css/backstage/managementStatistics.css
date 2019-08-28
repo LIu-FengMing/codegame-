@@ -238,3 +238,17 @@ body {
   top: 0px;
   max-height: 85vh;
 }
+@media(max-aspect-ratio:17/10){
+  #levelSelect{
+    height: 4vh;
+    width: 10vw;
+    font-size: calc(10px + 0.5vw);
+    background-color: #DAE8FC;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    position: absolute;
+    top: 3vh;
+    left: 10%;
+  }
+}
