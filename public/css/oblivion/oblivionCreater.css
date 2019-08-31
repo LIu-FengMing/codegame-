@@ -902,4 +902,14 @@ body {
     border-bottom: white 0px solid ;
     margin-left: -10px;
   }
+  #finishBtn{
+    background-image: url("../../img/finishBtn.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 18%;
+    bottom: 2%;
+    cursor: pointer;
+  }
 }
