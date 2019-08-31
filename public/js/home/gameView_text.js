@@ -1380,11 +1380,11 @@ function selectFunc(levelNumber) {
         blocklyUsable("func", usableValue);
       }
     } else if (className == "動作") {
-      document.getElementById("step").style.display = "";
+      document.getElementById("moveForward").style.display = "";
       for (var j = 0; j < usableSize; j++) {
-        divTag = document.getElementById("step");
+        divTag = document.getElementById("moveForward");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        blocklyUsable("step", usableValue);
+        blocklyUsable("moveForward", usableValue);
       }
     } else if (className == "判斷式") {
       document.getElementById("judgment").style.display = "";
@@ -1403,9 +1403,9 @@ function blocklyUsable(thisClassID, thisValue) {
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
-    case "step":
-      blockType = "step(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('step();');");
+    case "moveForward":
+      blockType = "moveForward(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('moveForward();');");
       break;
     case "turnRight":
       blockType = "turnRight(&nbsp)<br>";

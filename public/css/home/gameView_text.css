@@ -429,7 +429,7 @@ textarea{
   left: 0px;
   overflow-y: auto;
 }
-.func,.step,.judgment,.titleDiv{
+.func,.moveForward,.judgment,.titleDiv{
   margin-top: 5px;
   font-size: calc(6px + 0.5vw);
   padding: 1vh;
@@ -437,7 +437,7 @@ textarea{
   border-color: black;
   border-width: 0px 0px 2px 0px;
 }
-.func div,.step div,.judgment div{
+.func div,.moveForward div,.judgment div{
   cursor: pointer;
 }
 #textareaDiv{
