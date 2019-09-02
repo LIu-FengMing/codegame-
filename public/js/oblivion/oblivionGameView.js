@@ -878,11 +878,11 @@ function selectFunc(levelNumber) {
         blocklyUsable("func", usableValue);
       }
     } else if (className == "動作") {
-      document.getElementById("step").style.display = "";
+      document.getElementById("moveforward").style.display = "";
       for (var j = 0; j < usableSize; j++) {
-        divTag = document.getElementById("step");
+        divTag = document.getElementById("moveforward");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        blocklyUsable("step", usableValue);
+        blocklyUsable("moveforward", usableValue);
       }
     } else if (className == "判斷式") {
       document.getElementById("judgment").style.display = "";
@@ -902,9 +902,9 @@ function blocklyUsable(thisClassID, thisValue) {
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
-    case "step":
-      blockType = "step(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('step();');");
+    case "moveforward":
+      blockType = "moveforward(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('moveforward();');");
       break;
     case "turnRight":
       blockType = "turnRight(&nbsp)<br>";
@@ -1283,7 +1283,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             }
           ]
         }
@@ -1296,7 +1296,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1315,7 +1315,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1334,7 +1334,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1353,7 +1353,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1380,7 +1380,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1410,7 +1410,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1437,7 +1437,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1478,7 +1478,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1519,7 +1519,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1560,7 +1560,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1601,7 +1601,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1642,7 +1642,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1686,7 +1686,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1730,7 +1730,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1780,7 +1780,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1830,7 +1830,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1883,7 +1883,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1936,7 +1936,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1989,7 +1989,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2042,7 +2042,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2095,7 +2095,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2148,7 +2148,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2201,7 +2201,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2254,7 +2254,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2307,7 +2307,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2360,7 +2360,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2422,7 +2422,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2484,7 +2484,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2546,7 +2546,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2608,7 +2608,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2670,7 +2670,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2735,7 +2735,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2803,7 +2803,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2871,7 +2871,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2939,7 +2939,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3007,7 +3007,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3078,7 +3078,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3152,7 +3152,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3229,7 +3229,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3306,7 +3306,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3383,7 +3383,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3463,7 +3463,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3543,7 +3543,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3626,7 +3626,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3709,7 +3709,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3792,7 +3792,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3875,7 +3875,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3958,7 +3958,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -4041,7 +4041,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "step"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
