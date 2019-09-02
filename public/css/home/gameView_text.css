@@ -490,7 +490,7 @@ textarea{
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
   min-width: 300px;
-  min-height: 340px;
+  min-height: 360px;
 }
 .successView{
   height: 45vh;
@@ -525,7 +525,8 @@ textarea{
   background-size: 100% 100%;
 }
 #instructionH3{
-  margin-top: 4vh;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
 }
 #restartGameBtn{
   height: 10vh;
