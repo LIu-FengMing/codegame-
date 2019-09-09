@@ -744,6 +744,7 @@ function helper(mainDiv) {
       document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
       break;
     case 5:
+      helperJson=mainDescription.oblivionObject[thisLevelNum].selfSettintPatten;
       if (helperJson) {
         for (var i = 0; i < helperJson.length; i++) {
           divTag = document.getElementById("helperInnerDiv");
