@@ -41,7 +41,7 @@ router.post('/onloadImg', function (req, res, next) {
 
 router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    res.render('home//kuruma', {
+    res.render('home/kuruma', {
         user: req.user.username
     });
 });

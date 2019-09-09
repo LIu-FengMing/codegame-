@@ -11,7 +11,7 @@ body {
 }
 .wrap {
   height: 100%;
-  display: table;
+  /* display: table; */
   width: 100%;
 }
 .main {
