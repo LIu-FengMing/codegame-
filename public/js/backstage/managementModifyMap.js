@@ -3919,13 +3919,15 @@ function readImgUrl(input, imgStr, imgId) {
 var myVid;
 var divID, divID2, divTag, b;
 var userdataFont;
-var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
+var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
   "使用者名稱：",
-  "主&nbsp要&nbsp進&nbsp&nbsp度：",
-  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
+  "主&nbsp要&nbsp進&nbsp度：",
+  "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
   "已獲得星星數："];
+//創造使用者資訊外框函式
 function userData() {
+  //先試著刪除背後黑布以及顯示視窗，發生錯誤就跳過
   try {
     divTag = document.getElementById("userDataView");
     parentObj = divTag.parentNode;
@@ -3933,12 +3935,12 @@ function userData() {
     divTag = document.getElementById("userDataBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divID = "userDataView";
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -3949,37 +3951,36 @@ function userData() {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "clossDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
+  //調用創造使用者資訊內容函式
   createUserView(divID);
 }
-function closeFunc(thisDiv, thisDiv2) {
-  divTag = document.getElementById(thisDiv);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  divTag = document.getElementById(thisDiv2);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  levelDivAlive = false;
-}
+//創造使用者資訊內容函式
 function createUserView(mainDiv) {
   divTag = document.getElementById(mainDiv);
+  //創造個人資料的title
   b = document.createElement("h1");
   b.setAttribute("id", "userTitle");
+  b.innerHTML = "個人資料";
   divTag.appendChild(b);
-  document.getElementById("userTitle").innerHTML = "個人資料";
+  //創造內部div，白色那塊
   b = document.createElement("div");
   b.setAttribute("id", "userInnerDiv");
   divTag.appendChild(b);
   divTag = document.getElementById("userInnerDiv");
+  //在白色那塊內再創一個，方便資料編排
   b = document.createElement("div");
   b.setAttribute("id", "userH3Div");
   divTag.appendChild(b);
   divTag = document.getElementById("userH3Div");
+  b = document.createElement("table");
+  b.setAttribute("id", "userTable");
+  divTag.appendChild(b);
   for (var i = 0; i < dataTitle.length; i++) {
-    b = document.createElement("h3");
-    b.setAttribute("id", "titleDatah3" + i);
-    b.setAttribute("align", "left");
+    divTag = document.getElementById("userTable");
+    b = document.createElement("tr");
+    b.setAttribute("id", "userTr" + i);
     divTag.appendChild(b);
     if (i == 0) {
       userdataFont = user.username;
@@ -3997,8 +3998,8 @@ function createUserView(mainDiv) {
       }
     } else if (i == 3) {
       var getAchievement = Session.get("getAchievement");
-      if (getAchievement == undefined) {
-        getAchievement = 0;
+      if(getAchievement == undefined){
+        getAchievement=0;
         // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
@@ -4007,14 +4008,29 @@ function createUserView(mainDiv) {
     } else if (i == 5) {
       userdataFont = user.starNum;
     }
-    document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
-    for (var j = 0; j < 3; j++) {
-      b = document.createElement("br");
+    // document.getElementById("titleDatah3" + i).innerHTML = dataTitle[i] + userdataFont;
+    for (var j = 0; j < 2; j++) {
+      divTag = document.getElementById("userTr" + i);
+      b = document.createElement("td");
+      if(j%2 == 0){
+        b.innerHTML = dataTitle[i];
+      }else{
+        b.innerHTML = userdataFont;
+      }
       divTag.appendChild(b);
     }
   }
 }
 
+function closeFunc(thisDiv, thisDiv2) {
+divTag = document.getElementById(thisDiv);
+parentObj = divTag.parentNode;
+parentObj.removeChild(divTag);
+divTag = document.getElementById(thisDiv2);
+parentObj = divTag.parentNode;
+parentObj.removeChild(divTag);
+levelDivAlive = false;
+}
 var thisSelectionId;
 var args;
 var divTag, level, b;
