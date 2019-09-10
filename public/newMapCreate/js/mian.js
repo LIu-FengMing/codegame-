@@ -49,9 +49,6 @@ codingTextarea.onchange = function () {
     // console.log(codingTextarea.value);
     codingTextarea = document.getElementById('codingTextarea');
     data.extendCode = codingTextarea.value;
-    if (codingTextarea.value.length > 0) {
-        heightestLevelStar = 120;
-    }
 }
 
 lockAnswerTextarea.onchange = function () {
@@ -272,6 +269,17 @@ function precessSaveData() {
         }
     }
     var foggy = document.getElementById('openFoggy').checked;
+
+    heightestLevelStar = 0;
+
+    if (parseInt(changeSize[selsize.selectedIndex].toString()) > 6 && heightestLevelStar < 81) {
+        heightestLevelStar = 81;
+    }
+    codingTextareaElement = document.getElementById('codingTextarea');
+    if (codingTextareaElement.value.length > 0 && heightestLevelStar < 120) {
+        heightestLevelStar = 120;
+    }
+
     if (foggy) {
         data.foggy = true;
         heightestLevelStar = 120;
@@ -282,12 +290,12 @@ function precessSaveData() {
     var qMarkL = [];
     var qStoneL = [];
     for (let index = 0; index < mapObject.length; index++) {
-        var obj = mapObject[index];
-        if (obj.type == "questionstone") {
+        var obj = mapObject[index].type;
+        if (obj == "questionstone") {
             obj.objid = index;
             qStoneL.push(obj);
         }
-        else if (obj.type == "questionMark") {
+        else if (obj == "questionMark") {
             obj.objid = index;
             qMarkL.push(obj);
         }
@@ -310,6 +318,34 @@ function precessSaveData() {
             if (heightestLevelStar < 3) {
                 heightestLevelStar = 3;
             }
+        }
+        else if (obj == "enemyTank") {
+            if (heightestLevelStar < 75) {
+                heightestLevelStar = 75;
+            }
+        }
+        else if (obj == "endline") {
+            if (heightestLevelStar < 3) {
+                heightestLevelStar = 3;
+            }
+        }
+        else if (obj == "arrow") {
+            if (heightestLevelStar < 39) {
+                heightestLevelStar = 39;
+            }
+        }
+        else if (obj == "lock") {
+            if (heightestLevelStar < 39) {
+                heightestLevelStar = 39;
+            }
+        }
+        else if (obj == "lock2") {
+            if (heightestLevelStar < 15) {
+                heightestLevelStar = 15;
+            }
+        }
+        else if (obj == "treasure") {
+            heightestLevelStar = 120;
         }
     }
     for (let index = 0; index < qMarkL.length; index++) {
@@ -802,8 +838,8 @@ function mycanvasMouseClicked() {
     realDoMycanvasMouseClicked();
 }
 
-function realDoMycanvasMouseClicked(){
-    
+function realDoMycanvasMouseClicked() {
+
     var objF = false;
     nowEditOId = -1;
     for (let index = 0; index < mapObject.length; index++) {
@@ -856,10 +892,6 @@ function realDoMycanvasMouseClicked(){
 
 selsize.onchange = function (index) {
     changeFile = true;
-
-    if (heightestLevelStar < 81) {
-        heightestLevelStar = 81;
-    }
 
     changeObjectAttributes();
     // console.log(college_size.selectedIndex);
@@ -1032,7 +1064,7 @@ function input(eventFrom = "button") {
 
     }
     else {
-        if (eventFrom == "button"||keyPressedCount % 2 == 1) {
+        if (eventFrom == "button" || keyPressedCount % 2 == 1) {
 
             remindValue = "不能重疊元件";
             remindView(remindValue);
