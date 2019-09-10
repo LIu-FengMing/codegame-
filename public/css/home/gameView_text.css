@@ -16,7 +16,7 @@ body {
   height: 100%;
   /* display: table; */
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 .main {
   height: 99.9%;
@@ -34,6 +34,7 @@ body {
   line-height: 90%;
   position: relative;
   min-width: 1000px;
+  text-align: center;
 }
 .center #bkImg{
   height: 100%;
@@ -51,6 +52,7 @@ body {
   position: relative;
   background: #7C5A43;
   min-width: 134px;
+  text-align: center;
 }
 .footer {
   display: table-row;
@@ -83,7 +85,7 @@ textarea{
   width: 100%;
   height: 60px;
   position: relative;
-  top: calc(-50px + 5%);
+  top: 0;
 }
 #helperBtn{
   width: 100px;
@@ -229,6 +231,103 @@ textarea{
   height: 100%;
   width: auto;
 }
+.bigTextareaDiv{
+  height: 60%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.bigTextareaDiv textarea{
+  height: 100%;
+  width: 88%;
+  border: none;
+  font-size: 1.5vw;
+  font-family: Microsoft JhengHei;
+  line-height: 2vw;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  left: 6%;
+}
+.bigImgDiv{
+  height: 40%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.bigImgDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 38%;
+}
+.imgAndTextDiv{
+  height: 40%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.imgAndTextDiv textarea{
+  height: 100%;
+  width: 45%;
+  border: none;
+  position: absolute;
+  background-color: transparent;
+}
+.imgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 38%;
+}
+.smallImgAndTextDiv{
+  height: 25%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.smallImgAndTextDiv>.smallImgAndTextInneDiv{
+  width:20%;
+  height:100%;
+  position: absolute;
+}
+.smallImgAndTextDiv textarea{
+  height: 100%;
+  width: 58%;
+  border: none;
+  position: absolute;
+  background-color: transparent;
+}
+.smallImgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 23%;
+}
+.twoImgAndTextDiv{
+  height: 60%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+.twoImgAndTextDiv>.twoImgAndTextInneDiv{
+  width:20%;
+  height:100%;
+  position: absolute;
+}
+.twoImgAndTextDiv textarea{
+  height: 100%;
+  width: 58%;
+  border: none;
+  position: absolute;
+  background-color: transparent;
+}
+.twoImgAndTextDiv img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 27%;
+}
 
 /*right*/
 .userName{
@@ -244,6 +343,10 @@ textarea{
   text-decoration:underline;
 }
 .btnUser {
+  position: absolute;
+  top: 12%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -254,6 +357,10 @@ textarea{
   cursor: pointer;
 }
 .btnLogout {
+  position: absolute;
+  top: 18%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -269,6 +376,9 @@ textarea{
   width: auto;
 }
 .userStar{
+  position: absolute;
+  top: 0px;
+  left: 16%;
   margin-top: 4vh;
 }
 .imgIcon{
@@ -284,6 +394,7 @@ textarea{
   font-family: Microsoft JhengHei;
   vertical-align:middle;
 }
+
 #userDataBkView{
   z-index: 3;
   height: 100%;

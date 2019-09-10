@@ -1,3 +1,4 @@
+/*right*/
 .userName{
   position: absolute;
   top: 7px;
@@ -6,11 +7,15 @@
   letter-spacing: 1px;
   width: 100%;
   font-weight: bolder;
-  font-family: "Microsoft JhengHei";
+  font-family: Microsoft JhengHei;
   color: white;
   text-decoration:underline;
 }
 .btnUser {
+  position: absolute;
+  top: 12%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -21,6 +26,10 @@
   cursor: pointer;
 }
 .btnLogout {
+  position: absolute;
+  top: 18%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -36,6 +45,9 @@
   width: auto;
 }
 .userStar{
+  position: absolute;
+  top: 0px;
+  left: 16%;
   margin-top: 4vh;
 }
 .imgIcon{
@@ -48,9 +60,10 @@
   line-height: 10vh;
   color: white;
   font-size: calc(5px + 4vh);
-  /* font-family: "Microsoft JhengHei"; */
+  font-family: Microsoft JhengHei;
   vertical-align:middle;
 }
+
 #userDataBkView{
   z-index: 3;
   height: 100%;

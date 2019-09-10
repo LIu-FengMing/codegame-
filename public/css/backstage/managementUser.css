@@ -12,13 +12,13 @@ body {
 }
 .wrap {
   height: 100%;
-  display: table;
+  /* display: table; */
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 .main {
   height: 100%;
-  /* display: table; */
+  display: table;
   width: 100%;
   min-height: 600px;
 }
@@ -28,6 +28,7 @@ body {
   line-height: 90%;
   position: relative;
   min-width: 1000px;
+  text-align: center;
 }
 #bkImg{
   z-index: -1;
@@ -48,6 +49,7 @@ body {
   position: relative;
   background: #7C5A43;
   min-width: 134px;
+  text-align: center;
 }
 .footer {
   display: table-row;
@@ -77,8 +79,17 @@ body {
   width: 100%;
   height: 60px;
   margin: 0px auto;
-  position: relative;
-  top: 0px;
+}
+
+/*right*/
+.btnLogout {
+  height: 6vh;
+  width: 15vh;
+  border-width: 0px;
+  background-color: rgba(53, 4, 179, 0);
+  background-size: 100% 100%;
+  background-image: url("../../img/layout.png");
+  color: black;
 }
 
 /*提醒介面*/
@@ -142,18 +153,6 @@ body {
   background-color: rgba(0, 0, 0, 0.74);
 }
 
-/*right*/
-.btnLogout {
-  height: 6vh;
-  width: 15vh;
-  border-width: 0px;
-  background-color: rgba(53, 4, 179, 0);
-  background-size: 100% 100%;
-  background-image: url("../../img/layout.png");
-  color: black;
-  margin-top: -1vh;
-  cursor: pointer;
-}
 #clossDiv{
   width: 30px;
   height: 30px;

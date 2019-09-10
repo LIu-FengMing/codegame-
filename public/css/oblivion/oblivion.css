@@ -18,7 +18,7 @@ body {
   height: 100%;
   /* display: table; */
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 .main {
   height: 100%;
@@ -33,6 +33,7 @@ body {
   line-height: 90%;
   position: relative;
   min-width: 1200px;
+  text-align: center;
 }
 .bottomColor{
   width: 100%;
@@ -53,6 +54,7 @@ body {
   position: relative;
   background: #7C5A43;
   min-width: 134px;
+  text-align: center;
 }
 .footer {
   display: table-row;

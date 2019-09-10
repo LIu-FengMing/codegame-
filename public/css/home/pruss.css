@@ -2,6 +2,12 @@
   resize:none;
   font-family: Microsoft JhengHei;
 }
+.wrap {
+  height: 100%;
+  /* display: table; */
+  width: 100%;
+  text-align: center;
+}
 #clossDiv{
   width: 30px;
   height: 30px;

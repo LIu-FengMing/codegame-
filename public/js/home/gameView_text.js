@@ -779,6 +779,8 @@ function helper(mainDiv) {
               divTag = document.getElementById("textareaDiv" + helperId);
               b = document.createElement("textarea");
               b.setAttribute("id", "bigHelperTextarea" + helperId);
+              b.setAttribute("class", "bigHelperTextarea");
+              b.setAttribute("readonly", "readonly");
               b.innerHTML = helperJson[i].textareaValue;
               divTag.appendChild(b);
               break;
@@ -793,7 +795,8 @@ function helper(mainDiv) {
 
               b = document.createElement("textarea");
               b.setAttribute("id", "imgAndTextTextarea" + helperId);
-              b.setAttribute("class", "" + helperId);
+              b.setAttribute("class", "imgAndTextTextarea");
+              b.setAttribute("readonly", "readonly");
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {
@@ -830,6 +833,8 @@ function helper(mainDiv) {
 
               b = document.createElement("textarea");
               b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
+              b.setAttribute("class", "twoImgAndTextTextarea");
+              b.setAttribute("readonly", "readonly");
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {
@@ -872,7 +877,8 @@ function helper(mainDiv) {
               divTag = document.getElementById("smallImgAndTextDiv" + helperId);
               b = document.createElement("textarea");
               b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
-              b.setAttribute("class", "" + helperId);
+              b.setAttribute("class", "smallImgAndTextTextarea");
+              b.setAttribute("readonly", "readonly");
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {

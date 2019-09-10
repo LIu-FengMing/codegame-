@@ -18,7 +18,7 @@ body {
   height: 100%;
   /* display: table; */
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 .main {
   height: 100%;
@@ -33,6 +33,7 @@ body {
   line-height: 90%;
   position: relative;
   min-width: 1000px;
+  text-align: center;
 }
 .box {
   display: table-cell;
@@ -44,6 +45,7 @@ body {
   position: relative;
   background: #7C5A43;
   min-width: 134px;
+  text-align: center;
 }
 .footer {
   display: table-row;
@@ -74,7 +76,7 @@ body {
   width: 100%;
   height: 60px;
   position: relative;
-  top: calc(-50px + 5%);
+  top: 0px;
 }
 #helperBtn{
   width: 100px;
@@ -177,6 +179,10 @@ body {
   text-decoration:underline;
 }
 .btnUser {
+  position: absolute;
+  top: 12%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -187,6 +193,10 @@ body {
   cursor: pointer;
 }
 .btnLogout {
+  position: absolute;
+  top: 18%;
+  left: 0px;
+  transform: translateX(4vh);
   height: 6vh;
   width: 15vh;
   border-width: 0px;
@@ -202,6 +212,9 @@ body {
   width: auto;
 }
 .userStar{
+  position: absolute;
+  top: 0px;
+  left: 16%;
   margin-top: 4vh;
 }
 .imgIcon{
@@ -217,6 +230,7 @@ body {
   font-family: Microsoft JhengHei;
   vertical-align:middle;
 }
+
 #userDataBkView{
   z-index: 3;
   height: 100%;

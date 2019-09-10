@@ -8,12 +8,6 @@ html,body {
 body {
   color: black;
 }
-.wrap {
-  height: 100%;
-  /* display: table; */
-  width: 100%;
-  text-align: center;
-}
 .main {
   display: table;
   height: 100%;
@@ -21,7 +15,6 @@ body {
   min-height: 600px;
   overflow: auto;
 }
-
 .center{
   width: 80%;
   height: 90%;
