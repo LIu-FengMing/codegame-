@@ -942,7 +942,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("musicForm");
   //創造"開"的checkbox
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "musicOpen");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
@@ -959,7 +959,7 @@ function settingAllView(mainDiv) {
   document.getElementById("openText").innerHTML = "開";
   //創造"關"的checkbox
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "musicClose");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
@@ -1092,7 +1092,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById("speedForm");
   //創造"慢"的checkbox
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedLow");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
@@ -1109,7 +1109,7 @@ function settingAllView(mainDiv) {
   document.getElementById("speedLowText").innerHTML = "慢";
   //創造"中"的checkbox
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedMid");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
@@ -1126,7 +1126,7 @@ function settingAllView(mainDiv) {
   document.getElementById("speedMidText").innerHTML = "中";
   //創造"快"的checkbox
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedQuick");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "3");

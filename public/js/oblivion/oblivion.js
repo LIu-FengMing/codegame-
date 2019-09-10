@@ -565,7 +565,7 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
   divTag = document.getElementById("musicForm");
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "musicOpen");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
@@ -579,7 +579,7 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("openText").innerHTML = "開";
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "musicClose");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
@@ -691,7 +691,7 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
   divTag = document.getElementById("speedForm");
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedLow");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
@@ -705,7 +705,7 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("speedLowText").innerHTML = "慢";
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedMid");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
@@ -719,7 +719,7 @@ function settingAllView(mainDiv) {
   divTag.appendChild(b);
   document.getElementById("speedMidText").innerHTML = "中";
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "speedQuick");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "3");

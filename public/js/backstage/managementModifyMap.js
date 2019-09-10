@@ -3069,7 +3069,7 @@ function setCreateElementFunc() {
   divTag.appendChild(b);
   divTag = document.getElementById("imgPositionDiv");
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "imgLeft");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "1");
@@ -3084,7 +3084,7 @@ function setCreateElementFunc() {
   b = document.createElement("br");
   divTag.appendChild(b);
   b = document.createElement("input");
-  b.setAttribute("type", "checkbox");
+  b.setAttribute("type", "radio");
   b.setAttribute("id", "imgRight");
   b.setAttribute("name", "c1");
   b.setAttribute("value", "2");
