@@ -8,18 +8,25 @@ html,body {
 body {
   color: black;
 }
+.wrap {
+  height: 99.9%;
+  width: 100%;
+}
 .main {
-  display: table;
   height: 100%;
   width: 100%;
   min-height: 600px;
-  overflow: auto;
+}
+.box {
+  display: block;
 }
 .center{
   width: 80%;
-  height: 90%;
+  height: 100%;
   line-height: 90%;
   position: relative;
+  top:-100%;
+  left: 10%;
   min-width: 1000px;
   text-align: center;
 }
@@ -31,10 +38,12 @@ body {
 }
 .centerBlockly{
   width: 80%;
-  height: 90%;
+  height: 100%;
   line-height: 90%;
   position: relative;
-  min-width: 900px;
+  top:-100%;
+  left: 10%;
+  min-width: 900;
   text-align: center;
 }
 .centerBlockly #bkImg{
@@ -45,9 +54,11 @@ body {
 }
 .centerMidMap{
   width: 80%;
-  height: 90%;
+  height: 100%;
   line-height: 90%;
   position: relative;
+  top:-100%;
+  left: 10%;
   text-align: center;
 }
 .centerMidMap #bkImg{
@@ -65,24 +76,35 @@ body {
   left: -8%;
 }
 .centerLost{
-  background-color: #A7BBD1;
   width: 80%;
   height: 100%;
   line-height: 90%;
   position: relative;
+  top:-100%;
+  left: 10%;
   text-align: center;
 }
-.box {
-  display: table-cell;
-}
-.sidebarLeft,.sidebarRight {
+.sidebarLeft{
   width: 10%;
-  height: 90%;
+  height: 100%;
   z-index: 4;
   line-height: 90%;
   position: relative;
+  top: 0%;
   background: #7C5A43;
   min-width: 134px;
+  text-align: center;
+}
+.sidebarRight{
+  width: 10%;
+  height: 100%;
+  line-height: 90%;
+  position: relative;
+  top: -200%;
+  left: 90%;
+  background: #7C5A43;
+  min-width: 134px;
+  text-align: center;
 }
 .footer {
   display: table-row;

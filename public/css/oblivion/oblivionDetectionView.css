@@ -1,82 +1,8 @@
 /*main*/
-*{
-  margin: 0;
-  padding: 0;
-  /* font-family: Microsoft JhengHei; */
-}
 * textarea{
   resize:none;
 }
-html,body {
-  height: 100%;
-}
-body {
-  color: black;
-  overflow: auto;
-}
-.wrap {
-  height: 100%;
-  /* display: table; */
-  width: 100%;
-  /* text-align: center; */
-}
-.main {
-  height: 100%;
-  display: table;
-  width: 100%;
-}
-.center{
-  background-image: url('../../img/bk.PNG');
-  background-repeat: no-repeat;
-  background-position:center;
-  background-attachment:fixed;
-  background-size: 100% 100%;
-  width: 80%;
-  height: 90%;
-  line-height: 90%;
-  position: relative;
-}
-.box {
-  display: table-cell;
-}
-.sidebarLeft,.sidebarRight {
-  width: 10%;
-  height: 90%;
-  line-height: 90%;
-  position: relative;
-  background: #7C5A43;
-  min-width: 134px;
-}
-.footer {
-  display: table-row;
-  height: 0%;
-  line-height: 80px;
-  background: none;
-}
-#goBack{
-  z-index: 3;
-  width: 7vh;
-  height: 7vh;
-  font-size: 40px;
-  background-image: url('../../img/goBack3.png');
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  position: absolute;
-  border-width: 0;
-  top: 20%;
-  left: 1%;
-  cursor: pointer;
-}
-
 /*left*/
-.leftMark{
-  width: 100%;
-  height: 60px;
-  position: relative;
-  top: calc(-50px + 5%);
-}
 #helperBtn{
   width: 100px;
   height: 100px;
@@ -128,59 +54,6 @@ body {
 }
 
 /*right*/
-.userName{
-  position: absolute;
-  top: 7px;
-  left: 0px;
-  font-size: calc(5px + 1vw);
-  letter-spacing: 1px;
-  width: 100%;
-  font-weight: bolder;
-  font-family: Microsoft JhengHei;
-  color: white;
-  text-decoration:underline;
-}
-.btnUser {
-  height: 6vh;
-  width: 15vh;
-  border-width: 0px;
-  background-color: rgba(53, 4, 179, 0);
-  background-size: 100% 100%;
-  background-image: url("../../img/userData.png");
-  color: black;
-  cursor: pointer;
-}
-.btnLogout {
-  height: 6vh;
-  width: 15vh;
-  border-width: 0px;
-  background-color: rgba(53, 4, 179, 0);
-  background-size: 100% 100%;
-  background-image: url("../../img/layout.png");
-  color: black;
-  margin-top: -1vh;
-  cursor: pointer;
-}
-.signOut{
-  height: 25px;
-  width: auto;
-}
-.userStar{
-  margin-top: 4vh;
-}
-.imgIcon{
-  margin: 2.5vh 0px 0px 0px;
-  width: 5vh;
-  height: 5vh;
-  vertical-align: top;
-}
-.starNumber{
-  line-height: 10vh;
-  color: white;
-  font-size: calc(5px + 4vh);
-  font-family: Microsoft JhengHei;
-  vertical-align:middle;
-}
 #userDataBkView{
   z-index: 3;
   height: 100%;

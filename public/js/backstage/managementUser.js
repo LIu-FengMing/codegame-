@@ -121,7 +121,7 @@ function createMapPermission(index) {
     allUserData[index].canCreateMapPermission=false;
   }
 
-  createLoadingMainView("centerLost");
+  createLoadingMainView("center");
   $.ajax({
     url: "changeUserCreateMapPermission",           // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
@@ -199,7 +199,7 @@ function remindView(remindValue) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

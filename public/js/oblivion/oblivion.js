@@ -57,7 +57,7 @@ var musicData;
 var userMap, completUserMap, oldDisMapNum = 0, playMap = [];
 
 
-createLoadingMainView("centerLost");
+createLoadingMainView("center");
 
 mainDescription = {
   "oblivionObject": [
@@ -193,7 +193,7 @@ function helper(mainDiv) {
     levelDivAlive = false;
     divTag = document.getElementById(mainDiv);
   }
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
   b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
@@ -297,7 +297,7 @@ function userData() {
     parentObj.removeChild(divTag);
   } catch (e) {}
   divID = "userDataView";
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
   b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
@@ -458,7 +458,7 @@ function remindView(remindValue) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) {}
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");

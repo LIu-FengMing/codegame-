@@ -226,14 +226,6 @@ function initHome() {
       }
     }
   }
-  // try {
-  //   isOblivionCreaterOpen = Session.get("isOblivionCreaterOpen");
-  // } catch (e) {
-  //   isOblivionCreaterOpen = false;
-  // }
-  // if (!isOblivionCreaterOpen) {
-  //   helper('centerLost');
-  // }
   modifyInit();
 }
 function logout() {
@@ -256,7 +248,7 @@ function changeHelperMod(mainDiv) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "changeHelperModBkView");
   b.setAttribute("onclick", "closeFunc(\"changeHelperModView\",\"changeHelperModBkView\")");
@@ -3943,7 +3935,7 @@ function userData() {
     parentObj.removeChild(divTag);
   } catch (e) { }
   divID = "userDataView";
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
   b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
@@ -4128,7 +4120,7 @@ function saveMap() {
 
 /*未達成條件*/
 function lessRequirement(starNum) {
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "lessRequirementView");
   divTag.appendChild(b);
@@ -4196,7 +4188,7 @@ function remindView(remindValue) {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
   } catch (e) { }
-  divTag = document.getElementById("centerLost");
+  divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
   b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
@@ -4284,7 +4276,7 @@ function btnClick(number) {
   /*關卡說明*/
   var levelDescriptionStr = document.getElementById("levelDescriptionTextarea").value;
 
-  var divTag = document.getElementById("centerLost");
+  var divTag = document.getElementById("center");
   var b;
   var isCheckClicked;
   number++;
@@ -4292,9 +4284,9 @@ function btnClick(number) {
     divTag = document.getElementById("levelDiv");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-    divTag = document.getElementById("centerLost");
+    divTag = document.getElementById("center");
   } catch (e) {
-    divTag = document.getElementById("centerLost");
+    divTag = document.getElementById("center");
   }
   b = document.createElement("div");
   b.setAttribute("id", "levelDiv");
