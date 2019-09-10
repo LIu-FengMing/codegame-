@@ -1,6 +1,10 @@
 *{
   font-family: Microsoft JhengHei;
 }
+.wrap {
+  height: 100%;
+  width: 100%;
+}
 .innerBox{
   width: 80%;
   position: absolute;
