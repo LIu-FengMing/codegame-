@@ -502,7 +502,7 @@
   width: 200px;
   margin: 5px auto;
 }
-#settingAllTable input[type = "checkbox"]{
+#settingAllTable input[type = "radio"]{
   height: 20px;
   width: 20px;
   margin-top: 10px;

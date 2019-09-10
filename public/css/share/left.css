@@ -98,23 +98,23 @@
   position: absolute;
 }
 #helperTextarea4{
-  top: 90%;
+  top: 105%;
   left: calc(10% + 8vh);
 }
 #helperTextarea5{
-  top: calc(95% + 8vh);
+  top: calc(110% + 8vh);
   left: calc(10% + 8vh);
 }
 #helperTextarea6{
-  top: calc(100% + (8vh * 2));
+  top: calc(115% + (8vh * 2));
   left: calc(10% + 8vh);
 }
 #helperTextarea7{
-  top: calc(105% + (8vh * 3));
+  top: calc(120% + (8vh * 3));
   left: calc(10% + 8vh);
 }
 #helperTextarea8{
-  top: calc(110% + (8vh * 4));
+  top: calc(125% + (8vh * 4));
   left: calc(10% + 8vh);
 }
 #helperTextarea9{
@@ -126,7 +126,7 @@
   text-align: left;
   background-color: transparent;
   position: absolute;
-  top: calc(115% + (8vh * 5));
+  top: calc(130% + (8vh * 5));
   left: 5%;
 }
 #helperImgDiv1,#helperImgDiv2{
@@ -148,26 +148,26 @@
 }
 #helperImgDiv4{
   left: 5%;
-  top: 90%;
+  top: 105%;
 }
 #helperImgDiv5{
   left: 5%;
-  top: calc(95% + 8vh);
+  top: calc(110% + 8vh);
 }
 #helperImgDiv6{
   left: 5%;
-  top: calc(100% + (8vh * 2));
+  top: calc(115% + (8vh * 2));
 }
 #helperImgDiv7{
   left: 5%;
-  top: calc(105% + (8vh * 3));
+  top: calc(120% + (8vh * 3));
 }
 #helperImgDiv8{
   left: 5%;
-  top: calc(110% + (8vh * 4));
+  top: calc(125% + (8vh * 4));
 }
 .helperImg{
-  height: 100%;
+  height: 80%;
   width: auto;
 }
 .bigTextareaDiv{
