@@ -1259,7 +1259,7 @@ function selectFunc(levelNumber) {
   }
   divTag = document.getElementById("bodyId");
   b = document.createElement("script");
-  b.setAttribute("src", "gameNew/gameNew/js/code.js");
+  b.setAttribute("src", "gameNew/gameNew/js/code_C.js");
   divTag.appendChild(b);
 }
 function blocklyUsable(thisClassID, thisValue) {
