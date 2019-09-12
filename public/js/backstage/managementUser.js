@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,20 +20,24 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
   return {
 
     // 設定一個 session 變數
-    set: function (name, value) {
+    set: function(name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function (name) {
+    get: function(name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function () { store = {}; },
+    clear: function() {
+      store = {};
+    },
 
     // 列出所有存入的資料
-    dump: function () { return JSON.stringify(store); }
+    dump: function() {
+      return JSON.stringify(store);
+    }
 
   };
 
@@ -51,8 +55,14 @@ function back() {
   window.location.replace(href);
 }
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false, isOblivionOpen;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,
+  isOblivionOpen;
+var swordLevel = 0,
+  shieldLevel = 0,
+  levelUpLevel = 0,
+  musicLevel = 1,
+  bkMusicSwitch, bkMusicVolumn = 0.1,
+  args, gameSpeed;
 var musicData;
 
 var allUserData, completallUserData, oldDisMapNum = 0;
@@ -66,6 +76,7 @@ function error() {
   window.location.replace(href);
 
 }
+
 function initHome() {
   sendLoadUsernameMap();
 }
@@ -81,7 +92,8 @@ function logout() {
 var thisSelectionId;
 var args;
 var divTag, level, thisIndex;
-var lastObject = null, lastColor;
+var lastObject = null,
+  lastColor;
 //當那一列資料被選到調用此函式
 function selectionLevel(thisObject) {
   var mapIndex = 0;
@@ -105,33 +117,34 @@ function selectionLevel(thisObject) {
   //如果現在被選到的狀態為"封鎖"，改變底下按鈕的圖片
   if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
     document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
-  } else {//如果是"正常"狀態，就改成"封鎖"圖片
+  } else { //如果是"正常"狀態，就改成"封鎖"圖片
     document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
   }
 }
+
 function createMapPermission(index) {
   // console.log(allUserData[index]._id);
-  var checkName="#input0"+index+"6";
-  if ( $(checkName).is(":checked")) {
+  var checkName = "#input0" + index + "6";
+  if ($(checkName).is(":checked")) {
     var canCreateMapPermission = true;
-    allUserData[index].canCreateMapPermission=true;
+    allUserData[index].canCreateMapPermission = true;
   } else {
     var canCreateMapPermission = false;
 
-    allUserData[index].canCreateMapPermission=false;
+    allUserData[index].canCreateMapPermission = false;
   }
 
   createLoadingMainView("center");
   $.ajax({
-    url: "changeUserCreateMapPermission",           // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    async:false,
+    url: "changeUserCreateMapPermission", // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    async: false,
     data: {
       userId: allUserData[index]._id,
-      canCreateMapPermission:canCreateMapPermission
-    },  // 將表單資料用打包起來送出去
-    success: function (res) {
+      canCreateMapPermission: canCreateMapPermission
+    }, // 將表單資料用打包起來送出去
+    success: function(res) {
       // console.log(res);
 
     }
@@ -149,7 +162,7 @@ function changeStatus() {
       document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
       allUserData[thisIndex].userstatus = 0;
       userstatus = 0
-    } else {//若為"正常"，則改為"封鎖"
+    } else { //若為"正常"，則改為"封鎖"
       document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
       document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
       allUserData[thisIndex].userstatus = 1;
@@ -163,17 +176,17 @@ function changeStatus() {
     }
     // console.log(scriptData)
     $.ajax({
-      url: href,              // 要傳送的頁面
-      method: 'POST',               // 使用 POST 方法傳送請求
-      dataType: 'json',             // 回傳資料會是 json 格式
-      data: scriptData,  // 將表單資料用打包起來送出去
-      success: function (res) {
+      url: href, // 要傳送的頁面
+      method: 'POST', // 使用 POST 方法傳送請求
+      dataType: 'json', // 回傳資料會是 json 格式
+      data: scriptData, // 將表單資料用打包起來送出去
+      success: function(res) {
         // console.log(res);
 
       }
     })
 
-  } else {//若沒選到table則調用提醒視窗顯示錯誤資訊
+  } else { //若沒選到table則調用提醒視窗顯示錯誤資訊
     remindValue = "請點選一位使用者";
     remindView(remindValue);
   }
@@ -198,7 +211,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -239,12 +252,12 @@ function clossFunc(thisDiv, thisDiv2) {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById(thisDiv2);
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   levelDivAlive = false;
 }
 
@@ -255,18 +268,18 @@ function sendLoadUsernameMap() {
     type: "LoadUser",
   }
   $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
+    url: href, // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    data: scriptData, // 將表單資料用打包起來送出去
+    success: function(res) {
       // console.log(res);
       allUserData = res;
       // console.log(allUserData);
       var mapData = [];
       for (let index = 0; index < res.length; index++) {
         var obj = res[index];
-        var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
+        var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1; //0~49 49+1 -->1~50 51
         if (hightLevel == 51) {
           hightLevel = 50;
         }
@@ -274,8 +287,7 @@ function sendLoadUsernameMap() {
         var userstatusStr = "正常"
         if (obj.userstatus) {
           userstatusStr = "封鎖"
-        }
-        else {
+        } else {
           allUserData[index].userstatus = 0;
         }
         var script = {
@@ -286,8 +298,8 @@ function sendLoadUsernameMap() {
           td05: allUserData[index].hightLevel,
           td06: userstatusStr,
         }
-        if(obj.canCreateMapPermission){
-          script.canCreateMapPermission=obj.canCreateMapPermission
+        if (obj.canCreateMapPermission) {
+          script.canCreateMapPermission = obj.canCreateMapPermission
         }
 
         mapData.push(script);
@@ -341,26 +353,26 @@ function createLevelTable(scriptData) {
       b.setAttribute("readonly", "readonly");
       // b.setAttribute("onclick", "createMapPermission(" + i + ")");
       divTag.appendChild(b);
-      if (j == 1) {/*使用者帳號*/
+      if (j == 1) { /*使用者帳號*/
         document.getElementById("input0" + i + j).value = obj.td01;
         // document.getElementById("td0" + i + j).innerHTML = "aa";
-      } else if (j == 2) {/*使用者名稱*/
+      } else if (j == 2) { /*使用者名稱*/
         document.getElementById("input0" + i + j).value = obj.td02;
         // document.getElementById("td0" + i + j).innerHTML = "aa";
-      } else if (j == 3) {/*使用者信箱*/
+      } else if (j == 3) { /*使用者信箱*/
         document.getElementById("input0" + i + j).value = obj.td03;
         // document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
-      } else if (j == 4) {/*星星數*/
+      } else if (j == 4) { /*星星數*/
         document.getElementById("input0" + i + j).value = obj.td04;
         // document.getElementById("td0" + i + j).innerHTML = "50";
-      } else if (j == 5) {/*最高的關卡*/
+      } else if (j == 5) { /*最高的關卡*/
         document.getElementById("input0" + i + j).value = obj.td05;
         // document.getElementById("td0" + i + j).innerHTML = "13";
-      } else if (j == 6) {/*使用者狀態*/
+      } else if (j == 6) { /*使用者狀態*/
         b.setAttribute("type", "checkbox");
         b.setAttribute("class", "mapCheckbox");
-        if(obj.canCreateMapPermission){
-          b.setAttribute("checked",true);
+        if (obj.canCreateMapPermission) {
+          b.setAttribute("checked", true);
         }
         b.setAttribute("onclick", "createMapPermission(" + i + ")");
       } else if (j == 7) {
@@ -373,11 +385,17 @@ function createLevelTable(scriptData) {
 }
 
 
-var levelNameStatus = 0, conditionStatus = 0, creatorStatus = 0, evaluateStatus = 0, dateStatus = 0, introductionStatus = 0;
+var levelNameStatus = 0,
+  conditionStatus = 0,
+  creatorStatus = 0,
+  evaluateStatus = 0,
+  dateStatus = 0,
+  introductionStatus = 0;
 var tdStatus = [0, 0, 0, 0, 0, 0];
 //改變排序時會調用此函式
 function changeTdName(thisObiect) {
-  var str = thisObiect.className, s, s2;
+  var str = thisObiect.className,
+    s, s2;
   var thisStatus = parseInt(str.substr(str.length - 1, 1)) - 1;
   s = thisObiect.innerHTML;
   // console.log(s2.length);
@@ -387,14 +405,14 @@ function changeTdName(thisObiect) {
     // console.log(s.length);
     thisObiect.innerHTML = s + "&nbsp▴";
     tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 1) {//第二次點會加上"&nbsp▾"
+  } else if (tdStatus[thisStatus] == 1) { //第二次點會加上"&nbsp▾"
     // s = thisObiect.innerHTML;
     // console.log(s.length);
     s = s.substring(0, s.length - 7);
     // s = s.substring(0,s.length-1);
     thisObiect.innerHTML = s + "&nbsp▾";
     tdStatus[thisStatus]++;
-  } else if (tdStatus[thisStatus] == 2) {//第三次點會把後面文字清空
+  } else if (tdStatus[thisStatus] == 2) { //第三次點會把後面文字清空
     // s = thisObiect.innerHTML;
     // console.log(s.length);
     s = s.substring(0, s.length - 7);
@@ -412,16 +430,14 @@ function changeTdNameDisplay() {
   var index = levelSelect.selectedIndex;
   if (index == 0) { //全部
     allUserData = completallUserData.slice(0);
-  }
-  else if (index == 1) { //封鎖
+  } else if (index == 1) { //封鎖
     allUserData.length = 0;
     for (let indexS = 0; indexS < completallUserData.length; indexS++) {
       if (completallUserData[indexS].userstatus == 1) {
         allUserData.push(completallUserData[indexS]);
       }
     }
-  }
-  else { //未封鎖
+  } else { //未封鎖
     allUserData.length = 0;
     for (let indexS = 0; indexS < completallUserData.length; indexS++) {
       if (completallUserData[indexS].userstatus == 0) {
@@ -433,12 +449,11 @@ function changeTdNameDisplay() {
   for (let index = tdStatus.length - 1; index > -1; index--) {
     var item = TdNameTable[index];
     if (tdStatus[index] == 1) {
-      allUserData = allUserData.sort(function (a, b) {
+      allUserData = allUserData.sort(function(a, b) {
         return a[item] > b[item] ? 1 : -1;
       });
-    }
-    else if (tdStatus[index] == 2) {
-      allUserData = allUserData.sort(function (a, b) {
+    } else if (tdStatus[index] == 2) {
+      allUserData = allUserData.sort(function(a, b) {
         return a[item] < b[item] ? 1 : -1;
       });
     }
@@ -449,14 +464,14 @@ function changeTdNameDisplay() {
 /*選單*/
 var levelSelect = document.getElementById("levelSelect");
 //剛下拉式選單改變，呼叫changeTdNameDisplay()
-levelSelect.onchange = function (index) {
+levelSelect.onchange = function(index) {
   changeTdNameDisplay();
 }
 var selectType = document.getElementById("selectType");
 var searchType = 0;
 var searchTypeTable = ["username", "name", "email", "hightLevel", "starNum", "userstatus"];
 //當搜尋欄位被輸入時呼叫searchFunc()
-selectType.onchange = function (index) {
+selectType.onchange = function(index) {
   searchType = selectType.selectedIndex;
   searchFunc();
 }
@@ -485,19 +500,17 @@ function searchFunc() {
       // console.log("item:",item);
       // console.log("tdStatus[index]:",item);
       if (tdStatus[index] == 1) {
-        allUserData = allUserData.sort(function (a, b) {
+        allUserData = allUserData.sort(function(a, b) {
           return a[item] > b[item] ? 1 : -1;
         });
-      }
-      else if (tdStatus[index] == 2) {
-        allUserData = allUserData.sort(function (a, b) {
+      } else if (tdStatus[index] == 2) {
+        allUserData = allUserData.sort(function(a, b) {
           return a[item] < b[item] ? 1 : -1;
         });
       }
     }
     updateMapData(allUserData)
-  }
-  else {
+  } else {
     changeTdNameDisplay();
   }
   // updateMapData(allUserData)
@@ -510,7 +523,7 @@ function updateMapData(res) {
   var mapData = [];
   for (let index = 0; index < res.length; index++) {
     var obj = res[index]
-    var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
+    var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1; //0~49 49+1 -->1~50 51
     if (hightLevel == 51) {
       hightLevel = 50;
     }
@@ -518,8 +531,7 @@ function updateMapData(res) {
     var userstatusStr = "正常"
     if (obj.userstatus) {
       userstatusStr = "封鎖"
-    }
-    else {
+    } else {
       allUserData[index].userstatus = 0;
     }
     var script = {
@@ -530,8 +542,8 @@ function updateMapData(res) {
       td05: allUserData[index].hightLevel,
       td06: userstatusStr
     }
-    if(obj.canCreateMapPermission){
-      script.canCreateMapPermission=obj.canCreateMapPermission
+    if (obj.canCreateMapPermission) {
+      script.canCreateMapPermission = obj.canCreateMapPermission
     }
     mapData.push(script);
   }
@@ -551,13 +563,12 @@ function updateLevelTable(scriptData) {
       document.getElementById("input0" + i + "3").value = obj.td03;
       document.getElementById("input0" + i + "4").value = obj.td04;
       document.getElementById("input0" + i + "5").value = obj.td05;
-      if(obj.canCreateMapPermission){
-        $("#input0" + i + "6").prop("checked",true);
+      if (obj.canCreateMapPermission) {
+        $("#input0" + i + "6").prop("checked", true);
         // document.getElementById("input0" + i + "6").setAttribute("checked",true);
-      }
-      else{
+      } else {
         // document.getElementById("input0" + i + "6").setAttribute("checked",false);
-        $("#input0" + i + "6").prop("checked",false);
+        $("#input0" + i + "6").prop("checked", false);
       }
       document.getElementById("input0" + i + "7").value = obj.td06;
 
@@ -566,8 +577,7 @@ function updateLevelTable(scriptData) {
       }
       // divTag.style.backgroundColor = "#F5F5F5";
       // divTag.style.backgroundColor = "rgb(153, 204, 255)";
-    }
-    else {
+    } else {
       // console.log(td01[i]);
       divTag = document.getElementById("createrDiv");
       b = document.createElement("table");
@@ -600,31 +610,30 @@ function updateLevelTable(scriptData) {
 
          */
         if (j == 6) {
-          b=document.getElementById("input0" + i + "6");
+          b = document.getElementById("input0" + i + "6");
           b.setAttribute("type", "checkbox");
           b.setAttribute("class", "mapCheckbox");
           b.setAttribute("onclick", "createMapPermission(" + i + ")");
-          if(obj.canCreateMapPermission){
+          if (obj.canCreateMapPermission) {
             // b.setAttribute("checked",true);
-            $("#input0" + i + "6").prop("checked",true);
+            $("#input0" + i + "6").prop("checked", true);
           }
-        }
-        else if (j == 7) {/*使用者狀態*/
+        } else if (j == 7) { /*使用者狀態*/
           document.getElementById("input0" + i + j).value = obj.td06;
           // document.getElementById("td0" + i + j).innerHTML = "封鎖"
-        } else if (j == 1) {/*使用者帳號*/
+        } else if (j == 1) { /*使用者帳號*/
           document.getElementById("input0" + i + j).value = obj.td01;
           // document.getElementById("td0" + i + j).innerHTML = "aa";
-        } else if (j == 2) {/*使用者名稱*/
+        } else if (j == 2) { /*使用者名稱*/
           document.getElementById("input0" + i + j).value = obj.td02;
           // document.getElementById("td0" + i + j).innerHTML = "aa";
-        } else if (j == 3) {/*使用者信箱*/
+        } else if (j == 3) { /*使用者信箱*/
           document.getElementById("input0" + i + j).value = obj.td03;
           // document.getElementById("td0" + i + j).innerHTML = "karta1335618@gmail.com";
-        } else if (j == 4) {/*星星數*/
+        } else if (j == 4) { /*星星數*/
           document.getElementById("input0" + i + j).value = obj.td04;
           // document.getElementById("td0" + i + j).innerHTML = "50";
-        } else if (j == 5) {/*最高的關卡*/
+        } else if (j == 5) { /*最高的關卡*/
           document.getElementById("input0" + i + j).value = obj.td05;
           // document.getElementById("td0" + i + j).innerHTML = "13";
         }
@@ -649,11 +658,11 @@ function updateLevelTable(scriptData) {
 
 var searchTextBox = document.getElementById("searchTextBox");
 //只要搜尋列有輸入就調用一次searchFunc()
-searchTextBox.onkeyup = function () {
+searchTextBox.onkeyup = function() {
   searchFunc();
 }
 //當X按鈕被按下，調用changeTdNameDisplay()
-searchTextBox.onchange = function () {
+searchTextBox.onchange = function() {
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
     changeTdNameDisplay();
   }

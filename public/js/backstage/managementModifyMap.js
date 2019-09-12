@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,25 +20,30 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
   return {
 
     // 設定一個 session 變數
-    set: function (name, value) {
+    set: function(name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function (name) {
+    get: function(name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function () { store = {}; },
+    clear: function() {
+      store = {};
+    },
 
     // 列出所有存入的資料
-    dump: function () { return JSON.stringify(store); }
+    dump: function() {
+      return JSON.stringify(store);
+    }
 
   };
 
 })();
 var levelNum = localStorage.getItem("gameNumber") - 1;
+
 function back() {
   // var index = 0;
   // var href = window.location.href;
@@ -53,23 +58,32 @@ function back() {
   // // console.log(href);
 }
 var href = window.location.href;
-var user, objectData, levelDivAlive = false, isOblivionCreaterOpen;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed, gameNumber;
+var user, objectData, levelDivAlive = false,
+  isOblivionCreaterOpen;
+var swordLevel = 0,
+  shieldLevel = 0,
+  levelUpLevel = 0,
+  musicLevel = 1,
+  bkMusicSwitch, bkMusicVolumn = 0.1,
+  args, gameSpeed, gameNumber;
 var musicData;
 var scriptData = {
   type: "init"
 }
 var nowMapData, allMapData;
-var mapInformation, elementNumber = 0, createNewElementTop = 0, lastHeight = 0;
+var mapInformation, elementNumber = 0,
+  createNewElementTop = 0,
+  lastHeight = 0;
+
 function loadGameMap() {
   $.ajax({
-    url: 'loadGameMap',              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
+    url: 'loadGameMap', // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
     data: {
       gameLevel: levelNum + 1
-    },  // 將表單資料用打包起來送出去
-    success: function (res) {
+    }, // 將表單資料用打包起來送出去
+    success: function(res) {
       // // console.log(res);
       allMapData = res;
       initMapData(res);
@@ -77,17 +91,17 @@ function loadGameMap() {
   })
 }
 $.ajax({
-  url: href,              // 要傳送的頁面
-  method: 'POST',               // 使用 POST 方法傳送請求
-  dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
-  success: function (res) {
+  url: href, // 要傳送的頁面
+  method: 'POST', // 使用 POST 方法傳送請求
+  dataType: 'json', // 回傳資料會是 json 格式
+  data: scriptData, // 將表單資料用打包起來送出去
+  success: function(res) {
     // // console.log(res);
     user = res;
     /*loadmusicData();*/
     // // console.log(user);
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
+    xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         equipmentData = JSON.parse(this.responseText);
         initHome();
@@ -98,7 +112,7 @@ $.ajax({
   }
 })
 var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
+xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     objectData = JSON.parse(this.responseText);
   }
@@ -145,6 +159,7 @@ function initMapData(res) {
 
 
 }
+
 function changeMapData(mapVersion) {
   var mapData = allMapData.data;
   for (let index = mapData.length - 1; index > -1; index--) {
@@ -182,11 +197,13 @@ function modifyInit() {
   divTag.setAttribute("readonly", "");
   divTag.style = "background: #CCCCCC; text-align: center;";
 }
+
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
 
 }
+
 function initHome() {
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     bkMusicVolumn = Session.get("bkMusicVolumn");
@@ -203,8 +220,7 @@ function initHome() {
     myVid = document.getElementById("bkMusic");
     myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
     // myVid.play();
-  }
-  catch{
+  } catch {
 
   }
   bkMusicSwitch++;
@@ -228,6 +244,7 @@ function initHome() {
   }
   modifyInit();
 }
+
 function logout() {
   // // console.log("dddddd");
   var href = "/logout";
@@ -247,7 +264,7 @@ function changeHelperMod(mainDiv) {
     divTag = document.getElementById("changeHelperModBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "changeHelperModBkView");
@@ -273,22 +290,24 @@ function changeHelperMod(mainDiv) {
   b.setAttribute("onclick", "changeMod(\"code\")");
   divTag.appendChild(b);
 }
+
 function changeMod(modStr) {
   helperMod = modStr;
   clossFunc("changeHelperModView", "changeHelperModBkView");
   helper();
 }
+
 function helper() {
   divTag = document.getElementById("helperView");
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch { }
+  } catch {}
   divTag = document.getElementById("helperBkView");
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch { }
+  } catch {}
   divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
@@ -382,8 +401,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // // console.log(strText);
@@ -403,8 +421,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // // console.log(strText);
@@ -425,15 +442,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -462,15 +477,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -496,8 +509,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // // console.log(strText);
@@ -517,8 +529,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // // console.log(strText);
@@ -539,15 +550,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -575,15 +584,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -609,8 +616,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // // console.log(strText);
@@ -631,15 +637,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img4;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -665,8 +669,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea4;
       }
       // // console.log(strText);
@@ -687,15 +690,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img5;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -721,8 +722,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea5;
       }
       // // console.log(strText);
@@ -743,15 +743,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img6;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -777,8 +775,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea6;
       }
       // // console.log(strText);
@@ -800,15 +797,13 @@ function helper() {
       if (helperMod != "blocky") {
 
         strText = nowMapData.mainCodeDescription.img7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img7;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -834,8 +829,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea7;
       }
       // // console.log(strText);
@@ -854,8 +848,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea9;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea9;
       }
       // // console.log(strText);
@@ -875,8 +868,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // // console.log(strText);
@@ -897,15 +889,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -933,15 +923,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -967,8 +955,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // // console.log(strText);
@@ -989,15 +976,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img4;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1023,8 +1008,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea4;
       }
       // // console.log(strText);
@@ -1045,15 +1029,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img5;
       }
       // // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1079,8 +1061,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea5;
       }
       // console.log(strText);
@@ -1101,15 +1082,13 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img6;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1135,8 +1114,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea6;
       }
       // console.log(strText);
@@ -1158,15 +1136,13 @@ function helper() {
       if (helperMod != "blocky") {
 
         strText = nowMapData.mainCodeDescription.img7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img7;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1192,8 +1168,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea7;
       }
       // console.log(strText);
@@ -1216,15 +1191,13 @@ function helper() {
       if (helperMod != "blocky") {
 
         strText = nowMapData.mainCodeDescription.img8;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img8;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1250,8 +1223,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea8;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea8;
       }
       // console.log(strText);
@@ -1272,8 +1244,7 @@ function helper() {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea9;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea9;
       }
       // console.log(strText);
@@ -1300,8 +1271,7 @@ function helper() {
       divTag.appendChild(b);
       if (helperMod != "blocky") {
         helperJson = nowMapData.mainCodeDescription.selfSettintPatten;
-      }
-      else {
+      } else {
         helperJson = nowMapData.mainBlockyDescription.selfSettintPatten;
       }
       if (helperJson) {
@@ -1309,9 +1279,9 @@ function helper() {
           divTag = document.getElementById("helperInnerDiv");
           var helperId = helperJson[i].id;
           lastHeight = helperJson[i].lastHeight;
-          var isImgLeft=false;
-          if(helperJson[i].isImgLeft!="" && helperJson[i].isImgLeft==true){
-            isImgLeft=true;
+          var isImgLeft = false;
+          if (helperJson[i].isImgLeft != "" && helperJson[i].isImgLeft == true) {
+            isImgLeft = true;
           }
           switch (helperJson[i].mode) {
             case "img":
@@ -1658,13 +1628,13 @@ function helper() {
           document.getElementById("createNewElement").style.top = createNewElementTop + "%";
           document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
         }
-      }
-      else{
-        helperJson=[];
+      } else {
+        helperJson = [];
       }
       break;
   }
 }
+
 function changeMethod(methodNumber) {
   divTag = document.getElementById("helperView");
   divTag.innerHTML = "";
@@ -1744,8 +1714,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // console.log(strText);
@@ -1765,8 +1734,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // console.log(strText);
@@ -1787,15 +1755,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1823,15 +1789,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1857,8 +1821,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // console.log(strText);
@@ -1878,8 +1841,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // console.log(strText);
@@ -1899,15 +1861,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1935,15 +1895,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -1969,8 +1927,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // console.log(strText);
@@ -1991,15 +1948,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img4;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2025,8 +1980,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea4;
       }
       // console.log(strText);
@@ -2047,15 +2001,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img5;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2081,8 +2033,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea5;
       }
       // console.log(strText);
@@ -2103,15 +2054,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img6;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2137,8 +2086,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea6;
       }
       // console.log(strText);
@@ -2159,15 +2107,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img7;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2193,8 +2139,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea7;
       }
       // console.log(strText);
@@ -2212,8 +2157,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea9;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea9;
       }
       // console.log(strText);
@@ -2233,8 +2177,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea1;
       }
       // console.log(strText);
@@ -2254,15 +2197,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2290,15 +2231,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img2;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2324,8 +2263,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea2;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea2;
       }
       // console.log(strText);
@@ -2346,15 +2284,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img4;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2380,8 +2316,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea4;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea4;
       }
       // console.log(strText);
@@ -2402,15 +2337,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img5;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2436,8 +2369,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea5;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea5;
       }
       // console.log(strText);
@@ -2458,15 +2390,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img6;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2492,8 +2422,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea6;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea6;
       }
       // console.log(strText);
@@ -2514,15 +2443,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img7;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2548,8 +2475,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea7;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea7;
       }
       // console.log(strText);
@@ -2571,15 +2497,13 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img8;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img8;
       }
       // console.log(strText);
       if (strText != null) {
         b.setAttribute("src", "img/" + strText);
-      }
-      else {
+      } else {
         b.style.background = "white";
         b.setAttribute("src", "img/noImage.png");
       }
@@ -2605,8 +2529,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea8;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea8;
       }
       // console.log(strText);
@@ -2626,8 +2549,7 @@ function changeMethod(methodNumber) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.textarea9;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.textarea9;
       }
       // console.log(strText);
@@ -2657,8 +2579,7 @@ function changeMethod(methodNumber) {
       document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
       if (helperMod != "blocky") {
         helperJson = nowMapData.mainCodeDescription.selfSettintPatten;
-      }
-      else {
+      } else {
         helperJson = nowMapData.mainBlockyDescription.selfSettintPatten;
       }
       if (helperJson) {
@@ -2666,9 +2587,9 @@ function changeMethod(methodNumber) {
           divTag = document.getElementById("helperInnerDiv");
           var helperId = helperJson[i].id;
           lastHeight = helperJson[i].lastHeight;
-          var isImgLeft=false;
-          if(helperJson[i].isImgLeft!="" && helperJson[i].isImgLeft==true){
-            isImgLeft=true;
+          var isImgLeft = false;
+          if (helperJson[i].isImgLeft != "" && helperJson[i].isImgLeft == true) {
+            isImgLeft = true;
           }
           switch (helperJson[i].mode) {
             case "img":
@@ -3014,9 +2935,8 @@ function changeMethod(methodNumber) {
           document.getElementById("createNewElement").style.top = createNewElementTop + "%";
           document.getElementById("deleteNewElement").style.top = createNewElementTop + "%";
         }
-      }
-      else{
-        helperJson=[];
+      } else {
+        helperJson = [];
       }
       break;
   }
@@ -3096,6 +3016,7 @@ function setCreateElementFunc() {
   b.innerHTML = "圖片在右";
   divTag.appendChild(b);
 }
+
 function changeCheckBoxStatus(input) {
   for (var i = 0; i < document.getElementById("imgPositionDiv").childNodes.length; i++) {
     document.getElementById("imgPositionDiv").childNodes[i].checked = false;
@@ -3114,6 +3035,7 @@ var tempJson = {
   "imgUrl1": "",
   "imgUrl2": ""
 };
+
 function selectCreateNode(mode) {
   var isImgLeft = document.getElementById("imgLeft").checked;
   divTag = document.getElementById("createElementView");
@@ -3189,8 +3111,7 @@ function selectCreateNode(mode) {
       var strText = "";
       if (helperMod != "blocky") {
         strText = nowMapData.mainCodeDescription.img1;
-      }
-      else {
+      } else {
         strText = nowMapData.mainBlockyDescription.img1;
       }
       b.style.background = "white";
@@ -3691,8 +3612,7 @@ function saveHelper(modelNumber) {
 
   if (helperMod != "blocky") {
     var postData = nowMapData.mainCodeDescription;
-  }
-  else {
+  } else {
     var postData = nowMapData.mainBlockyDescription;
   }
   var level = localStorage.getItem("gameNumber");
@@ -3700,8 +3620,7 @@ function saveHelper(modelNumber) {
   if (modelNumber == 1) {
     var textarea1 = strChange(document.getElementById("helperTextarea3").value);
     postData.textarea1 = textarea1;
-  }
-  else if (modelNumber == 2) {
+  } else if (modelNumber == 2) {
     var textarea1 = strChange(document.getElementById("helperTextarea1").value);
     var textarea2 = strChange(document.getElementById("helperTextarea2").value);
     var imageObj = $("#helperImg1")[0];
@@ -3712,8 +3631,7 @@ function saveHelper(modelNumber) {
     postData.textarea2 = textarea2;
     postData.img1 = img1;
     postData.img2 = img2;
-  }
-  else if (modelNumber == 3) {
+  } else if (modelNumber == 3) {
     var textarea1 = strChange(document.getElementById("helperTextarea1").value);
     var textarea2 = strChange(document.getElementById("helperTextarea2").value);
     var textarea4 = strChange(document.getElementById("helperTextarea4").value);
@@ -3747,8 +3665,7 @@ function saveHelper(modelNumber) {
     postData.img6 = img6;
     postData.img7 = img7;
 
-  }
-  else if (modelNumber == 4) {
+  } else if (modelNumber == 4) {
     var textarea1 = strChange(document.getElementById("helperTextarea1").value);
     var textarea2 = strChange(document.getElementById("helperTextarea2").value);
     var textarea4 = strChange(document.getElementById("helperTextarea4").value);
@@ -3828,8 +3745,7 @@ function saveHelper(modelNumber) {
     if (element.versionID == allMapData.versionID) {
       if (helperMod != "blocky") {
         element.mainCodeDescription = postData;
-      }
-      else {
+      } else {
         element.mainBlockyDescription = postData;
       }
       // console.log(allMapData);
@@ -3844,11 +3760,11 @@ function saveHelper(modelNumber) {
     data: objData
   }
   $.ajax({
-    url: 'updateGameMap',              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptObjData,  // 將表單資料用打包起來送出去
-    success: function (res) {
+    url: 'updateGameMap', // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    data: scriptObjData, // 將表單資料用打包起來送出去
+    success: function(res) {
       // console.log(res);
       remindView("儲存成功");
     }
@@ -3872,19 +3788,19 @@ function closeFunc(thisDiv, thisDiv2) {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById(thisDiv2);
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   levelDivAlive = false;
 }
 /*讀取圖片*/
 function readImgUrl(input, imgStr, imgId) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-    reader.onload = function (e) {
+    reader.onload = function(e) {
       // console.log(input.files[0].name);
       data = {
         imgName: input.files[0].name,
@@ -3897,13 +3813,13 @@ function readImgUrl(input, imgStr, imgId) {
         cache: false, //上传文件不需要缓存
         dataType: 'json',
         data: data,
-        success: function (res) {
+        success: function(res) {
           // console.log(res);
           var img = document.getElementById(imgStr + imgId);
           img.setAttribute("src", e.target.result)
           $("#" + imgStr + imgId)[0].value = res.path;
         },
-        error: function (data) {
+        error: function(data) {
           // console.log("上传失败");
         }
       })
@@ -3924,7 +3840,8 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
   "主&nbsp要&nbsp進&nbsp度：",
   "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
-  "已獲得星星數："];
+  "已獲得星星數："
+];
 //創造使用者資訊外框函式
 function userData() {
   //先試著刪除背後黑布以及顯示視窗，發生錯誤就跳過
@@ -3998,8 +3915,8 @@ function createUserView(mainDiv) {
       }
     } else if (i == 3) {
       var getAchievement = Session.get("getAchievement");
-      if(getAchievement == undefined){
-        getAchievement=0;
+      if (getAchievement == undefined) {
+        getAchievement = 0;
         // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
@@ -4012,9 +3929,9 @@ function createUserView(mainDiv) {
     for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("userTr" + i);
       b = document.createElement("td");
-      if(j%2 == 0){
+      if (j % 2 == 0) {
         b.innerHTML = dataTitle[i];
-      }else{
+      } else {
         b.innerHTML = userdataFont;
       }
       divTag.appendChild(b);
@@ -4023,13 +3940,13 @@ function createUserView(mainDiv) {
 }
 
 function closeFunc(thisDiv, thisDiv2) {
-divTag = document.getElementById(thisDiv);
-parentObj = divTag.parentNode;
-parentObj.removeChild(divTag);
-divTag = document.getElementById(thisDiv2);
-parentObj = divTag.parentNode;
-parentObj.removeChild(divTag);
-levelDivAlive = false;
+  divTag = document.getElementById(thisDiv);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  divTag = document.getElementById(thisDiv2);
+  parentObj = divTag.parentNode;
+  parentObj.removeChild(divTag);
+  levelDivAlive = false;
 }
 var thisSelectionId;
 var args;
@@ -4039,7 +3956,8 @@ var lastObject = null;
 /*div分頁*/
 function clearLinkDot() {
   var i, a, main;
-  for (i = 0; (a = document.getElementsByTagName("a")[i]); i++) {
+  for (i = 0;
+    (a = document.getElementsByTagName("a")[i]); i++) {
     if (a.getAttribute("onFocus") == null) {
       a.setAttribute("onFocus", "this.blur();");
     } else {
@@ -4048,6 +3966,7 @@ function clearLinkDot() {
     a.setAttribute("hideFocus", "hidefocus");
   }
 }
+
 function loadTab(obj, n) {
   var layer;
   eval('layer=\'S' + n + '\'');
@@ -4069,18 +3988,17 @@ function loadTab(obj, n) {
     document.getElementById(layer).style.display = 'none';
     // console.log("aaa");
     lessRequirement(objectData.oblivionObject[13].requirementStar);
-  }
-  else if (n == 3 && user.starNum < objectData.oblivionObject[11].requirementStar) {
+  } else if (n == 3 && user.starNum < objectData.oblivionObject[11].requirementStar) {
     document.getElementById(layer).style.display = 'none';
     // console.log("bbb");
     lessRequirement(objectData.oblivionObject[11].requirementStar);
-  }
-  else {
+  } else {
     document.getElementById(layer).style.display = 'inline';
   }
 
 
 }
+
 function chk(input) {
   for (var i = 0; i < document.form1.c1.length; i++) {
     document.form1.c1[i].checked = false;
@@ -4127,9 +4045,11 @@ function settingMap() {
     document.getElementById("settingMapDiv").style.display = '';
   }
 }
+
 function unSaveMap() {
   document.getElementById("settingMapDiv").style.display = 'none';
 }
+
 function saveMap() {
   document.getElementById("settingMapDiv").style.display = 'none';
 }
@@ -4188,6 +4108,7 @@ function lessRequirement(starNum) {
 }
 
 var levelDivAlive = false;
+
 function remindView(remindValue) {
   var isTwoLine = false;
   for (var i = 0; i < remindValue.length; i++) {
@@ -4203,7 +4124,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -4234,6 +4155,7 @@ function remindView(remindValue) {
   b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
+
 function clossFunc(thisDiv, thisDiv2) {
   divTag = document.getElementById(thisDiv);
   parentObj = divTag.parentNode;
@@ -4267,6 +4189,7 @@ function saveModifyMap() {
 
 /*版本控制*/
 var lastSelect = null;
+
 function selectVersion(selectValue) {
   if (lastSelect != null && selectValue != lastSelect) {
 
@@ -4276,8 +4199,8 @@ function selectVersion(selectValue) {
     lastSelect = selectValue;
     changeMapData(selectValue.innerHTML.toString());
     $("#loadTabID1")[0].click();
-    MouseX=0;
-    MouseY=0;
+    MouseX = 0;
+    MouseY = 0;
     realDoMycanvasMouseClicked();
   }
 }

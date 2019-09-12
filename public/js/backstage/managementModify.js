@@ -107,7 +107,9 @@ function modifyEquipment() {
 
 //儲存更改後的資料
 function saveEquipment() {
-  var levelUpLevel = [], weaponLevel = [], armorLevel = [];
+  var levelUpLevel = [],
+    weaponLevel = [],
+    armorLevel = [];
   for (var i = 1; i < 17; i++) {
     for (var j = 1; j < 4; j++) {
       switch (j) {
@@ -157,11 +159,11 @@ function saveEquipment() {
     seriJson: JSON.stringify(seri)
   }
   $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
+    url: href, // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    data: scriptData, // 將表單資料用打包起來送出去
+    success: function(res) {
       remindView("儲存成功");
     }
   })
@@ -312,8 +314,7 @@ function resetTableToOriginal() {
       } else {
         temp.className = "levelChange";
       }
-    }
-    else {
+    } else {
       if (li == 0) {
         temp.className = "levelFontDefault";
       } else if (li == 9) {
@@ -333,8 +334,7 @@ function resetTableToOriginal() {
       } else {
         temp.className = "levelChange";
       }
-    }
-    else {
+    } else {
       if (li == 0) {
         temp.className = "levelFontDefault";
       } else if (li == 9) {
@@ -344,7 +344,8 @@ function resetTableToOriginal() {
       }
     }
   }
-  var swordmaxFlag = false, shiledmaxFlag = false;
+  var swordmaxFlag = false,
+    shiledmaxFlag = false;
   if ((swordLevel + shieldLevel) >= 15) {
     if (swordLevel == 10) {
       document.getElementById("levelUpDefault0").innerHTML = "";
@@ -352,15 +353,13 @@ function resetTableToOriginal() {
       document.getElementById("swordLevelUpDivH3").innerHTML = text;
       var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
-    }
-    else if (shieldLevel == 10) {
+    } else if (shieldLevel == 10) {
       document.getElementById("levelUpDefault1").innerHTML = "";
       var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
       document.getElementById("shieldLevelUpDivH3").innerHTML = text;
       var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
       document.getElementById("swordLevelUpDivH3").innerHTML = text;
-    }
-    else {
+    } else {
       var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
       document.getElementById("swordLevelUpDivH3").innerHTML = text;
       var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
@@ -372,8 +371,7 @@ function resetTableToOriginal() {
     // document.getElementById("levelUpDefault1").innerHTML = "已達<br>上限";
     document.getElementById("levelUpDefault0").className = "levelUpDefault2";
     document.getElementById("levelUpDefault1").className = "levelUpDefault2";
-  }
-  else if (swordLevel == 10) {
+  } else if (swordLevel == 10) {
     document.getElementById("levelUpDefault0").innerHTML = "";
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + "  等級已升到最滿";
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
@@ -389,13 +387,11 @@ function resetTableToOriginal() {
       // console.log("重製失敗");
       document.getElementById("levelUpDefault0").className = "highestLevel";
       document.getElementById("levelUpDefault1").className = "levelUp";
-    }
-    else {
+    } else {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
-  }
-  else if (shieldLevel == 10) {
+  } else if (shieldLevel == 10) {
     document.getElementById("levelUpDefault1").innerHTML = "";
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + "  等級已升到最滿";
     document.getElementById("shieldLevelUpDivH3").innerHTML = text;
@@ -409,13 +405,11 @@ function resetTableToOriginal() {
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
       document.getElementById("levelUpDefault1").className = "highestLevel";
-    }
-    else {
+    } else {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
-  }
-  else {
+  } else {
     var text = "攻擊力：" + equipmentData.weaponLevel[swordLevel].attack + " &nbsp 下一級為：" + equipmentData.weaponLevel[swordLevel + 1].attack;
     document.getElementById("swordLevelUpDivH3").innerHTML = text;
     var text = "防禦力：" + equipmentData.armorLevel[shieldLevel].attack + " &nbsp 下一級為：" + equipmentData.armorLevel[shieldLevel + 1].attack;
@@ -428,8 +422,7 @@ function resetTableToOriginal() {
     if (star <= user.starNum) {
       document.getElementById("levelUpDefault0").className = "levelUp";
       document.getElementById("levelUpDefault1").className = "levelUp";
-    }
-    else {
+    } else {
       document.getElementById("levelUpDefault0").className = "levelUpDefault";
       document.getElementById("levelUpDefault1").className = "levelUpDefault";
     }
@@ -441,7 +434,7 @@ function resetTableToOriginal() {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
 }
 
 //修改指令大全
@@ -465,7 +458,8 @@ function modifyInstruction(modifyNumber) {
     document.getElementById("summaryInner" + trNumber + i).innerHTML = li[i].name;
 
     // var transformVal = "    " + li[i].value.replace(/&nbsp/g, " "),temp;
-    var transformVal = li[i].value.replace(/&nbsp/g, " "), temp;
+    var transformVal = li[i].value.replace(/&nbsp/g, " "),
+      temp;
     transformVal = transformVal.replace(/<br>/g, "\n");
     b = document.createElement("textarea");
     b.setAttribute("id", "item" + trNumber + i);
@@ -495,7 +489,7 @@ function modifyInstruction(modifyNumber) {
 //儲存更改後的資料函式
 function saveInstruction(trNumber, tdNumber) {
   var transformVal = document.getElementById("item" + trNumber + tdNumber).value.replace(/ /g, "&nbsp");
-  transformVal = transformVal.replace(/\n/g, "<br>");//處理完成的字串，可直接存起來
+  transformVal = transformVal.replace(/\n/g, "<br>"); //處理完成的字串，可直接存起來
   // console.log(trNumber,tdNumber);
   var data = dictionaryData.code[parseInt((trNumber - 1) / 2)];
   data.element[tdNumber].value = transformVal;
@@ -506,11 +500,11 @@ function saveInstruction(trNumber, tdNumber) {
     dictValue: transformVal
   }
   $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
+    url: href, // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    data: scriptData, // 將表單資料用打包起來送出去
+    success: function(res) {
       remindView("儲存成功");
     }
   })

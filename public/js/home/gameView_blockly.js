@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,20 +20,24 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
   return {
 
     // 設定一個 session 變數
-    set: function (name, value) {
+    set: function(name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function (name) {
+    get: function(name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function () { store = {}; },
+    clear: function() {
+      store = {};
+    },
 
     // 列出所有存入的資料
-    dump: function () { return JSON.stringify(store); }
+    dump: function() {
+      return JSON.stringify(store);
+    }
 
   };
 
@@ -41,7 +45,12 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () 
 
 var href = window.location.href;
 var user, directiveData, levelDivAlive = true;
-var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed;
+var swordLevel = 0,
+  shieldLevel = 0,
+  levelUpLevel = 0,
+  musicLevel = 1,
+  bkMusicSwitch, bkMusicVolumn = 0.1,
+  args, gameSpeed;
 var musicData;
 
 createLoadingMainView("center");
@@ -49,6 +58,7 @@ loadDict();
 var scriptData = {
   type: "init"
 }
+
 function back() {
   var index = 0;
   var href = window.location.href;
@@ -63,45 +73,47 @@ function back() {
 }
 let params = new URL(window.location.href).searchParams;
 if (!params.has('level')) {
-    href = "";
-    window.location.replace(href);
+  href = "";
+  window.location.replace(href);
 }
-var maplevelId =  params.get('level');
+var maplevelId = params.get('level');
 $.ajax({
-  url: "loadThisLevelGameMapData",              // 要傳送的頁面
-  method: 'POST',               // 使用 POST 方法傳送請求
-  dataType: 'json',             // 回傳資料會是 json 格式
-  async:false,
+  url: "loadThisLevelGameMapData", // 要傳送的頁面
+  method: 'POST', // 使用 POST 方法傳送請求
+  dataType: 'json', // 回傳資料會是 json 格式
+  async: false,
   data: {
-      level:maplevelId,
-      gameMode:"blocky"   //blocky
-  },  //
-  success: function (res) {
+    level: maplevelId,
+    gameMode: "blocky" //blocky
+  }, //
+  success: function(res) {
     // console.log(res);
 
-    thisLevelNum=maplevelId;
-    mainDescription={oblivionObject:res};
+    thisLevelNum = maplevelId;
+    mainDescription = {
+      oblivionObject: res
+    };
     helper("blocklyDiv");
   }
 })
 
 $.ajax({
-  url: href,              // 要傳送的頁面
-  method: 'POST',               // 使用 POST 方法傳送請求
-  dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
-  success: function (res) {
+  url: href, // 要傳送的頁面
+  method: 'POST', // 使用 POST 方法傳送請求
+  dataType: 'json', // 回傳資料會是 json 格式
+  data: scriptData, // 將表單資料用打包起來送出去
+  async: false,
+  success: function(res) {
     // console.log(res);
     user = res;
 
     let nowurl = new URL(window.location.href);
     let params = nowurl.searchParams;
     if (!params.has('level')) {
-        href = "";
-        window.location.replace(href);
+      href = "";
+      window.location.replace(href);
     }
-    var maplevelId =  params.get('level');
+    var maplevelId = params.get('level');
     // console.log(maplevelId);
     // console.log(user.EasyEmpire.codeLevel.length);
     if (maplevelId < 24) {
@@ -111,11 +123,10 @@ $.ajax({
         href = "pruss";
         window.location.replace(href);
       }
-    }
-    else {
-        alert("不能越級過關喔");
-        href = "pruss";
-        window.location.replace(href);
+    } else {
+      alert("不能越級過關喔");
+      href = "pruss";
+      window.location.replace(href);
     }
 
     /*loadmusicData();*/
@@ -124,12 +135,12 @@ $.ajax({
       type: "loadEquip"
     }
     $.ajax({
-      url: href,              // 要傳送的頁面
-      method: 'POST',               // 使用 POST 方法傳送請求
-      dataType: 'json',             // 回傳資料會是 json 格式
-      data: scriptData,  // 將表單資料用打包起來送出去
-      async:false,
-      success: function (res) {
+      url: href, // 要傳送的頁面
+      method: 'POST', // 使用 POST 方法傳送請求
+      dataType: 'json', // 回傳資料會是 json 格式
+      data: scriptData, // 將表單資料用打包起來送出去
+      async: false,
+      success: function(res) {
         // console.log(res);
         equipmentData = res;
         initHome();
@@ -138,10 +149,12 @@ $.ajax({
   }
 })
 closeMainLoadingView();
+
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
 }
+
 function initHome() {
   //如果每個session都有值得話就將值存到變數內
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
@@ -149,7 +162,7 @@ function initHome() {
     bkMusicSwitch = Session.get("bkMusicSwitch");
     musicLevel = Session.get("musicLevel");
     gameSpeed = Session.get("gameSpeed");
-  } else {//若沒有就設為預設值
+  } else { //若沒有就設為預設值
     bkMusicVolumn = 0.1;
     bkMusicSwitch = 2;
     musicLevel = 1;
@@ -173,7 +186,7 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
-  if(user.username == "NKUSTCCEA"){
+  if (user.username == "NKUSTCCEA") {
     // console.log(document.getElementById("gameModifyBtn"));
     document.getElementById("gameModifyBtn").style.display = "";
   }
@@ -185,11 +198,11 @@ function recordLevel(scriptData) {
   var NowDate = new Date();
   scriptData.submitTime = NowDate
   $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
+    url: href, // 要傳送的頁面
+    method: 'POST', // 使用 POST 方法傳送請求
+    dataType: 'json', // 回傳資料會是 json 格式
+    data: scriptData, // 將表單資料用打包起來送出去
+    success: function(res) {
       user = res
       // console.log(user);
     }
@@ -213,7 +226,8 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
   "主&nbsp要&nbsp進&nbsp度：",
   "成&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp就：",
   "上架地圖數：",
-  "已獲得星星數："];
+  "已獲得星星數："
+];
 //創造使用者資訊外框函式
 function userData() {
   //先試著刪除背後黑布以及顯示視窗，發生錯誤就跳過
@@ -287,8 +301,8 @@ function createUserView(mainDiv) {
       }
     } else if (i == 3) {
       var getAchievement = Session.get("getAchievement");
-      if(getAchievement == undefined){
-        getAchievement=0;
+      if (getAchievement == undefined) {
+        getAchievement = 0;
         // console.log("this is undefine");
       }
       userdataFont = getAchievement + "/9";
@@ -301,9 +315,9 @@ function createUserView(mainDiv) {
     for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("userTr" + i);
       b = document.createElement("td");
-      if(j%2 == 0){
+      if (j % 2 == 0) {
         b.innerHTML = dataTitle[i];
-      }else{
+      } else {
         b.innerHTML = userdataFont;
       }
       divTag.appendChild(b);
@@ -330,16 +344,17 @@ function getArgs() {
     selectFunc(level);
     divTag = document.getElementById("titleFont");
     divTag.innerHTML = "";
-    if(level > 10){
+    if (level > 10) {
       document.getElementById("gameModifyBtn").style.transform = "translateX(6.5vw)";
     }
-    if(level > 19){
+    if (level > 19) {
       document.getElementById("gameModifyBtn").style.transform = "translateX(7.5vw)";
     }
     //標籤文字字串
-    var numStr = ["零","一","二","三","四","五","六","七","八","九","十",
-                  "十一","十二","十三","十四","十五","十六","十七","十八",
-                  "十九","二十","二十一","二十二","二十三","二十四"];
+    var numStr = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十",
+      "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八",
+      "十九", "二十", "二十一", "二十二", "二十三", "二十四"
+    ];
     divTag.innerHTML = "第&nbsp" + numStr[++level] + "&nbsp關";
     //changeCollege(--args.level);
     thisLevelNum = level - 1;
@@ -356,7 +371,7 @@ function helper(mainDiv) {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById(mainDiv);
   //創造小幫手div
   b = document.createElement("div");
@@ -680,15 +695,15 @@ function helper(mainDiv) {
       document.getElementById("helperTextarea9").innerHTML = mainDescription.oblivionObject[thisLevelNum].textarea9;
       break;
     case 5:
-      helperJson=mainDescription.oblivionObject[thisLevelNum].selfSettintPatten;
+      helperJson = mainDescription.oblivionObject[thisLevelNum].selfSettintPatten;
       if (helperJson) {
         for (var i = 0; i < helperJson.length; i++) {
           divTag = document.getElementById("helperInnerDiv");
           var helperId = helperJson[i].id;
           lastHeight = helperJson[i].lastHeight;
-          var isImgLeft=false;
-          if(helperJson[i].isImgLeft!="" && helperJson[i].isImgLeft==true){
-            isImgLeft=true;
+          var isImgLeft = false;
+          if (helperJson[i].isImgLeft != "" && helperJson[i].isImgLeft == true) {
+            isImgLeft = true;
           }
           switch (helperJson[i].mode) {
             case "img":
@@ -854,13 +869,13 @@ function clossFunc(thisDiv, thisDiv2) {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   divTag = document.getElementById(thisDiv2);
   //刪除thisDiv2
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   levelDivAlive = false;
 }
 
@@ -1147,6 +1162,7 @@ function settingAllView(mainDiv) {
     b.className = "musicVolumeInnerDiv";
   }
 }
+
 function musicLevelUp() {
   b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
   if (musicLevel <= 9) {
@@ -1162,6 +1178,7 @@ function musicLevelUp() {
   bkMusicSwitch++;
   sendSession();
 }
+
 function musicLevelDown() {
   if (musicLevel < 9) {
     b = document.getElementById("musicVolumeInnerDiv" + musicLevel);
@@ -1184,6 +1201,7 @@ function musicLevelDown() {
   bkMusicSwitch++;
   sendSession();
 }
+
 function chk(input) {
 
   for (var i = 0; i < document.form1.c1.length; i++) {
@@ -1201,6 +1219,7 @@ function chk(input) {
   sendSession();
   return true;
 }
+
 function chk2(input) {
   for (var i = 0; i < document.form2.c1.length; i++) {
     document.form2.c1[i].checked = false;
@@ -1216,6 +1235,7 @@ function chk2(input) {
   sendSession();
   return true;
 }
+
 function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
@@ -1233,7 +1253,8 @@ function selectFunc(levelNumber) {
   /*divTag = document.getElementById("bodyId");
   b = document.createElement("script");
   divTag.appendChild(b);*/
-  var classSize = directiveData.instruction[levelNumber].class.length, usableSize;
+  var classSize = directiveData.instruction[levelNumber].class.length,
+    usableSize;
   var className, usableValue;
   divTag = document.getElementById("toolbox");
   for (var i = 0; i < classSize; i++) {
@@ -1262,6 +1283,7 @@ function selectFunc(levelNumber) {
   b.setAttribute("src", "gameNew/gameNew/js/code_C.js");
   divTag.appendChild(b);
 }
+
 function blocklyUsable(thisClassID, thisValue) {
   var blockType;
   switch (thisValue) {
@@ -1337,13 +1359,13 @@ function blocklyUsable(thisClassID, thisValue) {
 }
 
 /*遊戲結果*/
-function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
+function createEndView(starNum, gameResult, instructionNum, code, errMessage) {
   // 儲存關卡//
   var scriptData = {
-    type: "blockLevelResult",  //"codeLevelResult" or "blockLevelResult"限"EasyEmpire"
-    Empire: "EasyEmpire",     //"EasyEmpire" or "MediumEmpire"
-    level: thisLevelNum,                 // 0~24 or 25
-    StarNum: starNum,               // 0 or 1 or 2 or 3
+    type: "blockLevelResult", //"codeLevelResult" or "blockLevelResult"限"EasyEmpire"
+    Empire: "EasyEmpire", //"EasyEmpire" or "MediumEmpire"
+    level: thisLevelNum, // 0~24 or 25
+    StarNum: starNum, // 0 or 1 or 2 or 3
     result: gameResult,
     code: code,
     instructionNum: instructionNum
@@ -1441,15 +1463,14 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     b.setAttribute("id", "nextLevelBtn");
     b.setAttribute("value", "下一關");
     // console.log(thisLevelNum);
-    if(thisLevelNum +1==24){
-      b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum +1)+ "'");
-    }
-    else{
-      b.setAttribute("onclick", "location.href='gameView_blockly?level=" + (thisLevelNum +1)+ "'");
+    if (thisLevelNum + 1 == 24) {
+      b.setAttribute("onclick", "location.href='gameView_text?level=" + (thisLevelNum + 1) + "'");
+    } else {
+      b.setAttribute("onclick", "location.href='gameView_blockly?level=" + (thisLevelNum + 1) + "'");
     }
     divTag.appendChild(b);
   } else {
-    if(gameResult == "編譯失敗"){
+    if (gameResult == "編譯失敗") {
       document.getElementById("createEndView").className = "errView";
       b = document.createElement("textarea");
       b.setAttribute("id", "errTextarea");
@@ -1489,17 +1510,18 @@ function createLoadingView() {
     divTag.appendChild(b);
   }
 }
+
 function closeLoadingView() {
   var divTag = document.getElementById("loadingView");
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
   var divTag = document.getElementById("loadingBkView");
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) { }
+  } catch (e) {}
 }
 window.onresize = function() {
   setup();
@@ -1510,140 +1532,118 @@ function turnToModify() {
   let gameName = document.getElementById("titleFont").innerHTML;
   localStorage.setItem("gameName", gameName);
   localStorage.setItem("gameNumber", args.level);
-  document.location.href="managementModifyMap";
+  document.location.href = "managementModifyMap";
 }
 
 /*可用指令*/
 function loadDict() {
   directiveData = {
-    "instruction": [
-      {
+    "instruction": [{
         "level": 1,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+            "value": "moveForward"
+          }]
+        }]
       },
       {
         "level": 2,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              },
-              {
-                "value": "turnRight"
-              },
-              {
-                "value": "turnLeft"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+              "value": "moveForward"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            }
+          ]
+        }]
       },
       {
         "level": 3,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              },
-              {
-                "value": "turnRight"
-              },
-              {
-                "value": "turnLeft"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+              "value": "moveForward"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            }
+          ]
+        }]
       },
       {
         "level": 4,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              },
-              {
-                "value": "turnRight"
-              },
-              {
-                "value": "turnLeft"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+              "value": "moveForward"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            }
+          ]
+        }]
       },
       {
         "level": 5,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              },
-              {
-                "value": "turnRight"
-              },
-              {
-                "value": "turnLeft"
-              },
-              {
-                "value": "printf"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+              "value": "moveForward"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "printf"
+            }
+          ]
+        }]
       },
       {
         "level": 6,
-        "class": [
-          {
-            "name": "動作",
-            "usable": [
-              {
-                "value": "moveForward"
-              },
-              {
-                "value": "turnRight"
-              },
-              {
-                "value": "turnLeft"
-              },
-              {
-                "value": "printf"
-              },
-              {
-                "value": "scanf"
-              },
-              {
-                "value": "var"
-              }
-            ]
-          }
-        ]
+        "class": [{
+          "name": "動作",
+          "usable": [{
+              "value": "moveForward"
+            },
+            {
+              "value": "turnRight"
+            },
+            {
+              "value": "turnLeft"
+            },
+            {
+              "value": "printf"
+            },
+            {
+              "value": "scanf"
+            },
+            {
+              "value": "var"
+            }
+          ]
+        }]
       },
       {
         "level": 7,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1662,21 +1662,17 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
-                "value": "if"
-              }
-            ]
+            "usable": [{
+              "value": "if"
+            }]
           }
         ]
       },
       {
         "level": 8,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1695,8 +1691,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1708,11 +1703,9 @@ function loadDict() {
       },
       {
         "level": 9,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1731,21 +1724,17 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
-                "value": "switch"
-              }
-            ]
+            "usable": [{
+              "value": "switch"
+            }]
           }
         ]
       },
       {
         "level": 10,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1764,8 +1753,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1778,21 +1766,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 11,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1811,8 +1795,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1825,21 +1808,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 12,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1858,8 +1837,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1872,21 +1850,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 13,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1905,8 +1879,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1919,21 +1892,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 14,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -1952,8 +1921,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -1966,21 +1934,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 15,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2002,8 +1966,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2016,21 +1979,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 16,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2052,8 +2011,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2066,21 +2024,17 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
-                "value": "for"
-              }
-            ]
+            "usable": [{
+              "value": "for"
+            }]
           }
         ]
       },
       {
         "level": 17,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2102,8 +2056,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2116,8 +2069,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2132,11 +2084,9 @@ function loadDict() {
       },
       {
         "level": 18,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2158,8 +2108,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2172,8 +2121,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2188,11 +2136,9 @@ function loadDict() {
       },
       {
         "level": 19,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2214,8 +2160,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2228,8 +2173,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2244,11 +2188,9 @@ function loadDict() {
       },
       {
         "level": 20,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2270,8 +2212,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2284,8 +2225,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2300,11 +2240,9 @@ function loadDict() {
       },
       {
         "level": 21,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2326,8 +2264,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2340,8 +2277,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2356,11 +2292,9 @@ function loadDict() {
       },
       {
         "level": 22,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2382,8 +2316,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2396,8 +2329,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2412,11 +2344,9 @@ function loadDict() {
       },
       {
         "level": 23,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2438,8 +2368,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2452,8 +2381,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
@@ -2468,11 +2396,9 @@ function loadDict() {
       },
       {
         "level": 24,
-        "class": [
-          {
+        "class": [{
             "name": "動作",
-            "usable": [
-              {
+            "usable": [{
                 "value": "moveForward"
               },
               {
@@ -2494,8 +2420,7 @@ function loadDict() {
           },
           {
             "name": "判斷式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "if"
               },
               {
@@ -2508,8 +2433,7 @@ function loadDict() {
           },
           {
             "name": "函式",
-            "usable": [
-              {
+            "usable": [{
                 "value": "for"
               },
               {
