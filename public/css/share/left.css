@@ -198,7 +198,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 38%;
+  max-height: 90%;
 }
 .imgAndTextDiv{
   height: 40%;
@@ -217,7 +217,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 38%;
+  max-height: 90%;
 }
 .smallImgAndTextDiv{
   height: 25%;
@@ -241,7 +241,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 23%;
+  max-height: 90%;
 }
 .twoImgAndTextDiv{
   height: 60%;
@@ -265,5 +265,5 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 27%;
+  max-height: 40%;
 }

@@ -2,7 +2,9 @@
 .center{
   background-color: #DEDEDE;
 }
-
+textarea{
+  resize:none;
+}
 /*left*/
 #helperBtn{
   width: 100px;

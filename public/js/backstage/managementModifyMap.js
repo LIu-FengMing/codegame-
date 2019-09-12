@@ -45,35 +45,26 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
 var levelNum = localStorage.getItem("gameNumber") - 1;
 
 function back() {
-  // var index = 0;
-  // var href = window.location.href;
-  // for (var i = 0; i < href.length; ++i) {
-  //   if (href[i] == '/' || href[i] == "\\") {
-  //     index = i;
-  //   }
-  // }
-  // href = href.substr(0, index + 1);
   href = "gameView_text?level=" + (localStorage.getItem("gameNumber")).toString();
   window.location.replace(href);
-  // // console.log(href);
 }
 var href = window.location.href;
 var user, objectData, levelDivAlive = false,
-  isOblivionCreaterOpen;
+    isOblivionCreaterOpen;
 var swordLevel = 0,
-  shieldLevel = 0,
-  levelUpLevel = 0,
-  musicLevel = 1,
-  bkMusicSwitch, bkMusicVolumn = 0.1,
-  args, gameSpeed, gameNumber;
+    shieldLevel = 0,
+    levelUpLevel = 0,
+    musicLevel = 1,
+    bkMusicSwitch, bkMusicVolumn = 0.1,
+    args, gameSpeed, gameNumber;
 var musicData;
 var scriptData = {
   type: "init"
 }
 var nowMapData, allMapData;
 var mapInformation, elementNumber = 0,
-  createNewElementTop = 0,
-  lastHeight = 0;
+    createNewElementTop = 0,
+    lastHeight = 0;
 
 function loadGameMap() {
   $.ajax({
@@ -96,10 +87,7 @@ $.ajax({
   dataType: 'json', // 回傳資料會是 json 格式
   data: scriptData, // 將表單資料用打包起來送出去
   success: function(res) {
-    // // console.log(res);
     user = res;
-    /*loadmusicData();*/
-    // // console.log(user);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -124,7 +112,6 @@ xmlhttp.send();
 function initMapData(res) {
   var mapData = res.data;
   /*設置版本*/
-  // // console.log("mapData",mapData);
 
   divTag = document.getElementById("versionControl");
   for (let index = mapData.length - 1; index > -1; index--) {
@@ -189,8 +176,7 @@ function changeMapData(mapVersion) {
 function modifyInit() {
   let tempStr = localStorage.getItem("gameName");
   gameNumber = localStorage.getItem("gameNumber");
-  document.getElementById("previewBtn").setAttribute("onclick", "btnClick(" + gameNumber + ")")
-  // // console.log("這裡是關卡數:" + gameNumber);
+  document.getElementById("previewBtn").setAttribute("onclick", "btnClick(" + gameNumber + ")");
   var gameNameStr = tempStr.replace(/&nbsp;/g, " ");
   divTag = document.getElementById("levelNameTextarea");
   divTag.value = gameNameStr;
@@ -246,7 +232,6 @@ function initHome() {
 }
 
 function logout() {
-  // // console.log("dddddd");
   var href = "/logout";
   window.location.replace(href);
 }
@@ -1276,6 +1261,8 @@ function helper() {
       }
       if (helperJson) {
         for (var i = 0; i < helperJson.length; i++) {
+          if(helperJson[i].id > elementNumber) elementNumber = helperJson[i].id;
+          if(helperJson[i].lastHeight > lastHeight) lastHeight = helperJson[i].lastHeight;
           divTag = document.getElementById("helperInnerDiv");
           var helperId = helperJson[i].id;
           lastHeight = helperJson[i].lastHeight;
@@ -1421,9 +1408,9 @@ function helper() {
               b.setAttribute("id", "imgAndTextTextarea" + helperId);
               b.innerHTML = helperJson[i].textareaValue;
               if (isImgLeft) {
-                b.setAttribute("style", "right:6%;");
+                b.setAttribute("style", "right:6%;background:white;");
               } else {
-                b.setAttribute("style", "left:6%;");
+                b.setAttribute("style", "left:6%;background:white;");
               }
               divTag.appendChild(b);
 
@@ -1497,9 +1484,9 @@ function helper() {
               b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
               b.innerHTML = helperJson[i].textareaValue;
               if (isImgLeft) {
-                b.setAttribute("style", "right:6%;");
+                b.setAttribute("style", "right:6%;background:white;");
               } else {
-                b.setAttribute("style", "left:6%;");
+                b.setAttribute("style", "left:6%;background:white;");
               }
               divTag.appendChild(b);
 
@@ -1589,9 +1576,9 @@ function helper() {
               b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
               b.innerHTML = helperJson[i].textareaValue;
               if (isImgLeft) {
-                b.setAttribute("style", "right:6%;");
+                b.setAttribute("style", "right:6%;background:white;");
               } else {
-                b.setAttribute("style", "left:6%;");
+                b.setAttribute("style", "left:6%;background:white;");
               }
               divTag.appendChild(b);
 
@@ -2727,7 +2714,8 @@ function changeMethod(methodNumber) {
 
               b = document.createElement("textarea");
               b.setAttribute("id", "imgAndTextTextarea" + helperId);
-              b.setAttribute("class", "" + helperId);
+              b.setAttribute("class", "imgAndTextTextarea");
+              b.style.background = "white";
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {
@@ -2803,6 +2791,8 @@ function changeMethod(methodNumber) {
 
               b = document.createElement("textarea");
               b.setAttribute("id", "twoImgAndTextTextarea" + helperId);
+              b.setAttribute("class", "twoImgAndTextTextarea");
+              b.style.background = "white";
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {
@@ -2894,7 +2884,8 @@ function changeMethod(methodNumber) {
 
               b = document.createElement("textarea");
               b.setAttribute("id", "smallImgAndTextTextarea" + helperId);
-              b.setAttribute("class", "" + helperId);
+              b.setAttribute("class", "smallImgAndTextTextarea");
+              b.style.background = "white";
               if (isImgLeft) {
                 b.setAttribute("style", "right:6%;");
               } else {
@@ -3236,11 +3227,11 @@ function selectCreateNode(mode) {
 
       b = document.createElement("textarea");
       b.setAttribute("id", "imgAndTextTextarea" + elementNumber);
-      b.setAttribute("class", "" + elementNumber);
+      b.setAttribute("class", "imgAndTextTextarea");
       if (isImgLeft) {
-        b.setAttribute("style", "right:6%;");
+        b.setAttribute("style", "right:6%;background:white;");
       } else {
-        b.setAttribute("style", "left:6%;");
+        b.setAttribute("style", "left:6%;background:white;");
       }
       divTag.appendChild(b);
 
@@ -3323,10 +3314,11 @@ function selectCreateNode(mode) {
 
       b = document.createElement("textarea");
       b.setAttribute("id", "twoImgAndTextTextarea" + elementNumber);
+      b.setAttribute("class", "twoImgAndTextTextarea");
       if (isImgLeft) {
-        b.setAttribute("style", "right:6%;");
+        b.setAttribute("style", "right:6%;background:white;");
       } else {
-        b.setAttribute("style", "left:6%;");
+        b.setAttribute("style", "left:6%;background:white;");
       }
       divTag.appendChild(b);
 
@@ -3424,11 +3416,11 @@ function selectCreateNode(mode) {
 
       b = document.createElement("textarea");
       b.setAttribute("id", "smallImgAndTextTextarea" + elementNumber);
-      b.setAttribute("class", "" + elementNumber);
+      b.setAttribute("class", "smallImgAndTextTextarea");
       if (isImgLeft) {
-        b.setAttribute("style", "right:6%;");
+        b.setAttribute("style", "right:6%;background:white;");
       } else {
-        b.setAttribute("style", "left:6%;");
+        b.setAttribute("style", "left:6%;background:white;");
       }
       divTag.appendChild(b);
 
@@ -3475,29 +3467,46 @@ function deleteElementFunc() {
   for (items in elements) {
     if (elements[items].type == "checkbox") checkboxLength++
   }
-  var checkboxDom, idObject, thisCssText, nestCssText;
-  // console.log(createNewElementTop);
-  for (var i = 0; i < checkboxLength; i++) {
+  var checkboxDom, idObject, thisCssText, nextCssText,deletePosition,deleteHeight;
+  for (var i = 0; i <= elementNumber; i++) {
     checkboxDom = document.getElementById("deleteCheckBox" + i);
+    if(checkboxDom == null){
+      continue;
+    }
     if (checkboxDom.checked) {
-      createNewElementTop -= helperJson[i].height;
-      lastHeight -= helperJson[i].height;
-      // console.log(createNewElementTop);
-      idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
-      thisCssText = idObject.style.cssText;
-      idObject.parentNode.removeChild(idObject);
-      for (var j = 0; j < helperJson.length; j++) {
-        if (helperJson[j].id == i) {
+      for(var j=0;j<helperJson.length;j++){
+        if(helperJson[j].id != i){
+          continue;
+        }else if(helperJson[j].id == i){
+          deleteHeight = helperJson[j].height
+          createNewElementTop -= deleteHeight;
+          lastHeight -= deleteHeight;
+          deletePosition = j;
           helperJson.splice(j, 1);
         }
       }
-      for (var j = i + 1; j < checkboxLength; j++) {
-        checkboxDom = document.getElementById("deleteCheckBox" + j);
-        idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
-        nestCssText = idObject.style.cssText;
-        idObject.style.cssText = thisCssText;
-        thisCssText = nestCssText;
+      idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
+      thisCssText = idObject.style.cssText;
+      idObject.parentNode.removeChild(idObject);
+      for (var j = deletePosition; j < helperJson.length; j++) {
+        helperJson[j].lastHeight -= deleteHeight;
+        if(helperJson[j].mode == "text"){
+          document.getElementById(helperJson[j].mode + "areaDiv" + helperJson[j].id).style.cssText = "top:" + helperJson[j].lastHeight + "%;";
+        }else{
+          document.getElementById(helperJson[j].mode + "Div" + helperJson[j].id).style.cssText = "top:" + helperJson[j].lastHeight + "%;";
+        }
       }
+      // for (var j = i + 1; j <= checkboxLength; j++) {
+      //   checkboxDom = document.getElementById("deleteCheckBox" + j);
+      //   if(checkboxDom == null){
+      //     continue;
+      //   }
+      //   idObject = document.getElementById(checkboxDom.name + checkboxDom.value);
+      //   nextCssText = idObject.style.cssText;
+      //   idObject.style.cssText = thisCssText;
+      //   thisCssText = nextCssText;
+      //   console.log("nextCssText",nextCssText);
+      // }
     }
   }
   document.getElementById("createNewElement").style.top = createNewElementTop + "%";
@@ -3795,6 +3804,9 @@ function closeFunc(thisDiv, thisDiv2) {
     parentObj.removeChild(divTag);
   } catch (e) {}
   levelDivAlive = false;
+  elementNumber = 0;
+  lastHeight = 0;
+  helperJson = null;
 }
 /*讀取圖片*/
 function readImgUrl(input, imgStr, imgId) {
@@ -3939,15 +3951,6 @@ function createUserView(mainDiv) {
   }
 }
 
-function closeFunc(thisDiv, thisDiv2) {
-  divTag = document.getElementById(thisDiv);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  divTag = document.getElementById(thisDiv2);
-  parentObj = divTag.parentNode;
-  parentObj.removeChild(divTag);
-  levelDivAlive = false;
-}
 var thisSelectionId;
 var args;
 var divTag, level, b;
