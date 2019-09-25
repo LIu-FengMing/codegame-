@@ -481,7 +481,7 @@ function instructionView(mainDiv) {
         b.setAttribute("id", "summaryInner" + i + j);
         b.setAttribute("class", "summaryInner");
         divTag.appendChild(b);
-        // document.getElementById("aInner" + j).innerHTML = "moveforward( )▼";
+        // document.getElementById("aInner" + j).innerHTML = "moveForward( )▼";
         document.getElementById("summaryInner" + i + j).innerHTML = li[j].name;
         //
         b = document.createElement("p");
@@ -828,11 +828,11 @@ function selectFunc(levelNumber) {
         blocklyUsable("func", usableValue);
       }
     } else if (className == "動作") {
-      document.getElementById("moveforward").style.display = "";
+      document.getElementById("moveForward").style.display = "";
       for (var j = 0; j < usableSize; j++) {
-        divTag = document.getElementById("moveforward");
+        divTag = document.getElementById("moveForward");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        blocklyUsable("moveforward", usableValue);
+        blocklyUsable("moveForward", usableValue);
       }
     } else if (className == "判斷式") {
       document.getElementById("judgment").style.display = "";
@@ -852,9 +852,9 @@ function blocklyUsable(thisClassID, thisValue) {
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
-    case "moveforward":
-      blockType = "moveforward(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('moveforward();');");
+    case "moveForward":
+      blockType = "moveForward(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('moveForward();');");
       break;
     case "turnRight":
       blockType = "turnRight(&nbsp)<br>";
@@ -1160,7 +1160,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             }
           ]
         }
@@ -1173,7 +1173,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1192,7 +1192,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1211,7 +1211,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1230,7 +1230,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1257,7 +1257,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1287,7 +1287,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1314,7 +1314,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1355,7 +1355,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1396,7 +1396,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1437,7 +1437,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1478,7 +1478,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1519,7 +1519,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1563,7 +1563,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1607,7 +1607,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1657,7 +1657,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1707,7 +1707,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1760,7 +1760,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1813,7 +1813,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1866,7 +1866,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1919,7 +1919,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -1972,7 +1972,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2025,7 +2025,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2078,7 +2078,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2131,7 +2131,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2184,7 +2184,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2237,7 +2237,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2299,7 +2299,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2361,7 +2361,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2423,7 +2423,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2485,7 +2485,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2547,7 +2547,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2612,7 +2612,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2680,7 +2680,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2748,7 +2748,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2816,7 +2816,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2884,7 +2884,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -2955,7 +2955,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3029,7 +3029,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3106,7 +3106,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3183,7 +3183,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3260,7 +3260,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3340,7 +3340,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3420,7 +3420,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3503,7 +3503,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3586,7 +3586,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3669,7 +3669,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3752,7 +3752,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3835,7 +3835,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
@@ -3918,7 +3918,7 @@ directiveData = {
           "name":"動作",
           "usable":[
             {
-              "value":"moveforward"
+              "value":"moveForward"
             },
             {
               "value":"turnRight"
