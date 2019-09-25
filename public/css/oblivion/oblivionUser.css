@@ -132,11 +132,12 @@
   width: 100%;
   position: relative;
   text-align: right;
-  margin-top: 2vh;
+  margin-top: 5%;
   border: 1px;
 }
 #shelfTable td{
   text-align: center;
+  height: 30px;
 }
 #shelfTrueText,#shelfFalseText{
   margin-top: 15px;

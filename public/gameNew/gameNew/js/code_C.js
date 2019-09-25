@@ -182,6 +182,7 @@ function changeToC(isDisplay) {
 
   }
   nextBlock = workspace.getBlockById(nowBlock).previousConnection.dbOpposite_[1].sourceBlock_.id;
+  console.log(workspace.getBlockById(nowBlock).previousConnection.dbOpposite_[1]);
   for (var i = 0; i < workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_.length; i++) {
     try {
       nowBlock = workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[i].sourceBlock_.id;
