@@ -9,19 +9,18 @@
 int main(int argc, char *argv[])
 {
 	moveForward();
-switch(hint){
-case 'L':
-turnLeft();
-break;
-case 'F':
-break;
-case 'R':
-turnRight();
-break;
-}
-moveForward();
-moveForward();
-
+    switch(hint){
+        case 'L':
+            turnLeft();
+            break;
+        case 'F':
+            break;
+        case 'R':
+            turnRight();
+            break;
+    }
+    moveForward();
+    moveForward();
 	return 0;
  }
 

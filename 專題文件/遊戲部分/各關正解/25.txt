@@ -8,16 +8,16 @@
 #include <string.h>
 int main(int argc, char *argv[])
 {
-int i=0;
-for(i=4;i>0;i--){
-moveForward();
-}
-for(i=2;i>0;i--){
-fire();
-}
-for(i=4;i>0;i--){
-moveForward();
-}
+    int i=0;
+    for(i=4;i>0;i--){
+        moveForward();
+    }
+    for(i=2;i>0;i--){
+        fire();
+    }
+    for(i=4;i>0;i--){
+        moveForward();
+    }
 	return 0;
  }
 

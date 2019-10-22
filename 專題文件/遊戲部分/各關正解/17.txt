@@ -8,21 +8,19 @@
 #include <string.h>
 
 void clear(){
-turnRight();
-moveForward();
-turnLeft();
-moveForward();
+    turnRight();
+    moveForward();
+    turnLeft();
+    moveForward();
 }
 
 
 int main(int argc, char *argv[])
 {
-int i;
-for(i=5;i>0;i--){
-clear();
-
-}
-
+    int i;
+    for(i=5;i>0;i--){
+        clear();
+    }
 	return 0;
  }
 

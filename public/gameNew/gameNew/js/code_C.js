@@ -198,9 +198,14 @@ function changeToC(isDisplay) {
         var var0, var1, var2;
         var0 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[0].text_;
         var1 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_;
-        var2 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_
-        code = code + var0 + ' ' + var1 + '=' + var2 + ';<br>';
-        textcode = textcode + var0 + ' ' + var1 + ' = ' + var2 + ';\n';
+        var2 = workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_;
+        if(var2 == ' '){
+          code = code + var0 + ' ' + var1 + ';<br>';
+          textcode = textcode + var0 + ' ' + var1 + ';\n';
+        }else{
+          code = code + var0 + ' ' + var1 + '=' + var2 + ';<br>';
+          textcode = textcode + var0 + ' ' + var1 + ' = ' + var2 + ';\n';
+        }
         break;
       case 'block_loop':
         i = loopChange(x, i);
@@ -290,7 +295,7 @@ function loopChange(repeatTimes, nowPosition) {
           nextBlock = null;
           break;
         }
-        selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes);
+        judgment_selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes, nextPosition);
         break;
     }
     nextPosition++;
@@ -358,7 +363,7 @@ function judgment(repeatTimes, nowPosition, onlyIf) {
           nextBlock = null;
           break;
         }
-        selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes);
+        judgment_selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes, nextPosition);
         break;
     }
     nextPosition++;
@@ -564,8 +569,9 @@ function selectionType(type, x) {
         code = code + myMap.spacing;
         textcode = textcode + myMap.textSpacing;
       }
-      code = code + myMap.printL + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_ + myMap.printR + '<br>';
-      textcode = textcode + myMap.printL + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_ + myMap.printR + '\n';
+      console.log(workspace.getBlockById(nowBlock).inputList[0]);
+      code = code + myMap.printL + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_  + ');<br>';
+      textcode = textcode + myMap.printL + workspace.getBlockById(nowBlock).inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(nowBlock).inputList[0].fieldRow[3].text_ + ');\n';
       break;
     case 'block_scanf':
       for (var j = 0; j < x; j++) {
@@ -586,6 +592,82 @@ function selectionType(type, x) {
   }
 }
 
+function judgment_selectionType(type, x, nextPosition) {
+  switch (type) {
+    case 'block_moveForward':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.moveForward + '<br>';
+      textcode = textcode + myMap.moveForward + '\n';
+      break;
+    case 'block_turn_right':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.turnRight + '<br>';
+      textcode = textcode + myMap.turnRight + '\n';
+      break;
+    case 'block_turn_left':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.turnLeft + '<br>';
+      textcode = textcode + myMap.turnLeft + '\n';
+      break;
+    case 'block_fire':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.fire + '<br>';
+      textcode = textcode + myMap.fire + '\n';
+      break;
+    case 'block_break':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.break+'<br>';
+      textcode = textcode + myMap.break+'\n';
+      break;
+    case 'block_printf':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + myMap.printR + '<br>';
+      textcode = textcode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + myMap.printR + '\n';
+      break;
+    case 'block_printf2':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_  + ');<br>';
+      textcode = textcode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + ');\n';
+      break;
+    case 'block_scanf':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + myMap.scanfL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + ');<br>';
+      textcode = textcode + myMap.scanfL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + ');\n';
+      break;
+    case 'block_call':
+      for (var j = 0; j < x; j++) {
+        code = code + myMap.spacing;
+        textcode = textcode + myMap.textSpacing;
+      }
+      code = code + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '();<br>';
+      textcode = textcode + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '();\n';
+      break;
+  }
+}
 //function函式區
 function functionChange(repeatTimes, nowPosition) {
   var nextPosition = nowPosition + 1;
@@ -614,8 +696,13 @@ function functionChange(repeatTimes, nowPosition) {
         var0 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[0].text_;
         var1 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[1].text_;
         var2 = workspace.getBlockById(nowBlock).childBlocks_[0].inputList[0].fieldRow[3].text_;
-        midFuncode = midFuncode + var0 + ' ' + var1 + ' = ' + var2 + ';<br>';
-        textMidFuncode = textMidFuncode + var0 + ' ' + var1 + ' = ' + var2 + ';\n';
+        if(var2 == ' '){
+          midFuncode = midFuncode + var0 + ' ' + var1 + ';<br>';
+          textMidFuncode = textMidFuncode + var0 + ' ' + var1 + ';\n';
+        }else{
+          midFuncode = midFuncode + var0 + ' ' + var1 + '=' + var2 + ';<br>';
+          textMidFuncode = textMidFuncode + var0 + ' ' + var1 + ' = ' + var2 + ';\n';
+        }
         break;
       case 'block_loop':
         nextPosition = funLoopChange(repeatTimes, nextPosition);
@@ -987,8 +1074,9 @@ function funSelectionType(type, x, nextPosition) {
         midFuncode = midFuncode + myMap.spacing;
         textMidFuncode = textMidFuncode + myMap.textSpacing;
       }
-      midFuncode = midFuncode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + myMap.printR + '<br>';
-      textMidFuncode = textMidFuncode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + myMap.printR + '\n';
+      console.log(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0]);
+      midFuncode = midFuncode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + ');<br>';
+      textMidFuncode = textMidFuncode + myMap.printL + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[1].text_ + '",' + workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.inputList[0].fieldRow[3].text_ + ');\n';
       break;
     case 'block_scanf':
       for (var j = 0; j < x; j++) {
