@@ -106,7 +106,7 @@ function myFunction() {
   b.setAttribute("type", "button");
   b.setAttribute("class", "clearButton");
   b.setAttribute("title", "重置地圖");
-  b.setAttribute("onclick", "myFunction()");
+  b.setAttribute("onclick", "clearButton()");
   divTag.appendChild(b);
 
   b = document.createElement("input");

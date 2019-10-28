@@ -125,6 +125,7 @@ body {
   border-width: 0;
   top: 10%;
   left: 1%;
+  z-index: 3;
   cursor: pointer;
 }
 #goBack2{
@@ -139,6 +140,7 @@ body {
   border-width: 0;
   top: 2%;
   left: 1%;
+  z-index: 3;
   cursor: pointer;
 }
 #goBack3{
@@ -155,5 +157,6 @@ body {
   position: absolute;
   top: 2%;
   left: 1%;
+  z-index: 3;
   cursor: pointer;
 }
