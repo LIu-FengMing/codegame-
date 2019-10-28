@@ -403,6 +403,7 @@ function helper(mainDiv) {
   b = document.createElement("div");
   b.setAttribute("id", "helperTextarea3");
   divTag.appendChild(b);
+  mapMessage =  mapMessage.replace("\n", "<br>");
   document.getElementById("helperTextarea3").innerHTML = mapMessage;
 }
 
