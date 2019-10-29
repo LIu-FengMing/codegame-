@@ -413,7 +413,7 @@ function judgment_sw(repeatTimes, nowPosition) {
           nextBlock = null;
           break;
         }
-        selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes);
+        judgment_selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes, nextPosition);
         break;
     }
     nextPosition++;
@@ -463,7 +463,7 @@ function judgment_case(repeatTimes, nowPosition) {
           nextBlock = null;
           break;
         }
-        selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes);
+        judgment_selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes, nextPosition);
         break;
     }
     nextPosition++;
@@ -506,7 +506,7 @@ function judgment_default(repeatTimes, nowPosition) {
           nextBlock = null;
           break;
         }
-        selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes);
+        judgment_selectionType(workspace.getBlockById(mainBlock).childBlocks_[0].previousConnection.dbOpposite_[nextPosition].sourceBlock_.type, repeatTimes, nextPosition);
         break;
     }
     nextPosition++;
