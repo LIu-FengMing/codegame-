@@ -28,3 +28,66 @@ function closeMainLoadingView() {
     parentObj.removeChild(divTag);
   } catch (e) { }
 }
+var behavior = {
+  "username": "",
+  "name": "",
+  "email": "",
+  "startDate": "",
+  "endDate": ""
+}
+$(document).ready(function() {
+  behavior = {
+    "username": user.username,
+    "name":user.name,
+    "email":user.email,
+    "startDate":new Date()
+  }
+})
+
+//頁面離開或者瀏覽器關閉的時候給予提示 防止用戶誤操作 離開當前頁面未保存數據可能丟失
+window.onbeforeunload = function(event) {
+  return beforunload(event);
+};
+
+function beforunload(event) {
+  behavior.endDate = new Date();
+  event = event ? event : (window.event ? window.event : null);
+  var myIE = myBrowser();
+  if (myIE=="IE") { // IE
+    var cy = event.clientY || event.target.event.clientY;
+    var ak = event.altKey || event.target.event.altKey;
+    if (cy < 0 || ak) {
+      console.log(behavior);
+    }
+  }
+  else {
+    // Firefox、Chrome
+    var nodeName = event.currentTarget.document.activeElement.nodeName;
+    console.log(nodeName);
+    if (nodeName!="A") {
+      if(nodeName == "BODY"){
+      }else{
+        console.log(behavior);
+      }
+    }else{
+
+    }
+  }
+}
+
+/*** * 獲取當前瀏覽器類型 */
+function myBrowser() {
+  var userAgent = navigator.userAgent; //取得瀏覽器的userAgent字符串
+
+  var isOpera = userAgent.indexOf("Opera") > -1;
+  //判斷是否Opera瀏覽器
+  if (isOpera) return "Opera";
+  //判斷是否Firefox瀏覽器
+  if (userAgent.indexOf("Firefox") > -1) return "FF";
+  //判斷是否google瀏覽器
+  if (userAgent.indexOf("Chrome") > -1) return "Chrome";
+  //判斷是否Safari瀏覽器
+  if (userAgent.indexOf("Safari") > -1) return "Safari";
+  //判斷是否IE瀏覽器
+  if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) return "IE";
+}
