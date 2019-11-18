@@ -19,6 +19,8 @@ var homeRoutes=require('./routes/home')
 var oblivionRoutes=require('./routes/oblivion')
 
 var developerRoutes=require('./routes/developer.js')
+
+var APIRoutes=require('./routes/API')
 // var homRoutes=require('./routes/home')
 
 
@@ -83,6 +85,8 @@ app.use('/',homeRoutes);
 app.use('/',oblivionRoutes);
 
 app.use('/',developerRoutes);
+
+app.use('/API',APIRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
