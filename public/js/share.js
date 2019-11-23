@@ -56,9 +56,6 @@ function beforunload(event) {
   if (myIE=="IE") { // IE
     var cy = event.clientY || event.target.event.clientY;
     var ak = event.altKey || event.target.event.altKey;
-    if (cy < 0 || ak) {
-      console.log(behavior);
-    }
   }
   else {
     // Firefox、Chrome
@@ -74,9 +71,6 @@ function beforunload(event) {
           async:false,
           data: behavior,  // 將表單資料用打包起來送出去
           success: function (res) {
-            console.log(behavior);
-            console.log(res);
-            alert("dsdsd");
           }
         });
       }

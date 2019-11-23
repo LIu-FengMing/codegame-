@@ -953,7 +953,16 @@ function download() {
     "endDate" : "2019-11-18T06:35:32.000Z",
     "__v" : 0
   }];
-  saveJSON(savejson, fileName);
+  $.ajax({
+    url: "API/downloadUserPlayTimes",              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    async:false,
+    data: null,  // 將表單資料用打包起來送出去
+    success: function (res) {
+      saveJSON(savejson, fileName);
+    }
+  });
   // console.log(savejson,fileName,save());
 }
 
