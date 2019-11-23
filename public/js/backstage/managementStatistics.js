@@ -932,6 +932,30 @@ $('#reset_zoom').click(function() {
       break;
   }
 })
+// 單純為了使用p5的存檔功能而創的
+function setup() {
+}
+function draw() {
+}
+//----------------------------
+//下載遊玩時間資料
+function download() {
+  var dt = new Date();
+  var year = dt.getFullYear();
+  var month = dt.getMonth() + 1;
+  var day = dt.getDate();
+  var fileName = "userPlayTimes" + year + month + day + ".txt";
+  var savejson = [{
+    "_id" : "5dd23bb4c03f2958e0130807",
+    "username" : "s",
+    "email" : "s@gmail.com",
+    "startDate" : "2019-11-18T06:35:30.000Z",
+    "endDate" : "2019-11-18T06:35:32.000Z",
+    "__v" : 0
+  }];
+  saveJSON(savejson, fileName);
+  // console.log(savejson,fileName,save());
+}
 
 function changeTimeFunc(timeType) {
   var thisPlayer;

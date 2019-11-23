@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.0"></script>
     <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+    <script src="js/p5.min.js"></script>
+    <script src="js/p5.dom.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
     <script src="js/backstage/managementStatistics.js"></script>
     <script src="js/closeEvent.js"></script>
@@ -64,6 +66,9 @@
                 </td>
                 <td>
                   <input type="button" id="reset_zoom" value="重設比例">
+                </td>
+                <td>
+                  <input type="button" id="downloadButton" value="下載遊玩時間資料" onclick="download()">
                 </td>
               </tr>
             </table>
