@@ -115,7 +115,7 @@ function selectionLevel(thisObject) {
   //將thisObjsct存到lastObiect
   lastObject = thisObject;
   //如果現在被選到的狀態為"封鎖"，改變底下按鈕的圖片
-  if (document.getElementById("td0" + mapIndex + "6").innerHTML == "封鎖") {
+  if (document.getElementById("td0" + mapIndex + "7").innerHTML == "封鎖") {
     document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
   } else { //如果是"正常"狀態，就改成"封鎖"圖片
     document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
@@ -157,13 +157,13 @@ function changeStatus() {
   if (thisSelectionId) {
     var userstatus = 0;
     //如果被選為"封鎖"，改變狀態為"正常"，此處是改table內的欄位
-    if (document.getElementById("td0" + thisIndex + "6").innerHTML == "封鎖") {
-      document.getElementById("td0" + thisIndex + "6").innerHTML = "正常";
+    if (document.getElementById("td0" + thisIndex + "7").innerHTML == "封鎖") {
+      document.getElementById("td0" + thisIndex + "7").innerHTML = "正常";
       document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
       allUserData[thisIndex].userstatus = 0;
       userstatus = 0
     } else { //若為"正常"，則改為"封鎖"
-      document.getElementById("td0" + thisIndex + "6").innerHTML = "封鎖";
+      document.getElementById("td0" + thisIndex + "7").innerHTML = "封鎖";
       document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
       allUserData[thisIndex].userstatus = 1;
       userstatus = 1
@@ -570,7 +570,8 @@ function updateLevelTable(scriptData) {
         // document.getElementById("input0" + i + "6").setAttribute("checked",false);
         $("#input0" + i + "6").prop("checked", false);
       }
-      document.getElementById("input0" + i + "7").value = obj.td06;
+      // document.getElementById("input0" + i + "7").value = obj.td06;
+      document.getElementById("td0" + i + "7").innerHTML = obj.td06;
 
       if ((i % 2) == 0) {
         document.getElementById("lostUserCreateTable" + i).style.backgroundColor = "#F0E0CF";
@@ -619,7 +620,8 @@ function updateLevelTable(scriptData) {
             $("#input0" + i + "6").prop("checked", true);
           }
         } else if (j == 7) { /*使用者狀態*/
-          document.getElementById("input0" + i + j).value = obj.td06;
+          document.getElementById("td0" + i + "7").innerHTML = obj.td06;
+          // document.getElementById("input0" + i + j).value = obj.td06;
           // document.getElementById("td0" + i + j).innerHTML = "封鎖"
         } else if (j == 1) { /*使用者帳號*/
           document.getElementById("input0" + i + j).value = obj.td01;
