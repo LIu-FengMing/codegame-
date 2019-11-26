@@ -107,40 +107,43 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                             var loginTimeBlock = element.LoginTime[indexTimeBlock];  //loginTimeBlock ={startDate: ,endDate: ,   playState: []}
 
                             var EmpireType=["EasyEmpire","MediumEmpire"];
-                            
-                            for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
-                                var levelInfo = user.EasyEmpire.codeLevel[index];
-                                var hightStarNum = "0", hightinstructionNum = 9999;
-                                for (let gameRecordIndex = 0; gameRecordIndex < levelInfo.challengeLog.length; gameRecordIndex++) {
-                                    const gameLog = levelInfo.challengeLog[gameRecordIndex];
-                                    var submitTime=new Date(gameLog.submitTime);
-                                    var starNum = gameLog.srarNum, instructionNum = gameLog.instructionNum;
-                                    if (loginTimeBlock.startDate > submitTime) {
-                                        if (starNum > hightStarNum || (starNum == hightStarNum && hightinstructionNum > instructionNum)) {
-                                            hightStarNum = starNum;
-                                            hightinstructionNum = instructionNum;
+                            for (let indexEmpire = 0; indexEmpire < EmpireType.length; indexEmpire++) {
+                                const elementEmpireType = EmpireType[indexEmpire];
+                                for (let index = 0; index < user[elementEmpireType].codeLevel.length; index++) {
+                                    var levelInfo = user[elementEmpireType].codeLevel[index];
+                                    var hightStarNum = "0", hightinstructionNum = 9999;
+                                    for (let gameRecordIndex = 0; gameRecordIndex < levelInfo.challengeLog.length; gameRecordIndex++) {
+                                        const gameLog = levelInfo.challengeLog[gameRecordIndex];
+                                        var submitTime=new Date(gameLog.submitTime);
+                                        var starNum = gameLog.srarNum, instructionNum = gameLog.instructionNum;
+                                        if (loginTimeBlock.startDate > submitTime) {
+                                            if (starNum > hightStarNum || (starNum == hightStarNum && hightinstructionNum > instructionNum)) {
+                                                hightStarNum = starNum;
+                                                hightinstructionNum = instructionNum;
+                                            }
                                         }
-                                    }
-                                    else if (loginTimeBlock.startDate <= submitTime && loginTimeBlock.endDate >= submitTime) {
-                                        var isRecordHightScore = false;
-                                        if (starNum > hightStarNum || (starNum == hightStarNum && hightinstructionNum > instructionNum)) {
-                                            hightStarNum = starNum;
-                                            hightinstructionNum = instructionNum;
-                                            isRecordHightScore = true;
+                                        else if (loginTimeBlock.startDate <= submitTime && loginTimeBlock.endDate >= submitTime) {
+                                            var isRecordHightScore = false;
+                                            if (starNum > hightStarNum || (starNum == hightStarNum && hightinstructionNum > instructionNum)) {
+                                                hightStarNum = starNum;
+                                                hightinstructionNum = instructionNum;
+                                                isRecordHightScore = true;
+                                            }
+                                            loginTimeBlock.playState.push({
+                                                level: levelInfo.level,
+                                                submitTime: submitTime,
+                                                starNum:starNum,
+                                                instructionNum:instructionNum,
+                                                isRecordHightScore:isRecordHightScore
+                                            })
                                         }
-                                        loginTimeBlock.playState.push({
-                                            level: levelInfo.level,
-                                            submitTime: submitTime,
-                                            starNum:starNum,
-                                            instructionNum:instructionNum,
-                                            isRecordHightScore:isRecordHightScore
-                                        })
-                                    }
-                                    else {
-                                        break;
+                                        else {
+                                            break;
+                                        }
                                     }
                                 }
                             }
+                            
                         }
                         resolve();
                     })
