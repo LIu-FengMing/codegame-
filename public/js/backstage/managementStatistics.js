@@ -960,7 +960,7 @@ function download() {
     async:false,
     data: null,  // 將表單資料用打包起來送出去
     success: function (res) {
-      saveJSON(savejson, fileName);
+      saveJSON(res, fileName);
     }
   });
   // console.log(savejson,fileName,save());

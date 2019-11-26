@@ -17,3 +17,8 @@ var UserLogin = module.exports = mongoose.model('UserLogin', UserSchema)
 module.exports.createUserLoginState = function (newUserLoginState, callback) {
     newUserLoginState.save(callback)
 }
+
+module.exports.getAllUserLoginState = function (callback) {
+    var query =  { username: { $ne: "" }}
+    UserLogin.find(query, callback)
+}
