@@ -70,7 +70,7 @@ var initCode = [
 #include <string.h>
 int main(int argc, char *argv[])
 {    /*請在此處輸入程式碼(ps:我是註解)*/
-    
+
     return 0;
  }
 
@@ -135,7 +135,7 @@ function init_setup() {
     let params = nowurl.searchParams;
     if (params.has('mapID')) {
         mapID = params.get('mapID').toString();    // "react"
-        console.log(mapID);
+        // console.log(mapID);
         var scriptData = {
             type: "loadMap",
             mapId: mapID
@@ -147,11 +147,11 @@ function init_setup() {
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
                 var jumpPage = false;
-                console.log(res);
+                // console.log(res);
                 //不是自己的地圖檢測畫面
-                console.log(pathname);
+                // console.log(pathname);
                 if (pathname == "/oblivionDetectionView") {
-                    console.log(res.check);
+                    // console.log(res.check);
 
                     // if (res.check == true) {
                     //     jumpPage = true;
@@ -212,7 +212,7 @@ function init_setup() {
                     divTag = document.getElementById("titleFont");
                     divTag.innerHTML = "";
                     divTag.innerHTML = res.mapName;
-                    console.log(res.mapDescription);
+                    // console.log(res.mapDescription);
                     getMapDescription(res.mapDescription);
                     data = JSON.parse(res.map);
                     Res_data = JSON.parse(JSON.stringify(data));
@@ -275,7 +275,7 @@ function loadData() {
     // console.log(initCode);
     var tA = textarea_0.value.indexOf("main");
     var tEnd = textarea_0.value.indexOf("{", tA);
-    console.log("tEnd", tEnd);
+    // console.log("tEnd", tEnd);
 
     textarea_0.selectionStart = tEnd + 1;
     textarea_0.selectionEnd = tEnd + 1;
@@ -465,10 +465,10 @@ function endgame() {
     if (gameEndingCode == 1) {
 
 
-        console.log("counter:", counter);
-        console.log("funname.length:", funname.length);
-        console.log("funcounter:", funcounter);
-        console.log("總動作為:", tc);
+        // console.log("counter:", counter);
+        // console.log("funname.length:", funname.length);
+        // console.log("funcounter:", funcounter);
+        // console.log("總動作為:", tc);
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
@@ -485,7 +485,7 @@ function endgame() {
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
-        console.log(gameEndingCodeDic[gameEndingCode]);
+        // console.log(gameEndingCodeDic[gameEndingCode]);
         createEndView(0, result, tc, computeEndCode,errMessage);
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
@@ -581,7 +581,7 @@ function draw() {
                     }
                 }
                 else if (value == 3 || value == 6 || value == 7) {
-                    console.log("gg");
+                    // console.log("gg");
                     pipleLineSpeed = 0
                     gameEndingCode = value;
                     // action_now = action_code.length;
@@ -600,7 +600,7 @@ function draw() {
 
                 else {
                     alert("'E'還未處理,", value);
-                    console.log("'E'還未處理,", value);
+                    // console.log("'E'還未處理,", value);
                 }
                 ++action_now;
             }
@@ -781,14 +781,14 @@ function draw() {
                         // if(nowValue.obj<=lock2DelObjpos+nowValue.forgetDel){
                         //     o = nowValue.obj+nowValue.forgetDel;
                         // }
-                        console.log(nowValue.obj, nowValue.forgetDel, lock2DelObjpos);
+                        // console.log(nowValue.obj, nowValue.forgetDel, lock2DelObjpos);
 
                         if (nowValue.obj + nowValue.forgetDel < lock2DelObjpos) {
                             o = nowValue.obj + nowValue.forgetDel;
                         }
                         else {
                             o = nowValue.obj;
-                            console.log("123");
+                            // console.log("123");
 
                         }
                     }
@@ -839,7 +839,7 @@ function draw() {
                             mapObject.push(obj);
                         }
                         if (mapObject.length - 1 != nowValue.obj && (nowValue.obj != -1)) {
-                            console.log("error:", mapObject.length - 1, " ", nowValue.obj);
+                            // console.log("error:", mapObject.length - 1, " ", nowValue.obj);
                         }
                         if(nowValue.type == "boon_hit"){
                             delayFlag=true;
@@ -902,7 +902,7 @@ function updateBackgroundGraph() {
     //         else {
     //             console.log(map[i]);
     //         }
-    //         backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight)    
+    //         backgroundGraph.rect(x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight)
 
     //     }
     // }
@@ -921,7 +921,7 @@ function updateBackgroundGraph() {
                 backgroundGraph.image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else {
-                console.log(map[i]);
+                // console.log(map[i]);
             }
         }
     }
@@ -1042,7 +1042,7 @@ function updateCanvas() {
             if (obj["type"] == "HPandArmor") {
                 armor = obj["armor"];
                 // console.log(dx, dy, )
-                console.log(" hp:", hp, " armor:", armor);
+                // console.log(" hp:", hp, " armor:", armor);
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
@@ -1125,7 +1125,7 @@ function updateCanvas() {
             if (obj["type"] == "HPandArmor") {
                 armor = obj["armor"];
                 // console.log(dx, dy, )
-                console.log(" hp:", hp, " armor:", armor);
+                // console.log(" hp:", hp, " armor:", armor);
                 // fill(0);
                 // text(hp, dx+0.35*edgeToWidth, dy);
                 // text(armor, dx+0.85*edgeToWidth, dy);
@@ -1223,7 +1223,7 @@ function codeToCompiler(stringCode) {
     // console.log("map為:",mapStr);
     var peopleAtk = equipmentData.weaponLevel[user.weaponLevel].attack;
     var peopleArmor = equipmentData.armorLevel[user.armorLevel].attack;
-    console.log(peopleAtk, peopleArmor);
+    // console.log(peopleAtk, peopleArmor);
     var peopleStr = people_init["postion"][0].toString() + " " + people_init["postion"][1].toString() + " " + people_init["postion"][2].toString();
     // if (people_init["hp"]) {
     //     peopleStr = peopleStr + " " + people_init["hp"] + " " + people_init["armor"] + " " + people_init["atk"];
@@ -1281,8 +1281,8 @@ function codeToCompiler(stringCode) {
         inputStr = inputStr + data.input;
     }
 
-    console.log(tempBefore);
-    console.log(inputStr);
+    // console.log(tempBefore);
+    // console.log(inputStr);
     // console.log(tempBefore);
     var runInput = inputStr;
 
@@ -1306,7 +1306,7 @@ function clearcodeAndInit() {
 
 function codeOutputTranstionAction() {
     var source = decodeOutput;
-    console.log(source);
+    // console.log(source);
 
     // var temp = new Array();
     var temp = [], tempNew = [];
@@ -1373,7 +1373,7 @@ function codeOutputTranstionAction() {
             var conditionD = true;
             var loopCount = 0;
             while (conditionD) {
-                console.log(spaceT);
+                // console.log(spaceT);
                 for (var di = 1; di < spaceT.length; di = di + 2) {
                     var o = parseInt(spaceT[di]) - forgetDel;
                     var o = parseInt(spaceT[di]) - forgetDel;
@@ -1492,8 +1492,8 @@ function codeOutputTranstionAction() {
                 //
 
                 var ansList = mapObject[o].ans.split(' ');
-                console.log("ans:", ansList);
-                console.log("input:", inputList);
+                // console.log("ans:", ansList);
+                // console.log("input:", inputList);
                 // console.log(inputList,ansList);
                 for (let ansI = 0; ansI < ansList.length; ansI++) {
                     if (ansList[ansI].length < 1) {
@@ -1528,8 +1528,8 @@ function codeOutputTranstionAction() {
                     }
                 }
 
-                console.log("ans:", ansList);
-                console.log("input:", inputList);
+                // console.log("ans:", ansList);
+                // console.log("input:", inputList);
                 if (inputList.length > 0) {
                     conditionAns = false;
                 }
@@ -1654,7 +1654,7 @@ function codeOutputTranstionAction() {
             temp.push(spaceTranstion);
         }
         else {
-            console.log("error Type: ", spaceT);
+            // console.log("error Type: ", spaceT);
         }
 
 
@@ -1667,7 +1667,7 @@ function codeOutputTranstionAction() {
         action_code = temp;
         gameEndingCode = 0;
         action_now = 0;
-        console.log(action_code);
+        // console.log(action_code);
     }
     else {
         action_code = [];
@@ -1697,7 +1697,7 @@ function call_codesheet_Api(url, apiKey, code) {
             console.error('Error:', error);
             iscodesheetTeseLive = false;
             decodeMod = 1;
-            console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
+            // console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
             // console.log("test output " + code);
             call_JDOODLE_api(code, inputStr);
         })
@@ -1712,10 +1712,10 @@ function decode_codesheet_api(resp) {
             if (test_codesheet > -1) {
                 decodeMod = 0;
                 iscodesheetTeseLive = true;
-                console.log("test_codesheet Api is live_sucess");
+                // console.log("test_codesheet Api is live_sucess");
             }
             else {
-                console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
+                // console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
                 decodeMod = 1;
             }
         }
@@ -1723,11 +1723,11 @@ function decode_codesheet_api(resp) {
             codeOutputTranstionAction()
         }
     } else if (resp.status === 'Failed' || resp.status === 'BadRequest' || resp.message === 'Forbidden') {
-        console.log('Run response', resp);
+        // console.log('Run response', resp);
         // runOutput.value = `Failed: ${resp.error}${resp.stdout}` // stdout for php which puts error in stdout
         resp.stdout = "compiler error";
         if (iscodesheetTeseLive == false) {
-            console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
+            // console.log("test_codesheet Api is dead  切換為 JDOODLE_Api _fail");
             decodeMod = 1;
         } else {
             if (reap.status === "Failed" && reap.stderr === "" && reap.stdout === "compiler error") {
@@ -1737,7 +1737,7 @@ function decode_codesheet_api(resp) {
             else {
                 textarea_1.value = "";
                 gameEndingCode = 5;
-                console.log("Error =  compiler error");
+                // console.log("Error =  compiler error");
                 endgame();
             }
         }
@@ -1760,7 +1760,7 @@ function call_JDOODLE_api(scriptData, inputData) {
     socket.emit('script', scriptData);
     //   output.innerHTML = "編譯中....\n";
     socket.on('answer', function (obj) {
-        console.log(obj);
+        // console.log(obj);
 
         if (obj.body.cpuTime != null && obj.body.memory != null) {
             //   output.innerHTML = "輸出:\n" + obj.body.output;
@@ -1776,9 +1776,9 @@ function call_JDOODLE_api(scriptData, inputData) {
                     errMessage="錯誤原因:\n"+obj.body.output.substr(1)
                 }
             }
-            
+
             closeLoadingView();
-            console.log("Error =  compiler error");
+            // console.log("Error =  compiler error");
             endgame();
         }
 
@@ -1849,18 +1849,19 @@ function challengeGameAgain() {
 
 }*/
 var colleges = ['01', '02', '03', '04', '05',
-    '06', '07', '08', '09', '10',
-    '11', '12', '13', '14', '15',
-    '16', '17', '18', '19', '20',
-    '21', '22', '23', '24', '25',
-    '26', '27', '28', '29',
-    '30', '31', '32', '33', '34',
-    '35', '36', '37', '38', '39',
-    '40', '41', '42', '43', '44',
-    '45', '46', '47', '48', '49', '50', 'test', 'T2', 'T1'];
+                '06', '07', '08', '09', '10',
+                '11', '12', '13', '14', '15',
+                '16', '17', '18', '19', '20',
+                '21', '22', '23', '24', '25',
+                '26', '27', '28', '29', '30',
+                '31', '32', '33', '34', '35',
+                '36', '37', '38', '39', '40',
+                '41', '42', '43', '44', '45',
+                '46', '47', '48', '49', '50',
+                'test', 'T2', 'T1'];
 
 function changeCollege(index) {
-    console.log(index);
+    // console.log(index);
 
     action_code = [];
     onChanged = false;

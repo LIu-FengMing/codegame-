@@ -56,14 +56,14 @@ lockAnswerTextarea.onchange = function () {
     changeFile = true;
     lockAnswerTextarea = document.getElementById('lockAnswerTextarea');
     // console.log(lockAnswerTextarea.value);
-    console.log("lockAnswerTextarea:", lockAnswerTextarea);
+    // console.log("lockAnswerTextarea:", lockAnswerTextarea);
     mapObject[nowEditOId].ans = lockAnswerTextarea.value;
 }
 boxTextarea.onchange = function () {
     changeFile = true;
     // console.log(boxTextarea.value);
     boxTextarea = document.getElementById('boxTextarea');
-    console.log("boxTextarea:", boxTextarea);
+    // console.log("boxTextarea:", boxTextarea);
     mapObject[nowEditOId].string = boxTextarea.value;
 }
 enemyBlodTextarea.onchange = function () {
@@ -103,7 +103,7 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log("scriptData:", scriptData);
+            // console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
@@ -113,7 +113,7 @@ saveBtn.onclick = function () {
                 }
             }
             if (notrep) {
-                console.log(scriptData);
+                // console.log(scriptData);
                 sendSaveMap(scriptData);
             }
             else {
@@ -122,7 +122,7 @@ saveBtn.onclick = function () {
             }
         }
         else {
-            console.log("123");
+            // console.log("123");
             // alert("儲存成功")
             remindView("儲存成功");
         }
@@ -130,7 +130,7 @@ saveBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:", scriptData);
+        // console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
@@ -140,7 +140,7 @@ saveBtn.onclick = function () {
             }
         }
         if (notrep) {
-            console.log(scriptData);
+            // console.log(scriptData);
             sendSaveMap(scriptData);
         }
         else {
@@ -156,7 +156,7 @@ finishBtn.onclick = function () {
         if (changeFile) {
             var scriptData = precessSaveData();
 
-            console.log("scriptData:", scriptData);
+            // console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
@@ -166,7 +166,7 @@ finishBtn.onclick = function () {
                 }
             }
             if (notrep) {
-                console.log(scriptData);
+                // console.log(scriptData);
                 sendFinishMap(scriptData);
             }
             else {
@@ -188,7 +188,7 @@ finishBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:", scriptData);
+        // console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
@@ -198,7 +198,7 @@ finishBtn.onclick = function () {
             }
         }
         if (notrep) {
-            console.log(scriptData);
+            // console.log(scriptData);
             sendFinishMap(scriptData);
         }
         else {
@@ -214,7 +214,7 @@ saveBtn.onclick = function () {
     if (mapID) {
         if (changeFile) {
             var scriptData = precessSaveData();
-            console.log("scriptData:", scriptData);
+            // console.log("scriptData:", scriptData);
             var notrep = true;
             for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
                 const element = mapAll[indexMap];
@@ -224,7 +224,7 @@ saveBtn.onclick = function () {
                 }
             }
             if (notrep) {
-                console.log(scriptData);
+                // console.log(scriptData);
                 sendSaveMap(scriptData);
             }
             else {
@@ -233,7 +233,7 @@ saveBtn.onclick = function () {
             }
         }
         else {
-            console.log("123");
+            // console.log("123");
             // alert("儲存成功")
             remindView("儲存成功");
         }
@@ -241,7 +241,7 @@ saveBtn.onclick = function () {
     else {
         var scriptData = precessSaveData();
 
-        console.log("scriptData:", scriptData);
+        // console.log("scriptData:", scriptData);
         var notrep = true;
         for (let indexMap = 0; indexMap < mapAll.length; indexMap++) {
             const element = mapAll[indexMap];
@@ -251,7 +251,7 @@ saveBtn.onclick = function () {
             }
         }
         if (notrep) {
-            console.log(scriptData);
+            // console.log(scriptData);
             sendSaveMap(scriptData);
         }
         else {
@@ -396,14 +396,14 @@ function precessSaveData() {
         requireStar: heightestLevelStar,
         postStage: postStage
     }
-    console.log(scriptData);
+    // console.log(scriptData);
     return scriptData;
 }
 
 function sendFinishMap(scriptData) {
-    console.log(scriptData);
+    // console.log(scriptData);
     if (mapID) {
-        console.log("mapID:", mapID);
+        // console.log("mapID:", mapID);
         scriptData.type = "updateMap";
         scriptData.mapID = mapID;
         // alert(mapID)
@@ -425,7 +425,7 @@ function sendFinishMap(scriptData) {
         })
     }
     else {
-        console.log("mapID:", "createMap");
+        // console.log("mapID:", "createMap");
         scriptData.type = "createMap";
         $.ajax({
             url: href,              // 要傳送的頁面
@@ -447,9 +447,9 @@ function sendFinishMap(scriptData) {
 }
 
 function sendSaveMap(scriptData) {
-    console.log(scriptData);
+    // console.log(scriptData);
     if (mapID) {
-        console.log("mapID:", mapID);
+        // console.log("mapID:", mapID);
         scriptData.type = "updateMap";
         scriptData.mapID = mapID;
         $.ajax({
@@ -459,7 +459,7 @@ function sendSaveMap(scriptData) {
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
                 // console.log(res._id);
-                console.log(res);
+                // console.log(res);
                 for (let indexS = 0; indexS < mapAll.length; indexS++) {
                     // const element = mapAll[indexS];
                     if (mapAll[indexS]._id == mapID) {
@@ -474,7 +474,7 @@ function sendSaveMap(scriptData) {
         })
     }
     else {
-        console.log("mapID:", "createMap");
+        // console.log("mapID:", "createMap");
         scriptData.type = "createMap";
         $.ajax({
             url: href,              // 要傳送的頁面
@@ -482,7 +482,7 @@ function sendSaveMap(scriptData) {
             dataType: 'json',             // 回傳資料會是 json 格式
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
-                // console.log(res._id);
+                // // console.log(res._id);
                 // alert("儲存成功");
                 remindView("儲存成功");
                 mapID = res._id;
@@ -537,7 +537,7 @@ function init_setup() {
     let params = nowurl.searchParams;
     if (params.has('mapID')) {
         mapID = params.get('mapID').toString();    // "react"
-        console.log(mapID);
+        // console.log(mapID);
         var scriptData = {
             type: "loadMap",
             mapId: mapID
@@ -548,7 +548,7 @@ function init_setup() {
             dataType: 'json',             // 回傳資料會是 json 格式
             data: scriptData,  // 將表單資料用打包起來送出去
             success: function (res) {
-                console.log(res);
+                // console.log(res);
                 //不是自己的地圖頁面
                 if (res.author != user.name || res.checked == true) {
                     var index = 0, href = window.location.href;
@@ -610,7 +610,7 @@ function init_setup() {
         data: scriptData,  // 將表單資料用打包起來送出去
         success: function (res) {
             mapAll = res;
-            console.log(res);
+            // console.log(res);
         }
     })
 
@@ -736,7 +736,7 @@ function updateCanvas() {
                 image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
             else {
-                console.log(map[i]);
+                // console.log(map[i]);
             }
         }
     }
@@ -845,7 +845,7 @@ function realDoMycanvasMouseClicked() {
     for (let index = 0; index < mapObject.length; index++) {
         var obj = mapObject[index];
         if (MouseX == obj["postion"][0] && MouseY == obj["postion"][1]) {
-            console.log(obj.type);
+            // console.log(obj.type);
             objF = true;
             nowEditOId = index;
             loadObjectValue();
@@ -920,7 +920,7 @@ selobj.onchange = function () {
     }
 }
 pos.onchange = function (index) {
-    console.log(index);
+    // console.log(index);
 }
 function del() {
     changeFile = true;

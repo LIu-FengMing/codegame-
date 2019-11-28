@@ -148,7 +148,7 @@ function initHome() {
   myVid.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myVid.play();
   bkMusicSwitch++;
-  //// console.log(myVid.volume);
+  // console.log(myVid.volume);
   sendSession();
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
@@ -468,7 +468,7 @@ function instructionView(mainDiv) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
-        //// console.log(li[j].limit,li[j].name,passLevel);
+        // console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -737,7 +737,7 @@ function musicLevelUp() {
     }
     myVid=document.getElementById("bkMusic");
     myVid.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-    //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+    // console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
     bkMusicSwitch++;
     sendSession();
 }
@@ -800,7 +800,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //// console.log("gameSpeed:" + gameSpeed);
+  // console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -1121,7 +1121,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //// console.log(e.keyCode);
+  // console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('    ');
     return false;
@@ -1149,7 +1149,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 
   fontSize = parseFloat(style);
-  //// console.log(fontSize);
+  // console.log(fontSize);
 }
 function loadDict() {
 directiveData = {

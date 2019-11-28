@@ -88,15 +88,6 @@ $.ajax({
   }
 })
 
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function () {
-//   if (this.readyState == 4 && this.status == 200) {
-//     dictionaryData = JSON.parse(this.responseText);
-//   }
-// };
-// xmlhttp.open("GET", "json/dictionary.json", true);
-// xmlhttp.send();
-
 dictionaryData = {
   code: []
 }
@@ -135,8 +126,6 @@ $.ajax({
     equipmentData = res;
   }
 })
-// console.log(123);
-// console.log(equipmentData,dictionaryData,user);
 closeMainLoadingView();
 
 function getEquipmentData() {
@@ -164,7 +153,7 @@ function initHome() {
   myAudio.volume = --bkMusicSwitch * ((musicLevel) * bkMusicVolumn);
   myAudio.play();
   bkMusicSwitch++;
-  //// console.log(myAudio.volume);
+  // console.log(myAudio.volume);
   var userName = document.getElementById("userName");
   var starNumber = document.getElementById("starNumber");
   var text = user.name;
@@ -1121,9 +1110,9 @@ function instructionView(mainDiv) {
       // if (i == 1) {
       // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
-      //// console.log(li);
+      // console.log(li);
       for (var j = 0; j < li.length; j++) {
-        //// console.log(li[j].limit,li[j].name,passLevel);
+        // console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -1553,7 +1542,7 @@ function musicLevelUp() {
   }
   myAudio = document.getElementById("bkMusic");
   myAudio.volume = --bkMusicSwitch * (musicLevel * bkMusicVolumn);
-  //// console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
+  // console.log("音量=" + bkMusicSwitch * (musicLevel * bkMusicVolumn));
   bkMusicSwitch++;
   sendSession();
 }
@@ -1622,7 +1611,7 @@ function sendSession() {
   // console.log("bkMusicSwitch:" + bkMusicSwitch);
   // console.log("musicLevel:" + musicLevel);
   // console.log("bkMusicVolumn:" + bkMusicVolumn);
-  //// console.log("gameSpeed:" + gameSpeed);
+  // console.log("gameSpeed:" + gameSpeed);
   Session.set("bkMusicVolumn", bkMusicVolumn);
   Session.set("bkMusicSwitch", bkMusicSwitch);
   Session.set("musicLevel", musicLevel);
@@ -1631,9 +1620,6 @@ function sendSession() {
   Session.set("xtest", count);
   return;
 }
-
-
-
 
 var levelDivAlive = false;
 function remindView(remindValue) {

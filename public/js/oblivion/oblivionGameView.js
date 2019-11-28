@@ -1243,7 +1243,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   var el = document.getElementById('textarea_0');
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  //// console.log(e.keyCode);
+  // console.log(e.keyCode);
   if (e.keyCode == 9) {
     insertAtCursor('    ');
     return false;
@@ -1271,7 +1271,7 @@ document.getElementById('textarea_0').onkeydown = function (e) {
   }
 
   fontSize = parseFloat(style);
-  //// console.log(fontSize);
+  // console.log(fontSize);
 }
 
 function loadDict(){

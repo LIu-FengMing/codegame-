@@ -57,14 +57,14 @@ $().ready(function () {
         changeFile = true;
         lockAnswerTextarea = document.getElementById('lockAnswerTextarea');
         // console.log(lockAnswerTextarea.value);
-        console.log("lockAnswerTextarea:", lockAnswerTextarea);
+        // console.log("lockAnswerTextarea:", lockAnswerTextarea);
         mapObject[nowEditOId].ans = lockAnswerTextarea.value;
     }
     boxTextarea.onchange = function () {
         changeFile = true;
         // console.log(boxTextarea.value);
         boxTextarea = document.getElementById('boxTextarea');
-        console.log("boxTextarea:", boxTextarea);
+        // console.log("boxTextarea:", boxTextarea);
         mapObject[nowEditOId].string = boxTextarea.value;
     }
     enemyBlodTextarea.onchange = function () {
@@ -124,7 +124,7 @@ $().ready(function () {
         }
     }
     pos.onchange = function (index) {
-        console.log(index);
+        // console.log(index);
     }
 });
 function loadObjectValue() {
@@ -246,7 +246,7 @@ function precessSaveData() {
     let versionDate = year + "/" + month + "/" + day;
     for (let index = 0; index < allMapData.data.length; index++) {
         const element = allMapData.data[index].versionID;
-        console.log(element);
+        // console.log(element);
 
         if (element.indexOf(versionDate) > -1) {
             ++versionCount;
@@ -264,7 +264,7 @@ function precessSaveData() {
         mainBlockyDescription: mainBlockyDescription,
         map: str,
     }
-    console.log(scriptData);
+    // console.log(scriptData);
 
     allMapData.versionID = scriptData.versionID;
     allMapData.data.push(scriptData);
@@ -274,9 +274,9 @@ function precessSaveData() {
 }
 
 function sendFinishMap(scriptData) {
-    console.log(scriptData);
+    // console.log(scriptData);
     if (mapID) {
-        console.log("mapID:", mapID);
+        // console.log("mapID:", mapID);
         scriptData.type = "updateMap";
         scriptData.mapID = mapID;
         // alert(mapID)
@@ -298,7 +298,7 @@ function sendFinishMap(scriptData) {
         })
     }
     else {
-        console.log("mapID:", "createMap");
+        // console.log("mapID:", "createMap");
         scriptData.type = "createMap";
         $.ajax({
             url: href,              // 要傳送的頁面
@@ -332,7 +332,7 @@ function sendSaveMap(scriptData) {
         dataType: 'json',             // 回傳資料會是 json 格式
         data: scriptObjData,  // 將表單資料用打包起來送出去
         success: function (res) {
-            console.log(res);
+            // console.log(res);
 
             remindView("儲存成功");
             saveModifyMap();
@@ -453,7 +453,7 @@ function loadData() {
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
-    
+
     edgeToEdge = width / mapSize;
     var dx = people_init["postion"][0] * edgeToEdge, dy = people_init["postion"][1] * edgeToEdge, drotate = 360 - people_init["postion"][2] * 90;
     old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
@@ -464,7 +464,7 @@ function loadData() {
     if (real) {
         var wd = document.getElementById('divcanvas').offsetWidth;
         var hd = document.getElementById('divcanvas').offsetWidth;
-        console.log(wd, hd);
+        // console.log(wd, hd);
 
         var canvas = createCanvas(wd - 5, hd - 5);
         // var canvas = createCanvas(900,900);
@@ -570,7 +570,7 @@ function updateCanvas() {
                     image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
                 }
                 else {
-                    console.log(mapTerrain[i]);
+                    // console.log(mapTerrain[i]);
                 }
             }
         }
@@ -682,13 +682,13 @@ function mycanvasMouseClicked() {
 }
 
 function realDoMycanvasMouseClicked(){
-    
+
     var objF = false;
     nowEditOId = -1;
     for (let index = 0; index < mapObject.length; index++) {
         var obj = mapObject[index];
         if (MouseX == obj["postion"][0] && MouseY == obj["postion"][1]) {
-            console.log(obj.type);
+            // console.log(obj.type);
             objF = true;
             nowEditOId = index;
             loadObjectValue();
