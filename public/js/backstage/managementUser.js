@@ -55,31 +55,21 @@ function back() {
   window.location.replace(href);
 }
 var href = window.location.href;
-var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false,
-  isOblivionOpen;
-var swordLevel = 0,
-  shieldLevel = 0,
-  levelUpLevel = 0,
-  musicLevel = 1,
-  bkMusicSwitch, bkMusicVolumn = 0.1,
-  args, gameSpeed;
-var musicData;
-
+var user, equipmentData, achievemenData, dictionaryData, levelDivAlive = false, isOblivionOpen;
+var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, args, gameSpeed, musicData;
 var allUserData, completallUserData, oldDisMapNum = 0;
 
-
 initHome();
-
 
 function error() {
   alert("有不當的操作發生");
   window.location.replace(href);
-
 }
 
 function initHome() {
   sendLoadUsernameMap();
 }
+
 //////////////////////////////////////////////////
 //              right.js                        //
 //////////////////////////////////////////////////
@@ -88,12 +78,9 @@ function logout() {
   var href = "/logout";
   window.location.replace(href);
 }
-
-var thisSelectionId;
-var args;
+var thisSelectionId, args;
 var divTag, level, thisIndex;
-var lastObject = null,
-  lastColor;
+var lastObject = null, lastColor;
 //當那一列資料被選到調用此函式
 function selectionLevel(thisObject) {
   var mapIndex = 0;

@@ -1,7 +1,5 @@
 var playerData, playerData_All, playerData_OneDay, playerData_SevenDay, playerData_OneMonth, playerData_SixMonth, playerData_OneYear, playerData_Var;
-var playNumberFirst = false,
-  successRateFirst = false,
-  averageFailureRateFirst = false;
+var playNumberFirst = false, successRateFirst = false, averageFailureRateFirst = false;
 var playNumberVar, successRateVar, averageFailureRateVar;
 //登出函式
 function logout() {
@@ -84,9 +82,7 @@ function createselectChart(thisSelect) {
                       //字體大小
                       fontSize: 25,
                       //要顯示的字
-                      labelString: '遊玩人數',
-                      //字體
-                      defaultFontFamily: "Microsoft JhengHei"
+                      labelString: '遊玩人數'
                     },
                     ticks: {
                       //顯示範圍[min,max]
@@ -104,8 +100,7 @@ function createselectChart(thisSelect) {
                     scaleLabel: {
                       display: true,
                       fontSize: 25,
-                      labelString: '關卡',
-                      defaultFontFamily: "Microsoft JhengHei"
+                      labelString: '關卡'
                     }
                   }]
                 },
@@ -524,6 +519,7 @@ function createselectChart(thisSelect) {
       }, 500);
       break;
   }
+  Chart.defaults.global.defaultFontFamily = "Microsoft JhengHei";
 }
 
 var href = window.location.href;
@@ -609,153 +605,6 @@ function getAverageFailureRateJson(thisSelect) {
     })
   }
 }
-
-// function prosessUserData() {
-//   // console.log(AlluserData);
-//   var mapNumber = new Array(50);
-//   mapNumber[50] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
-//   for (let index = 0; index < AlluserData.length; index++) {
-//     var obj = AlluserData[index];
-//     var hightLevel = Math.max(obj.EasyEmpire.codeHighestLevel, obj.MediumEmpire.HighestLevel) + 1;//0~49 49+1 -->1~50 51
-//     /*  PlayNumber   */
-//     if (hightLevel == 51) {
-//       hightLevel = 50;
-//       mapNumber[50].mapcount = mapNumber[50].mapcount + 1;
-//     }
-
-//     // mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-//     if (mapNumber[hightLevel - 1]) {
-//       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-//       // mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0 }
-//     }
-//     else {
-//       mapNumber[hightLevel - 1] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
-//       mapNumber[hightLevel - 1].mapcount = mapNumber[hightLevel - 1].mapcount + 1;
-//     }
-//     /*  SuccessRate   */
-//     if (hightLevel < 25) {
-//       /*還未挑戰最高的 */
-//       if (obj.EasyEmpire.codeLevel.length < hightLevel) {
-//         mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
-//       }
-//     }
-//     else {
-//       if (obj.MediumEmpire.codeLevel.length < hightLevel - 25) {
-//         mapNumber[hightLevel - 1].mapSuccessCountDel = mapNumber[hightLevel - 1].mapSuccessCountDel + 1;
-//       }
-//     }
-//     /*  mapFailureCount   */
-//     for (let indexFail = 0; indexFail < obj.EasyEmpire.codeLevel.length; indexFail++) {
-//       var thisLevelRecord = obj.EasyEmpire.codeLevel[indexFail].challengeLog;
-//       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
-//         var thisRecordData = thisLevelRecord[indexLevel];
-//         var failF = false;
-//         if (thisRecordData.srarNum == "0") {
-//           failF = true;
-//         }
-
-//         if (mapNumber[indexFail]) {
-//           if (failF) {
-//             mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
-//           }
-//           mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
-//         }
-//         else {
-//           mapNumber[indexFail] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
-//           if (failF) {
-//             mapNumber[indexFail].failCount = mapNumber[indexFail].failCount + 1;
-//           }
-//           mapNumber[indexFail].playCount = mapNumber[indexFail].playCount + 1;
-//         }
-//       }
-//     }
-//     for (let indexFail = 0; indexFail < obj.MediumEmpire.codeLevel.length; indexFail++) {
-//       var thisLevelRecord = obj.MediumEmpire.codeLevel[indexFail].challengeLog;
-//       for (let indexLevel = 0; indexLevel < thisLevelRecord.length; indexLevel++) {
-//         var thisRecordData = thisLevelRecord[indexLevel];
-//         var failF = false;
-//         if (thisRecordData.srarNum == "0") {
-//           failF = true;
-//         }
-
-//         if (mapNumber[indexFail + 24]) {
-//           if (failF) {
-//             mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
-//           }
-//           mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
-//         }
-//         else {
-//           mapNumber[indexFail + 24] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
-//           if (failF) {
-//             mapNumber[indexFail + 24].failCount = mapNumber[indexFail + 24].failCount + 1;
-//           }
-//           mapNumber[indexFail + 24].playCount = mapNumber[indexFail + 24].playCount + 1;
-//         }
-//       }
-//     }
-//   }
-
-//   var totPlayNumber = 0;
-//   var dataPlayNumber = new Array(50)
-//   var dataSuccessNumber = new Array(50)
-//   var dataFailureNumber = new Array(50)
-//   for (let index = 49; index > -1; index--) {
-
-//     var level = index + 1;
-//     /*  PlayNumber   */
-//     if (mapNumber[index]) {
-//       var sum = (mapNumber[index].mapcount - mapNumber[index].mapSuccessCountDel) + totPlayNumber;
-//       totPlayNumber = sum;
-//       dataPlayNumber[index] = {
-//         "level": level,
-//         "number": sum
-//       };
-//     }
-//     else {
-//       mapNumber[index] = { mapcount: 0, mapSuccessCountDel: 0, mapFailureCount: 0, failCount: 0, playCount: 0 }
-//       dataPlayNumber[index] = {
-//         "level": level,
-//         "number": totPlayNumber
-//       };
-//     }
-//     /*  SuccessRate   */
-//     var num = 0;
-//     if (index == 49) {
-//       num = mapNumber[50].mapcount / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
-//     }
-//     else {
-//       num = dataPlayNumber[index + 1].number / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
-//     }
-//     num = num.toFixed(2); // 输出结果为 2.45
-//     dataSuccessNumber[index] = {
-//       "level": level,
-//       "number": num
-//     };
-
-//     /*  mapFailureCount   */
-//     var num = 0;
-//     if (mapNumber[index].playCount != 0) {
-//       // num=mapNumber[index].failCount/mapNumber[index].playCount
-//       num = mapNumber[index].failCount / (dataPlayNumber[index].number - mapNumber[index].mapSuccessCountDel)
-//     }
-
-//     num = num.toFixed(2); // 输出结果为 2.45
-//     dataFailureNumber[index] = {
-//       "level": level,
-//       "number": num
-//     };
-//   }
-//   PlayNumber = {
-//     "playNumber": dataPlayNumber
-//   }
-//   SuccessRate = {
-//     "successRate": dataSuccessNumber
-//   }
-//   AverageFailureRate = {
-//     "averageFailureRate": dataFailureNumber
-//   }
-
-// }
 
 function prosessUserData() {
   // console.log(AlluserData);
@@ -919,7 +768,7 @@ function prosessUserData() {
 
 }
 
-$('#reset_zoom').click(function() {
+function resetzoom() {
   switch (document.getElementById("levelSelect").value) {
     case "playNumber":
       playNumberCanvas.resetZoom();
@@ -931,7 +780,7 @@ $('#reset_zoom').click(function() {
       averageFailureRateCanvas.resetZoom();
       break;
   }
-})
+}
 // 單純為了使用p5的存檔功能而創的
 function setup() {
 }
