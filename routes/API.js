@@ -153,8 +153,43 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
 
         Promise.all(taskStack).then(function () {
             // console.log(processList);
+            var outputJson=[];
+            for (let indexUser = 0; indexUser < processList.length; indexUser++) {
+                const tempUser = processList[indexUser];
+                for (let indexLoginTime = 0; indexLoginTime < tempUser.LoginTime.length; indexLoginTime++) {
+                    const tempLogin = tempUser.LoginTime[indexLoginTime];
+                    if(tempLogin.playState.length<1){
+                        outputJson.push({
+                            username:tempUser.username,
+                            email:tempUser.username,
+                            startDate:tempLogin.startDate,
+                            endDate:tempLogin.endDate,
+                            playState:false
+                        })
+                    }
+                    else{
+                        for (let indexPlayGame = 0; indexPlayGame < tempLogin.playState.length; indexPlayGame++) {
+                            const tempPlayGame = tempLogin.playState[indexPlayGame];
+                            outputJson.push({
+                                username:tempUser.username,
+                                email:tempUser.username,
+                                startDate:tempLogin.startDate,
+                                endDate:tempLogin.endDate,
+                                playState:true,
+                                level:tempPlayGame.level,
+                                submitTime:tempPlayGame.submitTime,
+                                starNum:tempPlayGame.starNum,
+                                instructionNum:tempPlayGame.instructionNum,
+                                isRecordHightScore:tempPlayGame.isRecordHightScore,
+                            })
+                        }
+                    }
 
-            return res.json(processList);
+
+                }
+            }
+        
+            return res.json(outputJson);
         });
     })
 });
