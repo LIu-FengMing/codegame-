@@ -8,7 +8,7 @@ function logout() {
 }
 var selectChartVar, jsonData, playNumberCanvas, successRateCanvas, averageFailureRateCanvas;
 //頁面載入後會執行的函式
-window.onload = function() {
+window.onload = function () {
   selectChartVar = "playNumber"; //將selechChartVar設為playNumber
   selectChart(selectChartVar); //將selectChartVar傳到selectChart函式
 }
@@ -20,12 +20,12 @@ function selectChart(thisSelect) {
       //取得遊玩人數之JSON格式資料
       getPlayNumberJson(thisSelect);
       break;
-      //顯示成功率
+    //顯示成功率
     case "successRate":
       //取得成功率之JSON格式資料
       getSuccessRateJson(thisSelect);
       break;
-      //顯示平均失敗次數
+    //顯示平均失敗次數
     case "averageFailureRate":
       //取得失敗率之JSON格式資料
       getAverageFailureRateJson(thisSelect);
@@ -40,7 +40,7 @@ function createselectChart(thisSelect) {
   switch (thisSelect) {
     case "playNumber":
       chartType = "line";
-      setTimeout(function() {
+      setTimeout(function () {
         if (jsonData != undefined) {
           //將json內需要的資料存進datasetsData字串內
           for (var i = 0; i < jsonData.playNumber.length; i++) {
@@ -88,7 +88,7 @@ function createselectChart(thisSelect) {
                       //顯示範圍[min,max]
                       min: 0,
                       max: jsonData.playNumber[0].number + 1,
-                      callback: function(value) {
+                      callback: function (value) {
                         if (Number.isInteger(value)) {
                           return value;
                         }
@@ -144,7 +144,7 @@ function createselectChart(thisSelect) {
     case "successRate":
       chartType = "bar";
       // getSuccessRateJson();
-      setTimeout(function() {
+      setTimeout(function () {
         if (jsonData != undefined) {
           for (var i = 0; i < jsonData.successRate.length; i++) {
             datasetsData[i] = jsonData.successRate[i].number;
@@ -312,7 +312,7 @@ function createselectChart(thisSelect) {
                 //設定滑鼠移到長條圖上要顯示的資訊
                 tooltips: {
                   callbacks: {
-                    label: function(tooltipItem) {
+                    label: function (tooltipItem) {
                       // 「通關率；Y軸資訊」，「遊玩人數；X資訊-1」
                       return "通關率：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
                     }
@@ -335,7 +335,7 @@ function createselectChart(thisSelect) {
     case "averageFailureRate":
       chartType = "bar";
       // getAverageFailureRateJson();
-      setTimeout(function() {
+      setTimeout(function () {
         if (jsonData != undefined) {
           for (var i = 0; i < jsonData.averageFailureRate.length; i++) {
             datasetsData[i] = jsonData.averageFailureRate[i].number;
@@ -498,7 +498,7 @@ function createselectChart(thisSelect) {
                 },
                 tooltips: {
                   callbacks: {
-                    label: function(tooltipItem) {
+                    label: function (tooltipItem) {
                       // console.log(tooltipItem)
                       return "平均失敗次數：" + tooltipItem.yLabel + "；遊玩人數：" + playerData[tooltipItem.xLabel - 1];
                     }
@@ -540,7 +540,7 @@ function getPlayNumberJson(thisSelect) {
       method: 'POST', // 使用 POST 方法傳送請求
       dataType: 'json', // 回傳資料會是 json 格式
       data: scriptData, // 將表單資料用打包起來送出去
-      success: function(res) {
+      success: function (res) {
         AlluserData = res;
         prosessUserData();
         // jsonData = PlayNumber.slice(0);
@@ -566,7 +566,7 @@ function getSuccessRateJson(thisSelect) {
       method: 'POST', // 使用 POST 方法傳送請求
       dataType: 'json', // 回傳資料會是 json 格式
       data: scriptData, // 將表單資料用打包起來送出去
-      success: function(res) {
+      success: function (res) {
         AlluserData = res;
         prosessUserData();
         // jsonData = SuccessRate.slice(0);
@@ -592,7 +592,7 @@ function getAverageFailureRateJson(thisSelect) {
       method: 'POST', // 使用 POST 方法傳送請求
       dataType: 'json', // 回傳資料會是 json 格式
       data: scriptData, // 將表單資料用打包起來送出去
-      success: function(res) {
+      success: function (res) {
         AlluserData = res;
         prosessUserData();
 
@@ -793,26 +793,47 @@ function download() {
   var year = dt.getFullYear();
   var month = dt.getMonth() + 1;
   var day = dt.getDate();
-  var fileName = "userPlayTimes" + year + month + day + ".txt";
+  var fileName = "userPlayTimes" + year + month + day ;
   var savejson = [{
-    "_id" : "5dd23bb4c03f2958e0130807",
-    "username" : "s",
-    "email" : "s@gmail.com",
-    "startDate" : "2019-11-18T06:35:30.000Z",
-    "endDate" : "2019-11-18T06:35:32.000Z",
-    "__v" : 0
+    "_id": "5dd23bb4c03f2958e0130807",
+    "username": "s",
+    "email": "s@gmail.com",
+    "startDate": "2019-11-18T06:35:30.000Z",
+    "endDate": "2019-11-18T06:35:32.000Z",
+    "__v": 0
   }];
   $.ajax({
     url: "API/downloadUserPlayTimes",              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    async:false,
+    async: false,
     data: null,  // 將表單資料用打包起來送出去
     success: function (res) {
-      saveJSON(res, fileName);
+      // saveJSON(res, fileName+".txt");
+      saveSelfCSV(res, fileName);
+
     }
   });
   // console.log(savejson,fileName,save());
+}
+function saveSelfCSV(res, fileName) {
+  const rows = [
+    ["我是誰", "city1", "some other info"],
+    ["name2", "city2", "more info"]
+  ];
+
+  var csvContent="";
+  rows.forEach(function (rowArray) {
+    let row = rowArray.join(",");
+    csvContent += row + "\r\n";
+  });
+  // var csvContent = "欄位A,欄位B\n值A,值B";
+
+  var link = window.document.createElement("a");
+  link.setAttribute("href", "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURI(csvContent));
+  link.setAttribute("download", fileName+".csv");
+  link.click();
+
 }
 
 function changeTimeFunc(timeType) {
