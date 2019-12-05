@@ -817,10 +817,27 @@ function download() {
   // console.log(savejson,fileName,save());
 }
 function saveSelfCSV(res, fileName) {
-  const rows = [
-    ["我是誰", "city1", "some other info"],
-    ["name2", "city2", "more info"]
-  ];
+  var rows =[["使用者名稱","信箱","開始時間","結束時間","是否遊玩關卡","關卡","星星數","指令數","是否破紀錄","提交時間"]]
+  for (let index = 0; index < res.length; index++) {
+    var eleRecord= res[index];
+    var temp =[];
+    temp.push(eleRecord.username);
+    temp.push(eleRecord.email);
+    temp.push(eleRecord.startDate);
+    temp.push(eleRecord.endDate);
+    temp.push(eleRecord.playState);
+    temp.push(eleRecord.level);
+    temp.push(eleRecord.starNum);
+    temp.push(eleRecord.instructionNum);
+    temp.push(eleRecord.isRecordHightScore);
+    temp.push(eleRecord.submitTime);
+    rows.push(temp);
+
+  }
+  // const rows = [
+  //   ["我是誰", "city1", "some other info"],
+  //   ["" , "qwewe"]
+  // ];
 
   var csvContent="";
   rows.forEach(function (rowArray) {

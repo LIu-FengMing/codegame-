@@ -93,7 +93,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
             processList[index].LoginTime = tempProcessList;
 
         }
-       
+
 
         var taskStack = [];
         for (let index = 0; index < processList.length; index++) {
@@ -106,7 +106,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                             //玩家登陸的區間
                             var loginTimeBlock = element.LoginTime[indexTimeBlock];  //loginTimeBlock ={startDate: ,endDate: ,   playState: []}
 
-                            var EmpireType=["EasyEmpire","MediumEmpire"];
+                            var EmpireType = ["EasyEmpire", "MediumEmpire"];
                             for (let indexEmpire = 0; indexEmpire < EmpireType.length; indexEmpire++) {
                                 const elementEmpireType = EmpireType[indexEmpire];
                                 for (let index = 0; index < user[elementEmpireType].codeLevel.length; index++) {
@@ -114,7 +114,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                                     var hightStarNum = "0", hightinstructionNum = 9999;
                                     for (let gameRecordIndex = 0; gameRecordIndex < levelInfo.challengeLog.length; gameRecordIndex++) {
                                         const gameLog = levelInfo.challengeLog[gameRecordIndex];
-                                        var submitTime=new Date(gameLog.submitTime);
+                                        var submitTime = new Date(gameLog.submitTime);
                                         var starNum = gameLog.srarNum, instructionNum = gameLog.instructionNum;
                                         if (loginTimeBlock.startDate > submitTime) {
                                             if (starNum > hightStarNum || (starNum == hightStarNum && hightinstructionNum > instructionNum)) {
@@ -132,9 +132,9 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                                             loginTimeBlock.playState.push({
                                                 level: levelInfo.level,
                                                 submitTime: submitTime,
-                                                starNum:starNum,
-                                                instructionNum:instructionNum,
-                                                isRecordHightScore:isRecordHightScore
+                                                starNum: starNum,
+                                                instructionNum: instructionNum,
+                                                isRecordHightScore: isRecordHightScore
                                             })
                                         }
                                         else {
@@ -143,7 +143,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                                     }
                                 }
                             }
-                            
+
                         }
                         resolve();
                     })
@@ -153,34 +153,39 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
 
         Promise.all(taskStack).then(function () {
             // console.log(processList);
-            var outputJson=[];
+            var outputJson = [];
             for (let indexUser = 0; indexUser < processList.length; indexUser++) {
                 const tempUser = processList[indexUser];
                 for (let indexLoginTime = 0; indexLoginTime < tempUser.LoginTime.length; indexLoginTime++) {
                     const tempLogin = tempUser.LoginTime[indexLoginTime];
-                    if(tempLogin.playState.length<1){
+                    if (tempLogin.playState.length < 1) {
                         outputJson.push({
-                            username:tempUser.username,
-                            email:tempUser.username,
-                            startDate:tempLogin.startDate,
-                            endDate:tempLogin.endDate,
-                            playState:false
+                            username: tempUser.username,
+                            email: tempUser.username,
+                            startDate: tempLogin.startDate,
+                            endDate: tempLogin.endDate,
+                            playState: false,
+                            level:"",
+                            submitTime: "",
+                            starNum: "",
+                            instructionNum: "",
+                            isRecordHightScore: "",
                         })
                     }
-                    else{
+                    else {
                         for (let indexPlayGame = 0; indexPlayGame < tempLogin.playState.length; indexPlayGame++) {
                             const tempPlayGame = tempLogin.playState[indexPlayGame];
                             outputJson.push({
-                                username:tempUser.username,
-                                email:tempUser.username,
-                                startDate:tempLogin.startDate,
-                                endDate:tempLogin.endDate,
-                                playState:true,
-                                level:tempPlayGame.level,
-                                submitTime:tempPlayGame.submitTime,
-                                starNum:tempPlayGame.starNum,
-                                instructionNum:tempPlayGame.instructionNum,
-                                isRecordHightScore:tempPlayGame.isRecordHightScore,
+                                username: tempUser.username,
+                                email: tempUser.username,
+                                startDate: tempLogin.startDate,
+                                endDate: tempLogin.endDate,
+                                playState: true,
+                                level: tempPlayGame.level,
+                                submitTime: tempPlayGame.submitTime,
+                                starNum: tempPlayGame.starNum,
+                                instructionNum: tempPlayGame.instructionNum,
+                                isRecordHightScore: tempPlayGame.isRecordHightScore,
                             })
                         }
                     }
@@ -188,7 +193,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
 
                 }
             }
-        
+
             return res.json(outputJson);
         });
     })
