@@ -860,6 +860,8 @@ function realDoMycanvasMouseClicked() {
         changeFile = true;
 
         var index = cmap.selectedIndex;
+
+        var mapTerrain = data['mapValue'];
         // var size = collegemap[index];
         var size = index.toString();
         // console.log("size:",size);
