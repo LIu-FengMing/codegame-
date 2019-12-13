@@ -77,9 +77,9 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                 var element = list[dateIndex];
                 var tPListLength = tempProcessList.length;
                 if (tPListLength > 0) {
-                    var tempLess = (element.endDate - tempProcessList[tPListLength - 1].endDate);
+                    var tempLess = (element.startDate - tempProcessList[tPListLength - 1].endDate);
                     //判斷秒數
-                    if ((tempLess / 1000) < 30) {
+                    if ((tempLess / 1000 / 60) < 5) {
                         tempProcessList[tPListLength - 1].endDate = element.endDate;
                     }
                     else {
@@ -94,12 +94,11 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
 
         }
 
-
         var taskStack = [];
         for (let index = 0; index < processList.length; index++) {
-            var element = processList[index];
             taskStack.push(
                 new Promise((resolve, reject) => {
+                    var element = processList[index];
                     User.getUserByUsername(element.username, function (err, user) {
                         if (err) throw err;
                         for (let indexTimeBlock = 0; indexTimeBlock < element.LoginTime.length; indexTimeBlock++) {
@@ -146,13 +145,14 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
 
                         }
                         resolve();
+
                     })
                 })
             );
         }
 
         Promise.all(taskStack).then(function () {
-            // console.log(processList);
+            // console.log(processList);\
             var outputJson = [];
             for (let indexUser = 0; indexUser < processList.length; indexUser++) {
                 const tempUser = processList[indexUser];
@@ -161,11 +161,11 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                     if (tempLogin.playState.length < 1) {
                         outputJson.push({
                             username: tempUser.username,
-                            email: tempUser.username,
+                            email: tempUser.email,
                             startDate: tempLogin.startDate,
                             endDate: tempLogin.endDate,
                             playState: false,
-                            level:"",
+                            level: "",
                             submitTime: "",
                             starNum: "",
                             instructionNum: "",
@@ -177,7 +177,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                             const tempPlayGame = tempLogin.playState[indexPlayGame];
                             outputJson.push({
                                 username: tempUser.username,
-                                email: tempUser.username,
+                                email: tempUser.email,
                                 startDate: tempLogin.startDate,
                                 endDate: tempLogin.endDate,
                                 playState: true,
