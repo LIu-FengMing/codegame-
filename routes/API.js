@@ -181,7 +181,7 @@ router.post('/downloadUserPlayTimes', function (req, res, next) {
                                 startDate: tempLogin.startDate,
                                 endDate: tempLogin.endDate,
                                 playState: true,
-                                level: tempPlayGame.level,
+                                level: tempPlayGame.level+1,
                                 submitTime: tempPlayGame.submitTime,
                                 starNum: tempPlayGame.starNum,
                                 instructionNum: tempPlayGame.instructionNum,

@@ -821,7 +821,7 @@ function saveSelfCSV(res, fileName) {
   for (let index = 0; index < res.length; index++) {
     var eleRecord= res[index];
     var temp =[];
-    temp.push(eleRecord.username);
+    temp.push(eleRecord.username.toString());
     temp.push(eleRecord.email);
     temp.push(eleRecord.startDate);
     temp.push(eleRecord.endDate);
@@ -838,7 +838,6 @@ function saveSelfCSV(res, fileName) {
   //   ["我是誰", "city1", "some other info"],
   //   ["" , "qwewe"]
   // ];
-
   var csvContent="";
   rows.forEach(function (rowArray) {
     let row = rowArray.join(",");
