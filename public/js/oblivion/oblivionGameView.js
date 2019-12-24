@@ -72,7 +72,8 @@ $.ajax({
   success: function (res) {
     // console.log(res);
     user = res;
-    if(user.username=="NKUSTCCEA"){
+    
+    if(user.username == "NKUSTCCEA"||user.username == "teacher"){
       forManagement();
     }
     /*loadmusicData();*/

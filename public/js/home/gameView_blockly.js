@@ -186,7 +186,8 @@ function initHome() {
   levelUpLevel = user.levelUpLevel;
   swordLevel = user.weaponLevel;
   shieldLevel = user.armorLevel;
-  if (user.username == "NKUSTCCEA") {
+  
+  if(user.username == "NKUSTCCEA"||user.username == "teacher"){
     // console.log(document.getElementById("gameModifyBtn"));
     document.getElementById("gameModifyBtn").style.display = "";
   }

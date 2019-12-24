@@ -54,7 +54,7 @@ var href = window.location.href;
 var scriptData = {
   type: "init"
 }
-var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true,achievementStr;
+var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true, achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
 
@@ -64,7 +64,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     user = res;
@@ -115,7 +115,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     dictionaryData = {
@@ -136,7 +136,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     equipmentData = res;
@@ -151,10 +151,10 @@ $.ajax({
   url: "loadGameMapData",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  async:false,
+  async: false,
   success: function (res) {
-    levelDescription={
-      Early:res
+    levelDescription = {
+      Early: res
     }
   }
 })
@@ -169,7 +169,7 @@ function initHome() {
   if (Session.get("isBlockly") != null) {
     isBlockly = Session.get("isBlockly");
     document.getElementById("myonoffswitch").checked = isBlockly;
-  } else {}
+  } else { }
   if (Session.get("bkMusicVolumn") != null && Session.get("bkMusicSwitch") != null && Session.get("musicLevel") != null && Session.get("gameSpeed") != null) {
     // console.log("???");
     bkMusicVolumn = Session.get("bkMusicVolumn");
@@ -277,7 +277,7 @@ function userData() {
     divTag = document.getElementById("userDataBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divID = "userDataView";
   divTag = document.getElementById("centerBlockly");
   b = document.createElement("div");
@@ -374,9 +374,9 @@ function createUserView(mainDiv) {
     for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("userTr" + i);
       b = document.createElement("td");
-      if(j%2 == 0){
+      if (j % 2 == 0) {
         b.innerHTML = dataTitle[i];
-      }else{
+      } else {
         b.innerHTML = userdataFont;
       }
       divTag.appendChild(b);
@@ -514,7 +514,7 @@ function changePass() {
           remindValue = result;
           remindView(remindValue);
         }
-        },
+      },
     });
   }
 }
@@ -675,7 +675,7 @@ function btnClick(number) {
   }
   divTag.appendChild(b);
 }
-var lastRecord,allRecord=0;
+var lastRecord, allRecord = 0;
 function viewRecord(number) {
   var divTag = document.getElementById("centerBlockly");
   var isCheckClicked, codeText, codeNum, niceRecord = 999, niceStar = -1;
@@ -854,7 +854,7 @@ function viewRecord(number) {
 
   }
 }
-function changeViewRecord(number,changeType) {
+function changeViewRecord(number, changeType) {
   var isCheckClicked, codeText, codeNum, niceRecord = 999, niceStar = -1;
   isCheckClicked = document.getElementById("myonoffswitch");
 
@@ -891,19 +891,19 @@ function changeViewRecord(number,changeType) {
       }
     }
   }
-  if(lastRecord == 0){
+  if (lastRecord == 0) {
     document.getElementById("recordChangeLastBtn").className = "disabled";
-  }else if (lastRecord == (parseInt(allRecord)-1)){
+  } else if (lastRecord == (parseInt(allRecord) - 1)) {
     document.getElementById("recordChangeNextBtn").className = "disabled";
   }
-  if(lastRecord > 0){
+  if (lastRecord > 0) {
     document.getElementById("recordChangeLastBtn").className = "";
   }
-  if(lastRecord < (parseInt(allRecord)-1)){
+  if (lastRecord < (parseInt(allRecord) - 1)) {
     document.getElementById("recordChangeNextBtn").className = "";
   }
   document.getElementById("viewRecordtextarea").innerHTML = codeText;
-  document.getElementById("recordChangeFontTd").innerHTML = "（" + parseInt(lastRecord+1) + "／" + allRecord + "）";
+  document.getElementById("recordChangeFontTd").innerHTML = "（" + parseInt(lastRecord + 1) + "／" + allRecord + "）";
   divTag = document.getElementById("viewRecordTr0viewRecordTd1")
   divTag.innerHTML = "";
   for (var k = 0; k < 3; k++) {
@@ -953,12 +953,13 @@ function equipageView(mainDiv) {
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "裝備";
-  if(user.username == "NKUSTCCEA"){
+
+  if (user.username == "NKUSTCCEA" || user.username == "teacher") {
     b = document.createElement("input");
-    b.setAttribute("type","button");
-    b.setAttribute("id","modifyEquipageView");
-    b.setAttribute("value","");
-    b.setAttribute("onclick","modifyEquipment()");
+    b.setAttribute("type", "button");
+    b.setAttribute("id", "modifyEquipageView");
+    b.setAttribute("value", "");
+    b.setAttribute("onclick", "modifyEquipment()");
     divTag.appendChild(b);
   }
   b = document.createElement("div");
@@ -1481,13 +1482,14 @@ function instructionView(mainDiv) {
       b.setAttribute("id", "actionFont" + i);
       divTag.appendChild(b);
       document.getElementById("actionFont" + i).innerHTML = dic[i / 2].type;
-      if(user.username == "NKUSTCCEA"){
+
+      if (user.username == "NKUSTCCEA" || user.username == "teacher") {
         var fistChildLength = document.getElementById("td" + i).childNodes[0].innerHTML.length;
         b = document.createElement("input");
         b.setAttribute("type", "button");
         b.setAttribute("id", "modifyInstructionView");
-        if(fistChildLength == 3){
-          b.setAttribute("style","transform:translate(200%,-90%)");
+        if (fistChildLength == 3) {
+          b.setAttribute("style", "transform:translate(200%,-90%)");
         }
         b.setAttribute("onclick", "modifyInstruction(" + i + ")");
         divTag.appendChild(b);
@@ -1645,48 +1647,48 @@ function achievementView(mainDiv) {
 }
 /*成就判斷*/
 function achievementJudge() {
-  var maxValue = [1,2,1],isGet = [0,0,0,0,0,0,0,0,0];
-  var empire = [user.EasyEmpire,user.MediumEmpire]
-  var maxLevel = 0,getThreeStar = 0,equipmentLevel = user.levelUpLevel,highestLevel = [empire[0].codeHighestLevel,empire[1].HighestLevel];
+  var maxValue = [1, 2, 1], isGet = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var empire = [user.EasyEmpire, user.MediumEmpire]
+  var maxLevel = 0, getThreeStar = 0, equipmentLevel = user.levelUpLevel, highestLevel = [empire[0].codeHighestLevel, empire[1].HighestLevel];
   if (highestLevel[0] > highestLevel[1]) {
     maxLevel = highestLevel[0];
   } else {
     maxLevel = highestLevel[1];
   }
-  for(var i=0;i<2;i++){
+  for (var i = 0; i < 2; i++) {
     var maxJ = highestLevel[i];
-    if(i == 1){
-      maxJ = (highestLevel[i]-24);
+    if (i == 1) {
+      maxJ = (highestLevel[i] - 24);
     }
-    for(var j=0;j<maxJ;j++){
-      if(empire[i].codeLevel[j].HighestStarNum == 3){
+    for (var j = 0; j < maxJ; j++) {
+      if (empire[i].codeLevel[j].HighestStarNum == 3) {
         getThreeStar++;
       }
     }
   }
   // console.log("最高過關數:",maxLevel);
   // console.log("獲得三星數:",getThreeStar);
-  for(var typeVar=0;typeVar<3;typeVar++){
-    for(var valueVar=0;valueVar<3;valueVar++){
+  for (var typeVar = 0; typeVar < 3; typeVar++) {
+    for (var valueVar = 0; valueVar < 3; valueVar++) {
       // console.log(typeVar + valueVar);
       switch (typeVar) {
         /*通關數*/
         case 0:
           // console.log(maxLevel,achievemenData.record[typeVar + valueVar].limit[0].value);
-          if(maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value){
+          if (maxLevel >= achievemenData.record[typeVar + valueVar].limit[0].value) {
             isGet[typeVar + valueVar] = 1;
           }
           break;
         /*獲得三星數*/
         case 1:
           // console.log(typeVar + valueVar + 2,achievemenData.record[typeVar + valueVar + 2]);
-          if(getThreeStar >= achievemenData.record[typeVar + valueVar + 2].limit[0].value){
+          if (getThreeStar >= achievemenData.record[typeVar + valueVar + 2].limit[0].value) {
             isGet[typeVar + valueVar + 2] = 1;
           }
           break;
         /*裝備升級數*/
         case 2:
-          if(equipmentLevel >= achievemenData.record[typeVar + valueVar + 4].limit[0].value){
+          if (equipmentLevel >= achievemenData.record[typeVar + valueVar + 4].limit[0].value) {
             isGet[typeVar + valueVar + 4] = 1;
           }
           break;
@@ -2011,9 +2013,9 @@ function sendSession() {
 /*變更關卡進度*/
 function changeLevelStage() {
   var isCheckClicked;
-  var levelStarStr = [0,0,0,0,0,0,0,0,0,0,
-                      0,0,0,0,0,0,0,0,0,0,
-                      0,0,0,0];
+  var levelStarStr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0];
   isCheckClicked = document.getElementById("myonoffswitch");
   isBlockly = isCheckClicked.checked;
   sendSession();
@@ -2024,7 +2026,7 @@ function changeLevelStage() {
     if (parseInt(element.level) > codeLevel && element.HighestStarNum > 0) {
       codeLevel = parseInt(element.level);
     }
-    if(element.HighestStarNum >= levelStarStr[index]){
+    if (element.HighestStarNum >= levelStarStr[index]) {
       levelStarStr[index] = element.HighestStarNum;
     }
   }
@@ -2034,7 +2036,7 @@ function changeLevelStage() {
     if (parseInt(element.level) > blockLevel && element.HighestStarNum > 0) {
       blockLevel = parseInt(element.level);
     }
-    if(element.HighestStarNum >= levelStarStr[index]){
+    if (element.HighestStarNum >= levelStarStr[index]) {
       levelStarStr[index] = element.HighestStarNum;
     }
   }
@@ -2061,16 +2063,16 @@ function changeLevelStage() {
     if (i < totalLevel) {
       divTag = document.getElementById("btn" + i);
       divTag.className = "btn";
-      if(levelStarStr[i] == 3){
+      if (levelStarStr[i] == 3) {
         divTag = document.getElementById("img" + i);
         divTag.src = "img/allClrBtn.png";
-      }else if(levelStarStr[i] == 2){
+      } else if (levelStarStr[i] == 2) {
         divTag = document.getElementById("img" + i);
         divTag.src = "img/twoStarBtn.png";
-      }else if(levelStarStr[i] == 1){
+      } else if (levelStarStr[i] == 1) {
         divTag = document.getElementById("img" + i);
         divTag.src = "img/oneStarBtn.png";
-      }else{
+      } else {
         divTag = document.getElementById("img" + i);
         divTag.src = "img/unPlayBtn.png";
       }
@@ -2089,7 +2091,7 @@ var levelDivAlive = false;
 function remindView(remindValue) {
   var isTwoLine = false;
   for (var i = 0; i < remindValue.length; i++) {
-    if(remindValue[i] == "<"){
+    if (remindValue[i] == "<") {
       isTwoLine = true;
       break;
     }
@@ -2101,7 +2103,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById("centerBlockly");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -2109,9 +2111,9 @@ function remindView(remindValue) {
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
-  if(isTwoLine){
+  if (isTwoLine) {
     b.setAttribute("class", "twoLine");
-  }else{
+  } else {
     b.setAttribute("class", "oneLine");
   }
   b.setAttribute("id", "remindView");

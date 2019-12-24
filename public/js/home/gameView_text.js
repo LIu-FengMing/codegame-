@@ -129,7 +129,8 @@ $.ajax({
     myVid.volume = 0;
     // console.log(res);
     user = res;
-    if(user.username=="NKUSTCCEA"){
+    
+  if(user.username == "NKUSTCCEA"||user.username == "teacher"){
       forManagement();
     }
 
@@ -221,7 +222,7 @@ function initHome() {
   shieldLevel = user.armorLevel;
   getArgs();
   // console.log(user.username);
-  if(user.username == "NKUSTCCEA"){
+  if(user.username == "NKUSTCCEA"||user.username == "teacher"){
     // console.log(document.getElementById("gameModifyBtn"));
     document.getElementById("gameModifyBtn").style.display = "";
   }

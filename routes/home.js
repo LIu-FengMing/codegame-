@@ -1393,7 +1393,7 @@ router.post('/managementModifyMapTest', function (req, res, next) {
 
 router.get('/managementUser', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
+    if (!(req.user.username == "NKUSTCCEA"||req.user.username == "teacher")) { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/managementUser', {
@@ -1433,7 +1433,7 @@ router.post('/managementUser', function (req, res, next) {
 
 router.get('/management', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
+    if (!(req.user.username == "NKUSTCCEA"||req.user.username == "teacher")) { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/management', {
@@ -1487,7 +1487,7 @@ router.post('/management', function (req, res, next) {
 
 router.get('/managementStatistics', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
-    if (req.user.username != "NKUSTCCEA") { //如有其他管理者 在這加
+    if (!(req.user.username == "NKUSTCCEA"||req.user.username == "teacher")) { //如有其他管理者 在這加
         res.redirect('/login')
     }
     res.render('backstage/managementStatistics', {
@@ -1552,7 +1552,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
     User.getUserById(req.user.id, function (err, user) {
         if (err) throw err;
-        if (user.username != "NKUSTCCEA") { //如有其他管理者 在這加
+        if (!(req.user.username == "NKUSTCCEA"||req.user.username == "teacher")) { //如有其他管理者 在這加
             res.redirect('/home')
         }
 
@@ -1835,7 +1835,7 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
 
     User.getUserById(req.user.id, function (err, user) {
         if (err) throw err;
-        if (user.username == "NKUSTCCEA") { //如有其他管理者 在這加
+        if ((req.user.username == "NKUSTCCEA"||req.user.username == "teacher")) { //如有其他管理者 在這加
             return res.redirect('/management');
         }
         var openLokCastle = false;

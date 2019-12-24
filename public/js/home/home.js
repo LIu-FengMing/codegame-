@@ -53,7 +53,7 @@ $.ajax({
   url: href,              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  async:false,
+  async: false,
   data: scriptData,  // 將表單資料用打包起來送出去
   success: function (res) {
     // console.log(res);
@@ -67,7 +67,7 @@ $.ajax({
     };
     xmlhttp.open("GET", "json/achievement.json", true);
     xmlhttp.send();
-    try{
+    try {
       loadmusicData();
     }
     catch{
@@ -99,7 +99,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     dictionaryData = {
@@ -120,7 +120,7 @@ $.ajax({
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
-  async:false,
+  async: false,
   success: function (res) {
     // console.log(res);
     equipmentData = res;
@@ -383,9 +383,9 @@ function createUserView(mainDiv) {
     for (var j = 0; j < 2; j++) {
       divTag = document.getElementById("userTr" + i);
       b = document.createElement("td");
-      if(j%2 == 0){
+      if (j % 2 == 0) {
         b.innerHTML = dataTitle[i];
-      }else{
+      } else {
         b.innerHTML = userdataFont;
       }
       divTag.appendChild(b);
@@ -559,7 +559,8 @@ function equipageView(mainDiv) {
   b.setAttribute("id", "allTitle");
   divTag.appendChild(b);
   document.getElementById("allTitle").innerHTML = "裝備";
-  if (user.username == "NKUSTCCEA") {
+
+  if (user.username == "NKUSTCCEA" || user.username == "teacher") {
     b = document.createElement("input");
     b.setAttribute("type", "button");
     b.setAttribute("id", "modifyEquipageView");
@@ -1086,13 +1087,14 @@ function instructionView(mainDiv) {
       b.setAttribute("id", "actionFont" + i);
       divTag.appendChild(b);
       document.getElementById("actionFont" + i).innerHTML = dic[i / 2].type;
-      if (user.username == "NKUSTCCEA") {
+
+      if (user.username == "NKUSTCCEA" || user.username == "teacher") {
         var fistChildLength = document.getElementById("td" + i).childNodes[0].innerHTML.length;
         b = document.createElement("input");
         b.setAttribute("type", "button");
         b.setAttribute("id", "modifyInstructionView");
-        if(fistChildLength == 3){
-          b.setAttribute("style","transform:translate(200%,-90%)");
+        if (fistChildLength == 3) {
+          b.setAttribute("style", "transform:translate(200%,-90%)");
         }
         b.setAttribute("onclick", "modifyInstruction(" + i + ")");
         divTag.appendChild(b);
