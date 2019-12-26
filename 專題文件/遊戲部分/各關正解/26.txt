@@ -22,7 +22,7 @@ moveForward();
 }
 turnRight();
 moveForward();
-for(i=3;i>0;i--){
+for(i=2;i>0;i--){
 fire();
 }
 for(i=3;i>0;i--){

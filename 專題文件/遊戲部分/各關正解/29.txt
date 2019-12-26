@@ -15,9 +15,7 @@ moveForward();
 turnLeft();
 moveForward();
 turnRight();
-for(i=3;i>0;i--){
 fire();
-}
 for(i=3;i>0;i--){
 moveForward();
 }

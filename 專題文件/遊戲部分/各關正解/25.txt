@@ -12,13 +12,9 @@ int main(int argc, char *argv[])
     for(i=4;i>0;i--){
         moveForward();
     }
-    for(i=2;i>0;i--){
-        fire();
-    }
+    fire();
     for(i=4;i>0;i--){
         moveForward();
     }
 	return 0;
  }
-
-
