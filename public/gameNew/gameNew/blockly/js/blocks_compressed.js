@@ -133,10 +133,10 @@ Blockly.Blocks['block_call'] = {
   }
 };
 
-Blockly.Blocks['block_fire'] = {
+Blockly.Blocks['block_launchMissile'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("fire");
+        .appendField("launchMissile");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(330);
@@ -225,12 +225,12 @@ Blockly.Blocks['block_case'] = {
 Blockly.Blocks['block_break'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("break");
+        .appendField("break;");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(260);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
@@ -252,9 +252,10 @@ Blockly.Blocks['block_var'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["char","char"]]), "NAME")
-        .appendField(new Blockly.FieldTextInput(" "), "NAME")
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
         .appendField("=")
-        .appendField(new Blockly.FieldTextInput(" "), "NAME");
+        .appendField(new Blockly.FieldTextInput(" "), "NAME")
+        .appendField(";");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(60);
