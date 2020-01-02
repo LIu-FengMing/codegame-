@@ -442,7 +442,7 @@ function endgame() {
     var systemCall = ["moveForward", "moveForward(", "moveForward()", "moveForward();", ";moveForward();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();", ";turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();", ";turnLeft();",
-        "fire", "fire(", "fire()", "fire();", ";fire();",
+        "launchMissile", "launchMissile(", "launchMissile()", "launchMissile();", ";launchMissile();",
         "printf", "printf(", "scanf", "scanf("];
     for (var i = 0; i < funname.length; ++i) {
         var e0 = funname[i];

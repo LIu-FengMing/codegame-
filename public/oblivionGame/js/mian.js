@@ -333,7 +333,7 @@ function endgame() {
     var systemCall = ["moveForward", "moveForward(", "moveForward()", "moveForward();",
         "turnRight", "turnRight(", "turnRight()", "turnRight();",
         "turnLeft", "turnLeft(", "turnLeft()", "turnLeft();",
-        "fire", "fire(", "fire()", "fire();",
+        "launchMissile", "launchMissile(", "launchMissile()", "launchMissile();",
         "printf", "printf(", "scanf", "scanf("];
     var counter = 0;
     temp = str;
