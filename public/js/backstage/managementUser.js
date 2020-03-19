@@ -139,6 +139,11 @@ function createMapPermission(index) {
   closeMainLoadingView();
 }
 
+// TODO:刪除使用者
+function deleteUser(index) {
+
+}
+
 function changeStatus() {
   //如果有選擇到table
   if (thisSelectionId) {
@@ -177,6 +182,10 @@ function changeStatus() {
     remindValue = "請點選一位使用者";
     remindView(remindValue);
   }
+}
+
+function deleteUserBtn() {
+
 }
 var levelDivAlive = false;
 //創造提醒視窗的函式
@@ -327,10 +336,13 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
     divTag = document.getElementById("tr" + i);
     //創造6個br標籤
-    for (var j = 1; j <= 7; j++) {
+    for (var j = 1; j <= 8; j++) {
       b = document.createElement("td");
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
+      if( j == 8 ){
+        b.setAttribute("style", "display:none");
+      }
       divTag.appendChild(b);
       //在每個br標籤內創立input標籤來顯示文字
       divTag = document.getElementById("td0" + i + j);
@@ -365,6 +377,10 @@ function createLevelTable(scriptData) {
       } else if (j == 7) {
         document.getElementById("input0" + i + j).value = obj.td06;
         // document.getElementById("td0" + i + j).innerHTML = "封鎖"
+      } else if (j == 8) { /*刪除狀態*/
+        b.setAttribute("type", "checkbox");
+        b.setAttribute("class", "mapCheckbox");
+        b.setAttribute("onclick", "deleteUser(" + i + ")");
       }
       divTag = document.getElementById("tr" + i);
     }
@@ -582,7 +598,7 @@ function updateLevelTable(scriptData) {
       b.setAttribute("id", "tr" + i);
       divTag.appendChild(b);
       divTag = document.getElementById("tr" + i);
-      for (var j = 1; j <= 7; j++) {
+      for (var j = 1; j <= 8; j++) {
         b = document.createElement("td");
         b.setAttribute("id", "td0" + i + j);
         b.setAttribute("class", "td0" + j);
@@ -594,23 +610,7 @@ function updateLevelTable(scriptData) {
         b.setAttribute("readonly", "readonly");
         divTag.appendChild(b);
 
-        /**
-
-         */
-        if (j == 6) {
-          b = document.getElementById("input0" + i + "6");
-          b.setAttribute("type", "checkbox");
-          b.setAttribute("class", "mapCheckbox");
-          b.setAttribute("onclick", "createMapPermission(" + i + ")");
-          if (obj.canCreateMapPermission) {
-            // b.setAttribute("checked",true);
-            $("#input0" + i + "6").prop("checked", true);
-          }
-        } else if (j == 7) { /*使用者狀態*/
-          document.getElementById("td0" + i + "7").innerHTML = obj.td06;
-          // document.getElementById("input0" + i + j).value = obj.td06;
-          // document.getElementById("td0" + i + j).innerHTML = "封鎖"
-        } else if (j == 1) { /*使用者帳號*/
+        if (j == 1) { /*使用者帳號*/
           document.getElementById("input0" + i + j).value = obj.td01;
           // document.getElementById("td0" + i + j).innerHTML = "aa";
         } else if (j == 2) { /*使用者名稱*/
@@ -625,6 +625,24 @@ function updateLevelTable(scriptData) {
         } else if (j == 5) { /*最高的關卡*/
           document.getElementById("input0" + i + j).value = obj.td05;
           // document.getElementById("td0" + i + j).innerHTML = "13";
+        } else if (j == 6) {
+          b = document.getElementById("input0" + i + "6");
+          b.setAttribute("type", "checkbox");
+          b.setAttribute("class", "mapCheckbox");
+          b.setAttribute("onclick", "createMapPermission(" + i + ")");
+          if (obj.canCreateMapPermission) {
+            // b.setAttribute("checked",true);
+            $("#input0" + i + "6").prop("checked", true);
+          }
+        } else if (j == 7) { /*使用者狀態*/
+          document.getElementById("td0" + i + "7").innerHTML = obj.td06;
+          // document.getElementById("input0" + i + j).value = obj.td06;
+          // document.getElementById("td0" + i + j).innerHTML = "封鎖"
+        } else if (j == 8) {
+          b = document.getElementById("input0" + i + "8");
+          b.setAttribute("type", "checkbox");
+          b.setAttribute("class", "mapCheckbox");
+          b.setAttribute("onclick", "deleteUser(" + i + ")");
         }
         divTag = document.getElementById("tr" + i);
       }
@@ -645,6 +663,39 @@ function updateLevelTable(scriptData) {
 
 }
 
+/*變更onoffswitch時變更畫面*/
+function changeMode(){
+  var isCheckClicked = document.getElementById("myonoffswitch");
+  var isDelete = isCheckClicked.checked;
+  // 變成刪除模式
+  if(isDelete){
+    for (var i = 4; i < 8; i++) {
+      var dom = document.getElementsByClassName('td0' + i);
+      for (var j = 0; j < dom.length; j++) {
+        dom[j].style.display = "none"
+      }
+    }
+    var dom = document.getElementsByClassName('td0' + 8);
+    for (var j = 0; j < dom.length; j++) {
+      dom[j].style.display = ""
+    }
+    var dom = document.getElementById('changeStatus');
+    dom.setAttribute( "onClick","deleteUserBtn()");
+  }else{// 變成編輯模式
+    for (var i = 4; i < 8; i++) {
+      var dom = document.getElementsByClassName('td0' + i);
+      for (var j = 0; j < dom.length; j++) {
+        dom[j].style.display = ""
+      }
+    }
+    var dom = document.getElementsByClassName('td0' + 8);
+    for (var j = 0; j < dom.length; j++) {
+      dom[j].style.display = "none"
+    }
+    var dom = document.getElementById('changeStatus');
+    dom.setAttribute( "onClick","changeStatus()");
+  }
+}
 var searchTextBox = document.getElementById("searchTextBox");
 //只要搜尋列有輸入就調用一次searchFunc()
 searchTextBox.onkeyup = function() {
