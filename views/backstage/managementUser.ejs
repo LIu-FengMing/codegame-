@@ -25,6 +25,13 @@
           <img  id="bkImg">
           <h1 class="titleH1">管理會員</h1>
           <input type="button" value="" id="goBack3" onclick="location.href='management';">
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="changeMode()">
+            <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
           <select id="levelSelect" name="">
             <option value="all">&nbsp&nbsp全&nbsp部</option>
             <option value="canPlay">&nbsp&nbsp封&nbsp鎖</option>
@@ -55,6 +62,7 @@
                 <td class="td05" onclick="changeTdName(this)">最高的關卡</td>
                 <td class="td06" >地圖權限</td>
                 <td class="td07" onclick="changeTdName(this)">使用者狀態</td>
+                <td class="td08" onclick="changeTdName(this)" style="display:none;">刪除</td>
               </tr>
             </table>
           </div>
