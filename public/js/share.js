@@ -51,33 +51,14 @@ window.onbeforeunload = function(event) {
 
 function beforunload(event) {
   behavior.endDate = new Date();
-  event = event ? event : (window.event ? window.event : null);
-  var myIE = myBrowser();
-  if (myIE=="IE") { // IE
-    var cy = event.clientY || event.target.event.clientY;
-    var ak = event.altKey || event.target.event.altKey;
-  }
-  else {
-    // Firefox、Chrome
-    var nodeName = event.currentTarget.document.activeElement.nodeName;
-    console.log(nodeName);
-    if (nodeName!="A") {
-      if(nodeName == "BODY"){
-      }else{
-        $.ajax({
-          url: "API/createUserLoginState",              // 要傳送的頁面
-          method: 'POST',               // 使用 POST 方法傳送請求
-          dataType: 'json',             // 回傳資料會是 json 格式
-          async:false,
-          data: behavior,  // 將表單資料用打包起來送出去
-          success: function (res) {
-          }
-        });
-      }
-    }else{
-
+  $.ajax({
+    url: "API/createUserLoginState",              // 要傳送的頁面
+    method: 'POST',               // 使用 POST 方法傳送請求
+    dataType: 'json',             // 回傳資料會是 json 格式
+    data: behavior,  // 將表單資料用打包起來送出去
+    success: function (res) {
     }
-  }
+  });
 }
 
 /*** * 獲取當前瀏覽器類型 */
