@@ -175,5 +175,10 @@ module.exports.updatefinishMapNumById = function (id, finishMapNum, callback) {
         finishMapNum: finishMapNum
     }
     User.updateOne(query, setquery, callback);
+}
 
+module.exports.deleteUserById = function (id, callback) {
+    var query = { _id: id };
+    
+    User.deleteOne(query, callback);
 }

@@ -1,4 +1,4 @@
-if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
+if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function () {
 
   // cache window 物件
   var win = window.top || window;
@@ -20,22 +20,22 @@ if (JSON && JSON.stringify && JSON.parse) var Session = Session || (function() {
   return {
 
     // 設定一個 session 變數
-    set: function(name, value) {
+    set: function (name, value) {
       store[name] = value;
     },
 
     // 列出指定的 session 資料
-    get: function(name) {
+    get: function (name) {
       return (store[name] ? store[name] : undefined);
     },
 
     // 清除資料 ( session )
-    clear: function() {
+    clear: function () {
       store = {};
     },
 
     // 列出所有存入的資料
-    dump: function() {
+    dump: function () {
       return JSON.stringify(store);
     }
 
@@ -131,17 +131,12 @@ function createMapPermission(index) {
       userId: allUserData[index]._id,
       canCreateMapPermission: canCreateMapPermission
     }, // 將表單資料用打包起來送出去
-    success: function(res) {
+    success: function (res) {
       // console.log(res);
 
     }
   })
   closeMainLoadingView();
-}
-
-// TODO:刪除使用者
-function deleteUser(index) {
-
 }
 
 function changeStatus() {
@@ -172,7 +167,7 @@ function changeStatus() {
       method: 'POST', // 使用 POST 方法傳送請求
       dataType: 'json', // 回傳資料會是 json 格式
       data: scriptData, // 將表單資料用打包起來送出去
-      success: function(res) {
+      success: function (res) {
         // console.log(res);
 
       }
@@ -185,7 +180,50 @@ function changeStatus() {
 }
 
 function deleteUserBtn() {
+  var dom = document.getElementsByClassName('td0' + 8);
+  var delList = [];
+  for (var j = 0; j < dom.length - 1; j++) {
+    if ($("#input0" + j + "8").prop("checked")) {
+      delList.push(j);
+    }
+  }
+  if (delList.length == 0) {
+    remindValue = "請點選一位使用者";
+    remindView(remindValue);
+  }
+  else {
+    if (confirm("確定要刪除這些使用者嗎?")) {
+      for (var j = 0; j < delList.length; j++) {
+        var scriptData = {
+          userId: allUserData[delList[j]]._id,
+          username: allUserData[delList[j]].username,
+          name: allUserData[delList[j]].name,
+          email: allUserData[delList[j]].email
+        }
+        $.ajax({
+          url: 'API/deleteUser', // 要傳送的頁面
+          method: 'POST', // 使用 POST 方法傳送請求
+          dataType: 'json', // 回傳資料會是 json 格式
+          data: scriptData, // 將表單資料用打包起來送出去
+          success: function (res) {
+            // console.log(res);
 
+          }
+        })
+      }
+      for (var j = delList.length -1; j > -1 ; j--) {
+        for (var  i= 0; i<completallUserData.length; ++i) {
+          if(completallUserData[i]._id == allUserData[delList[j]]._id){
+            completallUserData.splice(i,1);
+            break;
+          }
+        }
+        allUserData.splice(delList[j],1);
+      }
+      searchFunc()
+
+    }
+  }
 }
 var levelDivAlive = false;
 //創造提醒視窗的函式
@@ -207,7 +245,7 @@ function remindView(remindValue) {
     divTag = document.getElementById("remindBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
@@ -248,12 +286,12 @@ function clossFunc(thisDiv, thisDiv2) {
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   divTag = document.getElementById(thisDiv2);
   try {
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
-  } catch (e) {}
+  } catch (e) { }
   levelDivAlive = false;
 }
 
@@ -268,7 +306,7 @@ function sendLoadUsernameMap() {
     method: 'POST', // 使用 POST 方法傳送請求
     dataType: 'json', // 回傳資料會是 json 格式
     data: scriptData, // 將表單資料用打包起來送出去
-    success: function(res) {
+    success: function (res) {
       // console.log(res);
       allUserData = res;
       // console.log(allUserData);
@@ -340,7 +378,7 @@ function createLevelTable(scriptData) {
       b = document.createElement("td");
       b.setAttribute("id", "td0" + i + j);
       b.setAttribute("class", "td0" + j);
-      if( j == 8 ){
+      if (j == 8) {
         b.setAttribute("style", "display:none");
       }
       divTag.appendChild(b);
@@ -380,7 +418,6 @@ function createLevelTable(scriptData) {
       } else if (j == 8) { /*刪除狀態*/
         b.setAttribute("type", "checkbox");
         b.setAttribute("class", "mapCheckbox");
-        b.setAttribute("onclick", "deleteUser(" + i + ")");
       }
       divTag = document.getElementById("tr" + i);
     }
@@ -452,11 +489,11 @@ function changeTdNameDisplay() {
   for (let index = tdStatus.length - 1; index > -1; index--) {
     var item = TdNameTable[index];
     if (tdStatus[index] == 1) {
-      allUserData = allUserData.sort(function(a, b) {
+      allUserData = allUserData.sort(function (a, b) {
         return a[item] > b[item] ? 1 : -1;
       });
     } else if (tdStatus[index] == 2) {
-      allUserData = allUserData.sort(function(a, b) {
+      allUserData = allUserData.sort(function (a, b) {
         return a[item] < b[item] ? 1 : -1;
       });
     }
@@ -467,14 +504,14 @@ function changeTdNameDisplay() {
 /*選單*/
 var levelSelect = document.getElementById("levelSelect");
 //剛下拉式選單改變，呼叫changeTdNameDisplay()
-levelSelect.onchange = function(index) {
+levelSelect.onchange = function (index) {
   changeTdNameDisplay();
 }
 var selectType = document.getElementById("selectType");
 var searchType = 0;
 var searchTypeTable = ["username", "name", "email", "hightLevel", "starNum", "userstatus"];
 //當搜尋欄位被輸入時呼叫searchFunc()
-selectType.onchange = function(index) {
+selectType.onchange = function (index) {
   searchType = selectType.selectedIndex;
   searchFunc();
 }
@@ -503,11 +540,11 @@ function searchFunc() {
       // console.log("item:",item);
       // console.log("tdStatus[index]:",item);
       if (tdStatus[index] == 1) {
-        allUserData = allUserData.sort(function(a, b) {
+        allUserData = allUserData.sort(function (a, b) {
           return a[item] > b[item] ? 1 : -1;
         });
       } else if (tdStatus[index] == 2) {
-        allUserData = allUserData.sort(function(a, b) {
+        allUserData = allUserData.sort(function (a, b) {
           return a[item] < b[item] ? 1 : -1;
         });
       }
@@ -642,7 +679,6 @@ function updateLevelTable(scriptData) {
           b = document.getElementById("input0" + i + "8");
           b.setAttribute("type", "checkbox");
           b.setAttribute("class", "mapCheckbox");
-          b.setAttribute("onclick", "deleteUser(" + i + ")");
         }
         divTag = document.getElementById("tr" + i);
       }
@@ -660,15 +696,19 @@ function updateLevelTable(scriptData) {
     }
   }
   oldDisMapNum = scriptData.length
-
+  changeMode();
+  var dom = document.getElementsByClassName('td0' + 8);
+  for (var j = 0; j < dom.length - 1; j++) {
+    $("#input0" + j + "8").prop("checked", false);
+  }
 }
 
 /*變更onoffswitch時變更畫面*/
-function changeMode(){
+function changeMode() {
   var isCheckClicked = document.getElementById("myonoffswitch");
   var isDelete = isCheckClicked.checked;
   // 變成刪除模式
-  if(isDelete){
+  if (isDelete) {
     for (var i = 4; i < 8; i++) {
       var dom = document.getElementsByClassName('td0' + i);
       for (var j = 0; j < dom.length; j++) {
@@ -677,11 +717,12 @@ function changeMode(){
     }
     var dom = document.getElementsByClassName('td0' + 8);
     for (var j = 0; j < dom.length; j++) {
-      dom[j].style.display = ""
+      dom[j].style.display = "";
     }
+
     var dom = document.getElementById('changeStatus');
-    dom.setAttribute( "onClick","deleteUserBtn()");
-  }else{// 變成編輯模式
+    dom.setAttribute("onClick", "deleteUserBtn()");
+  } else {// 變成編輯模式
     for (var i = 4; i < 8; i++) {
       var dom = document.getElementsByClassName('td0' + i);
       for (var j = 0; j < dom.length; j++) {
@@ -690,19 +731,19 @@ function changeMode(){
     }
     var dom = document.getElementsByClassName('td0' + 8);
     for (var j = 0; j < dom.length; j++) {
-      dom[j].style.display = "none"
+      dom[j].style.display = "none";
     }
     var dom = document.getElementById('changeStatus');
-    dom.setAttribute( "onClick","changeStatus()");
+    dom.setAttribute("onClick", "changeStatus()");
   }
 }
 var searchTextBox = document.getElementById("searchTextBox");
 //只要搜尋列有輸入就調用一次searchFunc()
-searchTextBox.onkeyup = function() {
+searchTextBox.onkeyup = function () {
   searchFunc();
 }
 //當X按鈕被按下，調用changeTdNameDisplay()
-searchTextBox.onchange = function() {
+searchTextBox.onchange = function () {
   if (searchTextBox.value == "" || searchTextBox.value.length == 0) {
     changeTdNameDisplay();
   }
