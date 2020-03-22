@@ -102,10 +102,14 @@ function selectionLevel(thisObject) {
   //將thisObjsct存到lastObiect
   lastObject = thisObject;
   //如果現在被選到的狀態為"封鎖"，改變底下按鈕的圖片
-  if (document.getElementById("td0" + mapIndex + "7").innerHTML == "封鎖") {
-    document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
-  } else { //如果是"正常"狀態，就改成"封鎖"圖片
-    document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
+  var isCheckClicked = document.getElementById("myonoffswitch");
+  var isDelete = isCheckClicked.checked;
+  if(!isDelete){
+    if (document.getElementById("td0" + mapIndex + "7").innerHTML == "封鎖") {
+      document.getElementById("changeStatus").style.backgroundImage = "url(../img/unBlockade.png)";
+    } else { //如果是"正常"狀態，就改成"封鎖"圖片
+      document.getElementById("changeStatus").style.backgroundImage = "url(../img/blockade.png)";
+    }
   }
 }
 
@@ -374,19 +378,30 @@ function createLevelTable(scriptData) {
     divTag.appendChild(b);
     divTag = document.getElementById("tr" + i);
     //創造6個br標籤
-    for (var j = 1; j <= 8; j++) {
+    for (var j = 0; j <= 7; j++) {
       b = document.createElement("td");
-      b.setAttribute("id", "td0" + i + j);
-      b.setAttribute("class", "td0" + j);
-      if (j == 8) {
+      if (j == 0) {
         b.setAttribute("style", "display:none");
+        b.setAttribute("id", "td0" + i + 8);
+        b.setAttribute("class", "td0" + 8);
+      }else{
+        b.setAttribute("id", "td0" + i + j);
+        b.setAttribute("class", "td0" + j);
       }
       divTag.appendChild(b);
       //在每個br標籤內創立input標籤來顯示文字
-      divTag = document.getElementById("td0" + i + j);
+      if (j == 0) {
+        divTag = document.getElementById("td0" + i + 8);
+      }else{
+        divTag = document.getElementById("td0" + i + j);
+      }
       b = document.createElement("input");
       b.setAttribute("type", "text");
-      b.setAttribute("id", "input0" + i + j);
+      if (j == 0) {
+        b.setAttribute("id", "input0" + i + 8);
+      }else{
+        b.setAttribute("id", "input0" + i + j);
+      }
       b.setAttribute("readonly", "readonly");
       // b.setAttribute("onclick", "createMapPermission(" + i + ")");
       divTag.appendChild(b);
@@ -415,7 +430,7 @@ function createLevelTable(scriptData) {
       } else if (j == 7) {
         document.getElementById("input0" + i + j).value = obj.td06;
         // document.getElementById("td0" + i + j).innerHTML = "封鎖"
-      } else if (j == 8) { /*刪除狀態*/
+      } else if (j == 0) { /*刪除狀態*/
         b.setAttribute("type", "checkbox");
         b.setAttribute("class", "mapCheckbox");
       }
@@ -635,15 +650,29 @@ function updateLevelTable(scriptData) {
       b.setAttribute("id", "tr" + i);
       divTag.appendChild(b);
       divTag = document.getElementById("tr" + i);
-      for (var j = 1; j <= 8; j++) {
+      for (var j = 0; j <= 7; j++) {
         b = document.createElement("td");
-        b.setAttribute("id", "td0" + i + j);
-        b.setAttribute("class", "td0" + j);
+        if (j == 0) {
+          b.setAttribute("style", "display:none");
+          b.setAttribute("id", "td0" + i + 8);
+          b.setAttribute("class", "td0" + 8);
+        }else{
+          b.setAttribute("id", "td0" + i + j);
+          b.setAttribute("class", "td0" + j);
+        }
         divTag.appendChild(b);
-        divTag = document.getElementById("td0" + i + j);
+        if (j == 0) {
+          divTag = document.getElementById("td0" + i + 8);
+        }else{
+          divTag = document.getElementById("td0" + i + j);
+        }
         b = document.createElement("input");
         b.setAttribute("type", "text");
-        b.setAttribute("id", "input0" + i + j);
+        if(j == 0){
+          b.setAttribute("id", "input0" + i + 8);
+        }else{
+          b.setAttribute("id", "input0" + i + j);
+        }
         b.setAttribute("readonly", "readonly");
         divTag.appendChild(b);
 
@@ -675,7 +704,7 @@ function updateLevelTable(scriptData) {
           document.getElementById("td0" + i + "7").innerHTML = obj.td06;
           // document.getElementById("input0" + i + j).value = obj.td06;
           // document.getElementById("td0" + i + j).innerHTML = "封鎖"
-        } else if (j == 8) {
+        } else if (j == 0) {
           b = document.getElementById("input0" + i + "8");
           b.setAttribute("type", "checkbox");
           b.setAttribute("class", "mapCheckbox");
@@ -709,31 +738,29 @@ function changeMode() {
   var isDelete = isCheckClicked.checked;
   // 變成刪除模式
   if (isDelete) {
-    for (var i = 4; i < 8; i++) {
-      var dom = document.getElementsByClassName('td0' + i);
-      for (var j = 0; j < dom.length; j++) {
-        dom[j].style.display = "none"
-      }
+    var dom = document.getElementsByClassName('td0' + 6);
+    for (var j = 0; j < dom.length; j++) {
+      dom[j].style.display = "none"
     }
-    var dom = document.getElementsByClassName('td0' + 8);
+    dom = document.getElementsByClassName('td0' + 8);
     for (var j = 0; j < dom.length; j++) {
       dom[j].style.display = "";
     }
 
     var dom = document.getElementById('changeStatus');
+    dom.style.backgroundImage = 'url("../../img/deleteUser.png")';
     dom.setAttribute("onClick", "deleteUserBtn()");
   } else {// 變成編輯模式
-    for (var i = 4; i < 8; i++) {
-      var dom = document.getElementsByClassName('td0' + i);
-      for (var j = 0; j < dom.length; j++) {
-        dom[j].style.display = ""
-      }
+    var dom = document.getElementsByClassName('td0' + 6);
+    for (var j = 0; j < dom.length; j++) {
+      dom[j].style.display = ""
     }
     var dom = document.getElementsByClassName('td0' + 8);
     for (var j = 0; j < dom.length; j++) {
       dom[j].style.display = "none";
     }
     var dom = document.getElementById('changeStatus');
+    dom.style.backgroundImage = 'url("../../img/blockade.png")';
     dom.setAttribute("onClick", "changeStatus()");
   }
 }
