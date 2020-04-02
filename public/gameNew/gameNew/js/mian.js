@@ -44,6 +44,20 @@ var codeValue;
 var xmlhttp = new XMLHttpRequest();
 var computeEndCode;
 var errMessage;
+//以下宜靜
+var SpendTime = {
+    "username": "",
+    "name": "",
+    "email": "",
+    "level": "",
+    "starNumber": 0,
+    "startplay": "",
+    "endplay": "",
+    "Totalspendtime": 0,
+}
+var getstartplaytime,getendplaytime,startTime;; // 記錄  開始闖關的時間、結束闖關的時間、startTime為記錄開始時間的變數
+//以上宜靜
+
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         codeValue = this.responseText;
@@ -246,6 +260,22 @@ function init_setup() {
 //     setup(); //resize
 // }
 function loadData() {
+    //以下宜靜
+    getstartplaytime = new Date().getTime();  //取得 開始闖關時間的毫秒
+    startTime = new Date(); // 取得 開始闖關時間
+    console.log("loadData startTime",startTime);
+    console.log("loadData getstartplay", getstartplaytime);
+    console.log("地圖",mapNum);
+    
+    $(document).ready(function() {
+        SpendTime = {
+        "username": user.username,
+        "name":user.name,
+        "email":user.email,
+        }
+    })
+    //以上宜靜
+
     var mapNumber = data;
     if (mapNumber.foggy) {
         haveFoggy = true;
@@ -602,25 +632,53 @@ function endgame() {
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
             createEndView(3, result, tc, computeEndCode);
+            SpendTime.starNumber = 3; // 宜靜
+            console.log("測試星星",3)
         }
         else if (mapwinLinit["twoStar"][0] >= tc) {
             result = "恭喜你二星! \n~差一點就有一星了!加油~";
             createEndView(2, result, tc, computeEndCode);
+            SpendTime.starNumber = 2; // 宜靜
+            console.log("測試星星",2)
         }
         else {
             result = "好可惜只有一星! \n~在檢查看看有沒有可以縮減的~";
             createEndView(1, result, tc, computeEndCode);
+            SpendTime.starNumber = 1; // 宜靜
+            console.log("測試星星",1)
         }
     }
     else {
         result = gameEndingCodeDic[gameEndingCode];
         // console.log(gameEndingCodeDic[gameEndingCode]);
         createEndView(0, result, tc, computeEndCode, errMessage);
+        SpendTime.starNumber = 0; // 宜靜
+        console.log("測試星星",0)
         // alert(gameEndingCodeDic[gameEndingCode]);
     }
-
-
     // alert(result);
+
+    //以下宜靜
+    getendplaytime = new Date().getTime(); //取得 結束闖關時間的毫秒
+    SpendTime.level = mapNum; // 取得闖關的關卡
+    console.log("測試地圖",SpendTime.level);
+    SpendTime.endplay = new Date(); //取得 結束闖關時間
+    SpendTime.startplay = startTime; // //取得 開始闖關時間
+    SpendTime.Totalspendtime = (getendplaytime - getstartplaytime) / 1000 / 60; // 分鐘
+    console.log("endgame gatstartplay", getstartplaytime);
+    console.log("endgame startplay", SpendTime.startplay);
+    console.log("endgame endplay", SpendTime.endplay);
+
+    $.ajax({
+        url: "API/createUserSpendTimeState",              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        async:false,
+        data: SpendTime,  // 將表單資料用打包起來送出去
+        success: function (res) {
+        }
+      });
+    // 以上宜靜
 }
 
 
@@ -1329,8 +1387,10 @@ function updateCanvas() {
 }
 
 function codeToCompiler(stringCode) {
+    console.log("codeCompiler startTime",startTime); //宜靜
+
     //輸出字串處理
-    challengeGameAgain();
+    // challengeGameAgain();
     createLoadingView();
     textarea_0 = document.getElementById('textarea_0');
     computeEndCode = textarea_0.value;
@@ -1929,6 +1989,21 @@ function decode_JDOODLE_api(str) {
 }
 
 function challengeGameAgain() {
+    //以下宜靜
+    getstartplaytime = new Date().getTime(); //取得 開始闖關時間的毫秒
+    startTime = new Date(); //取得 開始闖關時間
+    console.log("GameAgain startTime",startTime);
+    console.log("GameAgain getstartplay", getstartplaytime);
+    $(document).ready(function() {
+        SpendTime = {
+        "username": user.username,
+        "name":user.name,
+        "email":user.email,
+        }
+    })
+    //以上宜靜
+
+
     data = JSON.parse(JSON.stringify(Res_data));
     // loadData();
     var dx = people_init["postion"][0] * edgeToWidth, dy = people_init["postion"][1] * edgeToHeight, drotate = 360 - people_init["postion"][2] * 90;

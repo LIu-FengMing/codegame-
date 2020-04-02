@@ -239,7 +239,57 @@ passport.use(new LocalStrategy(
             User.comparePassword(password, user.password, function (err, isMatch) {
                 if (err) throw err
                 if (isMatch) {
-                    return done(null, user)
+                    //除了這個外都是登入失敗的檢查
+                    
+                    //以下宜靜      紀錄登入次數、這次登入時間、上次登入時間
+                    var updatelasttimeLogin,updatethistimeLogin,updateLogintimeLag,updateTime = [],time=0;
+                    if(user.thistimeLogin){
+                        updatelasttimeLogin = user.thistimeLogin; // 更新最後一次登入時間為上次的登入時間
+                        updatethistimeLogin = new Date(); // 更新這次的登入時間
+                        updateLogintimeLag = (updatethistimeLogin.getTime() - updatelasttimeLogin.getTime()) / 1000 / 60 ; // 更新上次與這次的登入時間差 (R值)
+
+                        updateTime = user.Logintime; // 抓取過去所有的登入時間
+                        var time = new Date();  // 記錄這次的登入時間
+                        updateTime.push(time); // 將這次登入時間記錄進所有的登入時間
+                    }else{ // 如果過去沒有登入時間跟次數，則執行以下
+                        updatethistimeLogin = new Date(); // 更新這次的登入時間
+                        updateTime = new Date(); // 更新這次的登入時間 (F值)
+                    }
+
+                    console.log("測試登入次數",user.Logintime.length);
+                    console.log("測試登入時間",updateTime);
+
+                    //updateUserLogintime 更新使用者登入次數
+                    User.updateUserLogintime(user.id, updateTime ,function (err, record) {
+                         if (err) throw err;
+                           return done(null, user)
+                    })
+
+                    console.log("測試old 最後一次登入時間",user.lasttimeLogin);
+                    console.log("測試new 最後一次登入時間",updatelasttimeLogin);
+                    //updatelasttimeLogin 更新使用者最後一次登入時間
+                    User.updateUserlasttimeLogin(user.id, updatelasttimeLogin ,function (err, record) {
+                        if (err) throw err;
+                         return done(null, user)
+                    })
+                    
+                    console.log("測試old 這次登入時間",user.thistimeLogin);
+                    console.log("測試new 這次登入時間",updatethistimeLogin);
+                    //updatethistimeLogin 更新使用者這次登入時間
+                    User.updateUserthistimeLogin(user.id, updatethistimeLogin ,function (err, record) {
+                        if (err) throw err;
+                            return done(null, user)
+                    })
+
+                    console.log("測試old R值",user.LogintimeLag);
+                    console.log("測試new R值",updateLogintimeLag);
+                    //updateLogintimeLag   更新使用者R值
+                    User.updateUserLogintimeLag(user.id, updateLogintimeLag ,function (err, record) {
+                        if (err) throw err;
+                            return done(null, user)
+                    })
+                    //以上宜靜
+                
                 } else {
                     var script = 'InvalidPassword ' + username + " " + password;
                     return done(null, false, { message: script })
