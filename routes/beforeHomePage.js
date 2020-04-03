@@ -246,7 +246,7 @@ passport.use(new LocalStrategy(
                     if(user.thistimeLogin){
                         updatelasttimeLogin = user.thistimeLogin; // 更新最後一次登入時間為上次的登入時間
                         updatethistimeLogin = new Date(); // 更新這次的登入時間
-                        updateLogintimeLag = (updatethistimeLogin.getTime() - updatelasttimeLogin.getTime()) / 1000 / 60 ; // 更新上次與這次的登入時間差 (R值)
+                        updateLogintimeLag = (updatethistimeLogin.getTime() - updatelasttimeLogin.getTime()) / 1000 / 60 / 60 ; // 更新上次與這次的登入時間差小時 (R值)
 
                         updateTime = user.Logintime; // 抓取過去所有的登入時間
                         var time = new Date();  // 記錄這次的登入時間

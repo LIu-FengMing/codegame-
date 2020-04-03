@@ -1,5 +1,6 @@
 // model/users.js
 //先載入我們要的library
+//宜靜
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 
