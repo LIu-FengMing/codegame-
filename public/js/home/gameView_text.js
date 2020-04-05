@@ -939,10 +939,7 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   closeFunc(thisDiv, thisDiv2);
-  //以下宜靜
-  console.log("重新挑戰");
-  challengeGameAgain();
-  //以上宜靜
+  challengeGameAgain(); //宜靜
   // clearButton(document.getElementById("textarea_0"));
   // restartButton(document.getElementById("textarea_0"))
 }

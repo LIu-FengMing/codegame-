@@ -892,10 +892,7 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
-  //以下宜靜
-  console.log("重新挑戰");
-  challengeGameAgain();
-  //以上宜靜
+  challengeGameAgain(); //宜靜
 }
 /*轉換程式碼*/
 function transformButton() {

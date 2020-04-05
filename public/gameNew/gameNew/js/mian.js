@@ -263,9 +263,6 @@ function loadData() {
     //以下宜靜
     getstartplaytime = new Date().getTime();  //取得 開始闖關時間的毫秒
     startTime = new Date(); // 取得 開始闖關時間
-    console.log("loadData startTime",startTime);
-    console.log("loadData getstartplay", getstartplaytime);
-    console.log("地圖",mapNum);
     
     $(document).ready(function() {
         SpendTime = {
@@ -661,13 +658,9 @@ function endgame() {
     //以下宜靜
     getendplaytime = new Date().getTime(); //取得 結束闖關時間的毫秒
     SpendTime.level = mapNum; // 取得闖關的關卡
-    console.log("測試地圖",SpendTime.level);
     SpendTime.endplay = new Date(); //取得 結束闖關時間
     SpendTime.startplay = startTime; // //取得 開始闖關時間
     SpendTime.Totalspendtime = (getendplaytime - getstartplaytime) / 1000 / 60; // 分鐘
-    console.log("endgame gatstartplay", getstartplaytime);
-    console.log("endgame startplay", SpendTime.startplay);
-    console.log("endgame endplay", SpendTime.endplay);
 
     $.ajax({
         url: "API/createUserSpendTimeState",              // 要傳送的頁面
@@ -1387,7 +1380,6 @@ function updateCanvas() {
 }
 
 function codeToCompiler(stringCode) {
-    console.log("codeCompiler startTime",startTime); //宜靜
 
     //輸出字串處理
     // challengeGameAgain();
@@ -1992,8 +1984,6 @@ function challengeGameAgain() {
     //以下宜靜
     getstartplaytime = new Date().getTime(); //取得 開始闖關時間的毫秒
     startTime = new Date(); //取得 開始闖關時間
-    console.log("GameAgain startTime",startTime);
-    console.log("GameAgain getstartplay", getstartplaytime);
     $(document).ready(function() {
         SpendTime = {
         "username": user.username,

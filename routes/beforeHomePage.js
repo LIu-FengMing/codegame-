@@ -256,33 +256,24 @@ passport.use(new LocalStrategy(
                         updateTime = new Date(); // 更新這次的登入時間 (F值)
                     }
 
-                    console.log("測試登入次數",user.Logintime.length);
-                    console.log("測試登入時間",updateTime);
-
                     //updateUserLogintime 更新使用者登入次數
                     User.updateUserLogintime(user.id, updateTime ,function (err, record) {
                          if (err) throw err;
                            return done(null, user)
                     })
 
-                    console.log("測試old 最後一次登入時間",user.lasttimeLogin);
-                    console.log("測試new 最後一次登入時間",updatelasttimeLogin);
                     //updatelasttimeLogin 更新使用者最後一次登入時間
                     User.updateUserlasttimeLogin(user.id, updatelasttimeLogin ,function (err, record) {
                         if (err) throw err;
                          return done(null, user)
                     })
                     
-                    console.log("測試old 這次登入時間",user.thistimeLogin);
-                    console.log("測試new 這次登入時間",updatethistimeLogin);
                     //updatethistimeLogin 更新使用者這次登入時間
                     User.updateUserthistimeLogin(user.id, updatethistimeLogin ,function (err, record) {
                         if (err) throw err;
                             return done(null, user)
                     })
 
-                    console.log("測試old R值",user.LogintimeLag);
-                    console.log("測試new R值",updateLogintimeLag);
                     //updateLogintimeLag   更新使用者R值
                     User.updateUserLogintimeLag(user.id, updateLogintimeLag ,function (err, record) {
                         if (err) throw err;
