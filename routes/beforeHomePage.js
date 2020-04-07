@@ -242,17 +242,12 @@ passport.use(new LocalStrategy(
                     //除了這個外都是登入失敗的檢查
                     
                     //以下宜靜      紀錄登入次數、這次登入時間、上次登入時間
-                    var updatelasttimeLogin,updatethistimeLogin,updateLogintimeLag,updateTime = [],time=0;
-                    if(user.thistimeLogin){
-                        updatelasttimeLogin = user.thistimeLogin; // 更新最後一次登入時間為上次的登入時間
-                        updatethistimeLogin = new Date(); // 更新這次的登入時間
-                        updateLogintimeLag = (updatethistimeLogin.getTime() - updatelasttimeLogin.getTime()) / 1000 / 60 / 60 ; // 更新上次與這次的登入時間差小時 (R值)
-
+                    var updateTime = [],time=0;
+                    if(user.Logintime){
                         updateTime = user.Logintime; // 抓取過去所有的登入時間
                         var time = new Date();  // 記錄這次的登入時間
                         updateTime.push(time); // 將這次登入時間記錄進所有的登入時間
                     }else{ // 如果過去沒有登入時間跟次數，則執行以下
-                        updatethistimeLogin = new Date(); // 更新這次的登入時間
                         updateTime = new Date(); // 更新這次的登入時間 (F值)
                     }
 
@@ -260,24 +255,6 @@ passport.use(new LocalStrategy(
                     User.updateUserLogintime(user.id, updateTime ,function (err, record) {
                          if (err) throw err;
                            return done(null, user)
-                    })
-
-                    //updatelasttimeLogin 更新使用者最後一次登入時間
-                    User.updateUserlasttimeLogin(user.id, updatelasttimeLogin ,function (err, record) {
-                        if (err) throw err;
-                         return done(null, user)
-                    })
-                    
-                    //updatethistimeLogin 更新使用者這次登入時間
-                    User.updateUserthistimeLogin(user.id, updatethistimeLogin ,function (err, record) {
-                        if (err) throw err;
-                            return done(null, user)
-                    })
-
-                    //updateLogintimeLag   更新使用者R值
-                    User.updateUserLogintimeLag(user.id, updateLogintimeLag ,function (err, record) {
-                        if (err) throw err;
-                            return done(null, user)
                     })
                     //以上宜靜
                 
