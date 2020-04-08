@@ -886,11 +886,7 @@ function clearButton(thisTextarea) {
 }
 /*重新開始*/
 function restartButton(thisTextarea) {
-<<<<<<< HEAD
   // challengeGameAgain(); //宜靜
-=======
-  //challengeGameAgain(); //宜靜
->>>>>>> 1802bc0b0ced3ad01e0329ec258b0b5dd066f1d7
   myFunction();
 }
 /*重新開始*/

@@ -254,11 +254,7 @@ function changeToC(isDisplay) {
   if (isDisplay) {
     textareaDiv.style.display = 'block';
   } else {
-<<<<<<< HEAD
     // challengeGameAgain();  //宜靜
-=======
-    //challengeGameAgain(); //宜靜
->>>>>>> 1802bc0b0ced3ad01e0329ec258b0b5dd066f1d7
     codeToCompiler(textcode);
   }
 }
