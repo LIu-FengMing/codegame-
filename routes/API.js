@@ -7,6 +7,23 @@ var UserSpendTime = require('../models/userspendtime') //宜靜
 
 var multer = require("multer");
 
+router.post('/deleteUser', function (req, res, next) {
+    var userId = req.body.userId;
+    var username = req.body.username;
+    var name = req.body.name;
+    var email = req.body.email;
+
+    User.deleteUserById(userId,function (err) {
+        if (err) throw err;
+        UserLogin.deleteUserLoginStateById(username,name,email,function (err) {
+            if (err) throw err;
+
+            return res.json({ responce: 'sucesss' });
+        })
+
+    });
+});
+
 router.post('/createUserLoginState', function (req, res, next) {
     let date = req.body;
     if (date.username == "" || date.email == "") {

@@ -257,7 +257,11 @@ passport.use(new LocalStrategy(
                            return done(null, user)
                     })
                     //以上宜靜
+<<<<<<< HEAD
                 
+=======
+                    
+>>>>>>> 1802bc0b0ced3ad01e0329ec258b0b5dd066f1d7
                 } else {
                     var script = 'InvalidPassword ' + username + " " + password;
                     return done(null, false, { message: script })

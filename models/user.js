@@ -178,9 +178,19 @@ module.exports.updatefinishMapNumById = function (id, finishMapNum, callback) {
         finishMapNum: finishMapNum
     }
     User.updateOne(query, setquery, callback);
-
 }
 
+module.exports.deleteUserById = function (id, callback) {
+    var query = { _id: id };
+    
+    User.deleteOne(query, callback);
+}
+
+<<<<<<< HEAD
+}
+
+=======
+>>>>>>> 1802bc0b0ced3ad01e0329ec258b0b5dd066f1d7
 //updateUserLogintime 更新使用者登入次數  //宜靜
 module.exports.updateUserLogintime = function(id, Logintime, callback) {
     var query = {

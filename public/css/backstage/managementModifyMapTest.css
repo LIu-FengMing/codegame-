@@ -18,7 +18,7 @@
   position: absolute;
   bottom: 10%;
   left: 5%;
-  background-color: #FFF2CC;
+  background-color: #FFC777;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
@@ -119,7 +119,7 @@
   width: 25%;
   height: 60%;
   font-size: calc(15px + 10%);
-  background: #FFF2CC;
+  background: #FFC777;
   border: black solid;
   position: absolute;
   top: 60%;
@@ -167,7 +167,7 @@
   margin: 5px auto;
 }
 #setElementTable input[type = "number"]{
-  background: #FFF2CC;
+  background: #FFC777;
 }
 #confirmBtn{
   height: 3vh;
@@ -263,7 +263,7 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 #userDataView{
   z-index: 4;
@@ -1010,7 +1010,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /*變換小幫手模式視窗*/

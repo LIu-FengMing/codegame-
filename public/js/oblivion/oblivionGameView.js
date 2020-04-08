@@ -72,7 +72,7 @@ $.ajax({
   success: function (res) {
     // console.log(res);
     user = res;
-    
+
     if(user.username == "NKUSTCCEA"||user.username == "teacher"){
       forManagement();
     }
@@ -916,9 +916,9 @@ function blocklyUsable(thisClassID, thisValue) {
       blockType = "turnLeft(&nbsp)<br>";
       b.setAttribute("onclick", "insertAtCursor('turnLeft();');");
       break;
-    case "fire":
-      blockType = "fire(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('fire();');");
+    case "launchMissile":
+      blockType = "launchMissile(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('launchMissile();');");
       break;
     case "printf":
       blockType = "printf(&nbsp)<br>";
@@ -1653,7 +1653,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             }
           ]
         },
@@ -1697,7 +1697,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             }
           ]
         },
@@ -1741,7 +1741,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             }
           ]
         },
@@ -1791,7 +1791,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             }
           ]
         },
@@ -1841,7 +1841,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -1894,7 +1894,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -1947,7 +1947,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2000,7 +2000,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2053,7 +2053,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2106,7 +2106,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2159,7 +2159,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2212,7 +2212,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2265,7 +2265,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2318,7 +2318,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2371,7 +2371,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2433,7 +2433,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2495,7 +2495,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2557,7 +2557,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2619,7 +2619,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2681,7 +2681,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2746,7 +2746,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2814,7 +2814,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2882,7 +2882,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -2950,7 +2950,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3018,7 +3018,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3089,7 +3089,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3163,7 +3163,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3240,7 +3240,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3317,7 +3317,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3394,7 +3394,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3474,7 +3474,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3554,7 +3554,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3637,7 +3637,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3720,7 +3720,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3803,7 +3803,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3886,7 +3886,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -3969,7 +3969,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
@@ -4052,7 +4052,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "fire"
+              "value": "launchMissile"
             },
             {
               "value": "printf"
