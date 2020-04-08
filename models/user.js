@@ -26,7 +26,10 @@ var UserSchema = mongoose.Schema({
     createMap: { type: Array, "default": [] },
     finishMapNum: { type: Array, "default": []  },
     userstatus:{ type: Number, "default": 0 },
-    canCreateMapPermission:{ type: Boolean, "default": false }
+    canCreateMapPermission:{ type: Boolean, "default": false },
+    //以下宜靜
+    Logintime: { type: Array, "default": [] }
+    //以上宜靜
 })
 
 var User = module.exports = mongoose.model('User', UserSchema)
@@ -182,3 +185,14 @@ module.exports.deleteUserById = function (id, callback) {
     
     User.deleteOne(query, callback);
 }
+
+//updateUserLogintime 更新使用者登入次數  //宜靜
+module.exports.updateUserLogintime = function(id, Logintime, callback) {
+    var query = {
+      _id: id
+    }
+    var setquery = {
+        Logintime: Logintime
+    }
+    User.updateOne(query, setquery, callback);
+  }

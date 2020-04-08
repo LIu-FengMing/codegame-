@@ -239,7 +239,25 @@ passport.use(new LocalStrategy(
             User.comparePassword(password, user.password, function (err, isMatch) {
                 if (err) throw err
                 if (isMatch) {
-                    return done(null, user)
+                    //除了這個外都是登入失敗的檢查
+                    
+                    //以下宜靜      紀錄登入次數、這次登入時間、上次登入時間
+                    var updateTime = [],time=0;
+                    if(user.Logintime){
+                        updateTime = user.Logintime; // 抓取過去所有的登入時間
+                        var time = new Date();  // 記錄這次的登入時間
+                        updateTime.push(time); // 將這次登入時間記錄進所有的登入時間
+                    }else{ // 如果過去沒有登入時間跟次數，則執行以下
+                        updateTime = new Date(); // 更新這次的登入時間 (F值)
+                    }
+
+                    //updateUserLogintime 更新使用者登入次數
+                    User.updateUserLogintime(user.id, updateTime ,function (err, record) {
+                         if (err) throw err;
+                           return done(null, user)
+                    })
+                    //以上宜靜
+                    
                 } else {
                     var script = 'InvalidPassword ' + username + " " + password;
                     return done(null, false, { message: script })

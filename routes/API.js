@@ -3,6 +3,7 @@ var router = express.Router();
 
 var UserLogin = require('../models/userLogin')
 var User = require('../models/user')
+var UserSpendTime = require('../models/userspendtime') //宜靜
 
 var multer = require("multer");
 
@@ -40,6 +41,30 @@ router.post('/createUserLoginState', function (req, res, next) {
         return res.json({ responce: 'sucesss' });
     })
 });
+
+//以下宜靜
+router.post('/createUserSpendTimeState', function (req, res, next) {
+    let date = req.body;
+    if (date.username == "" || date.email == "") {
+        return res.json({ responce: 'no user data' });
+    }
+
+    var newUserSpendTimeState = new UserSpendTime({
+        username: date.username,
+        name: date.name,
+        email: date.email,
+        level: date.level,
+        starNumber: date.starNumber,
+        startplay:date.startplay,
+        endplay:date.endplay,
+        Totalspendtime:date.Totalspendtime,
+    })
+    UserSpendTime.createUserSpendTimeState(newUserSpendTimeState, function (err, userSpendTimeState) {
+        if (err) throw err;
+        return res.json({ responce: 'sucesss' });
+    })
+});
+//以上宜靜
 
 router.post('/downloadUserPlayTimes', function (req, res, next) {
     UserLogin.getAllUserLoginState(function (err, userLoginState) {

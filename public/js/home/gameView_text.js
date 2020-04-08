@@ -930,7 +930,7 @@ function closeFunc(thisDiv, thisDiv2) {
 function clearButton(thisTextarea) {
   document.getElementById(thisTextarea.id).value = "";
   clearcodeAndInit();
-  challengeGameAgain();
+  //challengeGameAgain(); //宜靜
 }
 /*清除畫布動作*/
 function restartButton(thisTextarea) {
@@ -939,6 +939,7 @@ function restartButton(thisTextarea) {
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   closeFunc(thisDiv, thisDiv2);
+  challengeGameAgain(); //宜靜
   // clearButton(document.getElementById("textarea_0"));
   // restartButton(document.getElementById("textarea_0"))
 }
@@ -1645,6 +1646,7 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
     b.setAttribute("id", "successRestartGameBtn");
     b.setAttribute("value", "重新挑戰");
     b.setAttribute("onclick", "closeFunc(\"createEndView\",\"createEndBkView\")");
+    b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")"); //宜靜
     divTag.appendChild(b);
     b = document.createElement("input");
     b.setAttribute("type", "button");

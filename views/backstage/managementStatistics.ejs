@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html  dir="ltr">
+  <!--預設由左到右-->
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/backstage/managementStatistics.css">
@@ -38,8 +39,10 @@
               <option value="playNumber">已遊玩人數</option>
               <option value="successRate">通關率</option>
               <option value="averageFailureRate">平均失敗次數</option>
+              <option value="collectedstars">平均收集星星數</option>  <!-- 宜靜 -->
             </select>
           </div>
+
           <div class="selectBarDiv">
             <table class="selectBar">
               <tr>
@@ -77,6 +80,7 @@
             <canvas class="mycanvas" id="playNumberChart" style="display:none"></canvas>
             <canvas class="mycanvas" id="successRateChart" style="display:none"></canvas>
             <canvas class="mycanvas" id="averageFailureRateChart" style="display:none"></canvas>
+            <canvas class="mycanvas" id="collectedstarsChart" style="display:none"></canvas> <!-- 宜靜 -->
           </div>
         </div>
         <div class="box sidebarRight"><!--right-->
