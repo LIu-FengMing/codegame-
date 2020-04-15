@@ -54,6 +54,9 @@
   top: 25%;
   right: 35%;
 }
+.codingTitle{
+  padding-top: 1em;
+}
 #funcDiv{
   width: 20%;
   height: 100%;
