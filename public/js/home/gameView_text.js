@@ -80,14 +80,10 @@ loadDict();
 dictionaryData={
   code: []
 }
-var scriptData = {
-  type: "loadDict"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadDict",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
   async:false,
   success: function (res) {
     // console.log(res);
@@ -96,9 +92,6 @@ $.ajax({
     }
   }
 })
-var scriptData = {
-  type: "init"
-}
 var maplevelId =  params.get('level');
 $.ajax({
   url: "loadThisLevelGameMapData",              // 要傳送的頁面
@@ -119,10 +112,9 @@ $.ajax({
 })
 
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userinit",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
   async:false,
   success: function (res) {
     myVid = document.getElementById("bkMusic");
@@ -166,15 +158,10 @@ $.ajax({
       }
     }
     /*loadmusicData();*/
-    // console.log(user);
-    var scriptData = {
-      type: "loadEquip"
-    }
     $.ajax({
-      url: href,              // 要傳送的頁面
+      url: "API/loadEquip",              // 要傳送的頁面
       method: 'POST',               // 使用 POST 方法傳送請求
       dataType: 'json',             // 回傳資料會是 json 格式
-      data: scriptData,  // 將表單資料用打包起來送出去
       async:false,
       success: function (res) {
         // console.log(res);
@@ -247,25 +234,6 @@ function logout() {
   // console.log("dddddd");
   var href = "/logout";
   window.location.replace(href);
-}
-function updateEasyTextLevel(starNum) {
-  var scriptData = {
-    type: "updateEasyTextLevel",
-    starNum: starNum
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
-    method: 'POST',               // 使用 POST 方法傳送請求
-    dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
-    success: function (res) {
-      // console.log(res);
-      if (res.err) {
-        error();
-      }
-      user = res;
-    }
-  })
 }
 //////////////////////////////////////////////////
 //              right.js                        //
@@ -1514,6 +1482,8 @@ function blocklyUsable(thisClassID, thisValue) {
 /*遊戲結果*/
 function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // 儲存關卡//
+  
+  debugger
   var empire="EasyEmpire";
   if(thisLevelNum>23){
     empire="MediumEmpire";
@@ -1553,7 +1523,6 @@ function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   divTag.appendChild(b);
   if (starNum != 0) {
     document.getElementById("endViewTitle").innerHTML = "通關成功";
-    updateEasyTextLevel(starNum);
   } else {
     document.getElementById("endViewTitle").innerHTML = "通關失敗";
   }

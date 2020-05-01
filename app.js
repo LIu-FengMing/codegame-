@@ -1,26 +1,23 @@
 // ngrok http 3000
 var createError = require('http-errors');
-var crypto = require('crypto');
 
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var flash = require('connect-flash');
-var passport = require('passport')
-var LocalStrategy = require('passport-local')
-var mongoose = require('mongoose')
-var beforeHomePageRoutes=require('./routes/beforeHomePage')
-var homeRoutes=require('./routes/home')
-var oblivionRoutes=require('./routes/oblivion')
+var passport = require('passport');
+var mongoose = require('mongoose');
+var beforeHomePageRoutes=require('./routes/beforeHomePage');
+var homeRoutes=require('./routes/home');
+var oblivionRoutes=require('./routes/oblivion');
 
-var developerRoutes=require('./routes/developer.js')
+var developerRoutes=require('./routes/developer.js');
 
-var APIRoutes=require('./routes/API')
+var APIRoutes=require('./routes/API');
 // var homRoutes=require('./routes/home')
 
 
@@ -44,8 +41,7 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

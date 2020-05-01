@@ -91,11 +91,8 @@ $.ajax({
 dictionaryData = {
   code: []
 }
-var scriptData = {
-  type: "loadDict"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadDict",           // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -112,11 +109,8 @@ equipmentData = {
   weaponLevel: [],
   armorLevel: []
 }
-var scriptData = {
-  type: "loadEquip"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadEquip",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -185,14 +179,10 @@ function weaponLevelup() {
   })
 }
 function armorLevelup() {
-  var scriptData = {
-    type: "armorLevelup",
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
+ $.ajax({
+    url: "API/armorLevelup",              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       if (res.err) {
         error();
@@ -263,11 +253,8 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
 
 
 var userMap = [];
-var scriptData = {
-  type: "userMap"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userMap",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去

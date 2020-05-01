@@ -120,23 +120,35 @@ module.exports.updateResetEquip = function (id, callback) {
     User.updateOne(query, setquery, callback);
 }
 // updatePassword, 更新武器等級
-module.exports.updateWeaponLevel = function (id, newLevel,levelUpLevel, callback) {
-    var query = { _id: id}
-
-
-    var setquery = {
-        weaponLevel: newLevel,
-        levelUpLevel:levelUpLevel
-    }
-    User.updateOne(query, setquery, callback);
+module.exports.updateWeaponLevel = function (id, callback) {
+    User.getUserById(id, function (err, user) {
+        if (err) throw err;
+        
+        var query = { _id: id}
+        var setquery = {
+            weaponLevel: parseInt(user.weaponLevel) + 1,
+            levelUpLevel: parseInt(user.levelUpLevel) + 1
+        }
+        User.updateOne(query, setquery,function (err, result) {
+            if (err) throw err;
+            User.getUserById(id, callback)
+        });
+    });
 }
 module.exports.updateArmorLevel = function (id, newLevel,levelUpLevel, callback) {
-    var query = { _id: id }
-    var setquery = {
-        armorLevel: newLevel,
-        levelUpLevel:levelUpLevel
-    }
-    User.updateOne(query, setquery, callback);
+    User.getUserById(id, function (err, user) {
+        if (err) throw err;
+        
+        var query = { _id: id}
+        var setquery = {
+            armorLevel: parseInt(user.armorLevel) + 1,
+            levelUpLevel: parseInt(user.levelUpLevel) + 1
+        }
+        User.updateOne(query, setquery,function (err, result) {
+            if (err) throw err;
+            User.getUserById(id, callback)
+        });
+    });
 }
 
 module.exports.findLevel = function (id, Level, callback) {

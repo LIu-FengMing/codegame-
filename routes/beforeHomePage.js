@@ -7,26 +7,19 @@ var User = require('../models/user')
 var SendMail = require('../models/sendMail')
 
 /* GET users listing. */
-
-
 router.get('/login', function (req, res, next) {
     req.logout()
-    var local = res.locals.error
-    var token = local.toString();
-    var token = token.split(' ')
-    // if(local.error.split(' ')[0]=="IncorrectUsername"||local.error.split(' ')[0]=="InvalidPassword"){
-    // console.log(token[0]);
+    var local = res.locals.error;
+    var token = local.toString().split(' ');
+    let loginURL = '/login?';
     if (token[0] == "IncorrectUsername" || token[0] == "InvalidPassword") {
         req.session.username = token[1];
         req.session.pass = token[2];
-        let loginURL = '/login?';
         var searchParams = new URLSearchParams({ token: token[0] });
         loginURL += searchParams.toString();
-        // console.log(loginURL);
         res.redirect(loginURL);
     }
     else if(local.toString() == "userBlocked"){
-        let loginURL = '/login?';
         var searchParams = new URLSearchParams({ token: "userBlocked" });
         loginURL += searchParams.toString();
         res.redirect(loginURL);
@@ -70,8 +63,6 @@ router.post('/register', function (req, res, next) {
     if (errors) {
         res.render('beforeHome/register', { errors: errors })
     } else {
-        //test 
-        // 
         User.getUserByUsername(username, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -83,12 +74,7 @@ router.post('/register', function (req, res, next) {
                             username: username,
                             password: password,
                             email: email,
-                            name: name,
-                            // weaponLevel:0,
-                            // armorLevel:0,
-                            // EasyEmpire:{
-                            //     HighestLevel:0
-                            // }
+                            name: name
                         })
                         User.createUser(newUser, function (err, user) {
                             if (err) throw err;
@@ -106,7 +92,6 @@ router.post('/register', function (req, res, next) {
                 return res.json({ responce: 'failRepeatName' });
             }
         })
-        // res.redirect('/login')
     }
 });
 router.get('/forgetPass', function (req, res, next) {
@@ -213,7 +198,6 @@ router.post('/changePassword', function (req, res, next) {
                 return res.json({ responce: 'failNamUndifine' });
             }
         })
-        // res.redirect('/login')
     }
 });
 
@@ -240,9 +224,8 @@ passport.use(new LocalStrategy(
                 if (err) throw err
                 if (isMatch) {
                     //除了這個外都是登入失敗的檢查
-                    
-                    //以下宜靜      紀錄登入次數、這次登入時間、上次登入時間
-                    var updateTime = [],time=0;
+                    //紀錄登入次數、這次登入時間、上次登入時間
+                    var updateTime = [];
                     if(user.Logintime){
                         updateTime = user.Logintime; // 抓取過去所有的登入時間
                         var time = new Date();  // 記錄這次的登入時間
@@ -256,7 +239,6 @@ passport.use(new LocalStrategy(
                          if (err) throw err;
                            return done(null, user)
                     })
-                    //以上宜靜
                     
                 } else {
                     var script = 'InvalidPassword ' + username + " " + password;

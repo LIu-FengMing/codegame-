@@ -518,111 +518,10 @@ function endgame() {
 
     }
     // console.log("指令個數:", counter);
-
-    // /*        fun       */
-    // var splitstr = str.substr(0, str.indexOf("main"));
-    // var numofPostive = 0, wIndex = false;
-    // for (var i = str.indexOf("main"); i < str.length; ++i) {
-    //     if (str[i] == '{') {
-    //         if (!wIndex) {
-    //             numofPostive = 1;
-    //             wIndex = true;
-    //         } else {
-    //             ++numofPostive;
-    //         }
-    //     } else if (str[i] == '}') {
-    //         --numofPostive;
-    //         if (numofPostive == 0) {
-    //             numofPostive = i;
-    //             break;
-    //         }
-    //     }
-    // }
-    // splitstr = splitstr + str.substr(numofPostive);
-    // // console.log(splitstr);
-    // /*    find funName     */
-    // temp = splitstr.split('').reverse().join('');//字串反轉 int ad(){ abc } -> }  cba { )(ad tin
-    // // console.log(temp);
-    // var funname = [];
-    // var tempStr;
-    // index = 0;
-    // while (index > -1) {
-    //     index = temp.indexOf('{');
-    //     if (index > -1) {
-    //         tempStr = temp.substr(index + 1);  // '{'.len=1
-    //         temp = tempStr;
-    //         index = temp.indexOf('(');
-    //         tempStr = temp.substr(index + 1);  // '('.len=1
-    //         temp = tempStr;
-    //         var ws = temp.split(' ');
-    //         if (ws[0] != "niam" && ws[0] != "rof") {
-    //             funname.push(ws[0].split('').reverse().join('')); //補正回來 } cba { )(cba --> abc
-    //         }
-    //         index = 0;
-    //     }
-    // }
-    // index = str.indexOf("main");
-    // tempStr = str.substr(index + 4);   // 'main'.len=4
-    // index = tempStr.indexOf("}");
-    // temp = tempStr.substr(0, index); //取main 函是裡頭的
-    // // console.log(funname);
-    // // console.log(temp);
-    // var funcounter = 0;
-    // systemCall = [];
-    // for (var i = 0; i < funname.length; ++i) {
-    //     var e0 = funname[i];
-    //     var e1 = e0 + '(';
-    //     var e2 = e1 + ')';
-    //     var e3 = e2 + ';';
-    //     systemCall.push(e0);
-    //     systemCall.push(e1);
-    //     systemCall.push(e2);
-    //     systemCall.push(e3);
-    // }
-    // var words = temp.split('\n');
-    // for (var i = 1; i < words.length; ++i) {
-    //     var wt = words[i].split(' ');
-    //     for (var wi = 0; wi < wt.length; ++wi) {
-    //         if (wt[wi].length > 1) {
-    //             for (var di = 0; di < systemCall.length; ++di) {
-    //                 var pos = wt[wi].indexOf(systemCall[di]);
-    //                 if (pos > -1) {
-    //                     if (pos > 0) {
-    //                         if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos - 1] == ',' || wt[wi][pos - 1] == ';' || wt[wi][pos - 1] == '/')) {
-    //                             console.log("outBefore :", wt[wi], " ", wt[wi][pos - 1]);
-    //                             continue;
-    //                         }
-    //                     }
-    //                     if (pos + systemCall[di].length < wt[wi].length - 1) {
-    //                         var del = systemCall[di].length;
-    //                         if (!(wt[wi][pos - 1] == '\t' || wt[wi][pos + del] == ',' || wt[wi][pos + del] == ';' || wt[wi][pos + del] == '(')) {
-    //                             // console.log("outAfter :", wt[wi], " ", wt[wi][pos + del]);
-    //                             continue;
-    //                         }
-    //                     }
-    //                     ++funcounter;
-    //                     var strTemp = wt[wi].substr(pos + systemCall[di].length);
-    //                     wt[wi] = strTemp;
-    //                     --wi;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
     var result = "";
-    // var tc = counter + funname.length + funcounter;
-    // var tc = counter + funcounter- funname.length;
-
+    
     var tc = counter - funname.length;
     if (gameEndingCode == 1) {
-
-
-        // console.log("counter:", counter);
-        // console.log("funname:", funname);
-        // console.log("funname.length:", funname.length);
-        // console.log("funcounter:", funcounter);
-        // console.log("總動作為:", tc);
 
         if (mapwinLinit["threeStar"][0] >= tc) {
             result = "拍手!恭喜你獲得三星! \n~來繼續挑戰下關吧~";
@@ -662,18 +561,7 @@ function endgame() {
         data: SpendTime,  // 將表單資料用打包起來送出去
         success: function (res) {
         }
-      });
-    // 以上宜靜
-
-    $.ajax({
-        url: "API/createUserSpendTimeState",              // 要傳送的頁面
-        method: 'POST',               // 使用 POST 方法傳送請求
-        dataType: 'json',             // 回傳資料會是 json 格式
-        async:false,
-        data: SpendTime,  // 將表單資料用打包起來送出去
-        success: function (res) {
-        }
-      });
+    });
     // 以上宜靜
 }
 

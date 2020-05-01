@@ -1,23 +1,12 @@
 var express = require('express');
 var router = express.Router();
-// var passport = require('passport')
-// var LocalStrategy = require('passport-local').Strategy
 
-// var Equipment = require('../models/equipment')
 var User = require('../models/user')
 var MapRecord = require('../models/map')
 var DictionaryRecord = require('../models/dictionary')
 var EquipmentRecord = require('../models/equipment')
 var GameMapRecord = require('../models/gameMap')
-var testDict = require('../models/dataJson/dictionaryJson')
-var testEquip = require('../models/dataJson/equipmentJson')
 
-var multer = require("multer");
-// 这里dest对应的值是你要将上传的文件存的文件夹
-var upload = multer({ dest: '../public/testImg' });
-
-var formidable = require('formidable');
-var jqupload = require('jquery-file-upload-middleware');
 var fs = require('fs');
 
 router.post('/onloadImg', function (req, res, next) {
@@ -45,389 +34,12 @@ router.get('/kuruma', ensureAuthenticated, function (req, res, next) {
         user: req.user.username
     });
 });
-router.post('/kuruma', function (req, res, next) {
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    /**更新部分 */
-    else if (type == "resetEquip") {
-        var id = req.user.id;
-        User.updateResetEquip(id, function (err, user) {
-            if (err) throw err;
-            console.log("up   :", user);
-            User.getUserById(id, function (err, user) {
-                if (err) throw err;
-                res.json(user);
-            })
-        })
-    }
-    else if (type == "userMap") {
-        MapRecord.getMapByUserID(req.user.id, function (err, map) {
-            if (err) throw err;
-            var dataMap = [];
-            for (let indexM = 0; indexM < map.length; indexM++) {
-                const element = map[indexM];
-                if (element.check == true && element.postStage == 2) {
-                    dataMap.push(element);
-                }
-
-            }
-            res.json(dataMap);
-            // console.log(req.user.id);
-            // console.log(map);
-            // res.json(map);
-        })
-    }
-    /********* */
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    else if (type == "changePassword") {
-        var id = req.user.id
-        var password = req.body.password
-        var oldPassword = req.body.oldPassword
-        // console.log(password,oldPassword);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (user) {
-                // console.log(user);
-                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
-                    if (err) throw err
-                    if (isMatch) {
-                        req.flash('success_msg', 'you are updatePass now')
-                        User.updatePassword(user.username, password, function (err, user) {
-                            if (err) throw err;
-                            // console.log("update :", user);
-                        })
-                        req.session.updatePassKey = null;
-                        return res.json({ responce: 'sucesss' });
-                    } else {
-                        return res.json({ responce: 'failPassUndifine' });
-                    }
-                })
-            } else {
-                return res.json({ responce: 'error' });
-            }
-        })
-        // res.redirect('/login')
-    }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
-    }
-    else if (type == "updateDict") {
-        var dictType = req.body.dictType
-        var dictNum = req.body.dictNum
-        var dictValue = req.body.dictValue
-        console.log(dictType, dictNum, dictValue);
-        DictionaryRecord.getDictionary(function (err, dict) {
-            if (err) throw err;
-            var typeIndex = 0;
-            for (let index = 0; index < dict.length; index++) {
-                var element = dict[index];
-                if (element.type == dictType) {
-                    element.element[dictNum].value = dictValue;
-                    typeIndex = index;
-                    break;
-                    // console.log(element);
-
-                }
-            }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
-                if (err) throw err;
-                res.json({ res: true });
-            });
-        });
-    }
-    else {
-
-    }
-
-});
 
 router.get('/pruss', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
     res.render('home/pruss', {
         user: req.user.username
     });
-});
-router.post('/pruss', function (req, res, next) {
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-    /**更新部分 */
-    else if (type == "resetEquip") {
-        var id = req.user.id;
-        User.updateResetEquip(id, function (err, user) {
-            if (err) throw err;
-            console.log("up   :", user);
-            User.getUserById(id, function (err, user) {
-                if (err) throw err;
-                res.json(user);
-            })
-        })
-    }
-    else if (type == "userMap") {
-        MapRecord.getMapByUserID(req.user.id, function (err, map) {
-            if (err) throw err;
-            var dataMap = [];
-            for (let indexM = 0; indexM < map.length; indexM++) {
-                const element = map[indexM];
-                if (element.check == true && element.postStage == 2) {
-                    dataMap.push(element);
-                }
-
-            }
-            res.json(dataMap);
-            // console.log(req.user.id);
-            // console.log(map);
-            // res.json(map);
-        })
-    }
-    /********* */
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    else if (type == "changePassword") {
-        var id = req.user.id
-        var password = req.body.password
-        var oldPassword = req.body.oldPassword
-        // console.log(password,oldPassword);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (user) {
-                // console.log(user);
-                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
-                    if (err) throw err
-                    if (isMatch) {
-                        req.flash('success_msg', 'you are updatePass now')
-                        User.updatePassword(user.username, password, function (err, user) {
-                            if (err) throw err;
-                            // console.log("update :", user);
-                        })
-                        req.session.updatePassKey = null;
-                        return res.json({ responce: 'sucesss' });
-                    } else {
-                        return res.json({ responce: 'failPassUndifine' });
-                    }
-                })
-            } else {
-                return res.json({ responce: 'error' });
-            }
-        })
-        // res.redirect('/login')
-    }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
-    }
-    else if (type == "updateDict") {
-        var dictType = req.body.dictType
-        var dictNum = req.body.dictNum
-        var dictValue = req.body.dictValue
-        console.log(dictType, dictNum, dictValue);
-        DictionaryRecord.getDictionary(function (err, dict) {
-            if (err) throw err;
-            var typeIndex = 0;
-            for (let index = 0; index < dict.length; index++) {
-                var element = dict[index];
-                if (element.type == dictType) {
-                    element.element[dictNum].value = dictValue;
-                    typeIndex = index;
-                    break;
-                    // console.log(element);
-
-                }
-            }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
-                if (err) throw err;
-                res.json({ res: true });
-            });
-        });
-    }
-    else {
-
-    }
-
 });
 
 router.get('/gameView_text', ensureAuthenticated, function (req, res, next) {
@@ -439,77 +51,8 @@ router.get('/gameView_text', ensureAuthenticated, function (req, res, next) {
 router.post('/gameView_text', function (req, res, next) {
     // Parse Info
     var type = req.body.type
-    console.log("home post--------gameView");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        bkMusicVolumn = 1;
-        bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-        musicLevel = parseInt(req.body.musicLevel);
-        if (req.session.bkMusicVolumn) {
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(scriptData);
-        }
-
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
     //-----關卡紀錄 ------
-    else if (type == "codeLevelResult" || type == "blockLevelResult") {
+    if (type == "codeLevelResult" || type == "blockLevelResult") {
         console.log("codeLevelResult");
         var id = req.user.id;
         var empire = req.body.Empire
@@ -644,61 +187,8 @@ router.post('/gameView_text', function (req, res, next) {
             }
         })
     }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
-    }
-    else if (type == "updateDict") {
-        var dictType = req.body.dictType
-        var dictNum = req.body.dictNum
-        var dictValue = req.body.dictValue
-        console.log(dictType, dictNum, dictValue);
-        DictionaryRecord.getDictionary(function (err, dict) {
-            if (err) throw err;
-            var typeIndex = 0;
-            for (let index = 0; index < dict.length; index++) {
-                var element = dict[index];
-                if (element.type == dictType) {
-                    element.element[dictNum].value = dictValue;
-                    typeIndex = index;
-                    break;
-                    // console.log(element);
-
-                }
-            }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
-                if (err) throw err;
-                res.json({ res: true });
-            });
-        });
-    }
     else {
-
     }
-
 });
 
 
@@ -711,78 +201,8 @@ router.get('/gameView_blockly', ensureAuthenticated, function (req, res, next) {
 router.post('/gameView_blockly', function (req, res, next) {
     // Parse Info
     var type = req.body.type
-    console.log("home post--------gameView");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        bkMusicVolumn = 1;
-        bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-        musicLevel = parseInt(req.body.musicLevel);
-        if (req.session.bkMusicVolumn) {
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(scriptData);
-        }
-
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    //-----暫時的 ------
     //-----關卡紀錄 ------
-    else if (type == "blockLevelResult" || type == "codeLevelResult") {
+    if (type == "blockLevelResult" || type == "codeLevelResult") {
         console.log("codeLevelResult");
         var id = req.user.id;
         var empire = req.body.Empire
@@ -914,34 +334,6 @@ router.post('/gameView_blockly', function (req, res, next) {
 
             }
         })
-    }
-    //-------------------
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
     }
     else {
 
@@ -1156,9 +548,6 @@ router.post('/managementModifyMap', function (req, res, next) {
                         })
                     })
                 }
-
-
-
             }
         })
     }
@@ -1556,29 +945,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             res.redirect('/home')
         }
 
-        /*初次一定要做 預設檔案進db*/
-        // var dictJson = testDict.dict.code;
-        // for (let index = 0; index < dictJson.length; index++) {
-        //     console.log(dictJson[index].type, dictJson[index].element);
-        //     var newDictionary = new DictionaryRecord({
-        //         type:dictJson[index].type,
-        //         element:dictJson[index].element
-        //     })
-        //     DictionaryRecord.createDictionary(newDictionary, function (err, dict) {
-
-        //         console.log(dict);
-        //     })
-        // }
-        // var equipJson = testEquip;
-        // var newEquipment = new EquipmentRecord({
-        //     levelUpLevel: equipJson.levelUpLevel,
-        //     weaponLevel:equipJson.weaponLevel,
-        //     armorLevel: equipJson.armorLevel
-        // })
-        // EquipmentRecord.createEquipment(newEquipment, function (err, dict) {
-        //     console.log(dict);
-        // })
-
         var openLokCastle = false;
         var codeLevel = -1;
         for (let index = 0; index < user.EasyEmpire.codeLevel.length; index++) {
@@ -1616,7 +982,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             lock = "castle_code";
         }
 
-
         res.render('home/homeByManage', {
             user: req.user.username,
             castlelock: lock,
@@ -1637,33 +1002,6 @@ router.post('/', function (req, res, next) {
             if (err) throw err;
             res.json(user);
         })
-    } else if (type == "loadmusicData") {
-        /*if(req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch){
-          req.session.bkMusicVolumn=arseInt(req.body.bkMusicVolumn);
-          req.session.bkMusicSwitch=parseInt(req.body.bkMusicSwitch);
-          req.session.musicLevel=parseInt(req.body.musicLevel);
-          console.log("tstt success");
-          scriptData={
-            bkMusicVolumn: req.session.bkMusicVolumn
-            ,bkMusicSwitch: req.session.bkMusicSwitch
-            ,musicLevel: req.session.musicLevel
-          }
-          res.json(JSON.stringify(scriptData));
-        }
-        else{
-          console.log("tstt nome");
-          scriptData={
-            bkMusicVolumn: 0.1
-            ,bkMusicSwitch: 1
-            ,musicLevel: 1
-          }
-          req.session.bkMusicVolumn=0.1;
-          req.session.bkMusicSwitch=1;
-          req.session.musicLevel=1;
-          res.json(JSON.stringify(scriptData));
-
-        }*/
-
     }
 
     /**更新部分 */
@@ -1690,9 +1028,6 @@ router.post('/', function (req, res, next) {
 
             }
             res.json(dataMap);
-            // console.log(req.user.id);
-            // console.log(map);
-            // res.json(map);
         })
     }
     /********* */
@@ -1700,12 +1035,8 @@ router.post('/', function (req, res, next) {
         var id = req.user.id;
         User.getUserById(id, function (err, user) {
             if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
+            var weaponLevel = parseInt(user.weaponLevel) + 1;
+            var levelUpLevel = parseInt(user.levelUpLevel);
             levelUpLevel += 1;
             User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
                 if (err) throw err;
@@ -1715,7 +1046,6 @@ router.post('/', function (req, res, next) {
                     res.json(user);
                 })
             })
-            // }
         })
     }
     else if (type == "armorLevelup") {
@@ -1874,18 +1204,6 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
         if (openLokCastle) {
             lock = "castle_code";
         }
-        console.log(JSON.stringify(req.user).toString());
-        // DictionaryRecord.getDictionary(function (err, dict) {
-        //     EquipmentRecord.getEquipment(function (err, equip) {
-        //         return res.render('home/home', {
-        //             user: req.user.username,
-        //             castlelock: lock,
-        //             player:JSON.stringify(req.user).toString(),
-        //             gameDict:JSON.stringify(dict).toString(),
-        //             gameEquip:JSON.stringify(equip[0]).toString()
-        //         });
-        //     });
-        // });
         return res.render('home/home', {
             user: req.user.username,
             castlelock: lock

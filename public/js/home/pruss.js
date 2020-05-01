@@ -51,16 +51,15 @@ function back() {
   // console.log(href);
 }
 var href = window.location.href;
-var scriptData = {
-  type: "init"
-}
 var user, equipmentData, achievemenData, dictionaryData, levelDescription, thisLevelStarNum, isBlockly = true, achievementStr;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1, bkMusicSwitch, bkMusicVolumn = 0.1, levelStage, gameSpeed;
 var musicData;
 
+var scriptData = {};
+
 createLoadingMainView("centerBlockly");
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userinit",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -80,38 +79,14 @@ $.ajax({
     xmlhttp.send();
 
     /*loadmusicData();*/
-    // console.log(user);
-    // var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.onreadystatechange = function () {
-    //   if (this.readyState == 4 && this.status == 200) {
-    //     equipmentData = JSON.parse(this.responseText);
-    //     // console.log(equipmentData);
-    //
-    //   }
-    // };
-    // xmlhttp.open("GET", "json/equipment.json", true);
-    // xmlhttp.send();
-
   }
-})
-
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function () {
-//   if (this.readyState == 4 && this.status == 200) {
-//     dictionaryData = JSON.parse(this.responseText);
-//   }
-// };
-// xmlhttp.open("GET", "json/dictionary.json", true);
-// xmlhttp.send();
+});
 
 dictionaryData = {
   code: []
 }
-var scriptData = {
-  type: "loadDict"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadDict",           // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -128,11 +103,8 @@ equipmentData = {
   weaponLevel: [],
   armorLevel: []
 }
-var scriptData = {
-  type: "loadEquip"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadEquip",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -201,14 +173,10 @@ function initHome() {
   achievementStr = achievementJudge();
 }
 function weaponLevelup() {
-  var scriptData = {
-    type: "weaponLevelup",
-  }
   $.ajax({
-    url: href,              // 要傳送的頁面
+    url: "API/weaponLevelup",              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       if (res.err) {
         error();
@@ -219,14 +187,10 @@ function weaponLevelup() {
   })
 }
 function armorLevelup() {
-  var scriptData = {
-    type: "armorLevelup",
-  }
-  $.ajax({
-    url: href,              // 要傳送的頁面
+ $.ajax({
+    url: "API/armorLevelup",              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
     success: function (res) {
       if (res.err) {
         error();
@@ -254,11 +218,8 @@ var dataTitle = ["帳&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp號：",
   "上架地圖數：",
   "已獲得星星數："];
 var userMap = [];
-var scriptData = {
-  type: "userMap"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userMap",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
   data: scriptData,  // 將表單資料用打包起來送出去
@@ -486,15 +447,11 @@ function changePass() {
   }
   else {
     var scriptData = {
-      type: "changePassword",
       oldPassword: oldPassword.value,
       password: newPassword.value,
     }
-    // console.log(scriptData);
-    // alert("wait");
-    var href = window.location.href;
     $.ajax({
-      url: href,              // 要傳送的頁面
+      url: "API/changePassword",  // 要傳送的頁面
       method: 'POST',         // 使用 POST 方法傳送請求
       dataType: 'json',       // 回傳資料會是 json 格式
       data: scriptData,       // 將表單資料用打包起來送出去
@@ -1243,11 +1200,8 @@ function equipageView(mainDiv) {
 }
 
 function resetEquipClick() {
-  var scriptData = {
-    type: "resetEquip"
-  }
   $.ajax({
-    url: href,              // 要傳送的頁面
+    url: "API/resetEquip",              // 要傳送的頁面
     method: 'POST',         // 使用 POST 方法傳送請求
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
@@ -1256,7 +1210,6 @@ function resetEquipClick() {
       swordLevel = 0;
       shieldLevel = 0;
       levelUpLevel = 0;
-      // closeFunc("equipageView","equipageBkViewv");
       closeFunc("equipageView", "equipageBkView");
       equipageView(centerBlockly);
     }

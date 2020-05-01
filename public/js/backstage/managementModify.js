@@ -155,11 +155,10 @@ function saveEquipment() {
   }
 
   var scriptData = {
-    type: "updateEquip",
     seriJson: JSON.stringify(seri)
   }
   $.ajax({
-    url: href, // 要傳送的頁面
+    url: "API/updateEquip", // 要傳送的頁面
     method: 'POST', // 使用 POST 方法傳送請求
     dataType: 'json', // 回傳資料會是 json 格式
     data: scriptData, // 將表單資料用打包起來送出去
@@ -494,13 +493,12 @@ function saveInstruction(trNumber, tdNumber) {
   var data = dictionaryData.code[parseInt((trNumber - 1) / 2)];
   data.element[tdNumber].value = transformVal;
   var scriptData = {
-    type: "updateDict",
     dictType: data.type,
     dictNum: tdNumber,
     dictValue: transformVal
   }
   $.ajax({
-    url: href, // 要傳送的頁面
+    url: "API/updateDict", // 要傳送的頁面
     method: 'POST', // 使用 POST 方法傳送請求
     dataType: 'json', // 回傳資料會是 json 格式
     data: scriptData, // 將表單資料用打包起來送出去
@@ -508,9 +506,6 @@ function saveInstruction(trNumber, tdNumber) {
       remindView("儲存成功");
     }
   })
-  // console.log(transformVal);
-  //將表格清0並重建，請在這之前做儲存資料之動作
-  //resetInstruction(trNumber,tdNumber);
 }
 
 function resetInstruction(trNumber, tdNumber) {
