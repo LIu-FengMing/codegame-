@@ -66,126 +66,8 @@ router.post('/gameView_text', function (req, res, next) {
                 srarNum: req.body.StarNum,
                 instructionNum: req.body.instructionNum
             }]
-        }
-        console.log("data:", data);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if ((MediumEmpire.HighestLevel == data.level || MediumEmpire.HighestLevel <= data.level) && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(data.level) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
-            }
-        })
+        };
+        codeLevelResult(id,empire,data,res);
     }
     else {
     }
@@ -203,7 +85,6 @@ router.post('/gameView_blockly', function (req, res, next) {
     var type = req.body.type
     //-----關卡紀錄 ------
     if (type == "blockLevelResult" || type == "codeLevelResult") {
-        console.log("codeLevelResult");
         var id = req.user.id;
         var empire = req.body.Empire
         var data = {
@@ -216,124 +97,8 @@ router.post('/gameView_blockly', function (req, res, next) {
                 srarNum: req.body.StarNum,
                 instructionNum: req.body.instructionNum
             }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
-            }
-        })
+        };
+        codeLevelResult(id,empire,data,res);
     }
     else {
 
@@ -347,438 +112,6 @@ router.get('/managementModifyMap', ensureAuthenticated, function (req, res, next
         user: req.user.username
     });
 });
-router.post('/managementModifyMap', function (req, res, next) {
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------gameView");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        bkMusicVolumn = 1;
-        bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-        musicLevel = parseInt(req.body.musicLevel);
-        if (req.session.bkMusicVolumn) {
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(scriptData);
-        }
-
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    //-----暫時的 ------
-    //-----關卡紀錄 ------
-    else if (type == "blockLevelResult" || type == "codeLevelResult") {
-        console.log("codeLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code,
-                srarNum: req.body.StarNum,
-                instructionNum: req.body.instructionNum
-            }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-        })
-    }
-    //-------------------
-    else {
-
-    }
-
-});
-
-/*以下測試檔*/
-router.get('/managementModifyMapTest', ensureAuthenticated, function (req, res, next) {
-    // console.log(req.user)
-    res.render('backstage/managementModifyMapTest', {
-        user: req.user.username
-    });
-});
-router.post('/managementModifyMapTest', function (req, res, next) {
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------gameView");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        bkMusicVolumn = 1;
-        bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-        musicLevel = parseInt(req.body.musicLevel);
-        if (req.session.bkMusicVolumn) {
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(scriptData);
-        }
-
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-
-
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    //-----暫時的 ------
-    //-----關卡紀錄 ------
-    else if (type == "blockLevelResult" || type == "codeLevelResult") {
-        console.log("codeLevelResult");
-        var id = req.user.id;
-        var empire = req.body.Empire
-        var data = {
-            level: req.body.level,
-            HighestStarNum: req.body.StarNum,
-            challengeLog: [{
-                submitTime: req.body.submitTime,
-                result: req.body.result,
-                code: req.body.code,
-                srarNum: req.body.StarNum,
-                instructionNum: req.body.instructionNum
-            }]
-        }
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (empire == "EasyEmpire") {
-                var EasyEmpire = user.EasyEmpire
-                var starChange = false, starChangeNum = 0;
-                if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
-                    EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = EasyEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
-                        starChange = true;
-                        starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
-                        EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    EasyEmpire.codeLevel.push(data);
-                }
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-            }
-            else if (empire == "MediumEmpire") {
-                var MediumEmpire = user.MediumEmpire
-                var starChange = false, starChangeNum = 0;
-                if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
-                    MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
-                    starChange = true;
-                    starChangeNum = data.HighestStarNum;
-                }
-                var codeLevel = MediumEmpire.codeLevel
-                var level = false, levelnum = 0;
-                for (var i = 0; i < codeLevel.length; i++) {
-                    if (codeLevel[i].level == data.level) {
-                        level = true;
-                        levelnum = i;
-                        break;
-                    }
-                }
-                if (level) {
-                    if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
-                        starChange = true;
-                        starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
-                        MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
-
-                    }
-                    MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
-                }
-                else {
-                    MediumEmpire.codeLevel.push(data);
-                }
-                console.log(MediumEmpire);
-                if (starChange) {
-                    var starNum = user.starNum;
-                    starNum = parseInt(starNum) + parseInt(starChangeNum);
-                    User.updateStarNumById(id, starNum, function (err, level) {
-                        if (err) throw err;
-                        User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                            if (err) throw err;
-                            User.getUserById(id, function (err, user) {
-                                if (err) throw err;
-                                res.json(user);
-
-                            })
-                        })
-                    })
-                }
-                else {
-                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
-                        if (err) throw err;
-                        User.getUserById(id, function (err, user) {
-                            if (err) throw err;
-                            res.json(user);
-
-                        })
-                    })
-                }
-
-
-
-            }
-        })
-    }
-    //-------------------
-    else {
-
-    }
-
-});
-/*到此結束*/
 
 router.get('/managementUser', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
@@ -791,19 +124,8 @@ router.get('/managementUser', ensureAuthenticated, function (req, res, next) {
 });
 router.post('/managementUser', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "LoadUser") {
+    var type = req.body.type;
+    if (type == "LoadUser") {
         User.getUser(req.user.id, function (err, users) {
             if (err) throw err;
             res.json(users);
@@ -829,50 +151,6 @@ router.get('/management', ensureAuthenticated, function (req, res, next) {
         user: req.user.username
     });
 });
-router.post('/management', function (req, res, next) {
-    // Parse Info
-
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-
-});
 
 router.get('/managementStatistics', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
@@ -885,46 +163,8 @@ router.get('/managementStatistics', ensureAuthenticated, function (req, res, nex
 });
 router.post('/managementStatistics', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-    else if (type == "readAllPlay") {
+    var type = req.body.type;
+    if (type == "readAllPlay") {
         User.getUser(req.user.id, function (err, users) {
             if (err) throw err;
             res.json(users);
@@ -988,177 +228,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         });
     })
 });
-router.post('/', function (req, res, next) {
-    console.log(req.body);
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-
-    /**更新部分 */
-    else if (type == "resetEquip") {
-        var id = req.user.id;
-        User.updateResetEquip(id, function (err, user) {
-            if (err) throw err;
-            console.log("up   :", user);
-            User.getUserById(id, function (err, user) {
-                if (err) throw err;
-                res.json(user);
-            })
-        })
-    }
-    else if (type == "userMap") {
-        MapRecord.getMapByUserID(req.user.id, function (err, map) {
-            if (err) throw err;
-            var dataMap = [];
-            for (let indexM = 0; indexM < map.length; indexM++) {
-                const element = map[indexM];
-                if (element.check == true && element.postStage == 2) {
-                    dataMap.push(element);
-                }
-
-            }
-            res.json(dataMap);
-        })
-    }
-    /********* */
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1;
-            var levelUpLevel = parseInt(user.levelUpLevel);
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    //-----暫時的 ------
-
-    else if (type == "changePassword") {
-        var id = req.user.id
-        var password = req.body.password
-        var oldPassword = req.body.oldPassword
-        // console.log(password,oldPassword);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (user) {
-                // console.log(user);
-                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
-                    if (err) throw err
-                    if (isMatch) {
-                        req.flash('success_msg', 'you are updatePass now')
-                        User.updatePassword(user.username, password, function (err, user) {
-                            if (err) throw err;
-                            // console.log("update :", user);
-                        })
-                        req.session.updatePassKey = null;
-                        return res.json({ responce: 'sucesss' });
-                    } else {
-                        return res.json({ responce: 'failPassUndifine' });
-                    }
-                })
-            } else {
-                return res.json({ responce: 'error' });
-            }
-        })
-        // res.redirect('/login')
-    }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
-    }
-    else if (type == "updateDict") {
-        var dictType = req.body.dictType
-        var dictNum = req.body.dictNum
-        var dictValue = req.body.dictValue
-        console.log(dictType, dictNum, dictValue);
-        DictionaryRecord.getDictionary(function (err, dict) {
-            if (err) throw err;
-            var typeIndex = 0;
-            for (let index = 0; index < dict.length; index++) {
-                var element = dict[index];
-                if (element.type == dictType) {
-                    element.element[dictNum].value = dictValue;
-                    typeIndex = index;
-                    break;
-                    // console.log(element);
-
-                }
-            }
-            DictionaryRecord.updateDictionaryByType(dict[typeIndex].type, dict[typeIndex].element, function (err, dictResult) {
-                if (err) throw err;
-                res.json({ res: true });
-            });
-        });
-    }
-    //-------------------
-    else {
-
-    }
-
-});
 
 router.get('/home', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
@@ -1210,188 +279,6 @@ router.get('/home', ensureAuthenticated, function (req, res, next) {
         });
     })
 });
-router.post('/home', function (req, res, next) {
-    console.log(req.body);
-    // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        /*if(req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch){
-          req.session.bkMusicVolumn=arseInt(req.body.bkMusicVolumn);
-          req.session.bkMusicSwitch=parseInt(req.body.bkMusicSwitch);
-          req.session.musicLevel=parseInt(req.body.musicLevel);
-          console.log("tstt success");
-          scriptData={
-            bkMusicVolumn: req.session.bkMusicVolumn
-            ,bkMusicSwitch: req.session.bkMusicSwitch
-            ,musicLevel: req.session.musicLevel
-          }
-          res.json(JSON.stringify(scriptData));
-        }
-        else{
-          console.log("tstt nome");
-          scriptData={
-            bkMusicVolumn: 0.1
-            ,bkMusicSwitch: 1
-            ,musicLevel: 1
-          }
-          req.session.bkMusicVolumn=0.1;
-          req.session.bkMusicSwitch=1;
-          req.session.musicLevel=1;
-          res.json(JSON.stringify(scriptData));
-
-        }*/
-
-    }
-
-    /**更新部分 */
-    else if (type == "resetEquip") {
-        var id = req.user.id;
-        User.updateResetEquip(id, function (err, user) {
-            if (err) throw err;
-            console.log("up   :", user);
-            User.getUserById(id, function (err, user) {
-                if (err) throw err;
-                res.json(user);
-            })
-        })
-    }
-    else if (type == "userMap") {
-        MapRecord.getMapByUserID(req.user.id, function (err, map) {
-            if (err) throw err;
-            var dataMap = [];
-            for (let indexM = 0; indexM < map.length; indexM++) {
-                const element = map[indexM];
-                if (element.check == true && element.postStage == 2) {
-                    dataMap.push(element);
-                }
-
-            }
-            res.json(dataMap);
-            // console.log(req.user.id);
-            // console.log(map);
-            // res.json(map);
-        })
-    }
-    /********* */
-    else if (type == "weaponLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var weaponLevel = parseInt(user.weaponLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateWeaponLevel(id, weaponLevel, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    else if (type == "armorLevelup") {
-        var id = req.user.id;
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            var armorLevelup = parseInt(user.armorLevel) + 1
-            var levelUpLevel = parseInt(user.levelUpLevel)
-            // if (Equipment.levelUpLevel[levelUpLevel].star > user.starNum) {
-            //     res.json({ err: "error" });
-            // }
-            // else {
-            levelUpLevel += 1;
-            User.updateArmorLevel(id, armorLevelup, levelUpLevel, function (err, user) {
-                if (err) throw err;
-                // console.log("up   :", user);
-                User.getUserById(id, function (err, user) {
-                    if (err) throw err;
-                    res.json(user);
-                })
-            })
-            // }
-        })
-    }
-    //-----暫時的 ------
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            returnData = dict.sort(function (a, b) {
-                return a.level > b.level ? 1 : -1;
-            });
-            res.json(returnData);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-        });
-    }
-    else if (type == "updateEquip") {
-        var seriJson = JSON.parse(req.body.seriJson)
-        var armorLevel = seriJson.armorLevel;
-        var weaponLevel = seriJson.weaponLevel;
-        var levelUpLevel = seriJson.levelUpLevel;
-        // console.log(seriJson);
-        // console.log(armorLevel,weaponLevel,levelUpLevel);
-        EquipmentRecord.updateEquipment(armorLevel, weaponLevel, levelUpLevel, function (err, dictResult) {
-            if (err) throw err;
-            res.json({ res: true });
-        });
-    }
-    else if (type == "changePassword") {
-        var id = req.user.id
-        var password = req.body.password
-        var oldPassword = req.body.oldPassword
-        // console.log(password,oldPassword);
-
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            if (user) {
-                // console.log(user);
-                User.comparePassword(oldPassword, user.password, function (err, isMatch) {
-                    if (err) throw err
-                    if (isMatch) {
-                        req.flash('success_msg', 'you are updatePass now')
-                        User.updatePassword(user.username, password, function (err, user) {
-                            if (err) throw err;
-                            // console.log("update :", user);
-                        })
-                        req.session.updatePassKey = null;
-                        return res.json({ responce: 'sucesss' });
-                    } else {
-                        return res.json({ responce: 'failPassUndifine' });
-                    }
-                })
-            } else {
-                return res.json({ responce: 'error' });
-            }
-        })
-        // res.redirect('/login')
-    }
-
-    //-------------------
-    else {
-
-    }
-
-});
-
 
 router.get('/logout', function (req, res, next) {
     req.logout()
@@ -1547,4 +434,119 @@ function ensureAuthenticated(req, res, next) {
         req.flash('error_msg', 'you are not logged in')
         res.redirect('/login')
     }
+}
+
+function codeLevelResult(id,empire,data,res){
+    User.getUserById(id, function (err, user) {
+        if (err) throw err;
+        if (empire == "EasyEmpire") {
+            var EasyEmpire = user.EasyEmpire
+            var starChange = false, starChangeNum = 0;
+            if (EasyEmpire.codeHighestLevel == data.level && data.HighestStarNum > 0) {
+                EasyEmpire.codeHighestLevel = parseInt(EasyEmpire.codeHighestLevel) + 1;
+                starChange = true;
+                starChangeNum = data.HighestStarNum;
+            }
+            var codeLevel = EasyEmpire.codeLevel
+            var level = false, levelnum = 0;
+            for (var i = 0; i < codeLevel.length; i++) {
+                if (codeLevel[i].level == data.level) {
+                    level = true;
+                    levelnum = i;
+                    break;
+                }
+            }
+            if (level) {
+                if (codeLevel[levelnum].HighestStarNum < data.HighestStarNum) {
+                    starChange = true;
+                    starChangeNum = data.HighestStarNum - EasyEmpire.codeLevel[levelnum].HighestStarNum;
+                    EasyEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
+
+                }
+                EasyEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
+            }
+            else {
+                EasyEmpire.codeLevel.push(data);
+            }
+            if (starChange) {
+                var starNum = user.starNum;
+                starNum = parseInt(starNum) + parseInt(starChangeNum);
+                User.updateStarNumById(id, starNum, function (err, level) {
+                    if (err) throw err;
+                    User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
+                        if (err) throw err;
+                        User.getUserById(id, function (err, user) {
+                            if (err) throw err;
+                            res.json(user);
+
+                        })
+                    })
+                })
+            }
+            else {
+                User.updateEasyEmpireById(id, EasyEmpire, function (err, level) {
+                    if (err) throw err;
+                    User.getUserById(id, function (err, user) {
+                        if (err) throw err;
+                        res.json(user);
+
+                    })
+                })
+            }
+        }
+        else if (empire == "MediumEmpire") {
+            var MediumEmpire = user.MediumEmpire
+            var starChange = false, starChangeNum = 0;
+            if (MediumEmpire.HighestLevel == data.level && data.HighestStarNum > 0) {
+                MediumEmpire.HighestLevel = parseInt(MediumEmpire.HighestLevel) + 1;
+                starChange = true;
+                starChangeNum = data.HighestStarNum;
+            }
+            var codeLevel = MediumEmpire.codeLevel
+            var level = false, levelnum = 0;
+            for (var i = 0; i < codeLevel.length; i++) {
+                if (codeLevel[i].level == data.level) {
+                    level = true;
+                    levelnum = i;
+                    break;
+                }
+            }
+            if (level) {
+                if (parseInt(codeLevel[levelnum].HighestStarNum) < parseInt(data.HighestStarNum)) {
+                    starChange = true;
+                    starChangeNum = parseInt(data.HighestStarNum) - parseInt(MediumEmpire.codeLevel[levelnum].HighestStarNum);
+                    MediumEmpire.codeLevel[levelnum].HighestStarNum = data.HighestStarNum;
+                }
+                MediumEmpire.codeLevel[levelnum].challengeLog.push(data.challengeLog[0]);
+            }
+            else {
+                MediumEmpire.codeLevel.push(data);
+            }
+            if (starChange) {
+                var starNum = user.starNum;
+                starNum = parseInt(starNum) + parseInt(starChangeNum);
+                User.updateStarNumById(id, starNum, function (err, level) {
+                    if (err) throw err;
+                    User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
+                        if (err) throw err;
+                        User.getUserById(id, function (err, user) {
+                            if (err) throw err;
+                            res.json(user);
+
+                        })
+                    })
+                })
+            }
+            else {
+                User.updateMediumEmpireById(id, MediumEmpire, function (err, level) {
+                    if (err) throw err;
+                    User.getUserById(id, function (err, user) {
+                        if (err) throw err;
+                        res.json(user);
+
+                    })
+                })
+            }
+        }
+    })
 }

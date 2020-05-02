@@ -58,7 +58,6 @@ router.post('/loadDict', function (req, res, next) {
 router.post('/loadEquip', function (req, res, next) {
     EquipmentRecord.getEquipment(function (err, equip) {
         res.json(equip[0]);
-
     });
 });
 

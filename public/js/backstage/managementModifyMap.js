@@ -58,9 +58,6 @@ var swordLevel = 0,
     bkMusicSwitch, bkMusicVolumn = 0.1,
     args, gameSpeed, gameNumber;
 var musicData;
-var scriptData = {
-  type: "init"
-}
 var nowMapData, allMapData;
 var mapInformation, elementNumber = 0,
     createNewElementTop = 0,
@@ -81,11 +78,13 @@ function loadGameMap() {
     }
   })
 }
+
+var scriptData = {};
+
 $.ajax({
-  url: href, // 要傳送的頁面
+  url: "API/userinit", // 要傳送的頁面
   method: 'POST', // 使用 POST 方法傳送請求
   dataType: 'json', // 回傳資料會是 json 格式
-  data: scriptData, // 將表單資料用打包起來送出去
   success: function(res) {
     user = res;
     var xmlhttp = new XMLHttpRequest();
