@@ -88,35 +88,16 @@ mainDescription = {
     }
   ]
 };
-var scriptData = {
-  type: "init"
-}
+var scriptData = {};
 
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userinit",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
   async:false,
   success: function (res) {
-    // console.log(res);
     user = res;
-    /*loadmusicData();*/
-    // console.log(user);
     initHome();
-    // var scriptData = {
-    //   type: "loadEquip"
-    // }
-    // $.ajax({
-    //   url: href,              // 要傳送的頁面
-    //   method: 'POST',               // 使用 POST 方法傳送請求
-    //   dataType: 'json',             // 回傳資料會是 json 格式
-    //   data: scriptData,  // 將表單資料用打包起來送出去
-    //   success: function (res) {
-    //     // console.log(res);
-    //     equipmentData = res;
-    //   }
-    // })
 
   }
 })
@@ -847,15 +828,6 @@ function sendLoadUsernameMap() {
         if (playF == false) {
           playMap.push(0);
         }
-        // var findLike = user.finishMapNum.find(function (item, index, array) {
-        //   return item.mapID == res._id;  // 取得陣列 like === '蘿蔔泥'
-        // });
-        // if (findLike) {
-        //   playMap.push(1);
-        // }
-        // else {
-        //   playMap.push(0);
-        // }
         var obj = res[index], check = "X";
         if (obj.check) {
           check = "✔";

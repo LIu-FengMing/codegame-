@@ -43,46 +43,38 @@ var href = window.location.href;
 var user,equipmentData,achievemenData,dictionaryData,isSelectFunc = false;
 var swordLevel = 0, shieldLevel = 0, levelUpLevel = 0, musicLevel = 1,bkMusicSwitch,bkMusicVolumn = 0.1,args,gameSpeed;
 var musicData,indentationTimes=1;
-var scriptData = {
-    type: "init"
-}
 function back() {
-var index = 0;
-var href = window.location.href;
-for (var i = 0; i < href.length; ++i) {
-  if (href[i] == '/' || href[i] == "\\") {
-      index = i;
+  var index = 0;
+  var href = window.location.href;
+  for (var i = 0; i < href.length; ++i) {
+    if (href[i] == '/' || href[i] == "\\") {
+        index = i;
+    }
   }
-}
-href = href.substr(0, index + 1);
-href+="oblivionUser";
-window.location.replace(href);
-// console.log(href);
+  href = href.substr(0, index + 1);
+  href+="oblivionUser";
+  window.location.replace(href);
+  // console.log(href);
 }
 
+var scriptData = {};
 
 createLoadingMainView("center");
 loadDict();
 $.ajax({
-    url: href,              // 要傳送的頁面
+    url: "API/userinit",              // 要傳送的頁面
     method: 'POST',               // 使用 POST 方法傳送請求
     dataType: 'json',             // 回傳資料會是 json 格式
-    data: scriptData,  // 將表單資料用打包起來送出去
     async:false,
     success: function (res) {
       // console.log(res);
       user = res;
 
       /*loadmusicData();*/
-      // console.log(user);
-      var scriptData = {
-        type: "loadEquip"
-      }
       $.ajax({
-        url: href,              // 要傳送的頁面
+        url: "API/loadEquip",              // 要傳送的頁面
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
-        data: scriptData,  // 將表單資料用打包起來送出去
         async:false,
         success: function (res) {
           // console.log(res);
@@ -93,22 +85,10 @@ $.ajax({
   }
 })
 
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function () {
-//   if (this.readyState == 4 && this.status == 200) {
-//     dictionaryData = JSON.parse(this.responseText);
-//   }
-// };
-// xmlhttp.open("GET", "json/dictionary.json", true);
-// xmlhttp.send();
-var scriptData = {
-  type: "loadDict"
-}
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/loadDict",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
   async:false,
   success: function (res) {
     // console.log(res);
@@ -179,21 +159,7 @@ function getMapDescription(thisDescription) {
   mapMessage = thisDescription;
   helper("blocklyDiv");
 }
-//---------紀錄地圖資訊---------//
-function recordLevel(scriptData) {
-    var NowDate = new Date();
-    scriptData.submitTime = NowDate
-    $.ajax({
-        url: href,              // 要傳送的頁面
-        method: 'POST',               // 使用 POST 方法傳送請求
-        dataType: 'json',             // 回傳資料會是 json 格式
-        data: scriptData,  // 將表單資料用打包起來送出去
-        success: function (res) {
-            user = res
-            // console.log(user);
-        }
-    })
-}
+
 function logout() {
     // console.log("dddddd");
     var href = "/logout";

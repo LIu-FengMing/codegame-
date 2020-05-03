@@ -59,15 +59,12 @@ var userMap;
 
 createLoadingMainView("centerLost");
 createMainDescription() ;
-var scriptData = {
-  type: "init"
-}
+var scriptData = {};
 
 $.ajax({
-  url: href,              // 要傳送的頁面
+  url: "API/userinit",              // 要傳送的頁面
   method: 'POST',               // 使用 POST 方法傳送請求
   dataType: 'json',             // 回傳資料會是 json 格式
-  data: scriptData,  // 將表單資料用打包起來送出去
   async: false,
   success: function (res) {
     // console.log(res);

@@ -8,9 +8,6 @@ var User = require('../models/user')
 var MapRecord = require('../models/map')
 var DictionaryRecord = require('../models/dictionary')
 var EquipmentRecord = require('../models/equipment')
-var GameMapRecord = require('../models/gameMap')
-var testDict = require('../models/dataJson/dictionaryJson')
-var testEquip = require('../models/dataJson/equipmentJson')
 router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
     var canCreateMapPermission = false;
@@ -25,45 +22,8 @@ router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
 });
 router.post('/oblivion', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    } else if (type == "LoadMap") {
+    var type = req.body.type;
+    if (type == "LoadMap") {
         var id = req.user.id;
         MapRecord.getMap(id, function (err, map) {
             if (err) throw err;
@@ -100,25 +60,9 @@ router.post('/oblivion', function (req, res, next) {
 
         })
     }
-    //-----暫時的 ------
-    //-----關卡紀錄 ------
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    //-------------------
     else {
 
     }
-
 });
 
 router.get('/oblivionUser', ensureAuthenticated, function (req, res, next) {
@@ -132,47 +76,8 @@ router.get('/oblivionUser', ensureAuthenticated, function (req, res, next) {
 });
 router.post('/oblivionUser', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    }
-    else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-    else if (type == "LoadUsernameMap") {
+    var type = req.body.type;
+    if (type == "LoadUsernameMap") {
         MapRecord.getMapByUserID(req.user.id, function (err, map) {
             if (err) throw err;
             var update = []
@@ -233,18 +138,6 @@ router.post('/oblivionUser', function (req, res, next) {
             res.json(map);
         })
     }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
     //------------------- 
     else {
 
@@ -260,55 +153,15 @@ router.get('/oblivionGameView', ensureAuthenticated, function (req, res, next) {
 });
 router.post('/oblivionGameView', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-
+    var type = req.body.type;
     //-----關卡紀錄 ------
-    else if (type == "loadMap") {
+    if (type == "loadMap") {
         var id = req.body.mapId;
         MapRecord.getMapById(id, function (err, map) {
             if (err) throw err;
             // console.log(map);
             return res.json(map);
-        })
-
+        });
     }
     else if (type == "sendEvaluation") {
         var id = req.body.mapId;
@@ -409,24 +262,7 @@ router.post('/oblivionGameView', function (req, res, next) {
                 })
             }
         })
-
-
-
-
     }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
-    //-------------------
     else {
 
     }
@@ -441,47 +277,8 @@ router.get('/oblivionDetectionView', ensureAuthenticated, function (req, res, ne
 });
 router.post('/oblivionDetectionView', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-    //-----關卡紀錄 ------
-    else if (type == "loadMap") {
+    var type = req.body.type;
+    if (type == "loadMap") {
         var id = req.body.mapId;
         MapRecord.getMapById(id, function (err, map) {
             if (err) throw err;
@@ -499,18 +296,6 @@ router.post('/oblivionDetectionView', function (req, res, next) {
         })
 
     }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
-    }
     //-------------------
     else {
 
@@ -526,46 +311,8 @@ router.get('/oblivionCreater', ensureAuthenticated, function (req, res, next) {
 });
 router.post('/oblivionCreater', function (req, res, next) {
     // Parse Info
-    var type = req.body.type
-    console.log("home post--------");
-    console.log(req.body.type);
-    console.log("--------------");
-    if (type == "init") {
-        var id = req.user.id;
-        // console.log(req.user.id);
-        User.getUserById(id, function (err, user) {
-            if (err) throw err;
-            res.json(user);
-        })
-    } else if (type == "loadmusicData") {
-        if (req.session.bkMusicVolumn && req.session.musicLevel && req.session.bkMusicSwitch) {
-            req.session.bkMusicVolumn = arseInt(req.body.bkMusicVolumn);
-            req.session.bkMusicSwitch = parseInt(req.body.bkMusicSwitch);
-            req.session.musicLevel = parseInt(req.body.musicLevel);
-            console.log("tstt success");
-            scriptData = {
-                bkMusicVolumn: req.session.bkMusicVolumn
-                , bkMusicSwitch: req.session.bkMusicSwitch
-                , musicLevel: req.session.musicLevel
-            }
-            res.json(JSON.stringify(scriptData));
-        }
-        else {
-            console.log("tstt nome");
-            scriptData = {
-                bkMusicVolumn: 0.1
-                , bkMusicSwitch: 1
-                , musicLevel: 1
-            }
-            req.session.bkMusicVolumn = 0.1;
-            req.session.bkMusicSwitch = 1;
-            req.session.musicLevel = 1;
-            res.json(scriptData);
-
-        }
-
-    }
-    else if (type == "loadMap") {
+    var type = req.body.type;
+    if (type == "loadMap") {
         var id = req.body.mapId;
         MapRecord.getMapById(id, function (err, map) {
             if (err) throw err;
@@ -618,10 +365,6 @@ router.post('/oblivionCreater', function (req, res, next) {
     }
     else if (type == "createMap") {
         var data = new Date();
-        // var year = data.getFullYear();
-        // var month = data.getMonth() + 1;
-        // var day = data.getUTCDate() + 1;
-        // var createDate = year.toString() + "/" + month.toString() + "/" + day.toString();
 
         var scriptData = {
             username: req.body.username,
@@ -649,18 +392,6 @@ router.post('/oblivionCreater', function (req, res, next) {
             // console.log(map);
             return res.json(map);
         })
-    }
-    else if (type == "loadDict") {
-        DictionaryRecord.getDictionary(function (err, dict) {
-            res.json(dict);
-
-        });
-    }
-    else if (type == "loadEquip") {
-        EquipmentRecord.getEquipment(function (err, equip) {
-            res.json(equip[0]);
-
-        });
     }
     else {
         console.log("ERROR:", type);
