@@ -28,7 +28,11 @@ var UserSchema = mongoose.Schema({
     userstatus:{ type: Number, "default": 0 },
     canCreateMapPermission:{ type: Boolean, "default": false },
     //以下宜靜
-    Logintime: { type: Array, "default": [] }
+    Logintime: { type: Array, "default": [] },
+    Rscore: { type: Number, "default": 0},
+    Fscore: {type: Number, "default": 0},
+    Mscore: { type: Number, "default": 0},
+    Pscore: { type: Number, "default": 0},
     //以上宜靜
 })
 
@@ -186,7 +190,8 @@ module.exports.deleteUserById = function (id, callback) {
     User.deleteOne(query, callback);
 }
 
-//updateUserLogintime 更新使用者登入次數  //宜靜
+//以下宜靜
+//updateUserLogintime 更新使用者登入次數
 module.exports.updateUserLogintime = function(id, Logintime, callback) {
     var query = {
       _id: id
@@ -196,3 +201,49 @@ module.exports.updateUserLogintime = function(id, Logintime, callback) {
     }
     User.updateOne(query, setquery, callback);
   }
+
+//updateRscore 更新R的評分值
+module.exports.updateRscore = function(id, Rscore, callback) {
+    var query = {
+      _id: id
+    }
+    var setquery = {
+        Rscore: Rscore
+    }
+    User.updateOne(query, setquery, callback);
+}
+
+//updateFscore 更新F的評分值
+module.exports.updateFscore = function(id, Fscore, callback) {
+    var query = {
+      _id: id
+    }
+    var setquery = {
+        Fscore: Fscore
+    }
+    User.updateOne(query, setquery, callback);
+}
+
+//updateMscore 更新M的評分值
+module.exports.updateMscore = function(id, Mscore, callback) {
+    var query = {
+      _id: id
+    }
+    var setquery = {
+        Mscore: Mscore
+    }
+    User.updateOne(query, setquery, callback);
+}
+
+//updatePscore 更新P的評分值
+module.exports.updatePscore = function(id, Pscore, callback) {
+    var query = {
+      _id: id
+    }
+    var setquery = {
+        Pscore: Pscore
+    }
+    User.updateOne(query, setquery, callback);
+}
+
+//以上宜靜
