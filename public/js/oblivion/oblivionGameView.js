@@ -404,6 +404,17 @@ function myFunction(thisTextarea) {
 function instructionView(mainDiv) {
   divID = "instructionView";
   divID2 = "equipageBkView";
+  try {
+    divTag = document.getElementById("settingAllView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("instructionView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("equipageBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
