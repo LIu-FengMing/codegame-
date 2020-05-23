@@ -3,7 +3,6 @@ function createLoadingMainView(mainDiv) {
   divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
   b.setAttribute("id", "loadingMainBkView");
-  // b.setAttribute("onclick", "closeFunc(\"loadingMainBkView\",\"loadingMainView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "loadingMainView");

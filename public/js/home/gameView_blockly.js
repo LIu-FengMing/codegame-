@@ -1495,7 +1495,6 @@ function createLoadingView() {
   divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "loadingBkView");
-  b.setAttribute("onclick", "closeFunc(\"loadingBkView\",\"loadingView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "loadingView");
