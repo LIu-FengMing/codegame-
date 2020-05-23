@@ -192,14 +192,15 @@
   cursor: pointer;
 }
 #errTextarea{
-  height: 9vh;
-  width: 80%;
+  height: 12vh;
+  width: 90%;
   font-size: calc(10px + 0.5vw);
   border: 0px;
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
   left: 50%;
-  bottom: 18vh;
+  bottom: 17vh;
+  resize: none;
   transform: translate(-50%,0);
 }
 #backToMapBtn{
