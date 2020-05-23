@@ -1482,8 +1482,6 @@ function blocklyUsable(thisClassID, thisValue) {
 /*遊戲結果*/
 function createEndView(starNum, gameResult, instructionNum, code ,errMessage) {
   // 儲存關卡//
-
-  debugger
   var empire="EasyEmpire";
   if(thisLevelNum>23){
     empire="MediumEmpire";
