@@ -151,7 +151,7 @@ function helper(mainDiv) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   divTag = document.getElementById(mainDiv);
   b = document.createElement("div");
@@ -163,9 +163,9 @@ function helper(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -215,7 +215,7 @@ function helper(mainDiv) {
 }
 
 /*XX按鈕*/
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   try {
     parentObj = divTag.parentNode;
@@ -255,7 +255,7 @@ function userData() {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -264,9 +264,9 @@ function userData() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   createUserView(divID);
 }
@@ -354,7 +354,7 @@ function settingAllView(mainDiv) {
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "helperBkView");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "settingAllView");
@@ -363,9 +363,9 @@ function settingAllView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -891,7 +891,7 @@ function remindView(remindValue) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -915,7 +915,7 @@ function remindView(remindValue) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
 
@@ -934,7 +934,7 @@ function checkView(checkFont, checkStatus) {
   }
   b = document.createElement("div");
   b.setAttribute("id", "checkBkView");
-  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -952,7 +952,7 @@ function checkView(checkFont, checkStatus) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkFalseBtn");
   b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
@@ -962,19 +962,19 @@ function checkView(checkFont, checkStatus) {
   if (checkFont == "上架地圖") {
     if (checkStatus == "now") {
       postVar = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
-      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
+      b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\");nowShelfNowAction(" + postVar.toString() + ")");
     } else {
       // console.log(checkStatus);
 
       // console.log(postVar);
-      b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
+      b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\");shelfLaterAction(latePostVar.toString())");
     }
   } else if (checkFont == "下架地圖") {
     unShelfVar = checkStatus;
     var ele = document.createElement("input");
-    b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
+    b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\");unShelf(unShelfVar)");
   } else if (checkFont == "刪除地圖") {
-    b.setAttribute("onclick", "clossFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
+    b.setAttribute("onclick", "closeFunc(\"checkView\",\"checkBkView\");delMap(delVar)");
   }
   divTag.appendChild(b);
 }
@@ -1056,9 +1056,9 @@ function viewValueMap(thisObject) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"levelDiv\")");
+  b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
   divTag.appendChild(b);
   divTag = document.getElementById("levelForm");
   b = document.createElement("h3");
@@ -1123,7 +1123,7 @@ function shelfBtn() {
   b = document.createElement("div");
   b.setAttribute("id", "shelfBkView");
   b.setAttribute("class", "bkView");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"shelfView\",\"shelfBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "shelfView");
@@ -1135,9 +1135,9 @@ function shelfBtn() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"shelfView\",\"shelfBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"shelfView\",\"shelfBkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("h1");
@@ -1310,14 +1310,14 @@ function nowShelfNow(checkFont) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkFalseBtn");
   b.setAttribute("value", "取消");
-  b.setAttribute("onclick", "clossFunc(\"checkView\")");
+  b.setAttribute("onclick", "closeFunc(\"checkView\")");
   divTag.appendChild(b);
 
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("id", "checkTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"checkView\");nowShelfNowAction(" + mapIndex.toString() + ")");
+  b.setAttribute("onclick", "closeFunc(\"checkView\");nowShelfNowAction(" + mapIndex.toString() + ")");
   divTag.appendChild(b);
 }
 /*立即上架--功能*/
@@ -1336,7 +1336,7 @@ function nowShelfNowAction(mapIndex) {
     dataType: 'json',       // 回傳資料會是 json 格式
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
-      clossFunc("shelfView", "shelfBkView");
+      closeFunc("shelfView", "shelfBkView");
       // var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));
       var objI = mapIndex;
       userMap[mapIndex].postStage = 2;
@@ -1419,7 +1419,7 @@ function shelfLaterAction(selectDate) {
     data: scriptData,       // 將表單資料用打包起來送出去
     success: function (res) {
       // console.log("6666666666666");
-      clossFunc("shelfView", "shelfBkView");
+      closeFunc("shelfView", "shelfBkView");
       var objI = parseInt(thisSelectionId.substr("lostUserCreateTable".length));;
       var str = "td0" + objI.toString() + "1";
       divTag = document.getElementById(str);

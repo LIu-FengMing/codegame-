@@ -30,7 +30,7 @@ textarea{
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
-#method1,#method2,#method3,#method4,#method5,#clossDiv{
+#method1,#method2,#method3,#method4,#method5,#closeDiv{
   width: 30px;
   height: 30px;
   background-color: white;
@@ -438,7 +438,7 @@ textarea{
   border-color: white;
   border-width: 3px;
 }
-#clossDiv{
+#closeDiv{
   top: 1%;
   right: 1%;
 }

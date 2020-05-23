@@ -80,3 +80,21 @@
   left: 14px;
   -webkit-animation-delay:1.04s;
 }
+
+#closeDiv{
+  width: 30px;
+  height: 30px;
+  z-index: 3;
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 30px;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin-top: 0px;
+  cursor: pointer;
+}

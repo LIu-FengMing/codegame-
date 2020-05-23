@@ -46,7 +46,7 @@ var loopVariable = 0;
 var funTimes = 0;
 var midFuncode = [];
 var textMidFuncode = [];
-var clossDiv = document.getElementById("clossDiv");
+var closeDiv = document.getElementById("closeDiv");
 var textareaDiv = document.getElementById("textareaBk");
 var myMap = {
   'textSpacing': '    ',
@@ -242,7 +242,7 @@ function changeToC(isDisplay) {
   textcode = textcode + textfuncode;
   //content.innerHTML = code;
   textarea_0.value = textcode;
-  clossDiv.onclick = function() {
+  closeDiv.onclick = function() {
     textareaDiv.style.display = "none";
   }
   if (isDisplay) {

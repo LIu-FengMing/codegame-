@@ -253,7 +253,7 @@ function remindView(remindValue) {
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -280,11 +280,11 @@ function remindView(remindValue) {
   b.setAttribute("title", "關閉");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
 //關閉按鈕的函式
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   //嘗試刪除div
   try {

@@ -280,7 +280,7 @@ function changeHelperMod(mainDiv){
 }
 function changeMod(modStr) {
   helperMod = modStr;
-  clossFunc("changeHelperModView","changeHelperModBkView");
+  closeFunc("changeHelperModView","changeHelperModBkView");
   helper();
 }
 function helper() {
@@ -308,7 +308,7 @@ function helper() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
@@ -883,7 +883,7 @@ function userData() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
@@ -1151,10 +1151,10 @@ function remindView(remindValue) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   divTag = document.getElementById(thisDiv);
   parentObj = divTag.parentNode;
   parentObj.removeChild(divTag);
@@ -1232,7 +1232,7 @@ function btnClick(number) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
   divTag.appendChild(b);

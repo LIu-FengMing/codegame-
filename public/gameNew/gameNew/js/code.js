@@ -48,7 +48,7 @@ var loopVariable = 0;
 var funTimes = 0;
 var midFuncode = [];
 var textMidFuncode = [];
-var clossDiv = document.getElementById("clossDiv");
+var closeDiv = document.getElementById("closeDiv");
 var textareaDiv = document.getElementById("textareaBk");
 
 //函示區
@@ -279,7 +279,7 @@ function changeToC(isDisplay) {
   //console.log(isDisplay);
   textarea_0.value = textcode;
   // console.log(textcode);
-  clossDiv.onclick = function() {
+  closeDiv.onclick = function() {
     textareaDiv.style.display = "none";
   }
   console.log(textarea_0.value);

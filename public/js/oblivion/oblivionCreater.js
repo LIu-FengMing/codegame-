@@ -188,9 +188,9 @@ function helper(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\",\"helperBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\",\"helperBkView\")");
   divTag.appendChild(b);
   b = document.createElement("h1");
   b.setAttribute("id", "allTitle");
@@ -240,7 +240,7 @@ function helper(mainDiv) {
 }
 
 /*XX按鈕*/
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   try {
     parentObj = divTag.parentNode;
@@ -280,7 +280,7 @@ function userData() {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -289,13 +289,13 @@ function userData() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   createUserView(divID);
 }
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   divTag = document.getElementById(thisDiv);
   parentObj = divTag.parentNode;
   parentObj.removeChild(divTag);
@@ -518,7 +518,7 @@ function lessRequirement(starNum) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "conditionButton");
   b.setAttribute("value", "返回");
-  b.setAttribute("onclick", "clossFunc(\"lessRequirementView\")");
+  b.setAttribute("onclick", "closeFunc(\"lessRequirementView\")");
   divTag.appendChild(b);
 }
 
@@ -542,7 +542,7 @@ function remindView(remindValue) {
   divTag = document.getElementById("centerLost");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
@@ -566,7 +566,7 @@ function remindView(remindValue) {
   b.setAttribute("type", "button");
   b.setAttribute("id", "remindTrueBtn");
   b.setAttribute("value", "確定");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   divTag.appendChild(b);
 }
 

@@ -238,7 +238,7 @@ function userData() {
   divTag = document.getElementById("center");
   b = document.createElement("div");
   b.setAttribute("id", "userDataBkView");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "userDataView");
@@ -247,9 +247,9 @@ function userData() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"userDataView\",\"userDataBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"userDataView\",\"userDataBkView\")");
   divTag.appendChild(b);
   //調用創造使用者資訊內容函式
   createUserView(divID);
@@ -378,9 +378,9 @@ function helper(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"helperView\")");
+  b.setAttribute("onclick", "closeFunc(\"helperView\")");
   divTag.appendChild(b);
   //創造關卡說明的title
   b = document.createElement("h1");
@@ -858,7 +858,7 @@ function helper(mainDiv) {
 }
 
 /*XX按鈕*/
-function clossFunc(thisDiv, thisDiv2) {
+function closeFunc(thisDiv, thisDiv2) {
   var divTag = document.getElementById(thisDiv);
   //刪除thisDiv
   try {
@@ -885,7 +885,7 @@ function restartButton(thisTextarea) {
 }
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
-  clossFunc(thisDiv, thisDiv2);
+  closeFunc(thisDiv, thisDiv2);
   challengeGameAgain(); //宜靜
 }
 /*轉換程式碼*/
@@ -898,7 +898,7 @@ function settingAllView(mainDiv) {
   //創造背景黑布div
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   //創造設定視窗div
   b = document.createElement("div");
@@ -909,9 +909,9 @@ function settingAllView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
-  b.setAttribute("onclick", "clossFunc(\"settingAllView\",\"equipageBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
   //創造設定title
   b = document.createElement("h1");
@@ -1478,7 +1478,7 @@ function createEndView(starNum, gameResult, instructionNum, code, errMessage) {
     b.setAttribute("type", "button");
     b.setAttribute("id", "successRestartGameBtn");
     b.setAttribute("value", "重新挑戰");
-    b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
+    b.setAttribute("onclick", "closeFunc(\"createEndView\",\"createEndBkView\")");
     b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")"); //宜靜
     divTag.appendChild(b);
     b = document.createElement("input");
@@ -1495,7 +1495,7 @@ function createLoadingView() {
   divTag = document.getElementById("blocklyDiv");
   b = document.createElement("div");
   b.setAttribute("id", "loadingBkView");
-  b.setAttribute("onclick", "clossFunc(\"loadingBkView\",\"loadingView\")");
+  b.setAttribute("onclick", "closeFunc(\"loadingBkView\",\"loadingView\")");
   divTag.appendChild(b);
   b = document.createElement("div");
   b.setAttribute("id", "loadingView");

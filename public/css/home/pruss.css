@@ -2,22 +2,6 @@
   resize:none;
   font-family: Microsoft JhengHei;
 }
-#clossDiv{
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  color: black;
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 30px;
-  border-color: rgb(0, 0, 0);
-  border-width: 0px;
-  position: absolute;
-  top: 1%;
-  right: 1%;
-  margin-top: 0px;
-  cursor: pointer;
-}
 #blocklyMapTitle{
   z-index: 1;
   font-size: 55px;

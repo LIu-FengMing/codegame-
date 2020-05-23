@@ -250,7 +250,7 @@ function userData() {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"userDataBkView\",\"userDataView\")");
   divTag.appendChild(b);
@@ -266,7 +266,7 @@ function userData() {
 function closeFunc(thisDiv, thisDiv2) {
   try {
     document.getElementById("changePasswordBtn").className = "";
-    document.getElementById("clossDiv").className = "";
+    document.getElementById("closeDiv").className = "";
   } catch (e) { }
   try {
     divTag = document.getElementById(thisDiv);
@@ -345,7 +345,7 @@ function createUserView(mainDiv) {
 function changePassword(thisDiv) {
   var tdValue = ["舊密碼", "新密碼", "確認新密碼"], inputID = ["oldPassword", "newPassword", "checkPassword"];
   document.getElementById("changePasswordBtn").className = "disabled";
-  document.getElementById("clossDiv").className = "disabled";
+  document.getElementById("closeDiv").className = "disabled";
   divTag = document.getElementById("userDataView");
   b = document.createElement("div");
   b.setAttribute("id", "changePasswordView");
@@ -513,7 +513,7 @@ function btnClick(number) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"levelDiv\")");
   divTag.appendChild(b);
@@ -701,7 +701,7 @@ function viewRecord(number) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"centerBlocklyView\",\"centerBlocklyBkView\")");
   divTag.appendChild(b);
@@ -900,7 +900,7 @@ function equipageView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"equipageView\",\"equipageBkView\")");
   divTag.appendChild(b);
@@ -1377,7 +1377,7 @@ function instructionView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"instructionView\",\"equipageBkView\")");
   divTag.appendChild(b);
@@ -1506,7 +1506,7 @@ function achievementView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"achievementView\",\"equipageBkView\")");
   divTag.appendChild(b);
@@ -1668,7 +1668,7 @@ function settingAllView(mainDiv) {
   b = document.createElement("input");
   b.setAttribute("type", "button");
   b.setAttribute("title", "關閉");
-  b.setAttribute("id", "clossDiv");
+  b.setAttribute("id", "closeDiv");
   b.setAttribute("value", "X");
   b.setAttribute("onclick", "closeFunc(\"settingAllView\",\"equipageBkView\")");
   divTag.appendChild(b);
@@ -2058,7 +2058,7 @@ function remindView(remindValue) {
   divTag = document.getElementById("centerBlockly");
   b = document.createElement("div");
   b.setAttribute("id", "remindBkView");
-  b.setAttribute("onclick", "clossFunc(\"remindView\",\"remindBkView\")");
+  b.setAttribute("onclick", "closeFunc(\"remindView\",\"remindBkView\")");
   b.setAttribute("class", "bkView");
   divTag.appendChild(b);
   b = document.createElement("div");
