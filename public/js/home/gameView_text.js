@@ -916,6 +916,17 @@ function restartGame(thisDiv, thisDiv2) {
 function instructionView(mainDiv) {
   divID = "instructionView";
   divID2 = "equipageBkView";
+  try {
+    divTag = document.getElementById("settingAllView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("instructionView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+    divTag = document.getElementById("equipageBkView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {}
   divTag = document.getElementById(mainDiv.id);
   b = document.createElement("div");
   b.setAttribute("id", "equipageBkView");
@@ -990,11 +1001,8 @@ function instructionView(mainDiv) {
       b.setAttribute("id", "actionDiv" + i);
       divTag.appendChild(b);
       divTag = document.getElementById("actionDiv" + i);
-      // if (i == 1) {
-      // for (var j = 0; j < 5; j++) {
       var li = dic[parseInt(i / 2)].element;
       for (var j = 0; j < li.length; j++) {
-        // console.log(li[j].limit,li[j].name,passLevel);
         divTag = document.getElementById("actionDiv" + i);
         if (li[j].limit > passLevel) {
           continue;
@@ -1008,19 +1016,13 @@ function instructionView(mainDiv) {
         b.setAttribute("id", "summaryInner" + i + j);
         b.setAttribute("class", "summaryInner");
         divTag.appendChild(b);
-        // document.getElementById("aInner" + j).innerHTML = "step( )▼";
         document.getElementById("summaryInner" + i + j).innerHTML = li[j].name;
-        //
         b = document.createElement("p");
         b.setAttribute("id", "item" + i + j);
         b.setAttribute("class", "itemP");
         divTag.appendChild(b);
-        // document.getElementById("item" + j).innerHTML = "&nbsp&nbsp&nbsp&";
         document.getElementById("item" + i + j).innerHTML = "&nbsp&nbsp&nbsp&nbsp" + li[j].value;
       }
-      // } else {
-      //     document.getElementById("actionDiv" + i).innerHTML = functionVar;
-      // }
     }
     divTag = document.getElementById("instructionTable");
   }
