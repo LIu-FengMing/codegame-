@@ -1,0 +1,118 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/room.css">
+  <link rel="stylesheet" href="/css/share/main.css">
+  <link rel="stylesheet" href="/css/share/left.css">
+  <link rel="stylesheet" href="/css/share/right.css">
+  <link rel="stylesheet" href="/css/share/mainFontFamily.css">
+  <link rel="stylesheet" href="/css/share/share.css">
+  <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- <script src="/js/share.js"></script> -->
+  <script src="/js/closeEvent.js"></script>
+  <title>深淵地牢</title>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="main">
+      <!--left-->
+      <div class="box sidebarLeft">
+        <img src="/img/MARK.png" class="leftMark">
+        <dl style="font-size: calc(5px + 0.5vw);color:black;position: absolute;bottom:1vh;left:0px;text-align:left;">
+          <dt style="margin-bottom:0.5vh;">聯絡信箱：</dt>
+          <dd>
+            <a href="mailto://fullspeedline@gmail.com" style="color:black;">fullspeedline@gmail.com</a>
+          </dd>
+        </dl>
+      </div>
+      <!-- center -->
+      <div class="box center" id="center">
+        <img src="/img/bk.jpg" id="bkImg">
+        <div id="roomMain">
+          <div class="container clearfix">
+            <div class="chat">
+              <!-- <div class="chat-header clearfix">
+                <img src="/img/chatUser.jpg">
+                <div class="chat-about">
+                  <div class="chat-room"><%= room.title %></div>
+                  <div class="chat-num-users"> User(s)</div>
+                </div>
+                <i class="fa fa-users" style="margin:1%"></i>
+              </div> <!-- end chat-header -->
+
+
+              <div class="map-background">
+                <img class="Room-map-picture" src="/img/地圖照片/<%= room.CurrentMap %>.png">
+              </div>
+
+              <div class="chat-background">
+                <div class="chat-history">
+                  <ul>
+                  </ul>
+                </div> <!-- end chat-history -->
+
+                <div class="chat-message">
+                  <textarea name="message" placeholder="Type your message"></textarea>
+                  <div class="chat-btn">Send</div>
+                </div> <!-- end chat-message -->
+              </div> <!-- end chat -->
+            </div>
+            <div class="controls">
+              <div class="rooms-btn">地圖</div>
+              <div class="game-btn">開始</div>
+              <div class="hinge hinge0"></div>
+              <div class="hinge hinge1"></div>
+              <div class="hinge hinge2"></div>
+              <div class="hinge hinge3"></div>
+
+
+              <!-- onclick="location.href='/lobby/<%= room.id %>/dungeon'" -->
+            </div>
+
+            <div class="users-list">
+              <ul class="list">
+              </ul>
+            </div>
+          </div> <!-- end container -->
+        </div>
+      </div>
+      <!--right-->
+      <div class="box sidebarRight">
+        <h1 class="userName" id="userName"></h1>
+        <div class="userStar">
+          <img src="/img/star.png" class="imgIcon">
+          <font class="starNumber" id="starNumber"></font>
+        </div>
+        <button class="btnUser" title="個人資料" onclick="userData()"></button>
+        <button class="btnLogout" title="登出" onclick="logout()"></button>
+        <button class="removeRoom" title="移除房間"></button>
+      </div>
+
+    </div>
+    <div class="footer"></div>
+  </div>
+
+
+
+
+
+
+
+  <script src="/js/dungeon/room.js"></script>
+  <script>
+    $(function() {
+      app.chat('<%= room.id %>', '<%= user.name %>')
+
+    });
+  </script>
+
+</body>
+
+</html>

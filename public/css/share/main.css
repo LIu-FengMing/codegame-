@@ -28,7 +28,7 @@ body {
   top:-100%;
   left: 10%;
   min-width: 1000px;
-  text-align: center;
+
 }
 .center #bkImg{
   height: 100%;
@@ -99,9 +99,9 @@ body {
   width: 10%;
   height: 100%;
   line-height: 90%;
-  position: relative;
-  top: -200%;
-  left: 90%;
+  position: fixed;
+  top:0px;
+  right:0px;
   background: #7C5A43;
   min-width: 134px;
   text-align: center;

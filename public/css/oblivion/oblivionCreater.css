@@ -24,7 +24,7 @@
   position: absolute;
   bottom: 10%;
   left: 5%;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
@@ -34,7 +34,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #helperTextarea1{
   height: 50%;
@@ -96,7 +96,7 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #userDataView{
   z-index: 4;
@@ -143,7 +143,7 @@
   position: absolute;
   top: 15%;
   left: 10%;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   border-style: solid;
   border-color:#D6B656;
   overflow: auto;

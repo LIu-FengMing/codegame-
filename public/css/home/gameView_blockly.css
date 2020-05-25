@@ -1,3 +1,88 @@
+/*right*/
+#userDataBkView{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+}
+#userDataView{
+  z-index: 4;
+  height: 58%;
+  width: 35%;
+  position: absolute;
+  top: 21%;
+  left: 32.5%;
+  background-color: #FFC777;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
+}
+#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  cursor: pointer;
+}
+#allTitle,#userTitle,#settingTitle{
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  text-align: center;
+  font-family: "Microsoft JhengHei";
+  font-weight: bold;
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
+}
+.codingTitle{
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  text-align: center;
+  font-weight: 100;
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
+}
+#userInnerDiv{
+  width: 80%;
+  height: 70%;
+  font-family: "Microsoft JhengHei";
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  background-color: #FFF2CC;
+  border-style: solid;
+  border-color:#D6B656;
+  overflow: auto;
+}
+#userH3Div{
+  width: 90%;
+  height: 90%;
+  font-family: "Microsoft JhengHei";
+  font-size: calc(1.6vh + 5px);
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+#userTable td{
+  font-family: "Microsoft JhengHei";
+  line-height: 6vh;
+  text-align:center;
+  text-align:justify;
+  text-justify:distribute-all-lines;
+  text-align-last:justify
+}
+
 /*center*/
 #titleBar{
   width: 100%;
@@ -27,17 +112,6 @@
   position: absolute;
   top: 10.5%;
   right: 0%;
-}
-#allTitle,#settingTitle,#instructionTitle,.codingTitle{
-  margin-top: 20px;
-  height: 5vh;
-  color: #7C5A43;
-  text-align: center;
-  font-family: "Microsoft JhengHei";
-  font-weight: bold;
-  border-style: solid;
-  border-color: #7C5A43;
-  border-width: 0px 0px 2px 0px;
 }
 #blocklyDiv{
   height: 88.9%;
@@ -96,7 +170,7 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #createEndView{
   z-index: 999;

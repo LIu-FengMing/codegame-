@@ -1,0 +1,80 @@
+<!--宜靜 2020.05.18-->
+<!DOCTYPE html>
+<html  dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/backstage/managementRFMP.css">
+    <link rel="stylesheet" href="css/share/mainFontFamily.css">
+    <link rel="stylesheet" href="css/share/main.css">
+    <link rel="stylesheet" href="css/share/left.css">
+    <link rel="stylesheet" href="css/share/right.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <script src="js/share.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/titleIcon.ico" />
+    <title>全速衝線</title>
+  </head>
+  <body>
+    <!-- <audio id="bkMusic" src="Fine_Line.mp3" preload loop volume="0"></audio> -->
+    <div class="wrap">
+      <div class="main">
+        <!--left-->
+        <div class="box sidebarLeft">
+          <img src="img/MARK.png" class = "leftMark">
+        </div>
+        <div class="box center" id="center">
+          <img  id="bkImg">
+          <h1 class="titleH1">學習成效分析</h1>
+          <input type="button" value="" id="goBack3" onclick="location.href='management';">
+          <select id="timeSelect" name="">
+            <option value="all">&nbsp&nbsp&nbsp條&nbsp列&nbsp式</option>
+            <option value="all">&nbsp&nbsp&nbsp立&nbsp體&nbsp圖</option>
+          </select>
+          <div class="search-box">
+            <select id="selectType" name="">
+              <option value="all">&nbsp&nbsp&nbsp帳&nbsp號</option>
+              <option value="canPlay">&nbsp&nbsp&nbsp名&nbsp稱</option>
+              <option value="canPlay">&nbsp&nbsp&nbsp信&nbsp箱</option>
+              <option value="canPlay">&nbsp&nbsp&nbsp學&nbsp習&nbsp者&nbsp類&nbsp型</option>
+            </select>
+            <input class="search-text" type="search" name="" id="searchTextBox"  placeholder="搜尋" onsearch = "searchFunc()">
+            <a class="search-btn"href="#">
+              <i class="fas fa-search"></i>
+            </a>
+          </div>
+          <div class="timeselectBarDiv">
+            <table class="timeselectBar">
+              <tr>
+                <td>
+                  起：<input type="date" id="timeStart" value="">
+                  訖：<input type="date" id="timeEnd" value="">
+                  <input type="button" id="calculateBtn" value="    計算    " onclick="TimeSelectFunc()">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div id="createrDiv">
+            <table id="lostCreateTable" border=5 RULES=ALL>
+              <tr>
+                <td class="td01" onclick="changeTdName(this)">使用者帳號</td>
+                <td class="td02" onclick="changeTdName(this)">使用者名稱</td>
+                <td class="td03" onclick="changeTdName(this)">信箱</td>
+                <td class="td04" onclick="changeTdName(this)">R評分</td>
+                <td class="td05" onclick="changeTdName(this)">F評分</td>
+                <td class="td06" onclick="changeTdName(this)">M評分</td>
+                <td class="td07" onclick="changeTdName(this)">P評分</td>
+                <td class="td08" onclick="changeTdName(this)">學習者類型</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="box sidebarRight"><!--right-->
+          <button class="btnLogout" onclick="logout()"></button>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script src="js/backstage/managementRFMP.js"></script>
+    <script src="js/closeEvent.js"></script>
+  </body>
+</html>

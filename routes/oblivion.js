@@ -11,13 +11,16 @@ var EquipmentRecord = require('../models/equipment')
 var GameMapRecord = require('../models/gameMap')
 var testDict = require('../models/dataJson/dictionaryJson')
 var testEquip = require('../models/dataJson/equipmentJson')
+router.get('/oblivionSelect', ensureAuthenticated, function (req, res, next) {
+    res.render('oblivion/SelectCreateMap');
+});
 router.get('/oblivion', ensureAuthenticated, function (req, res, next) {
     // console.log(req.user)
     var canCreateMapPermission = false;
     if (req.user.canCreateMapPermission) {
         canCreateMapPermission = true;
     }
-
+    
     res.render('oblivion/oblivion', {
         user: req.user.username,
         canCreateMapPermission: canCreateMapPermission
@@ -201,7 +204,7 @@ router.post('/oblivionUser', function (req, res, next) {
         MapRecord.deleteMapById(id, function (err, map) {
             if (err) throw err;
             // console.log(req.user.id);
-            // console.log(map); 
+            // console.log(map);
             res.json(map);
         })
     }
@@ -210,7 +213,7 @@ router.post('/oblivionUser', function (req, res, next) {
         MapRecord.unShelfMapMapById(id, function (err, map) {
             if (err) throw err;
             // console.log(req.user.id);
-            // console.log(map); 
+            // console.log(map);
             res.json(map);
         })
     }
@@ -219,7 +222,7 @@ router.post('/oblivionUser', function (req, res, next) {
         MapRecord.ShelfMapMapById(id, function (err, map) {
             if (err) throw err;
             // console.log(req.user.id);
-            // console.log(map); 
+            // console.log(map);
             res.json(map);
         })
     }
@@ -229,7 +232,7 @@ router.post('/oblivionUser', function (req, res, next) {
         MapRecord.ShelfLaterMapById(id, postDate, function (err, map) {
             if (err) throw err;
             // console.log(req.user.id);
-            // console.log(map); 
+            // console.log(map);
             res.json(map);
         })
     }
@@ -245,7 +248,7 @@ router.post('/oblivionUser', function (req, res, next) {
 
         });
     }
-    //------------------- 
+    //-------------------
     else {
 
     }

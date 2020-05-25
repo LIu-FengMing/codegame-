@@ -29,7 +29,7 @@
                     "limit":6
                 },
                 {
-                    "name": "launchMissile(&nbsp)",
+                    "name": "fire(&nbsp)",
                     "value":"&nbsp&nbsp&nbsp&nbsp向前方發射子彈，攻擊距離為&nbsp2&nbsp格，攻擊力可於裝備內提升。",
                     "limit":15
                 }

@@ -72,8 +72,7 @@ $.ajax({
   success: function (res) {
     // console.log(res);
     user = res;
-
-    if(user.username == "NKUSTCCEA"||user.username == "teacher"){
+    if(user.isadmin){
       forManagement();
     }
     /*loadmusicData();*/
@@ -880,11 +879,11 @@ function selectFunc(levelNumber) {
         blocklyUsable("func", usableValue);
       }
     } else if (className == "動作") {
-      document.getElementById("moveForward").style.display = "";
+      document.getElementById("moveforward").style.display = "";
       for (var j = 0; j < usableSize; j++) {
-        divTag = document.getElementById("moveForward");
+        divTag = document.getElementById("moveforward");
         usableValue = directiveData.instruction[levelNumber].class[i].usable[j].value;
-        blocklyUsable("moveForward", usableValue);
+        blocklyUsable("moveforward", usableValue);
       }
     } else if (className == "判斷式") {
       document.getElementById("judgment").style.display = "";
@@ -904,9 +903,9 @@ function blocklyUsable(thisClassID, thisValue) {
   divTag = document.getElementById(thisClassID);
   b = document.createElement("div");
   switch (thisValue) {
-    case "moveForward":
-      blockType = "moveForward(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('moveForward();');");
+    case "moveforward":
+      blockType = "moveforward(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('moveforward();');");
       break;
     case "turnRight":
       blockType = "turnRight(&nbsp)<br>";
@@ -916,9 +915,9 @@ function blocklyUsable(thisClassID, thisValue) {
       blockType = "turnLeft(&nbsp)<br>";
       b.setAttribute("onclick", "insertAtCursor('turnLeft();');");
       break;
-    case "launchMissile":
-      blockType = "launchMissile(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('launchMissile();');");
+    case "fire":
+      blockType = "fire(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('fire();');");
       break;
     case "printf":
       blockType = "printf(&nbsp)<br>";
@@ -1285,7 +1284,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             }
           ]
         }
@@ -1298,7 +1297,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1317,7 +1316,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1336,7 +1335,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1355,7 +1354,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1382,7 +1381,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1412,7 +1411,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1439,7 +1438,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1480,7 +1479,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1521,7 +1520,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1562,7 +1561,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1603,7 +1602,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1644,7 +1643,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1653,7 +1652,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             }
           ]
         },
@@ -1688,7 +1687,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1697,7 +1696,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             }
           ]
         },
@@ -1732,7 +1731,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1741,7 +1740,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             }
           ]
         },
@@ -1782,7 +1781,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1791,7 +1790,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             }
           ]
         },
@@ -1832,7 +1831,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1841,7 +1840,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -1885,7 +1884,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1894,7 +1893,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -1938,7 +1937,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -1947,7 +1946,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -1991,7 +1990,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2000,7 +1999,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2044,7 +2043,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2053,7 +2052,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2097,7 +2096,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2106,7 +2105,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2150,7 +2149,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2159,7 +2158,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2203,7 +2202,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2212,7 +2211,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2256,7 +2255,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2265,7 +2264,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2309,7 +2308,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2318,7 +2317,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2362,7 +2361,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2371,7 +2370,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2424,7 +2423,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2433,7 +2432,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2486,7 +2485,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2495,7 +2494,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2548,7 +2547,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2557,7 +2556,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2610,7 +2609,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2619,7 +2618,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2672,7 +2671,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2681,7 +2680,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2737,7 +2736,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2746,7 +2745,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2805,7 +2804,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2814,7 +2813,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2873,7 +2872,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2882,7 +2881,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -2941,7 +2940,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -2950,7 +2949,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3009,7 +3008,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3018,7 +3017,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3080,7 +3079,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3089,7 +3088,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3154,7 +3153,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3163,7 +3162,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3231,7 +3230,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3240,7 +3239,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3308,7 +3307,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3317,7 +3316,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3385,7 +3384,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3394,7 +3393,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3465,7 +3464,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3474,7 +3473,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3545,7 +3544,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3554,7 +3553,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3628,7 +3627,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3637,7 +3636,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3711,7 +3710,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3720,7 +3719,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3794,7 +3793,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3803,7 +3802,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3877,7 +3876,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3886,7 +3885,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -3960,7 +3959,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -3969,7 +3968,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"
@@ -4043,7 +4042,7 @@ directiveData = {
           "name": "動作",
           "usable": [
             {
-              "value": "moveForward"
+              "value": "moveforward"
             },
             {
               "value": "turnRight"
@@ -4052,7 +4051,7 @@ directiveData = {
               "value": "turnLeft"
             },
             {
-              "value": "launchMissile"
+              "value": "fire"
             },
             {
               "value": "printf"

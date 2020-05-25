@@ -1,0 +1,151 @@
+{
+  "mapNumber": "game01",
+  "mapSize": 81,
+  "mapValue": "000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "level": "初階",
+  "input1": "one",
+  "input2": "two",
+  "input3": "three",
+  "input4": "four",
+  "winLinit": {
+    "threeStar": [5],
+    "twoStar": [6],
+    "oneStar": [7]
+  },
+  "people_init": {
+    "type": "car",
+    "postion": [2, 7, 2],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init2": {
+    "type": "car2",
+    "postion": [5, 6, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init3": {
+    "type": "car3",
+    "postion": [6, 7, 0],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init4": {
+    "type": "car4",
+    "postion": [3, 6, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "end_init": [{
+    "type": "endline",
+    "postion": [4, 8, 0]
+  }],
+  "obj": [{
+    "type": "unmoveble",
+    "postion": [3, 8]
+  }, {
+    "type": "unmoveble",
+    "postion": [3, 7]
+  }, {
+    "type": "unmoveble",
+    "postion": [4, 7]
+  }, {
+    "type": "unmoveble",
+    "postion": [5, 7]
+  }, {
+    "type": "unmoveble",
+    "postion": [5, 8]
+  }, {
+    "type": "stone",
+    "postion": [6, 8]
+  }, {
+    "type": "stone",
+    "postion": [4, 6]
+  }, {
+    "type": "stone",
+    "postion": [2, 8]
+  }, {
+    "type": "stone",
+    "postion": [2, 6]
+  }, {
+    "type": "rune_table",
+    "postion": [0, 8],
+    "Num": 0
+  }, {
+    "type": "rune_table",
+    "postion": [8, 8],
+    "Num": 1
+  }, {
+    "type": "rune_table",
+    "postion": [7, 3],
+    "Num": 2
+  }, {
+    "type": "rune_table",
+    "postion": [1, 4],
+    "Num": 3
+  }, {
+    "type": "stone",
+    "postion": [3, 2]
+  }, {
+    "type": "stone",
+    "postion": [7, 2]
+  }, {
+    "type": "stone",
+    "postion": [6, 2]
+  }, {
+    "type": "stone",
+    "postion": [5, 2]
+  }, {
+    "type": "stone",
+    "postion": [4, 2]
+  }, {
+    "type": "stone",
+    "postion": [2, 2]
+  }, {
+    "type": "trigger",
+    "postion": [0, 0],
+    "ans": "two"
+  }, {
+    "type": "trigger",
+    "postion": [1, 0],
+    "ans": "zxc"
+  }, {
+    "type": "trigger",
+    "postion": [2, 0],
+    "ans": "vb"
+  }, {
+    "type": "trigger",
+    "postion": [3, 0],
+    "ans": "wq"
+  }, {
+    "type": "trigger",
+    "postion": [4, 0],
+    "ans": "one"
+  }, {
+    "type": "trigger",
+    "postion": [5, 0],
+    "ans": "three"
+  }, {
+    "type": "trigger",
+    "postion": [6, 0],
+    "ans": "ss"
+  }, {
+    "type": "trigger",
+    "postion": [8, 0],
+    "ans": "four"
+  }, {
+    "type": "trigger",
+    "postion": [7, 0],
+    "ans": "jgc"
+  }, {
+    "type": "statue",
+    "postion": [6, 6]
+  }, {
+    "type": "statue",
+    "postion": [1, 2]
+  }]
+}

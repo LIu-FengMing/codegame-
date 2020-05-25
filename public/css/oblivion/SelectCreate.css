@@ -1,0 +1,54 @@
+/*main*/
+.center #bkImg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.castle_pruss {
+  width: 25%;
+  height: 45%;
+  color: none;
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 10%;
+}
+
+.castle_pruss input[type="button"] {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  background-image: url(/img/OnePlayer.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+
+.castle_dungeon {
+  width: 25%;
+  height: 45%;
+  color: none;
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 60%;
+}
+
+.castle_dungeon input[type="button"] {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  background-image: url(/img/MultiPlayer.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

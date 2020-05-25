@@ -1,0 +1,49 @@
+.msg-room-open {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  line-height: 25px;
+  background-color: white;
+}
+
+.msg-room {
+  cursor: pointer;
+  position: relative;
+  left: 0%;
+  width: 100%;
+  background-color: rgb(172, 118, 14);
+  line-height: 25px;
+}
+
+.msg-room-content {
+  text-align:left;
+  font-size:10px;
+  height: 250px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.msg-room-input {
+  position: relative;
+  bottom: -90%;
+}
+
+.msg-room-open input[type="text"] {
+  width: 80%;
+  float: left;
+}
+
+.msg-room-open i {
+  cursor: pointer;
+}
+
+.code_background {
+  background-image: url("/img/code_editor_background.png");
+  background-position: 0px -50px;
+  background-size: 101% 109%;
+
+  width: 100%;
+  height: 100%;
+
+}

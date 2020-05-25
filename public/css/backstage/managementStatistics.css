@@ -91,6 +91,7 @@
   margin-top: calc(15px + 2vh);
   font-family:Microsoft JhengHei;
   font-weight: bold;
+  text-align:center;
 }
 .clear {
   display: none;

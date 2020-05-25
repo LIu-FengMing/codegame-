@@ -470,7 +470,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -520,7 +520,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -570,7 +570,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -626,7 +626,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -682,7 +682,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -738,7 +738,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -794,7 +794,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -850,7 +850,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -906,7 +906,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -962,7 +962,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1018,7 +1018,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1074,7 +1074,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1130,7 +1130,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1195,7 +1195,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1260,7 +1260,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1325,7 +1325,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1390,7 +1390,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1455,7 +1455,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1523,7 +1523,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1594,7 +1594,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1665,7 +1665,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1736,7 +1736,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1807,7 +1807,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1881,7 +1881,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -1958,7 +1958,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2038,7 +2038,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2118,7 +2118,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2198,7 +2198,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2281,7 +2281,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2364,7 +2364,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2450,7 +2450,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2536,7 +2536,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2622,7 +2622,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2708,7 +2708,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2794,7 +2794,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"
@@ -2880,7 +2880,7 @@
               "value":"turnLeft"
             },
             {
-              "value":"launchMissile"
+              "value":"fire"
             },
             {
               "value":"printf"

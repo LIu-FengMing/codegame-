@@ -43,6 +43,7 @@ var lock2DelObjpos = 0;
 var codeValue;
 var xmlhttp = new XMLHttpRequest();
 var computeEndCode;
+var socket = io();
 var errMessage;
 //以下宜靜
 var SpendTime = {
@@ -54,7 +55,7 @@ var SpendTime = {
     "startplay": "",
     "endplay": "",
 }
-var startTime;; // 記錄startTime為記錄開始時間的變數
+var startTime; // 記錄startTime為記錄開始時間的變數
 //以上宜靜
 
 xmlhttp.onreadystatechange = function () {
@@ -75,6 +76,12 @@ xmlhttp.send();
 // };
 // xmlhttp.open("GET", "json/equipment.json", true);
 // xmlhttp.send();
+
+socket.on('answer', function(obj) {
+  if (obj.cpuUsage != null && obj.memoryUsage != null) {
+    decode_JDOODLE_api(obj.stdout);
+  }
+});
 
 var initCode = [
     `
@@ -649,7 +656,7 @@ function endgame() {
     }
     // alert(result);
 
-    //以下宜靜
+    //以下宜靜 2020.05.18
     SpendTime.level = mapNum; // 取得闖關的關卡
     SpendTime.endplay = new Date(); //取得 結束闖關時間
     SpendTime.startplay = startTime; // //取得 開始闖關時間
@@ -663,18 +670,7 @@ function endgame() {
         success: function (res) {
         }
       });
-    // 以上宜靜
-
-    $.ajax({
-        url: "API/createUserSpendTimeState",              // 要傳送的頁面
-        method: 'POST',               // 使用 POST 方法傳送請求
-        dataType: 'json',             // 回傳資料會是 json 格式
-        async:false,
-        data: SpendTime,  // 將表單資料用打包起來送出去
-        success: function (res) {
-        }
-      });
-    // 以上宜靜
+    // 以上宜靜 2020.05.18
 }
 
 
@@ -1945,37 +1941,9 @@ function call_JDOODLE_api(scriptData, inputData) {
         id: "001"
     }
     // console.log(scriptData);
-    var socket = io();
+    
     socket.emit('script', scriptData);
-    //   output.innerHTML = "編譯中....\n";
-    socket.on('answer', function (obj) {
-        // console.log("編譯結果", obj);
-
-        if (obj.body.cpuTime != null && obj.body.memory != null) {
-            //   output.innerHTML = "輸出:\n" + obj.body.output;
-            decode_JDOODLE_api(obj.body.output)
-        }
-        else {
-            gameEndingCode = 5;
-            if (obj.body.output != null) {
-                if (obj.body.output.indexOf("JDoodle - output Limit reached.") > -1) {
-                    gameEndingCode = 8;
-                }
-                else {
-                    // var str=obj.body.output
-                    errMessage = "錯誤原因:\n" + obj.body.output.substr(1)
-
-
-
-                }
-            }
-
-            closeLoadingView();
-            // console.log("Error =  compiler error");
-            endgame();
-        }
-
-    });
+    
 }
 function decode_JDOODLE_api(str) {
     // console.log(str);

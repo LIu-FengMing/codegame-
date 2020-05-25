@@ -9,7 +9,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport')
 var LocalStrategy = require('passport-local')
@@ -23,36 +22,34 @@ var developerRoutes=require('./routes/developer.js')
 var APIRoutes=require('./routes/API')
 // var homRoutes=require('./routes/home')
 
+var dungeon = require('./routes/dungeon')
 
-mongoose.connect('mongodb://localhost/nodetest',{ useNewUrlParser: true });
-var db = mongoose.connection;
+var session 	= require('./session/index');
+
+
+mongoose.set('useCreateIndex', true);
+mongoose.connect('mongodb://localhost/nodetest',{ useNewUrlParser: true,useUnifiedTopology: true });
+
 
 
 var app = express();
-app.use(express.json({limit: '50mb'}));
+
+
+
+
+// Express Session
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-// app.use(express.bodyParser({limit: '50mb'}));
+app.use(cookieParser());
+app.use(express.static('public'));
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(express.static('./public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Express Session
-app.use(session({
-  secret: 'secret',
-  saveUninitialized: true,
-  resave: true
-}));
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -71,7 +68,6 @@ app.use(expressValidator({
 }));
 // Connect Flash
 app.use(flash());
-
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
@@ -85,6 +81,13 @@ app.use('/',homeRoutes);
 app.use('/',oblivionRoutes);
 
 app.use('/',developerRoutes);
+
+
+app.use('/',dungeon);
+
+
+
+
 
 app.use('/API',APIRoutes);
 
@@ -104,9 +107,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  console.log("Have error:");
-  console.log(err.message);
-  
+  // console.log("Have error:" + err.message);
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   // render the error page
   res.status(err.status || 500);

@@ -830,12 +830,12 @@ module.exports = {
       {
         "level": 15,
         "mode": 1,
-        "textarea1": "新指令和新物件出現了！！！<br>新指令：<br>launchMissile( )指令，分類於\"動作\"內。<br>新物件：<br>炸彈。<br><br>launchMissile( )指令能夠使車子射出砲彈至前方兩格，而炮彈擊中炸彈時，炸彈將會爆炸，將十字範圍內的障礙物都清除乾淨。<br><br>請使用launchMissile( ) + 炸彈的 combo 將障礙物清除乾淨抵達終點吧！<br><br>小提示：被炸彈炸到的話會直接失敗唷！<br><br>過關條件：<br>3星：2個動作包含2個動作以內<br>2星：3個動作包含3個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令和新物件出現了！！！<br>新指令：<br>fire( )指令，分類於\"動作\"內。<br>新物件：<br>炸彈。<br><br>fire( )指令能夠使車子射出砲彈至前方兩格，而炮彈擊中炸彈時，炸彈將會爆炸，將十字範圍內的障礙物都清除乾淨。<br><br>請使用fire( ) + 炸彈的 combo 將障礙物清除乾淨抵達終點吧！<br><br>小提示：被炸彈炸到的話會直接失敗唷！<br><br>過關條件：<br>3星：2個動作包含2個動作以內<br>2星：3個動作包含3個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 16,
         "mode": 1,
-        "textarea1": "這關看起來障礙重重呢！！<br>請使用launchMissile( )結合其他指令抵達終點吧！<br><br>小提示：直走到底左轉。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "這關看起來障礙重重呢！！<br>請使用fire( )結合其他指令抵達終點吧！<br><br>小提示：直走到底左轉。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 17,
@@ -935,7 +935,7 @@ module.exports = {
       {
         "level": 36,
         "mode": 1,
-        "textarea1": "迷霧裡出現了敵人！！！<br>方向陣列裡出現了新的符號'F'，'F'代表的是開火的意思，也就是launchMissile( )。<br><br>小提示：<br>請自行宣告一個大小為 17 的字元陣列(方向陣列)與一個大小為17的整數陣列(距離陣列)。<br><br>利用getDistance(整數陣列,陣列大小)以及getDirection(字元陣列,陣列大小)來獲得距離陣列與方向陣列。<br><br>注意：載具的起始方向是錯誤的，請先用方向陣列修正方向。<br><br>神祕載具的血量：12<br>神祕載具的攻擊力：5<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "迷霧裡出現了敵人！！！<br>方向陣列裡出現了新的符號'F'，'F'代表的是開火的意思，也就是fire( )。<br><br>小提示：<br>請自行宣告一個大小為 17 的字元陣列(方向陣列)與一個大小為17的整數陣列(距離陣列)。<br><br>利用getDistance(整數陣列,陣列大小)以及getDirection(字元陣列,陣列大小)來獲得距離陣列與方向陣列。<br><br>注意：載具的起始方向是錯誤的，請先用方向陣列修正方向。<br><br>神祕載具的血量：12<br>神祕載具的攻擊力：5<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 37,
@@ -955,22 +955,22 @@ module.exports = {
       {
         "level": 40,
         "mode": 1,
-        "textarea1": "在迷霧區出現了神祕載具！！！<br><br>在此玩家須透過getString( );來獲得動作字串，並對動作字串操作來擊斃敵人並找到終點。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令launchMissile( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧區出現了神祕載具！！！<br><br>在此玩家須透過getString( );來獲得動作字串，並對動作字串操作來擊斃敵人並找到終點。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列<br>可以利用<br>#define SIZE 256<br>void main(){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 41,
         "mode": 1,
-        "textarea1": "在迷霧區中出現了沙漠與河流！！！<br><br>在不知道地形的情況下看來只能依靠動作字串判斷地形了。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令launchMissile( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：22<br>神祕載具的攻擊力：7<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧區中出現了沙漠與河流！！！<br><br>在不知道地形的情況下看來只能依靠動作字串判斷地形了。<br><br>小提示：<br>字串就是以'\\0'字元結尾的字元陣列。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br><br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要前進的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：22<br>神祕載具的攻擊力：7<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 42,
         "mode": 1,
-        "textarea1": "在迷霧森林的終點前出現了鎖頭，需要透過getKeyArray( );來獲得密碼陣列。<br><br>在路徑字串中'A'則表示要回答通關密碼。<br><br>藍色鎖頭精靈問題：<br>請問密碼陣列從小到大排列的結果長怎麼樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br><br>排序可以參考氣泡排序法或選擇排序法。<br><br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令launchMissile( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "在迷霧森林的終點前出現了鎖頭，需要透過getKeyArray( );來獲得密碼陣列。<br><br>在路徑字串中'A'則表示要回答通關密碼。<br><br>藍色鎖頭精靈問題：<br>請問密碼陣列從小到大排列的結果長怎麼樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br><br>排序可以參考氣泡排序法或選擇排序法。<br><br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);來獲得字串的長度。<br>範例：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：10<br>神祕載具的攻擊力：10<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 43,
         "mode": 1,
-        "textarea1": "這一關與四十二關相似，但是藍色鎖頭精靈的問題好像不一樣了，記得看仔細鎖頭精靈的題目喔！！<br><br>鎖頭精靈問題：<br>請問密碼陣列中所有奇數值從小到大排序的結果長怎樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br>排序可以參考氣泡排序法或選擇排序法。<br><br>所有奇數值從小到大排列可以看成先排列再針對奇數值做輸出。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);，來獲得字串的長度，如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令launchMissile( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：30<br>神祕載具的攻擊力：4<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "這一關與四十二關相似，但是藍色鎖頭精靈的問題好像不一樣了，記得看仔細鎖頭精靈的題目喔！！<br><br>鎖頭精靈問題：<br>請問密碼陣列中所有奇數值從小到大排序的結果長怎樣(數字與數字請用空白字元分割)？<br><br>小提示：<br>請先宣告一個大小為10的整數陣列並使用getKeyArray( )來獲得密碼陣列。<br>排序可以參考氣泡排序法或選擇排序法。<br><br>所有奇數值從小到大排列可以看成先排列再針對奇數值做輸出。<br>可以利用<br>#define SIZE 256<br>void main( ){<br>&nbsp&nbsp&nbsp&nbspchar str[SIZE];<br>}<br>的方式將字元陣列宣告成大小為256。<br>在迷霧森林裡玩家可以使用getString(字元陣列名稱);來獲得路徑字串的內容，並且可以使用C語言string.h標頭檔裡的strlen(字串名稱);，來獲得字串的長度，如：<br>int length=0;<br>char str[SIZE]=\"abc\";<br>length=strlen(str);<br>printf(\"%d\",length);<br>這段程式碼的輸出：3<br><br>路徑字串各字元所代表的動作：<br>'0'~'9'代表要往前走的步數，對應指令moveForward( )。<br>'L'代表向左轉，對應指令turnLeft( )。<br>'R'代表向右轉，對應指令turnRight( )。<br>'F'代表向前開火，對應指令fire( )。<br>'C'代表當前地形為草地，對應指令becameCar( )。<br>'S'代表當前地形為海洋，對應指令becameShip( )。<br>'T'代表當前地形為沙地，對應指令becameTank( )。<br>'A'代表遇到鎖頭需輸出答案，對應指令printf( )。<br>只要照路徑字串裡的字元做相對應的動作就能找到終點。<br><br>神祕載具的血量：30<br>神祕載具的攻擊力：4<br><br>通關條件：<br>3星：4個動作包含4個動作以內<br>2星：5個動作包含5個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 44,
@@ -1104,12 +1104,12 @@ module.exports = {
       {
         "level": 15,
         "mode": 1,
-        "textarea1": "新指令和新物件出現了！！！<br>新指令：<br>launchMissile( )指令，分類於\"動作\"內。<br>新物件：<br>炸彈。<br><br>launchMissile( )指令能夠使車子射出砲彈至前方兩格，而炮彈擊中炸彈時，炸彈將會爆炸，將十字範圍內的障礙物都清除乾淨。<br><br>請使用launchMissile( ) + 炸彈的 combo 將障礙物清除乾淨抵達終點吧！<br><br>小提示：被炸彈炸到的話會直接失敗唷！<br><br>過關條件：<br>3星：2個動作包含2個動作以內<br>2星：3個動作包含3個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令和新物件出現了！！！<br>新指令：<br>fire( )指令，分類於\"動作\"內。<br>新物件：<br>炸彈。<br><br>fire( )指令能夠使車子射出砲彈至前方兩格，而炮彈擊中炸彈時，炸彈將會爆炸，將十字範圍內的障礙物都清除乾淨。<br><br>請使用fire( ) + 炸彈的 combo 將障礙物清除乾淨抵達終點吧！<br><br>小提示：被炸彈炸到的話會直接失敗唷！<br><br>過關條件：<br>3星：2個動作包含2個動作以內<br>2星：3個動作包含3個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 16,
         "mode": 1,
-        "textarea1": "這關看起來障礙重重呢！！<br>請使用launchMissile( )結合其他指令抵達終點吧！<br><br>小提示：直走到底左轉。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "這關看起來障礙重重呢！！<br>請使用fire( )結合其他指令抵達終點吧！<br><br>小提示：直走到底左轉。<br><br>過關條件：<br>3星：5個動作包含5個動作以內<br>2星：6個動作包含6個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 17,
@@ -1627,7 +1627,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1677,7 +1677,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1727,7 +1727,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1783,7 +1783,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1839,7 +1839,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1895,7 +1895,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -1951,7 +1951,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2007,7 +2007,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2063,7 +2063,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2119,7 +2119,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2175,7 +2175,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2231,7 +2231,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2287,7 +2287,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2352,7 +2352,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2417,7 +2417,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2482,7 +2482,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2547,7 +2547,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2612,7 +2612,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2680,7 +2680,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2751,7 +2751,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2822,7 +2822,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2893,7 +2893,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -2964,7 +2964,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3038,7 +3038,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3115,7 +3115,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3195,7 +3195,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3275,7 +3275,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3355,7 +3355,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3438,7 +3438,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3521,7 +3521,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3607,7 +3607,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3693,7 +3693,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3779,7 +3779,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3865,7 +3865,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -3951,7 +3951,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"
@@ -4037,7 +4037,7 @@ directiveData : {
                 "value":"turnLeft"
               },
               {
-                "value":"launchMissile"
+                "value":"fire"
               },
               {
                 "value":"printf"

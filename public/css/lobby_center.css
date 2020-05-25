@@ -1,0 +1,311 @@
+<style>* {
+  margin: 0;
+  padding: 0;
+  font-size: 1px;
+}
+
+a, a:link, a:visited {
+  color:#1aa9f5;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+li {
+  list-style: none
+}
+
+#roomMain {
+  width: 80%;
+  height: 78%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin: -25% 0 0 -40%;
+}
+
+/*遊戲大廳*/
+.room_all {
+  background: #7C5A43;
+  width: 100%;
+  display: inline-block;
+}
+
+.tag {
+  height: 30px;
+}
+
+.tag a {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 110px;
+  background: #F7F7F7
+}
+
+.tag a.on {
+  background: #CCC
+}
+
+.room_left {
+  width: 100%;
+  float: left;
+}
+
+.room_right {
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+
+.room_list {
+  height: 70%;
+  margin: 5px 0 5px 5px;
+  overflow-y: auto;
+  background: #7C5A43;
+}
+
+.room_list .message {
+  overflow-y: hidden;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background: #7C5A43
+}
+
+.room_item {
+  height: 20px;
+  background: url('../img/lobby/room.gif') no-repeat;
+  background-size: 25px 25px;
+  position: relative;
+}
+
+.room_item_start {
+  background: url('../img/lobby/room_start.gif') center center no-repeat background-size:50px 50px;
+}
+
+.room_item .player2 {
+  height: 5px;
+  line-height: 25px;
+  text-align: right;
+  margin-top: 5px
+}
+
+.room_item .players {
+  height: 10px
+}
+
+.room_item .players .icon1 {
+  width: 40px;
+  height: 10px;
+  float: left;
+  cursor: pointer
+}
+
+.room_item .players .icon2 {
+  width: 40px;
+  height: 10px;
+  float: left;
+  cursor: pointer
+}
+
+.room_item .players .no {
+  background: url('../img/lobby/player_no.gif') no-repeat;
+  background-position: 30px;
+  background-size: 12px 12px;
+}
+
+.room_item .players .yes {
+  background: url('../img/lobby/player_yes.gif') center center no-repeat;
+  background-position: 20px;
+  background-size: 25px 15px;
+}
+
+.room_item .roomnum {
+  text-align: center
+}
+
+/*房間介面*/
+.room {
+  background: #7C5A43;
+  width: 100%;
+  display: inline-block;
+}
+
+.room_user {
+  margin: 1%;
+  width: 25%;
+  height: 535px;
+  float: left;
+  background: #DCC09C;
+  text-align: center
+}
+
+.room_user p {
+  line-height: 22px
+}
+
+.room_user .u1 {
+  margin-top: 65px;
+}
+
+.room_user .u2 {
+  margin-top: 40px
+}
+
+.room_game {
+  text-align: center;
+  width: 46%;
+  height: 535px;
+  float: left;
+  background: url('../img/lobby/bg.jpg')center center no-repeat;
+  background-size: 100%;
+  cursor: no-drop
+}
+
+.room_message {
+  margin: 1%;
+  width: 25%;
+  float: left;
+}
+
+.room_message .room_button {
+  height: 50px;
+  width: 100%;
+  background: #7C5A43;
+  line-height: 50px
+}
+
+.room_message .room_button .btn {
+  width: 30%;
+  height: 60%;
+  border-radius: 10px;
+  background: rgb(133, 65, 21);
+  border: 0;
+  color: white
+}
+
+.room_message .content {
+  background: #FFF;
+  height: 450px;
+  overflow-y: scroll;
+  margin-top: 5px
+}
+
+.room_message .content p {
+  padding: 5px
+}
+
+.room_message .input {
+  height: 30px;
+  background: #FFF;
+}
+
+.message {
+  width: 99%;
+  height: 25%;
+  background: #FFF;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  overflow-y: auto;
+}
+
+.message .content {
+  overflow: hidden;
+}
+
+.message .content p {
+  padding: 5px
+}
+
+.messageInput {
+  height: 5%;
+  margin: 5px;
+}
+
+.msg>span {
+  width: 25%;
+  display: inline-block;
+}
+
+.msg>span::before {
+  color: darkred;
+  content: "";
+}
+
+.msg>span::after {
+  color: darkred;
+  content: ": ";
+}
+
+table, td, th {
+  border: 1px solid white;
+  color:white;
+}
+
+#roomStatus0{
+  color:rgb(0, 255, 122);;
+}
+#roomStatus1{
+  color:rgb(251, 84, 84);
+}
+
+
+.loadBar {
+  width: 99%;
+  height: 15px;
+  border: 3px solid #212121;
+  border-radius: 20px;
+  position: relative;
+}
+
+.loadBar div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loadBar div span, .loadBar div i {
+  box-shadow: inset 0 -2px 6px rgba(0, 0, 0, .4);
+  width: 100%;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+}
+
+.loadBar div i {
+  width: 100%;
+  -webkit-animation: move .8s linear infinite;
+  background: -webkit-linear-gradient(left top, #47090f 0%, #47090f 25%, #793235 25%, #793235 50%, #47090f 50%, #47090f 75%, #793235 75%, #793235 100%);
+  background-size: 40px 40px;
+}
+
+.loadBar .percentNum {
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  padding: 1px 15px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: 1px solid #222;
+  background-color: #222;
+  color: #fff;
+}
+
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+</style>

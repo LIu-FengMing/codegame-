@@ -257,7 +257,7 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #centerBlocklyView{
   z-index: 4;
@@ -266,7 +266,7 @@
   position: absolute;
   top: 15%;
   left: 35%;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }

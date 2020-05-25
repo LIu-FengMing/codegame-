@@ -19,7 +19,7 @@ module.exports.createUserLoginState = function (newUserLoginState, callback) {
 }
 
 module.exports.getAllUserLoginState = function (callback) {
-    var query = { username: { $ne: "" } }
+    var query =  { username: { $ne: "" }}
     UserLogin.find(query, callback)
 }
 

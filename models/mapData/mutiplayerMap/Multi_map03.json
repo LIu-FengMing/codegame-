@@ -1,0 +1,168 @@
+{
+  "mapNumber": "game01",
+  "mapSize": 121,
+  "mapValue": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "level": "初階",
+  "winLinit": {
+    "threeStar": [5],
+    "twoStar": [6],
+    "oneStar": [7]
+  },
+  "people_init": {
+    "type": "car",
+    "postion": [3, 3, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init2": {
+    "type": "car2",
+    "postion": [4, 3, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init3": {
+    "type": "car3",
+    "postion": [6, 3, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init4": {
+    "type": "car4",
+    "postion": [7, 3, 1],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "end_init": [{
+    "type": "endline",
+    "postion": [5, 10, 0]
+  }],
+  "obj": [{
+    "type": "stone",
+    "postion": [4, 10]
+  }, {
+    "type": "stone",
+    "postion": [4, 9]
+  }, {
+    "type": "stone",
+    "postion": [4, 8]
+  }, {
+    "type": "stone",
+    "postion": [6, 10]
+  }, {
+    "type": "stone",
+    "postion": [6, 9]
+  }, {
+    "type": "stone",
+    "postion": [6, 8]
+  }, {
+    "type": "stone",
+    "postion": [3, 6]
+  }, {
+    "type": "stone",
+    "postion": [3, 5]
+  }, {
+    "type": "stone",
+    "postion": [3, 4]
+  }, {
+    "type": "stone",
+    "postion": [3, 7]
+  }, {
+    "type": "stone",
+    "postion": [7, 7]
+  }, {
+    "type": "stone",
+    "postion": [7, 6]
+  }, {
+    "type": "stone",
+    "postion": [7, 4]
+  }, {
+    "type": "stone",
+    "postion": [7, 5]
+  }, {
+    "type": "stone",
+    "postion": [4, 4]
+  }, {
+    "type": "stone",
+    "postion": [6, 4]
+  }, {
+    "type": "loop_flame",
+    "postion": [0, 10],
+    "ans": "2"
+  }, {
+    "type": "loop_flame",
+    "postion": [1, 10],
+    "ans": "3"
+  }, {
+    "type": "loop_flame",
+    "postion": [2, 10],
+    "ans": "5"
+  }, {
+    "type": "loop_flame",
+    "postion": [3, 10],
+    "ans": "7"
+  }, {
+    "type": "loop_flame",
+    "postion": [10, 10],
+    "ans": "407"
+  }, {
+    "type": "loop_flame",
+    "postion": [10, 7],
+    "ans": "153"
+  }, {
+    "type": "loop_flame",
+    "postion": [10, 9],
+    "ans": "371"
+  }, {
+    "type": "loop_flame",
+    "postion": [10, 8],
+    "ans": "370"
+  }, {
+    "type": "loop_flame",
+    "postion": [3, 0],
+    "ans": "89"
+  }, {
+    "type": "loop_flame",
+    "postion": [2, 0],
+    "ans": "55"
+  }, {
+    "type": "loop_flame",
+    "postion": [1, 0],
+    "ans": "34"
+  }, {
+    "type": "loop_flame",
+    "postion": [0, 0],
+    "ans": "21"
+  }, {
+    "type": "loop_flame",
+    "postion": [9, 0],
+    "ans": "211"
+  }, {
+    "type": "loop_flame",
+    "postion": [9, 1],
+    "ans": "223"
+  }, {
+    "type": "loop_flame",
+    "postion": [9, 2],
+    "ans": "227"
+  }, {
+    "type": "loop_flame",
+    "postion": [9, 3],
+    "ans": "229"
+  }, {
+    "type": "statue",
+    "postion": [10, 5]
+  }, {
+    "type": "statue",
+    "postion": [5, 0]
+  }, {
+    "type": "statue",
+    "postion": [0, 7]
+  }, {
+    "type": "loop_door",
+    "postion": [5, 4]
+  }]
+}

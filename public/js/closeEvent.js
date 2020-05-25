@@ -8,15 +8,17 @@ var scrollFunc=function(e){
     event.returnValue=false;
   }
 }
+
 document.onkeydown=function (e) {
-  if(e.keyCode == 107 && event.ctrlKey){
+  if(e.keyCode == 107 && event.ctrlKey){      //  "＋"號的鍵盤keycode就是107
     event.returnValue=false;
-  }else if(e.keyCode == 109 && event.ctrlKey){
+  }else if(e.keyCode == 109 && event.ctrlKey){  // "-"號的鍵盤keycode就是109
     event.returnValue=false;
   }
 }
 /*註冊事件*/
 if(document.addEventListener){
-document.addEventListener('DOMMouseScroll',scrollFunc,false);
+document.addEventListener('DOMMouseScroll',scrollFunc,false);  //Firefox
 }
+
 window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome/Safari

@@ -32,7 +32,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #helperView{
   z-index: 4;
@@ -41,7 +41,7 @@
   position: absolute;
   bottom: 10%;
   left: 5%;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
@@ -124,7 +124,7 @@
   left: 50%;
   margin-top: -15vh;
   margin-left: -15vw;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   box-shadow: 0px 0px 7px 10px rgba(255, 255, 255, 0.68);
   overflow: auto;
 }
@@ -212,7 +212,7 @@
   left: 50%;
   margin-top: -15vh;
   margin-left: -12.5vw;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
   color: white;
   min-width: 300px;
   overflow: auto;
@@ -242,7 +242,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 /*確認介面*/
 #checkView{
@@ -343,7 +343,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.74);
 }
 #userDataView{
   z-index: 4;
@@ -402,7 +402,7 @@
   position: absolute;
   top: 15%;
   left: 10%;
-  background-color: #FFC777;
+  background-color: #FFF2CC;
   border-style: solid;
   border-color:#D6B656;
   overflow: auto;

@@ -1,6 +1,6 @@
 // model/users.js
 //先載入我們要的library
-//宜靜
+//宜靜 2020.05.18
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 
@@ -23,6 +23,6 @@ module.exports.createUserSpendTimeState = function (newUserSpendTimeState, callb
 
 module.exports.getAllUserSpendTimeState = function (callback) {
     var query =  { username: { $ne: "" }}
-    UserUserSpendTime.find(query, callback)
+    UserSpendTime.find(query, callback)
 }
 

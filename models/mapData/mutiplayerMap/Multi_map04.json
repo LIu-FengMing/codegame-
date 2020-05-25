@@ -1,0 +1,262 @@
+{
+  "mapNumber": "game01",
+  "mapSize": 121,
+  "mapValue": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "level": "初階",
+  "input1": "awe",
+  "input2": "lku",
+  "input3": "iot",
+  "input4": "fgh",
+  "winLinit": {
+    "threeStar": [5],
+    "twoStar": [6],
+    "oneStar": [7]
+  },
+  "people_init": {
+    "type": "car",
+    "postion": [4, 7, 2],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init2": {
+    "type": "car2",
+    "postion": [4, 3, 2],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init3": {
+    "type": "car3",
+    "postion": [6, 3, 0],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "people_init4": {
+    "type": "car4",
+    "postion": [6, 7, 0],
+    "hp": 5,
+    "armor": 20,
+    "atk": 2
+  },
+  "end_init": [{
+    "type": "endline",
+    "postion": [5, 5, 0]
+  }],
+  "obj": [{
+    "type": "stone",
+    "postion": [0, 6]
+  }, {
+    "type": "stone",
+    "postion": [1, 6]
+  }, {
+    "type": "stone",
+    "postion": [4, 6]
+  }, {
+    "type": "stone",
+    "postion": [6, 6]
+  }, {
+    "type": "stone",
+    "postion": [9, 6]
+  }, {
+    "type": "stone",
+    "postion": [10, 6]
+  }, {
+    "type": "stone",
+    "postion": [4, 4]
+  }, {
+    "type": "stone",
+    "postion": [5, 4]
+  }, {
+    "type": "stone",
+    "postion": [6, 4]
+  }, {
+    "type": "stone",
+    "postion": [8, 4]
+  }, {
+    "type": "stone",
+    "postion": [7, 4]
+  }, {
+    "type": "stone",
+    "postion": [9, 4]
+  }, {
+    "type": "stone",
+    "postion": [3, 4]
+  }, {
+    "type": "stone",
+    "postion": [2, 4]
+  }, {
+    "type": "stone",
+    "postion": [1, 4]
+  }, {
+    "type": "stone",
+    "postion": [5, 6]
+  }, {
+    "type": "stone",
+    "postion": [7, 6]
+  }, {
+    "type": "stone",
+    "postion": [3, 6]
+  }, {
+    "type": "unmoveble",
+    "postion": [2, 6]
+  }, {
+    "type": "unmoveble",
+    "postion": [0, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [2, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [1, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [3, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [4, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [6, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [7, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [8, 6]
+  }, {
+    "type": "unmoveble",
+    "postion": [8, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [9, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [10, 4]
+  }, {
+    "type": "unmoveble",
+    "postion": [10, 5]
+  }, {
+    "type": "unmoveble",
+    "postion": [0, 4]
+  }, {
+    "type": "trigger",
+    "postion": [0, 7],
+    "ans": "gjj"
+  }, {
+    "type": "trigger",
+    "postion": [0, 8],
+    "ans": "daj"
+  }, {
+    "type": "trigger",
+    "postion": [0, 9],
+    "ans": "awe"
+  }, {
+    "type": "trigger",
+    "postion": [0, 10],
+    "ans": "xfg"
+  }, {
+    "type": "trigger",
+    "postion": [10, 7],
+    "ans": "fgh"
+  }, {
+    "type": "trigger",
+    "postion": [10, 8],
+    "ans": "kfq"
+  }, {
+    "type": "trigger",
+    "postion": [10, 9],
+    "ans": "nbv"
+  }, {
+    "type": "trigger",
+    "postion": [10, 10],
+    "ans": "tjg"
+  }, {
+    "type": "trigger",
+    "postion": [10, 0],
+    "ans": "iot"
+  }, {
+    "type": "trigger",
+    "postion": [9, 0],
+    "ans": "rty"
+  }, {
+    "type": "trigger",
+    "postion": [8, 0],
+    "ans": "qws"
+  }, {
+    "type": "trigger",
+    "postion": [7, 0],
+    "ans": "jbg"
+  }, {
+    "type": "trigger",
+    "postion": [0, 0],
+    "ans": "cgt"
+  }, {
+    "type": "trigger",
+    "postion": [1, 0],
+    "ans": "lku"
+  }, {
+    "type": "trigger",
+    "postion": [2, 0],
+    "ans": "pds"
+  }, {
+    "type": "trigger",
+    "postion": [3, 0],
+    "ans": "hgr"
+  }, {
+    "type": "box_closed",
+    "postion": [4, 10],
+    "ans": [2, 3, 6, 9],
+    "num": 1
+  }, {
+    "type": "box_closed",
+    "postion": [6, 10],
+    "ans": [0, 3, 4, 8],
+    "num": 4
+  }, {
+    "type": "box_closed",
+    "postion": [9, 3],
+    "ans": [1, 2, 4, 5],
+    "num": 3
+  }, {
+    "type": "box_closed",
+    "postion": [1, 3],
+    "ans": [1, 5, 7, 8],
+    "num": 2
+  }, {
+    "type": "statue",
+    "postion": [5, 2]
+  }, {
+    "type": "statue",
+    "postion": [5, 9]
+  }, {
+    "type": "stone",
+    "postion": [5, 8]
+  }, {
+    "type": "stone",
+    "postion": [5, 1]
+  }, {
+    "type": "stone",
+    "postion": [5, 10]
+  }, {
+    "type": "stone",
+    "postion": [5, 0]
+  }, {
+    "type": "array_table",
+    "postion": [0, 1],
+    "arr": [5, 7, 8, 1]
+  }, {
+    "type": "array_table",
+    "postion": [1, 7],
+    "arr": [9, 2, 6, 3]
+  }, {
+    "type": "array_table",
+    "postion": [9, 7],
+    "arr": [4, 0, 3, 8]
+  }, {
+    "type": "array_table",
+    "postion": [7, 1],
+    "arr": [1, 5, 2, 4]
+  }]
+}

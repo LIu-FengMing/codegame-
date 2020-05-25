@@ -6,13 +6,13 @@
  *
  * Released under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Usage:
  *   Displays a line number count column to the left of the textarea
- *   
+ *
  *   Class up your textarea with a given class, or target it directly
  *   with JQuery Selectors
- *   
+ *
  *   $(".lined").linedtextarea({
  *   	selectedLine: 10,
  *    selectedClass: 'lineselect'
@@ -21,7 +21,6 @@
  */
 
 .linedwrap {
-	border: 1px solid #c0c0c0;
 	padding: 3px;
 }
 
@@ -47,7 +46,7 @@
 	width: 50px;
 	float: left;
 	overflow: hidden;
-	border-right: 1px solid #c0c0c0;
+	border-right: 1px solid #af775f;
 	margin-right: 10px;
 }
 
@@ -56,7 +55,7 @@
 }
 
 .linedwrap .codelines .lineno {
-	color:#AAAAAA;
+	color:black;
 	padding-right: 0.5em;
 	padding-top: 0.0em;
 	text-align: right;

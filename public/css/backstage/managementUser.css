@@ -184,6 +184,7 @@
   padding-top: calc(15px + 1vh);
   font-family:Microsoft JhengHei;
   font-weight: bold;
+  text-align:center;
 }
 .centerLost font{
   font-size: 6vh;

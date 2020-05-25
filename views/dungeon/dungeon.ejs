@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<title>全速衝線</title>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="Shortcut Icon" type="image/x-icon" href="/img/titleIcon.ico" />
+	<link rel="stylesheet" href="/css/dungeon.css">
+	<link rel="stylesheet" href="/css/dungeon_gameView_text.css">
+	<link rel="stylesheet" href="/css/backstage/modifyBtn.css">
+	<link rel="stylesheet" href="/css/share/mainFontFamily.css">
+	<link rel="stylesheet" href="/css/share/share.css">
+	<link rel="stylesheet" href="/css/share/main.css">
+	<link rel="stylesheet" href="/css/share/left.css">
+	<link rel="stylesheet" href="/css/share/right.css">
+	<link href="/jquery-linedtextarea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+	<script src="/jquery-linedtextarea/jquery-linedtextarea.js"></script>
+	<script src="/js/share.js"></script>
+</head>
+
+<body>
+	<audio id="bkMusic" src="/Fine_Line.mp3" preload loop volume="0"></audio>
+	<div class="wrap">
+		<div class="main">
+			<!--left-->
+			<div class="box sidebarLeft">
+				<img src="/img/MARK.png" class="leftMark">
+				<input type="button" title="小幫手" id="helperBtn" value="" onclick="helper('blocklyDiv')">
+
+				<!--center-->
+			</div>
+			<div class="box center" id="center">
+				<img src="/img/bk.jpg" id="bkImg">
+
+				<div id="titleBar">
+					<div class="map-cap">地圖名稱</div>
+					<div class="room-cap">房名:<%= room.title%></div>
+					<div class="chain-cap"></div>
+					<div class="hinge hinge0"></div>
+					<div class="hinge hinge1"></div>
+					<div class="hinge hinge2"></div>
+					<div class="hinge hinge3"></div>
+				</div>
+
+				<div id="textareaBk" style="display: none;">
+					<input type="button" title="關閉" id="clossDiv" value="X">
+					<textarea id="textarea_1"></textarea>
+				</div>
+
+				<!-- 關卡地圖 -->
+				<div id="divcanvas"></div>
+
+
+
+				<div id="blocklyDiv">
+					<!-- 程式碼輸入處的提示-->
+					<div id="funcDiv">
+						<div class="titleDiv" id="titleDiv">
+							<div style="cursor: default;">
+								可用指令
+							</div>
+						</div>
+						<div class="func" id="func">
+							<div style="cursor: default;">
+								main( )
+							</div>
+						</div>
+						<div class="moveForward" id="moveForward" style="display:none;">
+						</div>
+						<div class="judgment" id="judgment" style="display:none;">
+						</div>
+						<input type="button" title="指令大全" class="instructionButton" value="" onclick="instructionView(center)">
+					</div>
+
+					<!-- 程式碼輸入處 -->
+					<!-- <div id="textareaDiv">
+						<textarea class="lined" id="textarea_0" style="height:expression((this.scrollHeight>100)?'100px':(this.scrollHeight+500)+'px');overflow:auto;"></textarea>
+					</div> -->
+					<div id="textareaDiv">
+						<div class="code_background">
+							<textarea class="lined" id="textarea_0"></textarea>
+						</div>
+					</div>
+
+					<!-- 程式碼輸入處的按鈕-->
+					<div id="textButtonDiv">
+						<input type="button" title="開始" id="btn1" class="runButton" value="" onclick="codeToCompiler();">
+						<input type="button" title="設定" class="settingButton" value="" onclick="settingAllView(blocklyDiv)">
+					</div>
+
+				</div>
+			</div>
+
+			<!--right-->
+			<div class="box sidebarRight">
+				<h1 class="userName" id="userName"></h1>
+				<div class="userStar">
+					<img src="/img/star.png" class="imgIcon">
+					<font class="starNumber" id="starNumber"></font>
+				</div>
+				<button class="btnUser" title="個人資料" onclick="userData()"></button>
+				<button class="btnLogout" title="登出" onclick="logout()"></button>
+
+
+
+				<div class="msg-room-open">
+					<div class="msg-room">聊天室</div>
+					<div class="msg-room-content" style="display:none;">
+					</div>
+					<div class="msg-room-input" style="display:none;">
+						<i class="fa fa-paper-plane"></i>
+						<input type="text" name="" value="" id=msg-text>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+		<div class="footer"></div>
+	</div>
+	<script src="/gameNew/gameNew/js/p5.min.js"></script>
+	<script src="/gameNew/gameNew/js/p5.dom.js"></script>
+	<script src="/js/dungeon/dungeon.js"></script>
+	<script src="/js/dungeon/dungeon_main.js"></script>
+	<script src="/js/dungeon/dungeon_gameViewText.js"></script>
+
+	<script>
+		$(function() {
+			app.game('<%= room._id%>');
+			app2.game('<%= room._id%>','<%= room.CurrentMap%>');
+		});
+	</script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var UserLogin = require('../models/userLogin')
 var User = require('../models/user')
-var UserSpendTime = require('../models/userspendtime') //宜靜
+var UserSpendTime = require('../models/userspendtime') //宜靜 2020.05.18
 
 var multer = require("multer");
 
@@ -42,7 +42,7 @@ router.post('/createUserLoginState', function (req, res, next) {
     })
 });
 
-//以下宜靜
+//以下宜靜 2020.05.18
 router.post('/createUserSpendTimeState', function (req, res, next) {
     let date = req.body;
     if (date.username == "" || date.email == "") {
@@ -64,7 +64,7 @@ router.post('/createUserSpendTimeState', function (req, res, next) {
         return res.json({ responce: 'sucesss' });
     })
 });
-//以上宜靜
+//以上宜靜 2020.05.18
 
 router.post('/downloadUserPlayTimes', function (req, res, next) {
     UserLogin.getAllUserLoginState(function (err, userLoginState) {

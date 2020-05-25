@@ -2,6 +2,9 @@
 var mapNum = "game01";
 var map;    ///0 是草地  1是沙漠  2是海洋
 var people_init;    //x,y,面相   0->  1^  2<-  3 down
+var people_init2;
+var people_init3;
+var people_init4;
 var end_init = [];  //x,y,面相        0- 1 |
 var arrowObject = [], mapObject = []; //問號石頭[2] 是對於問號的方向
 var imgObject = [], mapwinLinit;
@@ -506,26 +509,18 @@ var real = true;
 
 var inner = "";
 var selectedIndex = 0;
-var changeSize = ['6', '7', '8', '9', '10', '11', '12', '13'];
+var changeSize = ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
 
 var collegemap = ['0', '1', '2'];
 var collegePos = ['0度', '90度', '180度', '270度'];
-var collegeObj = ['people', 'endline', 'stone', 'tree', 'coin', 'lock2', 'questionMark', 'questionstone',
-    'lock', 'arrow', 'boon',
-    'enemyTank', "treasure",];
+var collegeObj = ['people', 'people2', 'people3', 'people4', 'endline','stone','statue','door','rune_table','trap','unmoveble'];
 
 function setup() {
-    var path = ["stone", "tree", "tank", "bot", "start",
-        "car", "endline", "questionMark", "F",
-        "L", "R", "coin", "boon",
-        "arrow", "lock", "lock2", "bullet",
-        "boon_hit", "questionstone", "arrowWite", "enemyTank",
-        "unlock", "unlock2", "unlockfail2", "foggy", "peopleFoggy", "treasure",
-        "HPandArmor", "HP", "enemyDead", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-        "desret", "lawn", "sea",
+    var path = ["start",
+        "car","car2", "car3", "car4", "dungeon","endline","stone","statue","door","rune_table","trap","unmoveble"
     ]
     for (var i = 0; i < path.length; ++i) {
-        var imgpath = "GameImage/" + path[i] + ".png";
+        var imgpath = "GameImage/Dungeon/" + path[i] + ".png";
         var img = loadImage(imgpath);
         imgObject.push(img), imgDic[path[i]] = i.toString();
     }
@@ -625,12 +620,24 @@ function loadData() {
     map = mapNumber['mapValue'];
     mapSize = Math.sqrt(mapNumber['mapSize']);
     people_init = mapNumber['people_init'];
+    people_init2 = mapNumber['people_init2'];
+    people_init3 = mapNumber['people_init3'];
+    people_init4 = mapNumber['people_init4'];
     end_init = mapNumber['end_init'];
     mapObject = mapNumber['obj'];
     mapwinLinit = mapNumber['winLinit'];
     var dx = people_init["postion"][0] * edgeToEdge, dy = people_init["postion"][1] * edgeToEdge, drotate = 360 - people_init["postion"][2] * 90;
     old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
     now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
+    var dx2 = people_init2["postion"][0] * edgeToEdge, dy2 = people_init2["postion"][1] * edgeToEdge, drotate2 = 360 - people_init2["postion"][2] * 90;
+    old_PeooleX2 = dx2, old_PeooleY2 = dy2, old_PeooleEESW2 = drotate2;
+    now_PeooleX2 = dx2, now_PeooleY2 = dy2, now_PeooleEESW2 = drotate2;
+    var dx3 = people_init3["postion"][0] * edgeToEdge, dy3 = people_init3["postion"][1] * edgeToEdge, drotate3 = 360 - people_init3["postion"][2] * 90;
+    old_PeooleX3 = dx3, old_PeooleY3 = dy3, old_PeooleEESW3 = drotate3;
+    now_PeooleX3 = dx3, now_PeooleY3 = dy3, now_PeooleEESW3 = drotate3;
+    var dx4 = people_init4["postion"][0] * edgeToEdge, dy4 = people_init4["postion"][1] * edgeToEdge, drotate4 = 360 - people_init4["postion"][2] * 90;
+    old_PeooleX4 = dx4, old_PeooleY4 = dy4, old_PeooleEESW4 = drotate4;
+    now_PeooleX4 = dx4, now_PeooleY4 = dy4, now_PeooleEESW4 = drotate4;
     if (real) {
         var wd = document.getElementById('divcanvas').offsetWidth;
         var hd = document.getElementById('divcanvas').offsetWidth;
@@ -663,6 +670,15 @@ function draw() {
         var dx = people_init["postion"][0] * edgeToEdge, dy = people_init["postion"][1] * edgeToEdge, drotate = 360 - people_init["postion"][2] * 90;
         old_PeooleX = dx, old_PeooleY = dy, old_PeooleEESW = drotate;
         now_PeooleX = dx, now_PeooleY = dy, now_PeooleEESW = drotate;
+        var dx2 = people_init2["postion"][0] * edgeToEdge, dy2 = people_init2["postion"][1] * edgeToEdge, drotate2 = 360 - people_init2["postion"][2] * 90;
+        old_PeooleX2 = dx2, old_PeooleY2 = dy2, old_PeooleEESW2 = drotate2;
+        now_PeooleX2 = dx2, now_PeooleY2 = dy2, now_PeooleEESW2 = drotate2;
+        var dx3 = people_init3["postion"][0] * edgeToEdge, dy3 = people_init3["postion"][1] * edgeToEdge, drotate3 = 360 - people_init3["postion"][2] * 90;
+        old_PeooleX3 = dx3, old_PeooleY3 = dy3, old_PeooleEESW3 = drotate3;
+        now_PeooleX3 = dx3, now_PeooleY3 = dy3, now_PeooleEESW3 = drotate3;
+        var dx4 = people_init4["postion"][0] * edgeToEdge, dy4 = people_init4["postion"][1] * edgeToEdge, drotate4 = 360 - people_init4["postion"][2] * 90;
+        old_PeooleX4 = dx4, old_PeooleY4 = dy4, old_PeooleEESW4 = drotate4;
+        now_PeooleX4 = dx4, now_PeooleY4 = dy4, now_PeooleEESW4 = drotate4;
         updateCanvas();
         iscreatecanvas = 2;
     }
@@ -716,27 +732,17 @@ function keyPressed() {
 
 
 function updateCanvas() {
-    var imgDesret = imgObject[parseInt(imgDic["desret"])];
-    var imgLawn = imgObject[parseInt(imgDic["lawn"])];
-    var imgSea = imgObject[parseInt(imgDic["sea"])];
+    var imgTest = imgObject[parseInt(imgDic["dungeon"])];
+    var mapType = cmap.selectedIndex;
     edgeToHeight = edgeToEdge
     edgeToWidth = edgeToEdge
     for (var y = 0; y < mapSize; ++y) {
         for (var x = 0; x < mapSize; ++x) {
             var i = y * mapSize + x;
-
-            if (map[i] == '0') {
+            
+            if (mapType == '0') {
                 // backgroundGraph.fill('#bafba7');
-                image(imgLawn, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
-            }
-            else if (map[i] == '1') {
-                image(imgDesret, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
-            }
-            else if (map[i] == '2') {
-                image(imgSea, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
-            }
-            else {
-                // console.log(map[i]);
+                image(imgTest, x * edgeToWidth, y * edgeToHeight, edgeToWidth, edgeToHeight);
             }
         }
     }
@@ -790,10 +796,13 @@ function updateCanvas() {
             image(pg, dx, dy, edgeToEdge, edgeToEdge);
         }
         else {
-            // console.log(img, dx, dy, edgeToEdge, edgeToEdge);
-
-
-            image(img, dx, dy, edgeToEdge, edgeToEdge);
+             //console.log(img, dx, dy, edgeToEdge, edgeToEdge);
+            var drotate = 360 - obj["postion"][2] * 90;
+            var pg = createGraphics(edgeToEdge, edgeToEdge);
+            pg.translate(pg.width / 2, pg.height / 2);
+            pg.rotate(PI / 180 * drotate);
+            pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
+            image(pg, dx, dy, edgeToEdge, edgeToEdge);
         }
 
     }
@@ -818,8 +827,37 @@ function updateCanvas() {
     var img = imgObject[parseInt(imgDic["start"])];
     image(img, dx, dy, edgeToEdge, edgeToEdge);
     image(pg, dx, dy, edgeToEdge, edgeToEdge);
-
-
+    
+    var pg = createGraphics(edgeToEdge, edgeToEdge);
+    var dx = now_PeooleX2, dy = now_PeooleY2, drotate = now_PeooleEESW2;
+    var img = imgObject[parseInt(imgDic[people_init2["type"]])];
+    pg.translate(pg.width / 2, pg.height / 2);
+    pg.rotate(PI / 180 * drotate);
+    pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
+    var img = imgObject[parseInt(imgDic["start"])];
+    image(img, dx, dy, edgeToEdge, edgeToEdge);
+    image(pg, dx, dy, edgeToEdge, edgeToEdge);
+    
+    var pg = createGraphics(edgeToEdge, edgeToEdge);
+    var dx = now_PeooleX3, dy = now_PeooleY3, drotate = now_PeooleEESW3;
+    var img = imgObject[parseInt(imgDic[people_init3["type"]])];
+    pg.translate(pg.width / 2, pg.height / 2);
+    pg.rotate(PI / 180 * drotate);
+    pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
+    var img = imgObject[parseInt(imgDic["start"])];
+    image(img, dx, dy, edgeToEdge, edgeToEdge);
+    image(pg, dx, dy, edgeToEdge, edgeToEdge);
+    
+    var pg = createGraphics(edgeToEdge, edgeToEdge);
+    var dx = now_PeooleX4, dy = now_PeooleY4, drotate = now_PeooleEESW4;
+    var img = imgObject[parseInt(imgDic[people_init4["type"]])];
+    pg.translate(pg.width / 2, pg.height / 2);
+    pg.rotate(PI / 180 * drotate);
+    pg.image(img, -edgeToEdge / 2, -edgeToEdge / 2, edgeToEdge, edgeToEdge);
+    var img = imgObject[parseInt(imgDic["start"])];
+    image(img, dx, dy, edgeToEdge, edgeToEdge);
+    image(pg, dx, dy, edgeToEdge, edgeToEdge);
+    
 
     stroke('red');
     strokeWeight(4);
@@ -860,13 +898,11 @@ function realDoMycanvasMouseClicked() {
         changeFile = true;
 
         var index = cmap.selectedIndex;
-
-        var mapTerrain = data['mapValue'];
         // var size = collegemap[index];
         var size = index.toString();
         // console.log("size:",size);
         // console.log("MouseY*mapSize+MouseX:", MouseY * mapSize + MouseX);
-        var temp = MouseY * mapSize + MouseX;
+        /*var temp = MouseY * mapSize + MouseX;
         if (temp > 0) {
             var str = mapTerrain.substr(0, temp);
             str = str + size;
@@ -878,7 +914,7 @@ function realDoMycanvasMouseClicked() {
             str = str + mapTerrain.substr(1);
             mapTerrain = str
         }
-        data['mapValue'] = mapTerrain;
+        data['mapValue'] = mapTerrain;*/
     }
 
     // mapTerrain = mapNumber['mapValue'];
@@ -984,6 +1020,39 @@ function input(eventFrom = "button") {
             data['people_init'] = obj;
 
         }
+        else if (obj == "people2") {
+            var rotate = pos.selectedIndex;
+            var obj = {
+                "type": "car2", "postion": [MouseX, MouseY, rotate],
+                "hp": 5,
+                "armor": 20,
+                "atk": 2
+            };
+            data['people_init2'] = obj;
+
+        }
+        else if (obj == "people3") {
+            var rotate = pos.selectedIndex;
+            var obj = {
+                "type": "car3", "postion": [MouseX, MouseY, rotate],
+                "hp": 5,
+                "armor": 20,
+                "atk": 2
+            };
+            data['people_init3'] = obj;
+
+        }
+        else if (obj == "people4") {
+            var rotate = pos.selectedIndex;
+            var obj = {
+                "type": "car4", "postion": [MouseX, MouseY, rotate],
+                "hp": 5,
+                "armor": 20,
+                "atk": 2
+            };
+            data['people_init4'] = obj;
+
+        }
         else if (obj == "enemyTank") {
             var rotate = pos.selectedIndex;
             var obj = { "type": "enemyTank", "postion": [MouseX, MouseY, rotate], "hp": 5, "atk": 5 };
@@ -996,7 +1065,7 @@ function input(eventFrom = "button") {
         }
         else if (obj == "endline") {
             var rotate = pos.selectedIndex;
-            var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate % 2] };
+            var obj = { "type": "endline", "postion": [MouseX, MouseY, rotate ] };
             data['end_init'].push(obj);
             nowEditOId = data['obj'].length - 1;
             //"end_init":[{"type":"endline","postion":[5,2,1]}],
@@ -1023,7 +1092,7 @@ function input(eventFrom = "button") {
             }
             //"end_init":[{"type":"endline","postion":[5,2,1]}],
         }
-        else if (obj == "lock2") {
+        else if (obj == "lock2"){
             var obj = { "type": "lock2", "unlock": "lock_output", "postion": [MouseX, MouseY], "ans": "Hello", "response": "Hello" };
             data['obj'].push(obj);
             // console.log(data['obj']);
@@ -1031,6 +1100,14 @@ function input(eventFrom = "button") {
             if (heightestLevelStar < 15) {
                 heightestLevelStar = 15;
             }
+            //"end_init":[{"type":"endline","postion":[5,2,1]}],
+        }
+        else if (obj == "door"){
+            var rotate = pos.selectedIndex % 2;
+            var obj = { "type": "door","postion": [MouseX, MouseY,rotate] };
+            data['obj'].push(obj);
+            // console.log(data['obj']);
+            nowEditOId = data['obj'].length - 1;
             //"end_init":[{"type":"endline","postion":[5,2,1]}],
         }
         else if (obj == "questionMark") {
@@ -1054,7 +1131,7 @@ function input(eventFrom = "button") {
         else {
             var obj = { "type": obj, "postion": [MouseX, MouseY] };
             data['obj'].push(obj);
-            // console.log(data['obj']);
+            console.log(obj);
             nowEditOId = data['obj'].length - 1;
         }
         loadData();

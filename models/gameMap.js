@@ -86,7 +86,7 @@ module.exports.createMap = function (newGameMap, callback) {
 
 // getMap
 module.exports.getMap = function (callback) {
-    var query = { };
+    var query = {};
     GameMapRecord.find(query, callback)
 }
 
@@ -104,7 +104,7 @@ module.exports.updateMapByLevel = function (levelID, scriptData, callback) {
         data:scriptData.data
     }
     // console.log("setquery",setquery);
-    
+
     // MapRecord.updateOne(query, setquery, callback);
     GameMapRecord.updateOne(query, setquery, callback);
 }

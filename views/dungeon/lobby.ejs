@@ -1,0 +1,116 @@
+<html>
+
+<head>
+	<meta charset="big5">
+	<link rel=stylesheet href="css/lobby_center.css">
+	<link rel="stylesheet" href="css/share/main.css">
+	<link rel="stylesheet" href="css/share/left.css">
+	<link rel="stylesheet" href="css/share/right.css">
+	<link rel="stylesheet" href="css/share/mainFontFamily.css">
+	<link rel="stylesheet" href="css/share/share.css">
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="js/share.js"></script>
+	<script src="js/closeEvent.js"></script>
+	<title>全速衝線</title>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="main">
+			<!--left-->
+			<div class="box sidebarLeft">
+				<img src="img/MARK.png" class="leftMark">
+				<dl style="font-size: calc(5px + 0.5vw);color:black;position: absolute;bottom:1vh;left:0px;text-align:left;">
+					<dt style="margin-bottom:0.5vh;">聯絡信箱：</dt>
+					<dd>
+						<a href="mailto://fullspeedline@gmail.com" style="color:black;">fullspeedline@gmail.com</a>
+					</dd>
+				</dl>
+			</div>
+			<!-- center -->
+			<div class="box center" id="center">
+				<img src="img/bk.jpg" id="bkImg">
+				<input type="button" title="返回鍵" value="" id="goBack3" onclick="location.href='home'">
+				<div id="roomMain">
+					<div id="room_list" class="room_all">
+						<div class="room_left">
+							<div id="room-box" class="room_list">
+								<table id="room-table" style="width:100%;text-align:center">
+									<tr style="background:#7C5A43">
+										<td style="width:10%">NO</td>
+										<td style="width:35%">遊戲室名稱</td>
+										<td style="width:20%">地圖</td>
+										<td style="width:10%">人數</td>
+										<td style="width:15%">狀態</td>
+										<td style="width:10%">進入遊戲</td>
+									</tr>
+									<% if(rooms.length > 0) { %>
+									<% rooms.forEach(function(room,i) { %>
+									<tr>
+										<!-- 房間號碼 -->
+										<td id="room-index"><%=i+1%></td>
+										<!-- 房間名稱-->
+										<td><%= (room.title.length > 25? room.title.substr(0, 25) + '...': room.title) %></td>
+										<!-- 地圖名稱-->
+										<td><%= room.CurrentMap %></td>
+										<!-- 房間人數-->
+										<td id="<%= room.id %>"><%= room.connections.length %>/4</td>
+										<!-- 房間狀態-->
+										<% if(room.roomStatus == 0){ %> <td id="roomStatus<%= room.roomStatus %>" >準備中</td>
+																			<% }else{ %>  <td id="roomStatus<%= room.roomStatus %>" >開局中</td>
+																			<% } %>
+										<!-- 進入房間-->
+										<td class="room-item"><a id="<%= room.id %>" <i id="gameIcon" class="fa fa-gamepad"></i></a></td>
+									</tr>
+									<% }); %>
+									<% } %>
+								</table>
+
+
+
+							</div>
+
+							<div class="message">
+								<ul id="msg-content" class="content">
+								</ul>
+							</div>
+
+							<div class="messageInput">
+								<input id="msg-world" style="width:10%;margin:5px 0 0 0;position:relative" type="text" disabled="disabled" id="input" value="世界">
+								<input id="msg-input" style="width:78%;margin:5px 0 0 0;position:relative;" type="text">
+								<input id="msg-button" style="width:10%;margin:5px 0 0 0;" type="button" value="傳送">
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--right-->
+			<div class="box sidebarRight">
+				<h1 class="userName" id="userName"></h1>
+				<div class="userStar">
+					<img src="img/star.png" class="imgIcon">
+					<font class="starNumber" id="starNumber"></font>
+				</div>
+				<button class="btnUser" title="個人資料" onclick="userData()"></button>
+				<button class="btnLogout" title="登出" onclick="logout()"></button>
+				<button class="create" title="創建房間" id="createRoom"></button>
+			</div>
+
+		</div>
+		<div class="footer"></div>
+	</div>
+</body>
+
+<script src="js/dungeon/lobby.js"></script>
+<script>
+	$(function() {
+		app.rooms();
+	});
+</script>
+
+</html>

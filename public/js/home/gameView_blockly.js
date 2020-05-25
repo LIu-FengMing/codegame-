@@ -886,13 +886,13 @@ function clearButton(thisTextarea) {
 }
 /*重新開始*/
 function restartButton(thisTextarea) {
-  // challengeGameAgain(); //宜靜
+  // challengeGameAgain(); //宜靜 2020.05.18
   myFunction();
 }
 /*重新開始*/
 function restartGame(thisDiv, thisDiv2) {
   clossFunc(thisDiv, thisDiv2);
-  challengeGameAgain(); //宜靜
+  challengeGameAgain(); //宜靜 2020.05.18
 }
 /*轉換程式碼*/
 function transformButton() {
@@ -1485,7 +1485,7 @@ function createEndView(starNum, gameResult, instructionNum, code, errMessage) {
     b.setAttribute("id", "successRestartGameBtn");
     b.setAttribute("value", "重新挑戰");
     b.setAttribute("onclick", "clossFunc(\"createEndView\",\"createEndBkView\")");
-    b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")"); //宜靜
+    b.setAttribute("onclick", "restartGame(\"createEndView\",\"createEndBkView\")"); //宜靜 2020.05.18
     divTag.appendChild(b);
     b = document.createElement("input");
     b.setAttribute("type", "button");

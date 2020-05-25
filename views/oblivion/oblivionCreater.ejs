@@ -48,19 +48,17 @@
               <td id="td02">
                 <form>
                   <select id="objectSelect">
-                    <option id="op0" value="start">玩家起始位置</option>
-                    <option id="op1" value="end">終點</option>
-                    <option id="op2" value="stone">石頭</option>
-                    　<option id="op3" value="tree">樹木</option>
-                    <option id="op4" value="gold">金幣</option>
-                    <option id="op5" value="blueLock">藍色鎖頭</option>
-                    <option id="op6" value="questionMark">問號標誌</option>
-                    <option id="op7" value="questionStone">問號石頭</option>
-                    <option id="op8" value="yellowLock">黃色鎖頭</option>
-                    <option id="op9" value="yellowArrow">黃色箭頭</option>
-                    <option id="op10" value="bomb">炸彈</option>
-                    <option id="op11" value="enemy">敵人</option>
-                    <option id="op12" value="box">寶箱</option>
+                    <option id="op0" value="start">玩家起始位置1</option>
+                    <option id="op1" value="start2">玩家起始位置2</option>
+                    <option id="op2" value="start3">玩家起始位置3</option>
+                    <option id="op3" value="start4">玩家起始位置4</option>
+                    <option id="op4" value="end">終點</option>             <option id="op5" value="stone">石頭</option>
+                    <option id="op6" value="stone">雕像</option>
+                    <option id="op7" value="door_closs">符文門</option>
+                    <option id="op8" value="rune_table">符文桌</option>
+                    <option id="op9" value="trap">陷阱</option>
+                    <option id="op10" value="unmoveble">火焰</option>
+
                   </select>
                 </form>
               </td>
@@ -68,10 +66,10 @@
               <td id="td04">
                 <form>
                   <select id="college-pos">
-                    <option value="0">0度</option>
-                    　<option value="90">90度</option>
-                    　<option value="180">180度</option>
-                    <option value="270">270度</option>
+                    <option value="0">向右</option>
+                    　<option value="90">向上</option>
+                    　<option value="180">向左</option>
+                    <option value="270">向下</option>
                   </select>
                 </form>
               </td>
@@ -183,6 +181,14 @@
                       <option value="10*10">10X10</option>
                       <option value="11*11">11X11</option>
                       <option value="12*12">12X12</option>
+                      <option value="13*13">13X13</option>
+                      <option value="14*14">14X14</option>
+                      <option value="15*15">15X15</option>
+                      <option value="16*16">16X16</option>
+                      <option value="17*17">17X17</option>
+                      <option value="18*18">18X18</option>
+                      <option value="19*19">19X19</option>
+                      <option value="20*20">20X20</option>
                     </select>
                   </td>
                 </tr>
@@ -194,9 +200,7 @@
                 <tr>
                   <td>
                     <select id="mapDeploy" onchange="changeObjectAttributes()">
-                      <option value="land">陸地</option>
-                      <option value="desert">沙漠</option>
-                      <option value="sea">海洋</option>
+                      <option value="test1">多人遊戲</option>
                     </select>
                   </td>
                 </tr>
@@ -258,7 +262,6 @@
     </div>
   </div>
   <script src="js/oblivion/oblivionCreater.js"></script>
-  <script src="newMapCreate/js/p5.min.js"></script>
   <script src="newMapCreate/js/p5.min.js"></script>
   <script src="newMapCreate/js/p5.dom.js"></script>
   <script src="newMapCreate/js/mian.js"></script>

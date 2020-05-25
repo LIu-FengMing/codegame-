@@ -254,7 +254,7 @@ function changeToC(isDisplay) {
   if (isDisplay) {
     textareaDiv.style.display = 'block';
   } else {
-    // challengeGameAgain();  //宜靜
+    // challengeGameAgain();  //宜靜 2020.05.18
     codeToCompiler(textcode);
   }
 }

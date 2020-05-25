@@ -25,6 +25,39 @@
         "armor": 20,
         "atk": 2
     },
+    "people_init2": {
+        "type": "car2",
+        "postion": [
+            0,
+            3,
+            0
+        ],
+        "hp": 5,
+        "armor": 20,
+        "atk": 2
+    },
+    "people_init3": {
+        "type": "car3",
+        "postion": [
+            0,
+            4,
+            0
+        ],
+        "hp": 5,
+        "armor": 20,
+        "atk": 2
+    },
+    "people_init4": {
+        "type": "car4",
+        "postion": [
+            0,
+            1,
+            0
+        ],
+        "hp": 5,
+        "armor": 20,
+        "atk": 2
+    },
     "end_init": [
         {
             "type": "endline",
