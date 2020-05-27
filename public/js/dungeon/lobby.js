@@ -275,3 +275,7 @@ function addMessage(message) {
   }, 1000);
 
 }
+function logout() {
+  var href = "/logout";
+  window.location.replace(href);
+}

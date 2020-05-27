@@ -7,8 +7,11 @@ window.onload = function functionName() { //當頁面載入時，先創建房間
 
 
 var app = {
-  chat: function(roomId, username) {
-
+  chat: function(roomId, username, starnum) {
+    var name = document.getElementById("userName");
+    var star = document.getElementById("starNumber");
+    name.textContent = username;
+    star.textContent = starnum;
     var socket = io('/rooms'
       /*, {
             transports: ['websocket']
@@ -172,4 +175,8 @@ function createMapView() {
     $("#userDataBkView").hide();
     $("#map-view").hide();
   });
+}
+function logout() {
+  var href = "/logout";
+  window.location.replace(href);
 }
