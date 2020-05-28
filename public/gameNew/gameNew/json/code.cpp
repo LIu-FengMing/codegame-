@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
 #include <math.h>
 #define SIZE 256
 using namespace std;

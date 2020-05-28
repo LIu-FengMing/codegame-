@@ -284,7 +284,7 @@
   right: 0px;
   cursor: pointer;
 }
-#textButtonDiv .clearButton{
+/*#textButtonDiv .clearButton{
   width: 9vh;
   height: 9vh;
   border: 0px;
@@ -309,6 +309,31 @@
   top: 22%;
   right: 0px;
   cursor: pointer;
+}*/
+#clossDiv{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  border-color: rgb(0, 0, 0);
+  border-width: 0px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  cursor: pointer;
+}
+#settingTitle{
+  margin-top: 20px;
+  height: 5vh;
+  color: #7C5A43;
+  text-align: center;
+  font-family: "Microsoft JhengHei";
+  font-weight: bold;
+  border-style: solid;
+  border-color: #7C5A43;
+  border-width: 0px 0px 2px 0px;
 }
 #textButtonDiv .settingButton{
   width: 9vh;
@@ -319,7 +344,7 @@
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 33%;
+  top: 11%;
   right: 0px;
   cursor: pointer;
 }

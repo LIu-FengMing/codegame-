@@ -375,7 +375,7 @@
   right: 0px;
   cursor: pointer;
 }
-#blocklyButtonRightDiv .clearButton{
+/*#blocklyButtonRightDiv .clearButton{
   width: 9vh;
   height: 9vh;
   border: 0px;
@@ -400,7 +400,7 @@
   top: 33%;
   right: 0px;
   cursor: pointer;
-}
+}*/
 #blocklyButtonRightDiv .settingButton{
   width: 9vh;
   height: 9vh;
@@ -410,7 +410,7 @@
   background-size: 100% 100%;
   background-color: transparent;
   position: absolute;
-  top: 44%;
+  top: 22%;
   right: 0px;
   cursor: pointer;
 }

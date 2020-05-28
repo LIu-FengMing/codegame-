@@ -1537,7 +1537,7 @@ function createEndView(starNum, gameResult, instructionNum, code, errMessage) {
 
 
 function deleteGameRoom(){
-  alert("delete")
+  //alert("delete")
   href = href+"/delete"
   console.log(href);
   $.ajax({
