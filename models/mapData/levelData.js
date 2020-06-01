@@ -860,7 +860,7 @@ module.exports = {
       {
         "level": 21,
         "mode": 1,
-        "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>藍色鎖頭精靈問題：<br>請以兩個變數接系統給予的值，第一個為字元，第二個為整數。<br>假設獲得的字元為c，獲得的整數為i，請問字元c(ascii)往後數第i個字元是哪個字元？<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>小提示：<br>int i;<br>char C;宣告一個字元變數C<br>scanf(\"%c\",C);以變數C接取系統給予的字元。<br>scanf(\"%d\",i);以變數i接取系統給予的整數值。<br>printf(\"%c\",C+i);輸出C往後數第i個字元。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "還記得判斷式的用法吧？<br>這可不能忘記啊！<br>請結合各指令抵達終點。<br><br>藍色鎖頭精靈問題：<br>請以兩個變數接系統給予的值，第一個為字元，第二個為整數。<br>假設獲得的字元為c，獲得的整數為i，請問字元c(ascii)往後數第i個字元是哪個字元？<br><br>判斷式很重要！<br>判斷式很重要！<br>判斷式很重要！<br>因為很重要所以講三遍。<br><br>小提示：<br>int i;<br>char C;宣告一個字元變數C<br>scanf(\"%c\",&C);以變數C接取系統給予的字元。<br>scanf(\"%d\",&i);以變數i接取系統給予的整數值。<br>printf(\"%c\",C+i);輸出C往後數第i個字元。<br><br>過關條件：<br>3星：39個動作包含39個動作以內<br>2星：41個動作包含41個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 22,
@@ -925,7 +925,7 @@ module.exports = {
       {
         "level": 34,
         "mode": 1,
-        "textarea1": "新指令出現了！！！<br>新指令：<br>getDirection( )指令，分類於\"函式\"內。<br><br>這一關能獲得的不是距離陣列而是方向陣列。<br>只要學會讀取方向陣列裡的方向，搭配每次直線走2步很快就能發現終點。<br><br>小提示：<br>請自行宣告一個大小為 12 的字元陣列，並使用getDirection(陣列名稱,陣列大小);來獲得方向陣列。<br><br>方向陣列裡的每個值代表的是每次轉彎所要轉的方向。<br>如：陣列[0]代表的是第一次要轉彎的方向，'L'代表的是左轉，'R'代表的是右轉。<br><br>每直走2步搭配一次轉彎即可找到終點。<br><br>注意：起始前方道路及進終點前的道路均為直線。<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
+        "textarea1": "新指令出現了！！！<br>新指令：<br>getDirection( )指令，分類於\"函式\"內。<br><br>這一關能獲得的不是距離陣列而是方向陣列。<br>只要學會讀取方向陣列裡的方向，搭配每次直線走2步很快就能發現終點。<br><br>小提示：<br>請自行宣告一個大小為 12 的字元陣列，並使用getDirection(陣列名稱);來獲得方向陣列。<br><br>方向陣列裡的每個值代表的是每次轉彎所要轉的方向。<br>如：陣列[0]代表的是第一次要轉彎的方向，'L'代表的是左轉，'R'代表的是右轉。<br><br>每直走2步搭配一次轉彎即可找到終點。<br><br>注意：起始前方道路及進終點前的道路均為直線。<br><br>通關條件：<br>3星：3個動作包含3個動作以內<br>2星：4個動作包含4個動作以內<br>1星：滿足過關條件即可<br><br>Ctrl鍵加方向鍵上下可以調整程式區字體大小唷！"
       },
       {
         "level": 35,
@@ -3585,7 +3585,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -3671,7 +3671,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -3757,7 +3757,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -3843,7 +3843,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -3929,7 +3929,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4015,7 +4015,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4101,7 +4101,7 @@ directiveData : {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
