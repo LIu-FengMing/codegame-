@@ -917,12 +917,17 @@ function instructionView(mainDiv) {
   divID = "instructionView";
   divID2 = "equipageBkView";
   try {
-    divTag = document.getElementById("settingAllView");
-    parentObj = divTag.parentNode;
-    parentObj.removeChild(divTag);
     divTag = document.getElementById("instructionView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
+  } catch (e) {}
+  try {
+    divTag = document.getElementById("settingAllView");
+    parentObj = divTag.parentNode;
+    parentObj.removeChild(divTag);
+  } catch (e) {
+  }
+  try {
     divTag = document.getElementById("equipageBkView");
     parentObj = divTag.parentNode;
     parentObj.removeChild(divTag);
@@ -1468,9 +1473,9 @@ function blocklyUsable(thisClassID, thisValue) {
       blockType = "getKeyArray(&nbsp)<br>";
       b.setAttribute("onclick", "insertAtCursor('getKeyArray();');");
       break;
-    case "getKeyMap(&nbsp)":
-      blockType = "getKeyMap(&nbsp)<br>";
-      b.setAttribute("onclick", "insertAtCursor('getKeyMap();');");
+    case "getMap(&nbsp)":
+      blockType = "getMap(&nbsp)<br>";
+      b.setAttribute("onclick", "insertAtCursor('getMap();');");
       break;
   }
   b.innerHTML = blockType;
@@ -4189,7 +4194,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4275,7 +4280,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4361,7 +4366,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4447,7 +4452,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4533,7 +4538,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4619,7 +4624,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
@@ -4705,7 +4710,7 @@ function loadDict() {
                 "value":"getKeyArray(&nbsp)"
               },
               {
-                "value":"getKeyMap(&nbsp)"
+                "value":"getMap(&nbsp)"
               }
             ]
           }
