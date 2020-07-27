@@ -7,14 +7,12 @@ import { SocketEventType, ServerMessageType } from "./enums";
  * possible connection for peers.
  */
 export class Socket extends EventEmitter {
-  private readonly WEB_SOCKET_PING_INTERVAL = 20000;//ms
-
-  private _disconnected = false;
-  private _id: string;
-  private _messagesQueue: Array<any> = [];
-  private _wsUrl: string;
-  private _socket: WebSocket;
-  private _wsPingTimer: any;
+  private _disconnected: boolean = true;
+  private _id?: string;
+  private _messagesQueue: Array<object> = [];
+  private _socket?: WebSocket;
+  private _wsPingTimer?: any;
+  private readonly _baseUrl: string;
 
   constructor(
     secure: any,
@@ -22,36 +20,33 @@ export class Socket extends EventEmitter {
     port: number,
     path: string,
     key: string,
+    private readonly pingInterval: number = 5000,
   ) {
     super();
 
     const wsProtocol = secure ? "wss://" : "ws://";
 
-    this._wsUrl = wsProtocol + host + ":" + port + path + "peerjs?key=" + key;
+    this._baseUrl = wsProtocol + host + ":" + port + path + "peerjs?key=" + key;
   }
 
-  /** Check in with ID or get one from server. */
   start(id: string, token: string): void {
     this._id = id;
 
-    this._wsUrl += "&id=" + id + "&token=" + token;
+    const wsUrl = `${this._baseUrl}&id=${id}&token=${token}`;
 
-    this._startWebSocket();
-  }
-
-  /** Start up websocket communications. */
-  private _startWebSocket(): void {
-    if (this._socket) {
+    if (!!this._socket || !this._disconnected) {
       return;
     }
 
-    this._socket = new WebSocket(this._wsUrl);
+    this._socket = new WebSocket(wsUrl);
+    this._disconnected = false;
 
     this._socket.onmessage = (event) => {
       let data;
 
       try {
         data = JSON.parse(event.data);
+        logger.log("Server message received:", data);
       } catch (e) {
         logger.log("Invalid server message", event.data);
         return;
@@ -61,10 +56,14 @@ export class Socket extends EventEmitter {
     };
 
     this._socket.onclose = (event) => {
-      logger.log("Socket closed.", event);;
+      if (this._disconnected) {
+        return;
+      }
 
+      logger.log("Socket closed.", event);
+
+      this._cleanup();
       this._disconnected = true;
-      clearTimeout(this._wsPingTimer);
 
       this.emit(SocketEventType.Disconnected);
     };
@@ -72,7 +71,9 @@ export class Socket extends EventEmitter {
     // Take care of the queue of connections if necessary and make sure Peer knows
     // socket is open.
     this._socket.onopen = () => {
-      if (this._disconnected) return;
+      if (this._disconnected) {
+        return;
+      }
 
       this._sendQueuedMessages();
 
@@ -83,7 +84,9 @@ export class Socket extends EventEmitter {
   }
 
   private _scheduleHeartbeat(): void {
-    this._wsPingTimer = setTimeout(() => { this._sendHeartbeat() }, this.WEB_SOCKET_PING_INTERVAL);
+    this._wsPingTimer = setTimeout(() => {
+      this._sendHeartbeat();
+    }, this.pingInterval);
   }
 
   private _sendHeartbeat(): void {
@@ -94,14 +97,14 @@ export class Socket extends EventEmitter {
 
     const message = JSON.stringify({ type: ServerMessageType.Heartbeat });
 
-    this._socket.send(message);
+    this._socket!.send(message);
 
     this._scheduleHeartbeat();
   }
 
   /** Is the websocket currently open? */
   private _wsOpen(): boolean {
-    return !!this._socket && this._socket.readyState == 1;
+    return !!this._socket && this._socket.readyState === 1;
   }
 
   /** Send queued messages. */
@@ -140,14 +143,26 @@ export class Socket extends EventEmitter {
 
     const message = JSON.stringify(data);
 
-    this._socket.send(message);
+    this._socket!.send(message);
   }
 
   close(): void {
-    if (!this._disconnected && !!this._socket) {
-      this._socket.close();
-      this._disconnected = true;
-      clearTimeout(this._wsPingTimer);
+    if (this._disconnected) {
+      return;
     }
+
+    this._cleanup();
+
+    this._disconnected = true;
+  }
+
+  private _cleanup(): void {
+    if (!!this._socket) {
+      this._socket.onopen = this._socket.onmessage = this._socket.onclose = null;
+      this._socket.close();
+      this._socket = undefined;
+    }
+
+    clearTimeout(this._wsPingTimer!);
   }
 }

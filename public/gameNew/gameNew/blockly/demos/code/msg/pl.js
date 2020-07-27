@@ -20,5 +20,5 @@ var MSG = {
   linkAlert: "Udpostępnij swoje bloki korzystając z poniższego linku : \n\n\n%1",
   hashError: "Przepraszamy, \"%1\" nie odpowiada żadnemu zapisanemu programowi.",
   xmlError: "Nie można załadować zapisanego pliku. Być może został utworzony za pomocą innej wersji Blockly?",
-  badXml: "Błąd parsowania XML : \n%1\n\nZaznacz 'OK' aby odrzucić twoje zmiany lub 'Cancel', żeby w przyszłości edytować XML."
+  badXml: "Błąd parsowania XML : \n%1\n\nZaznacz 'OK' aby odrzucić twoje zmainy lub 'Cancel', żeby w przyszłości edytować XML."
 };
